@@ -11,12 +11,10 @@ import { ProjectGrid } from '@/components/projects/ProjectGrid';
 import { AiSection } from '@/components/sections/AiSection';
 import { Contact } from '@/components/sections/Contact';
 import { Footer } from '@/components/sections/Footer';
-import { PageRail } from '@/components/ui/PageRail';
 
 export default function HomePage() {
   return (
     <>
-      <PageRail />
 
       <div className="snap-section"><Hero /></div>
       <div className="snap-section"><Impact /></div>
