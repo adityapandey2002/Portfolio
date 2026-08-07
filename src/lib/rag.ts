@@ -24,7 +24,7 @@ async function embedQuery(query: string): Promise<number[]> {
   const provider = getEmbeddingsProvider();
   const model = process.env.EMBEDDINGS_MODEL || 'text-embedding-3-small';
   const { embedding } = await embed({
-    model: provider.textEmbeddingModel(model),
+    model: provider.textEmbeddingModel(model, { dimensions: 1536 }),
     value: query,
   });
   return embedding;

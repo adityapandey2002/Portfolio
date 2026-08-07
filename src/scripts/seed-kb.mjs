@@ -69,7 +69,7 @@ async function main() {
 
     console.log(`Embedding with ${model} @ ${process.env.EMBEDDINGS_BASE_URL || 'openai'} ...`);
     const res = await embedMany({
-      model: provider.textEmbeddingModel(model),
+      model: provider.textEmbeddingModel(model, { dimensions: 1536 }),
       values: chunks.map((c) => c.content),
     });
     embeddings = res.embeddings;
