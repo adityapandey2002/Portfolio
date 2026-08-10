@@ -3,7 +3,7 @@
 import { useState } from 'react';
 import Link from 'next/link';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ArrowUpRight, BookOpen, ExternalLink, Github, X } from 'lucide-react';
+import { ArrowUpRight, BookOpen, Github, X } from 'lucide-react';
 import type { Project } from '@/lib/data/projects';
 import { TiltCard } from '@/components/motion/TiltCard';
 import { LiveShot } from './LiveShot';
@@ -112,35 +112,35 @@ export function ProjectCard({ project, index = 0, liveInfo }: ProjectCardProps) 
                 ) : (
                   <>
                     <button
-                      onClick={() => setOpen(true)}
+                      onClick={(e) => {
+                        e.preventDefault();
+                        e.stopPropagation();
+                        setOpen(true);
+                      }}
                       className="inline-flex items-center gap-1.5 font-mono text-[11px] uppercase tracking-widest text-primary transition-colors hover:text-ink"
                     >
                       <BookOpen size={13} /> Case study
                     </button>
                     <span className="ml-auto flex items-center gap-2">
-                      {project.live && (
-                        <a
-                          href={project.live}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="icon-link"
-                          title="Open live site"
-                          aria-label={`Open ${project.title} live site`}
-                        >
-                          <ExternalLink size={15} />
-                        </a>
-                      )}
+                      {project.live ? (
+                        <span className="inline-flex items-center gap-1.5 font-mono text-[11px] uppercase tracking-widest text-ink-3">
+                          Open live site <ArrowUpRight size={13} />
+                        </span>
+                      ) : null}
                       {project.source && (
-                        <a
-                          href={project.source}
-                          target="_blank"
-                          rel="noopener noreferrer"
+                        <button
+                          type="button"
+                          onClick={(e) => {
+                            e.preventDefault();
+                            e.stopPropagation();
+                            window.open(project.source!, '_blank', 'noopener,noreferrer');
+                          }}
                           className="icon-link"
                           title="View source code"
                           aria-label={`${project.title} source on GitHub`}
                         >
                           <Github size={15} />
-                        </a>
+                        </button>
                       )}
                     </span>
                   </>
@@ -167,6 +167,16 @@ export function ProjectCard({ project, index = 0, liveInfo }: ProjectCardProps) 
           >
             {card}
           </Link>
+        ) : project.live ? (
+          <a
+            href={project.live}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="block h-full rounded-lg outline-none focus-visible:ring-2 focus-visible:ring-primary"
+            aria-label={`${project.title} — open live site`}
+          >
+            {card}
+          </a>
         ) : (
           card
         )}
