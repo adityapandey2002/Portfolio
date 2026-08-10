@@ -6,6 +6,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { ArrowUpRight, BookOpen, ExternalLink, Github, X } from 'lucide-react';
 import type { Project } from '@/lib/data/projects';
 import { TiltCard } from '@/components/motion/TiltCard';
+import { LiveShot } from './LiveShot';
 
 const GLYPH_COLORS: Record<Project['category'], string> = {
   ml: '#818cf8',
@@ -13,12 +14,18 @@ const GLYPH_COLORS: Record<Project['category'], string> = {
   fullstack: '#22d3ee',
 };
 
+interface LiveInfo {
+  up: boolean;
+  latencyMs: number | null;
+}
+
 interface ProjectCardProps {
   project: Project;
   index?: number;
+  liveInfo?: LiveInfo | null;
 }
 
-export function ProjectCard({ project, index = 0 }: ProjectCardProps) {
+export function ProjectCard({ project, index = 0, liveInfo }: ProjectCardProps) {
   const [open, setOpen] = useState(false);
 
   const card = (
@@ -41,7 +48,8 @@ export function ProjectCard({ project, index = 0 }: ProjectCardProps) {
             {/* Cover */}
             <div className="relative flex h-44 shrink-0 items-center justify-center overflow-hidden" style={{ background: project.cover || 'linear-gradient(135deg, #0f1421, #161c2c)' }}>
               <div className="absolute inset-0" style={{ background: 'radial-gradient(circle at 30% 40%, rgba(99,102,241,0.35), transparent 60%)' }} />
-              {project.glyph && (
+              {project.live && <LiveShot url={project.live} alt={`${project.title} — live site preview`} />}
+              {!project.live && project.glyph && (
                 <span
                   className="relative font-mono text-[44px] font-bold transition-transform duration-300 group-hover:scale-110"
                   style={{ color: GLYPH_COLORS[project.category], textShadow: '0 0 24px rgba(255,255,255,0.25)' }}
@@ -56,9 +64,27 @@ export function ProjectCard({ project, index = 0 }: ProjectCardProps) {
                 {project.categoryLabel}
               </span>
               {project.status && (
-                <span className="absolute right-3 top-3 inline-flex items-center gap-1.5 rounded-full bg-primary px-2.5 py-1 font-mono text-[10px] font-semibold text-bg">
-                  <span className="h-1.5 w-1.5 rounded-full bg-bg" style={{ animation: 'pulse 1.8s infinite' }} />
-                  {project.status}
+                <span
+                  className="absolute right-3 top-3 inline-flex items-center gap-1.5 rounded-full px-2.5 py-1 font-mono text-[10px] font-semibold backdrop-blur-sm"
+                  style={
+                    liveInfo && !liveInfo.up
+                      ? { background: 'color-mix(in srgb, #f87171 15%, var(--bg-2) 85%)', color: '#f87171', border: '1px solid color-mix(in srgb, #f87171 40%, transparent)' }
+                      : { background: 'color-mix(in srgb, var(--primary) 12%, var(--bg-2) 85%)', color: 'var(--primary)', border: '1px solid color-mix(in srgb, var(--primary) 35%, transparent)' }
+                  }
+                  title={
+                    liveInfo
+                      ? `${project.status} — ${liveInfo.up ? 'reachable' : 'unreachable'}${liveInfo.latencyMs !== null ? ` · ${liveInfo.latencyMs}ms` : ''}`
+                      : `${project.status} — checking…`
+                  }
+                >
+                  <span
+                    className="h-1.5 w-1.5 rounded-full"
+                    style={{
+                      background: liveInfo && !liveInfo.up ? '#f87171' : 'var(--primary)',
+                      animation: liveInfo ? 'pulse 1.8s infinite' : 'none',
+                    }}
+                  />
+                  {liveInfo ? (liveInfo.up ? 'LIVE' : 'OFFLINE') : project.status}
                 </span>
               )}
             </div>

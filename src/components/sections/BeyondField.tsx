@@ -21,7 +21,7 @@ const BEYOND = [
   {
     icon: Compass,
     title: 'CBCT & leadership workshop — Hajipur',
-    body: 'Completed a <strong>cognitive and compassion-based frameworks (CBCT) workshop</strong> with the fellowship cohort — tools for facilitation, empathy-led problem solving, and field leadership.',
+    body: 'Participated in <strong>Cognitively-Based Compassion Training (CBCT)</strong> with the fellowship cohort — and supported the same training being delivered to others, strengthening facilitation, empathy-led problem solving, and field leadership.',
     tags: ['Fellowship Training', 'Facilitation', 'Hajipur'],
   },
   {

@@ -6,7 +6,7 @@ Aditya Pandey is a data analyst, full-stack developer and AI practitioner curren
 
 ## Current role — Gandhi Fellowship (Piramal Foundation)
 
-Fellow, Health System Strengthening, Muzaffarpur, Bihar (Jul 2025 – Present). He uses ODK Collect and ODK Central for field-level health data collection across VHSND, Godbharai and PMSMA workflows. He built a Python-based data cleaning and validation pipeline for VHSND field data, from raw extracts to analysis-ready datasets. He trained 700+ ASHA workers hands-on on the M-ASHA government digital application, and co-organized a 5-week, 185-hour Clinical Skills Refresher Program for 12 Staff Nurses and 4 Doctors. He also supports scientific forecasting for medicine and equipment indenting.
+Fellow, Health System Strengthening, Muzaffarpur, Bihar (Jul 2025 – Present). He uses ODK Collect and ODK Central for field-level health data collection across VHSND, Godbharai and PMSMA workflows. He built a Python-based data cleaning and validation pipeline for VHSND field data, from raw extracts to analysis-ready datasets. He trained 700+ ASHA workers hands-on on the M-ASHA government digital application across 100+ sessions — sustained, patient sessions until the tool worked for each worker's daily use — and co-designed and delivered a 5-week, 185-hour Clinical Skills Refresher Program for 12 Staff Nurses and 4 Doctors, followed by monthly on-site audits. He has participated in Cognitively-Based Compassion Training (CBCT) with the fellowship cohort and supported the same training being delivered to others. He also supports scientific forecasting for medicine and equipment indenting.
 
 ## Work experience
 
@@ -28,12 +28,13 @@ Field & public health: ODK Collect, ODK Central, Apache Superset, DHIS2. Data & 
 ## Education
 
 - Master of Computer Applications (MCA), Pondicherry University (Aug 2023 – May 2025).
-- Bachelor of Science in Mathematics, Kamla Nehru Institute, Sultanpur (2019 – 2022).
+- Master of Arts in Political Science, Prof. Rajendra Singh (Rajju Bhaiya) University, Prayagraj (Aug 2022 – Jun 2023).
+- Bachelor of Science in Mathematics, Dr. Rammanohar Lohia Avadh University, Ayodhya (2019 – 2022).
 - ESDP Programme, MSME Pondicherry — Python-based data tools.
 
 ## Certifications
 
-- IBM Data Science Professional (Coursera).
+- IBM Data Science Professional Certificate — IBM, 11 courses.
 - Data Analytics with Python (NPTEL).
 - Data Mining Using R (NPTEL).
 - Nation Builder (NB4), Gandhi Fellowship, Piramal Foundation.
@@ -44,7 +45,7 @@ Field & public health: ODK Collect, ODK Central, Apache Superset, DHIS2. Data & 
 - Work email: aditya.pandey@piramalswasthya.org
 - Phone: +91 8601862114
 - GitHub: github.com/adityapandey2002
-- LinkedIn: linkedin.com/in/aditya-pandey-083a55233
+- LinkedIn: linkedin.com/in/adityapandey-a-fellow
 - Location: Muzaffarpur, Bihar, India (26.12° N, 85.36° E). Languages: Hindi and English.
 
 ## Personal philosophy

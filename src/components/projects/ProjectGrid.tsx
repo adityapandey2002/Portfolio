@@ -7,9 +7,12 @@ import Link from 'next/link';
 import { projects, projectFilters } from '@/lib/data/projects';
 import { SectionHeading } from '../sections/SectionHeading';
 import { ProjectCard } from './ProjectCard';
+import { LiveTicker } from './LiveTicker';
+import { useLiveStatus } from '@/hooks/useLiveStatus';
 
 export function ProjectGrid({ featured = false }: { featured?: boolean }) {
   const [filter, setFilter] = useState<(typeof projectFilters)[number]['id']>('all');
+  const liveStatus = useLiveStatus();
 
   const shown = featured
     ? projects.slice(0, 3)
@@ -44,10 +47,12 @@ export function ProjectGrid({ featured = false }: { featured?: boolean }) {
           <motion.div layout className="grid grid-cols-1 gap-6 md:grid-cols-3">
             <AnimatePresence mode="popLayout">
               {shown.map((p, i) => (
-                <ProjectCard key={p.id} project={p} index={i} />
+                <ProjectCard key={p.id} project={p} index={i} liveInfo={liveStatus[p.id] ?? null} />
               ))}
             </AnimatePresence>
           </motion.div>
+
+          <LiveTicker status={liveStatus} />
         </div>
       </section>
     );

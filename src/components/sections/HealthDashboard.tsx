@@ -10,7 +10,7 @@ const VITALS = [
   { label: 'ASHA workers trained (M-ASHA)', value: 700, suffix: '+', pct: 100, foot: 'Field trainings · hands-on' },
   { label: 'Clinical refresher hours', value: 185, suffix: 'h', pct: 100, foot: '12 Staff Nurses · 4 Doctors' },
   { label: 'VHSND sessions QC’d', value: 1200, suffix: '+', pct: 78, foot: 'ODK field data validated' },
-  { label: 'PHC/CHC blocks covered', value: 6, suffix: '/6', pct: 100, foot: 'Bihar · Muzaffarpur → Araria' },
+  { label: 'PHC/CHC blocks covered', value: 6, suffix: '/6', pct: 100, foot: 'Bihar · Muzaffarpur' },
 ] as const;
 
 const DIAGNOSTICS = [
@@ -175,7 +175,7 @@ function RouteMap() {
       <circle cx="372" cy="52" r="6" fill="var(--bg-3)" stroke="var(--accent)" strokeWidth="2" />
       <circle className="blip" cx="372" cy="52" r="2.5" fill="var(--accent)" />
       <text x="372" y="42" textAnchor="middle" fill="var(--ink-2)" fontSize="9.5" fontFamily="var(--font-mono)" letterSpacing="1">
-        ARARIA · NOW
+        MUZAFFARPUR · NOW
       </text>
     </svg>
   );
@@ -256,7 +256,7 @@ function FieldKmMeter() {
         <div className="flex flex-col justify-between gap-6 p-8 lg:p-10" style={{ background: 'var(--bg-2)' }}>
           <div className="flex items-center justify-between font-mono text-[10.5px] uppercase tracking-[0.2em] text-ink-3">
             <span>Route · Bihar field program</span>
-            <span className="text-ink-4">Muzaffarpur → Araria</span>
+            <span className="text-ink-4">Muzaffarpur district</span>
           </div>
           <RouteMap />
           <Odometer />
@@ -287,8 +287,8 @@ export function HealthDashboard() {
             The fellowship, <span className="text-gradient">on vitals</span>
           </h1>
           <p className="section-sub mt-3 max-w-[560px]">
-            Gandhi Fellowship · Piramal Foundation. Health-system strengthening across Bihar — from Muzaffarpur
-            to Araria — every number tracked like it&apos;s patient data. Because it is.
+          Gandhi Fellowship · Piramal Foundation. Health-system strengthening across Bihar — based in
+          Muzaffarpur — every number tracked like it&apos;s patient data. Because it is.
           </p>
         </header>
       </div>
