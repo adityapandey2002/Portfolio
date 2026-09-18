@@ -110,9 +110,11 @@
   box-sizing: border-box;
 }
 html {
-  scroll-behavior: smooth;
+  /* Programmatic scrolls stay instant; explicit behavior:'smooth' calls still animate.
+     Smooth + mandatory snap can queue/jank — auto keeps one-step snappy. */
+  scroll-behavior: auto;
   color-scheme: light;
-  scroll-snap-type: y proximity;
+  scroll-snap-type: y mandatory;
 }
 html,
 body {
@@ -121,6 +123,20 @@ body {
 
 :root {
   --nav-h: 56px;
+  --safe-top: env(safe-area-inset-top, 0px);
+  --safe-bottom: env(safe-area-inset-bottom, 0px);
+}
+
+/* Kill 300ms tap delay / double-tap auto-zoom on mobile */
+a,
+button,
+[role='button'],
+input,
+textarea,
+select,
+label {
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
 }
 
 /* =========================================================
@@ -128,7 +144,8 @@ body {
    Each section fills a screen; content clears the fixed nav.
 ========================================================= */
 .snap-section {
-  min-height: 100svh;
+  height: 100svh;
+  max-height: 100svh;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -136,6 +153,7 @@ body {
   scroll-snap-stop: always;
   scroll-margin-top: 1rem;
   position: relative;
+  overflow: hidden;
 }
 .snap-section + .snap-section {
   border-top: 1px solid color-mix(in srgb, var(--line) 55%, transparent);
@@ -143,8 +161,9 @@ body {
 .snap-section > section,
 .snap-section > header {
   width: 100%;
-  padding-top: clamp(4rem, 14vh, 7.5rem);
-  padding-bottom: clamp(2.5rem, 8vh, 5rem);
+  height: 100%;
+  padding-top: clamp(3.5rem, 11vh, 5.5rem);
+  padding-bottom: clamp(1.5rem, 5vh, 3rem);
 }
 
 /* soft inner scroll for content-heavy sections */
@@ -152,7 +171,7 @@ body {
   overflow-y: auto;
   scrollbar-width: thin;
   scrollbar-color: var(--bg-3) transparent;
-  overscroll-behavior: contain;
+  overscroll-behavior: auto;
 }
 .section-inner-scroll::-webkit-scrollbar {
   width: 4px;
@@ -165,9 +184,14 @@ body {
 @media (max-width: 768px) {
   html {
     scroll-snap-type: none;
+    scroll-padding-bottom: calc(var(--nav-h) + 76px);
+    -webkit-text-size-adjust: 100%;
   }
   .snap-section {
     min-height: auto;
+    height: auto;
+    max-height: none;
+    overflow: visible;
     padding: calc(var(--nav-h) + 1.5rem) 0 3rem;
     justify-content: flex-start;
   }
@@ -177,6 +201,23 @@ body {
   .section-inner-scroll {
     overflow-y: visible;
     max-height: none !important;
+  }
+  /* 16px inputs — prevents iOS auto-zoom on focus */
+  .input-field {
+    font-size: 16px;
+  }
+  /* ≥44px touch targets */
+  .icon-link {
+    height: 44px;
+    width: 44px;
+  }
+  /* ≤44px touch targets stay, heavy overlays get lighter on phones */
+  .noise-overlay {
+    opacity: 0.05;
+  }
+  /* Clear the fixed bottom tab bar on phones */
+  body {
+    padding-bottom: calc(64px + var(--safe-bottom));
   }
 }
 body {

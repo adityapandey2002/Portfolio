@@ -23,8 +23,8 @@ export function ProjectGrid({ featured = false }: { featured?: boolean }) {
   // ─── FEATURED (homepage snap-section) — one row of three ─────────────
   if (featured) {
     return (
-      <section id="work" className="relative flex w-full flex-col justify-center px-5 lg:px-10">
-        <div className="mx-auto w-full max-w-[1500px]">
+      <section id="work" className="relative flex h-full w-full flex-col justify-center overflow-hidden px-5 lg:px-10">
+        <div className="mx-auto flex min-h-0 w-full max-w-[1500px] flex-1 flex-col">
           {/* Header row */}
           <div className="flex flex-wrap items-end justify-between gap-4">
             <SectionHeading
@@ -44,10 +44,10 @@ export function ProjectGrid({ featured = false }: { featured?: boolean }) {
             </div>
           </div>
 
-          <motion.div layout className="grid grid-cols-1 gap-6 md:grid-cols-3">
+          <motion.div layout className="section-inner-scroll grid min-h-0 flex-1 content-start grid-cols-1 gap-6 md:grid-cols-3">
             <AnimatePresence mode="popLayout">
               {shown.map((p, i) => (
-                <ProjectCard key={p.id} project={p} index={i} liveInfo={liveStatus[p.id] ?? null} />
+                <ProjectCard key={p.id} project={p} index={i} liveInfo={liveStatus[p.id] ?? null} compact />
               ))}
             </AnimatePresence>
           </motion.div>

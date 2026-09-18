@@ -6,7 +6,6 @@ import { BarChart2, Cpu, Radar } from 'lucide-react';
 import { skillBars, techCats, radar } from '@/lib/data/skills';
 import { SectionHeading } from './SectionHeading';
 import { RadarChart } from './RadarChart';
-import { useScrollEscape } from '@/hooks/useScrollEscape';
 
 type Tab = 'bars' | 'stack' | 'radar';
 
@@ -20,11 +19,10 @@ export function Skills() {
   const ref = useRef<HTMLDivElement>(null);
   const inView = useInView(ref, { once: true, margin: '-80px' });
   const [tab, setTab] = useState<Tab>('bars');
-  useScrollEscape(ref);
 
   return (
     <section id="skills" className="relative flex h-full w-full flex-col justify-center overflow-hidden px-5 lg:px-10">
-      <div className="mx-auto w-full max-w-[1500px]">
+      <div className="mx-auto flex min-h-0 w-full max-w-[1500px] flex-1 flex-col">
         <div className="flex flex-wrap items-end justify-between gap-4">
           <SectionHeading
             eyebrow="/* 07 · SKILLS */"
@@ -65,11 +63,10 @@ export function Skills() {
           </div>
         </div>
 
-        {/* Tab content — fixed height so it never overflows */}
+        {/* Tab content — flex-1 fills remaining panel space */}
         <div
           ref={ref}
-          className="relative overflow-hidden rounded-2xl border border-[var(--line)] bg-bg-2/40"
-          style={{ height: 'clamp(260px, 44vh, 460px)' }}
+          className="relative min-h-0 flex-1 overflow-hidden rounded-2xl border border-[var(--line)] bg-bg-2/40"
         >
           <AnimatePresence mode="wait">
             {tab === 'bars' && (

@@ -10,6 +10,7 @@ import { FieldTourProvider } from '@/components/ui/FieldTour';
 import { Cursor } from '@/components/ui/Cursor';
 import { ScrollProgress } from '@/components/ui/ScrollProgress';
 import { Nav } from '@/components/ui/Nav';
+import { MobileTabBar } from '@/components/ui/MobileTabBar';
 import { LiveToasts } from '@/components/realtime/LiveToasts';
 import { PageShell } from '@/components/motion/PageShell';
 
@@ -36,6 +37,7 @@ export function Providers({ children }: { children: ReactNode }) {
               <ScrollProgress />
               <EasterEggsActivator />
               <NavInner />
+              <MobileTabBar />
               <LiveToasts />
               <main className="relative z-10">
                 <PageShell>{children}</PageShell>

@@ -75,7 +75,7 @@ export function AskClient() {
   };
 
   return (
-    <section className="relative flex min-h-screen flex-col pt-28">
+    <section className="relative flex min-h-dvh flex-col pt-28">
       <div className="mx-auto flex w-full max-w-[900px] flex-1 flex-col px-5 pb-10">
         <motion.div initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}>
           <span className="eyebrow">{'/* ASK */'}</span>
@@ -162,12 +162,12 @@ export function AskClient() {
 
         <div className="mt-6">
           {messages.length === 0 && (
-            <div className="mb-4 flex flex-wrap gap-2">
+            <div className="mb-4 flex gap-2 overflow-x-auto pb-1 md:flex-wrap">
               {SUGGESTIONS.map((s) => (
                 <button
                   key={s}
                   onClick={() => append({ role: 'user', content: s })}
-                  className="rounded-full border border-[var(--line)] bg-bg-2/70 px-4 py-2 text-left text-[12.5px] text-ink-2 transition-colors hover:border-primary/50 hover:text-ink"
+                  className="shrink-0 rounded-full border border-[var(--line)] bg-bg-2/70 px-4 py-2 text-left text-[12.5px] text-ink-2 transition-colors hover:border-primary/50 hover:text-ink"
                 >
                   {s}
                 </button>
@@ -177,7 +177,7 @@ export function AskClient() {
 
           <form
             onSubmit={handleSubmit}
-            className="flex items-end gap-2 rounded-2xl border border-[var(--line)] bg-bg-2/80 p-2 backdrop-blur focus-within:border-primary/50"
+            className="sticky bottom-[calc(var(--nav-h)+var(--safe-bottom)+12px)] z-10 flex items-end gap-2 rounded-2xl border border-[var(--line)] bg-bg-2/80 p-2 backdrop-blur focus-within:border-primary/50 md:static"
           >
             <textarea
               value={input}

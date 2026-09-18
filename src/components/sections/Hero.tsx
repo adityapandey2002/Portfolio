@@ -1,6 +1,6 @@
 'use client';
 
-import { useMemo, useEffect, useState } from 'react';
+import { useMemo, useEffect, useState, useRef } from 'react';
 import { motion } from 'framer-motion';
 import { ArrowDownRight, Sparkles } from 'lucide-react';
 import Link from 'next/link';
@@ -93,13 +93,23 @@ function AnimatedPipeline({ started }: { started: boolean }) {
 export function Hero() {
   const { done } = usePreloader();
   const started = done;
+  const heroRef = useRef<HTMLElement | null>(null);
+  const [active, setActive] = useState(true);
+
+  useEffect(() => {
+    const el = heroRef.current;
+    if (!el || typeof IntersectionObserver === 'undefined') return;
+    const io = new IntersectionObserver(([entry]) => setActive(entry.isIntersecting), { rootMargin: '100px' });
+    io.observe(el);
+    return () => io.disconnect();
+  }, []);
 
   const line1 = useMemo(() => ({ a: profile.headlineLines[0], b: profile.headlineLines[1] }), []);
   const line2 = useMemo(() => ({ a: profile.headlineLines[2], b: profile.headlineLines[3] }), []);
   const line3 = useMemo(() => ({ a: profile.headlineLines[4], b: profile.headlineLines[5] }), []);
 
   return (
-    <section id="hero" className="relative flex h-full w-full flex-col overflow-hidden">
+    <section id="hero" ref={heroRef} className="relative flex h-full w-full flex-col overflow-hidden">
       <div className="mx-auto grid w-full max-w-[1400px] flex-1 items-center gap-4 px-5 py-3 lg:grid-cols-[1.05fr_0.95fr] lg:px-8">
         <div className="relative z-10">
           {/* Status badge */}
@@ -186,7 +196,7 @@ export function Hero() {
           <div className="sphere-halo absolute inset-0" />
           <div className="orbit-ring orbit-ring-1" />
           <div className="orbit-ring orbit-ring-2" />
-          <HeroScene />
+          <HeroScene active={active} />
           <motion.span
             className="stamp absolute right-0 top-2"
             initial={{ opacity: 0, scale: 1.4, rotate: -14 }}

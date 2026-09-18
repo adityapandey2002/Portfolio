@@ -38,7 +38,7 @@ export function BeyondField() {
 
   return (
     <section id="beyond" className="relative flex h-full w-full flex-col justify-center overflow-hidden px-5 lg:px-10">
-      <div className="mx-auto w-full max-w-[1500px]" ref={ref}>
+      <div className="mx-auto flex min-h-0 w-full max-w-[1500px] flex-1 flex-col" ref={ref}>
         <SectionHeading
           eyebrow="/* 09 · BEYOND THE FIELD */"
           className="mb-6"
@@ -49,7 +49,7 @@ export function BeyondField() {
           }
           sub="The fellowship is the centre of the week — not all of it."
         />
-        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="section-inner-scroll grid min-h-0 flex-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
           {BEYOND.map((b, i) => (
             <motion.div
               key={b.title}

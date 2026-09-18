@@ -23,9 +23,10 @@ interface ProjectCardProps {
   project: Project;
   index?: number;
   liveInfo?: LiveInfo | null;
+  compact?: boolean;
 }
 
-export function ProjectCard({ project, index = 0, liveInfo }: ProjectCardProps) {
+export function ProjectCard({ project, index = 0, liveInfo, compact = false }: ProjectCardProps) {
   const [open, setOpen] = useState(false);
 
   const card = (
@@ -46,7 +47,7 @@ export function ProjectCard({ project, index = 0, liveInfo }: ProjectCardProps) 
             />
 
             {/* Cover */}
-            <div className="relative flex h-44 shrink-0 items-center justify-center overflow-hidden" style={{ background: project.cover || 'linear-gradient(135deg, #0f1421, #161c2c)' }}>
+            <div className={`relative flex shrink-0 items-center justify-center overflow-hidden ${compact ? 'h-28' : 'h-44'}`} style={{ background: project.cover || 'linear-gradient(135deg, #0f1421, #161c2c)' }}>
               <div className="absolute inset-0" style={{ background: 'radial-gradient(circle at 30% 40%, rgba(99,102,241,0.35), transparent 60%)' }} />
               {project.live && <LiveShot url={project.live} alt={`${project.title} — live site preview`} />}
               {!project.live && project.glyph && (
@@ -90,13 +91,13 @@ export function ProjectCard({ project, index = 0, liveInfo }: ProjectCardProps) 
             </div>
 
             {/* Body */}
-            <div className="relative flex flex-1 flex-col p-5">
+            <div className={`relative flex flex-1 flex-col ${compact ? 'p-4' : 'p-5'}`}>
               <h3 className="glitch text-[17px] font-semibold leading-snug text-ink" data-text={project.title}>
                 {project.title}
               </h3>
-              <p className="mt-2 flex-1 text-[13.5px] leading-relaxed text-ink-2">{project.desc}</p>
+              <p className={`mt-2 flex-1 text-[13.5px] leading-relaxed text-ink-2 ${compact ? 'line-clamp-3' : ''}`}>{project.desc}</p>
 
-              <div className="mt-4 flex flex-wrap gap-1.5">
+              <div className={`flex flex-wrap gap-1.5 ${compact ? 'mt-2.5' : 'mt-4'}`}>
                 {project.tags.map((t) => (
                   <span key={t} className="rounded-sm border border-[var(--line)] bg-bg px-2 py-1 font-mono text-[10px] text-ink-2">
                     {t}
@@ -104,7 +105,7 @@ export function ProjectCard({ project, index = 0, liveInfo }: ProjectCardProps) 
                 ))}
               </div>
 
-              <div className="mt-5 flex items-center gap-3 border-t border-dashed border-[var(--line-2)] pt-4">
+              <div className={`flex items-center gap-3 border-t border-dashed border-[var(--line-2)] ${compact ? 'mt-3 pt-3' : 'mt-5 pt-4'}`}>
                 {project.path ? (
                   <span className="inline-flex items-center gap-1.5 font-mono text-[11px] uppercase tracking-widest text-primary transition-colors group-hover:text-ink">
                     Open dashboard <ArrowUpRight size={13} />
@@ -154,6 +155,7 @@ export function ProjectCard({ project, index = 0, liveInfo }: ProjectCardProps) 
   return (
     <>
       <motion.div
+        className="h-full"
         initial={{ opacity: 0, y: 32 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, margin: '-60px' }}
@@ -185,20 +187,22 @@ export function ProjectCard({ project, index = 0, liveInfo }: ProjectCardProps) 
       <AnimatePresence>
         {open && (
           <motion.div
-            className="fixed inset-0 z-[500] flex items-center justify-center bg-bg/70 p-5 backdrop-blur-sm"
+            className="fixed inset-0 z-[500] flex items-end justify-center bg-bg/70 p-3 backdrop-blur-sm md:items-center md:p-5"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             onClick={() => setOpen(false)}
           >
             <motion.div
-              className="w-full max-w-2xl overflow-hidden rounded-lg border border-[var(--line)] bg-bg-2 shadow-[0_20px_60px_rgba(0,0,0,0.25)]"
+              className="w-full max-w-2xl overflow-hidden rounded-t-2xl border border-[var(--line)] bg-bg-2 shadow-[0_20px_60px_rgba(0,0,0,0.25)] md:rounded-lg"
+              style={{ paddingBottom: 'var(--safe-bottom)' }}
               initial={{ opacity: 0, y: 28, scale: 0.97 }}
               animate={{ opacity: 1, y: 0, scale: 1 }}
               exit={{ opacity: 0, y: 20, scale: 0.97 }}
               transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
               onClick={(e) => e.stopPropagation()}
             >
+              <span className="mx-auto mt-2.5 mb-1 block h-1 w-10 rounded-full bg-[var(--line)] md:hidden" aria-hidden />
               <div className="flex items-center justify-between border-b border-[var(--line)] px-6 py-4">
                 <span className="font-mono text-[10.5px] uppercase tracking-[0.2em] text-ink-3">Case study · {project.categoryLabel}</span>
                 <button onClick={() => setOpen(false)} className="flex h-8 w-8 items-center justify-center rounded-sm border border-[var(--line)] text-ink-3 hover:text-ink" aria-label="Close">

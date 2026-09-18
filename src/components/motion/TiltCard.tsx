@@ -1,6 +1,6 @@
 'use client';
 
-import { useRef, type ReactNode } from 'react';
+import { useRef, useState, type ReactNode } from 'react';
 
 interface TiltCardProps {
   children: ReactNode;
@@ -10,6 +10,7 @@ interface TiltCardProps {
 
 export function TiltCard({ children, className, max = 7 }: TiltCardProps) {
   const ref = useRef<HTMLDivElement>(null);
+  const [coarse] = useState(() => typeof window !== 'undefined' && window.matchMedia('(pointer: coarse)').matches);
 
   const onMove = (e: React.MouseEvent<HTMLDivElement>) => {
     const el = ref.current;
@@ -32,8 +33,8 @@ export function TiltCard({ children, className, max = 7 }: TiltCardProps) {
     <div
       ref={ref}
       className={className}
-      onMouseMove={onMove}
-      onMouseLeave={onLeave}
+      onMouseMove={coarse ? undefined : onMove}
+      onMouseLeave={coarse ? undefined : onLeave}
       style={{ transformStyle: 'preserve-3d', transition: 'transform 0.2s ease, border-color 0.2s, box-shadow 0.3s' }}
     >
       {children}

@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { motion } from 'framer-motion';
-import { Command, Menu, X } from 'lucide-react';
+import { Command, Menu, Wifi, BatteryMedium, X } from 'lucide-react';
 import { profile } from '@/lib/data/profile';
 import { usePreloader } from './Preloader';
 import { VisitorsPulse } from '@/components/realtime/VisitorsPulse';
@@ -21,6 +21,8 @@ export function Nav({ onOpenPalette }: { onOpenPalette: () => void }) {
   const { done } = usePreloader();
   const pathname = usePathname();
   const [scrolled, setScrolled] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
+  const [now, setNow] = useState('');
   const [open, setOpen] = useState(false);
 
   useEffect(() => {
@@ -29,7 +31,24 @@ export function Nav({ onOpenPalette }: { onOpenPalette: () => void }) {
     return () => window.removeEventListener('scroll', onScroll);
   }, []);
 
+  useEffect(() => {
+    const mq = window.matchMedia('(max-width: 768px)');
+    const update = () => setIsMobile(mq.matches);
+    update();
+    mq.addEventListener('change', update);
+    return () => mq.removeEventListener('change', update);
+  }, []);
+
+  useEffect(() => {
+    const fmt = () =>
+      new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', hour12: true }).toLowerCase();
+    setNow(fmt());
+    const id = setInterval(() => setNow(fmt()), 15000);
+    return () => clearInterval(id);
+  }, []);
+
   useEffect(() => setOpen(false), [pathname]);
+  const hasBg = scrolled || isMobile;
 
   const isActive = (href: string) => {
     if (href === '/') return pathname === '/';
@@ -39,21 +58,30 @@ export function Nav({ onOpenPalette }: { onOpenPalette: () => void }) {
 
   return (
     <header
-      className="fixed inset-x-0 top-0 z-[100] px-4 pt-3 transition-all duration-700"
+      className="fixed inset-x-0 top-0 z-[100] px-4 pt-[calc(var(--safe-top)+4px)] transition-all duration-700 md:pt-3"
       style={{
         opacity: done ? 1 : 0,
         transform: done ? 'none' : 'translateY(-120%)',
         transition: 'all 0.7s cubic-bezier(0.16,1,0.3,1)',
       }}
     >
+      {/* Phone status strip — mobile only, sits in the notch area */}
+      <div className="pointer-events-none mx-auto mb-1 flex w-full max-w-[480px] items-center justify-between font-mono text-[8.5px] uppercase tracking-[0.18em] text-ink-4 md:hidden">
+        <span>{now}</span>
+        <span className="flex items-center gap-2">
+          <Wifi size={9} aria-hidden />
+          <BatteryMedium size={13} aria-hidden />
+        </span>
+      </div>
+
       <div
         className="mx-auto flex max-w-[960px] items-center justify-between rounded-full border px-3 py-1.5 transition-all duration-300"
         style={{
-          borderColor: scrolled ? 'var(--line)' : 'transparent',
-          background: scrolled
+          borderColor: hasBg ? 'var(--line)' : 'transparent',
+          background: hasBg
             ? 'color-mix(in srgb, var(--bg-2) 96%, transparent)'
             : 'transparent',
-          backdropFilter: scrolled ? 'blur(12px)' : 'none',
+          backdropFilter: hasBg ? 'blur(12px)' : 'none',
         }}
       >
         {/* Logo */}

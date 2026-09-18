@@ -100,20 +100,22 @@ export function CommandPaletteProvider({ children }: { children: ReactNode }) {
       <AnimatePresence>
         {isOpen && (
           <motion.div
-            className="fixed inset-0 z-[250] flex items-start justify-center bg-bg/60 px-4 pt-[14vh] backdrop-blur-md"
+            className="fixed inset-0 z-[250] flex items-end justify-center bg-bg/60 p-4 backdrop-blur-md md:items-start md:pt-[14vh]"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             onClick={close}
           >
             <motion.div
-              className="w-[min(640px,94vw)] overflow-hidden rounded-2xl border border-[var(--line)] bg-bg-2 shadow-2xl"
+              className="w-[min(640px,94vw)] overflow-hidden rounded-t-2xl border border-[var(--line)] bg-bg-2 shadow-2xl md:w-[min(640px,94vw)] md:rounded-2xl"
+              style={{ paddingBottom: 'var(--safe-bottom)' }}
               initial={{ opacity: 0, y: -12, scale: 0.98 }}
               animate={{ opacity: 1, y: 0, scale: 1 }}
               exit={{ opacity: 0, y: -8, scale: 0.98 }}
               transition={{ duration: 0.18 }}
               onClick={(e) => e.stopPropagation()}
             >
+              <span className="mx-auto mt-2.5 mb-1 block h-1 w-10 rounded-full bg-[var(--line)] md:hidden" aria-hidden />
               <div className="flex items-center gap-3 border-b border-[var(--line)] px-5 py-4">
                 <Search size={16} className="shrink-0 text-ink-3" />
                 <input

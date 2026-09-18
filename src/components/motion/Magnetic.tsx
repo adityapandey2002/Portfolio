@@ -1,9 +1,10 @@
 'use client';
 
-import { useRef, type ReactNode } from 'react';
+import { useRef, useState, type ReactNode } from 'react';
 
 export function Magnetic({ children, strength = 0.35, className }: { children: ReactNode; strength?: number; className?: string }) {
   const ref = useRef<HTMLDivElement>(null);
+  const [coarse] = useState(() => typeof window !== 'undefined' && window.matchMedia('(pointer: coarse)').matches);
 
   const onMove = (e: React.MouseEvent<HTMLDivElement>) => {
     const el = ref.current;
@@ -25,7 +26,7 @@ export function Magnetic({ children, strength = 0.35, className }: { children: R
   };
 
   return (
-    <div ref={ref} onMouseMove={onMove} onMouseLeave={onLeave} className={className} style={{ transition: 'transform 0.35s cubic-bezier(0.16,1,0.3,1)', willChange: 'transform', display: 'inline-block' }}>
+    <div ref={ref} onMouseMove={coarse ? undefined : onMove} onMouseLeave={coarse ? undefined : onLeave} className={className} style={{ transition: 'transform 0.35s cubic-bezier(0.16,1,0.3,1)', willChange: 'transform', display: 'inline-block' }}>
       {children}
     </div>
   );

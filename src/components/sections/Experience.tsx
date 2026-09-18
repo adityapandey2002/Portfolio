@@ -6,16 +6,14 @@ import { ExternalLink, HeartPulse, ArrowDownRight } from 'lucide-react';
 import Link from 'next/link';
 import { experience } from '@/lib/data/experience';
 import { SectionHeading } from './SectionHeading';
-import { useScrollEscape } from '@/hooks/useScrollEscape';
 
 export function Experience() {
   const ref = useRef<HTMLDivElement>(null);
   const inView = useInView(ref, { once: true, margin: '-80px' });
-  useScrollEscape(ref);
 
   return (
     <section id="experience" className="relative flex h-full w-full flex-col justify-center overflow-hidden px-5 lg:px-10">
-      <div className="mx-auto w-full max-w-[1500px]">
+      <div className="mx-auto flex min-h-0 w-full max-w-[1500px] flex-1 flex-col">
         {/* Fixed header area */}
         <div className="flex flex-wrap items-end justify-between gap-4">
           <SectionHeading
@@ -37,11 +35,10 @@ export function Experience() {
           </Link>
         </div>
 
-        {/* Scrollable timeline — max 45vh so it never overflows the panel */}
+        {/* Scrollable timeline — flex-1 fills whatever space the panel leaves */}
         <div
           ref={ref}
-          className="section-inner-scroll relative ml-2 border-l border-[var(--line)] pl-5 lg:pl-8"
-          style={{ maxHeight: 'clamp(260px, 48vh, 500px)' }}
+          className="section-inner-scroll relative min-h-0 flex-1 ml-2 border-l border-[var(--line)] pl-5 lg:pl-8"
         >
           {experience.map((xp, i) => (
             <motion.article

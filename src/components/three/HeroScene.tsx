@@ -6,7 +6,7 @@ import { Sparkles } from '@react-three/drei';
 import { DataSphere } from './DataSphere';
 import type { WebGLRenderer } from 'three';
 
-export default function HeroScene() {
+export default function HeroScene({ active = true }: { active?: boolean }) {
   const onCreated = useCallback(({ gl }: { gl: WebGLRenderer }) => {
     gl.domElement.addEventListener('webglcontextlost', (e) => e.preventDefault(), false);
   }, []);
@@ -17,6 +17,7 @@ export default function HeroScene() {
       camera={{ position: [0, 0, 3.4], fov: 45 }}
       gl={{ antialias: true, alpha: true, powerPreference: 'default' }}
       style={{ position: 'absolute', inset: 0, pointerEvents: 'none' }}
+      frameloop={active ? 'always' : 'never'}
       onCreated={onCreated}
     >
       <Suspense fallback={null}>
