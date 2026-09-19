@@ -239,6 +239,15 @@ html[data-scroll='free'] {
 html[data-scroll='free'] body {
   overflow-x: clip;
 }
+/* WHO scrub stage: 100vh fallback, then 100svh where supported. */
+.who-stage {
+  height: calc(100vh - var(--nav-h) - 48px);
+}
+@supports (height: 100svh) {
+  .who-stage {
+    height: calc(100svh - var(--nav-h) - 48px);
+  }
+}
 ::selection {
   background: var(--primary);
   color: var(--bg);
