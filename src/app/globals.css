@@ -1031,6 +1031,31 @@ textarea {
   }
 }
 
+/* ── Pillars of Work ─────────────────────────────────────────── */
+.pillar-layer {
+  position: relative;
+  will-change: transform;
+}
+
+.pillar-layer::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  opacity: 0;
+  transition: opacity 0.5s ease;
+  background: radial-gradient(
+    ellipse 600px 200px at 50% 0%,
+    var(--primary-glow),
+    transparent 70%
+  );
+  pointer-events: none;
+}
+
+.pillar-layer:hover::before {
+  opacity: 0.3;
+}
+
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,
