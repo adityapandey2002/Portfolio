@@ -1,13 +1,11 @@
 'use client';
 
-import { useMemo, useRef, useState, type ReactNode } from 'react';
+import { useEffect, useMemo, useRef, useState, type ReactNode } from 'react';
 import {
   motion,
   useInView,
   useScroll,
-  useMotionValueEvent,
   useTransform,
-  AnimatePresence,
 } from 'framer-motion';
 import { cn } from '@/lib/utils';
 import { SectionHeading } from './SectionHeading';
@@ -278,38 +276,98 @@ function DomainsDeck({ layer }: { layer: PillarLayer }) {
   );
 }
 
-/* ── WHO blocks: scroll-linked scrub (blocks activate, panel swaps) ─ */
+/* ── WHO blocks: sticky rail + scrolling block cards ────────────── */
+function BlockCard({
+  item,
+  index,
+  isActive,
+}: {
+  item: PillarItem;
+  index: number;
+  isActive: boolean;
+}) {
+  const Icon = item.icon;
+
+  return (
+    <div
+      data-idx={index}
+      className={cn(
+        'group/block scroll-mt-[calc(var(--nav-h)+24px)] relative overflow-hidden rounded-2xl border bg-bg-2 p-6 transition-all duration-500 sm:p-8',
+        isActive
+          ? 'border-[var(--line)] shadow-[0_24px_70px_-30px_var(--primary-glow)]'
+          : 'border-[var(--line)]'
+      )}
+    >
+      <div className="pillar-sheen absolute inset-0 opacity-0 transition-opacity duration-700 group-hover/block:opacity-100" />
+      <span className="pointer-events-none absolute right-5 top-4 select-none font-mono text-[48px] font-bold leading-none text-ink-4/40 opacity-40 sm:right-8 sm:text-[64px]">
+        {String(index + 1).padStart(2, '0')}
+      </span>
+
+      <div className="relative">
+        <div className="flex items-center gap-4">
+          <motion.div
+            className="relative flex h-12 w-12 shrink-0 items-center justify-center rounded-xl border border-[var(--line-2)] bg-bg-3 transition-colors duration-300 group-hover/block:border-primary/30 group-hover/block:bg-primary/10"
+            whileHover={{ scale: 1.08, rotate: -6 }}
+            transition={{ type: 'spring', stiffness: 320, damping: 15 }}
+          >
+            <Icon size={20} className="text-primary" />
+          </motion.div>
+          <div>
+            <p className="font-mono text-[9.5px] uppercase tracking-[0.26em] text-ink-4">
+              building block {String(index + 1).padStart(2, '0')}
+            </p>
+            <h3 className="font-serif text-[clamp(20px,2.4vw,30px)] font-semibold leading-tight tracking-tight text-ink">
+              {item.label}
+            </h3>
+          </div>
+        </div>
+
+        <p className="mt-4 max-w-[74ch] text-[13px] leading-relaxed text-ink-2">{item.desc}</p>
+
+        {item.outcomes && item.outcomes.length > 0 && (
+          <div className="mt-5 grid grid-cols-1 overflow-hidden rounded-xl border border-[var(--line)] bg-[var(--line)] sm:grid-cols-2">
+            {item.outcomes.map((o) => (
+              <div key={o.label} className="flex flex-col gap-1.5 bg-bg-2 p-4">
+                <span className="font-serif text-[clamp(24px,2.4vw,34px)] leading-none tracking-tight text-gradient">
+                  {o.value}
+                </span>
+                <span className="text-[12px] font-medium text-ink">{o.label}</span>
+                {o.foot && (
+                  <span className="font-mono text-[9px] uppercase tracking-[0.18em] text-ink-4">{o.foot}</span>
+                )}
+              </div>
+            ))}
+          </div>
+        )}
+      </div>
+    </div>
+  );
+}
+
 function SystemScrub({ layer }: { layer: PillarLayer }) {
-  const wrapRef = useRef<HTMLDivElement>(null);
   const [active, setActive] = useState(0);
-  const [frac, setFrac] = useState(0);
+  const cardRefs = useRef<(HTMLDivElement | null)[]>([]);
+
+  useEffect(() => {
+    const io = new IntersectionObserver(
+      (entries) => {
+        const best = entries
+          .filter((e) => e.isIntersecting)
+          .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
+        if (best) {
+          const idx = Number((best.target as HTMLElement).dataset.idx);
+          setActive(idx);
+        }
+      },
+      { rootMargin: '-42% 0px -42% 0px', threshold: [0, 0.2, 0.5] }
+    );
+    cardRefs.current.forEach((el) => el && io.observe(el));
+    return () => io.disconnect();
+  }, []);
 
   const items = layer.items;
 
-  const { scrollYProgress } = useScroll({
-    target: wrapRef,
-    offset: ['start start', 'end end'],
-  });
-
-  useMotionValueEvent(scrollYProgress, 'change', (latest) => {
-    const last = items.length - 1;
-    const linear = latest * last;
-    const idx = Math.min(last, Math.max(0, Math.round(linear)));
-    setActive(idx);
-    setFrac(latest >= 1 ? 1 : linear - Math.floor(linear));
-  });
-
-  const activeItem = items[active];
-  const ActiveIcon = activeItem.icon;
-
-  const jumpTo = (i: number) => {
-    const el = wrapRef.current;
-    if (!el) return;
-    const last = items.length - 1;
-    const travel = el.offsetHeight - window.innerHeight;
-    const top = el.offsetTop + travel * ((i + 0.5) / last);
-    window.scrollTo({ top: Math.max(0, top), behavior: 'smooth' });
-  };
+  const jumpTo = (i: number) => cardRefs.current[i]?.scrollIntoView({ behavior: 'smooth', block: 'start' });
 
   return (
     <ChapterBlock>
@@ -320,120 +378,61 @@ function SystemScrub({ layer }: { layer: PillarLayer }) {
             WHO building blocks, <span className="text-gradient">under focus</span>
           </>
         }
-        sub="Keep scrolling — each building block slides into focus and unpacks the outcome it's driving in the field."
+        sub="Scroll through each building block — every one unpacks the outcome it's driving in the field. The rail tracks where you are."
       />
 
-      <div className="relative" style={{ height: `${items.length * 65}vh` }}>
-        <div
-          className="sticky isolate flex overflow-hidden rounded-2xl border border-[var(--line)] bg-bg-2"
-          style={{ top: 'calc(var(--nav-h) + 24px)', height: 'calc(100svh - var(--nav-h) - 48px)' }}
-        >
-          <div
-            className="pointer-events-none absolute inset-0 opacity-40"
-            style={{
-              background:
-                'radial-gradient(60% 90% at 88% 18%, var(--primary-glow), transparent 62%)',
-            }}
-          />
-
-          <div className="grid h-full w-full grid-cols-1 lg:grid-cols-[320px_1fr]">
-            {/* rail */}
-            <div className="flex shrink-0 flex-row gap-1.5 overflow-x-auto p-3 lg:flex-col lg:overflow-y-auto lg:overflow-x-visible lg:border-r lg:border-[var(--line-2)] lg:p-4">
-              {items.map((it, i) => {
-                const isActive = i === active;
-                const fill = i < active ? 1 : isActive ? frac : 0;
-                return (
-                  <button
-                    key={it.id}
-                    onClick={() => jumpTo(i)}
-                    className={cn(
-                      'relative min-w-[190px] shrink-0 rounded-xl border px-3.5 py-3 text-left transition-colors duration-300 lg:min-w-0',
-                      isActive
-                        ? 'border-[var(--line-2)] bg-bg-3'
-                        : 'border-transparent bg-transparent hover:bg-bg-3/60'
-                    )}
-                  >
-                    <span className="flex items-center gap-2.5">
-                      <span className={cn('font-mono text-[10px]', isActive ? 'text-primary' : 'text-ink-4')}>
-                        {String(i + 1).padStart(2, '0')}
-                      </span>
-                      <span className={cn('truncate text-[12px] font-medium', isActive ? 'text-ink' : 'text-ink-3')}>
-                        {it.label}
-                      </span>
-                    </span>
-                    <span className="absolute inset-x-3.5 bottom-1 h-[2px] overflow-hidden rounded-full bg-[var(--line-2)]">
-                      <span
-                        className="block h-full bg-gradient-to-r from-primary to-accent transition-[width] duration-100"
-                        style={{ width: `${fill * 100}%` }}
-                      />
-                    </span>
-                  </button>
-                );
-              })}
-            </div>
-
-            {/* detail panel */}
-            <div className="relative min-h-0 p-5 sm:p-8 lg:p-10">
-              <AnimatePresence mode="wait">
-                <motion.div
-                  key={activeItem.id}
-                  initial={{ opacity: 0, y: 18 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: -12 }}
-                  transition={{ duration: 0.32, ease: EASE }}
-                  className="flex h-full flex-col justify-center"
-                >
-                  <div className="flex items-center gap-4">
-                    <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl border border-[var(--line-2)] bg-bg-3">
-                      <ActiveIcon size={20} className="text-primary" />
-                    </div>
-                    <div>
-                      <p className="font-mono text-[9.5px] uppercase tracking-[0.26em] text-ink-4">
-                        block {String(active + 1).padStart(2, '0')} of {String(items.length).padStart(2, '0')}
-                      </p>
-                      <h3 className="font-serif text-[clamp(20px,2.6vw,32px)] font-semibold leading-tight tracking-tight text-ink">
-                        {activeItem.label}
-                      </h3>
-                    </div>
-                  </div>
-
-                  <p className="mt-4 max-w-[74ch] text-[13px] leading-relaxed text-ink-2">{activeItem.desc}</p>
-
-                  {activeItem.outcomes && activeItem.outcomes.length > 0 && (
-                    <div className="mt-6 grid grid-cols-1 overflow-hidden rounded-xl border border-[var(--line)] bg-[var(--line)] sm:grid-cols-2">
-                      {activeItem.outcomes.map((o) => (
-                        <div key={o.label} className="flex flex-col gap-1.5 bg-bg-2 p-5">
-                          <span className="font-serif text-[clamp(26px,2.6vw,38px)] leading-none tracking-tight text-gradient">
-                            {o.value}
-                          </span>
-                          <span className="text-[12px] font-medium text-ink">{o.label}</span>
-                          {o.foot && (
-                            <span className="font-mono text-[9.5px] uppercase tracking-[0.18em] text-ink-4">
-                              {o.foot}
-                            </span>
-                          )}
-                        </div>
-                      ))}
-                    </div>
+      <div className="relative grid grid-cols-1 gap-6 lg:grid-cols-[300px_1fr] lg:items-start">
+        {/* rail */}
+        <div className="lg:sticky lg:top-[calc(var(--nav-h)+24px)]">
+          <div className="flex flex-row gap-1.5 overflow-x-auto pb-1 lg:flex-col lg:overflow-x-visible lg:pb-0">
+            {items.map((it, i) => {
+              const isActive = i === active;
+              return (
+                <button
+                  key={it.id}
+                  onClick={() => jumpTo(i)}
+                  className={cn(
+                    'relative min-w-[190px] shrink-0 rounded-xl border px-3.5 py-3 text-left transition-all duration-300 lg:min-w-0',
+                    isActive
+                      ? 'border-primary/40 bg-primary/10'
+                      : 'border-transparent bg-transparent hover:bg-bg-3/60'
                   )}
-                </motion.div>
-              </AnimatePresence>
-
-              {/* overall scan progress */}
-              <div className="pointer-events-none absolute inset-x-6 bottom-4 flex items-center gap-3 sm:inset-x-8">
-                <span className="font-mono text-[9.5px] uppercase tracking-[0.2em] text-ink-4">system scan</span>
-                <div className="h-1 flex-1 overflow-hidden rounded-full bg-[var(--line-2)]">
-                  <motion.div
-                    className="h-full origin-left rounded-full bg-gradient-to-r from-primary to-accent"
-                    style={{ scaleX: scrollYProgress }}
-                  />
-                </div>
-                <span className="font-mono text-[9.5px] uppercase tracking-[0.2em] text-ink-3">
-                  {String(active + 1).padStart(2, '0')}/{String(items.length).padStart(2, '0')}
-                </span>
-              </div>
-            </div>
+                >
+                  <span className="flex items-center gap-2.5">
+                    <span className={cn('font-mono text-[10px]', isActive ? 'text-primary' : 'text-ink-4')}>
+                      {String(i + 1).padStart(2, '0')}
+                    </span>
+                    <span className={cn('truncate text-[12px] font-medium', isActive ? 'text-ink' : 'text-ink-3')}>
+                      {it.label}
+                    </span>
+                    <span
+                      className={cn(
+                        'ml-auto h-1.5 w-1.5 shrink-0 rounded-full transition-opacity',
+                        isActive ? 'bg-primary opacity-100' : 'opacity-0'
+                      )}
+                    />
+                  </span>
+                </button>
+              );
+            })}
           </div>
+          <p className="mt-3 hidden font-mono text-[9.5px] uppercase tracking-[0.2em] text-ink-4 lg:block">
+            block {String(active + 1).padStart(2, '0')} of {String(items.length).padStart(2, '0')}
+          </p>
+        </div>
+
+        {/* block cards */}
+        <div className="flex min-w-0 flex-col gap-6">
+          {items.map((it, i) => (
+            <div
+              key={it.id}
+              ref={(el) => {
+                cardRefs.current[i] = el;
+              }}
+            >
+              <BlockCard item={it} index={i} isActive={active === i} />
+            </div>
+          ))}
         </div>
       </div>
     </ChapterBlock>
