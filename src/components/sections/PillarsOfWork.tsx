@@ -426,6 +426,7 @@ function SystemScrub({ layer }: { layer: PillarLayer }) {
           {items.map((it, i) => (
             <div
               key={it.id}
+              data-idx={i}
               ref={(el) => {
                 cardRefs.current[i] = el;
               }}
