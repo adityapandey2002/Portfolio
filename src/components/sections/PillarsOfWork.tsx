@@ -323,7 +323,7 @@ function SystemScrub({ layer }: { layer: PillarLayer }) {
         sub="Keep scrolling — each building block slides into focus and unpacks the outcome it's driving in the field."
       />
 
-      <div className="relative" style={{ height: `calc(${items.length} * 82vh)` }}>
+      <div className="relative" style={{ height: `${items.length * 65}vh` }}>
         <div
           className="sticky isolate flex overflow-hidden rounded-2xl border border-[var(--line)] bg-bg-2"
           style={{ top: 'calc(var(--nav-h) + 24px)', height: 'calc(100svh - var(--nav-h) - 48px)' }}
