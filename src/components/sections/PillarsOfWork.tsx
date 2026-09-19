@@ -228,37 +228,47 @@ export function PillarsOfWork() {
   }, []);
 
   return (
-    <section className="mx-auto w-full max-w-[1500px] px-5 py-24 lg:px-10">
-      <SectionHeading
-        eyebrow="/* APPROACH */"
-        title={
-          <>
-            The systems approach,{' '}
-            <span className="text-gradient">layer by layer</span>
-          </>
-        }
-        sub="Based on WHO building blocks of Health Systems — a holistic framework that connects community outcomes to system-level change. Click any layer to explore."
-      />
+    <section className="relative flex h-full w-full flex-col justify-center overflow-hidden px-5 lg:px-10">
+      <div className="mx-auto flex min-h-0 w-full max-w-[1500px] flex-1 flex-col">
+        <SectionHeading
+          eyebrow="/* APPROACH */"
+          title={
+            <>
+              The systems approach,{' '}
+              <span className="text-gradient">layer by layer</span>
+            </>
+          }
+          sub="Based on WHO building blocks of Health Systems — a holistic framework that connects community outcomes to system-level change. Click any layer to explore."
+        />
 
-      <div className="mt-10 flex flex-col items-stretch gap-0">
-        {PILLAR_LAYERS.map((layer, i) => {
-          const isExpandable = layer.style !== 'hero' && layer.style !== 'dual';
+        <div className="section-inner-scroll relative min-h-0 flex-1 pr-2">
+          <div className="flex flex-col items-stretch gap-0 pb-4">
+            {PILLAR_LAYERS.map((layer, i) => {
+              const isExpandable = layer.style !== 'hero' && layer.style !== 'dual';
 
-          return (
-            <div key={layer.id}>
-              {i > 0 && <FlowLine />}
-              {layer.style === 'hero' && <HeroLayer layer={layer} />}
-              {layer.style === 'dual' && <DualLayer layer={layer} />}
-              {isExpandable && (
-                <ExpandableLayer
-                  layer={layer}
-                  isOpen={openLayers.has(layer.id)}
-                  onToggle={() => toggleLayer(layer.id)}
-                />
-              )}
-            </div>
-          );
-        })}
+              return (
+                <div key={layer.id}>
+                  {i > 0 && <FlowLine />}
+                  {layer.style === 'hero' && <HeroLayer layer={layer} />}
+                  {layer.style === 'dual' && <DualLayer layer={layer} />}
+                  {isExpandable && (
+                    <ExpandableLayer
+                      layer={layer}
+                      isOpen={openLayers.has(layer.id)}
+                      onToggle={() => toggleLayer(layer.id)}
+                    />
+                  )}
+                </div>
+              );
+            })}
+          </div>
+        </div>
+
+        {/* Fade-out gradient at bottom of scroll container */}
+        <div
+          className="pointer-events-none relative -mt-8 h-8 shrink-0"
+          style={{ background: 'linear-gradient(to bottom, transparent, var(--bg))' }}
+        />
       </div>
     </section>
   );
