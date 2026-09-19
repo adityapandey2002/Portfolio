@@ -295,9 +295,7 @@ export function HealthDashboard() {
       </div>
 
       {/* Pillars of Work — strategic framework */}
-      <div className="snap-section">
-        <PillarsOfWork />
-      </div>
+      <PillarsOfWork />
 
       {/* Monitor panel */}
       <div className="snap-section">

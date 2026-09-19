@@ -1,5 +1,6 @@
 import { HealthDashboard } from '@/components/sections/HealthDashboard';
 import { Footer } from '@/components/sections/Footer';
+import { RouteScrollMode } from '@/components/RouteScrollMode';
 
 export const metadata = {
   title: 'Health Dashboard — Aditya Pandey',
@@ -10,6 +11,7 @@ export const metadata = {
 export default function HealthPage() {
   return (
     <>
+      <RouteScrollMode />
       <HealthDashboard />
       <Footer />
     </>

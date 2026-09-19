@@ -1,8 +1,14 @@
 'use client';
 
-import { useRef, useState, useCallback } from 'react';
-import { motion, useInView, AnimatePresence, type Variants } from 'framer-motion';
-import { ChevronDown, Plus } from 'lucide-react';
+import { useMemo, useRef, useState, type ReactNode } from 'react';
+import {
+  motion,
+  useInView,
+  useScroll,
+  useMotionValueEvent,
+  useTransform,
+  AnimatePresence,
+} from 'framer-motion';
 import { cn } from '@/lib/utils';
 import { SectionHeading } from './SectionHeading';
 import { PILLAR_LAYERS, type PillarLayer, type PillarItem } from '@/lib/data/pillars';
@@ -20,14 +26,13 @@ function AmbientBg() {
   );
 }
 
-/* ── Energy conduit between layers: traveling data packets ──────── */
+/* ── Energy conduit between chapters: traveling data packets ────── */
 function EnergyConduit() {
   const ref = useRef<HTMLDivElement>(null);
   const inView = useInView(ref, { once: true, margin: '-40px' });
 
   return (
-    <div ref={ref} className="relative flex justify-center py-2">
-      {/* main conduit */}
+    <div ref={ref} className="relative flex justify-center py-1">
       <div className="relative h-14 w-px overflow-visible">
         <motion.div
           className="absolute inset-0 origin-top"
@@ -40,7 +45,6 @@ function EnergyConduit() {
           animate={inView ? { scaleY: 1, opacity: 1 } : {}}
           transition={{ duration: 0.9, ease: EASE }}
         />
-        {/* traveling packets */}
         {[0, 1, 2].map((i) => (
           <motion.span
             key={i}
@@ -55,11 +59,15 @@ function EnergyConduit() {
           />
         ))}
       </div>
-      {/* flanking hairline branches */}
-      <motion.span
-        className="absolute left-1/2 top-1/2 h-px w-16 -translate-x-1/2"
-        style={{ background: 'repeating-linear-gradient(90deg, var(--primary) 0 4px, transparent 4px 10px)', opacity: 0.35 }}
-      />
+    </div>
+  );
+}
+
+/* ── Chapter shell: quiet margins, no overflow ancestors ────────── */
+function ChapterBlock({ children, className }: { children: ReactNode; className?: string }) {
+  return (
+    <div className={cn('relative px-5 py-[clamp(4rem,9vh,6.5rem)] lg:px-10', className)}>
+      <div className="mx-auto w-full max-w-[1500px]">{children}</div>
     </div>
   );
 }
@@ -82,11 +90,9 @@ function HeroLayer({ layer }: { layer: PillarLayer }) {
       <div className="pillar-border-anim group relative overflow-hidden rounded-2xl bg-bg-2 p-8 text-center transition-shadow duration-500 hover:shadow-[0_0_60px_-15px_var(--primary-glow)]">
         <div className="pillar-sheen absolute inset-0 opacity-0 transition-opacity duration-700 group-hover:opacity-100" />
 
-        {/* core glow */}
         <div className="absolute left-1/2 top-0 h-40 w-40 -translate-x-1/2 -translate-y-1/2 rounded-full bg-[var(--primary)] opacity-20 blur-3xl" />
 
         <div className="relative flex flex-col items-center gap-4">
-          {/* icon with ripple rings */}
           <div className="relative">
             <motion.span
               className="pillar-ripple absolute inset-0 rounded-2xl"
@@ -135,7 +141,6 @@ function DualLayer({ layer }: { layer: PillarLayer }) {
             animate={inView ? { opacity: 1, y: 0, rotateX: 0 } : {}}
             transition={{ duration: 0.6, delay: i * 0.14, ease: EASE }}
           >
-            {/* animated left beam */}
             <motion.div
               className="absolute left-0 top-0 h-full w-[3px] opacity-0 group-hover:opacity-100"
               style={{
@@ -143,7 +148,6 @@ function DualLayer({ layer }: { layer: PillarLayer }) {
                 transition: 'opacity 0.3s',
               }}
             />
-            {/* top hairline sweep */}
             <div className="pillar-sheen pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-700 group-hover:opacity-100" />
 
             <div className="relative flex items-start gap-4">
@@ -173,218 +177,387 @@ function DualLayer({ layer }: { layer: PillarLayer }) {
   );
 }
 
-/* ── Expandable pillar: header + spring-cascade item cards ──────── */
-const itemVariants: Variants = {
-  hidden: { opacity: 0, y: 18, scale: 0.92 },
-  show: { opacity: 1, y: 0, scale: 1 },
-};
+/* ── Domains: layered sticky deck (cards pin over each other) ───── */
+function DeckCard({ item, index }: { item: PillarItem; index: number }) {
+  const wrapRef = useRef<HTMLDivElement>(null);
+  const { scrollYProgress } = useScroll({
+    target: wrapRef,
+    offset: ['start end', 'start start'],
+  });
 
-function ExpandableLayer({
-  layer,
-  isOpen,
-  onToggle,
-}: {
-  layer: PillarLayer;
-  isOpen: boolean;
-  onToggle: () => void;
-}) {
-  const ref = useRef<HTMLDivElement>(null);
-  const inView = useInView(ref, { once: true, margin: '-60px' });
-  const colClass =
-    layer.style === 'grid-5'
-      ? 'sm:grid-cols-3 lg:grid-cols-5'
-      : layer.style === 'grid-6'
-        ? 'sm:grid-cols-3 lg:grid-cols-6'
-        : 'sm:grid-cols-2 lg:grid-cols-4';
-  const HeadIcon = layer.items[0].icon;
+  const scale = useTransform(scrollYProgress, [0, 1], [0.88, 1]);
+  const opacity = useTransform(scrollYProgress, [0, 0.55], [0.35, 1]);
+  const rotateX = useTransform(scrollYProgress, [0, 1], [8, 0]);
+  const Icon = item.icon;
 
   return (
-    <motion.div
-      ref={ref}
+    <div
+      ref={wrapRef}
       className="relative"
-      initial={{ opacity: 0, y: 22 }}
-      animate={inView ? { opacity: 1, y: 0 } : {}}
-      transition={{ duration: 0.6, ease: EASE }}
+      style={{ zIndex: index + 1 }}
     >
-      {/* Header — clickable */}
-      <button
-        onClick={onToggle}
-        aria-expanded={isOpen}
-        className={cn(
-          'pillar-layer group relative flex w-full items-center gap-4 overflow-hidden rounded-xl border bg-bg-2 p-5 text-left transition-all duration-500',
-          isOpen
-            ? 'border-primary/40 shadow-[0_12px_40px_-16px_var(--primary-glow)]'
-            : 'border-[var(--line)] hover:-translate-y-0.5 hover:shadow-[0_14px_40px_-18px_var(--primary-glow)]'
-        )}
+      <div
+        className="relative"
+        style={{
+          position: 'sticky',
+          top: `calc(var(--nav-h) + 24px + ${index * 3.5}rem)`,
+        }}
       >
-        <div className="pillar-sheen pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-700 group-hover:opacity-100" />
-
-        {/* header icon */}
-        <div
-          className={cn(
-            'relative flex h-11 w-11 shrink-0 items-center justify-center rounded-xl border transition-colors duration-300',
-            isOpen ? 'border-primary/30 bg-primary/10' : 'border-[var(--line-2)] bg-bg-3 group-hover:border-primary/30 group-hover:bg-primary/5'
-          )}
+        <motion.div
+          style={{
+            scale,
+            opacity,
+            rotateX,
+            transformPerspective: 1200,
+            ['--layer-color' as string]: item.color || 'var(--primary)',
+          }}
+          className="pillar-border-anim group relative min-h-[clamp(320px,58vh,460px)] overflow-hidden rounded-2xl border border-[var(--line)] bg-bg-2 p-6 shadow-[0_32px_90px_-45px_var(--primary-glow)] sm:p-10"
         >
-          <HeadIcon size={19} className={cn('transition-transform duration-500', isOpen ? 'rotate-[360deg] text-primary' : 'text-ink-3 group-hover:text-primary')} />
-          {isOpen && <span className="pillar-ripple absolute inset-0 rounded-xl" />}
-        </div>
+          <div className="pillar-sheen absolute inset-0 opacity-0 transition-opacity duration-700 group-hover:opacity-100" />
 
-        <div className="min-w-0 flex-1">
-          <p className="font-mono text-[9.5px] uppercase tracking-[0.26em] text-ink-4">{layer.eyebrow}</p>
-          <h4 className="mt-0.5 truncate text-[15px] font-semibold text-ink">{layer.title}</h4>
-        </div>
+          {/* scroll-linked progress hairline */}
+          <motion.div
+            className="absolute left-0 top-0 h-[3px] origin-left bg-gradient-to-r from-[var(--layer-color)] to-accent"
+            style={{ scaleX: scrollYProgress }}
+          />
 
-        <div className="flex shrink-0 items-center gap-3">
-          <span
-            className={cn(
-              'hidden rounded-full border px-2.5 py-1 font-mono text-[10px] tracking-widest sm:inline-block',
-              isOpen ? 'border-primary/30 bg-primary/10 text-primary' : 'border-[var(--line-2)] text-ink-3'
-            )}
-          >
-            {String(layer.items.length).padStart(2, '0')} ITEMS
+          {/* ghost index */}
+          <span className="pointer-events-none absolute right-5 top-4 select-none font-mono text-[64px] font-bold leading-none text-ink-4/40 opacity-40 sm:right-8 sm:text-[90px]">
+            {String(index + 1).padStart(2, '0')}
           </span>
-          <motion.div
-            animate={{ rotate: isOpen ? 180 : 0, scale: isOpen ? 1.15 : 1 }}
-            transition={{ duration: 0.35, ease: EASE }}
-            className={cn(
-              'flex h-8 w-8 items-center justify-center rounded-lg border transition-colors',
-              isOpen ? 'border-primary/30 bg-primary/10 text-primary' : 'border-[var(--line-2)] text-ink-3 group-hover:text-primary'
-            )}
-          >
-            {isOpen ? <Plus size={15} className="rotate-45" /> : <ChevronDown size={15} />}
-          </motion.div>
-        </div>
-      </button>
+          <span className="pointer-events-none absolute right-5 top-[84px] font-mono text-[10px] uppercase tracking-[0.3em] text-ink-4 sm:right-8">
+            domain
+          </span>
 
-      {/* Expanded content */}
-      <AnimatePresence initial={false}>
-        {isOpen && (
-          <motion.div
-            initial={{ height: 0, opacity: 0 }}
-            animate={{ height: 'auto', opacity: 1 }}
-            exit={{ height: 0, opacity: 0 }}
-            transition={{ duration: 0.45, ease: EASE }}
-            className="overflow-hidden"
-          >
-            <motion.div
-              className={cn('relative grid grid-cols-1 gap-3 pt-4', colClass)}
-              variants={{ show: { transition: { staggerChildren: 0.06 } } }}
-              initial="hidden"
-              animate="show"
-            >
-              {/* connecting rail above grid */}
-              <span className="absolute left-4 top-1 h-px w-8 bg-gradient-to-r from-primary to-transparent" />
-
-              {layer.items.map((item, i) => (
-                <motion.div
-                  key={item.id}
-                  variants={itemVariants}
-                  transition={{ duration: 0.4, ease: EASE }}
-                  whileHover={{ y: -4 }}
-                  className="group/item relative overflow-hidden rounded-xl border border-[var(--line)] bg-bg-2 p-4 transition-colors duration-300 hover:border-primary/30 hover:shadow-[0_14px_34px_-14px_var(--primary-glow)]"
-                >
-                  {/* hover beam */}
-                  <div className="absolute bottom-0 left-0 h-[2px] w-0 bg-gradient-to-r from-primary to-accent transition-all duration-500 group-hover/item:w-full" />
-                  {/* index */}
-                  <span className="absolute right-3 top-2 font-mono text-[9px] text-ink-4">
-                    {String(i + 1).padStart(2, '0')}
-                  </span>
-
-                  <div className="flex items-start gap-3">
-                    <div className="relative shrink-0">
-                      <div className="flex h-9 w-9 items-center justify-center rounded-lg border border-[var(--line-2)] bg-bg-3 transition-colors duration-300 group-hover/item:border-primary/25 group-hover/item:bg-primary/10">
-                        <ItemGlyph Icon={item.icon} />
-                      </div>
-                    </div>
-                    <div className="min-w-0">
-                      <h5 className="text-[13px] font-semibold leading-snug text-ink transition-colors duration-300 group-hover/item:text-primary">
-                        {item.label}
-                      </h5>
-                      <p className="mt-1 text-[11px] leading-relaxed text-ink-3">{item.desc}</p>
-                    </div>
-                  </div>
-                </motion.div>
-              ))}
-            </motion.div>
-          </motion.div>
-        )}
-      </AnimatePresence>
-    </motion.div>
+          <div className="relative flex min-h-[clamp(320px,58vh,460px)] flex-col justify-center gap-5 sm:flex-row sm:items-center sm:gap-8">
+            <div className="relative shrink-0">
+              <motion.span
+                className="pillar-ripple absolute inset-0 rounded-2xl"
+                animate={{ scale: [1, 1.6], opacity: [0.4, 0] }}
+                transition={{ duration: 2.4, repeat: Infinity, ease: 'easeOut' }}
+              />
+              <motion.div
+                className="relative flex h-16 w-16 items-center justify-center rounded-2xl border border-[var(--layer-color)]/30 bg-[var(--layer-color)]/10 sm:h-20 sm:w-20"
+                whileHover={{ scale: 1.08, rotate: -6 }}
+                transition={{ type: 'spring', stiffness: 320, damping: 15 }}
+              >
+                <Icon size={30} className="text-[var(--layer-color)]" style={{ filter: 'drop-shadow(0 0 10px var(--primary-glow))' }} />
+              </motion.div>
+            </div>
+            <div className="max-w-[70ch]">
+              <h3 className="font-serif text-[clamp(22px,3vw,34px)] font-semibold leading-tight tracking-tight text-ink">
+                {item.label}
+              </h3>
+              <p className="mt-2.5 text-[13px] leading-relaxed text-ink-2">{item.desc}</p>
+            </div>
+          </div>
+        </motion.div>
+      </div>
+    </div>
   );
 }
 
-function ItemGlyph({ Icon }: { Icon: PillarItem['icon'] }) {
+function DomainsDeck({ layer }: { layer: PillarLayer }) {
   return (
-    <motion.div
-      whileHover={{ rotate: -12, scale: 1.12 }}
-      transition={{ type: 'spring', stiffness: 340, damping: 13 }}
-      className="flex h-full w-full items-center justify-center"
-    >
-      <Icon size={16} className="text-ink-3 transition-colors duration-300 group-hover/item:text-primary" />
-    </motion.div>
+    <ChapterBlock className="flex flex-col gap-8">
+      <SectionHeading
+        eyebrow={layer.eyebrow}
+        title={
+          <>
+            Where we <span className="text-gradient">work</span>
+          </>
+        }
+        sub="Five work domains — each one pins over the last as you scroll. Keep going to lift them open."
+      />
+      <div className="relative flex flex-col gap-[clamp(2.5rem,10vh,6rem)]">
+        {layer.items.map((item, i) => (
+          <DeckCard key={item.id} item={item} index={i} />
+        ))}
+      </div>
+    </ChapterBlock>
+  );
+}
+
+/* ── WHO blocks: scroll-linked scrub (blocks activate, panel swaps) ─ */
+function SystemScrub({ layer }: { layer: PillarLayer }) {
+  const wrapRef = useRef<HTMLDivElement>(null);
+  const [active, setActive] = useState(0);
+  const [frac, setFrac] = useState(0);
+
+  const items = layer.items;
+
+  const { scrollYProgress } = useScroll({
+    target: wrapRef,
+    offset: ['start start', 'end end'],
+  });
+
+  useMotionValueEvent(scrollYProgress, 'change', (latest) => {
+    const last = items.length - 1;
+    const linear = latest * last;
+    const idx = Math.min(last, Math.max(0, Math.round(linear)));
+    setActive(idx);
+    setFrac(latest >= 1 ? 1 : linear - Math.floor(linear));
+  });
+
+  const activeItem = items[active];
+  const ActiveIcon = activeItem.icon;
+
+  const jumpTo = (i: number) => {
+    const el = wrapRef.current;
+    if (!el) return;
+    const last = items.length - 1;
+    const travel = el.offsetHeight - window.innerHeight;
+    const top = el.offsetTop + travel * ((i + 0.5) / last);
+    window.scrollTo({ top: Math.max(0, top), behavior: 'smooth' });
+  };
+
+  return (
+    <ChapterBlock>
+      <SectionHeading
+        eyebrow={layer.eyebrow}
+        title={
+          <>
+            WHO building blocks, <span className="text-gradient">under focus</span>
+          </>
+        }
+        sub="Keep scrolling — each building block slides into focus and unpacks the outcome it's driving in the field."
+      />
+
+      <div className="relative" style={{ height: `calc(${items.length} * 82vh)` }}>
+        <div
+          className="sticky isolate flex overflow-hidden rounded-2xl border border-[var(--line)] bg-bg-2"
+          style={{ top: 'calc(var(--nav-h) + 24px)', height: 'calc(100svh - var(--nav-h) - 48px)' }}
+        >
+          <div
+            className="pointer-events-none absolute inset-0 opacity-40"
+            style={{
+              background:
+                'radial-gradient(60% 90% at 88% 18%, var(--primary-glow), transparent 62%)',
+            }}
+          />
+
+          <div className="grid h-full w-full grid-cols-1 lg:grid-cols-[320px_1fr]">
+            {/* rail */}
+            <div className="flex shrink-0 flex-row gap-1.5 overflow-x-auto p-3 lg:flex-col lg:overflow-y-auto lg:overflow-x-visible lg:border-r lg:border-[var(--line-2)] lg:p-4">
+              {items.map((it, i) => {
+                const isActive = i === active;
+                const fill = i < active ? 1 : isActive ? frac : 0;
+                return (
+                  <button
+                    key={it.id}
+                    onClick={() => jumpTo(i)}
+                    className={cn(
+                      'relative min-w-[190px] shrink-0 rounded-xl border px-3.5 py-3 text-left transition-colors duration-300 lg:min-w-0',
+                      isActive
+                        ? 'border-[var(--line-2)] bg-bg-3'
+                        : 'border-transparent bg-transparent hover:bg-bg-3/60'
+                    )}
+                  >
+                    <span className="flex items-center gap-2.5">
+                      <span className={cn('font-mono text-[10px]', isActive ? 'text-primary' : 'text-ink-4')}>
+                        {String(i + 1).padStart(2, '0')}
+                      </span>
+                      <span className={cn('truncate text-[12px] font-medium', isActive ? 'text-ink' : 'text-ink-3')}>
+                        {it.label}
+                      </span>
+                    </span>
+                    <span className="absolute inset-x-3.5 bottom-1 h-[2px] overflow-hidden rounded-full bg-[var(--line-2)]">
+                      <span
+                        className="block h-full bg-gradient-to-r from-primary to-accent transition-[width] duration-100"
+                        style={{ width: `${fill * 100}%` }}
+                      />
+                    </span>
+                  </button>
+                );
+              })}
+            </div>
+
+            {/* detail panel */}
+            <div className="relative min-h-0 p-5 sm:p-8 lg:p-10">
+              <AnimatePresence mode="wait">
+                <motion.div
+                  key={activeItem.id}
+                  initial={{ opacity: 0, y: 18 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -12 }}
+                  transition={{ duration: 0.32, ease: EASE }}
+                  className="flex h-full flex-col justify-center"
+                >
+                  <div className="flex items-center gap-4">
+                    <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl border border-[var(--line-2)] bg-bg-3">
+                      <ActiveIcon size={20} className="text-primary" />
+                    </div>
+                    <div>
+                      <p className="font-mono text-[9.5px] uppercase tracking-[0.26em] text-ink-4">
+                        block {String(active + 1).padStart(2, '0')} of {String(items.length).padStart(2, '0')}
+                      </p>
+                      <h3 className="font-serif text-[clamp(20px,2.6vw,32px)] font-semibold leading-tight tracking-tight text-ink">
+                        {activeItem.label}
+                      </h3>
+                    </div>
+                  </div>
+
+                  <p className="mt-4 max-w-[74ch] text-[13px] leading-relaxed text-ink-2">{activeItem.desc}</p>
+
+                  {activeItem.outcomes && activeItem.outcomes.length > 0 && (
+                    <div className="mt-6 grid grid-cols-1 overflow-hidden rounded-xl border border-[var(--line)] bg-[var(--line)] sm:grid-cols-2">
+                      {activeItem.outcomes.map((o) => (
+                        <div key={o.label} className="flex flex-col gap-1.5 bg-bg-2 p-5">
+                          <span className="font-serif text-[clamp(26px,2.6vw,38px)] leading-none tracking-tight text-gradient">
+                            {o.value}
+                          </span>
+                          <span className="text-[12px] font-medium text-ink">{o.label}</span>
+                          {o.foot && (
+                            <span className="font-mono text-[9.5px] uppercase tracking-[0.18em] text-ink-4">
+                              {o.foot}
+                            </span>
+                          )}
+                        </div>
+                      ))}
+                    </div>
+                  )}
+                </motion.div>
+              </AnimatePresence>
+
+              {/* overall scan progress */}
+              <div className="pointer-events-none absolute inset-x-6 bottom-4 flex items-center gap-3 sm:inset-x-8">
+                <span className="font-mono text-[9.5px] uppercase tracking-[0.2em] text-ink-4">system scan</span>
+                <div className="h-1 flex-1 overflow-hidden rounded-full bg-[var(--line-2)]">
+                  <motion.div
+                    className="h-full origin-left rounded-full bg-gradient-to-r from-primary to-accent"
+                    style={{ scaleX: scrollYProgress }}
+                  />
+                </div>
+                <span className="font-mono text-[9.5px] uppercase tracking-[0.2em] text-ink-3">
+                  {String(active + 1).padStart(2, '0')}/{String(items.length).padStart(2, '0')}
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </ChapterBlock>
+  );
+}
+
+/* ── Capabilities: static cascade grid closing the narrative ───── */
+function CapabilityGrid({ layer }: { layer: PillarLayer }) {
+  const ref = useRef<HTMLDivElement>(null);
+  const inView = useInView(ref, { once: true, margin: '-60px' });
+
+  return (
+    <ChapterBlock>
+      <SectionHeading
+        eyebrow={layer.eyebrow}
+        title={
+          <>
+            How we <span className="text-gradient">enable change</span>
+          </>
+        }
+        sub="The operating principles that carry every program — from leadership to local co-design."
+      />
+      <div ref={ref} className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
+        {layer.items.map((item, i) => {
+          const Icon = item.icon;
+          return (
+            <motion.div
+              key={item.id}
+              className="group/item relative overflow-hidden rounded-xl border border-[var(--line)] bg-bg-2 p-5 transition-colors duration-300 hover:border-[var(--line-2)] hover:shadow-[0_16px_40px_-18px_var(--primary-glow)]"
+              style={{ ['--layer-color' as string]: item.color || 'var(--primary)' }}
+              initial={{ opacity: 0, y: 18 }}
+              animate={inView ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: 0.5, delay: i * 0.1, ease: EASE }}
+            >
+              <div className="absolute bottom-0 left-0 h-[2px] w-0 bg-gradient-to-r from-[var(--layer-color)] to-accent transition-all duration-500 group-hover/item:w-full" />
+              <span className="absolute right-3 top-2 font-mono text-[9px] text-ink-4">
+                {String(i + 1).padStart(2, '0')}
+              </span>
+              <div
+                className="mb-4 flex h-11 w-11 items-center justify-center rounded-xl border border-[var(--line-2)] bg-bg-3 transition-colors duration-300 group-hover/item:border-[var(--layer-color)]/30 group-hover/item:bg-[var(--layer-color)]/10"
+              >
+                <Icon size={19} className="text-[var(--layer-color)]" />
+              </div>
+              <h4 className="text-[14px] font-semibold text-ink">{item.label}</h4>
+              <p className="mt-1.5 text-[11.5px] leading-relaxed text-ink-3">{item.desc}</p>
+            </motion.div>
+          );
+        })}
+      </div>
+    </ChapterBlock>
   );
 }
 
 export function PillarsOfWork() {
-  const [openLayers, setOpenLayers] = useState<Set<string>>(new Set());
-
-  const toggleLayer = useCallback((id: string) => {
-    setOpenLayers((prev) => {
-      const next = new Set(prev);
-      if (next.has(id)) {
-        next.delete(id);
-      } else {
-        next.add(id);
-      }
-      return next;
-    });
+  const layers = useMemo(() => {
+    const map = {} as Record<string, PillarLayer>;
+    for (const layer of PILLAR_LAYERS) map[layer.id] = layer;
+    return map;
   }, []);
 
   return (
-    <section className="relative flex h-full w-full flex-col justify-center overflow-hidden px-5 lg:px-10">
+    <section id="pillars" className="pillars-root relative">
       <AmbientBg />
-      <div className="relative mx-auto flex min-h-0 w-full max-w-[1500px] flex-1 flex-col">
+
+      {/* 01 — Aim */}
+      <ChapterBlock>
         <SectionHeading
           eyebrow="/* APPROACH */"
           title={
             <>
-              The systems approach,{' '}
-              <span className="text-gradient">layer by layer</span>
+              The systems approach, <span className="text-gradient">layer by layer</span>
             </>
           }
-          sub="Based on WHO building blocks of Health Systems — a holistic framework that connects community outcomes to system-level change. Click any layer to explore."
+          sub="Based on WHO building blocks of Health Systems — a holistic framework that connects community outcomes to system-level change. Scroll through, chapter by chapter."
         />
+        <HeroLayer layer={layers.aim} />
+      </ChapterBlock>
 
-        <div className="section-inner-scroll relative min-h-0 flex-1 pr-2">
-          <div className="flex flex-col items-stretch gap-0 pb-4">
-            {PILLAR_LAYERS.map((layer, i) => {
-              const isExpandable = layer.style !== 'hero' && layer.style !== 'dual';
+      <EnergyConduit />
 
-              return (
-                <div key={layer.id}>
-                  {i > 0 && <EnergyConduit />}
-                  {layer.style === 'hero' && <HeroLayer layer={layer} />}
-                  {layer.style === 'dual' && <DualLayer layer={layer} />}
-                  {isExpandable && (
-                    <ExpandableLayer
-                      layer={layer}
-                      isOpen={openLayers.has(layer.id)}
-                      onToggle={() => toggleLayer(layer.id)}
-                    />
-                  )}
-                </div>
-              );
-            })}
-          </div>
-        </div>
-
-        {/* Fade-out gradient at bottom of scroll container */}
-        <div
-          className="pointer-events-none relative -mt-8 h-8 shrink-0"
-          style={{ background: 'linear-gradient(to bottom, transparent, var(--bg))' }}
+      {/* 02 — Outcomes */}
+      <ChapterBlock>
+        <SectionHeading
+          eyebrow={layers.outcomes.eyebrow}
+          title={
+            <>
+              What we <span className="text-gradient">drive toward</span>
+            </>
+          }
+          sub="Two outcome strands anchor every intervention in the field."
         />
-      </div>
+        <DualLayer layer={layers.outcomes} />
+      </ChapterBlock>
+
+      <EnergyConduit />
+
+      {/* 03 — Domains: layered sticky deck */}
+      <DomainsDeck layer={layers.domains} />
+
+      <EnergyConduit />
+
+      {/* 04 — WHO blocks: scroll-linked scrub */}
+      <SystemScrub layer={layers['system-outcomes']} />
+
+      <EnergyConduit />
+
+      {/* 05 — Capabilities */}
+      <CapabilityGrid layer={layers.capabilities} />
+
+      <EnergyConduit />
+
+      {/* 06 — Onward */}
+      <ChapterBlock className="text-center">
+        <SectionHeading
+          eyebrow="/* FIELD MONITOR */"
+          title={
+            <>
+              Back to the <span className="text-gradient">vitals</span>
+            </>
+          }
+          sub="Everything above feeds the monitors below — the fellowship, on vitals."
+          className="mx-auto max-w-[34ch]"
+        />
+      </ChapterBlock>
     </section>
   );
 }

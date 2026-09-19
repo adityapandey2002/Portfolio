@@ -229,6 +229,16 @@ body {
   overflow-x: hidden;
   transition: background 0.6s ease, color 0.4s ease;
 }
+
+/* Free-scroll routes (e.g. /health): turn off page snap so sticky
+   chapters drive the document scroller. overflow-x: clip (not hidden)
+   avoids creating a scroll container that would break position: sticky. */
+html[data-scroll='free'] {
+  scroll-snap-type: none;
+}
+html[data-scroll='free'] body {
+  overflow-x: clip;
+}
 ::selection {
   background: var(--primary);
   color: var(--bg);

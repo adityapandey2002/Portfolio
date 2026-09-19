@@ -17,12 +17,19 @@ import {
   type LucideIcon,
 } from 'lucide-react';
 
+export interface PillarOutcome {
+  label: string;
+  value: string;
+  foot?: string;
+}
+
 export interface PillarItem {
   id: string;
   label: string;
   icon: LucideIcon;
   desc: string;
   color?: string;
+  outcomes?: PillarOutcome[];
 }
 
 export interface PillarLayer {
@@ -81,30 +88,35 @@ export const PILLAR_LAYERS: PillarLayer[] = [
         label: 'Maternal, Neonatal & Child Health',
         icon: HeartPulse,
         desc: 'Reducing maternal and neonatal mortality through facility strengthening, ASHA capacity building, PMSMA support, and immunization program supervision.',
+        color: 'var(--rose)',
       },
       {
         id: 'domain-nutrition',
         label: 'Nutrition',
         icon: Apple,
         desc: 'Addressing malnutrition through VHSND data quality, community-based nutrition monitoring, and frontline worker training on growth tracking and supplementary feeding.',
+        color: 'var(--accent)',
       },
       {
         id: 'domain-repro',
         label: 'Reproductive & Adolescent Health',
         icon: UsersRound,
         desc: 'Ensuring access to reproductive health services, adolescent wellness programs, and family planning support across community and facility levels.',
+        color: 'var(--indigo)',
       },
       {
         id: 'domain-communicable',
         label: 'Communicable Diseases',
         icon: Bug,
         desc: 'Strengthening surveillance, reporting, and response systems for communicable disease control — from detection at the community level to district-level coordination.',
+        color: 'var(--cyan)',
       },
       {
         id: 'domain-emergency',
         label: 'Emergency & Specialty Services',
         icon: Siren,
         desc: 'Improving emergency referral systems, specialty care access, and critical care readiness at CHC and district hospital levels.',
+        color: 'var(--primary)',
       },
     ],
   },
@@ -119,36 +131,60 @@ export const PILLAR_LAYERS: PillarLayer[] = [
         label: 'Service Delivery',
         icon: Stethoscope,
         desc: 'Ensuring quality, accessible health services are delivered consistently across SHC, PHC, and CHC levels — from immunization to emergency care.',
+        outcomes: [
+          { label: 'Levels of care reached', value: 'SHC→CHC', foot: 'every tier of the system' },
+          { label: 'Clinical quality audits', value: '12', foot: 'CHCs in Muzaffarpur' },
+        ],
       },
       {
         id: 'so-hrh',
         label: 'HRH Structures & Capacities',
         icon: UsersRound,
         desc: 'Building the capacity of ASHA workers, nurses, doctors, and block-level staff through structured training, mentoring, and supportive supervision.',
+        outcomes: [
+          { label: 'ASHA workers trained', value: '700+', foot: 'M-ASHA · hands-on' },
+          { label: 'Clinical refresher hours', value: '185h', foot: '12 nurses · 4 doctors' },
+        ],
       },
       {
         id: 'so-procurement',
         label: 'Procurement & Supply Chain',
         icon: Package,
         desc: 'Strengthening medicine and equipment availability — diagnosing inventory gaps, improving forecasting, and ensuring facilities have what they need.',
+        outcomes: [
+          { label: 'Stock reviews run', value: '1200+', foot: 'medicine & equipment' },
+          { label: 'Blocks on forecasting', value: '6/6', foot: 'Muzaffarpur, Bihar' },
+        ],
       },
       {
         id: 'so-financing',
         label: 'Strategic Financing & Budgeting',
         icon: Coins,
         desc: 'Supporting efficient allocation and utilization of health funds — ensuring resources reach where they are most needed for maximum impact.',
+        outcomes: [
+          { label: 'Budget utilization tracked', value: '6/6', foot: 'block plans' },
+          { label: 'Fund-flow visibility', value: '100%', foot: 'facility level' },
+        ],
       },
       {
         id: 'so-governance',
         label: 'Governance',
         icon: Landmark,
         desc: 'Strengthening district and block health governance — NQAS certification support, review meeting systems, and accountability frameworks.',
+        outcomes: [
+          { label: 'NQAS certification support', value: '6', foot: 'CHCs in pipeline' },
+          { label: 'Review meetings strengthened', value: '48', foot: 'weekly block reviews' },
+        ],
       },
       {
         id: 'so-data',
         label: 'Information & Data Systems',
         icon: Database,
         desc: 'Building robust data pipelines — from ODK field collection through MIS reporting — so decisions are driven by evidence, not assumption.',
+        outcomes: [
+          { label: 'Data quality score', value: '96%', foot: 'ODK → MIS' },
+          { label: 'VHSND sessions QC\u2019d', value: '1200+', foot: 'field data validated' },
+        ],
       },
     ],
   },
