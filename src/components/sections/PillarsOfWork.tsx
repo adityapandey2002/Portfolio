@@ -1,19 +1,83 @@
 'use client';
 
-import { useMemo, useRef, useState, type ReactNode } from 'react';
+import { useEffect, useMemo, useRef, useState, type ReactNode, type RefObject } from 'react';
 import {
   motion,
   useInView,
-  useScroll,
-  useMotionValueEvent,
-  useTransform,
   AnimatePresence,
 } from 'framer-motion';
 import { cn } from '@/lib/utils';
 import { SectionHeading } from './SectionHeading';
-import { PILLAR_LAYERS, type PillarLayer, type PillarItem } from '@/lib/data/pillars';
+import { PILLAR_LAYERS, type PillarLayer } from '@/lib/data/pillars';
 
 const EASE: [number, number, number, number] = [0.16, 1, 0.3, 1];
+
+/* ── Stage stepper: small down-scrolls advance one step, down-only ── */
+function useStageStepper(count: number, ref: RefObject<HTMLDivElement | null>) {
+  const [active, setActive] = useState(0);
+  const activeRef = useRef(0);
+  useEffect(() => {
+    activeRef.current = active;
+  }, [active]);
+
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+
+    const pinnedTop = () =>
+      (parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--nav-h')) || 0) + 24;
+    const last = count - 1;
+    let acc = 0;
+    let lock = 0;
+
+    const step = (by: number) => setActive((a) => Math.max(0, Math.min(last, a + by)));
+
+    const onWheel = (e: WheelEvent) => {
+      const r = el.getBoundingClientRect();
+      const pt = pinnedTop();
+
+      // Not pinned yet: let the page scroll. If the stage slid below the
+      // viewport (user scrolled back up out of the section), restart the deck.
+      if (Math.abs(r.top - pt) > 4) {
+        if (r.top > pt + 8 && activeRef.current !== 0) setActive(0);
+        return;
+      }
+
+      if (e.deltaY > 0 && activeRef.current < last) {
+        // Consume the input so the page holds still while the step happens,
+        // and advance once per (even small) scroll gesture.
+        e.preventDefault();
+        const d = e.deltaMode === 1 ? 16 : e.deltaMode === 2 ? window.innerHeight : e.deltaY;
+        acc += d;
+        const now = performance.now();
+        if (now - lock >= 120 && acc >= 8) {
+          lock = now;
+          acc = 0;
+          step(1);
+        }
+      }
+      // Up-scrolls and down-scrolls past the last step are left untouched.
+    };
+
+    const onKey = (e: KeyboardEvent) => {
+      const r = el.getBoundingClientRect();
+      if (Math.abs(r.top - pinnedTop()) > 4) return;
+      if (['ArrowDown', 'PageDown', ' '].includes(e.key) && activeRef.current < last) {
+        e.preventDefault();
+        step(1);
+      }
+    };
+
+    el.addEventListener('wheel', onWheel, { passive: false });
+    el.addEventListener('keydown', onKey);
+    return () => {
+      el.removeEventListener('wheel', onWheel);
+      el.removeEventListener('keydown', onKey);
+    };
+  }, [count, ref]);
+
+  return [active, setActive] as const;
+}
 
 /* ── Ambient background: drifting field + grid ──────────────────── */
 function AmbientBg() {
@@ -177,89 +241,16 @@ function DualLayer({ layer }: { layer: PillarLayer }) {
   );
 }
 
-/* ── Domains: layered sticky deck (cards pin over each other) ───── */
-function DeckCard({ item, index }: { item: PillarItem; index: number }) {
-  const wrapRef = useRef<HTMLDivElement>(null);
-  const { scrollYProgress } = useScroll({
-    target: wrapRef,
-    offset: ['start end', 'start start'],
-  });
-
-  const scale = useTransform(scrollYProgress, [0, 1], [0.88, 1]);
-  const opacity = useTransform(scrollYProgress, [0, 0.55], [0.35, 1]);
-  const rotateX = useTransform(scrollYProgress, [0, 1], [8, 0]);
+/* ── Domains: pinned stage, one card at a time ───────────────────── */
+function DomainStage({ layer }: { layer: PillarLayer }) {
+  const items = layer.items;
+  const stageRef = useRef<HTMLDivElement>(null);
+  const [active, setActive] = useStageStepper(items.length, stageRef);
+  const item = items[active];
   const Icon = item.icon;
 
   return (
-    <div
-      ref={wrapRef}
-      className="relative"
-      style={{ zIndex: index + 1 }}
-    >
-      <div
-        className="relative"
-        style={{
-          position: 'sticky',
-          top: `calc(var(--nav-h) + 24px + ${index * 3.5}rem)`,
-        }}
-      >
-        <motion.div
-          style={{
-            scale,
-            opacity,
-            rotateX,
-            transformPerspective: 1200,
-            ['--layer-color' as string]: item.color || 'var(--primary)',
-          }}
-          className="pillar-border-anim group relative min-h-[clamp(320px,58vh,460px)] overflow-hidden rounded-2xl border border-[var(--line)] bg-bg-2 p-6 shadow-[0_32px_90px_-45px_var(--primary-glow)] sm:p-10"
-        >
-          <div className="pillar-sheen absolute inset-0 opacity-0 transition-opacity duration-700 group-hover:opacity-100" />
-
-          {/* scroll-linked progress hairline */}
-          <motion.div
-            className="absolute left-0 top-0 h-[3px] origin-left bg-gradient-to-r from-[var(--layer-color)] to-accent"
-            style={{ scaleX: scrollYProgress }}
-          />
-
-          {/* ghost index */}
-          <span className="pointer-events-none absolute right-5 top-4 select-none font-mono text-[64px] font-bold leading-none text-ink-4/40 opacity-40 sm:right-8 sm:text-[90px]">
-            {String(index + 1).padStart(2, '0')}
-          </span>
-          <span className="pointer-events-none absolute right-5 top-[84px] font-mono text-[10px] uppercase tracking-[0.3em] text-ink-4 sm:right-8">
-            domain
-          </span>
-
-          <div className="relative flex min-h-[clamp(320px,58vh,460px)] flex-col justify-center gap-5 sm:flex-row sm:items-center sm:gap-8">
-            <div className="relative shrink-0">
-              <motion.span
-                className="pillar-ripple absolute inset-0 rounded-2xl"
-                animate={{ scale: [1, 1.6], opacity: [0.4, 0] }}
-                transition={{ duration: 2.4, repeat: Infinity, ease: 'easeOut' }}
-              />
-              <motion.div
-                className="relative flex h-16 w-16 items-center justify-center rounded-2xl border border-[var(--layer-color)]/30 bg-[var(--layer-color)]/10 sm:h-20 sm:w-20"
-                whileHover={{ scale: 1.08, rotate: -6 }}
-                transition={{ type: 'spring', stiffness: 320, damping: 15 }}
-              >
-                <Icon size={30} className="text-[var(--layer-color)]" style={{ filter: 'drop-shadow(0 0 10px var(--primary-glow))' }} />
-              </motion.div>
-            </div>
-            <div className="max-w-[70ch]">
-              <h3 className="font-serif text-[clamp(22px,3vw,34px)] font-semibold leading-tight tracking-tight text-ink">
-                {item.label}
-              </h3>
-              <p className="mt-2.5 text-[13px] leading-relaxed text-ink-2">{item.desc}</p>
-            </div>
-          </div>
-        </motion.div>
-      </div>
-    </div>
-  );
-}
-
-function DomainsDeck({ layer }: { layer: PillarLayer }) {
-  return (
-    <ChapterBlock className="flex flex-col gap-8">
+    <ChapterBlock>
       <SectionHeading
         eyebrow={layer.eyebrow}
         title={
@@ -267,49 +258,105 @@ function DomainsDeck({ layer }: { layer: PillarLayer }) {
             Where we <span className="text-gradient">work</span>
           </>
         }
-        sub="Five work domains — each one pins over the last as you scroll. Keep going to lift them open."
+        sub="One domain at a time — small scrolls step through the cards, forward only."
       />
-      <div className="relative flex flex-col gap-[clamp(2.5rem,10vh,6rem)]">
-        {layer.items.map((item, i) => (
-          <DeckCard key={item.id} item={item} index={i} />
-        ))}
+      <div className="relative" style={{ height: `${items.length * 65}vh` }}>
+        <div
+          ref={stageRef}
+          className="who-stage sticky isolate flex overflow-hidden rounded-2xl border border-[var(--line)] bg-bg-2"
+          style={{ top: 'calc(var(--nav-h) + 24px)' }}
+        >
+          <div
+            className="pointer-events-none absolute inset-0 opacity-40"
+            style={{
+              background: 'radial-gradient(60% 90% at 12% 18%, var(--primary-glow), transparent 62%)',
+            }}
+          />
+
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={item.id}
+              initial={{ opacity: 0, x: 48, rotateY: 8 }}
+              animate={{ opacity: 1, x: 0, rotateY: 0 }}
+              exit={{ opacity: 0, x: -48, rotateY: -8 }}
+              transition={{ duration: 0.5, ease: EASE }}
+              className="relative flex h-full w-full flex-col items-center justify-center gap-6 p-6 text-center sm:flex-row sm:gap-10 sm:px-14 sm:text-left"
+              style={{ ['--layer-color' as string]: item.color || 'var(--primary)' }}
+            >
+              {/* ghost index */}
+              <span className="pointer-events-none absolute right-6 top-5 select-none font-mono text-[64px] font-bold leading-none text-ink-4/40 opacity-40 sm:right-10 sm:text-[96px]">
+                {String(active + 1).padStart(2, '0')}
+              </span>
+              <span className="pointer-events-none absolute right-6 top-[92px] font-mono text-[10px] uppercase tracking-[0.3em] text-ink-4 sm:right-10">
+                domain
+              </span>
+
+              <div className="relative shrink-0">
+                <motion.span
+                  className="pillar-ripple absolute inset-0 rounded-2xl"
+                  animate={{ scale: [1, 1.6], opacity: [0.4, 0] }}
+                  transition={{ duration: 2.4, repeat: Infinity, ease: 'easeOut' }}
+                />
+                <motion.div
+                  className="relative flex h-16 w-16 items-center justify-center rounded-2xl border border-[var(--layer-color)]/30 bg-[var(--layer-color)]/10 sm:h-20 sm:w-20"
+                  whileHover={{ scale: 1.08, rotate: -6 }}
+                  transition={{ type: 'spring', stiffness: 320, damping: 15 }}
+                >
+                  <Icon
+                    size={30}
+                    className="text-[var(--layer-color)]"
+                    style={{ filter: 'drop-shadow(0 0 10px var(--primary-glow))' }}
+                  />
+                </motion.div>
+              </div>
+
+              <div className="max-w-[64ch]">
+                <h3 className="font-serif text-[clamp(24px,3.2vw,40px)] font-semibold leading-tight tracking-tight text-ink">
+                  {item.label}
+                </h3>
+                <p className="mt-3 text-[13.5px] leading-relaxed text-ink-2">{item.desc}</p>
+              </div>
+            </motion.div>
+          </AnimatePresence>
+
+          {/* deck counter + jump dots */}
+          <div className="absolute inset-x-6 bottom-5 flex items-center gap-3 sm:inset-x-8">
+            <span className="font-mono text-[9.5px] uppercase tracking-[0.2em] text-ink-4">
+              domain {String(active + 1).padStart(2, '0')} / {String(items.length).padStart(2, '0')}
+            </span>
+            <div className="flex items-center gap-1.5">
+              {items.map((_, i) => (
+                <button
+                  key={i}
+                  type="button"
+                  onClick={() => setActive(i)}
+                  aria-label={`go to domain ${i + 1}`}
+                  className={cn(
+                    'h-1.5 w-5 rounded-full transition-all duration-300',
+                    i === active
+                      ? 'bg-gradient-to-r from-primary to-accent'
+                      : i < active
+                        ? 'bg-primary/40 hover:bg-primary/60'
+                        : 'bg-[var(--line-2)] hover:bg-[var(--line)]'
+                  )}
+                />
+              ))}
+            </div>
+          </div>
+        </div>
       </div>
     </ChapterBlock>
   );
 }
 
-/* ── WHO blocks: scroll-linked scrub (blocks activate, panel swaps) ─ */
+/* ── WHO blocks: pinned stage, steps forward one block per scroll ── */
 function SystemScrub({ layer }: { layer: PillarLayer }) {
-  const wrapRef = useRef<HTMLDivElement>(null);
-  const [active, setActive] = useState(0);
-  const [frac, setFrac] = useState(0);
-
+  const stageRef = useRef<HTMLDivElement>(null);
   const items = layer.items;
-
-  const { scrollYProgress } = useScroll({
-    target: wrapRef,
-    offset: ['start start', 'end end'],
-  });
-
-  useMotionValueEvent(scrollYProgress, 'change', (latest) => {
-    const last = items.length - 1;
-    const linear = latest * last;
-    const idx = Math.min(last, Math.max(0, Math.round(linear)));
-    setActive(idx);
-    setFrac(latest >= 1 ? 1 : linear - Math.floor(linear));
-  });
+  const [active, setActive] = useStageStepper(items.length, stageRef);
 
   const activeItem = items[active];
   const ActiveIcon = activeItem.icon;
-
-  const jumpTo = (i: number) => {
-    const el = wrapRef.current;
-    if (!el) return;
-    const last = items.length - 1;
-    const travel = el.offsetHeight - window.innerHeight;
-    const top = el.offsetTop + travel * ((i + 0.5) / last);
-    window.scrollTo({ top: Math.max(0, top), behavior: 'smooth' });
-  };
 
   return (
     <ChapterBlock>
@@ -320,11 +367,12 @@ function SystemScrub({ layer }: { layer: PillarLayer }) {
             WHO building blocks, <span className="text-gradient">under focus</span>
           </>
         }
-        sub="Keep scrolling — each building block slides into focus and unpacks the outcome it's driving in the field."
+        sub="Small scrolls step through the building blocks, one at a time — forward only, down the line."
       />
 
       <div className="relative" style={{ height: `${items.length * 65}vh` }}>
         <div
+          ref={stageRef}
           className="who-stage sticky isolate flex overflow-hidden rounded-2xl border border-[var(--line)] bg-bg-2"
           style={{ top: 'calc(var(--nav-h) + 24px)' }}
         >
@@ -341,11 +389,11 @@ function SystemScrub({ layer }: { layer: PillarLayer }) {
             <div className="flex shrink-0 flex-row gap-1.5 overflow-x-auto p-3 lg:flex-col lg:overflow-y-auto lg:overflow-x-visible lg:border-r lg:border-[var(--line-2)] lg:p-4">
               {items.map((it, i) => {
                 const isActive = i === active;
-                const fill = i < active ? 1 : isActive ? frac : 0;
+                const fill = i <= active ? 1 : 0;
                 return (
                   <button
                     key={it.id}
-                    onClick={() => jumpTo(i)}
+                    onClick={() => setActive(i)}
                     className={cn(
                       'relative min-w-[190px] shrink-0 rounded-xl border px-3.5 py-3 text-left transition-colors duration-300 lg:min-w-0',
                       isActive
@@ -363,7 +411,7 @@ function SystemScrub({ layer }: { layer: PillarLayer }) {
                     </span>
                     <span className="absolute inset-x-3.5 bottom-1 h-[2px] overflow-hidden rounded-full bg-[var(--line-2)]">
                       <span
-                        className="block h-full bg-gradient-to-r from-primary to-accent transition-[width] duration-100"
+                        className="block h-full bg-gradient-to-r from-primary to-accent"
                         style={{ width: `${fill * 100}%` }}
                       />
                     </span>
@@ -422,11 +470,16 @@ function SystemScrub({ layer }: { layer: PillarLayer }) {
               {/* overall scan progress */}
               <div className="pointer-events-none absolute inset-x-6 bottom-4 flex items-center gap-3 sm:inset-x-8">
                 <span className="font-mono text-[9.5px] uppercase tracking-[0.2em] text-ink-4">system scan</span>
-                <div className="h-1 flex-1 overflow-hidden rounded-full bg-[var(--line-2)]">
-                  <motion.div
-                    className="h-full origin-left rounded-full bg-gradient-to-r from-primary to-accent"
-                    style={{ scaleX: scrollYProgress }}
-                  />
+                <div className="flex h-1 flex-1 gap-1 overflow-hidden">
+                  {items.map((_, i) => (
+                    <span
+                      key={i}
+                      className={cn(
+                        'h-full flex-1 rounded-full transition-colors duration-300',
+                        i <= active ? 'bg-gradient-to-r from-primary to-accent' : 'bg-[var(--line-2)]'
+                      )}
+                    />
+                  ))}
                 </div>
                 <span className="font-mono text-[9.5px] uppercase tracking-[0.2em] text-ink-3">
                   {String(active + 1).padStart(2, '0')}/{String(items.length).padStart(2, '0')}
@@ -530,8 +583,8 @@ export function PillarsOfWork() {
 
       <EnergyConduit />
 
-      {/* 03 — Domains: layered sticky deck */}
-      <DomainsDeck layer={layers.domains} />
+      {/* 03 — Domains: pinned stage, one card at a time */}
+      <DomainStage layer={layers.domains} />
 
       <EnergyConduit />
 
