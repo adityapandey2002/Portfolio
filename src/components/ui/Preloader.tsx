@@ -41,6 +41,21 @@ export function PreloaderProvider({ children }: { children: ReactNode }) {
 
 function PreloaderOverlay({ onSkip }: { onSkip: () => void }) {
   const [skip, setSkip] = useState(false);
+  const [pct, setPct] = useState(0);
+
+  useEffect(() => {
+    if (skip) return;
+    const DUR = 5650;
+    const start = performance.now();
+    let raf: number;
+    const tick = (t: number) => {
+      const k = Math.min(1, (t - start) / DUR);
+      setPct(Math.floor(100 * (1 - Math.pow(1 - k, 1.7))));
+      if (k < 1) raf = requestAnimationFrame(tick);
+    };
+    raf = requestAnimationFrame(tick);
+    return () => cancelAnimationFrame(raf);
+  }, [skip]);
 
   return (
     <motion.div
@@ -70,13 +85,13 @@ function PreloaderOverlay({ onSkip }: { onSkip: () => void }) {
             x1="140" y1="100" x2="340" y2="100"
             stroke="var(--primary)" strokeWidth="2"
             strokeDasharray="200" strokeDashoffset="200" filter="url(#pl-glow)"
-            style={{ animation: skip ? 'none' : 'dash 0.7s ease 0.3s forwards' }}
+            style={{ animation: skip ? 'none' : 'dash 1.1s ease 0.6s forwards' }}
           />
           <line
             x1="560" y1="100" x2="760" y2="100"
             stroke="var(--primary)" strokeWidth="2"
             strokeDasharray="200" strokeDashoffset="200" filter="url(#pl-glow)"
-            style={{ animation: skip ? 'none' : 'dash 0.7s ease 1.4s forwards' }}
+            style={{ animation: skip ? 'none' : 'dash 1.2s ease 2.1s forwards' }}
           />
 
           {/* raw dots */}
@@ -84,7 +99,7 @@ function PreloaderOverlay({ onSkip }: { onSkip: () => void }) {
             {[
               [40, 60, 3], [70, 120, 2.5], [100, 80, 3], [60, 160, 2], [90, 40, 2.5], [30, 100, 3], [110, 140, 2], [25, 70, 2.5], [70, 180, 3], [95, 120, 2],
             ].map(([x, y, r], i) => (
-              <circle key={i} cx={x} cy={y} r={r} fill="var(--ink-4)" opacity={skip ? 1 : 0} style={{ animation: skip ? undefined : `dotIn 0.35s ease ${0.12 + i * 0.05}s forwards` }} />
+              <circle key={i} cx={x} cy={y} r={r} fill="var(--ink-4)" opacity={skip ? 1 : 0} style={{ animation: skip ? undefined : `dotIn 0.45s ease ${0.35 + i * 0.16}s forwards` }} />
             ))}
           </g>
 
@@ -94,7 +109,7 @@ function PreloaderOverlay({ onSkip }: { onSkip: () => void }) {
             <circle
               r="46" fill="none" stroke="var(--primary)" strokeWidth="2"
               strokeDasharray="300" strokeDashoffset="300" filter="url(#pl-glow)"
-              style={{ animation: skip ? 'none' : 'dash 0.7s ease 0.55s forwards' }}
+              style={{ animation: skip ? 'none' : 'dash 1.2s ease 1.5s forwards' }}
             />
             <text y="8" textAnchor="middle" fill="var(--ink)" fontFamily="var(--font-outfit)" fontSize="20" fontWeight="600">AP</text>
           </g>
@@ -108,18 +123,18 @@ function PreloaderOverlay({ onSkip }: { onSkip: () => void }) {
                   x={800 + i * 15}
                   y={0}
                   width="6" height="0" fill="var(--primary)" opacity="0"
-                  style={{ animation: `barUp 0.5s ease ${1.8 + i * 0.08}s forwards` }}
+                  style={{ animation: `barUp 0.55s ease ${3.6 + i * 0.16}s forwards` }}
                 />
               ))}
             </g>
           )}
         </svg>
 
-        <div className="pointer-events-none text-center" style={{ marginTop: -90 }}>
+        <div className="pointer-events-none relative z-10 text-center" style={{ marginTop: -90 }}>
           {[
-            { text: 'Building data systems that turn', d: 0.2 },
-            { text: 'field work into', d: 1.1 },
-            { text: 'real decisions.', d: 1.9, accent: true },
+            { text: 'Building data systems that turn', d: 1.3 },
+            { text: 'field work into', d: 2.7 },
+            { text: 'real decisions.', d: 4.1, accent: true },
           ].map((l) => (
             <div
               key={l.text}
@@ -131,7 +146,7 @@ function PreloaderOverlay({ onSkip }: { onSkip: () => void }) {
                 transform: skip ? 'none' : 'translateY(20px)',
                 filter: skip ? 'none' : 'blur(8px)',
                 color: l.accent ? 'var(--primary)' : 'var(--ink)',
-                animation: skip ? undefined : `titleIn 0.9s cubic-bezier(0.16,1,0.3,1) ${l.d}s forwards`,
+                animation: skip ? undefined : `titleIn 1s cubic-bezier(0.16,1,0.3,1) ${l.d}s forwards`,
               }}
             >
               {l.text}
@@ -139,15 +154,38 @@ function PreloaderOverlay({ onSkip }: { onSkip: () => void }) {
           ))}
         </div>
 
-        <button
-          className="absolute bottom-[-70px] right-0 rounded-full border border-[var(--line)] px-4 py-2 font-mono text-xs tracking-wider text-ink-3"
-          onClick={() => {
-            setSkip(true);
-            onSkip();
-          }}
-        >
-          SKIP →
-        </button>
+        {/* progress row — animates for the full preloader duration */}
+        <div className="pointer-events-none relative z-10 mt-10">
+          <div className="flex items-center justify-between font-mono text-[9.5px] uppercase tracking-[0.22em] text-ink-4">
+            <span>system analysis in progress</span>
+            <span className="text-ink-3">field data → clean outputs ({pct}%)</span>
+          </div>
+          <div className="mt-2 h-[3px] w-full overflow-hidden rounded-full bg-[var(--line)]">
+            <div
+              className="h-full rounded-full transition-[width] duration-100 ease-linear"
+              style={{
+                width: `${pct}%`,
+                background: 'linear-gradient(to right, var(--primary), var(--accent))',
+                boxShadow: '0 0 12px var(--primary-glow)',
+              }}
+            />
+          </div>
+        </div>
+
+        <div className="mt-6 flex items-center justify-between">
+          <span className="font-mono text-[9.5px] uppercase tracking-[0.22em] text-ink-4">
+            pb · portfolio of aditya pandey
+          </span>
+          <button
+            className="rounded-full border border-[var(--line)] px-4 py-2 font-mono text-xs tracking-wider text-ink-3 transition-colors hover:border-primary/50 hover:text-ink"
+            onClick={() => {
+              setSkip(true);
+              onSkip();
+            }}
+          >
+            SKIP →
+          </button>
+        </div>
       </div>
 
       <style jsx>{`

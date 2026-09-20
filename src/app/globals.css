@@ -233,6 +233,18 @@ body {
 /* Free-scroll routes (e.g. /health): turn off page snap so sticky
    chapters drive the document scroller. overflow-x: clip (not hidden)
    avoids creating a scroll container that would break position: sticky. */
+/* Page-wise routes (e.g. /health): each top-level section is a fixed
+   full-screen page that snaps into place (proximity) while the pinned
+   pillar chapters keep enough free scroll room for the step-scrolling.
+   overflow-x: clip (not hidden) avoids creating a scroll container
+   that would break position: sticky. */
+html[data-scroll='health'] {
+  scroll-snap-type: y proximity;
+  scroll-padding-top: 1rem;
+}
+html[data-scroll='health'] body {
+  overflow-x: clip;
+}
 html[data-scroll='free'] {
   scroll-snap-type: none;
 }
