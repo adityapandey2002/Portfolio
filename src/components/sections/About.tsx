@@ -25,7 +25,7 @@ export function About() {
       <div className="mx-auto grid w-full max-w-[1500px] items-center gap-10 lg:grid-cols-[1.05fr_0.95fr]">
         <div ref={ref}>
           <SectionHeading
-            eyebrow="/* 05 · ABOUT */"
+            eyebrow="/* 03 · ABOUT */"
             className="mb-6"
             title={
               <>

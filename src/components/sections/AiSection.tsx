@@ -16,7 +16,7 @@ export function AiSection() {
       <div className="mx-auto grid w-full max-w-[1500px] items-center gap-10 lg:grid-cols-[0.9fr_1.1fr]">
         <div ref={ref}>
           <SectionHeading
-            eyebrow="/* 11 · THE AI */"
+            eyebrow="/* 10 · THE AI */"
             className="mb-5"
             title={
               <>

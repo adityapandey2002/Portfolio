@@ -37,7 +37,7 @@ function withAlpha(hex: string, alpha: number) {
 }
 
 export function PipelineSection({
-  eyebrow = '/* 03 · THE PIPELINE */',
+  eyebrow = '/* 02 · THE PIPELINE */',
   title = (
     <>
       Raw data flows through <span className="text-gradient">four stages</span> — never more

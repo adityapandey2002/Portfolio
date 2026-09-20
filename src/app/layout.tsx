@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from 'next';
 import { Outfit, JetBrains_Mono, Lora } from 'next/font/google';
 import { Providers } from '@/components/providers/Providers';
 import { ScrollProgress } from '@/components/ui/ScrollProgress';
+import { ScrollChaining } from '@/components/ScrollChaining';
 import './globals.css';
 
 const outfit = Outfit({
@@ -64,6 +65,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html lang="en" data-theme="cyberpunk" data-scroll-behavior="smooth" suppressHydrationWarning>
       <body className={`${outfit.variable} ${jetbrains.variable} ${lora.variable} bg-bg font-sans text-ink antialiased`}>
         <ScrollProgress />
+        <ScrollChaining />
         <Providers>{children}</Providers>
       </body>
     </html>

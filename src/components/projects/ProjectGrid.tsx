@@ -28,7 +28,7 @@ export function ProjectGrid({ featured = false }: { featured?: boolean }) {
           {/* Header row */}
           <div className="flex flex-wrap items-end justify-between gap-4">
             <SectionHeading
-              eyebrow="/* 10 · SELECTED WORK */"
+              eyebrow="/* 09 · SELECTED WORK */"
               className="mb-4"
               title={
                 <>

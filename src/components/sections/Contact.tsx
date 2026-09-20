@@ -69,7 +69,7 @@ export function Contact() {
         {/* Left — info + links */}
         <div ref={ref}>
           <SectionHeading
-            eyebrow="/* 12 · CONTACT */"
+            eyebrow="/* 11 · CONTACT */"
             className="mb-5"
             title={
               <>

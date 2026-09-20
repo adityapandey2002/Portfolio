@@ -32,6 +32,50 @@ export const techCats = [
   },
 ];
 
+export interface PipelineStage {
+  index: string;
+  name: string;
+  line: string;
+  pills: string[];
+  barLabel: string;
+  barPct: number;
+}
+
+export const pipelineStages: PipelineStage[] = [
+  {
+    index: '01',
+    name: 'COLLECT',
+    line: 'ODK forms in a village, synced through Central.',
+    pills: ['ODK Collect', 'ODK Central', 'NQAS', 'DHIS2', 'MIS Reporting'],
+    barLabel: 'Field Ops / ODK',
+    barPct: 90,
+  },
+  {
+    index: '02',
+    name: 'CLEAN',
+    line: 'Python & pandas data hygiene before it reaches a report.',
+    pills: ['Python', 'Pandas', 'SQLite', 'Jupyter', 'R'],
+    barLabel: 'Data Cleaning',
+    barPct: 87,
+  },
+  {
+    index: '03',
+    name: 'BUILD',
+    line: 'MERN apps, REST APIs, safe auth — shipped to production.',
+    pills: ['React', 'Node', 'Express', 'MongoDB', 'WebSockets', 'JWT'],
+    barLabel: 'Full-Stack (MERN)',
+    barPct: 78,
+  },
+  {
+    index: '04',
+    name: 'SHIP',
+    line: 'Dashboards, automation, and AI tools that hold up in the field.',
+    pills: ['Dash', 'Plotly', 'Excel', 'Nginx', 'PM2', 'Git', 'AI Tools'],
+    barLabel: 'Dash / Plotly / Excel',
+    barPct: 80,
+  },
+];
+
 export const education = [
   { degree: 'Master of Computer Applications (MCA)', school: 'Pondicherry University', year: 'Aug 2023 – May 2025' },
   { degree: 'Master of Arts, Political Science & Government', school: 'Prof. Rajendra Singh (Rajju Bhaiya) University · Prayagraj', year: 'Aug 2022 – Jun 2023' },
@@ -42,27 +86,13 @@ export interface Cert {
   name: string;
   issuer: string;
   icon: string;
-  courses?: string[];
 }
 
 export const certs: Cert[] = [
   {
     name: 'IBM Data Science Professional Certificate',
-    issuer: 'IBM — 11 courses',
+    issuer: 'IBM',
     icon: 'award',
-    courses: [
-      'What is Data Science?',
-      'Tools for Data Science',
-      'Data Science Methodology',
-      'Python for Data Science, AI & Development',
-      'Python Project for Data Science',
-      'Databases and SQL for Data Science with Python',
-      'Data Analysis with Python',
-      'Data Visualization with Python',
-      'Machine Learning with Python',
-      'Applied Data Science Capstone',
-      'Generative AI: Elevate Your Data Science Career',
-    ],
   },
   { name: 'Data Analytics with Python', issuer: 'NPTEL', icon: 'bar' },
   { name: 'Data Mining Using R', issuer: 'NPTEL', icon: 'search' },

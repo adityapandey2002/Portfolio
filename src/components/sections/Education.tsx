@@ -16,7 +16,7 @@ export function Education() {
         {/* Education */}
         <div>
           <SectionHeading
-            eyebrow="/* 08 · EDUCATION */"
+            eyebrow="/* 06 · EDUCATION */"
             className="mb-5"
             title={
               <>
@@ -49,7 +49,7 @@ export function Education() {
         {/* Certifications */}
         <div>
           <SectionHeading
-            eyebrow="/* 09 · CERTIFICATIONS */"
+            eyebrow="/* 07 · CERTIFICATIONS */"
             className="mb-5"
             title={<>Proof of <span className="text-gradient">work</span></>}
           />
@@ -57,9 +57,7 @@ export function Education() {
             {certs.map((c, i) => (
               <motion.div
                 key={c.name}
-                className={`group rounded-xl border border-[var(--line)] bg-bg-2/60 p-4 transition-colors duration-300 hover:border-primary/50 ${
-                  c.courses ? 'sm:col-span-2' : ''
-                }`}
+                className="group rounded-xl border border-[var(--line)] bg-bg-2/60 p-4 transition-colors duration-300 hover:border-primary/50"
                 initial={{ opacity: 0, y: 20 }}
                 animate={inView ? { opacity: 1, y: 0 } : {}}
                 transition={{ duration: 0.6, delay: 0.1 + i * 0.08 }}
@@ -69,21 +67,6 @@ export function Education() {
                 </span>
                 <h3 className="mt-2.5 text-[13px] font-semibold leading-snug text-ink">{c.name}</h3>
                 <p className="mt-0.5 font-mono text-[10px] uppercase tracking-wider text-ink-3">{c.issuer}</p>
-                {c.courses && (
-                  <div className="mt-3 grid grid-cols-1 gap-1 sm:grid-cols-2">
-                    {c.courses.map((course, ci) => (
-                      <div
-                        key={course}
-                        className="flex items-center gap-2 rounded-md border border-[var(--line-2)] bg-bg-3/60 px-2.5 py-1.5"
-                      >
-                        <span className="font-mono text-[9px] font-semibold text-primary">
-                          {String(ci + 1).padStart(2, '0')}
-                        </span>
-                        <span className="text-[11px] leading-snug text-ink-2">{course}</span>
-                      </div>
-                    ))}
-                  </div>
-                )}
               </motion.div>
             ))}
           </div>

@@ -1,12 +1,28 @@
 'use client';
 
 import Link from 'next/link';
-import { ArrowDownLeft, Activity, HeartPulse } from 'lucide-react';
+import { ArrowDownLeft, Activity, HeartPulse, Compass, Flower2 } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { SectionHeading } from './SectionHeading';
 import { CountUp } from './CountUp';
 import { PillarsOfWork } from './PillarsOfWork';
 import { FieldSection } from './FieldSection';
+import { Impact } from './Impact';
+
+const TRAINING = [
+  {
+    icon: Compass,
+    title: 'CBCT & leadership workshop — Hajipur',
+    body: 'Participated in <strong>Cognitively-Based Compassion Training (CBCT)</strong> with the fellowship cohort — and supported the same training being delivered to others, strengthening facilitation, empathy-led problem solving, and field leadership.',
+    tags: ['Fellowship Training', 'Facilitation', 'Hajipur'],
+  },
+  {
+    icon: Flower2,
+    title: '10-day Vipassana — Dhamma Vaishali',
+    body: 'Sat a <strong>10-day Vipassana meditation course</strong> at Dhamma Vaishali — discipline, stillness, and sustained focus that carries straight into field days and long debug sessions.',
+    tags: ['Meditation', 'Discipline', 'Bihar'],
+  },
+];
 
 const VITALS = [
   { label: 'ASHA workers trained (M-ASHA)', value: 700, suffix: '+', pct: 100, foot: 'Field trainings · hands-on' },
@@ -295,6 +311,11 @@ export function HealthDashboard() {
         </header>
       </div>
 
+      {/* Field impact — numbers from the field, not a dashboard */}
+      <div className="snap-section">
+        <Impact />
+      </div>
+
       {/* The field — where the data starts */}
       <div className="snap-section">
         <FieldSection />
@@ -439,6 +460,53 @@ export function HealthDashboard() {
                 <div className="mt-3 font-mono text-[10.5px] uppercase tracking-[0.18em] text-ink-3">{v.foot}</div>
               </div>
               <span className="absolute bottom-0 left-0 h-px w-0 bg-gradient-to-r from-primary to-accent transition-all duration-500 group-hover:w-full" />
+            </motion.div>
+          ))}
+        </div>
+        </section>
+      </div>
+
+      <div className="snap-section">
+        <section className="mx-auto max-w-[1500px] px-5 lg:px-10">
+        <SectionHeading
+          eyebrow="/* FIELD MIND */"
+          title={
+            <>
+              What keeps the field <span className="text-gradient">steady</span>
+            </>
+          }
+          sub="The weeks are full days. These are the practices that make the field work hold."
+        />
+        <div className="grid grid-cols-1 gap-4 lg:grid-cols-2">
+          {TRAINING.map((t, i) => (
+            <motion.div
+              key={t.title}
+              className="group rounded-2xl border border-[var(--line)] bg-bg-2/60 p-6 transition-colors duration-300 hover:border-primary/50 lg:p-7"
+              initial={{ opacity: 0, y: 24 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: '-60px' }}
+              transition={{ duration: 0.6, delay: i * 0.1, ease: EASE }}
+            >
+              <div className="flex items-center gap-4">
+                <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-primary/10 text-primary transition-transform duration-300 group-hover:scale-110">
+                  <t.icon size={20} />
+                </span>
+                <h3 className="text-[15px] font-semibold leading-snug text-ink">{t.title}</h3>
+              </div>
+              <p
+                className="mt-4 text-[13px] leading-[1.75] text-ink-2"
+                dangerouslySetInnerHTML={{ __html: t.body }}
+              />
+              <div className="mt-4 flex flex-wrap gap-1.5">
+                {t.tags.map((tag) => (
+                  <span
+                    key={tag}
+                    className="rounded-full border border-[var(--line-2)] px-2.5 py-1 font-mono text-[9.5px] uppercase tracking-[0.14em] text-ink-3"
+                  >
+                    {tag}
+                  </span>
+                ))}
+              </div>
             </motion.div>
           ))}
         </div>

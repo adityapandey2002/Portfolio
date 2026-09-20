@@ -15,7 +15,7 @@ export function Impact() {
     <section id="impact" className="relative flex h-full w-full flex-col justify-center px-5 lg:px-10">
       <div className="mx-auto w-full max-w-[1500px]">
         <SectionHeading
-          eyebrow="/* 02 · IMPACT */"
+          eyebrow="/* FIELD IMPACT */"
           className="mb-8"
           title={
             <>

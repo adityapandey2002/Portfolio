@@ -52,15 +52,15 @@ export const experience: Experience[] = [
     tags: ['MERN', 'JWT', 'WebSockets', 'Agile', 'Git'],
   },
   {
-    role: 'Open Source Developer',
-    org: 'MinVayu · Auroville FabLab, Tamil Nadu',
+    role: 'Sustainable-tech Intern',
+    org: 'Auroville FabLab, Tamil Nadu',
     period: 'Sep – Nov 2024',
     current: false,
     bullets: [
-      'Designed and tested <strong>large-format 3D printers</strong> built on open-source hardware for digital manufacturing.',
-      'Worked on <strong>distributed, low-cost fabrication</strong> of eco-friendly structures using local materials — sand, rice husk, and slaked lime.',
+      'Open-source <strong>3D printing & digital fabrication</strong> — prototyping eco-friendly structures from sand, rice husk, and slaked lime.',
+      'Designed and tested <strong>large-format 3D printers</strong> (MinVayu project) built on open-source hardware for distributed, low-cost digital manufacturing.',
     ],
-    tags: ['3D Printing', 'Open Source', 'Sustainable Dev'],
+    tags: ['3D Printing', 'Digital Fabrication', 'Sustainability'],
     muted: true,
   },
 ];

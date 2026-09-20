@@ -17,7 +17,7 @@ export function Experience() {
         {/* Fixed header area */}
         <div className="flex flex-wrap items-end justify-between gap-4">
           <SectionHeading
-            eyebrow="/* 06 · EXPERIENCE */"
+            eyebrow="/* 04 · EXPERIENCE */"
             className="mb-4"
             title={
               <>

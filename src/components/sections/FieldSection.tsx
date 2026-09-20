@@ -19,7 +19,7 @@ export function FieldSection() {
       <div className="mx-auto grid w-full max-w-[1500px] items-center gap-8 lg:grid-cols-[0.9fr_1.1fr]">
         <div ref={ref}>
           <SectionHeading
-            eyebrow="/* 04 · THE FIELD */"
+            eyebrow="/* THE FIELD */"
             className="mb-6"
             title={
               <>

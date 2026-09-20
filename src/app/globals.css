@@ -260,6 +260,17 @@ html[data-scroll='health'] body {
     padding-top: calc(var(--nav-h) + clamp(0.5rem, 2.5vh, 1.75rem));
     padding-bottom: calc(56px + var(--safe-bottom) + clamp(0.5rem, 2.5vh, 1.75rem));
   }
+  /* Safe centering: when content is shorter than the band it is pinned
+     dead-center; when it overflows the band it top-aligns and scrolls
+     inside the page instead of clipping the top edge. */
+  html[data-scroll='health'] .snap-section > section > :first-child,
+  html[data-scroll='health'] .snap-section > header > :first-child {
+    margin-bottom: auto;
+  }
+  html[data-scroll='health'] .snap-section > section > :last-child,
+  html[data-scroll='health'] .snap-section > header > :last-child {
+    margin-top: auto;
+  }
 }
 html[data-scroll='free'] {
   scroll-snap-type: none;
