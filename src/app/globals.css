@@ -245,6 +245,22 @@ html[data-scroll='health'] {
 html[data-scroll='health'] body {
   overflow-x: clip;
 }
+/* Health pages: pin each section's content in a STABLE band — centered
+   between the fixed header (--nav-h) and the bottom chrome (mobile tab
+   bar + safe area) — instead of hugging the top. Applies to every
+   full-page section on /health. */
+@media (min-width: 769px) {
+  html[data-scroll='health'] .snap-section > section,
+  html[data-scroll='health'] .snap-section > header {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    min-height: 0;
+    overflow-y: auto;
+    padding-top: calc(var(--nav-h) + clamp(0.5rem, 2.5vh, 1.75rem));
+    padding-bottom: calc(56px + var(--safe-bottom) + clamp(0.5rem, 2.5vh, 1.75rem));
+  }
+}
 html[data-scroll='free'] {
   scroll-snap-type: none;
 }
