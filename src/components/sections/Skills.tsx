@@ -79,7 +79,7 @@ export function Skills() {
                 transition={{ duration: 0.25 }}
               >
                 <div className="space-y-4">
-                  {skillBars.map((s, i) => (
+                  {skillBars.slice(0, 4).map((s, i) => (
                     <div key={s.name} className="group">
                       <div className="mb-1.5 flex items-center justify-between">
                         <span className="text-[13px] font-medium text-ink-2">{s.name}</span>

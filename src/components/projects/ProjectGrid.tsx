@@ -44,7 +44,7 @@ export function ProjectGrid({ featured = false }: { featured?: boolean }) {
             </div>
           </div>
 
-          <motion.div layout className="section-inner-scroll grid min-h-0 flex-1 content-start grid-cols-1 gap-6 md:grid-cols-3">
+          <motion.div layout className="grid min-h-0 flex-1 grid-cols-1 gap-6 md:grid-cols-3">
             <AnimatePresence mode="popLayout">
               {shown.map((p, i) => (
                 <ProjectCard key={p.id} project={p} index={i} liveInfo={liveStatus[p.id] ?? null} compact />

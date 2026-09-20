@@ -280,9 +280,15 @@ function DomainStage({ layer }: { layer: PillarLayer }) {
               animate={{ opacity: 1, x: 0, rotateY: 0 }}
               exit={{ opacity: 0, x: -48, rotateY: -8 }}
               transition={{ duration: 0.5, ease: EASE }}
-              className="relative flex h-full w-full flex-col items-center justify-center gap-6 p-6 text-center sm:flex-row sm:gap-10 sm:px-14 sm:text-left"
+              className="pillar-border-anim group/card relative flex h-full w-full flex-col items-center justify-center gap-6 overflow-hidden p-6 text-center sm:flex-row sm:gap-10 sm:px-14 sm:text-left"
               style={{ ['--layer-color' as string]: item.color || 'var(--primary)' }}
             >
+              {/* layer accent hairline */}
+              <div
+                className="absolute inset-x-0 top-0 h-[3px]"
+                style={{ background: `linear-gradient(to right, var(--layer-color), var(--accent))` }}
+              />
+
               {/* ghost index */}
               <span className="pointer-events-none absolute right-6 top-5 select-none font-mono text-[64px] font-bold leading-none text-ink-4/40 opacity-40 sm:right-10 sm:text-[96px]">
                 {String(active + 1).padStart(2, '0')}
@@ -291,9 +297,15 @@ function DomainStage({ layer }: { layer: PillarLayer }) {
                 domain
               </span>
 
+              <span
+                className="pointer-events-none absolute -bottom-16 left-1/2 h-56 w-56 -translate-x-1/2 rounded-full opacity-25 blur-3xl"
+                style={{ background: 'var(--layer-color)' }}
+              />
+
               <div className="relative shrink-0">
                 <motion.span
                   className="pillar-ripple absolute inset-0 rounded-2xl"
+                  style={{ background: 'var(--layer-color)' }}
                   animate={{ scale: [1, 1.6], opacity: [0.4, 0] }}
                   transition={{ duration: 2.4, repeat: Infinity, ease: 'easeOut' }}
                 />
@@ -311,10 +323,27 @@ function DomainStage({ layer }: { layer: PillarLayer }) {
               </div>
 
               <div className="max-w-[64ch]">
-                <h3 className="font-serif text-[clamp(24px,3.2vw,40px)] font-semibold leading-tight tracking-tight text-ink">
+                <div className="flex items-center justify-center gap-2 sm:justify-start">
+                  <span
+                    className="h-1.5 w-1.5 rounded-full"
+                    style={{ background: 'var(--layer-color)', boxShadow: '0 0 8px var(--layer-color)' }}
+                  />
+                  <span className="font-mono text-[9.5px] uppercase tracking-[0.26em] text-ink-4">
+                    live domain slot
+                  </span>
+                </div>
+                <h3 className="mt-2 font-serif text-[clamp(24px,3.2vw,40px)] font-semibold leading-tight tracking-tight text-ink">
                   {item.label}
                 </h3>
                 <p className="mt-3 text-[13.5px] leading-relaxed text-ink-2">{item.desc}</p>
+                <div className="mt-5 flex flex-wrap items-center justify-center gap-2 border-t border-dashed border-[var(--line-2)] pt-4 sm:justify-start">
+                  <span className="rounded-full border border-[var(--line-2)] px-3 py-1 font-mono text-[9.5px] uppercase tracking-[0.18em] text-ink-3">
+                    card {String(active + 1).padStart(2, '0')} / {String(items.length).padStart(2, '0')}
+                  </span>
+                  <span className="font-mono text-[9.5px] uppercase tracking-[0.18em] text-ink-4">
+                    locked to slot · scroll to switch
+                  </span>
+                </div>
               </div>
             </motion.div>
           </AnimatePresence>

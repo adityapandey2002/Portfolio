@@ -6,6 +6,7 @@ import { motion } from 'framer-motion';
 import { SectionHeading } from './SectionHeading';
 import { CountUp } from './CountUp';
 import { PillarsOfWork } from './PillarsOfWork';
+import { FieldSection } from './FieldSection';
 
 const VITALS = [
   { label: 'ASHA workers trained (M-ASHA)', value: 700, suffix: '+', pct: 100, foot: 'Field trainings · hands-on' },
@@ -292,6 +293,11 @@ export function HealthDashboard() {
           Muzaffarpur — every number tracked like it&apos;s patient data. Because it is.
           </p>
         </header>
+      </div>
+
+      {/* The field — where the data starts */}
+      <div className="snap-section">
+        <FieldSection />
       </div>
 
       {/* Pillars of Work — strategic framework */}

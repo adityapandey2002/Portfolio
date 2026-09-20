@@ -11,6 +11,7 @@ import { Cursor } from '@/components/ui/Cursor';
 import { ScrollProgress } from '@/components/ui/ScrollProgress';
 import { Nav } from '@/components/ui/Nav';
 import { MobileTabBar } from '@/components/ui/MobileTabBar';
+import { AiAssistant } from '@/components/ui/AiAssistant';
 import { LiveToasts } from '@/components/realtime/LiveToasts';
 import { PageShell } from '@/components/motion/PageShell';
 
@@ -39,6 +40,7 @@ export function Providers({ children }: { children: ReactNode }) {
               <NavInner />
               <MobileTabBar />
               <LiveToasts />
+              <AiAssistant />
               <main className="relative z-10">
                 <PageShell>{children}</PageShell>
               </main>

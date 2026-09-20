@@ -27,7 +27,7 @@ export function PreloaderProvider({ children }: { children: ReactNode }) {
       setDone(true);
       return;
     }
-    const t = setTimeout(finish, 2800);
+    const t = setTimeout(finish, 5800);
     return () => clearTimeout(t);
   }, [finish]);
 
