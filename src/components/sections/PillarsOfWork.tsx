@@ -28,7 +28,8 @@ function useStageStepper(count: number, ref: RefObject<HTMLDivElement | null>) {
       (parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--nav-h')) || 0) + 24;
     const last = count - 1;
     let acc = 0;
-    let lock = 0;
+    let lastWheelAt = 0;
+    let advanced = false;
 
     const step = (by: number) => setActive((a) => Math.max(0, Math.min(last, a + by)));
 
@@ -44,15 +45,21 @@ function useStageStepper(count: number, ref: RefObject<HTMLDivElement | null>) {
       }
 
       if (e.deltaY > 0 && activeRef.current < last) {
-        // Consume the input so the page holds still while the step happens,
-        // and advance once per (even small) scroll gesture.
+        // Consume every down-scroll while pinned so the page holds still.
         e.preventDefault();
+
+        const now = performance.now();
+        // A gap between wheel events means a NEW scroll gesture: allow the
+        // next step. While the same gesture keeps firing, advance at most once.
+        if (now - lastWheelAt >= 320) advanced = false;
+        lastWheelAt = now;
+        if (advanced) return;
+
         const d = e.deltaMode === 1 ? 16 : e.deltaMode === 2 ? window.innerHeight : e.deltaY;
         acc += d;
-        const now = performance.now();
-        if (now - lock >= 120 && acc >= 8) {
-          lock = now;
+        if (acc >= 8) {
           acc = 0;
+          advanced = true;
           step(1);
         }
       }
