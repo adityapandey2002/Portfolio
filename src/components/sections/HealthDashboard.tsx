@@ -38,8 +38,8 @@ const DIAGNOSTICS = [
   { name: 'Medicine & equipment forecasting', status: 'IN PROGRESS', tone: 'amber' },
 ] as const;
 
-const KM_TOTAL = 8743;
-const KM_MAX = 10000;
+const KM_TOTAL = 13000;
+const KM_MAX = 20000;
 const ROUTE_D =
   'M 32 210 C 90 200, 118 148, 170 136 C 220 124, 240 172, 290 150 C 335 130, 355 88, 372 52';
 
@@ -135,7 +135,7 @@ function Gauge() {
       </svg>
 
       <div className="absolute inset-x-0 bottom-2 flex flex-col items-center gap-1">
-        <div className="flex items-end gap-2">
+        <div className="flex items-end gap-2" style={{ fontVariantNumeric: 'tabular-nums' }}>
           <span className="font-serif text-[clamp(40px,4.5vw,58px)] leading-none tracking-tight text-ink">
             {KM_TOTAL.toLocaleString('en-IN')}
           </span>
@@ -217,11 +217,14 @@ function Odometer() {
             opacity: 0.35,
           }}
         />
-        <div className="flex items-end gap-1.5 px-4 pb-3 pt-1 font-serif text-[clamp(42px,5vw,72px)] leading-none tracking-tight text-ink">
+        <div
+          className="flex items-end gap-1.5 px-4 pb-3 pt-1 font-serif text-[clamp(42px,5vw,72px)] leading-none tracking-tight text-ink"
+          style={{ fontVariantNumeric: 'tabular-nums' }}
+        >
           {digits.map((c, i) =>
             c === ',' ? (
-              <span key={i} className="w-[0.38em] text-center text-ink-2">
-                {c}
+              <span key={i} className="relative inline-block h-[1em] w-[0.38em] overflow-hidden">
+                <span className="absolute inset-0 flex items-center justify-center text-ink-2">{c}</span>
               </span>
             ) : (
               <span key={i} className="relative inline-block h-[1em] w-[0.7em] overflow-hidden">
@@ -241,7 +244,9 @@ function Odometer() {
               </span>
             ),
           )}
-          <span className="ml-2 pb-[0.16em] font-mono text-[0.42em] font-semibold tracking-[0.28em] text-ink-3">KM</span>
+          <span className="ml-2 inline-flex h-[1em] flex-col justify-end pb-[0.14em] font-mono text-[0.42em] font-semibold tracking-[0.28em] text-ink-3">
+            KM
+          </span>
         </div>
       </div>
     </div>

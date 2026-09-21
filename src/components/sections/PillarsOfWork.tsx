@@ -21,17 +21,18 @@ function useStageStepper(count: number, ref: RefObject<HTMLDivElement | null>) {
   }, [active]);
 
   useEffect(() => {
-    const el = ref.current;
-    if (!el) return;
+    const last = count - 1;
+    const STEP = 56;
+    const GESTURE_GAP = 160;
+    let acc = 0;
+    let lastWheel = 0;
 
     const pinnedTop = () =>
       (parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--nav-h')) || 0) + 24;
-    const last = count - 1;
-    let acc = 0;
-
-    const step = (by: number) => setActive((a) => Math.max(0, Math.min(last, a + by)));
 
     const onWheel = (e: WheelEvent) => {
+      const el = ref.current;
+      if (!el) return;
       const r = el.getBoundingClientRect();
       const pt = pinnedTop();
 
@@ -51,54 +52,61 @@ function useStageStepper(count: number, ref: RefObject<HTMLDivElement | null>) {
       // further no-op/up-down scroll should move the page, not the deck.
       if (e.deltaY === 0 || (down && atEnd) || (up && atStart)) return;
 
-      // While pinned, consume the gesture so the page holds still, and map
-      // the scroll distance to card steps — several small wheel deltas within
-      // one flick accumulate instead of being thrown away after the first.
       e.preventDefault();
+
+      // New gesture (paused long enough) restarts the accumulator so each
+      // discrete scroll maps to steps instead of carrying momentum across
+      // separate flicks.
+      const now = performance.now();
+      if (now - lastWheel > GESTURE_GAP) acc = 0;
+      lastWheel = now;
 
       const d = e.deltaMode === 1 ? 16 : e.deltaMode === 2 ? window.innerHeight : e.deltaY;
       acc += d;
 
-      const THRESHOLD = 32;
       let position = activeRef.current;
-      while (Math.abs(acc) >= THRESHOLD) {
+      let guard = 0;
+      while (Math.abs(acc) >= STEP && guard < 4) {
         if (acc > 0) {
-          acc -= THRESHOLD;
+          acc -= STEP;
           if (position >= last) {
             acc = 0;
             break;
           }
           position += 1;
         } else {
-          acc += THRESHOLD;
+          acc += STEP;
           if (position <= 0) {
             acc = 0;
             break;
           }
           position -= 1;
         }
+        guard++;
       }
       if (position !== activeRef.current) setActive(position);
     };
 
     const onKey = (e: KeyboardEvent) => {
+      const el = ref.current;
+      if (!el) return;
       const r = el.getBoundingClientRect();
       if (Math.abs(r.top - pinnedTop()) > 4) return;
       if (['ArrowDown', 'PageDown', ' '].includes(e.key) && activeRef.current < last) {
         e.preventDefault();
-        step(1);
+        setActive((a) => Math.max(0, Math.min(last, a + 1)));
       }
       if (['ArrowUp', 'PageUp'].includes(e.key) && activeRef.current > 0) {
         e.preventDefault();
-        step(-1);
+        setActive((a) => Math.max(0, Math.min(last, a - 1)));
       }
     };
 
-    el.addEventListener('wheel', onWheel, { passive: false });
-    el.addEventListener('keydown', onKey);
+    window.addEventListener('wheel', onWheel, { capture: true, passive: false });
+    window.addEventListener('keydown', onKey);
     return () => {
-      el.removeEventListener('wheel', onWheel);
-      el.removeEventListener('keydown', onKey);
+      window.removeEventListener('wheel', onWheel, { capture: true });
+      window.removeEventListener('keydown', onKey);
     };
   }, [count, ref]);
 

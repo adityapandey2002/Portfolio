@@ -9,11 +9,28 @@ interface SectionHeadingProps {
   title: ReactNode;
   sub?: string;
   className?: string;
+  /** Render without reveal animations — for headings that flicker in snap sections. */
+  static?: boolean;
 }
 
-export function SectionHeading({ eyebrow, title, sub, className }: SectionHeadingProps) {
+export function SectionHeading({ eyebrow, title, sub, className, static: isStatic = false }: SectionHeadingProps) {
   const ref = useRef<HTMLDivElement>(null);
   const inView = useInView(ref, { once: true, margin: '-60px' });
+
+  if (isStatic) {
+    return (
+      <div className={cn('relative mb-5', className)}>
+        <span className="eyebrow">{eyebrow}</span>
+        <h2
+          className="mt-2.5 leading-[1.05] tracking-tight"
+          style={{ fontSize: 'clamp(24px, 3vw, 44px)', maxWidth: '24ch' }}
+        >
+          {title}
+        </h2>
+        {sub && <p className="section-sub">{sub}</p>}
+      </div>
+    );
+  }
 
   return (
     <div ref={ref} className={cn('relative mb-5', className)}>
