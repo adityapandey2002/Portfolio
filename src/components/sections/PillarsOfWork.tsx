@@ -12,7 +12,7 @@ import { PILLAR_LAYERS, type PillarLayer } from '@/lib/data/pillars';
 
 const EASE: [number, number, number, number] = [0.16, 1, 0.3, 1];
 
-/* ── Stage stepper: small down-scrolls advance one step, down-only ── */
+/* ── Stage stepper: pinned deck, scroll distance maps to steps (both ways) ── */
 function useStageStepper(count: number, ref: RefObject<HTMLDivElement | null>) {
   const [active, setActive] = useState(0);
   const activeRef = useRef(0);
@@ -28,8 +28,6 @@ function useStageStepper(count: number, ref: RefObject<HTMLDivElement | null>) {
       (parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--nav-h')) || 0) + 24;
     const last = count - 1;
     let acc = 0;
-    let lastWheelAt = 0;
-    let advanced = false;
 
     const step = (by: number) => setActive((a) => Math.max(0, Math.min(last, a + by)));
 
@@ -44,26 +42,43 @@ function useStageStepper(count: number, ref: RefObject<HTMLDivElement | null>) {
         return;
       }
 
-      if (e.deltaY > 0 && activeRef.current < last) {
-        // Consume every down-scroll while pinned so the page holds still.
-        e.preventDefault();
+      const down = e.deltaY > 0;
+      const up = e.deltaY < 0;
+      const atStart = activeRef.current === 0;
+      const atEnd = activeRef.current >= last;
 
-        const now = performance.now();
-        // A gap between wheel events means a NEW scroll gesture: allow the
-        // next step. While the same gesture keeps firing, advance at most once.
-        if (now - lastWheelAt >= 320) advanced = false;
-        lastWheelAt = now;
-        if (advanced) return;
+      // Release the ends to the page: once you're on the first/last card a
+      // further no-op/up-down scroll should move the page, not the deck.
+      if (e.deltaY === 0 || (down && atEnd) || (up && atStart)) return;
 
-        const d = e.deltaMode === 1 ? 16 : e.deltaMode === 2 ? window.innerHeight : e.deltaY;
-        acc += d;
-        if (acc >= 8) {
-          acc = 0;
-          advanced = true;
-          step(1);
+      // While pinned, consume the gesture so the page holds still, and map
+      // the scroll distance to card steps — several small wheel deltas within
+      // one flick accumulate instead of being thrown away after the first.
+      e.preventDefault();
+
+      const d = e.deltaMode === 1 ? 16 : e.deltaMode === 2 ? window.innerHeight : e.deltaY;
+      acc += d;
+
+      const THRESHOLD = 32;
+      let position = activeRef.current;
+      while (Math.abs(acc) >= THRESHOLD) {
+        if (acc > 0) {
+          acc -= THRESHOLD;
+          if (position >= last) {
+            acc = 0;
+            break;
+          }
+          position += 1;
+        } else {
+          acc += THRESHOLD;
+          if (position <= 0) {
+            acc = 0;
+            break;
+          }
+          position -= 1;
         }
       }
-      // Up-scrolls and down-scrolls past the last step are left untouched.
+      if (position !== activeRef.current) setActive(position);
     };
 
     const onKey = (e: KeyboardEvent) => {
@@ -72,6 +87,10 @@ function useStageStepper(count: number, ref: RefObject<HTMLDivElement | null>) {
       if (['ArrowDown', 'PageDown', ' '].includes(e.key) && activeRef.current < last) {
         e.preventDefault();
         step(1);
+      }
+      if (['ArrowUp', 'PageUp'].includes(e.key) && activeRef.current > 0) {
+        e.preventDefault();
+        step(-1);
       }
     };
 
@@ -265,7 +284,7 @@ function DomainStage({ layer }: { layer: PillarLayer }) {
             Where we <span className="text-gradient">work</span>
           </>
         }
-        sub="One domain at a time — small scrolls step through the cards, forward only."
+        sub="One domain at a time — scroll (or use the dots) to step through the cards, down and back up."
       />
       <div className="relative" style={{ height: `${items.length * 65}vh` }}>
         <div
@@ -403,7 +422,7 @@ function SystemScrub({ layer }: { layer: PillarLayer }) {
             WHO building blocks, <span className="text-gradient">under focus</span>
           </>
         }
-        sub="Small scrolls step through the building blocks, one at a time — forward only, down the line."
+        sub="Scroll to step through the building blocks one at a time — down then up, or jump straight via the side rail."
       />
 
       <div className="relative" style={{ height: `${items.length * 65}vh` }}>

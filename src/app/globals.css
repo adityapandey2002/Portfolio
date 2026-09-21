@@ -111,10 +111,12 @@
 }
 html {
   /* Programmatic scrolls stay instant; explicit behavior:'smooth' calls still animate.
-     Smooth + mandatory snap can queue/jank — auto keeps one-step snappy. */
+     Smooth + mandatory snap can queue/jank — auto keeps one-step snappy.
+     proximity (not mandatory) so normal scrolling stays in the user's hand and
+     near a section edge it gently settles — no full-viewport yank between panels. */
   scroll-behavior: auto;
   color-scheme: light;
-  scroll-snap-type: y mandatory;
+  scroll-snap-type: y proximity;
 }
 html,
 body {
@@ -150,7 +152,7 @@ label {
   flex-direction: column;
   justify-content: center;
   scroll-snap-align: start;
-  scroll-snap-stop: always;
+  scroll-snap-stop: normal;
   scroll-margin-top: 1rem;
   position: relative;
   overflow: hidden;

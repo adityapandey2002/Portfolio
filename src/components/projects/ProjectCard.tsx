@@ -92,7 +92,7 @@ export function ProjectCard({ project, index = 0, liveInfo, compact = false }: P
 
             {/* Body */}
             <div className={`relative flex flex-1 flex-col ${compact ? 'p-4' : 'p-5'}`}>
-              <h3 className="glitch text-[17px] font-semibold leading-snug text-ink" data-text={project.title}>
+              <h3 className="text-[17px] font-semibold leading-snug text-ink">
                 {project.title}
               </h3>
               <p className={`mt-2 flex-1 text-[13.5px] leading-relaxed text-ink-2 ${compact ? 'line-clamp-3' : ''}`}>{project.desc}</p>
