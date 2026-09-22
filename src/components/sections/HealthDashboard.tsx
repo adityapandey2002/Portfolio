@@ -2,7 +2,8 @@
 
 import Link from 'next/link';
 import { ArrowDownLeft, Activity, HeartPulse, Compass, Flower2 } from 'lucide-react';
-import { motion } from 'framer-motion';
+import { useRef } from 'react';
+import { motion, useInView } from 'framer-motion';
 import { SectionHeading } from './SectionHeading';
 import { CountUp } from './CountUp';
 import { PillarsOfWork } from './PillarsOfWork';
@@ -229,11 +230,11 @@ function Odometer() {
             ) : (
               <span key={i} className="relative inline-block h-[1em] w-[0.7em] overflow-hidden">
                 <motion.span
-                  className="absolute inset-x-0 top-0 flex flex-col"
+                  className="absolute inset-x-0 top-0 flex flex-col will-change-transform"
+                  style={{ height: '10em' }}
                   initial={{ y: '-110%' }}
-                  whileInView={{ y: `-${Number(c) * 10}%` }}
-                  viewport={{ once: true, margin: '-80px' }}
-                  transition={{ duration: 1.9, delay: 0.2 + i * 0.12, ease: EASE }}
+                  animate={{ y: `-${Number(c) * 10}%` }}
+                  transition={{ duration: 0.9, delay: 0.15 + i * 0.08, ease: EASE }}
                 >
                   {Array.from({ length: 10 }, (_, n) => (
                     <span key={n} className="flex h-[1em] items-center justify-center">
@@ -255,7 +256,7 @@ function Odometer() {
 
 function FieldKmMeter() {
   return (
-    <section className="mx-auto max-w-[1500px] px-5 py-24 lg:px-10">
+    <section className="mx-auto max-w-[1500px] px-5 py-16 lg:px-10 lg:py-24">
       <SectionHeading
         eyebrow="/* FIELD KM */"
         title={
@@ -265,34 +266,42 @@ function FieldKmMeter() {
         }
         sub="Every block visit is a data point. This is the odometer of the fellowship so far."
       />
-      <div className="grid grid-cols-1 gap-px overflow-hidden rounded-2xl border border-[var(--line)] bg-[var(--line)] lg:grid-cols-2">
-        <div className="flex flex-col justify-center gap-6 p-8 lg:p-10" style={{ background: 'var(--bg-2)' }}>
-          <div className="flex items-center justify-between font-mono text-[10.5px] uppercase tracking-[0.2em] text-ink-3">
-            <span>Field odometer · analog</span>
-            <span className="inline-flex items-center gap-1.5 text-primary">
-              <span className="blip h-1.5 w-1.5 rounded-full bg-primary" /> LIVE
-            </span>
+      <div className="overflow-hidden rounded-2xl border border-[var(--line)] bg-[var(--line)]">
+        <div className="grid grid-cols-1 gap-px bg-[var(--line)] lg:grid-cols-3">
+          <div className="flex flex-col justify-center gap-6 p-8 lg:p-10" style={{ background: 'var(--bg-2)' }}>
+            <div className="flex items-center justify-between font-mono text-[10.5px] uppercase tracking-[0.2em] text-ink-3">
+              <span>Field odometer · analog</span>
+              <span className="inline-flex items-center gap-1.5 text-primary">
+                <span className="blip h-1.5 w-1.5 rounded-full bg-primary" /> LIVE
+              </span>
+            </div>
+            <Gauge />
           </div>
-          <Gauge />
+
+          <div className="flex flex-col justify-between gap-6 p-8 lg:col-span-2 lg:p-10" style={{ background: 'var(--bg-2)' }}>
+            <div className="flex items-center justify-between font-mono text-[10.5px] uppercase tracking-[0.2em] text-ink-3">
+              <span>Route · Bihar field program</span>
+              <span className="text-ink-4">Muzaffarpur district</span>
+            </div>
+            <div className="max-h-[260px] overflow-hidden">
+              <RouteMap />
+            </div>
+            <div className="flex flex-wrap gap-2">
+              {['Bike & field visits', 'Block-level CHC audits', 'The odometer only goes up'].map((t) => (
+                <span
+                  key={t}
+                  className="rounded-full border border-[var(--line-2)] px-3 py-1 font-mono text-[10px] uppercase tracking-[0.16em] text-ink-3"
+                >
+                  {t}
+                </span>
+              ))}
+            </div>
+          </div>
         </div>
 
-        <div className="flex flex-col justify-between gap-6 p-8 lg:p-10" style={{ background: 'var(--bg-2)' }}>
-          <div className="flex items-center justify-between font-mono text-[10.5px] uppercase tracking-[0.2em] text-ink-3">
-            <span>Route · Bihar field program</span>
-            <span className="text-ink-4">Muzaffarpur district</span>
-          </div>
-          <RouteMap />
+        {/* Full-width odometer strip so it can never fall off the section */}
+        <div className="border-t border-[var(--line)] p-8 lg:p-10" style={{ background: 'var(--bg-2)' }}>
           <Odometer />
-          <div className="flex flex-wrap gap-2">
-            {['Bike & field visits', 'Block-level CHC audits', 'The odometer only goes up'].map((t) => (
-              <span
-                key={t}
-                className="rounded-full border border-[var(--line-2)] px-3 py-1 font-mono text-[10px] uppercase tracking-[0.16em] text-ink-3"
-              >
-                {t}
-              </span>
-            ))}
-          </div>
         </div>
       </div>
     </section>
@@ -414,9 +423,10 @@ export function HealthDashboard() {
         </section>
       </div>
 
-      <div className="snap-section">
-        <FieldKmMeter />
-      </div>
+      {/* No snap wrapper here: the Field KM band is taller than one viewport on
+          many laptops, and the snap-section's overflow:hidden was clipping the
+          odometer off-screen. Natural height keeps it always reachable. */}
+      <FieldKmMeter />
 
       {/* Vitals grid */}
       <div className="snap-section">

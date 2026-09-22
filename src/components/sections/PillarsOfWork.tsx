@@ -12,6 +12,21 @@ import { PILLAR_LAYERS, type PillarLayer } from '@/lib/data/pillars';
 
 const EASE: [number, number, number, number] = [0.16, 1, 0.3, 1];
 
+const TICKER = [
+  'VHSND session',
+  'PMSMA supervision',
+  'Stock-out flag',
+  'HMIS validation',
+  'Portal sync',
+  'NQAS walkthrough',
+  'Gram Chaupal',
+  'Godbharai',
+  'Quarterly indent',
+  'Data review meeting',
+  'JAS meeting',
+  'FRU readiness',
+];
+
 /* ── Stage stepper: pinned deck, scroll distance maps to steps (both ways) ── */
 function useStageStepper(count: number, ref: RefObject<HTMLDivElement | null>) {
   const [active, setActive] = useState(0);
@@ -430,8 +445,24 @@ function SystemScrub({ layer }: { layer: PillarLayer }) {
             WHO building blocks, <span className="text-gradient">under focus</span>
           </>
         }
-        sub="Scroll to step through the building blocks one at a time — down then up, or jump straight via the side rail."
+        sub="This is day-to-day fellowship work — support activities woven into the WHO building blocks of the health system. Scroll to step through, down then up."
       />
+
+      {/* Daily engagement ticker */}
+      <div className="mt-6 overflow-hidden rounded-lg border border-[var(--line-2)] bg-bg-3/60 py-2.5">
+        <div className="marquee flex w-max items-center">
+          {[0, 1].map((dup) => (
+            <ul key={dup} className="flex shrink-0 items-center gap-3 pr-3" aria-hidden={dup === 1}>
+              {TICKER.map((t) => (
+                <li key={t} className="inline-flex items-center gap-2 font-mono text-[10px] uppercase tracking-[0.18em] text-ink-3">
+                  <span className="h-1.5 w-1.5 rounded-full bg-primary" style={{ boxShadow: '0 0 6px var(--primary-glow)' }} />
+                  {t}
+                </li>
+              ))}
+            </ul>
+          ))}
+        </div>
+      </div>
 
       <div className="relative" style={{ height: `${items.length * 65}vh` }}>
         <div
@@ -510,20 +541,24 @@ function SystemScrub({ layer }: { layer: PillarLayer }) {
 
                   <p className="mt-4 max-w-[74ch] text-[13px] leading-relaxed text-ink-2">{activeItem.desc}</p>
 
-                  {activeItem.outcomes && activeItem.outcomes.length > 0 && (
-                    <div className="mt-6 grid grid-cols-1 overflow-hidden rounded-xl border border-[var(--line)] bg-[var(--line)] sm:grid-cols-2">
-                      {activeItem.outcomes.map((o) => (
-                        <div key={o.label} className="flex flex-col gap-1.5 bg-bg-2 p-5">
-                          <span className="font-serif text-[clamp(26px,2.6vw,38px)] leading-none tracking-tight text-gradient">
-                            {o.value}
-                          </span>
-                          <span className="text-[12px] font-medium text-ink">{o.label}</span>
-                          {o.foot && (
-                            <span className="font-mono text-[9.5px] uppercase tracking-[0.18em] text-ink-4">
-                              {o.foot}
+                  {activeItem.activities && activeItem.activities.length > 0 && (
+                    <div className="mt-6 flex flex-wrap gap-2">
+                      {activeItem.activities.map((a, i) => (
+                        <motion.span
+                          key={a.label}
+                          className="inline-flex items-center gap-2 rounded-lg border border-[var(--line-2)] bg-bg-3/70 px-3.5 py-2"
+                          initial={{ opacity: 0, y: 12 }}
+                          animate={{ opacity: 1, y: 0 }}
+                          transition={{ duration: 0.35, delay: 0.08 + i * 0.07, ease: EASE }}
+                        >
+                          <span className="h-1.5 w-1.5 shrink-0 rounded-full bg-primary" />
+                          <span className="text-[12px] font-medium text-ink">{a.label}</span>
+                          {a.note && (
+                            <span className="font-mono text-[9px] uppercase tracking-[0.14em] text-ink-4">
+                              · {a.note}
                             </span>
                           )}
-                        </div>
+                        </motion.span>
                       ))}
                     </div>
                   )}

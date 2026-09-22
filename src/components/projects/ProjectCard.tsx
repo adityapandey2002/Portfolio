@@ -211,15 +211,38 @@ export function ProjectCard({ project, index = 0, liveInfo, compact = false }: P
               </div>
               <div className="max-h-[70vh] overflow-y-auto px-6 py-6">
                 <h3 className="text-2xl font-semibold text-ink">{project.title}</h3>
-                <p className="mt-2 text-[14px] leading-relaxed text-ink-2">{project.caseStudy.intro}</p>
+                <p
+                  className="mt-2 text-[14px] leading-relaxed text-ink-2"
+                  dangerouslySetInnerHTML={{ __html: project.caseStudy.intro }}
+                />
+                {project.metrics && project.metrics.length > 0 && (
+                  <div className="mt-5 grid grid-cols-2 gap-px overflow-hidden rounded-lg border border-[var(--line)] bg-[var(--line)] sm:grid-cols-3">
+                    {project.metrics.map((m) => (
+                      <div key={m.label} className="flex flex-col gap-1.5 px-3.5 py-3" style={{ background: 'var(--bg-2)' }}>
+                        <span className="font-serif text-[22px] leading-none tracking-tight text-ink">{m.value}</span>
+                        <span className="font-mono text-[9.5px] uppercase tracking-[0.16em] text-ink-3">{m.label}</span>
+                      </div>
+                    ))}
+                  </div>
+                )}
                 <ul className="mt-5 space-y-2">
                   {project.caseStudy.bullets.map((b, i) => (
                     <li key={i} className="flex gap-2.5 text-[13.5px] text-ink-2">
                       <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-primary" />
-                      {b}
+                      <span dangerouslySetInnerHTML={{ __html: b }} />
                     </li>
                   ))}
                 </ul>
+                {project.caseStudyUrl && (
+                  <div className="mt-6">
+                    <Link
+                      href={project.caseStudyUrl}
+                      className="inline-flex items-center gap-2 rounded-lg border border-[var(--line)] bg-bg px-4 py-2.5 font-mono text-[11px] uppercase tracking-[0.18em] text-primary transition-all duration-300 hover:-translate-y-0.5 hover:border-primary hover:text-ink"
+                    >
+                      <BookOpen size={14} /> Read the full case study
+                    </Link>
+                  </div>
+                )}
                 <div className="mt-6 flex flex-wrap items-center justify-between gap-3 border-t border-[var(--line)] pt-4">
                   <span className="font-mono text-[12px] text-primary">{project.caseStudy.stack}</span>
                   {project.caseStudy.note && <span className="font-mono text-[11px] text-ink-3">→ {project.caseStudy.note}</span>}

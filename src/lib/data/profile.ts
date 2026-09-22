@@ -50,14 +50,13 @@ export const profile = {
   fieldAuthor: '— Aditya Pandey · Muzaffarpur, Bihar',
   impact: [
     { label: 'ASHA Workers Trained', value: 700, suffix: '+', foot: '↑ On the M-ASHA app', up: true },
-    { label: 'Clinical Training Hours', value: 185, suffix: ' hrs', foot: '↑ 5-week program', up: true },
-    { label: 'Health Pros Upskilled', value: 16, suffix: '', foot: 'Nurses + Doctors', up: false },
-    { label: 'Apps in Production', value: 3, suffix: '+', foot: '↑ Live deployments', up: true },
+    { label: 'VHSND Sessions', value: 100, suffix: '+', foot: '↑ Field sessions QC’d', up: true },
+    { label: 'PMSMA Supportive Supervision', value: 30, suffix: '+', foot: '↑ Supervisions done', up: true },
+    { label: 'Clinical Refresher Hours', value: 185, suffix: '+', foot: '↑ 5-week clinical program', up: true },
   ],
   mapStats: [
     { id: 'asha', label: 'ASHA Trained', value: 700, suffix: '+' },
     { id: 'blocks', label: 'Blocks', value: 16, suffix: '' },
-    { id: 'villages', label: 'Villages', value: 48, suffix: '' },
   ],
 } as const;
 

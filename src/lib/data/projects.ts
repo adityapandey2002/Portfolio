@@ -11,6 +11,8 @@ export interface Project {
   path?: string;
   cover?: string;
   glyph?: string;
+  metrics?: { value: string; label: string }[];
+  caseStudyUrl?: string;
   caseStudy: {
     intro: string;
     bullets: string[];
@@ -60,21 +62,31 @@ export const projects: Project[] = [
     categoryLabel: 'Full-Stack',
     status: 'LIVE',
     desc: 'Production e-commerce for authentic Bihari food — catalog to courier, live at biharkaswaad.in.',
-    tags: ['React', 'Node', 'Express', 'MySQL', 'Razorpay'],
+    tags: ['React', 'Node', 'Express', 'MySQL', 'Razorpay', 'SEO', 'Playwright'],
     cover: 'linear-gradient(135deg, #131a34 0%, #2a2152 100%)',
     glyph: '{ }',
     source: 'https://github.com/adityapandey2002/',
     live: 'https://biharkaswaad.in/',
+    caseStudyUrl: '/work/biharkaswaad',
+    metrics: [
+      { value: '≤2.5s', label: 'LCP target' },
+      { value: '<0.01', label: 'CLS target' },
+      { value: '60s', label: 'Response cache' },
+      { value: '11', label: 'MySQL indexes' },
+      { value: '29/29', label: 'E2E tests' },
+      { value: '30d', label: 'Immutable cache' },
+    ],
     caseStudy: {
       intro: 'A live online store selling authentic Bihari food across India — the complete order-to-delivery lifecycle, owned end-to-end.',
       bullets: [
         'Deployed to <strong>production (biharkaswaad.in)</strong> on Hostinger with PM2 cluster mode — catalog, cart, payments, shipping & support for real customers across India',
+        'Engineered <strong>Core Web Vitals</strong> — server-side image preloading, Brotli compression, 30-day immutable asset caching and a 60s response cache, targeting <strong>LCP ≤2.5s and CLS &lt;0.01</strong>',
+        'Server-side <strong>SEO + structured data</strong> — per-route meta and JSON-LD (Product, Offer, BreadcrumbList, BlogPosting, Organization) with a dynamic sitemap and 301 redirects for indexability',
         'Secure <strong>Razorpay payment pipeline</strong> — HMAC SHA-256 signature verification, server-side amount re-validation from DB, webhook reconciliation & 30-min auto-expiry of abandoned orders',
-        'Full <strong>order lifecycle</strong> — pending → processing → shipped → delivered with variant-aware stock, Shipmojo courier tracking & automated branded emails',
-        'Role-based system (customer/admin/support) — <strong>JWT + httpOnly cookies</strong>, bcrypt, rate-limited login & protected admin CRUD',
-        'Performance & security — <strong>60s response caching</strong>, helmet CSP for gateways, XSS-sanitized emails & Excel bulk catalog uploads',
+        'Full <strong>order lifecycle</strong> — pending → processing → shipped → delivered with variant-aware stock, courier tracking, automated branded emails and <strong>Excel bulk catalog uploads</strong>',
+        'Role-based system (customer/admin/support) — <strong>JWT + httpOnly cookies</strong>, bcrypt, rate-limited login — plus an <strong>11-index MySQL</strong> schema and a <strong>29/29 Playwright E2E suite</strong>',
       ],
-      stack: 'React 18 · Redux Toolkit · Node.js · Express · MySQL · Sequelize · Razorpay · JWT · Nodemailer · PM2 · Multer · Cloudinary · Docker.',
+      stack: 'React 18 · Redux Toolkit · Node.js · Express · MySQL · Sequelize · Razorpay · JWT · Nodemailer · PM2 · Multer · Cloudinary · Playwright · Docker.',
       note: 'biharkaswaad.in · live in production',
     },
   },
