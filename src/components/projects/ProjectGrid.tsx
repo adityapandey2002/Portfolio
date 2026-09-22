@@ -7,7 +7,6 @@ import Link from 'next/link';
 import { projects, projectFilters } from '@/lib/data/projects';
 import { SectionHeading } from '../sections/SectionHeading';
 import { ProjectCard } from './ProjectCard';
-import { LiveTicker } from './LiveTicker';
 import { useLiveStatus } from '@/hooks/useLiveStatus';
 
 export function ProjectGrid({ featured = false }: { featured?: boolean }) {
@@ -52,8 +51,6 @@ export function ProjectGrid({ featured = false }: { featured?: boolean }) {
               ))}
             </AnimatePresence>
           </motion.div>
-
-          <LiveTicker status={liveStatus} />
         </div>
       </section>
     );
