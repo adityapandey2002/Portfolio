@@ -33,7 +33,7 @@ function Rich({ text }: { text: string }) {
         }
         if (p.startsWith('`') && p.endsWith('`')) {
           return (
-            <code key={i} className="rounded bg-bg-3 px-1.5 py-0.5 font-mono text-[12px] text-primary">
+            <code key={i} className="rounded bg-bg-3 px-1.5 py-0.5 font-mono text-[13px] text-primary">
               {p.slice(1, -1)}
             </code>
           );
@@ -131,8 +131,8 @@ export function AiAssistant() {
                   <Sparkles size={15} />
                 </span>
                 <div>
-                  <p className="font-mono text-[10.5px] uppercase tracking-[0.2em] text-ink">Ask about Aditya</p>
-                  <p className="font-mono text-[9px] uppercase tracking-[0.16em] text-ink-4">plain questions · plain answers</p>
+                  <p className="font-mono text-[11.5px] uppercase tracking-[0.2em] text-ink">Ask about Aditya</p>
+                  <p className="font-mono text-[11px] uppercase tracking-[0.16em] text-ink-4">plain questions · plain answers</p>
                 </div>
               </div>
               <button
@@ -151,7 +151,7 @@ export function AiAssistant() {
                 <span className="msg-avatar shrink-0 bg-primary/15 text-primary">
                   <Bot size={15} />
                 </span>
-                <div className="chat-bubble text-[13px] leading-relaxed text-ink-2 opacity-80">
+                <div className="chat-bubble text-[14px] leading-relaxed text-ink-2 opacity-80">
                   <Rich text={WELCOME} />
                 </div>
               </div>
@@ -165,7 +165,7 @@ export function AiAssistant() {
                     <span className={cn('msg-avatar shrink-0', isUser ? 'bg-accent/15 text-accent' : 'bg-primary/15 text-primary')}>
                       {isUser ? 'You' : <Bot size={15} />}
                     </span>
-                    <div className={cn('chat-bubble whitespace-pre-wrap text-[13px] leading-relaxed text-ink-2', isUser ? 'bg-bg-3' : 'bg-bg-2')}>
+                    <div className={cn('chat-bubble whitespace-pre-wrap text-[14px] leading-relaxed text-ink-2', isUser ? 'bg-bg-3' : 'bg-bg-2')}>
                       <Rich text={text} />
                     </div>
                   </div>
@@ -186,7 +186,7 @@ export function AiAssistant() {
               )}
 
               {error && (
-                <div className="rounded-lg border border-rose/40 bg-rose/5 px-3 py-2 font-mono text-[11px] text-rose">
+                <div className="rounded-lg border border-rose/40 bg-rose/5 px-3 py-2 font-mono text-[12px] text-rose">
                   {error.message || 'Something went wrong.'}
                 </div>
               )}
@@ -199,7 +199,7 @@ export function AiAssistant() {
                   <button
                     key={s}
                     onClick={() => append({ role: 'user', content: s })}
-                    className="shrink-0 rounded-full border border-[var(--line)] bg-bg-2/70 px-3 py-1.5 text-[11.5px] text-ink-2 transition-colors hover:border-primary/50 hover:text-ink"
+                    className="shrink-0 rounded-full border border-[var(--line)] bg-bg-2/70 px-3 py-1.5 text-[12.5px] text-ink-2 transition-colors hover:border-primary/50 hover:text-ink"
                   >
                     {s}
                   </button>
@@ -216,7 +216,7 @@ export function AiAssistant() {
                 value={input}
                 onChange={handleInputChange}
                 placeholder="Ask a simple question…"
-                className="min-w-0 flex-1 border border-[var(--line-2)] bg-bg-3 px-3 py-2.5 text-[13px] text-ink outline-none placeholder:text-ink-4 focus:border-primary/50"
+                className="min-w-0 flex-1 border border-[var(--line-2)] bg-bg-3 px-3 py-2.5 text-[14px] text-ink outline-none placeholder:text-ink-4 focus:border-primary/50"
               />
               {streaming ? (
                 <button
@@ -240,11 +240,11 @@ export function AiAssistant() {
             </form>
 
             <div className="flex items-center justify-between px-4 pb-2.5 pt-1">
-              <p className="font-mono text-[9px] text-ink-4">pgvector + Groq · grounded in the knowledge base</p>
+              <p className="font-mono text-[11px] text-ink-4">pgvector + Groq · grounded in the knowledge base</p>
               {messages.length > 0 && (
                 <button
                   onClick={() => setMessages([])}
-                  className="inline-flex items-center gap-1 font-mono text-[9.5px] uppercase tracking-wider text-ink-3 hover:text-ink"
+                  className="inline-flex items-center gap-1 font-mono text-[11px] uppercase tracking-wider text-ink-3 hover:text-ink"
                 >
                   <RotateCcw size={11} /> Clear
                 </button>

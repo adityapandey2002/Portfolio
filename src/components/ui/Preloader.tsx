@@ -156,7 +156,7 @@ function PreloaderOverlay({ onSkip }: { onSkip: () => void }) {
 
         {/* progress row — animates for the full preloader duration */}
         <div className="pointer-events-none relative z-10 mt-10">
-          <div className="flex items-center justify-between font-mono text-[9.5px] uppercase tracking-[0.22em] text-ink-4">
+          <div className="flex items-center justify-between font-mono text-[11px] uppercase tracking-[0.22em] text-ink-4">
             <span>system analysis in progress</span>
             <span className="text-ink-3">field data → clean outputs ({pct}%)</span>
           </div>
@@ -173,7 +173,7 @@ function PreloaderOverlay({ onSkip }: { onSkip: () => void }) {
         </div>
 
         <div className="mt-6 flex items-center justify-between">
-          <span className="font-mono text-[9.5px] uppercase tracking-[0.22em] text-ink-4">
+          <span className="font-mono text-[11px] uppercase tracking-[0.22em] text-ink-4">
             pb · portfolio of aditya pandey
           </span>
           <button

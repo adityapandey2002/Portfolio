@@ -27,7 +27,7 @@ export function Experience() {
           />
           <Link
             href="/health"
-            className="group mb-4 inline-flex items-center gap-2.5 rounded-lg border border-[var(--line)] bg-bg-2 px-4 py-2.5 font-mono text-[11px] uppercase tracking-[0.2em] text-ink transition-all duration-300 hover:-translate-y-0.5 hover:border-primary hover:text-primary hover:shadow-[0_12px_30px_-12px_var(--primary-glow)]"
+            className="group mb-4 inline-flex items-center gap-2.5 rounded-lg border border-[var(--line)] bg-bg-2 px-4 py-2.5 font-mono text-[12px] uppercase tracking-[0.2em] text-ink transition-all duration-300 hover:-translate-y-0.5 hover:border-primary hover:text-primary hover:shadow-[0_12px_30px_-12px_var(--primary-glow)]"
           >
             <HeartPulse size={14} className="text-primary" />
             Live field dashboard
@@ -57,15 +57,15 @@ export function Experience() {
               </span>
 
               <div className="flex flex-wrap items-center gap-x-3 gap-y-1">
-                <h3 className="text-[15px] font-semibold text-ink">{xp.role}</h3>
+                <h3 className="text-[16px] font-semibold text-ink">{xp.role}</h3>
                 {xp.current && (
-                  <span className="rounded-full border border-primary/40 bg-primary/10 px-2.5 py-0.5 font-mono text-[9.5px] uppercase tracking-widest text-primary">
+                  <span className="rounded-full border border-primary/40 bg-primary/10 px-2.5 py-0.5 font-mono text-[11px] uppercase tracking-widest text-primary">
                     Current
                   </span>
                 )}
               </div>
 
-              <div className="mt-1 flex flex-wrap items-center gap-x-3 gap-y-1 text-[12px] text-ink-3">
+              <div className="mt-1 flex flex-wrap items-center gap-x-3 gap-y-1 text-[13px] text-ink-3">
                 <span className="font-medium text-primary/90">
                   {xp.orgUrl ? (
                     <a href={xp.orgUrl} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1 hover:underline">
@@ -79,7 +79,7 @@ export function Experience() {
                 <span className="font-mono">{xp.period}</span>
               </div>
 
-              <ul className="mt-2 list-disc space-y-0.5 pl-4 text-[12px] leading-relaxed text-ink-2 marker:text-primary/60">
+              <ul className="mt-2 list-disc space-y-0.5 pl-4 text-[13px] leading-relaxed text-ink-2 marker:text-primary/60">
                 {xp.bullets.map((b, bi) => (
                   <li key={bi} className="xp-bullet" dangerouslySetInnerHTML={{ __html: b }} />
                 ))}
@@ -87,7 +87,7 @@ export function Experience() {
 
               <div className="mt-3 flex flex-wrap gap-1.5">
                 {xp.tags.map((t) => (
-                  <span key={t} className="rounded bg-bg-3 px-2 py-0.5 font-mono text-[10px] text-ink-3">
+                  <span key={t} className="rounded bg-bg-3 px-2 py-0.5 font-mono text-[11.5px] text-ink-3">
                     {t}
                   </span>
                 ))}

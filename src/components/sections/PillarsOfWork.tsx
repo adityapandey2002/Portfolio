@@ -223,13 +223,13 @@ function HeroLayer({ layer }: { layer: PillarLayer }) {
             <span className="pillar-orb pointer-events-none absolute -bottom-1 -left-2 h-2 w-2 rounded-full bg-cyan" />
           </div>
 
-          <p className="font-mono text-[10px] uppercase tracking-[0.3em] text-primary/80">{layer.eyebrow}</p>
+          <p className="font-mono text-[11.5px] uppercase tracking-[0.3em] text-primary/80">{layer.eyebrow}</p>
           <h3
             className={cn('draw-title font-serif text-[clamp(24px,3.2vw,40px)] font-semibold leading-[1.05] tracking-tight', inView && 'in')}
           >
             {item.label}
           </h3>
-          <p className="max-w-[540px] text-[13px] leading-relaxed text-ink-2">{item.desc}</p>
+          <p className="max-w-[540px] text-[14px] leading-relaxed text-ink-2">{item.desc}</p>
         </div>
       </div>
     </motion.div>
@@ -279,8 +279,8 @@ function DualLayer({ layer }: { layer: PillarLayer }) {
                 </motion.div>
               </div>
               <div>
-                <h4 className="text-[15px] font-semibold text-ink">{item.label}</h4>
-                <p className="mt-1.5 text-[12px] leading-relaxed text-ink-2">{item.desc}</p>
+                <h4 className="text-[16px] font-semibold text-ink">{item.label}</h4>
+                <p className="mt-1.5 text-[13px] leading-relaxed text-ink-2">{item.desc}</p>
               </div>
             </div>
           </motion.div>
@@ -342,7 +342,7 @@ function DomainStage({ layer }: { layer: PillarLayer }) {
               <span className="pointer-events-none absolute right-6 top-5 select-none font-mono text-[64px] font-bold leading-none text-ink-4/40 opacity-40 sm:right-10 sm:text-[96px]">
                 {String(active + 1).padStart(2, '0')}
               </span>
-              <span className="pointer-events-none absolute right-6 top-[92px] font-mono text-[10px] uppercase tracking-[0.3em] text-ink-4 sm:right-10">
+              <span className="pointer-events-none absolute right-6 top-[92px] font-mono text-[11.5px] uppercase tracking-[0.3em] text-ink-4 sm:right-10">
                 domain
               </span>
 
@@ -377,19 +377,19 @@ function DomainStage({ layer }: { layer: PillarLayer }) {
                     className="h-1.5 w-1.5 rounded-full"
                     style={{ background: 'var(--layer-color)', boxShadow: '0 0 8px var(--layer-color)' }}
                   />
-                  <span className="font-mono text-[9.5px] uppercase tracking-[0.26em] text-ink-4">
+                  <span className="font-mono text-[11px] uppercase tracking-[0.26em] text-ink-4">
                     live domain slot
                   </span>
                 </div>
                 <h3 className="mt-2 font-serif text-[clamp(24px,3.2vw,40px)] font-semibold leading-tight tracking-tight text-ink">
                   {item.label}
                 </h3>
-                <p className="mt-3 text-[13.5px] leading-relaxed text-ink-2">{item.desc}</p>
+                <p className="mt-3 text-[14.5px] leading-relaxed text-ink-2">{item.desc}</p>
                 <div className="mt-5 flex flex-wrap items-center justify-center gap-2 border-t border-dashed border-[var(--line-2)] pt-4 sm:justify-start">
-                  <span className="rounded-full border border-[var(--line-2)] px-3 py-1 font-mono text-[9.5px] uppercase tracking-[0.18em] text-ink-3">
+                  <span className="rounded-full border border-[var(--line-2)] px-3 py-1 font-mono text-[11px] uppercase tracking-[0.18em] text-ink-3">
                     card {String(active + 1).padStart(2, '0')} / {String(items.length).padStart(2, '0')}
                   </span>
-                  <span className="font-mono text-[9.5px] uppercase tracking-[0.18em] text-ink-4">
+                  <span className="font-mono text-[11px] uppercase tracking-[0.18em] text-ink-4">
                     locked to slot · scroll to switch
                   </span>
                 </div>
@@ -399,7 +399,7 @@ function DomainStage({ layer }: { layer: PillarLayer }) {
 
           {/* deck counter + jump dots */}
           <div className="absolute inset-x-6 bottom-5 flex items-center gap-3 sm:inset-x-8">
-            <span className="font-mono text-[9.5px] uppercase tracking-[0.2em] text-ink-4">
+            <span className="font-mono text-[11px] uppercase tracking-[0.2em] text-ink-4">
               domain {String(active + 1).padStart(2, '0')} / {String(items.length).padStart(2, '0')}
             </span>
             <div className="flex items-center gap-1.5">
@@ -454,7 +454,7 @@ function SystemScrub({ layer }: { layer: PillarLayer }) {
           {[0, 1].map((dup) => (
             <ul key={dup} className="flex shrink-0 items-center gap-3 pr-3" aria-hidden={dup === 1}>
               {TICKER.map((t) => (
-                <li key={t} className="inline-flex items-center gap-2 font-mono text-[10px] uppercase tracking-[0.18em] text-ink-3">
+                <li key={t} className="inline-flex items-center gap-2 font-mono text-[11.5px] uppercase tracking-[0.18em] text-ink-3">
                   <span className="h-1.5 w-1.5 rounded-full bg-primary" style={{ boxShadow: '0 0 6px var(--primary-glow)' }} />
                   {t}
                 </li>
@@ -496,10 +496,10 @@ function SystemScrub({ layer }: { layer: PillarLayer }) {
                     )}
                   >
                     <span className="flex items-center gap-2.5">
-                      <span className={cn('font-mono text-[10px]', isActive ? 'text-primary' : 'text-ink-4')}>
+                      <span className={cn('font-mono text-[11.5px]', isActive ? 'text-primary' : 'text-ink-4')}>
                         {String(i + 1).padStart(2, '0')}
                       </span>
-                      <span className={cn('truncate text-[12px] font-medium', isActive ? 'text-ink' : 'text-ink-3')}>
+                      <span className={cn('truncate text-[13px] font-medium', isActive ? 'text-ink' : 'text-ink-3')}>
                         {it.label}
                       </span>
                     </span>
@@ -530,7 +530,7 @@ function SystemScrub({ layer }: { layer: PillarLayer }) {
                       <ActiveIcon size={20} className="text-primary" />
                     </div>
                     <div>
-                      <p className="font-mono text-[9.5px] uppercase tracking-[0.26em] text-ink-4">
+                      <p className="font-mono text-[11px] uppercase tracking-[0.26em] text-ink-4">
                         block {String(active + 1).padStart(2, '0')} of {String(items.length).padStart(2, '0')}
                       </p>
                       <h3 className="font-serif text-[clamp(20px,2.6vw,32px)] font-semibold leading-tight tracking-tight text-ink">
@@ -539,7 +539,7 @@ function SystemScrub({ layer }: { layer: PillarLayer }) {
                     </div>
                   </div>
 
-                  <p className="mt-4 max-w-[74ch] text-[13px] leading-relaxed text-ink-2">{activeItem.desc}</p>
+                  <p className="mt-4 max-w-[74ch] text-[14px] leading-relaxed text-ink-2">{activeItem.desc}</p>
 
                   {activeItem.activities && activeItem.activities.length > 0 && (
                     <div className="mt-6 flex flex-wrap gap-2">
@@ -552,9 +552,9 @@ function SystemScrub({ layer }: { layer: PillarLayer }) {
                           transition={{ duration: 0.35, delay: 0.08 + i * 0.07, ease: EASE }}
                         >
                           <span className="h-1.5 w-1.5 shrink-0 rounded-full bg-primary" />
-                          <span className="text-[12px] font-medium text-ink">{a.label}</span>
+                          <span className="text-[13px] font-medium text-ink">{a.label}</span>
                           {a.note && (
-                            <span className="font-mono text-[9px] uppercase tracking-[0.14em] text-ink-4">
+                            <span className="font-mono text-[11px] uppercase tracking-[0.14em] text-ink-4">
                               · {a.note}
                             </span>
                           )}
@@ -567,7 +567,7 @@ function SystemScrub({ layer }: { layer: PillarLayer }) {
 
               {/* overall scan progress */}
               <div className="pointer-events-none absolute inset-x-6 bottom-4 flex items-center gap-3 sm:inset-x-8">
-                <span className="font-mono text-[9.5px] uppercase tracking-[0.2em] text-ink-4">system scan</span>
+                <span className="font-mono text-[11px] uppercase tracking-[0.2em] text-ink-4">system scan</span>
                 <div className="flex h-1 flex-1 gap-1 overflow-hidden">
                   {items.map((_, i) => (
                     <span
@@ -579,7 +579,7 @@ function SystemScrub({ layer }: { layer: PillarLayer }) {
                     />
                   ))}
                 </div>
-                <span className="font-mono text-[9.5px] uppercase tracking-[0.2em] text-ink-3">
+                <span className="font-mono text-[11px] uppercase tracking-[0.2em] text-ink-3">
                   {String(active + 1).padStart(2, '0')}/{String(items.length).padStart(2, '0')}
                 </span>
               </div>
@@ -620,7 +620,7 @@ function CapabilityGrid({ layer }: { layer: PillarLayer }) {
               transition={{ duration: 0.5, delay: i * 0.1, ease: EASE }}
             >
               <div className="absolute bottom-0 left-0 h-[2px] w-0 bg-gradient-to-r from-[var(--layer-color)] to-accent transition-all duration-500 group-hover/item:w-full" />
-              <span className="absolute right-3 top-2 font-mono text-[9px] text-ink-4">
+              <span className="absolute right-3 top-2 font-mono text-[11px] text-ink-4">
                 {String(i + 1).padStart(2, '0')}
               </span>
               <div
@@ -628,8 +628,8 @@ function CapabilityGrid({ layer }: { layer: PillarLayer }) {
               >
                 <Icon size={19} className="text-[var(--layer-color)]" />
               </div>
-              <h4 className="text-[14px] font-semibold text-ink">{item.label}</h4>
-              <p className="mt-1.5 text-[11.5px] leading-relaxed text-ink-3">{item.desc}</p>
+              <h4 className="text-[15px] font-semibold text-ink">{item.label}</h4>
+              <p className="mt-1.5 text-[12.5px] leading-relaxed text-ink-3">{item.desc}</p>
             </motion.div>
           );
         })}

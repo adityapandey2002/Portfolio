@@ -102,7 +102,7 @@ export function BiharKaSwaadCase() {
         <div className="flex flex-wrap items-center gap-3">
           <span className="eyebrow">{'/* CASE STUDY · FULL-STACK */'}</span>
           <span
-            className="inline-flex items-center gap-1.5 rounded-full px-2.5 py-1 font-mono text-[10px] font-semibold"
+            className="inline-flex items-center gap-1.5 rounded-full px-2.5 py-1 font-mono text-[11.5px] font-semibold"
             style={{
               background: 'color-mix(in srgb, var(--primary) 12%, var(--bg-2) 85%)',
               color: 'var(--primary)',
@@ -126,7 +126,7 @@ export function BiharKaSwaadCase() {
             href={project?.live}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 rounded-lg border border-[var(--line)] bg-bg-2 px-5 py-3 font-mono text-[11px] uppercase tracking-[0.18em] text-ink transition-all duration-300 hover:-translate-y-0.5 hover:border-primary hover:text-primary"
+            className="inline-flex items-center gap-2 rounded-lg border border-[var(--line)] bg-bg-2 px-5 py-3 font-mono text-[12px] uppercase tracking-[0.18em] text-ink transition-all duration-300 hover:-translate-y-0.5 hover:border-primary hover:text-primary"
           >
             Open live site <ArrowUpRight size={14} />
           </a>
@@ -135,7 +135,7 @@ export function BiharKaSwaadCase() {
               href={project.source}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 rounded-lg border border-[var(--line)] bg-bg-2 px-5 py-3 font-mono text-[11px] uppercase tracking-[0.18em] text-ink-3 transition-all duration-300 hover:-translate-y-0.5 hover:border-primary hover:text-ink"
+              className="inline-flex items-center gap-2 rounded-lg border border-[var(--line)] bg-bg-2 px-5 py-3 font-mono text-[12px] uppercase tracking-[0.18em] text-ink-3 transition-all duration-300 hover:-translate-y-0.5 hover:border-primary hover:text-ink"
             >
               <Github size={14} /> Source
             </a>
@@ -150,7 +150,7 @@ export function BiharKaSwaadCase() {
                 <span className="h-2.5 w-2.5 rounded-full bg-[#f87171]" />
                 <span className="h-2.5 w-2.5 rounded-full bg-[#fbbf24]" />
                 <span className="h-2.5 w-2.5 rounded-full bg-[#34d399]" />
-                <span className="ml-3 font-mono text-[10px] uppercase tracking-[0.18em] text-ink-4">
+                <span className="ml-3 font-mono text-[11.5px] uppercase tracking-[0.18em] text-ink-4">
                   biharkaswaad.in
                 </span>
               </div>
@@ -200,12 +200,12 @@ export function BiharKaSwaadCase() {
               viewport={{ once: true, margin: '-60px' }}
               transition={{ duration: 0.6, delay: (i % 4) * 0.08, ease: EASE }}
             >
-              <span className="font-mono text-[10px] uppercase tracking-[0.2em] text-ink-3">{s.label}</span>
+              <span className="font-mono text-[11.5px] uppercase tracking-[0.2em] text-ink-3">{s.label}</span>
               <div>
                 <div className="font-serif text-[clamp(30px,3vw,44px)] leading-none tracking-tight text-ink">
                   {s.value}
                 </div>
-                <div className="mt-2 font-mono text-[10px] uppercase tracking-[0.16em] text-ink-4">{s.foot}</div>
+                <div className="mt-2 font-mono text-[11.5px] uppercase tracking-[0.16em] text-ink-4">{s.foot}</div>
               </div>
               <span className="absolute bottom-0 left-0 h-px w-0 bg-gradient-to-r from-primary to-accent transition-all duration-500 group-hover:w-full" />
             </motion.div>
@@ -237,13 +237,13 @@ export function BiharKaSwaadCase() {
               <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-primary/10 text-primary transition-transform duration-300 group-hover:scale-110">
                 <p.icon size={20} />
               </span>
-              <h3 className="mt-4 text-[15px] font-semibold leading-snug text-ink">{p.title}</h3>
-              <p className="mt-3 flex-1 text-[13px] leading-[1.75] text-ink-2" dangerouslySetInnerHTML={{ __html: p.body }} />
+              <h3 className="mt-4 text-[16px] font-semibold leading-snug text-ink">{p.title}</h3>
+              <p className="mt-3 flex-1 text-[14px] leading-[1.75] text-ink-2" dangerouslySetInnerHTML={{ __html: p.body }} />
               <div className="mt-4 flex flex-wrap gap-1.5">
                 {p.tags.map((t) => (
                   <span
                     key={t}
-                    className="rounded-full border border-[var(--line-2)] px-2.5 py-1 font-mono text-[9.5px] uppercase tracking-[0.14em] text-ink-3"
+                    className="rounded-full border border-[var(--line-2)] px-2.5 py-1 font-mono text-[11px] uppercase tracking-[0.14em] text-ink-3"
                   >
                     {t}
                   </span>
@@ -275,14 +275,14 @@ export function BiharKaSwaadCase() {
                 viewport={{ once: true, margin: '-40px' }}
                 transition={{ duration: 0.5, delay: i * 0.08, ease: EASE }}
               >
-                <div className="font-mono text-[10px] uppercase tracking-[0.2em] text-primary">
+                <div className="font-mono text-[11.5px] uppercase tracking-[0.2em] text-primary">
                   {String(i + 1).padStart(2, '0')}
                 </div>
-                <div className="mt-1.5 text-[14px] font-semibold text-ink">{f.title}</div>
-                <div className="mt-0.5 font-mono text-[10.5px] text-ink-3">{f.foot}</div>
+                <div className="mt-1.5 text-[15px] font-semibold text-ink">{f.title}</div>
+                <div className="mt-0.5 font-mono text-[11.5px] text-ink-3">{f.foot}</div>
               </motion.div>
               {i < FLOW.length - 1 && (
-                <span className="hidden font-mono text-[14px] text-ink-4 lg:block" aria-hidden>
+                <span className="hidden font-mono text-[15px] text-ink-4 lg:block" aria-hidden>
                   →
                 </span>
               )}
@@ -299,7 +299,7 @@ export function BiharKaSwaadCase() {
             {stack.replace(/\.$/, '').split(' · ').map((t) => (
               <span
                 key={t}
-                className="rounded-sm border border-[var(--line)] bg-bg px-2.5 py-1.5 font-mono text-[11px] text-ink-2"
+                className="rounded-sm border border-[var(--line)] bg-bg px-2.5 py-1.5 font-mono text-[12px] text-ink-2"
               >
                 {t}
               </span>
@@ -311,13 +311,13 @@ export function BiharKaSwaadCase() {
               href={project?.live}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 rounded-lg border border-[var(--line)] bg-bg px-5 py-3 font-mono text-[11px] uppercase tracking-[0.18em] text-primary transition-all duration-300 hover:-translate-y-0.5 hover:border-primary hover:text-ink"
+              className="inline-flex items-center gap-2 rounded-lg border border-[var(--line)] bg-bg px-5 py-3 font-mono text-[12px] uppercase tracking-[0.18em] text-primary transition-all duration-300 hover:-translate-y-0.5 hover:border-primary hover:text-ink"
             >
               Open live site <ArrowUpRight size={14} />
             </a>
             <Link
               href="/work"
-              className="inline-flex items-center gap-2 rounded-lg border border-[var(--line)] bg-bg px-5 py-3 font-mono text-[11px] uppercase tracking-[0.18em] text-ink-2 transition-all duration-300 hover:-translate-y-0.5 hover:border-primary hover:text-ink"
+              className="inline-flex items-center gap-2 rounded-lg border border-[var(--line)] bg-bg px-5 py-3 font-mono text-[12px] uppercase tracking-[0.18em] text-ink-2 transition-all duration-300 hover:-translate-y-0.5 hover:border-primary hover:text-ink"
             >
               <ArrowDownLeft size={14} /> All work
             </Link>

@@ -59,14 +59,14 @@ export function ProjectCard({ project, index = 0, liveInfo, compact = false }: P
                 </span>
               )}
               <span
-                className="absolute left-3 top-3 rounded-full border border-[var(--line)] px-2.5 py-1 font-mono text-[10px] font-semibold text-ink backdrop-blur-sm"
+                className="absolute left-3 top-3 rounded-full border border-[var(--line)] px-2.5 py-1 font-mono text-[11.5px] font-semibold text-ink backdrop-blur-sm"
                 style={{ background: 'color-mix(in srgb, var(--bg-2) 85%, transparent)' }}
               >
                 {project.categoryLabel}
               </span>
               {project.status && (
                 <span
-                  className="absolute right-3 top-3 inline-flex items-center gap-1.5 rounded-full px-2.5 py-1 font-mono text-[10px] font-semibold backdrop-blur-sm"
+                  className="absolute right-3 top-3 inline-flex items-center gap-1.5 rounded-full px-2.5 py-1 font-mono text-[11.5px] font-semibold backdrop-blur-sm"
                   style={
                     liveInfo && !liveInfo.up
                       ? { background: 'color-mix(in srgb, #f87171 15%, var(--bg-2) 85%)', color: '#f87171', border: '1px solid color-mix(in srgb, #f87171 40%, transparent)' }
@@ -95,11 +95,11 @@ export function ProjectCard({ project, index = 0, liveInfo, compact = false }: P
               <h3 className="text-[17px] font-semibold leading-snug text-ink">
                 {project.title}
               </h3>
-              <p className={`mt-2 flex-1 text-[13.5px] leading-relaxed text-ink-2 ${compact ? 'line-clamp-3' : ''}`}>{project.desc}</p>
+              <p className={`mt-2 flex-1 text-[14.5px] leading-relaxed text-ink-2 ${compact ? 'line-clamp-3' : ''}`}>{project.desc}</p>
 
               <div className={`flex flex-wrap gap-1.5 ${compact ? 'mt-2.5' : 'mt-4'}`}>
                 {project.tags.map((t) => (
-                  <span key={t} className="rounded-sm border border-[var(--line)] bg-bg px-2 py-1 font-mono text-[10px] text-ink-2">
+                  <span key={t} className="rounded-sm border border-[var(--line)] bg-bg px-2 py-1 font-mono text-[11.5px] text-ink-2">
                     {t}
                   </span>
                 ))}
@@ -107,7 +107,7 @@ export function ProjectCard({ project, index = 0, liveInfo, compact = false }: P
 
               <div className={`flex items-center gap-3 border-t border-dashed border-[var(--line-2)] ${compact ? 'mt-3 pt-3' : 'mt-5 pt-4'}`}>
                 {project.path ? (
-                  <span className="inline-flex items-center gap-1.5 font-mono text-[11px] uppercase tracking-widest text-primary transition-colors group-hover:text-ink">
+                  <span className="inline-flex items-center gap-1.5 font-mono text-[12px] uppercase tracking-widest text-primary transition-colors group-hover:text-ink">
                     Open dashboard <ArrowUpRight size={13} />
                   </span>
                 ) : (
@@ -118,13 +118,13 @@ export function ProjectCard({ project, index = 0, liveInfo, compact = false }: P
                         e.stopPropagation();
                         setOpen(true);
                       }}
-                      className="inline-flex items-center gap-1.5 font-mono text-[11px] uppercase tracking-widest text-primary transition-colors hover:text-ink"
+                      className="inline-flex items-center gap-1.5 font-mono text-[12px] uppercase tracking-widest text-primary transition-colors hover:text-ink"
                     >
                       <BookOpen size={13} /> Case study
                     </button>
                     <span className="ml-auto flex items-center gap-2">
                       {project.live ? (
-                        <span className="inline-flex items-center gap-1.5 font-mono text-[11px] uppercase tracking-widest text-ink-3">
+                        <span className="inline-flex items-center gap-1.5 font-mono text-[12px] uppercase tracking-widest text-ink-3">
                           Open live site <ArrowUpRight size={13} />
                         </span>
                       ) : null}
@@ -204,7 +204,7 @@ export function ProjectCard({ project, index = 0, liveInfo, compact = false }: P
             >
               <span className="mx-auto mt-2.5 mb-1 block h-1 w-10 rounded-full bg-[var(--line)] md:hidden" aria-hidden />
               <div className="flex items-center justify-between border-b border-[var(--line)] px-6 py-4">
-                <span className="font-mono text-[10.5px] uppercase tracking-[0.2em] text-ink-3">Case study · {project.categoryLabel}</span>
+                <span className="font-mono text-[11.5px] uppercase tracking-[0.2em] text-ink-3">Case study · {project.categoryLabel}</span>
                 <button onClick={() => setOpen(false)} className="flex h-8 w-8 items-center justify-center rounded-sm border border-[var(--line)] text-ink-3 hover:text-ink" aria-label="Close">
                   <X size={14} />
                 </button>
@@ -212,7 +212,7 @@ export function ProjectCard({ project, index = 0, liveInfo, compact = false }: P
               <div className="max-h-[70vh] overflow-y-auto px-6 py-6">
                 <h3 className="text-2xl font-semibold text-ink">{project.title}</h3>
                 <p
-                  className="mt-2 text-[14px] leading-relaxed text-ink-2"
+                  className="mt-2 text-[15px] leading-relaxed text-ink-2"
                   dangerouslySetInnerHTML={{ __html: project.caseStudy.intro }}
                 />
                 {project.metrics && project.metrics.length > 0 && (
@@ -220,14 +220,14 @@ export function ProjectCard({ project, index = 0, liveInfo, compact = false }: P
                     {project.metrics.map((m) => (
                       <div key={m.label} className="flex flex-col gap-1.5 px-3.5 py-3" style={{ background: 'var(--bg-2)' }}>
                         <span className="font-serif text-[22px] leading-none tracking-tight text-ink">{m.value}</span>
-                        <span className="font-mono text-[9.5px] uppercase tracking-[0.16em] text-ink-3">{m.label}</span>
+                        <span className="font-mono text-[11px] uppercase tracking-[0.16em] text-ink-3">{m.label}</span>
                       </div>
                     ))}
                   </div>
                 )}
                 <ul className="mt-5 space-y-2">
                   {project.caseStudy.bullets.map((b, i) => (
-                    <li key={i} className="flex gap-2.5 text-[13.5px] text-ink-2">
+                    <li key={i} className="flex gap-2.5 text-[14.5px] text-ink-2">
                       <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-primary" />
                       <span dangerouslySetInnerHTML={{ __html: b }} />
                     </li>
@@ -237,15 +237,15 @@ export function ProjectCard({ project, index = 0, liveInfo, compact = false }: P
                   <div className="mt-6">
                     <Link
                       href={project.caseStudyUrl}
-                      className="inline-flex items-center gap-2 rounded-lg border border-[var(--line)] bg-bg px-4 py-2.5 font-mono text-[11px] uppercase tracking-[0.18em] text-primary transition-all duration-300 hover:-translate-y-0.5 hover:border-primary hover:text-ink"
+                      className="inline-flex items-center gap-2 rounded-lg border border-[var(--line)] bg-bg px-4 py-2.5 font-mono text-[12px] uppercase tracking-[0.18em] text-primary transition-all duration-300 hover:-translate-y-0.5 hover:border-primary hover:text-ink"
                     >
                       <BookOpen size={14} /> Read the full case study
                     </Link>
                   </div>
                 )}
                 <div className="mt-6 flex flex-wrap items-center justify-between gap-3 border-t border-[var(--line)] pt-4">
-                  <span className="font-mono text-[12px] text-primary">{project.caseStudy.stack}</span>
-                  {project.caseStudy.note && <span className="font-mono text-[11px] text-ink-3">→ {project.caseStudy.note}</span>}
+                  <span className="font-mono text-[13px] text-primary">{project.caseStudy.stack}</span>
+                  {project.caseStudy.note && <span className="font-mono text-[12px] text-ink-3">→ {project.caseStudy.note}</span>}
                 </div>
               </div>
             </motion.div>

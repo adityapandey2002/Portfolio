@@ -64,7 +64,7 @@ function AnimatedPipeline({ started }: { started: boolean }) {
       {PIPELINE.map((s, i) => (
         <span key={s} className="flex items-center">
           <motion.span
-            className="rounded border px-2.5 py-1 font-mono text-[10px] tracking-[0.22em] transition-all duration-300"
+            className="rounded border px-2.5 py-1 font-mono text-[11.5px] tracking-[0.22em] transition-all duration-300"
             animate={{
               borderColor: active === i ? 'var(--primary)' : 'var(--line)',
               background: active === i ? 'rgba(16,185,129,0.12)' : 'rgba(15,20,33,0.7)',
@@ -77,7 +77,7 @@ function AnimatedPipeline({ started }: { started: boolean }) {
           </motion.span>
           {i < PIPELINE.length - 1 && (
             <motion.span
-              className="px-1 font-mono text-[11px]"
+              className="px-1 font-mono text-[12px]"
               animate={{ color: active >= i ? 'var(--primary)' : 'var(--ink-4)', opacity: active >= i ? 1 : 0.35 }}
               transition={{ duration: 0.3 }}
             >
@@ -122,7 +122,7 @@ export function Hero() {
             <span className="flex h-2.5 w-2.5 items-center justify-center border border-primary bg-primary/10">
               <span className="h-1 w-1 bg-primary" />
             </span>
-            <span className="font-mono text-[10.5px] tracking-wide text-ink-2">{profile.heroStatus}</span>
+            <span className="font-mono text-[11.5px] tracking-wide text-ink-2">{profile.heroStatus}</span>
           </motion.div>
 
           {/* Headline */}
@@ -149,7 +149,7 @@ export function Hero() {
 
           {/* Sub */}
           <motion.p
-            className="mt-4 max-w-[500px] text-[14px] leading-relaxed text-ink-2"
+            className="mt-4 max-w-[500px] text-[15px] leading-relaxed text-ink-2"
             initial={{ opacity: 0, y: 16 }}
             animate={started ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.7, delay: 1.55, ease: [0.16, 1, 0.3, 1] }}
@@ -216,7 +216,7 @@ export function Hero() {
         transition={{ delay: 2.3, duration: 1 }}
       >
         <div className="flex flex-col items-center gap-1.5">
-          <span className="font-mono text-[9px] uppercase tracking-[0.3em] text-ink-4">Scroll</span>
+          <span className="font-mono text-[11px] uppercase tracking-[0.3em] text-ink-4">Scroll</span>
           <span className="scroll-line" />
         </div>
       </motion.div>

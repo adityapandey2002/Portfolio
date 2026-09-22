@@ -35,14 +35,14 @@ export function Impact() {
               transition={{ duration: 0.7, delay: 0.1 + i * 0.1, ease: [0.16, 1, 0.3, 1] }}
             >
               <div className="flex items-start justify-between">
-                <span className="font-mono text-[10px] uppercase tracking-[0.2em] text-ink-3">{item.label}</span>
+                <span className="font-mono text-[11.5px] uppercase tracking-[0.2em] text-ink-3">{item.label}</span>
                 {item.up && <TrendingUp size={13} className="text-primary" />}
               </div>
               <div>
                 <div className="font-serif text-[clamp(34px,3vw,52px)] leading-none tracking-tight text-ink">
                   <CountUp target={item.value} suffix={item.suffix} className="text-gradient" />
                 </div>
-                <div className="mt-1.5 font-mono text-[10px] uppercase tracking-[0.18em] text-ink-3">{item.foot}</div>
+                <div className="mt-1.5 font-mono text-[11.5px] uppercase tracking-[0.18em] text-ink-3">{item.foot}</div>
               </div>
               <span className="absolute bottom-0 left-0 h-px w-0 bg-gradient-to-r from-primary to-accent transition-all duration-500 group-hover:w-full" />
             </motion.div>

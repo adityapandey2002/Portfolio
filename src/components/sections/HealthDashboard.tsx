@@ -140,9 +140,9 @@ function Gauge() {
           <span className="font-serif text-[clamp(40px,4.5vw,58px)] leading-none tracking-tight text-ink">
             {KM_TOTAL.toLocaleString('en-IN')}
           </span>
-          <span className="mb-1 font-mono text-[11px] font-semibold tracking-[0.3em] text-ink-3">KM</span>
+          <span className="mb-1 font-mono text-[12px] font-semibold tracking-[0.3em] text-ink-3">KM</span>
         </div>
-        <span className="font-mono text-[9.5px] uppercase tracking-[0.22em] text-ink-4">
+        <span className="font-mono text-[11px] uppercase tracking-[0.22em] text-ink-4">
           field distance · since jul 2025
         </span>
       </div>
@@ -204,7 +204,7 @@ function Odometer() {
   const digits = KM_TOTAL.toLocaleString('en-IN').split('');
   return (
     <div>
-      <div className="flex items-end justify-between font-mono text-[10px] uppercase tracking-[0.2em] text-ink-3">
+      <div className="flex items-end justify-between font-mono text-[11.5px] uppercase tracking-[0.2em] text-ink-3">
         <span>Field odometer · digital</span>
         <span className="inline-flex items-center gap-1.5 text-primary">
           <span className="blip h-1.5 w-1.5 rounded-full bg-primary" /> logging
@@ -269,7 +269,7 @@ function FieldKmMeter() {
       <div className="overflow-hidden rounded-2xl border border-[var(--line)] bg-[var(--line)]">
         <div className="grid grid-cols-1 gap-px bg-[var(--line)] lg:grid-cols-3">
           <div className="flex flex-col justify-center gap-6 p-8 lg:p-10" style={{ background: 'var(--bg-2)' }}>
-            <div className="flex items-center justify-between font-mono text-[10.5px] uppercase tracking-[0.2em] text-ink-3">
+            <div className="flex items-center justify-between font-mono text-[11.5px] uppercase tracking-[0.2em] text-ink-3">
               <span>Field odometer · analog</span>
               <span className="inline-flex items-center gap-1.5 text-primary">
                 <span className="blip h-1.5 w-1.5 rounded-full bg-primary" /> LIVE
@@ -279,7 +279,7 @@ function FieldKmMeter() {
           </div>
 
           <div className="flex flex-col justify-between gap-6 p-8 lg:col-span-2 lg:p-10" style={{ background: 'var(--bg-2)' }}>
-            <div className="flex items-center justify-between font-mono text-[10.5px] uppercase tracking-[0.2em] text-ink-3">
+            <div className="flex items-center justify-between font-mono text-[11.5px] uppercase tracking-[0.2em] text-ink-3">
               <span>Route · Bihar field program</span>
               <span className="text-ink-4">Muzaffarpur district</span>
             </div>
@@ -290,7 +290,7 @@ function FieldKmMeter() {
               {['Bike & field visits', 'Block-level CHC audits', 'The odometer only goes up'].map((t) => (
                 <span
                   key={t}
-                  className="rounded-full border border-[var(--line-2)] px-3 py-1 font-mono text-[10px] uppercase tracking-[0.16em] text-ink-3"
+                  className="rounded-full border border-[var(--line-2)] px-3 py-1 font-mono text-[11.5px] uppercase tracking-[0.16em] text-ink-3"
                 >
                   {t}
                 </span>
@@ -344,7 +344,7 @@ export function HealthDashboard() {
         <div className="grid grid-cols-1 gap-px overflow-hidden rounded-2xl border border-[var(--line)] bg-[var(--line)] lg:grid-cols-5">
           {/* Patient monitor */}
           <div className="relative flex flex-col justify-between gap-8 p-8" style={{ background: 'var(--bg-2)' }}>
-            <div className="flex items-center justify-between font-mono text-[10.5px] uppercase tracking-[0.2em] text-ink-3">
+            <div className="flex items-center justify-between font-mono text-[11.5px] uppercase tracking-[0.2em] text-ink-3">
               <span>PATIENT · BIHAR FIELD PROGRAM</span>
               <span className="inline-flex items-center gap-1.5 text-primary">
                 <span className="blip h-2 w-2 rounded-full bg-primary" /> LIVE
@@ -362,12 +362,12 @@ export function HealthDashboard() {
                   className="ecg-path"
                 />
               </svg>
-              <div className="absolute -bottom-1 left-3 font-mono text-[10px] uppercase tracking-[0.18em] text-ink-4">lead II · 25 mm/s</div>
+              <div className="absolute -bottom-1 left-3 font-mono text-[11.5px] uppercase tracking-[0.18em] text-ink-4">lead II · 25 mm/s</div>
             </div>
 
             <div>
               <div className="flex items-end justify-between">
-                <span className="font-mono text-[10.5px] uppercase tracking-[0.2em] text-ink-3">System Health</span>
+                <span className="font-mono text-[11.5px] uppercase tracking-[0.2em] text-ink-3">System Health</span>
                 <span className="font-serif text-[44px] leading-none tracking-tight">
                   <CountUp target={94} suffix="%" className="text-gradient" />
                 </span>
@@ -385,7 +385,7 @@ export function HealthDashboard() {
                   transition={{ duration: 1.4, delay: 0.2, ease: EASE }}
                 />
               </div>
-              <p className="mt-3 font-mono text-[10.5px] uppercase tracking-[0.18em] text-ink-3">
+              <p className="mt-3 font-mono text-[11.5px] uppercase tracking-[0.18em] text-ink-3">
                 Field data + capacity building · <span className="text-primary">NORMAL</span>
               </p>
             </div>
@@ -399,7 +399,7 @@ export function HealthDashboard() {
               { k: 'ASHA coverage', v: 94, unit: '%', pct: 94 },
             ].map((m, i) => (
               <div key={m.k} className="flex flex-1 flex-col justify-center gap-3 p-7" style={{ background: 'var(--bg-2)' }}>
-                <div className="flex items-center justify-between font-mono text-[10.5px] uppercase tracking-[0.2em] text-ink-3">
+                <div className="flex items-center justify-between font-mono text-[11.5px] uppercase tracking-[0.2em] text-ink-3">
                   <span>{m.k}</span>
                   <span className="text-primary">{m.unit}</span>
                 </div>
@@ -452,7 +452,7 @@ export function HealthDashboard() {
               transition={{ duration: 0.7, delay: i * 0.1, ease: EASE }}
             >
               <div className="flex items-start justify-between">
-                <span className="font-mono text-[10.5px] uppercase tracking-[0.2em] text-ink-3">{v.label}</span>
+                <span className="font-mono text-[11.5px] uppercase tracking-[0.2em] text-ink-3">{v.label}</span>
                 <HeartPulse size={14} className="text-primary" />
               </div>
               <div>
@@ -472,7 +472,7 @@ export function HealthDashboard() {
                     transition={{ duration: 1.3, delay: 0.2 + i * 0.1, ease: EASE }}
                   />
                 </div>
-                <div className="mt-3 font-mono text-[10.5px] uppercase tracking-[0.18em] text-ink-3">{v.foot}</div>
+                <div className="mt-3 font-mono text-[11.5px] uppercase tracking-[0.18em] text-ink-3">{v.foot}</div>
               </div>
               <span className="absolute bottom-0 left-0 h-px w-0 bg-gradient-to-r from-primary to-accent transition-all duration-500 group-hover:w-full" />
             </motion.div>
@@ -506,17 +506,17 @@ export function HealthDashboard() {
                 <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-primary/10 text-primary transition-transform duration-300 group-hover:scale-110">
                   <t.icon size={20} />
                 </span>
-                <h3 className="text-[15px] font-semibold leading-snug text-ink">{t.title}</h3>
+                <h3 className="text-[16px] font-semibold leading-snug text-ink">{t.title}</h3>
               </div>
               <p
-                className="mt-4 text-[13px] leading-[1.75] text-ink-2"
+                className="mt-4 text-[14px] leading-[1.75] text-ink-2"
                 dangerouslySetInnerHTML={{ __html: t.body }}
               />
               <div className="mt-4 flex flex-wrap gap-1.5">
                 {t.tags.map((tag) => (
                   <span
                     key={tag}
-                    className="rounded-full border border-[var(--line-2)] px-2.5 py-1 font-mono text-[9.5px] uppercase tracking-[0.14em] text-ink-3"
+                    className="rounded-full border border-[var(--line-2)] px-2.5 py-1 font-mono text-[11px] uppercase tracking-[0.14em] text-ink-3"
                   >
                     {tag}
                   </span>
@@ -553,10 +553,10 @@ export function HealthDashboard() {
             >
               <div className="flex items-center gap-3">
                 <Activity size={15} className="shrink-0 text-primary" />
-                <span className="text-[14px] text-ink">{d.name}</span>
+                <span className="text-[15px] text-ink">{d.name}</span>
               </div>
               <span
-                className={`inline-flex w-fit items-center gap-1.5 rounded-full px-3 py-1 font-mono text-[10px] font-semibold tracking-widest ${
+                className={`inline-flex w-fit items-center gap-1.5 rounded-full px-3 py-1 font-mono text-[11.5px] font-semibold tracking-widest ${
                   d.tone === 'green' ? 'text-primary' : 'text-accent'
                 }`}
                 style={{
@@ -574,7 +574,7 @@ export function HealthDashboard() {
         <div className="mt-12 text-center">
           <Link
             href="/"
-            className="inline-flex items-center gap-3 rounded-lg border border-[var(--line)] bg-bg-2 px-6 py-3.5 font-mono text-[12px] uppercase tracking-[0.2em] text-ink transition-all duration-300 hover:-translate-y-0.5 hover:border-primary hover:text-primary hover:shadow-[0_12px_30px_-12px_var(--primary-glow)]"
+            className="inline-flex items-center gap-3 rounded-lg border border-[var(--line)] bg-bg-2 px-6 py-3.5 font-mono text-[13px] uppercase tracking-[0.2em] text-ink transition-all duration-300 hover:-translate-y-0.5 hover:border-primary hover:text-primary hover:shadow-[0_12px_30px_-12px_var(--primary-glow)]"
           >
             <ArrowDownLeft size={15} />
             Back to the field

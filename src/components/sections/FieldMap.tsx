@@ -101,10 +101,10 @@ export function FieldMap() {
         </svg>
 
         <div className="flex flex-wrap items-center justify-between gap-3 border-t border-[var(--line)] px-4 py-3">
-          <span className="font-mono text-[10px] uppercase tracking-[0.22em] text-ink-3">Field footprint · Bihar</span>
+          <span className="font-mono text-[11.5px] uppercase tracking-[0.22em] text-ink-3">Field footprint · Bihar</span>
           <div className="flex flex-wrap gap-2">
-            <span className="rounded-full border border-[var(--line)] bg-bg-3 px-3 py-1 font-mono text-[10px] text-ink-2">Village → Field HQ</span>
-            <span className="rounded-full border border-[var(--line)] bg-bg-3 px-3 py-1 font-mono text-[10px] text-ink-2">ODK → Central → Python → Report</span>
+            <span className="rounded-full border border-[var(--line)] bg-bg-3 px-3 py-1 font-mono text-[11.5px] text-ink-2">Village → Field HQ</span>
+            <span className="rounded-full border border-[var(--line)] bg-bg-3 px-3 py-1 font-mono text-[11.5px] text-ink-2">ODK → Central → Python → Report</span>
           </div>
         </div>
       </motion.div>

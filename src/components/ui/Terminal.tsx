@@ -125,13 +125,13 @@ export function Terminal() {
         <span className="h-2.5 w-2.5 rounded-full bg-rose" />
         <span className="h-2.5 w-2.5 rounded-full bg-accent" />
         <span className="h-2.5 w-2.5 rounded-full bg-primary" />
-        <span className="ml-2.5 font-mono text-[11.5px] text-[#e8e0c8]">aditya@portfolio:~$</span>
-        <span className="ml-auto hidden font-mono text-[10.5px] text-[#6b6350] sm:block">try: help · projects · hire · ask</span>
+        <span className="ml-2.5 font-mono text-[12.5px] text-[#e8e0c8]">aditya@portfolio:~$</span>
+        <span className="ml-auto hidden font-mono text-[11.5px] text-[#6b6350] sm:block">try: help · projects · hire · ask</span>
       </div>
       <div
         ref={bodyRef}
         onClick={() => inputRef.current?.focus()}
-        className="terminal-body max-h-[360px] min-h-[320px] cursor-text px-5 py-4 font-mono text-[12.5px] leading-7 text-[#e8e0c8]"
+        className="terminal-body max-h-[360px] min-h-[320px] cursor-text overflow-y-auto overscroll-y-contain px-5 py-4 font-mono text-[14.5px] leading-7 text-[#e8e0c8]"
       >
         {lines.map((l, i) =>
           l.input ? (
@@ -147,7 +147,7 @@ export function Terminal() {
           <input
             ref={inputRef}
             onKeyDown={onKeyDown}
-            className="w-full bg-transparent font-mono text-[12.5px] text-ink caret-primary outline-none"
+            className="w-full bg-transparent font-mono text-[14.5px] text-ink caret-primary outline-none"
             autoComplete="off"
             spellCheck={false}
             aria-label="Terminal input"

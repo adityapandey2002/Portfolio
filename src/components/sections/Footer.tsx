@@ -9,10 +9,10 @@ export function Footer() {
     <footer className="relative overflow-hidden border-t border-[var(--line)] py-12">
       <div className="mx-auto flex max-w-[1500px] flex-wrap items-center justify-between gap-6 px-5 lg:px-10">
         <div>
-          <p className="font-mono text-[11px] uppercase tracking-[0.22em] text-ink-3">
+          <p className="font-mono text-[12px] uppercase tracking-[0.22em] text-ink-3">
             © {new Date().getFullYear()} {profile.name}
           </p>
-          <p className="mt-1.5 text-[12.5px] text-ink-4">
+          <p className="mt-1.5 text-[13.5px] text-ink-4">
             Built in Bihar · Field Data → Clean Insights → Real Decisions
           </p>
         </div>

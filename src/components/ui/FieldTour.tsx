@@ -93,7 +93,7 @@ function FieldTourOverlay({ open, onClose }: { open: boolean; onClose: () => voi
             >
               {STEPS[idx]?.msg}
             </div>
-            <div className="mt-6 font-mono text-[11.5px] uppercase tracking-widest text-primary">{STEPS[idx]?.step}</div>
+            <div className="mt-6 font-mono text-[12.5px] uppercase tracking-widest text-primary">{STEPS[idx]?.step}</div>
 
             <div className="mx-auto mt-8 h-0.5 max-w-[360px] overflow-hidden rounded bg-[var(--line)]">
               <div className="h-full bg-gradient-to-r from-primary to-cyan transition-all duration-500" style={{ width: `${((idx + 1) / STEPS.length) * 100}%` }} />

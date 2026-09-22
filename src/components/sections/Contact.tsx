@@ -86,7 +86,7 @@ export function Contact() {
                 href={l.href}
                 target={l.href?.startsWith('http') ? '_blank' : undefined}
                 rel="noopener noreferrer"
-                className="group flex items-center gap-3 rounded-lg px-2 py-1.5 text-[13px] text-ink-2 transition-colors hover:text-ink"
+                className="group flex items-center gap-3 rounded-lg px-2 py-1.5 text-[14px] text-ink-2 transition-colors hover:text-ink"
                 initial={{ opacity: 0, x: -16 }}
                 animate={inView ? { opacity: 1, x: 0 } : {}}
                 transition={{ duration: 0.5, delay: 0.1 + i * 0.06 }}
@@ -110,23 +110,23 @@ export function Contact() {
           <form onSubmit={onSubmit} className="space-y-3">
             <div className="grid gap-3 sm:grid-cols-2">
               <label className="block">
-                <span className="mb-1 block font-mono text-[10px] uppercase tracking-[0.18em] text-ink-3">Name</span>
+                <span className="mb-1 block font-mono text-[11.5px] uppercase tracking-[0.18em] text-ink-3">Name</span>
                 <input value={form.name} onChange={set('name')} placeholder="Your name" className="input-field" required />
               </label>
               <label className="block">
-                <span className="mb-1 block font-mono text-[10px] uppercase tracking-[0.18em] text-ink-3">Email</span>
+                <span className="mb-1 block font-mono text-[11.5px] uppercase tracking-[0.18em] text-ink-3">Email</span>
                 <input value={form.email} onChange={set('email')} type="email" placeholder="you@example.com" className="input-field" required />
               </label>
             </div>
             <label className="block">
-              <span className="mb-1 block font-mono text-[10px] uppercase tracking-[0.18em] text-ink-3">Message</span>
+              <span className="mb-1 block font-mono text-[11.5px] uppercase tracking-[0.18em] text-ink-3">Message</span>
               <textarea value={form.message} onChange={set('message')} rows={4} placeholder="Tell me about the data problem you're trying to solve…" className="input-field resize-none" required />
             </label>
             <button type="submit" disabled={sending} className="btn-primary inline-flex w-full items-center justify-center gap-2 disabled:opacity-60">
               {sent ? <CheckCircle2 size={16} /> : sending ? <Loader2 size={16} className="animate-spin" /> : <Send size={15} />}
               {sent ? 'Message sent' : sending ? 'Sending…' : 'Send message'}
             </button>
-            <p className="text-center font-mono text-[10px] text-ink-4">Stored in Supabase · broadcast live to visitors · falls back to email</p>
+            <p className="text-center font-mono text-[11.5px] text-ink-4">Stored in Supabase · broadcast live to visitors · falls back to email</p>
           </form>
         </motion.div>
       </div>

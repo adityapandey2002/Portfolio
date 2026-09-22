@@ -40,13 +40,13 @@ export function Skills() {
                 transition={{ duration: 0.6, delay: 0.1 + i * 0.1, ease: [0.16, 1, 0.3, 1] }}
               >
                 <div className="flex items-center justify-between">
-                  <span className="font-mono text-[11px] font-semibold tracking-widest text-primary">{s.index}</span>
+                  <span className="font-mono text-[12px] font-semibold tracking-widest text-primary">{s.index}</span>
                   <span className="flex h-9 w-9 items-center justify-center rounded-xl bg-primary/10 text-primary transition-transform duration-300 group-hover:scale-110">
                     <Icon size={17} />
                   </span>
                 </div>
-                <h4 className="mt-4 font-mono text-[13px] font-semibold uppercase tracking-[0.18em] text-ink">{s.name}</h4>
-                <p className="mt-2 text-[12.5px] leading-[1.65] text-ink-2">{s.line}</p>
+                <h4 className="mt-4 font-mono text-[14px] font-semibold uppercase tracking-[0.18em] text-ink">{s.name}</h4>
+                <p className="mt-2 text-[13.5px] leading-[1.65] text-ink-2">{s.line}</p>
                 <div className="mt-4 flex flex-wrap gap-1.5">
                   {s.pills.map((p) => (
                     <span key={p} className="skill-pill">
@@ -56,8 +56,8 @@ export function Skills() {
                 </div>
                 <div className="mt-auto pt-5">
                   <div className="mb-1.5 flex items-center justify-between">
-                    <span className="text-[11px] font-medium text-ink-3">{s.barLabel}</span>
-                    <span className="font-mono text-[11px] text-primary">{s.barPct}%</span>
+                    <span className="text-[12px] font-medium text-ink-3">{s.barLabel}</span>
+                    <span className="font-mono text-[12px] text-primary">{s.barPct}%</span>
                   </div>
                   <div className="h-1.5 overflow-hidden rounded-full bg-bg-3">
                     <motion.div

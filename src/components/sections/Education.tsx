@@ -37,9 +37,9 @@ export function Education() {
                   <GraduationCap size={17} />
                 </span>
                 <div>
-                  <h3 className="text-[14.5px] font-semibold text-ink">{e.degree}</h3>
-                  <p className="mt-0.5 text-[12.5px] text-ink-2">{e.school}</p>
-                  <p className="mt-0.5 font-mono text-[11px] text-ink-3">{e.year}</p>
+                  <h3 className="text-[15.5px] font-semibold text-ink">{e.degree}</h3>
+                  <p className="mt-0.5 text-[13.5px] text-ink-2">{e.school}</p>
+                  <p className="mt-0.5 font-mono text-[12px] text-ink-3">{e.year}</p>
                 </div>
               </motion.div>
             ))}
@@ -51,7 +51,7 @@ export function Education() {
           <SectionHeading
             eyebrow="/* 07 · CERTIFICATIONS */"
             className="mb-5"
-            title={<>Proof of <span className="text-gradient">work</span></>}
+            title={<>Learning, <span className="text-gradient">certified</span></>}
           />
           <div className="section-inner-scroll grid gap-2 sm:grid-cols-2" style={{ maxHeight: 'clamp(240px, 40vh, 380px)' }}>
             {certs.map((c, i) => (
@@ -65,8 +65,8 @@ export function Education() {
                 <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-bg-3 text-primary transition-transform duration-300 group-hover:scale-110">
                   <Award size={15} />
                 </span>
-                <h3 className="mt-2.5 text-[13px] font-semibold leading-snug text-ink">{c.name}</h3>
-                <p className="mt-0.5 font-mono text-[10px] uppercase tracking-wider text-ink-3">{c.issuer}</p>
+                <h3 className="mt-2.5 text-[14px] font-semibold leading-snug text-ink">{c.name}</h3>
+                <p className="mt-0.5 font-mono text-[11.5px] uppercase tracking-wider text-ink-3">{c.issuer}</p>
               </motion.div>
             ))}
           </div>
