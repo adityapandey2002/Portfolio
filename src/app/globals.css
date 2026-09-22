@@ -117,16 +117,6 @@ html {
   scroll-behavior: auto;
   color-scheme: light;
   scroll-snap-type: y proximity;
-  /* Decorative blobs/marquee bleed off-canvas; never show a horizontal scrollbar. */
-  overflow-x: clip;
-}
-@supports not (overflow: clip) {
-  html {
-    overflow-x: hidden;
-  }
-}
-body {
-  overflow-x: clip;
 }
 html,
 body {
@@ -1102,6 +1092,17 @@ textarea {
 }
 
 /* ── Pillars of Work ─────────────────────────────────────────── */
+.pillars-root {
+  /* Blur blob-b decor bleeds -100px off-edge; clip it here, not at html
+     (clamping the root scroll container breaks vertical page scroll). */
+  overflow-x: clip;
+}
+@supports not (overflow: clip) {
+  .pillars-root {
+    overflow-x: hidden;
+  }
+}
+
 .pillar-layer {
   position: relative;
   will-change: transform;
