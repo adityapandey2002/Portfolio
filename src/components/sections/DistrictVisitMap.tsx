@@ -62,8 +62,14 @@ export function DistrictVisitMap() {
   const inView = useInView(ref, { once: true, margin: '-80px' });
 
   return (
-    <div ref={ref}>
-      <svg viewBox="0 0 400 340" className="w-full" role="img" aria-label="Muzaffarpur district — field visit map">
+    <div ref={ref} className="flex h-full w-full min-h-0 flex-col items-stretch justify-center gap-2">
+      <div className="flex min-h-0 flex-1 items-center justify-center overflow-hidden">
+      <svg
+        viewBox="0 0 400 340"
+        className="block h-auto max-h-full w-full max-w-full"
+        role="img"
+        aria-label="Muzaffarpur district — field visit map"
+      >
         {/* neighbours */}
         {NEIGHBORS.map(([name, x, y]) => (
           <text
@@ -217,8 +223,9 @@ export function DistrictVisitMap() {
           <text x="388" y="334" textAnchor="end" className="fill-ink-4">STYLISED · NOT TO SCALE</text>
         </g>
       </svg>
+      </div>
 
-      <div className="mt-3 flex flex-wrap items-center justify-between gap-2 border-t border-[var(--line)] pt-3">
+      <div className="flex shrink-0 flex-wrap items-center justify-between gap-2 border-t border-[var(--line)] pt-2">
         <span className="font-mono text-[10px] uppercase tracking-[0.2em] text-ink-3">6/6 blocks · 12 CHCs covered</span>
         <span className="font-mono text-[10px] uppercase tracking-[0.2em] text-ink-4">HQ → field routes</span>
       </div>

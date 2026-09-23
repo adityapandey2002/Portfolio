@@ -256,7 +256,7 @@ html[data-scroll='health'] body {
   html[data-scroll='health'] .snap-section > header {
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: safe center;
     min-height: 0;
     overflow-y: auto;
     padding-top: calc(var(--nav-h) + clamp(0.5rem, 2.5vh, 1.75rem));

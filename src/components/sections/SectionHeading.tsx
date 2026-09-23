@@ -19,21 +19,21 @@ export function SectionHeading({ eyebrow, title, sub, className, static: isStati
 
   if (isStatic) {
     return (
-      <div className={cn('relative mb-5', className)}>
+      <div className={cn('relative mb-4 shrink-0', className)}>
         <span className="eyebrow">{eyebrow}</span>
         <h2
-          className="mt-2.5 leading-[1.05] tracking-tight"
-          style={{ fontSize: 'clamp(24px, 3vw, 44px)', maxWidth: '24ch' }}
+          className="mt-2 leading-[1.05] tracking-tight"
+          style={{ fontSize: 'clamp(24px, 3vw, 40px)', maxWidth: '24ch' }}
         >
           {title}
         </h2>
-        {sub && <p className="section-sub">{sub}</p>}
+        {sub && <p className="section-sub mt-1.5">{sub}</p>}
       </div>
     );
   }
 
   return (
-    <div ref={ref} className={cn('relative mb-5', className)}>
+    <div ref={ref} className={cn('relative mb-4 shrink-0', className)}>
       <motion.span
         className="eyebrow"
         initial={{ opacity: 0, x: -16 }}
@@ -43,14 +43,14 @@ export function SectionHeading({ eyebrow, title, sub, className, static: isStati
         {eyebrow}
       </motion.span>
       <h2
-        className={cn('draw-title mt-2.5 leading-[1.05] tracking-tight', inView && 'in')}
-        style={{ fontSize: 'clamp(24px, 3vw, 44px)', maxWidth: '24ch' }}
+        className={cn('draw-title mt-2 leading-[1.05] tracking-tight', inView && 'in')}
+        style={{ fontSize: 'clamp(24px, 3vw, 40px)', maxWidth: '24ch' }}
       >
         {title}
       </h2>
       {sub && (
         <motion.p
-          className="section-sub"
+          className="section-sub mt-1.5"
           initial={{ opacity: 0, y: 12 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.7, delay: 0.12, ease: [0.16, 1, 0.3, 1] }}

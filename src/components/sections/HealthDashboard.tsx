@@ -53,8 +53,8 @@ function Gauge() {
   const ticks = Array.from({ length: 21 }, (_, i) => i * (KM_MAX / 20));
 
   return (
-    <div className="relative mx-auto w-full max-w-[340px]">
-      <svg viewBox="0 0 340 240" className="w-full">
+    <div className="relative mx-auto w-full max-w-[340px] shrink">
+      <svg viewBox="0 0 340 240" className="h-auto max-h-[min(36vh,240px)] w-full">
         <defs>
           <linearGradient id="gaugeGrad" x1="0%" y1="0%" x2="100%" y2="0%">
             <stop offset="0%" stopColor="var(--accent)" />
@@ -150,7 +150,7 @@ function Gauge() {
 
 function FieldKmMeter() {
   return (
-    <section className="mx-auto max-w-[1500px] px-5 py-24 lg:px-10">
+    <section className="mx-auto flex h-full min-h-0 w-full max-w-[1500px] flex-col justify-center gap-4 px-5 lg:px-10">
       <SectionHeading
         eyebrow="/* FIELD KM */"
         title={
@@ -160,24 +160,28 @@ function FieldKmMeter() {
         }
         sub="Every block visit is a data point. This is the odometer of the fellowship so far."
       />
-      <div className="grid grid-cols-1 gap-px overflow-hidden rounded-2xl border border-[var(--line)] bg-[var(--line)] lg:grid-cols-2">
-        <div className="flex flex-col justify-center gap-6 p-8 lg:p-10" style={{ background: 'var(--bg-2)' }}>
-          <div className="flex items-center justify-between font-mono text-[10.5px] uppercase tracking-[0.2em] text-ink-3">
+      <div className="grid min-h-0 flex-1 grid-cols-1 gap-px overflow-hidden rounded-2xl border border-[var(--line)] bg-[var(--line)] lg:grid-cols-2">
+        <div className="flex min-h-0 flex-col gap-3 p-5 lg:p-6" style={{ background: 'var(--bg-2)' }}>
+          <div className="flex shrink-0 items-center justify-between font-mono text-[10.5px] uppercase tracking-[0.2em] text-ink-3">
             <span>Field odometer · analog</span>
             <span className="inline-flex items-center gap-1.5 text-primary">
               <span className="blip h-1.5 w-1.5 rounded-full bg-primary" /> LIVE
             </span>
           </div>
-          <Gauge />
+          <div className="flex min-h-0 flex-1 items-center justify-center">
+            <Gauge />
+          </div>
         </div>
 
-        <div className="flex flex-col justify-between gap-6 p-8 lg:p-10" style={{ background: 'var(--bg-2)' }}>
-          <div className="flex items-center justify-between font-mono text-[10.5px] uppercase tracking-[0.2em] text-ink-3">
+        <div className="flex min-h-0 flex-col gap-3 p-5 lg:p-6" style={{ background: 'var(--bg-2)' }}>
+          <div className="flex shrink-0 items-center justify-between font-mono text-[10.5px] uppercase tracking-[0.2em] text-ink-3">
             <span>Block visits · field map</span>
             <span className="text-ink-4">Muzaffarpur district</span>
           </div>
-          <DistrictVisitMap />
-          <div className="flex flex-wrap gap-2">
+          <div className="flex min-h-0 flex-1 items-center justify-center overflow-hidden">
+            <DistrictVisitMap />
+          </div>
+          <div className="flex shrink-0 flex-wrap gap-2">
             {['Bike & field visits', 'Block-level CHC audits', 'The odometer only goes up'].map((t) => (
               <span
                 key={t}
