@@ -18,21 +18,21 @@ type Block = {
 
 /** Stylised district map — layout follows the official block map, not to scale. */
 const BLOCKS: Block[] = [
-  { id: 'sahebganj', name: 'SAHEBGANJ', points: '24,72 66,66 72,102 60,120 28,114 18,92', label: [46, 97] },
-  { id: 'baruraji', name: 'BARURAJI', points: '68,66 122,60 130,86 126,112 74,118 70,98', label: [98, 93] },
-  { id: 'minapur', name: 'MINAPUR', points: '134,58 188,54 214,66 216,96 206,118 168,124 138,112 130,84', tone: 'muted', color: 'var(--indigo)', label: [172, 91] },
-  { id: 'aurai', name: 'AURAI', points: '230,48 272,44 296,56 296,82 284,100 254,106 236,94 226,70', tone: 'muted', color: 'var(--cyan)', label: [261, 77] },
+  { id: 'sahebganj', name: 'SAHEBGANJ', points: '24,72 66,66 72,102 60,120 28,114 18,92', tone: 'visited', color: 'var(--primary)', label: [46, 97], chc: [[44, 84]] },
+  { id: 'baruraji', name: 'BARURAJI', points: '68,66 122,60 130,86 126,112 74,118 70,98', tone: 'visited', color: 'var(--cyan)', label: [98, 93], chc: [[100, 78]] },
+  { id: 'minapur', name: 'MINAPUR', points: '134,58 188,54 214,66 216,96 206,118 168,124 138,112 130,84', tone: 'visited', color: 'var(--indigo)', label: [172, 91], chc: [[168, 74]] },
+  { id: 'aurai', name: 'AURAI', points: '230,48 272,44 296,56 296,82 284,100 254,106 236,94 226,70', tone: 'visited', color: 'var(--cyan)', label: [261, 77], chc: [[256, 62]] },
   { id: 'katra', name: 'KATRA', points: '278,104 306,100 316,118 310,138 286,142 274,128', tone: 'visited', color: 'var(--primary)', label: [295, 110], chc: [[286, 122]], hwc: [[300, 126], [292, 134], [304, 116]] },
-  { id: 'ne-arm', points: '318,74 358,76 372,102 368,142 346,158 322,148 312,120 314,96', tone: 'muted', color: 'var(--indigo)', label: [342, 118] },
-  { id: 'bochaha', name: 'BOCHAHA', points: '252,114 282,112 306,132 310,160 298,188 270,194 254,178 246,150', tone: 'visited', color: 'var(--accent)', label: [279, 144], chc: [[266, 158], [294, 172]], hwc: [[276, 178], [296, 150], [256, 168]] },
-  { id: 'gaighat', name: 'GAIGHAT', points: '318,152 356,158 372,178 368,214 344,228 318,216 310,186', tone: 'muted', color: 'var(--rose)', label: [342, 196] },
+  { id: 'ne-arm', points: '318,74 358,76 372,102 368,142 346,158 322,148 312,120 314,96', tone: 'visited', color: 'var(--rose)', label: [342, 118], chc: [[340, 96]] },
+  { id: 'bochaha', name: 'BOCHAHA', points: '252,114 282,112 306,132 310,160 298,188 270,194 254,178 246,150', tone: 'visited', color: 'var(--accent)', label: [279, 144], chc: [[266, 158]], hwc: [[276, 178], [296, 150], [256, 168]] },
+  { id: 'gaighat', name: 'GAIGHAT', points: '318,152 356,158 372,178 368,214 344,228 318,216 310,186', tone: 'visited', color: 'var(--rose)', label: [342, 196], chc: [[338, 176]] },
   { id: 'bandra', name: 'BANDRA', points: '314,224 350,232 364,252 356,272 324,276 310,254', label: [338, 256] },
-  { id: 'kanti', name: 'KANTI', points: '152,128 196,124 216,138 214,164 192,178 162,174 148,154', tone: 'muted', color: 'var(--cyan)', label: [182, 156] },
-  { id: 'marwan', name: 'MARWAN', points: '142,174 184,178 198,196 192,222 168,232 146,220 138,196', tone: 'muted', color: 'var(--accent)', label: [168, 208] },
-  { id: 'muzaffarpur', name: 'MUZAFFARPUR', points: '192,156 222,150 242,164 246,186 236,206 212,214 190,206 180,184 182,166', tone: 'visited', color: 'var(--primary)', label: [214, 198], chc: [[198, 172], [232, 194]], hwc: [[206, 200], [236, 170], [222, 204]] },
-  { id: 'paroo', name: 'PAROO', points: '26,132 72,128 98,144 100,178 90,208 60,216 32,202 20,170', tone: 'muted', color: 'var(--primary)', label: [60, 178] },
-  { id: 'saraiya', name: 'SARAIYA', points: '104,206 150,202 176,216 178,244 156,266 122,272 102,252 98,226', tone: 'muted', color: 'var(--accent)', label: [140, 242] },
-  { id: 'kurhani', name: 'KURHANI', points: '196,214 240,222 268,238 274,266 254,286 220,290 194,272 188,242', tone: 'visited', color: 'var(--cyan)', label: [232, 278], chc: [[218, 242], [248, 262]], hwc: [[236, 268], [208, 260], [258, 246]] },
+  { id: 'kanti', name: 'KANTI', points: '152,128 196,124 216,138 214,164 192,178 162,174 148,154', tone: 'visited', color: 'var(--cyan)', label: [182, 156], chc: [[176, 140]] },
+  { id: 'marwan', name: 'MARWAN', points: '142,174 184,178 198,196 192,222 168,232 146,220 138,196', tone: 'visited', color: 'var(--accent)', label: [168, 208], chc: [[160, 188]] },
+  { id: 'muzaffarpur', name: 'MUZAFFARPUR', points: '192,156 222,150 242,164 246,186 236,206 212,214 190,206 180,184 182,166', tone: 'visited', color: 'var(--primary)', label: [214, 198], chc: [[198, 172]], hwc: [[206, 200], [236, 170], [222, 204]] },
+  { id: 'paroo', name: 'PAROO', points: '26,132 72,128 98,144 100,178 90,208 60,216 32,202 20,170', tone: 'visited', color: 'var(--primary)', label: [60, 178], chc: [[54, 150]] },
+  { id: 'saraiya', name: 'SARAIYA', points: '104,206 150,202 176,216 178,244 156,266 122,272 102,252 98,226', tone: 'visited', color: 'var(--accent)', label: [140, 242], chc: [[132, 220]] },
+  { id: 'kurhani', name: 'KURHANI', points: '196,214 240,222 268,238 274,266 254,286 220,290 194,272 188,242', tone: 'visited', color: 'var(--cyan)', label: [232, 278], chc: [[218, 242]], hwc: [[236, 268], [208, 260], [258, 246]] },
   { id: 'dholi', name: 'DHOLI', points: '278,214 302,220 312,242 306,264 288,270 276,252 274,232', tone: 'visited', color: 'var(--rose)', label: [293, 262], chc: [[286, 234]], hwc: [[300, 252], [280, 256]] },
   { id: 'sakra', name: 'SAKRA', points: '248,268 288,274 310,286 304,304 272,308 248,296 240,280', tone: 'visited', color: 'var(--rose)', label: [276, 303], chc: [[264, 284]], hwc: [[292, 292], [254, 296]] },
 ];
@@ -55,6 +55,16 @@ const ROUTES: string[] = [
   `M${HQ[0]},${HQ[1]} Q 210,238 232,252`,
   `M${HQ[0]},${HQ[1]} Q 266,214 293,244`,
   `M${HQ[0]},${HQ[1]} Q 240,262 276,288`,
+  `M${HQ[0]},${HQ[1]} Q 140,120 98,93`,
+  `M${HQ[0]},${HQ[1]} Q 120,80 46,97`,
+  `M${HQ[0]},${HQ[1]} Q 180,70 172,91`,
+  `M${HQ[0]},${HQ[1]} Q 240,50 261,77`,
+  `M${HQ[0]},${HQ[1]} Q 300,80 340,96`,
+  `M${HQ[0]},${HQ[1]} Q 320,140 342,196`,
+  `M${HQ[0]},${HQ[1]} Q 160,140 176,140`,
+  `M${HQ[0]},${HQ[1]} Q 140,180 160,188`,
+  `M${HQ[0]},${HQ[1]} Q 80,160 54,150`,
+  `M${HQ[0]},${HQ[1]} Q 140,220 132,220`,
 ];
 
 export function DistrictVisitMap() {
@@ -226,7 +236,7 @@ export function DistrictVisitMap() {
       </div>
 
       <div className="flex shrink-0 flex-wrap items-center justify-between gap-2 border-t border-[var(--line)] pt-2">
-        <span className="font-mono text-[10px] uppercase tracking-[0.2em] text-ink-3">6/6 blocks · 12 CHCs covered</span>
+        <span className="font-mono text-[10px] uppercase tracking-[0.2em] text-ink-3">16/16 blocks · 16 CHCs visited</span>
         <span className="font-mono text-[10px] uppercase tracking-[0.2em] text-ink-4">HQ → field routes</span>
       </div>
     </div>

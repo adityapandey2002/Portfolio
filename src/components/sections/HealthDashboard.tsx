@@ -29,7 +29,7 @@ const VITALS = [
   { label: 'ASHA workers trained (M-ASHA)', value: 700, suffix: '+', pct: 100, foot: 'Field trainings · hands-on' },
   { label: 'Clinical refresher hours', value: 185, suffix: 'h', pct: 100, foot: '12 Staff Nurses · 4 Doctors' },
   { label: 'VHSND sessions QC’d', value: 1200, suffix: '+', pct: 78, foot: 'ODK field data validated' },
-  { label: 'PHC/CHC blocks covered', value: 6, suffix: '/6', pct: 100, foot: 'Bihar · Muzaffarpur' },
+  { label: 'PHC/CHC blocks covered', value: 16, suffix: '/16', pct: 100, foot: 'Bihar · Muzaffarpur' },
 ] as const;
 
 const DIAGNOSTICS = [
