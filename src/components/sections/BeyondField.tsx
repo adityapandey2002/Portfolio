@@ -41,14 +41,14 @@ export function BeyondField() {
           <div>
             <h3 className="text-[18px] font-semibold leading-snug text-ink">{SPOTLIGHT.title}</h3>
             <p
-              className="mt-2 text-[14px] leading-[1.75] text-ink-2"
+              className="mt-2 text-[13px] leading-[1.75] text-ink-2"
               dangerouslySetInnerHTML={{ __html: SPOTLIGHT.body }}
             />
             <div className="mt-4 flex flex-wrap gap-1.5">
               {SPOTLIGHT.tags.map((t) => (
                 <span
                   key={t}
-                  className="rounded-full border border-[var(--line-2)] px-2.5 py-1 font-mono text-[11px] uppercase tracking-[0.14em] text-ink-3"
+                  className="rounded-full border border-[var(--line-2)] px-2.5 py-1 font-mono text-[9.5px] uppercase tracking-[0.14em] text-ink-3"
                 >
                   {t}
                 </span>

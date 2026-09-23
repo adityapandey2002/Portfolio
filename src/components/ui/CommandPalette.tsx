@@ -126,17 +126,17 @@ export function CommandPaletteProvider({ children }: { children: ReactNode }) {
                   placeholder="Type a command or search…"
                   className="w-full bg-transparent text-base text-ink outline-none placeholder:text-ink-4"
                 />
-                <span className="rounded border border-[var(--line)] bg-bg px-1.5 py-0.5 font-mono text-[12px] text-ink-3">ESC</span>
+                <span className="rounded border border-[var(--line)] bg-bg px-1.5 py-0.5 font-mono text-[11px] text-ink-3">ESC</span>
               </div>
               <div ref={listRef} className="max-h-[360px] overflow-y-auto p-2">
-                {filtered.length === 0 && <div className="px-4 py-10 text-center text-[14px] text-ink-3">No matches. Try a different keyword.</div>}
+                {filtered.length === 0 && <div className="px-4 py-10 text-center text-[13px] text-ink-3">No matches. Try a different keyword.</div>}
                 {filtered.map((item, i) => {
                   const showSection = i === 0 || filtered[i - 1].section !== item.section;
                   const Icon = item.icon;
                   return (
                     <div key={item.name}>
                       {showSection && (
-                        <div className="px-3 pb-1 pt-3 font-mono text-[11.5px] uppercase tracking-widest text-ink-4">{item.section}</div>
+                        <div className="px-3 pb-1 pt-3 font-mono text-[10.5px] uppercase tracking-widest text-ink-4">{item.section}</div>
                       )}
                       <button
                         className={`flex w-full items-center gap-3 rounded-lg px-3 py-2.5 text-left transition-colors ${i === idx ? 'active bg-[var(--line-2)]' : ''}`}
@@ -150,13 +150,13 @@ export function CommandPaletteProvider({ children }: { children: ReactNode }) {
                           <span className="block text-sm font-medium text-ink">{item.name}</span>
                           <span className="block text-xs text-ink-3">{item.desc}</span>
                         </span>
-                        {item.kbd && <span className="font-mono text-[12px] text-ink-3">{item.kbd}</span>}
+                        {item.kbd && <span className="font-mono text-[11px] text-ink-3">{item.kbd}</span>}
                       </button>
                     </div>
                   );
                 })}
               </div>
-              <div className="border-t border-[var(--line)] px-5 py-2.5 font-mono text-[11.5px] text-ink-4">
+              <div className="border-t border-[var(--line)] px-5 py-2.5 font-mono text-[10.5px] text-ink-4">
                 ↑↓ navigate · Enter select · ⌘K toggle
               </div>
             </motion.div>

@@ -35,11 +35,11 @@ export function FieldSection() {
             transition={{ duration: 0.7, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
           >
             {profile.fieldQuote}
-            <footer className="mt-3 font-mono text-[12px] uppercase not-italic tracking-[0.2em] text-ink-3">{profile.fieldAuthor}</footer>
+            <footer className="mt-3 font-mono text-[11px] uppercase not-italic tracking-[0.2em] text-ink-3">{profile.fieldAuthor}</footer>
           </motion.blockquote>
 
           <motion.div
-            className="mt-7 grid grid-cols-2 gap-3"
+            className="mt-7 grid grid-cols-3 gap-3"
             initial={{ opacity: 0, y: 20 }}
             animate={inView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.7, delay: 0.35 }}
@@ -49,7 +49,7 @@ export function FieldSection() {
                 <div className="font-serif text-[clamp(24px,2.5vw,36px)] text-ink">
                   <CountUp target={s.value} suffix={s.suffix} />
                 </div>
-                <div className="mt-1 font-mono text-[11px] uppercase tracking-[0.18em] text-ink-3">{s.label}</div>
+                <div className="mt-1 font-mono text-[9.5px] uppercase tracking-[0.18em] text-ink-3">{s.label}</div>
               </div>
             ))}
           </motion.div>

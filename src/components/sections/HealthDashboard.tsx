@@ -2,13 +2,13 @@
 
 import Link from 'next/link';
 import { ArrowDownLeft, Activity, HeartPulse, Compass, Flower2 } from 'lucide-react';
-import { useRef } from 'react';
-import { motion, useInView } from 'framer-motion';
+import { motion } from 'framer-motion';
 import { SectionHeading } from './SectionHeading';
 import { CountUp } from './CountUp';
 import { PillarsOfWork } from './PillarsOfWork';
 import { FieldSection } from './FieldSection';
 import { Impact } from './Impact';
+import { DistrictVisitMap } from './DistrictVisitMap';
 
 const TRAINING = [
   {
@@ -41,8 +41,6 @@ const DIAGNOSTICS = [
 
 const KM_TOTAL = 13000;
 const KM_MAX = 20000;
-const ROUTE_D =
-  'M 32 210 C 90 200, 118 148, 170 136 C 220 124, 240 172, 290 150 C 335 130, 355 88, 372 52';
 
 const EASE: [number, number, number, number] = [0.16, 1, 0.3, 1];
 
@@ -140,9 +138,9 @@ function Gauge() {
           <span className="font-serif text-[clamp(40px,4.5vw,58px)] leading-none tracking-tight text-ink">
             {KM_TOTAL.toLocaleString('en-IN')}
           </span>
-          <span className="mb-1 font-mono text-[12px] font-semibold tracking-[0.3em] text-ink-3">KM</span>
+          <span className="mb-1 font-mono text-[11px] font-semibold tracking-[0.3em] text-ink-3">KM</span>
         </div>
-        <span className="font-mono text-[11px] uppercase tracking-[0.22em] text-ink-4">
+        <span className="font-mono text-[9.5px] uppercase tracking-[0.22em] text-ink-4">
           field distance · since jul 2025
         </span>
       </div>
@@ -150,113 +148,9 @@ function Gauge() {
   );
 }
 
-function RouteMap() {
-  return (
-    <svg viewBox="0 0 400 250" className="w-full">
-      <defs>
-        <linearGradient id="routeGrad" x1="0%" y1="100%" x2="100%" y2="0%">
-          <stop offset="0%" stopColor="var(--primary)" />
-          <stop offset="100%" stopColor="var(--cyan)" />
-        </linearGradient>
-      </defs>
-
-      <g stroke="var(--line-2)" strokeWidth="1" opacity="0.35">
-        {[0, 1, 2, 3].map((i) => (
-          <line key={`v${i}`} x1={40 + i * 80} y1="16" x2={40 + i * 80} y2="234" />
-        ))}
-        {[0, 1, 2].map((i) => (
-          <line key={`h${i}`} x1="20" y1={60 + i * 70} x2="380" y2={60 + i * 70} />
-        ))}
-      </g>
-
-      <path d={ROUTE_D} fill="none" stroke="var(--line-2)" strokeWidth="2.5" strokeDasharray="1 9" strokeLinecap="round" />
-      <path
-        d={ROUTE_D}
-        fill="none"
-        stroke="url(#routeGrad)"
-        strokeWidth="2.5"
-        strokeLinecap="round"
-        style={{ filter: 'drop-shadow(0 0 6px var(--primary-glow))' }}
-      />
-      <circle className="route-dot" r="5.5" fill="var(--accent)" style={{ filter: 'drop-shadow(0 0 8px var(--accent-glow))' }} />
-
-      <circle cx="32" cy="210" r="6" fill="var(--bg-3)" stroke="var(--primary)" strokeWidth="2" />
-      <circle cx="32" cy="210" r="2" fill="var(--primary)" />
-      <text x="32" y="196" textAnchor="middle" fill="var(--ink-3)" fontSize="9.5" fontFamily="var(--font-mono)" letterSpacing="1">
-        MUZAFFARPUR
-      </text>
-
-      <circle cx="170" cy="136" r="4" fill="var(--bg-3)" stroke="var(--ink-3)" strokeWidth="1.5" />
-      <text x="170" y="128" textAnchor="middle" fill="var(--ink-4)" fontSize="9" fontFamily="var(--font-mono)" letterSpacing="1">
-        CHC AUDITS
-      </text>
-
-      <circle cx="372" cy="52" r="6" fill="var(--bg-3)" stroke="var(--accent)" strokeWidth="2" />
-      <circle className="blip" cx="372" cy="52" r="2.5" fill="var(--accent)" />
-      <text x="372" y="42" textAnchor="middle" fill="var(--ink-2)" fontSize="9.5" fontFamily="var(--font-mono)" letterSpacing="1">
-        MUZAFFARPUR · NOW
-      </text>
-    </svg>
-  );
-}
-
-function Odometer() {
-  const digits = KM_TOTAL.toLocaleString('en-IN').split('');
-  return (
-    <div>
-      <div className="flex items-end justify-between font-mono text-[11.5px] uppercase tracking-[0.2em] text-ink-3">
-        <span>Field odometer · digital</span>
-        <span className="inline-flex items-center gap-1.5 text-primary">
-          <span className="blip h-1.5 w-1.5 rounded-full bg-primary" /> logging
-        </span>
-      </div>
-      <div className="mt-3 overflow-hidden rounded-xl border border-[var(--line-2)] bg-[var(--bg-3)]">
-        <div
-          className="h-3 w-full"
-          style={{
-            backgroundImage: 'repeating-linear-gradient(90deg, var(--ink-3) 0 1px, transparent 1px 9px)',
-            opacity: 0.35,
-          }}
-        />
-        <div
-          className="flex items-end gap-1.5 px-4 pb-3 pt-1 font-serif text-[clamp(42px,5vw,72px)] leading-none tracking-tight text-ink"
-          style={{ fontVariantNumeric: 'tabular-nums' }}
-        >
-          {digits.map((c, i) =>
-            c === ',' ? (
-              <span key={i} className="relative inline-block h-[1em] w-[0.38em] overflow-hidden">
-                <span className="absolute inset-0 flex items-center justify-center text-ink-2">{c}</span>
-              </span>
-            ) : (
-              <span key={i} className="relative inline-block h-[1em] w-[0.7em] overflow-hidden">
-                <motion.span
-                  className="absolute inset-x-0 top-0 flex flex-col will-change-transform"
-                  style={{ height: '10em' }}
-                  initial={{ y: '-110%' }}
-                  animate={{ y: `-${Number(c) * 10}%` }}
-                  transition={{ duration: 0.9, delay: 0.15 + i * 0.08, ease: EASE }}
-                >
-                  {Array.from({ length: 10 }, (_, n) => (
-                    <span key={n} className="flex h-[1em] items-center justify-center">
-                      {n}
-                    </span>
-                  ))}
-                </motion.span>
-              </span>
-            ),
-          )}
-          <span className="ml-2 inline-flex h-[1em] flex-col justify-end pb-[0.14em] font-mono text-[0.42em] font-semibold tracking-[0.28em] text-ink-3">
-            KM
-          </span>
-        </div>
-      </div>
-    </div>
-  );
-}
-
 function FieldKmMeter() {
   return (
-    <section className="mx-auto max-w-[1500px] px-5 py-16 lg:px-10 lg:py-24">
+    <section className="mx-auto max-w-[1500px] px-5 py-24 lg:px-10">
       <SectionHeading
         eyebrow="/* FIELD KM */"
         title={
@@ -266,42 +160,33 @@ function FieldKmMeter() {
         }
         sub="Every block visit is a data point. This is the odometer of the fellowship so far."
       />
-      <div className="overflow-hidden rounded-2xl border border-[var(--line)] bg-[var(--line)]">
-        <div className="grid grid-cols-1 gap-px bg-[var(--line)] lg:grid-cols-3">
-          <div className="flex flex-col justify-center gap-6 p-8 lg:p-10" style={{ background: 'var(--bg-2)' }}>
-            <div className="flex items-center justify-between font-mono text-[11.5px] uppercase tracking-[0.2em] text-ink-3">
-              <span>Field odometer · analog</span>
-              <span className="inline-flex items-center gap-1.5 text-primary">
-                <span className="blip h-1.5 w-1.5 rounded-full bg-primary" /> LIVE
-              </span>
-            </div>
-            <Gauge />
+      <div className="grid grid-cols-1 gap-px overflow-hidden rounded-2xl border border-[var(--line)] bg-[var(--line)] lg:grid-cols-2">
+        <div className="flex flex-col justify-center gap-6 p-8 lg:p-10" style={{ background: 'var(--bg-2)' }}>
+          <div className="flex items-center justify-between font-mono text-[10.5px] uppercase tracking-[0.2em] text-ink-3">
+            <span>Field odometer · analog</span>
+            <span className="inline-flex items-center gap-1.5 text-primary">
+              <span className="blip h-1.5 w-1.5 rounded-full bg-primary" /> LIVE
+            </span>
           </div>
-
-          <div className="flex flex-col justify-between gap-6 p-8 lg:col-span-2 lg:p-10" style={{ background: 'var(--bg-2)' }}>
-            <div className="flex items-center justify-between font-mono text-[11.5px] uppercase tracking-[0.2em] text-ink-3">
-              <span>Route · Bihar field program</span>
-              <span className="text-ink-4">Muzaffarpur district</span>
-            </div>
-            <div className="max-h-[260px] overflow-hidden">
-              <RouteMap />
-            </div>
-            <div className="flex flex-wrap gap-2">
-              {['Bike & field visits', 'Block-level CHC audits', 'The odometer only goes up'].map((t) => (
-                <span
-                  key={t}
-                  className="rounded-full border border-[var(--line-2)] px-3 py-1 font-mono text-[11.5px] uppercase tracking-[0.16em] text-ink-3"
-                >
-                  {t}
-                </span>
-              ))}
-            </div>
-          </div>
+          <Gauge />
         </div>
 
-        {/* Full-width odometer strip so it can never fall off the section */}
-        <div className="border-t border-[var(--line)] p-8 lg:p-10" style={{ background: 'var(--bg-2)' }}>
-          <Odometer />
+        <div className="flex flex-col justify-between gap-6 p-8 lg:p-10" style={{ background: 'var(--bg-2)' }}>
+          <div className="flex items-center justify-between font-mono text-[10.5px] uppercase tracking-[0.2em] text-ink-3">
+            <span>Block visits · field map</span>
+            <span className="text-ink-4">Muzaffarpur district</span>
+          </div>
+          <DistrictVisitMap />
+          <div className="flex flex-wrap gap-2">
+            {['Bike & field visits', 'Block-level CHC audits', 'The odometer only goes up'].map((t) => (
+              <span
+                key={t}
+                className="rounded-full border border-[var(--line-2)] px-3 py-1 font-mono text-[10px] uppercase tracking-[0.16em] text-ink-3"
+              >
+                {t}
+              </span>
+            ))}
+          </div>
         </div>
       </div>
     </section>
@@ -344,7 +229,7 @@ export function HealthDashboard() {
         <div className="grid grid-cols-1 gap-px overflow-hidden rounded-2xl border border-[var(--line)] bg-[var(--line)] lg:grid-cols-5">
           {/* Patient monitor */}
           <div className="relative flex flex-col justify-between gap-8 p-8" style={{ background: 'var(--bg-2)' }}>
-            <div className="flex items-center justify-between font-mono text-[11.5px] uppercase tracking-[0.2em] text-ink-3">
+            <div className="flex items-center justify-between font-mono text-[10.5px] uppercase tracking-[0.2em] text-ink-3">
               <span>PATIENT · BIHAR FIELD PROGRAM</span>
               <span className="inline-flex items-center gap-1.5 text-primary">
                 <span className="blip h-2 w-2 rounded-full bg-primary" /> LIVE
@@ -362,12 +247,12 @@ export function HealthDashboard() {
                   className="ecg-path"
                 />
               </svg>
-              <div className="absolute -bottom-1 left-3 font-mono text-[11.5px] uppercase tracking-[0.18em] text-ink-4">lead II · 25 mm/s</div>
+              <div className="absolute -bottom-1 left-3 font-mono text-[10px] uppercase tracking-[0.18em] text-ink-4">lead II · 25 mm/s</div>
             </div>
 
             <div>
               <div className="flex items-end justify-between">
-                <span className="font-mono text-[11.5px] uppercase tracking-[0.2em] text-ink-3">System Health</span>
+                <span className="font-mono text-[10.5px] uppercase tracking-[0.2em] text-ink-3">System Health</span>
                 <span className="font-serif text-[44px] leading-none tracking-tight">
                   <CountUp target={94} suffix="%" className="text-gradient" />
                 </span>
@@ -385,7 +270,7 @@ export function HealthDashboard() {
                   transition={{ duration: 1.4, delay: 0.2, ease: EASE }}
                 />
               </div>
-              <p className="mt-3 font-mono text-[11.5px] uppercase tracking-[0.18em] text-ink-3">
+              <p className="mt-3 font-mono text-[10.5px] uppercase tracking-[0.18em] text-ink-3">
                 Field data + capacity building · <span className="text-primary">NORMAL</span>
               </p>
             </div>
@@ -399,7 +284,7 @@ export function HealthDashboard() {
               { k: 'ASHA coverage', v: 94, unit: '%', pct: 94 },
             ].map((m, i) => (
               <div key={m.k} className="flex flex-1 flex-col justify-center gap-3 p-7" style={{ background: 'var(--bg-2)' }}>
-                <div className="flex items-center justify-between font-mono text-[11.5px] uppercase tracking-[0.2em] text-ink-3">
+                <div className="flex items-center justify-between font-mono text-[10.5px] uppercase tracking-[0.2em] text-ink-3">
                   <span>{m.k}</span>
                   <span className="text-primary">{m.unit}</span>
                 </div>
@@ -423,10 +308,9 @@ export function HealthDashboard() {
         </section>
       </div>
 
-      {/* No snap wrapper here: the Field KM band is taller than one viewport on
-          many laptops, and the snap-section's overflow:hidden was clipping the
-          odometer off-screen. Natural height keeps it always reachable. */}
-      <FieldKmMeter />
+      <div className="snap-section">
+        <FieldKmMeter />
+      </div>
 
       {/* Vitals grid */}
       <div className="snap-section">
@@ -452,7 +336,7 @@ export function HealthDashboard() {
               transition={{ duration: 0.7, delay: i * 0.1, ease: EASE }}
             >
               <div className="flex items-start justify-between">
-                <span className="font-mono text-[11.5px] uppercase tracking-[0.2em] text-ink-3">{v.label}</span>
+                <span className="font-mono text-[10.5px] uppercase tracking-[0.2em] text-ink-3">{v.label}</span>
                 <HeartPulse size={14} className="text-primary" />
               </div>
               <div>
@@ -472,7 +356,7 @@ export function HealthDashboard() {
                     transition={{ duration: 1.3, delay: 0.2 + i * 0.1, ease: EASE }}
                   />
                 </div>
-                <div className="mt-3 font-mono text-[11.5px] uppercase tracking-[0.18em] text-ink-3">{v.foot}</div>
+                <div className="mt-3 font-mono text-[10.5px] uppercase tracking-[0.18em] text-ink-3">{v.foot}</div>
               </div>
               <span className="absolute bottom-0 left-0 h-px w-0 bg-gradient-to-r from-primary to-accent transition-all duration-500 group-hover:w-full" />
             </motion.div>
@@ -506,17 +390,17 @@ export function HealthDashboard() {
                 <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-primary/10 text-primary transition-transform duration-300 group-hover:scale-110">
                   <t.icon size={20} />
                 </span>
-                <h3 className="text-[16px] font-semibold leading-snug text-ink">{t.title}</h3>
+                <h3 className="text-[15px] font-semibold leading-snug text-ink">{t.title}</h3>
               </div>
               <p
-                className="mt-4 text-[14px] leading-[1.75] text-ink-2"
+                className="mt-4 text-[13px] leading-[1.75] text-ink-2"
                 dangerouslySetInnerHTML={{ __html: t.body }}
               />
               <div className="mt-4 flex flex-wrap gap-1.5">
                 {t.tags.map((tag) => (
                   <span
                     key={tag}
-                    className="rounded-full border border-[var(--line-2)] px-2.5 py-1 font-mono text-[11px] uppercase tracking-[0.14em] text-ink-3"
+                    className="rounded-full border border-[var(--line-2)] px-2.5 py-1 font-mono text-[9.5px] uppercase tracking-[0.14em] text-ink-3"
                   >
                     {tag}
                   </span>
@@ -553,10 +437,10 @@ export function HealthDashboard() {
             >
               <div className="flex items-center gap-3">
                 <Activity size={15} className="shrink-0 text-primary" />
-                <span className="text-[15px] text-ink">{d.name}</span>
+                <span className="text-[14px] text-ink">{d.name}</span>
               </div>
               <span
-                className={`inline-flex w-fit items-center gap-1.5 rounded-full px-3 py-1 font-mono text-[11.5px] font-semibold tracking-widest ${
+                className={`inline-flex w-fit items-center gap-1.5 rounded-full px-3 py-1 font-mono text-[10px] font-semibold tracking-widest ${
                   d.tone === 'green' ? 'text-primary' : 'text-accent'
                 }`}
                 style={{
@@ -574,7 +458,7 @@ export function HealthDashboard() {
         <div className="mt-12 text-center">
           <Link
             href="/"
-            className="inline-flex items-center gap-3 rounded-lg border border-[var(--line)] bg-bg-2 px-6 py-3.5 font-mono text-[13px] uppercase tracking-[0.2em] text-ink transition-all duration-300 hover:-translate-y-0.5 hover:border-primary hover:text-primary hover:shadow-[0_12px_30px_-12px_var(--primary-glow)]"
+            className="inline-flex items-center gap-3 rounded-lg border border-[var(--line)] bg-bg-2 px-6 py-3.5 font-mono text-[12px] uppercase tracking-[0.2em] text-ink transition-all duration-300 hover:-translate-y-0.5 hover:border-primary hover:text-primary hover:shadow-[0_12px_30px_-12px_var(--primary-glow)]"
           >
             <ArrowDownLeft size={15} />
             Back to the field

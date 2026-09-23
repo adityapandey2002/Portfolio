@@ -86,14 +86,14 @@ export function Nav({ onOpenPalette }: { onOpenPalette: () => void }) {
       >
         {/* Logo */}
         <Link href="/" className="group flex items-center gap-2" data-grab>
-          <span className="relative inline-flex h-6 w-6 items-center justify-center rounded-md bg-primary font-mono text-[12px] font-bold text-bg">
+          <span className="relative inline-flex h-6 w-6 items-center justify-center rounded-md bg-primary font-mono text-[11px] font-bold text-bg">
             {profile.initials}
             <span
               className="absolute -inset-[3px] rounded-[7px] border border-dashed border-primary opacity-40"
               style={{ animation: 'spin 12s linear infinite' }}
             />
           </span>
-          <span className="text-[14px] font-semibold text-ink">{profile.name}</span>
+          <span className="text-[13px] font-semibold text-ink">{profile.name}</span>
         </Link>
 
         {/* Desktop nav links */}
@@ -102,7 +102,7 @@ export function Nav({ onOpenPalette }: { onOpenPalette: () => void }) {
             <Link
               key={l.href}
               href={l.href}
-              className="relative rounded-full px-3 py-1 text-[13.5px] font-medium text-ink-3 transition-colors hover:text-ink"
+              className="relative rounded-full px-3 py-1 text-[12.5px] font-medium text-ink-3 transition-colors hover:text-ink"
               style={isActive(l.href) ? { color: 'var(--ink)', background: 'var(--line-2)' } : undefined}
             >
               {l.label}
@@ -154,7 +154,7 @@ export function Nav({ onOpenPalette }: { onOpenPalette: () => void }) {
             <Link
               key={l.href}
               href={l.href}
-              className="block rounded-xl px-4 py-2.5 text-[14px] text-ink-2 hover:bg-[var(--line-2)] hover:text-ink"
+              className="block rounded-xl px-4 py-2.5 text-[13px] text-ink-2 hover:bg-[var(--line-2)] hover:text-ink"
             >
               {l.label}
             </Link>

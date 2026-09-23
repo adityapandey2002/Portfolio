@@ -2,11 +2,12 @@
 
 import { useRef } from 'react';
 import { motion, useInView } from 'framer-motion';
-import { Database, Code2, Bot, Users } from 'lucide-react';
-import { skillThemes } from '@/lib/data/skills';
+import { Database, Eraser, Hammer, Rocket, Radar } from 'lucide-react';
+import { pipelineStages, radar } from '@/lib/data/skills';
 import { SectionHeading } from './SectionHeading';
+import { RadarChart } from './RadarChart';
 
-const STAGE_ICONS = [Database, Code2, Bot, Users];
+const STAGE_ICONS = [Database, Eraser, Hammer, Rocket];
 
 export function Skills() {
   const ref = useRef<HTMLDivElement>(null);
@@ -17,19 +18,19 @@ export function Skills() {
       <div className="mx-auto flex min-h-0 w-full max-w-[1500px] flex-1 flex-col">
         <div className="flex flex-wrap items-end justify-between gap-4">
           <SectionHeading
-            eyebrow="/* 05 · CAPABILITIES */"
+            eyebrow="/* 05 · SKILLS */"
             className="mb-4"
             title={
               <>
-                Four lanes, <span className="text-gradient">one pipeline</span>
+                A stack that spans the <span className="text-gradient">whole pipeline</span>
               </>
             }
-            sub="Data science, web development, automation and community — the skills that move a project from field to production."
+            sub="From an ODK form in a village to an Nginx server in production."
           />
         </div>
 
-        <div ref={ref} className="grid min-h-0 flex-1 gap-4 lg:grid-cols-4">
-          {skillThemes.map((s, i) => {
+        <div ref={ref} className="grid min-h-0 flex-1 gap-4 lg:grid-cols-5">
+          {pipelineStages.map((s, i) => {
             const Icon = STAGE_ICONS[i] ?? Database;
             return (
               <motion.div
@@ -40,13 +41,13 @@ export function Skills() {
                 transition={{ duration: 0.6, delay: 0.1 + i * 0.1, ease: [0.16, 1, 0.3, 1] }}
               >
                 <div className="flex items-center justify-between">
-                  <span className="font-mono text-[12px] font-semibold tracking-widest text-primary">{s.index}</span>
+                  <span className="font-mono text-[11px] font-semibold tracking-widest text-primary">{s.index}</span>
                   <span className="flex h-9 w-9 items-center justify-center rounded-xl bg-primary/10 text-primary transition-transform duration-300 group-hover:scale-110">
                     <Icon size={17} />
                   </span>
                 </div>
-                <h4 className="mt-4 font-mono text-[14px] font-semibold uppercase tracking-[0.18em] text-ink">{s.name}</h4>
-                <p className="mt-2 text-[13.5px] leading-[1.65] text-ink-2">{s.line}</p>
+                <h4 className="mt-4 font-mono text-[13px] font-semibold uppercase tracking-[0.18em] text-ink">{s.name}</h4>
+                <p className="mt-2 text-[12.5px] leading-[1.65] text-ink-2">{s.line}</p>
                 <div className="mt-4 flex flex-wrap gap-1.5">
                   {s.pills.map((p) => (
                     <span key={p} className="skill-pill">
@@ -56,8 +57,8 @@ export function Skills() {
                 </div>
                 <div className="mt-auto pt-5">
                   <div className="mb-1.5 flex items-center justify-between">
-                    <span className="text-[12px] font-medium text-ink-3">{s.barLabel}</span>
-                    <span className="font-mono text-[12px] text-primary">{s.barPct}%</span>
+                    <span className="text-[11px] font-medium text-ink-3">{s.barLabel}</span>
+                    <span className="font-mono text-[11px] text-primary">{s.barPct}%</span>
                   </div>
                   <div className="h-1.5 overflow-hidden rounded-full bg-bg-3">
                     <motion.div
@@ -71,6 +72,19 @@ export function Skills() {
               </motion.div>
             );
           })}
+
+          <motion.div
+            className="relative flex flex-col items-center justify-center rounded-2xl border border-[var(--line)] bg-bg-2/60 p-5"
+            initial={{ opacity: 0, scale: 0.95 }}
+            animate={inView ? { opacity: 1, scale: 1 } : {}}
+            transition={{ duration: 0.6, delay: 0.5, ease: [0.16, 1, 0.3, 1] }}
+          >
+            <span className="mb-1 inline-flex items-center gap-1.5 font-mono text-[10px] uppercase tracking-[0.2em] text-ink-3">
+              <Radar size={12} className="text-primary" />
+              Self-assessment radar
+            </span>
+            <RadarChart labels={radar.labels} data={radar.data} />
+          </motion.div>
         </div>
       </div>
     </section>

@@ -25,7 +25,7 @@ export function AiSection() {
             }
           />
           <motion.p
-            className="max-w-[520px] text-[15.5px] leading-relaxed text-ink-2"
+            className="max-w-[520px] text-[14.5px] leading-relaxed text-ink-2"
             initial={{ opacity: 0, y: 16 }}
             animate={inView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.7, delay: 0.2 }}
@@ -42,7 +42,7 @@ export function AiSection() {
             transition={{ duration: 0.7, delay: 0.3 }}
           >
             {['pgvector', 'Groq · 70B', 'Streaming', 'RAG over my resume'].map((t) => (
-              <span key={t} className="rounded-sm border border-[var(--line)] bg-bg-2 px-3 py-1.5 font-mono text-[11.5px] text-ink-2">
+              <span key={t} className="rounded-sm border border-[var(--line)] bg-bg-2 px-3 py-1.5 font-mono text-[10.5px] text-ink-2">
                 {t}
               </span>
             ))}

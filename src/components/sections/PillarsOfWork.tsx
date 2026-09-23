@@ -12,21 +12,6 @@ import { PILLAR_LAYERS, type PillarLayer } from '@/lib/data/pillars';
 
 const EASE: [number, number, number, number] = [0.16, 1, 0.3, 1];
 
-const TICKER = [
-  'VHSND session',
-  'PMSMA supervision',
-  'Stock-out flag',
-  'HMIS validation',
-  'Portal sync',
-  'NQAS walkthrough',
-  'Gram Chaupal',
-  'Godbharai',
-  'Quarterly indent',
-  'Data review meeting',
-  'JAS meeting',
-  'FRU readiness',
-];
-
 /* ── Stage stepper: pinned deck, scroll distance maps to steps (both ways) ── */
 function useStageStepper(count: number, ref: RefObject<HTMLDivElement | null>) {
   const [active, setActive] = useState(0);
@@ -37,7 +22,7 @@ function useStageStepper(count: number, ref: RefObject<HTMLDivElement | null>) {
 
   useEffect(() => {
     const last = count - 1;
-    const STEP = 56;
+    const STEP = 160;
     const GESTURE_GAP = 160;
     let acc = 0;
     let lastWheel = 0;
@@ -223,13 +208,13 @@ function HeroLayer({ layer }: { layer: PillarLayer }) {
             <span className="pillar-orb pointer-events-none absolute -bottom-1 -left-2 h-2 w-2 rounded-full bg-cyan" />
           </div>
 
-          <p className="font-mono text-[11.5px] uppercase tracking-[0.3em] text-primary/80">{layer.eyebrow}</p>
+          <p className="font-mono text-[10px] uppercase tracking-[0.3em] text-primary/80">{layer.eyebrow}</p>
           <h3
             className={cn('draw-title font-serif text-[clamp(24px,3.2vw,40px)] font-semibold leading-[1.05] tracking-tight', inView && 'in')}
           >
             {item.label}
           </h3>
-          <p className="max-w-[540px] text-[14px] leading-relaxed text-ink-2">{item.desc}</p>
+          <p className="max-w-[540px] text-[13px] leading-relaxed text-ink-2">{item.desc}</p>
         </div>
       </div>
     </motion.div>
@@ -279,8 +264,8 @@ function DualLayer({ layer }: { layer: PillarLayer }) {
                 </motion.div>
               </div>
               <div>
-                <h4 className="text-[16px] font-semibold text-ink">{item.label}</h4>
-                <p className="mt-1.5 text-[13px] leading-relaxed text-ink-2">{item.desc}</p>
+                <h4 className="text-[15px] font-semibold text-ink">{item.label}</h4>
+                <p className="mt-1.5 text-[12px] leading-relaxed text-ink-2">{item.desc}</p>
               </div>
             </div>
           </motion.div>
@@ -290,13 +275,10 @@ function DualLayer({ layer }: { layer: PillarLayer }) {
   );
 }
 
-/* ── Domains: pinned stage, one card at a time ───────────────────── */
+/* ── Domains: five strands laid straight on the page (no deck) ── */
 function DomainStage({ layer }: { layer: PillarLayer }) {
-  const items = layer.items;
-  const stageRef = useRef<HTMLDivElement>(null);
-  const [active, setActive] = useStageStepper(items.length, stageRef);
-  const item = items[active];
-  const Icon = item.icon;
+  const ref = useRef<HTMLDivElement>(null);
+  const inView = useInView(ref, { once: true, margin: '-60px' });
 
   return (
     <ChapterBlock>
@@ -307,121 +289,33 @@ function DomainStage({ layer }: { layer: PillarLayer }) {
             Where we <span className="text-gradient">work</span>
           </>
         }
-        sub="One domain at a time — scroll (or use the dots) to step through the cards, down and back up."
+        sub="Five work domains — maternal health through emergency care, straight on the page."
       />
-      <div className="relative" style={{ height: `${items.length * 65}vh` }}>
-        <div
-          ref={stageRef}
-          className="who-stage sticky isolate flex overflow-hidden rounded-2xl border border-[var(--line)] bg-bg-2"
-          style={{ top: 'calc(var(--nav-h) + 24px)' }}
-        >
-          <div
-            className="pointer-events-none absolute inset-0 opacity-40"
-            style={{
-              background: 'radial-gradient(60% 90% at 12% 18%, var(--primary-glow), transparent 62%)',
-            }}
-          />
-
-          <AnimatePresence mode="wait">
+      <div ref={ref} className="grid grid-cols-1 gap-x-8 gap-y-8 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5">
+        {layer.items.map((item, i) => {
+          const Icon = item.icon;
+          return (
             <motion.div
               key={item.id}
-              initial={{ opacity: 0, x: 48, rotateY: 8 }}
-              animate={{ opacity: 1, x: 0, rotateY: 0 }}
-              exit={{ opacity: 0, x: -48, rotateY: -8 }}
-              transition={{ duration: 0.5, ease: EASE }}
-              className="pillar-border-anim group/card relative flex h-full w-full flex-col items-center justify-center gap-6 overflow-hidden p-6 text-center sm:flex-row sm:gap-10 sm:px-14 sm:text-left"
+              className="relative"
               style={{ ['--layer-color' as string]: item.color || 'var(--primary)' }}
+              initial={{ opacity: 0, y: 18 }}
+              animate={inView ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: 0.5, delay: i * 0.08, ease: EASE }}
             >
-              {/* layer accent hairline */}
-              <div
-                className="absolute inset-x-0 top-0 h-[3px]"
-                style={{ background: `linear-gradient(to right, var(--layer-color), var(--accent))` }}
-              />
-
-              {/* ghost index */}
-              <span className="pointer-events-none absolute right-6 top-5 select-none font-mono text-[64px] font-bold leading-none text-ink-4/40 opacity-40 sm:right-10 sm:text-[96px]">
-                {String(active + 1).padStart(2, '0')}
-              </span>
-              <span className="pointer-events-none absolute right-6 top-[92px] font-mono text-[11.5px] uppercase tracking-[0.3em] text-ink-4 sm:right-10">
-                domain
-              </span>
-
-              <span
-                className="pointer-events-none absolute -bottom-16 left-1/2 h-56 w-56 -translate-x-1/2 rounded-full opacity-25 blur-3xl"
-                style={{ background: 'var(--layer-color)' }}
-              />
-
-              <div className="relative shrink-0">
-                <motion.span
-                  className="pillar-ripple absolute inset-0 rounded-2xl"
-                  style={{ background: 'var(--layer-color)' }}
-                  animate={{ scale: [1, 1.6], opacity: [0.4, 0] }}
-                  transition={{ duration: 2.4, repeat: Infinity, ease: 'easeOut' }}
-                />
-                <motion.div
-                  className="relative flex h-16 w-16 items-center justify-center rounded-2xl border border-[var(--layer-color)]/30 bg-[var(--layer-color)]/10 sm:h-20 sm:w-20"
-                  whileHover={{ scale: 1.08, rotate: -6 }}
-                  transition={{ type: 'spring', stiffness: 320, damping: 15 }}
-                >
-                  <Icon
-                    size={30}
-                    className="text-[var(--layer-color)]"
-                    style={{ filter: 'drop-shadow(0 0 10px var(--primary-glow))' }}
-                  />
-                </motion.div>
+              <div className="flex items-center justify-between border-t border-[var(--line-2)] pt-4">
+                <span className="font-mono text-[10px] tracking-[0.2em]" style={{ color: 'var(--layer-color)' }}>
+                  {String(i + 1).padStart(2, '0')}
+                </span>
+                <Icon size={16} style={{ color: 'var(--layer-color)' }} />
               </div>
-
-              <div className="max-w-[64ch]">
-                <div className="flex items-center justify-center gap-2 sm:justify-start">
-                  <span
-                    className="h-1.5 w-1.5 rounded-full"
-                    style={{ background: 'var(--layer-color)', boxShadow: '0 0 8px var(--layer-color)' }}
-                  />
-                  <span className="font-mono text-[11px] uppercase tracking-[0.26em] text-ink-4">
-                    live domain slot
-                  </span>
-                </div>
-                <h3 className="mt-2 font-serif text-[clamp(24px,3.2vw,40px)] font-semibold leading-tight tracking-tight text-ink">
-                  {item.label}
-                </h3>
-                <p className="mt-3 text-[14.5px] leading-relaxed text-ink-2">{item.desc}</p>
-                <div className="mt-5 flex flex-wrap items-center justify-center gap-2 border-t border-dashed border-[var(--line-2)] pt-4 sm:justify-start">
-                  <span className="rounded-full border border-[var(--line-2)] px-3 py-1 font-mono text-[11px] uppercase tracking-[0.18em] text-ink-3">
-                    card {String(active + 1).padStart(2, '0')} / {String(items.length).padStart(2, '0')}
-                  </span>
-                  <span className="font-mono text-[11px] uppercase tracking-[0.18em] text-ink-4">
-                    locked to slot · scroll to switch
-                  </span>
-                </div>
-              </div>
+              <h3 className="mt-3 font-serif text-[clamp(17px,1.4vw,21px)] font-semibold leading-snug tracking-tight text-ink">
+                {item.label}
+              </h3>
+              <p className="mt-2 text-[12.5px] leading-relaxed text-ink-3">{item.desc}</p>
             </motion.div>
-          </AnimatePresence>
-
-          {/* deck counter + jump dots */}
-          <div className="absolute inset-x-6 bottom-5 flex items-center gap-3 sm:inset-x-8">
-            <span className="font-mono text-[11px] uppercase tracking-[0.2em] text-ink-4">
-              domain {String(active + 1).padStart(2, '0')} / {String(items.length).padStart(2, '0')}
-            </span>
-            <div className="flex items-center gap-1.5">
-              {items.map((_, i) => (
-                <button
-                  key={i}
-                  type="button"
-                  onClick={() => setActive(i)}
-                  aria-label={`go to domain ${i + 1}`}
-                  className={cn(
-                    'h-1.5 w-5 rounded-full transition-all duration-300',
-                    i === active
-                      ? 'bg-gradient-to-r from-primary to-accent'
-                      : i < active
-                        ? 'bg-primary/40 hover:bg-primary/60'
-                        : 'bg-[var(--line-2)] hover:bg-[var(--line)]'
-                  )}
-                />
-              ))}
-            </div>
-          </div>
-        </div>
+          );
+        })}
       </div>
     </ChapterBlock>
   );
@@ -445,24 +339,8 @@ function SystemScrub({ layer }: { layer: PillarLayer }) {
             WHO building blocks, <span className="text-gradient">under focus</span>
           </>
         }
-        sub="This is day-to-day fellowship work — support activities woven into the WHO building blocks of the health system. Scroll to step through, down then up."
+        sub="Scroll to step through the building blocks one at a time — down then up, or jump straight via the side rail."
       />
-
-      {/* Daily engagement ticker */}
-      <div className="mt-6 overflow-hidden rounded-lg border border-[var(--line-2)] bg-bg-3/60 py-2.5">
-        <div className="marquee flex w-max items-center">
-          {[0, 1].map((dup) => (
-            <ul key={dup} className="flex shrink-0 items-center gap-3 pr-3" aria-hidden={dup === 1}>
-              {TICKER.map((t) => (
-                <li key={t} className="inline-flex items-center gap-2 font-mono text-[11.5px] uppercase tracking-[0.18em] text-ink-3">
-                  <span className="h-1.5 w-1.5 rounded-full bg-primary" style={{ boxShadow: '0 0 6px var(--primary-glow)' }} />
-                  {t}
-                </li>
-              ))}
-            </ul>
-          ))}
-        </div>
-      </div>
 
       <div className="relative" style={{ height: `${items.length * 65}vh` }}>
         <div
@@ -496,10 +374,10 @@ function SystemScrub({ layer }: { layer: PillarLayer }) {
                     )}
                   >
                     <span className="flex items-center gap-2.5">
-                      <span className={cn('font-mono text-[11.5px]', isActive ? 'text-primary' : 'text-ink-4')}>
+                      <span className={cn('font-mono text-[10px]', isActive ? 'text-primary' : 'text-ink-4')}>
                         {String(i + 1).padStart(2, '0')}
                       </span>
-                      <span className={cn('truncate text-[13px] font-medium', isActive ? 'text-ink' : 'text-ink-3')}>
+                      <span className={cn('truncate text-[12px] font-medium', isActive ? 'text-ink' : 'text-ink-3')}>
                         {it.label}
                       </span>
                     </span>
@@ -530,7 +408,7 @@ function SystemScrub({ layer }: { layer: PillarLayer }) {
                       <ActiveIcon size={20} className="text-primary" />
                     </div>
                     <div>
-                      <p className="font-mono text-[11px] uppercase tracking-[0.26em] text-ink-4">
+                      <p className="font-mono text-[9.5px] uppercase tracking-[0.26em] text-ink-4">
                         block {String(active + 1).padStart(2, '0')} of {String(items.length).padStart(2, '0')}
                       </p>
                       <h3 className="font-serif text-[clamp(20px,2.6vw,32px)] font-semibold leading-tight tracking-tight text-ink">
@@ -539,26 +417,22 @@ function SystemScrub({ layer }: { layer: PillarLayer }) {
                     </div>
                   </div>
 
-                  <p className="mt-4 max-w-[74ch] text-[14px] leading-relaxed text-ink-2">{activeItem.desc}</p>
+                  <p className="mt-4 max-w-[74ch] text-[13px] leading-relaxed text-ink-2">{activeItem.desc}</p>
 
-                  {activeItem.activities && activeItem.activities.length > 0 && (
-                    <div className="mt-6 flex flex-wrap gap-2">
-                      {activeItem.activities.map((a, i) => (
-                        <motion.span
-                          key={a.label}
-                          className="inline-flex items-center gap-2 rounded-lg border border-[var(--line-2)] bg-bg-3/70 px-3.5 py-2"
-                          initial={{ opacity: 0, y: 12 }}
-                          animate={{ opacity: 1, y: 0 }}
-                          transition={{ duration: 0.35, delay: 0.08 + i * 0.07, ease: EASE }}
-                        >
-                          <span className="h-1.5 w-1.5 shrink-0 rounded-full bg-primary" />
-                          <span className="text-[13px] font-medium text-ink">{a.label}</span>
-                          {a.note && (
-                            <span className="font-mono text-[11px] uppercase tracking-[0.14em] text-ink-4">
-                              · {a.note}
+                  {activeItem.outcomes && activeItem.outcomes.length > 0 && (
+                    <div className="mt-6 grid grid-cols-1 overflow-hidden rounded-xl border border-[var(--line)] bg-[var(--line)] sm:grid-cols-2">
+                      {activeItem.outcomes.map((o) => (
+                        <div key={o.label} className="flex flex-col gap-1.5 bg-bg-2 p-5">
+                          <span className="font-serif text-[clamp(26px,2.6vw,38px)] leading-none tracking-tight text-gradient">
+                            {o.value}
+                          </span>
+                          <span className="text-[12px] font-medium text-ink">{o.label}</span>
+                          {o.foot && (
+                            <span className="font-mono text-[9.5px] uppercase tracking-[0.18em] text-ink-4">
+                              {o.foot}
                             </span>
                           )}
-                        </motion.span>
+                        </div>
                       ))}
                     </div>
                   )}
@@ -567,7 +441,7 @@ function SystemScrub({ layer }: { layer: PillarLayer }) {
 
               {/* overall scan progress */}
               <div className="pointer-events-none absolute inset-x-6 bottom-4 flex items-center gap-3 sm:inset-x-8">
-                <span className="font-mono text-[11px] uppercase tracking-[0.2em] text-ink-4">system scan</span>
+                <span className="font-mono text-[9.5px] uppercase tracking-[0.2em] text-ink-4">system scan</span>
                 <div className="flex h-1 flex-1 gap-1 overflow-hidden">
                   {items.map((_, i) => (
                     <span
@@ -579,7 +453,7 @@ function SystemScrub({ layer }: { layer: PillarLayer }) {
                     />
                   ))}
                 </div>
-                <span className="font-mono text-[11px] uppercase tracking-[0.2em] text-ink-3">
+                <span className="font-mono text-[9.5px] uppercase tracking-[0.2em] text-ink-3">
                   {String(active + 1).padStart(2, '0')}/{String(items.length).padStart(2, '0')}
                 </span>
               </div>
@@ -620,7 +494,7 @@ function CapabilityGrid({ layer }: { layer: PillarLayer }) {
               transition={{ duration: 0.5, delay: i * 0.1, ease: EASE }}
             >
               <div className="absolute bottom-0 left-0 h-[2px] w-0 bg-gradient-to-r from-[var(--layer-color)] to-accent transition-all duration-500 group-hover/item:w-full" />
-              <span className="absolute right-3 top-2 font-mono text-[11px] text-ink-4">
+              <span className="absolute right-3 top-2 font-mono text-[9px] text-ink-4">
                 {String(i + 1).padStart(2, '0')}
               </span>
               <div
@@ -628,8 +502,8 @@ function CapabilityGrid({ layer }: { layer: PillarLayer }) {
               >
                 <Icon size={19} className="text-[var(--layer-color)]" />
               </div>
-              <h4 className="text-[15px] font-semibold text-ink">{item.label}</h4>
-              <p className="mt-1.5 text-[12.5px] leading-relaxed text-ink-3">{item.desc}</p>
+              <h4 className="text-[14px] font-semibold text-ink">{item.label}</h4>
+              <p className="mt-1.5 text-[11.5px] leading-relaxed text-ink-3">{item.desc}</p>
             </motion.div>
           );
         })}
@@ -681,7 +555,7 @@ export function PillarsOfWork() {
 
       <EnergyConduit />
 
-      {/* 03 — Domains: pinned stage, one card at a time */}
+      {/* 03 — Domains: straight on the page */}
       <DomainStage layer={layers.domains} />
 
       <EnergyConduit />

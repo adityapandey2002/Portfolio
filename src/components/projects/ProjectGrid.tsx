@@ -7,6 +7,7 @@ import Link from 'next/link';
 import { projects, projectFilters } from '@/lib/data/projects';
 import { SectionHeading } from '../sections/SectionHeading';
 import { ProjectCard } from './ProjectCard';
+import { LiveTicker } from './LiveTicker';
 import { useLiveStatus } from '@/hooks/useLiveStatus';
 
 export function ProjectGrid({ featured = false }: { featured?: boolean }) {
@@ -51,6 +52,8 @@ export function ProjectGrid({ featured = false }: { featured?: boolean }) {
               ))}
             </AnimatePresence>
           </motion.div>
+
+          <LiveTicker status={liveStatus} />
         </div>
       </section>
     );
@@ -66,7 +69,7 @@ export function ProjectGrid({ featured = false }: { featured?: boolean }) {
             <button
               key={f.id}
               onClick={() => setFilter(f.id)}
-              className={`rounded-full border px-4 py-1.5 font-mono text-[12px] uppercase tracking-wider transition-colors duration-300 ${
+              className={`rounded-full border px-4 py-1.5 font-mono text-[11px] uppercase tracking-wider transition-colors duration-300 ${
                 filter === f.id
                   ? 'border-primary bg-primary/10 text-primary'
                   : 'border-[var(--line)] bg-bg-2/50 text-ink-3 hover:text-ink'

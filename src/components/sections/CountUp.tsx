@@ -13,16 +13,13 @@ interface CountUpProps {
 
 export function CountUp({ target, suffix = '', duration = 1500, className }: CountUpProps) {
   const ref = useRef<HTMLSpanElement>(null);
-  const inView = useInView(ref, { once: true, margin: '0px 0px -12% 0px' });
-  const [value, setValue] = useState(target);
+  const inView = useInView(ref, { once: true, margin: '-60px' });
+  const [value, setValue] = useState(0);
   const [sprung, setSprung] = useState(false);
-  const [live, setLive] = useState(false);
 
   useEffect(() => {
     if (!inView) return;
     const start = performance.now();
-    setValue(0);
-    setLive(true);
     let raf = 0;
     const tick = (t: number) => {
       const p = Math.min((t - start) / duration, 1);
@@ -36,18 +33,6 @@ export function CountUp({ target, suffix = '', duration = 1500, className }: Cou
     raf = requestAnimationFrame(tick);
     return () => cancelAnimationFrame(raf);
   }, [inView, target, duration]);
-
-  // Safety net: if the observer never fires, snap to the final value so the
-  // number is never stuck hidden at 0.
-  useEffect(() => {
-    const t = setTimeout(() => {
-      if (!live) {
-        setValue(target);
-        setSprung(true);
-      }
-    }, 2500);
-    return () => clearTimeout(t);
-  }, [live, target]);
 
   return (
     <span

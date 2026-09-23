@@ -53,7 +53,7 @@ export function MobileTabBar() {
                 />
               )}
               <Icon size={18} strokeWidth={active ? 2.2 : 1.8} />
-              <span className="font-mono text-[11px] uppercase tracking-[0.14em]">{t.label}</span>
+              <span className="font-mono text-[9px] uppercase tracking-[0.14em]">{t.label}</span>
             </Link>
           );
         })}

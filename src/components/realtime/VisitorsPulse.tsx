@@ -70,7 +70,7 @@ export function VisitorsPulse() {
   }, []);
 
   return (
-    <div className="hidden items-center gap-2 rounded-lg border border-[var(--line)] px-2.5 py-1.5 font-mono text-[12px] text-ink-3 lg:inline-flex" title="Visitors online (Supabase Realtime)">
+    <div className="hidden items-center gap-2 rounded-lg border border-[var(--line)] px-2.5 py-1.5 font-mono text-[11px] text-ink-3 lg:inline-flex" title="Visitors online (Supabase Realtime)">
       <span className="online-dot" />
       <span>{count !== null ? `${count} online` : 'online'}</span>
       <Users size={11} className="opacity-70" />

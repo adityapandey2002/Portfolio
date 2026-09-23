@@ -194,7 +194,7 @@ export function PipelineSection({
 
         <div className="relative overflow-hidden rounded-2xl border border-[var(--line)] bg-bg-2/70 p-4 shadow-[0_20px_60px_rgba(0,0,0,0.12)] sm:p-5">
           <div className="absolute inset-x-5 top-0 h-px" style={{ background: 'var(--grad-2)' }} />
-          <div className="mb-2 flex items-center justify-between font-mono text-[12px] tracking-[0.14em] text-ink-3">
+          <div className="mb-2 flex items-center justify-between font-mono text-[11px] tracking-[0.14em] text-ink-3">
             <span>PIPELINE.DAG · RUNNING</span>
             <span className="inline-flex items-center gap-2 text-primary">
               <span className="pulse !h-1.5 !w-1.5" /> LIVE
@@ -214,11 +214,11 @@ export function PipelineSection({
                     : 'border-[var(--line)] bg-bg/60 hover:-translate-y-0.5 hover:border-primary/50'
                 }`}
               >
-                <div className="font-mono text-[11.5px] tracking-[0.18em] text-ink-4">
+                <div className="font-mono text-[10px] tracking-[0.18em] text-ink-4">
                   STAGE 0{i + 1} {active === i && <span className="text-primary">· ACTIVE</span>}
                 </div>
-                <div className={`mt-0.5 text-[15px] font-semibold ${active === i ? 'text-primary' : 'text-ink'}`}>{s.name}</div>
-                <div className="mt-0.5 text-[12.5px] leading-relaxed text-ink-3">{s.desc}</div>
+                <div className={`mt-0.5 text-[14px] font-semibold ${active === i ? 'text-primary' : 'text-ink'}`}>{s.name}</div>
+                <div className="mt-0.5 text-[11.5px] leading-relaxed text-ink-3">{s.desc}</div>
               </button>
             ))}
           </div>

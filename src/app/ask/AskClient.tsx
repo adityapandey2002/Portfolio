@@ -31,7 +31,7 @@ function Rich({ text }: { text: string }) {
         }
         if (p.startsWith('`') && p.endsWith('`')) {
           return (
-            <code key={i} className="rounded bg-bg-3 px-1.5 py-0.5 font-mono text-[13px] text-primary">
+            <code key={i} className="rounded bg-bg-3 px-1.5 py-0.5 font-mono text-[12px] text-primary">
               {p.slice(1, -1)}
             </code>
           );
@@ -120,7 +120,7 @@ export function AskClient() {
                 </span>
                 <div
                   className={cn(
-                    'chat-bubble group relative whitespace-pre-wrap text-[15px] leading-relaxed text-ink-2',
+                    'chat-bubble group relative whitespace-pre-wrap text-[14px] leading-relaxed text-ink-2',
                     isUser ? 'bg-bg-3' : 'bg-bg-2',
                     text === WELCOME && 'opacity-70',
                   )}
@@ -129,7 +129,7 @@ export function AskClient() {
                   {!isUser && !streaming && m.id === messages[messages.length - 1]?.id && (
                     <button
                       onClick={() => onCopy(text)}
-                      className="absolute -right-2 -top-2 hidden h-7 w-7 items-center justify-center rounded-full border border-[var(--line)] bg-bg-2 text-[11px] text-ink-3 shadow group-hover:flex"
+                      className="absolute -right-2 -top-2 hidden h-7 w-7 items-center justify-center rounded-full border border-[var(--line)] bg-bg-2 text-[9px] text-ink-3 shadow group-hover:flex"
                       aria-label="Copy response"
                     >
                       {copied ? '✓' : '⧉'}
@@ -154,7 +154,7 @@ export function AskClient() {
           )}
 
           {error && (
-            <div className="rounded-xl border border-[var(--rose)]/40 bg-rose/5 px-4 py-3 font-mono text-[13px] text-rose">
+            <div className="rounded-xl border border-[var(--rose)]/40 bg-rose/5 px-4 py-3 font-mono text-[12px] text-rose">
               {error.message || 'Something went wrong.'}
             </div>
           )}
@@ -167,7 +167,7 @@ export function AskClient() {
                 <button
                   key={s}
                   onClick={() => append({ role: 'user', content: s })}
-                  className="shrink-0 rounded-full border border-[var(--line)] bg-bg-2/70 px-4 py-2 text-left text-[13.5px] text-ink-2 transition-colors hover:border-primary/50 hover:text-ink"
+                  className="shrink-0 rounded-full border border-[var(--line)] bg-bg-2/70 px-4 py-2 text-left text-[12.5px] text-ink-2 transition-colors hover:border-primary/50 hover:text-ink"
                 >
                   {s}
                 </button>
@@ -190,7 +190,7 @@ export function AskClient() {
               }}
               rows={1}
               placeholder="Ask about his work, skills, projects…"
-              className="max-h-40 flex-1 resize-none bg-transparent px-3 py-2.5 text-[15px] text-ink outline-none placeholder:text-ink-4"
+              className="max-h-40 flex-1 resize-none bg-transparent px-3 py-2.5 text-[14px] text-ink outline-none placeholder:text-ink-4"
             />
             {streaming ? (
               <button
@@ -214,13 +214,13 @@ export function AskClient() {
           </form>
 
           <div className="mt-3 flex items-center justify-between">
-            <p className="font-mono text-[11.5px] text-ink-4">
+            <p className="font-mono text-[10px] text-ink-4">
               pgvector + Groq 70B · grounded in the knowledge base · no training on your input
             </p>
             {messages.length > 0 && (
               <button
                 onClick={() => setMessages([])}
-                className="inline-flex items-center gap-1.5 font-mono text-[11.5px] uppercase tracking-wider text-ink-3 hover:text-ink"
+                className="inline-flex items-center gap-1.5 font-mono text-[10.5px] uppercase tracking-wider text-ink-3 hover:text-ink"
               >
                 <RotateCcw size={12} /> Clear
               </button>
