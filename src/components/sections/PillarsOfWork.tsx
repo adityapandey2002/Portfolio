@@ -389,7 +389,7 @@ function SystemScrub({ layer }: { layer: PillarLayer }) {
 
           <div className="grid h-full w-full grid-cols-1 lg:grid-cols-[320px_1fr]">
             {/* rail */}
-            <div className="flex shrink-0 flex-row gap-1.5 overflow-x-auto p-3 lg:flex-col lg:overflow-y-auto lg:overflow-x-visible lg:border-r lg:border-[var(--line-2)] lg:p-4">
+            <div className="flex shrink-0 flex-row gap-1 overflow-x-auto p-2 lg:flex-col lg:overflow-y-auto lg:overflow-x-visible lg:border-r lg:border-[var(--line-2)] lg:p-3">
               {items.map((it, i) => {
                 const isActive = i === active;
                 const fill = i <= active ? 1 : 0;
@@ -398,7 +398,7 @@ function SystemScrub({ layer }: { layer: PillarLayer }) {
                     key={it.id}
                     onClick={() => setActive(i)}
                     className={cn(
-                      'relative min-w-[190px] shrink-0 rounded-xl border px-3.5 py-3 text-left transition-colors duration-300 lg:min-w-0',
+                      'relative min-w-[190px] shrink-0 rounded-xl border px-2.5 py-2 text-left transition-colors duration-300 lg:min-w-0',
                       isActive
                         ? 'border-[var(--line-2)] bg-bg-3'
                         : 'border-transparent bg-transparent hover:bg-bg-3/60'
@@ -424,7 +424,7 @@ function SystemScrub({ layer }: { layer: PillarLayer }) {
             </div>
 
             {/* detail panel */}
-            <div className="relative min-h-0 p-5 sm:p-8 lg:p-10">
+            <div className="relative min-h-0 p-4 sm:p-5 lg:p-6">
               <AnimatePresence mode="wait">
                 <motion.div
                   key={activeItem.id}
@@ -434,24 +434,24 @@ function SystemScrub({ layer }: { layer: PillarLayer }) {
                   transition={{ duration: 0.32, ease: EASE }}
                   className="flex h-full flex-col justify-center"
                 >
-                  <div className="flex items-center gap-4">
-                    <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl border border-[var(--line-2)] bg-bg-3">
-                      <ActiveIcon size={20} className="text-primary" />
+                  <div className="flex items-center gap-3">
+                    <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl border border-[var(--line-2)] bg-bg-3">
+                      <ActiveIcon size={18} className="text-primary" />
                     </div>
                     <div>
                       <p className="font-mono text-[9.5px] uppercase tracking-[0.26em] text-ink-4">
                         block {String(active + 1).padStart(2, '0')} of {String(items.length).padStart(2, '0')}
                       </p>
-                      <h3 className="font-serif text-[clamp(20px,2.6vw,32px)] font-semibold leading-tight tracking-tight text-ink">
+                      <h3 className="font-serif text-[clamp(17px,2vw,22px)] font-semibold leading-tight tracking-tight text-ink">
                         {activeItem.label}
                       </h3>
                     </div>
                   </div>
 
-                  <p className="mt-4 max-w-[74ch] text-[13px] leading-relaxed text-ink-2">{activeItem.desc}</p>
+                  <p className="mt-2.5 max-w-[74ch] text-[13px] leading-relaxed text-ink-2">{activeItem.desc}</p>
 
                   {activeItem.activities && activeItem.activities.length > 0 && (
-                    <div className="mt-5 grid grid-cols-1 gap-1.5 sm:grid-cols-2">
+                    <div className="mt-3 grid grid-cols-1 gap-1.5 sm:grid-cols-2">
                       {activeItem.activities.map((a) => (
                         <div
                           key={a.label}
@@ -466,24 +466,6 @@ function SystemScrub({ layer }: { layer: PillarLayer }) {
                               </span>
                             )}
                           </div>
-                        </div>
-                      ))}
-                    </div>
-                  )}
-
-                  {activeItem.outcomes && activeItem.outcomes.length > 0 && (
-                    <div className="mt-5 grid grid-cols-1 overflow-hidden rounded-xl border border-[var(--line)] bg-[var(--line)] sm:grid-cols-2">
-                      {activeItem.outcomes.map((o) => (
-                        <div key={o.label} className="flex flex-col gap-1.5 bg-bg-2 p-5">
-                          <span className="font-serif text-[clamp(26px,2.6vw,38px)] leading-none tracking-tight text-gradient">
-                            {o.value}
-                          </span>
-                          <span className="text-[12px] font-medium text-ink">{o.label}</span>
-                          {o.foot && (
-                            <span className="font-mono text-[9.5px] uppercase tracking-[0.18em] text-ink-4">
-                              {o.foot}
-                            </span>
-                          )}
                         </div>
                       ))}
                     </div>
@@ -612,13 +594,13 @@ export function PillarsOfWork() {
 
       <EnergyConduit />
 
-      {/* 04 — Capabilities */}
-      <CapabilityGrid layer={layers.capabilities} />
+      {/* 04 — WHO blocks: scroll-linked scrub */}
+      <SystemScrub layer={layers['system-outcomes']} />
 
       <EnergyConduit />
 
-      {/* 05 — WHO blocks: scroll-linked scrub */}
-      <SystemScrub layer={layers['system-outcomes']} />
+      {/* 05 — Capabilities */}
+      <CapabilityGrid layer={layers.capabilities} />
 
       <EnergyConduit />
 
