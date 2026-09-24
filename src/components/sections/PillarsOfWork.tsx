@@ -332,22 +332,19 @@ function SystemScrub({ layer }: { layer: PillarLayer }) {
 
   return (
     <ChapterBlock>
-      <SectionHeading
-        eyebrow={layer.eyebrow}
-        title={
-          <>
-            WHO building blocks, <span className="text-gradient">under focus</span>
-          </>
-        }
-        sub="This is day-to-day fellowship work — support activities woven into the WHO building blocks of the health system. Scroll to step through, down then up."
-      />
-
       <div className="relative" style={{ height: `${items.length * 65}vh` }}>
-        <div
-          ref={stageRef}
-          className="who-stage sticky isolate flex overflow-hidden rounded-2xl border border-[var(--line)] bg-bg-2"
-          style={{ top: 'calc(var(--nav-h) + 24px)' }}
-        >
+        <div ref={stageRef} className="sticky" style={{ top: 'calc(var(--nav-h) + 24px)' }}>
+          <SectionHeading
+            eyebrow={layer.eyebrow}
+            title={
+              <>
+                WHO building blocks, <span className="text-gradient">under focus</span>
+              </>
+            }
+            sub="This is day-to-day fellowship work — support activities woven into the WHO building blocks of the health system. Scroll to step through, down then up."
+          />
+
+          <div className="who-stage isolate flex overflow-hidden rounded-2xl border border-[var(--line)] bg-bg-2">
           <div
             className="pointer-events-none absolute inset-0 opacity-40"
             style={{
@@ -462,6 +459,7 @@ function SystemScrub({ layer }: { layer: PillarLayer }) {
               </div>
             </div>
           </div>
+        </div>
         </div>
       </div>
     </ChapterBlock>
