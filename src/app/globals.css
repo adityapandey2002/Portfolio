@@ -280,13 +280,14 @@ html[data-scroll='free'] {
 html[data-scroll='free'] body {
   overflow-x: clip;
 }
-/* WHO scrub stage: 100vh fallback, then 100svh where supported. */
+/* WHO scrub stage: short enough to sit on one screen with its section
+   heading (heading + gap ≈ 140px), with 30px breathing room. */
 .who-stage {
-  height: calc(100vh - var(--nav-h) - 48px);
+  height: calc(100vh - var(--nav-h) - 170px);
 }
 @supports (height: 100svh) {
   .who-stage {
-    height: calc(100svh - var(--nav-h) - 48px);
+    height: calc(100svh - var(--nav-h) - 170px);
   }
 }
 ::selection {
@@ -1092,6 +1093,17 @@ textarea {
 }
 
 /* ── Pillars of Work ─────────────────────────────────────────── */
+.pillars-root {
+  /* Blur blob-b decor bleeds -100px off-edge; clip it here, not at html
+     (clamping the root scroll container breaks vertical page scroll). */
+  overflow-x: clip;
+}
+@supports not (overflow: clip) {
+  .pillars-root {
+    overflow-x: hidden;
+  }
+}
+
 .pillar-layer {
   position: relative;
   will-change: transform;
