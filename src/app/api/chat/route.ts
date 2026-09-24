@@ -2,7 +2,7 @@ import { streamText } from 'ai';
 import { createOpenAI } from '@ai-sdk/openai';
 import { buildSystemPrompt, searchKnowledge } from '@/lib/rag';
 
-export const runtime = 'edge';
+export const runtime = 'nodejs';
 export const dynamic = 'force-dynamic';
 
 interface ChatMessage {
@@ -61,20 +61,42 @@ export async function POST(req: Request) {
 
   const lastUser = [...messages].reverse().find((m) => m.role === 'user');
   const query = lastUser?.content?.slice(0, 400) ?? '';
-  const chunks = await searchKnowledge(query).catch(() => []);
+  let chunks: Awaited<ReturnType<typeof searchKnowledge>> = [];
+  try {
+    chunks = await searchKnowledge(query);
+  } catch (err) {
+    console.error('[chat] searchKnowledge failed:', err);
+  }
 
-  const groq = createOpenAI({
-    apiKey: groqKey,
-    baseURL: 'https://api.groq.com/openai/v1',
-  });
-  const model = groq('llama-3.3-70b-versatile');
+  const modelId = process.env.GROQ_MODEL || 'openai/gpt-oss-120b';
+  console.log(`[chat] key=${groqKey.slice(0, 8)}… model=${modelId} chunks=${chunks.length} msgs=${messages.length}`);
 
-  const result = streamText({
-    model,
-    system: buildSystemPrompt(chunks),
-    messages: messages.map(({ role, content }) => ({ role, content })),
-    temperature: 0.4,
-  });
+  try {
+    const groq = createOpenAI({
+      apiKey: groqKey,
+      baseURL: 'https://api.groq.com/openai/v1',
+    });
+    const model = groq(modelId);
 
-  return result.toDataStreamResponse();
+    const result = streamText({
+      model,
+      system: buildSystemPrompt(chunks),
+      messages: messages.map(({ role, content }) => ({ role, content })),
+      temperature: 0.4,
+    });
+
+    return result.toDataStreamResponse({
+      getErrorMessage: (err) => {
+        console.error('[chat] stream error:', err);
+        return err instanceof Error ? err.message : String(err);
+      },
+    });
+  } catch (err) {
+    console.error('[chat] model call failed:', err);
+    const msg = err instanceof Error ? err.message : String(err);
+    return new Response(`AI model call failed: ${msg}`, {
+      status: 502,
+      headers: { 'content-type': 'text/plain' },
+    });
+  }
 }

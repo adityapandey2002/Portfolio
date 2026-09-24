@@ -41,7 +41,7 @@ export function AiSection() {
             animate={inView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.7, delay: 0.3 }}
           >
-            {['pgvector', 'Groq · 70B', 'Streaming', 'RAG over my resume'].map((t) => (
+            {['pgvector', 'Groq', 'Streaming', 'RAG over my resume'].map((t) => (
               <span key={t} className="rounded-sm border border-[var(--line)] bg-bg-2 px-3 py-1.5 font-mono text-[10.5px] text-ink-2">
                 {t}
               </span>

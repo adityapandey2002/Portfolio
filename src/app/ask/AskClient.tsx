@@ -215,7 +215,7 @@ export function AskClient() {
 
           <div className="mt-3 flex items-center justify-between">
             <p className="font-mono text-[10px] text-ink-4">
-              pgvector + Groq 70B · grounded in the knowledge base · no training on your input
+              pgvector + Groq · grounded in the knowledge base · no training on your input
             </p>
             {messages.length > 0 && (
               <button
