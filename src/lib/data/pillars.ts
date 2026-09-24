@@ -23,6 +23,11 @@ export interface PillarOutcome {
   foot?: string;
 }
 
+export interface PillarActivity {
+  label: string;
+  note?: string;
+}
+
 export interface PillarItem {
   id: string;
   label: string;
@@ -30,6 +35,7 @@ export interface PillarItem {
   desc: string;
   color?: string;
   outcomes?: PillarOutcome[];
+  activities?: PillarActivity[];
 }
 
 export interface PillarLayer {
@@ -131,6 +137,10 @@ export const PILLAR_LAYERS: PillarLayer[] = [
         label: 'Service Delivery',
         icon: Stethoscope,
         desc: 'Ensuring quality, accessible health services are delivered consistently across SHC, PHC, and CHC levels — from immunization to emergency care.',
+        activities: [
+          { label: 'NQAS Support' },
+          { label: 'FRU Strengthening' },
+        ],
         outcomes: [
           { label: 'Levels of care reached', value: 'SHC→CHC', foot: 'every tier of the system' },
           { label: 'Clinical quality audits', value: '12', foot: 'CHCs in Muzaffarpur' },
@@ -141,6 +151,10 @@ export const PILLAR_LAYERS: PillarLayer[] = [
         label: 'HRH Structures & Capacities',
         icon: UsersRound,
         desc: 'Building the capacity of ASHA workers, nurses, doctors, and block-level staff through structured training, mentoring, and supportive supervision.',
+        activities: [
+          { label: 'HR availability & gap analysis', note: 'vs sanctioned cadre · urgent need' },
+          { label: 'Capacity building', note: 'NQAS/LASHYA · FRU · RMNCHA+ · Jeevandeep clinical refreshers · PLC leadership · FP Pakhwara' },
+        ],
         outcomes: [
           { label: 'ASHA workers trained', value: '700+', foot: 'M-ASHA · hands-on' },
           { label: 'Clinical refresher hours', value: '185h', foot: '12 nurses · 4 doctors' },
@@ -151,6 +165,11 @@ export const PILLAR_LAYERS: PillarLayer[] = [
         label: 'Procurement & Supply Chain',
         icon: Package,
         desc: 'Strengthening medicine and equipment availability — diagnosing inventory gaps, improving forecasting, and ensuring facilities have what they need.',
+        activities: [
+          { label: 'Essential drug availability' },
+          { label: 'Stock-out tracking' },
+          { label: 'Scientific forecasting & quarterly indent' },
+        ],
         outcomes: [
           { label: 'Stock reviews run', value: '1200+', foot: 'medicine & equipment' },
           { label: 'Blocks on forecasting', value: '6/6', foot: 'Muzaffarpur, Bihar' },
@@ -161,6 +180,11 @@ export const PILLAR_LAYERS: PillarLayer[] = [
         label: 'Strategic Financing & Budgeting',
         icon: Coins,
         desc: 'Supporting efficient allocation and utilization of health funds — ensuring resources reach where they are most needed for maximum impact.',
+        activities: [
+          { label: 'VHSNC / JAS / RKS funds', note: 'availability & utilization' },
+          { label: 'Block facility financial reviews' },
+          { label: 'NHM total budget utilization' },
+        ],
         outcomes: [
           { label: 'Budget utilization tracked', value: '6/6', foot: 'block plans' },
           { label: 'Fund-flow visibility', value: '100%', foot: 'facility level' },
@@ -171,6 +195,11 @@ export const PILLAR_LAYERS: PillarLayer[] = [
         label: 'Governance',
         icon: Landmark,
         desc: 'Strengthening district and block health governance — NQAS certification support, review meeting systems, and accountability frameworks.',
+        activities: [
+          { label: 'DHSMRM conducted', note: 'DM participation · MPCDSR review' },
+          { label: 'JAS / VHSNC activation', note: 'GPPFT meetings' },
+          { label: 'Community events', note: 'Gram Chaupal · Godbharai · Complementary feeding · VHSND' },
+        ],
         outcomes: [
           { label: 'NQAS certification support', value: '6', foot: 'CHCs in pipeline' },
           { label: 'Review meetings strengthened', value: '48', foot: 'weekly block reviews' },
@@ -181,6 +210,10 @@ export const PILLAR_LAYERS: PillarLayer[] = [
         label: 'Information & Data Systems',
         icon: Database,
         desc: 'Building robust data pipelines — from ODK field collection through MIS reporting — so decisions are driven by evidence, not assumption.',
+        activities: [
+          { label: 'DHSMRM & HMIS', note: 'data validation review meetings' },
+          { label: 'Portal adoption', note: 'Bhavya · DVDMS · M-ASHA · FPLMIS' },
+        ],
         outcomes: [
           { label: 'Data quality score', value: '96%', foot: 'ODK → MIS' },
           { label: 'VHSND sessions QC\u2019d', value: '1200+', foot: 'field data validated' },
