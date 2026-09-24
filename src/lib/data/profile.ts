@@ -48,6 +48,12 @@ export const profile = {
   ],
   fieldQuote: "I've stood next to an ASHA worker filling an ODK form on a tablet in 38°C heat. Every pipeline I build starts with that moment.",
   fieldAuthor: '— Aditya Pandey · Muzaffarpur, Bihar',
+  impact: [
+    { label: 'ASHA Workers Trained', value: 700, suffix: '+', foot: '↑ On the M-ASHA app', up: true },
+    { label: 'Clinical Training Hours', value: 185, suffix: ' hrs', foot: '↑ 5-week program', up: true },
+    { label: 'Health Pros Upskilled', value: 16, suffix: '', foot: 'Nurses + Doctors', up: false },
+    { label: 'Apps in Production', value: 3, suffix: '+', foot: '↑ Live deployments', up: true },
+  ],
   mapStats: [
     { id: 'asha', label: 'ASHA Trained', value: 700, suffix: '+' },
     { id: 'blocks', label: 'Blocks', value: 16, suffix: '' },

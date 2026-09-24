@@ -7,6 +7,7 @@ import { SectionHeading } from './SectionHeading';
 import { CountUp } from './CountUp';
 import { PillarsOfWork } from './PillarsOfWork';
 import { FieldSection } from './FieldSection';
+import { Impact } from './Impact';
 import { DistrictVisitMap } from './DistrictVisitMap';
 
 const TRAINING = [
@@ -27,8 +28,8 @@ const TRAINING = [
 const VITALS = [
   { label: 'ASHA workers trained (M-ASHA)', value: 700, suffix: '+', pct: 100, foot: 'Field trainings · hands-on' },
   { label: 'Clinical refresher hours', value: 185, suffix: 'h', pct: 100, foot: '12 Staff Nurses · 4 Doctors' },
-  { label: 'VHSND sessions QC’d', value: 100, suffix: '+', pct: 100, foot: 'ODK field data validated' },
-  { label: 'PMSMA · PHC/CHC blocks', value: 30, suffix: '+', pct: 100, foot: 'Bihar · Muzaffarpur' },
+  { label: 'VHSND sessions QC’d', value: 1200, suffix: '+', pct: 78, foot: 'ODK field data validated' },
+  { label: 'PHC/CHC blocks covered', value: 16, suffix: '/16', pct: 100, foot: 'Bihar · Muzaffarpur' },
 ] as const;
 
 const DIAGNOSTICS = [
@@ -211,6 +212,11 @@ export function HealthDashboard() {
           Muzaffarpur — every number tracked like it&apos;s patient data. Because it is.
           </p>
         </header>
+      </div>
+
+      {/* Field impact — numbers from the field, not a dashboard */}
+      <div className="snap-section">
+        <Impact />
       </div>
 
       {/* The field — where the data starts */}
