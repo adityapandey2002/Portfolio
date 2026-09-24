@@ -32,7 +32,7 @@ export const techCats = [
   },
 ];
 
-export interface PipelineStage {
+export interface SkillTheme {
   index: string;
   name: string;
   line: string;
@@ -41,38 +41,38 @@ export interface PipelineStage {
   barPct: number;
 }
 
-export const pipelineStages: PipelineStage[] = [
+export const skillThemes: SkillTheme[] = [
   {
     index: '01',
-    name: 'COLLECT',
-    line: 'ODK forms in a village, synced through Central.',
-    pills: ['ODK Collect', 'ODK Central', 'NQAS', 'DHIS2', 'MIS Reporting'],
-    barLabel: 'Field Ops / ODK',
-    barPct: 90,
-  },
-  {
-    index: '02',
-    name: 'CLEAN',
-    line: 'Python & pandas data hygiene before it reaches a report.',
-    pills: ['Python', 'Pandas', 'SQLite', 'Jupyter', 'R'],
-    barLabel: 'Data Cleaning',
+    name: 'DATA SCIENCE',
+    line: 'Raw field data → clean, decision-ready insight.',
+    pills: ['Python', 'Pandas', 'NumPy', 'SQL / SQLite', 'Jupyter', 'R', 'Statistics', 'Dash', 'Plotly', 'Excel'],
+    barLabel: 'Data Analysis',
     barPct: 87,
   },
   {
-    index: '03',
-    name: 'BUILD',
-    line: 'MERN apps, REST APIs, safe auth — shipped to production.',
-    pills: ['React', 'Node', 'Express', 'MongoDB', 'WebSockets', 'JWT'],
+    index: '02',
+    name: 'WEB DEVELOPER',
+    line: 'Production apps, catalog to checkout, end-to-end.',
+    pills: ['React', 'Next.js', 'TypeScript', 'Tailwind', 'Node', 'Express', 'MySQL', 'MongoDB', 'REST / JWT', 'WebSockets', 'Nginx', 'PM2', 'Git', 'Docker', 'SEO'],
     barLabel: 'Full-Stack (MERN)',
     barPct: 78,
   },
   {
+    index: '03',
+    name: 'AI & AUTOMATION',
+    line: 'Applied AI that ships — RAG chatbots to E2E suites.',
+    pills: ['AI Tools', 'LLM / RAG', 'Groq', 'Prompt Engineering', 'Automation Scripts', 'Playwright E2E', 'Data Pipelines'],
+    barLabel: 'AI / Automation',
+    barPct: 74,
+  },
+  {
     index: '04',
-    name: 'SHIP',
-    line: 'Dashboards, automation, and AI tools that hold up in the field.',
-    pills: ['Dash', 'Plotly', 'Excel', 'Nginx', 'PM2', 'Git', 'AI Tools'],
-    barLabel: 'Dash / Plotly / Excel',
-    barPct: 80,
+    name: 'COMMUNITY & LEADERSHIP',
+    line: 'Training, facilitation and coordination that move people and systems.',
+    pills: ['Community Engagement', 'ASHA & Frontline Training', 'Facilitation', 'NQAS / MIS Reporting', 'Stakeholder Coordination', 'Leadership', 'Program Delivery'],
+    barLabel: 'Field Leadership',
+    barPct: 88,
   },
 ];
 

@@ -49,6 +49,12 @@ const NEIGHBORS: [string, number, number][] = [
 
 const HQ: [number, number] = [214, 178];
 
+/** District perimeter — organic boundary tracing the real Muzaffarpur
+    shape: NW lobe (Champaran), N notch (Sitamarhi), NE arm (Madhubani),
+    E edge (Samastipur), S (Vaishali), SW (Saran). Stylised, not to scale. */
+const DISTRICT_OUTLINE =
+  'M18,78 C22,62 34,54 52,50 C78,44 104,48 130,44 C156,40 174,46 196,50 C214,42 236,38 264,40 C288,36 304,44 316,56 C334,52 356,58 372,74 C386,90 386,114 380,136 C374,156 378,176 382,194 C386,214 378,234 368,254 C360,270 356,284 340,296 C326,308 310,320 288,322 C266,324 248,316 230,306 C212,314 194,316 174,310 C154,304 138,312 118,306 C98,300 80,288 64,272 C48,256 34,240 24,220 C14,200 10,176 12,152 C14,128 14,104 18,78 Z';
+
 const ROUTES: string[] = [
   `M${HQ[0]},${HQ[1]} Q 262,120 295,122`,
   `M${HQ[0]},${HQ[1]} Q 252,140 279,154`,
@@ -95,6 +101,21 @@ export function DistrictVisitMap() {
             {name}
           </text>
         ))}
+
+        {/* district outline */}
+        <motion.path
+          d={DISTRICT_OUTLINE}
+          fill="var(--bg-3)"
+          fillOpacity="0.18"
+          stroke="var(--ink-3)"
+          strokeWidth="1.6"
+          strokeLinejoin="round"
+          strokeLinecap="round"
+          aria-label="Muzaffarpur district boundary"
+          initial={{ opacity: 0, pathLength: 0 }}
+          animate={inView ? { opacity: 1, pathLength: 1 } : {}}
+          transition={{ duration: 1.4, delay: 0.1, ease: EASE }}
+        />
 
         {/* blocks */}
         {BLOCKS.map((b, i) => (
@@ -236,7 +257,7 @@ export function DistrictVisitMap() {
       </div>
 
       <div className="flex shrink-0 flex-wrap items-center justify-between gap-2 border-t border-[var(--line)] pt-2">
-        <span className="font-mono text-[10px] uppercase tracking-[0.2em] text-ink-3">16/16 blocks · 16 CHCs visited</span>
+        <span className="font-mono text-[10px] uppercase tracking-[0.2em] text-ink-3">16 blocks</span>
         <span className="font-mono text-[10px] uppercase tracking-[0.2em] text-ink-4">HQ → field routes</span>
       </div>
     </div>
