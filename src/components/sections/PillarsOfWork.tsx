@@ -12,21 +12,6 @@ import { PILLAR_LAYERS, type PillarLayer } from '@/lib/data/pillars';
 
 const EASE: [number, number, number, number] = [0.16, 1, 0.3, 1];
 
-const TICKER = [
-  'VHSND session',
-  'PMSMA supervision',
-  'Stock-out flag',
-  'HMIS validation',
-  'Portal sync',
-  'NQAS walkthrough',
-  'Gram Chaupal',
-  'Godbharai',
-  'Quarterly indent',
-  'Data review meeting',
-  'JAS meeting',
-  'FRU readiness',
-];
-
 /* ── Stage stepper: pinned deck, scroll distance maps to steps (both ways) ── */
 function useStageStepper(count: number, ref: RefObject<HTMLDivElement | null>) {
   const [active, setActive] = useState(0);
@@ -356,22 +341,6 @@ function SystemScrub({ layer }: { layer: PillarLayer }) {
         }
         sub="This is day-to-day fellowship work — support activities woven into the WHO building blocks of the health system. Scroll to step through, down then up."
       />
-
-      {/* Daily engagement ticker */}
-      <div className="mt-6 overflow-hidden rounded-lg border border-[var(--line-2)] bg-bg-3/60 py-2.5">
-        <div className="marquee flex w-max items-center">
-          {[0, 1].map((dup) => (
-            <ul key={dup} className="flex shrink-0 items-center gap-3 pr-3" aria-hidden={dup === 1}>
-              {TICKER.map((t) => (
-                <li key={t} className="inline-flex items-center gap-2 font-mono text-[11.5px] uppercase tracking-[0.18em] text-ink-3">
-                  <span className="h-1.5 w-1.5 rounded-full bg-primary" style={{ boxShadow: '0 0 6px var(--primary-glow)' }} />
-                  {t}
-                </li>
-              ))}
-            </ul>
-          ))}
-        </div>
-      </div>
 
       <div className="relative" style={{ height: `${items.length * 65}vh` }}>
         <div
