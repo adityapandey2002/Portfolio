@@ -594,13 +594,13 @@ export function PillarsOfWork() {
 
       <EnergyConduit />
 
-      {/* 04 — WHO blocks: scroll-linked scrub */}
-      <SystemScrub layer={layers['system-outcomes']} />
+      {/* 04 — Capabilities */}
+      <CapabilityGrid layer={layers.capabilities} />
 
       <EnergyConduit />
 
-      {/* 05 — Capabilities */}
-      <CapabilityGrid layer={layers.capabilities} />
+      {/* 05 — WHO blocks: scroll-linked scrub */}
+      <SystemScrub layer={layers['system-outcomes']} />
 
       <EnergyConduit />
 
