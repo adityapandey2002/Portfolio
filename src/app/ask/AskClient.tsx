@@ -3,7 +3,7 @@
 import { useEffect, useRef, useState } from 'react';
 import { useChat } from '@ai-sdk/react';
 import { motion } from 'framer-motion';
-import { ArrowUp, Bot, RotateCcw, Sparkles, Square, User } from 'lucide-react';
+import { ArrowUp, Bot, RotateCcw, Square, User } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
 const SUGGESTIONS = [
@@ -75,94 +75,116 @@ export function AskClient() {
   };
 
   return (
-    <section className="relative flex min-h-dvh flex-col pt-28">
-      <div className="mx-auto flex w-full max-w-[900px] flex-1 flex-col px-5 pb-10">
-        <motion.div initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}>
-          <span className="eyebrow">{'/* ASK */'}</span>
-          <h1 className="mt-3 font-serif text-[clamp(24px,3.4vw,42px)] leading-[1.05] tracking-tight">
-            Ask Aditya&apos;s <span className="text-gradient">RAG brain</span>
-          </h1>
-          <p className="section-sub mt-3 max-w-[560px]">
-            Answers are grounded in the knowledge base — resume, projects, field work — and streamed word by word via Groq. Try one below.
-          </p>
+    <section className="ask-shell relative flex flex-col overflow-hidden pt-[calc(var(--safe-top)+var(--nav-h)+8px)] pb-[calc(64px+var(--safe-bottom))] md:pb-5">
+      <div className="mx-auto flex min-h-0 w-full max-w-[900px] flex-1 flex-col px-5">
+        <motion.div
+          initial={{ opacity: 0, y: 16 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          className="shrink-0 pb-3"
+        >
+          <div className="flex items-end justify-between gap-4">
+            <div className="min-w-0">
+              <span className="eyebrow">{'/* ASK */'}</span>
+              <h1 className="mt-1.5 font-serif text-[clamp(22px,3vw,34px)] leading-[1.05] tracking-tight">
+                Ask Aditya&apos;s <span className="text-gradient">RAG brain</span>
+              </h1>
+              <p className="section-sub mt-2 hidden max-w-[560px] sm:block">
+                Grounded in the knowledge base — resume, projects, field work — streamed word by word via Groq.
+              </p>
+            </div>
+            {messages.length > 0 && (
+              <button
+                onClick={() => setMessages([])}
+                className="inline-flex shrink-0 items-center gap-1.5 font-mono text-[10.5px] uppercase tracking-wider text-ink-3 hover:text-ink"
+              >
+                <RotateCcw size={12} /> Clear
+              </button>
+            )}
+          </div>
         </motion.div>
 
-        <div ref={scrollRef} className="chat-scroll mt-8 flex-1 space-y-5 overflow-y-auto pr-1">
-          {messages.length === 0 && (
-            <motion.div
-              initial={{ opacity: 0, y: 12 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.15 }}
-              className="flex gap-3"
-            >
-              <span className="msg-avatar bg-primary/15 text-primary">
-                <Bot size={16} />
-              </span>
-              <div className="chat-bubble">
-                <Rich text={WELCOME} />
-              </div>
-            </motion.div>
-          )}
-
-          {messages.map((m) => {
-            const isUser = m.role === 'user';
-            const text = messageText(m);
-            if (!text && !streaming) return null;
-            return (
-              <div key={m.id} className={cn('flex gap-3', isUser && 'flex-row-reverse')}>
-                <span
-                  className={cn(
-                    'msg-avatar shrink-0',
-                    isUser ? 'bg-accent/15 text-accent' : 'bg-primary/15 text-primary',
-                  )}
-                >
-                  {isUser ? <User size={16} /> : <Bot size={16} />}
+        <div
+          ref={scrollRef}
+          className="chat-scroll min-h-0 flex-1 overflow-y-auto overscroll-contain border-t border-[var(--line)] pr-1 pt-4"
+        >
+          <div className={cn('flex min-h-full flex-col gap-5', messages.length === 0 && 'justify-center')}>
+            {messages.length === 0 && (
+              <motion.div
+                initial={{ opacity: 0, y: 12 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.15 }}
+                className="flex gap-3"
+              >
+                <span className="msg-avatar bg-primary/15 text-primary">
+                  <Bot size={16} />
                 </span>
-                <div
-                  className={cn(
-                    'chat-bubble group relative whitespace-pre-wrap text-[14px] leading-relaxed text-ink-2',
-                    isUser ? 'bg-bg-3' : 'bg-bg-2',
-                    text === WELCOME && 'opacity-70',
-                  )}
-                >
-                  <Rich text={text} />
-                  {!isUser && !streaming && m.id === messages[messages.length - 1]?.id && (
-                    <button
-                      onClick={() => onCopy(text)}
-                      className="absolute -right-2 -top-2 hidden h-7 w-7 items-center justify-center rounded-full border border-[var(--line)] bg-bg-2 text-[9px] text-ink-3 shadow group-hover:flex"
-                      aria-label="Copy response"
-                    >
-                      {copied ? '✓' : '⧉'}
-                    </button>
-                  )}
+                <div className="chat-bubble">
+                  <Rich text={WELCOME} />
+                </div>
+              </motion.div>
+            )}
+
+            {messages.map((m) => {
+              const isUser = m.role === 'user';
+              const text = messageText(m);
+              if (!text && !streaming) return null;
+              return (
+                <div key={m.id} className={cn('flex gap-3', isUser && 'flex-row-reverse')}>
+                  <span
+                    className={cn(
+                      'msg-avatar shrink-0',
+                      isUser ? 'bg-accent/15 text-accent' : 'bg-primary/15 text-primary',
+                    )}
+                  >
+                    {isUser ? <User size={16} /> : <Bot size={16} />}
+                  </span>
+                  <div
+                    className={cn(
+                      'chat-bubble group relative whitespace-pre-wrap text-[14px] leading-relaxed text-ink-2',
+                      isUser ? 'bg-bg-3' : 'bg-bg-2',
+                      text === WELCOME && 'opacity-70',
+                    )}
+                  >
+                    <Rich text={text} />
+                    {!isUser && !streaming && m.id === messages[messages.length - 1]?.id && (
+                      <button
+                        onClick={() => onCopy(text)}
+                        className="absolute -right-2 -top-2 hidden h-7 w-7 items-center justify-center rounded-full border border-[var(--line)] bg-bg-2 text-[9px] text-ink-3 shadow group-hover:flex"
+                        aria-label="Copy response"
+                      >
+                        {copied ? '✓' : '⧉'}
+                      </button>
+                    )}
+                  </div>
+                </div>
+              );
+            })}
+
+            {streaming && (
+              <div className="flex gap-3">
+                <span className="msg-avatar bg-primary/15 text-primary">
+                  <Bot size={16} />
+                </span>
+                <div className="flex items-center gap-2 px-1 py-2">
+                  <span className="typing-dot" />
+                  <span className="typing-dot" style={{ animationDelay: '0.15s' }} />
+                  <span className="typing-dot" style={{ animationDelay: '0.3s' }} />
                 </div>
               </div>
-            );
-          })}
+            )}
 
-          {streaming && (
-            <div className="flex gap-3">
-              <span className="msg-avatar bg-primary/15 text-primary">
-                <Bot size={16} />
-              </span>
-              <div className="flex items-center gap-2 px-1 py-2">
-                <span className="typing-dot" />
-                <span className="typing-dot" style={{ animationDelay: '0.15s' }} />
-                <span className="typing-dot" style={{ animationDelay: '0.3s' }} />
+            {error && (
+              <div className="rounded-xl border border-[var(--rose)]/40 bg-rose/5 px-4 py-3 font-mono text-[12px] text-rose">
+                {error.message || 'Something went wrong.'}
               </div>
-            </div>
-          )}
-
-          {error && (
-            <div className="rounded-xl border border-[var(--rose)]/40 bg-rose/5 px-4 py-3 font-mono text-[12px] text-rose">
-              {error.message || 'Something went wrong.'}
-            </div>
-          )}
+            )}
+          </div>
         </div>
 
-        <div className="mt-6">
+        <div className="shrink-0 pt-4">
           {messages.length === 0 && (
-            <div className="mb-4 flex gap-2 overflow-x-auto pb-1 md:flex-wrap">
+            <div className="mb-3 flex gap-2 overflow-x-auto pb-1 md:flex-wrap">
               {SUGGESTIONS.map((s) => (
                 <button
                   key={s}
@@ -177,7 +199,7 @@ export function AskClient() {
 
           <form
             onSubmit={handleSubmit}
-            className="sticky bottom-[calc(var(--nav-h)+var(--safe-bottom)+12px)] z-10 flex items-end gap-2 rounded-2xl border border-[var(--line)] bg-bg-2/80 p-2 backdrop-blur focus-within:border-primary/50 md:static"
+            className="flex items-end gap-2 rounded-2xl border border-[var(--line)] bg-bg-2/80 p-2 backdrop-blur focus-within:border-primary/50"
           >
             <textarea
               value={input}
@@ -213,19 +235,9 @@ export function AskClient() {
             )}
           </form>
 
-          <div className="mt-3 flex items-center justify-between">
-            <p className="font-mono text-[10px] text-ink-4">
-              pgvector + Groq · grounded in the knowledge base · no training on your input
-            </p>
-            {messages.length > 0 && (
-              <button
-                onClick={() => setMessages([])}
-                className="inline-flex items-center gap-1.5 font-mono text-[10.5px] uppercase tracking-wider text-ink-3 hover:text-ink"
-              >
-                <RotateCcw size={12} /> Clear
-              </button>
-            )}
-          </div>
+          <p className="mt-2.5 font-mono text-[10px] text-ink-4">
+            pgvector + Groq · grounded in the knowledge base · no training on your input
+          </p>
         </div>
       </div>
     </section>

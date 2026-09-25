@@ -1035,6 +1035,24 @@ textarea {
 }
 
 /* Chat */
+/* /ask shell: the page fills the whole viewport — header on top, message
+   list in the middle (only thing that scrolls), input pinned at the bottom,
+   clearing the fixed nav and the mobile tab bar. */
+.ask-shell {
+  height: 100vh;
+}
+@supports (height: 100dvh) {
+  .ask-shell {
+    height: 100dvh;
+  }
+}
+/* This route reserves its own bottom chrome inside .ask-shell — drop the
+   global mobile tab-bar body padding so the document can't scroll 64px. */
+@media (max-width: 768px) {
+  body:has(.ask-shell) {
+    padding-bottom: 0;
+  }
+}
 .chat-scroll {
   scrollbar-width: thin;
   scrollbar-color: var(--bg-3) transparent;
