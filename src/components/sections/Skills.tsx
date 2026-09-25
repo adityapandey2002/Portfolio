@@ -28,33 +28,33 @@ export function Skills() {
           />
         </div>
 
-        <div ref={ref} className="grid min-h-0 flex-1 gap-4 lg:grid-cols-4">
+        <div ref={ref} className="grid min-h-0 flex-1 gap-3 lg:grid-cols-4">
           {skillThemes.map((s, i) => {
             const Icon = STAGE_ICONS[i] ?? Database;
             return (
               <motion.div
                 key={s.index}
-                className="group relative flex flex-col rounded-2xl border border-[var(--line)] bg-bg-2/60 p-5 transition-colors duration-300 hover:border-primary/50"
+                className="group relative flex flex-col rounded-2xl border border-[var(--line)] bg-bg-2/60 p-4 transition-colors duration-300 hover:border-primary/50"
                 initial={{ opacity: 0, y: 24 }}
                 animate={inView ? { opacity: 1, y: 0 } : {}}
                 transition={{ duration: 0.6, delay: 0.1 + i * 0.1, ease: [0.16, 1, 0.3, 1] }}
               >
                 <div className="flex items-center justify-between">
-                  <span className="font-mono text-[11px] font-semibold tracking-widest text-primary">{s.index}</span>
-                  <span className="flex h-9 w-9 items-center justify-center rounded-xl bg-primary/10 text-primary transition-transform duration-300 group-hover:scale-110">
-                    <Icon size={17} />
+                  <span className="font-mono text-[10.5px] font-semibold tracking-widest text-primary">{s.index}</span>
+                  <span className="flex h-8 w-8 items-center justify-center rounded-xl bg-primary/10 text-primary transition-transform duration-300 group-hover:scale-110">
+                    <Icon size={15} />
                   </span>
                 </div>
-                <h4 className="mt-4 font-mono text-[13px] font-semibold uppercase tracking-[0.18em] text-ink">{s.name}</h4>
-                <p className="mt-2 text-[12.5px] leading-[1.65] text-ink-2">{s.line}</p>
-                <div className="mt-4 flex flex-wrap gap-1.5">
+                <h4 className="mt-3 font-mono text-[12px] font-semibold uppercase tracking-[0.18em] text-ink">{s.name}</h4>
+                <p className="mt-1.5 text-[11.5px] leading-[1.6] text-ink-2">{s.line}</p>
+                <div className="mt-3 flex flex-wrap gap-1.5">
                   {s.pills.map((p) => (
                     <span key={p} className="skill-pill">
                       {p}
                     </span>
                   ))}
                 </div>
-                <div className="mt-auto pt-5">
+                <div className="mt-auto pt-4">
                   <div className="mb-1.5 flex items-center justify-between">
                     <span className="text-[11px] font-medium text-ink-3">{s.barLabel}</span>
                     <span className="font-mono text-[11px] text-primary">{s.barPct}%</span>

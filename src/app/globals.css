@@ -166,8 +166,8 @@ label {
   height: 100%;
   overflow-y: auto;
   scrollbar-width: none;
-  padding-top: clamp(3rem, 9vh, 4.5rem);
-  padding-bottom: clamp(1.25rem, 4vh, 2.5rem);
+  padding-top: clamp(2.25rem, 6.5vh, 3.25rem);
+  padding-bottom: clamp(0.75rem, 2vh, 1.5rem);
 }
 .snap-section > section::-webkit-scrollbar,
 .snap-section > header::-webkit-scrollbar {
@@ -226,6 +226,26 @@ label {
   /* Clear the fixed bottom tab bar on phones */
   body {
     padding-bottom: calc(64px + var(--safe-bottom));
+  }
+}
+/* Compact every thing for short 100%-zoom windows (laptops / browser chrome) */
+@media (max-height: 720px) {
+  .snap-section > section,
+  .snap-section > header {
+    padding-top: clamp(1.25rem, 3vh, 1.75rem);
+    padding-bottom: 0.5rem;
+  }
+  .eyebrow {
+    font-size: 9px;
+  }
+  .section-sub {
+    margin-top: 6px;
+    font-size: 12px;
+    line-height: 1.5;
+  }
+  .skill-pill {
+    font-size: 9.5px;
+    padding: 3px 7px;
   }
 }
 body {
@@ -343,15 +363,15 @@ textarea {
     font-size: clamp(22px, 2.6vw, 36px);
     line-height: 1.05;
     letter-spacing: -0.02em;
-    margin-top: 10px;
+    margin-top: 8px;
     max-width: 22ch;
   }
   .section-sub {
-    margin-top: 10px;
-    font-size: 13.5px;
+    margin-top: 8px;
+    font-size: 13px;
     color: var(--ink-2);
     max-width: 60ch;
-    line-height: 1.6;
+    line-height: 1.55;
   }
   .btn {
     @apply inline-flex items-center gap-2 rounded px-5 py-3 text-sm font-medium transition-all duration-200 border select-none;

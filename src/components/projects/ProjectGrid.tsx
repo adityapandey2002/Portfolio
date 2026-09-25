@@ -29,7 +29,7 @@ export function ProjectGrid({ featured = false }: { featured?: boolean }) {
             <SectionHeading
               static
               eyebrow="/* 09 · SELECTED WORK */"
-              className="mb-4"
+              className="mb-3"
               title={
                 <>
                   Built, deployed, <span className="text-gradient">shipped</span>
@@ -37,14 +37,14 @@ export function ProjectGrid({ featured = false }: { featured?: boolean }) {
               }
               sub="A few things I built end-to-end — from field forms to live production apps."
             />
-            <div className="mb-4 flex items-center gap-2">
+            <div className="mb-3 flex items-center gap-2">
               <Link href="/work" className="btn-ghost inline-flex items-center gap-2">
                 View all <ArrowRight size={15} />
               </Link>
             </div>
           </div>
 
-          <motion.div layout className="grid min-h-0 flex-1 grid-cols-1 gap-6 md:grid-cols-3">
+          <motion.div layout className="grid min-h-0 flex-1 grid-cols-1 gap-5 md:grid-cols-3">
             <AnimatePresence mode="popLayout">
               {shown.map((p, i) => (
                 <ProjectCard key={p.id} project={p} index={i} liveInfo={liveStatus[p.id] ?? null} compact />

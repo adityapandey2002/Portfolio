@@ -110,14 +110,14 @@ export function Hero() {
 
   return (
     <section id="hero" ref={heroRef} className="relative flex h-full w-full flex-col overflow-hidden">
-      <div className="mx-auto grid w-full max-w-[1400px] flex-1 items-center gap-4 px-5 py-3 lg:grid-cols-[1.05fr_0.95fr] lg:px-8">
+      <div className="mx-auto grid w-full max-w-[1400px] flex-1 items-center gap-4 px-5 py-2 lg:grid-cols-[1.05fr_0.95fr] lg:px-8">
         <div className="relative z-10">
           {/* Status badge */}
           <motion.div
             initial={{ opacity: 0, y: 12 }}
             animate={started ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.6, ease: 'easeOut' }}
-            className="mb-4 inline-flex items-center gap-2 rounded-sm border border-[var(--line)] bg-bg-2 px-3 py-1.5"
+            className="mb-3 inline-flex items-center gap-2 rounded-sm border border-[var(--line)] bg-bg-2 px-3 py-1.5"
           >
             <span className="flex h-2.5 w-2.5 items-center justify-center border border-primary bg-primary/10">
               <span className="h-1 w-1 bg-primary" />
@@ -128,7 +128,7 @@ export function Hero() {
           {/* Headline */}
           <h1
             className="font-serif leading-[0.98] tracking-tight"
-            style={{ fontFamily: 'var(--font-lora), serif', fontSize: 'clamp(26px, 3.4vw, 54px)' }}
+            style={{ fontFamily: 'var(--font-lora), serif', fontSize: 'clamp(24px, 3vw, 48px)' }}
           >
             <span className="block">
               <SplitWord text={line1.a} started={started} delay={0.15} />
@@ -149,7 +149,7 @@ export function Hero() {
 
           {/* Sub */}
           <motion.p
-            className="mt-4 max-w-[500px] text-[14px] leading-relaxed text-ink-2"
+            className="mt-3 max-w-[500px] text-[13.5px] leading-relaxed text-ink-2"
             initial={{ opacity: 0, y: 16 }}
             animate={started ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.7, delay: 1.55, ease: [0.16, 1, 0.3, 1] }}
@@ -168,7 +168,7 @@ export function Hero() {
 
           {/* CTA buttons */}
           <motion.div
-            className="mt-5 flex flex-wrap items-center gap-3"
+            className="mt-4 flex flex-wrap items-center gap-3"
             initial={{ opacity: 0, y: 18 }}
             animate={started ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.7, delay: 1.75, ease: [0.16, 1, 0.3, 1] }}
@@ -192,7 +192,7 @@ export function Hero() {
         </div>
 
         {/* 3D scene */}
-        <div className="relative hidden h-[clamp(280px,40vh,460px)] min-h-[240px] items-center justify-center lg:flex">
+        <div className="relative hidden h-[clamp(240px,34vh,420px)] min-h-[210px] items-center justify-center lg:flex">
           <div className="sphere-halo absolute inset-0" />
           <div className="orbit-ring orbit-ring-1" />
           <div className="orbit-ring orbit-ring-2" />
