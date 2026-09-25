@@ -124,7 +124,7 @@ body {
 }
 
 :root {
-  --nav-h: 56px;
+  --nav-h: 48px;
   --safe-top: env(safe-area-inset-top, 0px);
   --safe-bottom: env(safe-area-inset-bottom, 0px);
 }
@@ -174,13 +174,17 @@ label {
   display: none;
 }
 
-/* Push the whole composition back: scale each panel's content wrapper so
+/* Push the whole composition back: scale each panel's content so
    everything reads smaller and further away, while still fitting on screen.
-   Scoped away from /health (data-scroll='health') because its WHO scrub
-   relies on exact sticky rect measurements. */
+   On the home route the scaled node is the panel's .mx-auto wrapper; on
+   /health the panel wrapper carries .mx-auto itself, so it is scaled
+   directly. The pinned WHO deck lives outside .snap-section and is
+   deliberately left unscaled so its sticky rect math stays exact. */
 @media (min-width: 769px) {
   html:not([data-scroll='health']) .snap-section > section > .mx-auto,
-  html:not([data-scroll='health']) .snap-section > header > .mx-auto {
+  html:not([data-scroll='health']) .snap-section > header > .mx-auto,
+  html[data-scroll='health'] .snap-section > section,
+  html[data-scroll='health'] .snap-section > header {
     transform: scale(0.9);
     transform-origin: center center;
   }

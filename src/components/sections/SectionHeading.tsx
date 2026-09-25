@@ -11,9 +11,18 @@ interface SectionHeadingProps {
   className?: string;
   /** Render without reveal animations — for headings that flicker in snap sections. */
   static?: boolean;
+  /** Override the title size (defaults to the shared clamp). */
+  titleSize?: string;
 }
 
-export function SectionHeading({ eyebrow, title, sub, className, static: isStatic = false }: SectionHeadingProps) {
+export function SectionHeading({
+  eyebrow,
+  title,
+  sub,
+  className,
+  static: isStatic = false,
+  titleSize = 'clamp(20px, 2.4vw, 32px)',
+}: SectionHeadingProps) {
   const ref = useRef<HTMLDivElement>(null);
   const inView = useInView(ref, { once: true, margin: '-60px' });
 
@@ -21,10 +30,7 @@ export function SectionHeading({ eyebrow, title, sub, className, static: isStati
     return (
       <div className={cn('relative mb-4 shrink-0', className)}>
         <span className="eyebrow">{eyebrow}</span>
-        <h2
-          className="mt-2 leading-[1.05] tracking-tight"
-style={{ fontSize: 'clamp(20px, 2.4vw, 32px)', maxWidth: '26ch' }}
-        >
+        <h2 className="mt-2 leading-[1.05] tracking-tight" style={{ fontSize: titleSize, maxWidth: '26ch' }}>
           {title}
         </h2>
         {sub && <p className="section-sub mt-1.5">{sub}</p>}
@@ -44,7 +50,7 @@ style={{ fontSize: 'clamp(20px, 2.4vw, 32px)', maxWidth: '26ch' }}
       </motion.span>
       <h2
         className={cn('draw-title mt-2 leading-[1.05] tracking-tight', inView && 'in')}
-        style={{ fontSize: 'clamp(20px, 2.4vw, 32px)', maxWidth: '26ch' }}
+        style={{ fontSize: titleSize, maxWidth: '26ch' }}
       >
         {title}
       </h2>

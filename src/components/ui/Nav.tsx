@@ -58,7 +58,7 @@ export function Nav({ onOpenPalette }: { onOpenPalette: () => void }) {
 
   return (
     <header
-      className="fixed inset-x-0 top-0 z-[100] px-4 pt-[calc(var(--safe-top)+4px)] transition-all duration-700 md:pt-3"
+      className="fixed inset-x-0 top-0 z-[100] px-4 pt-[calc(var(--safe-top)+3px)] transition-all duration-700 md:pt-1.5"
       style={{
         opacity: done ? 1 : 0,
         transform: done ? 'none' : 'translateY(-120%)',
@@ -75,7 +75,7 @@ export function Nav({ onOpenPalette }: { onOpenPalette: () => void }) {
       </div>
 
       <div
-        className="mx-auto flex max-w-[960px] items-center justify-between rounded-full border px-3 py-1.5 transition-all duration-300"
+        className="mx-auto flex max-w-[960px] items-center justify-between rounded-full border px-3 py-1 transition-all duration-300"
         style={{
           borderColor: hasBg ? 'var(--line)' : 'transparent',
           background: hasBg
@@ -86,14 +86,14 @@ export function Nav({ onOpenPalette }: { onOpenPalette: () => void }) {
       >
         {/* Logo */}
         <Link href="/" className="group flex items-center gap-2" data-grab>
-          <span className="relative inline-flex h-6 w-6 items-center justify-center rounded-md bg-primary font-mono text-[11px] font-bold text-bg">
+          <span className="relative inline-flex h-5 w-5 items-center justify-center rounded-md bg-primary font-mono text-[10px] font-bold text-bg">
             {profile.initials}
             <span
               className="absolute -inset-[3px] rounded-[7px] border border-dashed border-primary opacity-40"
               style={{ animation: 'spin 12s linear infinite' }}
             />
           </span>
-          <span className="text-[13px] font-semibold text-ink">{profile.name}</span>
+          <span className="text-[12.5px] font-semibold text-ink">{profile.name}</span>
         </Link>
 
         {/* Desktop nav links */}
@@ -102,12 +102,12 @@ export function Nav({ onOpenPalette }: { onOpenPalette: () => void }) {
             <Link
               key={l.href}
               href={l.href}
-              className="relative rounded-full px-3 py-1 text-[12.5px] font-medium text-ink-3 transition-colors hover:text-ink"
+              className="relative rounded-full px-2.5 py-0.5 text-[12px] font-medium text-ink-3 transition-colors hover:text-ink"
               style={isActive(l.href) ? { color: 'var(--ink)', background: 'var(--line-2)' } : undefined}
             >
               {l.label}
               <span
-                className="absolute inset-x-3 bottom-0 h-px bg-primary"
+                className="absolute inset-x-2.5 bottom-0 h-px bg-primary"
                 style={{
                   transform: isActive(l.href) ? 'scaleX(1)' : 'scaleX(0)',
                   transformOrigin: 'left',
@@ -125,20 +125,20 @@ export function Nav({ onOpenPalette }: { onOpenPalette: () => void }) {
           {/* Command palette — icon only, simple */}
           <button
             onClick={onOpenPalette}
-            className="hidden h-7 w-7 items-center justify-center rounded-lg border border-[var(--line)] text-ink-4 transition-colors hover:border-primary hover:text-primary sm:inline-flex"
+            className="hidden h-6 w-6 items-center justify-center rounded-lg border border-[var(--line)] text-ink-4 transition-colors hover:border-primary hover:text-primary sm:inline-flex"
             aria-label="Command palette (⌘K)"
             title="Command palette ⌘K"
           >
-            <Command size={13} />
+            <Command size={12} />
           </button>
 
           {/* Mobile hamburger */}
           <button
-            className="inline-flex h-7 w-7 items-center justify-center rounded-lg border border-[var(--line)] text-ink-3 md:hidden"
+            className="inline-flex h-6 w-6 items-center justify-center rounded-lg border border-[var(--line)] text-ink-3 md:hidden"
             onClick={() => setOpen((o) => !o)}
             aria-label="Menu"
           >
-            {open ? <X size={13} /> : <Menu size={13} />}
+            {open ? <X size={12} /> : <Menu size={12} />}
           </button>
         </div>
       </div>

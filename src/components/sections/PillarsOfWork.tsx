@@ -341,7 +341,8 @@ function SystemScrub({ layer }: { layer: PillarLayer }) {
                 WHO building blocks, <span className="text-gradient">under focus</span>
               </>
             }
-            sub="This is day-to-day fellowship work — support activities woven into the WHO building blocks of the health system. Scroll to step through, down then up."
+            sub="Day-to-day fellowship work — support activities woven into the WHO building blocks. Scroll to step through."
+            titleSize="clamp(17px, 1.7vw, 24px)"
           />
 
           <div className="who-stage isolate flex overflow-hidden rounded-2xl border border-[var(--line)] bg-bg-2">
@@ -438,25 +439,6 @@ function SystemScrub({ layer }: { layer: PillarLayer }) {
                   )}
                 </motion.div>
               </AnimatePresence>
-
-              {/* overall scan progress */}
-              <div className="pointer-events-none absolute inset-x-6 bottom-4 flex items-center gap-3 sm:inset-x-8">
-                <span className="font-mono text-[9.5px] uppercase tracking-[0.2em] text-ink-4">system scan</span>
-                <div className="flex h-1 flex-1 gap-1 overflow-hidden">
-                  {items.map((_, i) => (
-                    <span
-                      key={i}
-                      className={cn(
-                        'h-full flex-1 rounded-full transition-colors duration-300',
-                        i <= active ? 'bg-gradient-to-r from-primary to-accent' : 'bg-[var(--line-2)]'
-                      )}
-                    />
-                  ))}
-                </div>
-                <span className="font-mono text-[9.5px] uppercase tracking-[0.2em] text-ink-3">
-                  {String(active + 1).padStart(2, '0')}/{String(items.length).padStart(2, '0')}
-                </span>
-              </div>
             </div>
           </div>
         </div>
