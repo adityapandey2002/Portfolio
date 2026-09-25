@@ -79,7 +79,7 @@ export function AskClient() {
       <div className="mx-auto flex w-full max-w-[900px] flex-1 flex-col px-5 pb-10">
         <motion.div initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}>
           <span className="eyebrow">{'/* ASK */'}</span>
-          <h1 className="mt-3 font-serif text-[clamp(32px,4.6vw,56px)] leading-[1.05] tracking-tight">
+          <h1 className="mt-3 font-serif text-[clamp(24px,3.4vw,42px)] leading-[1.05] tracking-tight">
             Ask Aditya&apos;s <span className="text-gradient">RAG brain</span>
           </h1>
           <p className="section-sub mt-3 max-w-[560px]">

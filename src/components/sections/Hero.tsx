@@ -128,7 +128,7 @@ export function Hero() {
           {/* Headline */}
           <h1
             className="font-serif leading-[0.98] tracking-tight"
-            style={{ fontFamily: 'var(--font-lora), serif', fontSize: 'clamp(32px,4.5vw,70px)' }}
+            style={{ fontFamily: 'var(--font-lora), serif', fontSize: 'clamp(26px, 3.4vw, 54px)' }}
           >
             <span className="block">
               <SplitWord text={line1.a} started={started} delay={0.15} />
@@ -192,7 +192,7 @@ export function Hero() {
         </div>
 
         {/* 3D scene */}
-        <div className="relative hidden h-[52vh] min-h-[340px] items-center justify-center lg:flex">
+        <div className="relative hidden h-[clamp(280px,40vh,460px)] min-h-[240px] items-center justify-center lg:flex">
           <div className="sphere-halo absolute inset-0" />
           <div className="orbit-ring orbit-ring-1" />
           <div className="orbit-ring orbit-ring-2" />

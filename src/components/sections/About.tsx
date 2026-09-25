@@ -22,7 +22,7 @@ export function About() {
 
   return (
     <section id="about" className="relative flex h-full w-full items-center overflow-hidden px-5 lg:px-10">
-      <div className="mx-auto grid w-full max-w-[1500px] items-center gap-10 lg:grid-cols-[1.05fr_0.95fr]">
+      <div className="mx-auto grid w-full max-w-[1500px] items-center gap-8 lg:grid-cols-[1.05fr_0.95fr]">
         <div ref={ref}>
           <SectionHeading
             eyebrow="/* 03 · ABOUT */"

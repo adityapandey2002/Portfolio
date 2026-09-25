@@ -13,7 +13,7 @@ export function AiSection() {
 
   return (
     <section id="ask" className="relative flex h-full w-full items-center overflow-hidden px-5 lg:px-10">
-      <div className="mx-auto grid w-full max-w-[1500px] items-center gap-10 lg:grid-cols-[0.9fr_1.1fr]">
+      <div className="mx-auto grid w-full max-w-[1500px] items-center gap-8 lg:grid-cols-[0.9fr_1.1fr]">
         <div ref={ref}>
           <SectionHeading
             eyebrow="/* 10 · THE AI */"
@@ -69,7 +69,7 @@ export function AiSection() {
           transition={{ duration: 0.8, delay: 0.25, ease: [0.16, 1, 0.3, 1] }}
         >
           <div className="absolute -inset-4 rounded-lg bg-gradient-to-br from-primary/5 to-accent/5 blur-2xl" />
-          <div className="relative max-h-[55vh] overflow-hidden rounded-xl">
+          <div className="relative rounded-xl">
             <Terminal />
           </div>
         </motion.div>

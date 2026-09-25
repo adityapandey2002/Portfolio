@@ -12,7 +12,7 @@ export function Education() {
 
   return (
     <section id="education" className="relative flex h-full w-full flex-col justify-center overflow-hidden px-5 lg:px-10">
-      <div className="mx-auto grid min-h-0 w-full max-w-[1500px] flex-1 content-start gap-10 lg:grid-cols-2" ref={ref}>
+      <div className="mx-auto grid min-h-0 w-full max-w-[1500px] flex-1 content-start gap-8 lg:grid-cols-2" ref={ref}>
         {/* Education */}
         <div>
           <SectionHeading
@@ -53,7 +53,7 @@ export function Education() {
             className="mb-5"
             title={<>Proof of <span className="text-gradient">work</span></>}
           />
-          <div className="section-inner-scroll grid gap-2 sm:grid-cols-2" style={{ maxHeight: 'clamp(240px, 40vh, 380px)' }}>
+          <div className="section-inner-scroll grid gap-2 sm:grid-cols-2" style={{ maxHeight: 'clamp(200px, 34vh, 320px)' }}>
             {certs.map((c, i) => (
               <motion.div
                 key={c.name}

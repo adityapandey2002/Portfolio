@@ -65,7 +65,7 @@ export function Contact() {
 
   return (
     <section id="contact" className="relative flex h-full w-full items-center overflow-hidden px-5 lg:px-10">
-      <div className="mx-auto grid w-full max-w-[1500px] items-center gap-10 lg:grid-cols-[0.9fr_1.1fr]">
+      <div className="mx-auto grid w-full max-w-[1500px] items-center gap-8 lg:grid-cols-[0.9fr_1.1fr]">
         {/* Left — info + links */}
         <div ref={ref}>
           <SectionHeading

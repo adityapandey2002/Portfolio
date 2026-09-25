@@ -47,7 +47,7 @@ export function ProjectCard({ project, index = 0, liveInfo, compact = false }: P
             />
 
             {/* Cover */}
-            <div className={`relative flex shrink-0 items-center justify-center overflow-hidden ${compact ? 'h-28' : 'h-44'}`} style={{ background: project.cover || 'linear-gradient(135deg, #0f1421, #161c2c)' }}>
+            <div className={`relative flex shrink-0 items-center justify-center overflow-hidden ${compact ? 'h-24' : 'h-40'}`} style={{ background: project.cover || 'linear-gradient(135deg, #0f1421, #161c2c)' }}>
               <div className="absolute inset-0" style={{ background: 'radial-gradient(circle at 30% 40%, rgba(99,102,241,0.35), transparent 60%)' }} />
               {project.live && <LiveShot url={project.live} alt={`${project.title} — live site preview`} />}
               {!project.live && project.glyph && (

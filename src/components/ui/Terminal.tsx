@@ -131,7 +131,7 @@ export function Terminal() {
       <div
         ref={bodyRef}
         onClick={() => inputRef.current?.focus()}
-        className="terminal-body max-h-[360px] min-h-[320px] cursor-text px-5 py-4 font-mono text-[12.5px] leading-7 text-[#e8e0c8]"
+        className="terminal-body max-h-[min(320px,38vh)] min-h-[clamp(200px,26vh,280px)] cursor-text px-5 py-4 font-mono text-[12.5px] leading-7 text-[#e8e0c8]"
       >
         {lines.map((l, i) =>
           l.input ? (

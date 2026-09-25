@@ -201,7 +201,7 @@ export function PipelineSection({
             </span>
           </div>
 
-          <canvas ref={canvasRef} className="block h-[190px] w-full sm:h-[210px]" aria-label="Animated data pipeline DAG" />
+          <canvas ref={canvasRef} className="block h-[clamp(130px,16vh,180px)] w-full sm:h-[clamp(150px,18vh,200px)]" aria-label="Animated data pipeline DAG" />
 
           <div className="mt-2 grid grid-cols-1 gap-2 sm:grid-cols-2 lg:grid-cols-4">
             {STAGES.map((s, i) => (

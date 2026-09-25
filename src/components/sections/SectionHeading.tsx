@@ -23,7 +23,7 @@ export function SectionHeading({ eyebrow, title, sub, className, static: isStati
         <span className="eyebrow">{eyebrow}</span>
         <h2
           className="mt-2 leading-[1.05] tracking-tight"
-          style={{ fontSize: 'clamp(24px, 3vw, 40px)', maxWidth: '24ch' }}
+style={{ fontSize: 'clamp(20px, 2.4vw, 32px)', maxWidth: '26ch' }}
         >
           {title}
         </h2>
@@ -44,7 +44,7 @@ export function SectionHeading({ eyebrow, title, sub, className, static: isStati
       </motion.span>
       <h2
         className={cn('draw-title mt-2 leading-[1.05] tracking-tight', inView && 'in')}
-        style={{ fontSize: 'clamp(24px, 3vw, 40px)', maxWidth: '24ch' }}
+        style={{ fontSize: 'clamp(20px, 2.4vw, 32px)', maxWidth: '26ch' }}
       >
         {title}
       </h2>
