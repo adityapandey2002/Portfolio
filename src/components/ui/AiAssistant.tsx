@@ -115,9 +115,11 @@ export function AiAssistant() {
             className="fixed z-[400] flex flex-col overflow-hidden rounded-2xl border border-[var(--line)] bg-bg-2 shadow-[0_40px_120px_-40px_rgba(0,0,0,0.7)]"
             style={{
               width: 'min(400px, calc(100vw - 32px))',
-              height: 'min(560px, calc(100dvh - 150px))',
+              top: 0,
+              bottom: 0,
               right: 16,
-              bottom: 'calc(var(--safe-bottom) + 148px)',
+              paddingTop: 'var(--safe-top)',
+              paddingBottom: 'var(--safe-bottom)',
             }}
             initial={{ opacity: 0, y: 24, scale: 0.94, pointerEvents: 'none' }}
             animate={{ opacity: 1, y: 0, scale: 1, pointerEvents: 'auto' }}
