@@ -39,6 +39,19 @@ function useStageStepper(count: number, ref: RefObject<HTMLDivElement | null>) {
     const pinnedTop = () =>
       (parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--nav-h')) || 0) + 24;
 
+    // ScrollChaining reads this flag to stay out of the way: while the
+    // deck is pinned this stepper owns wheel and keys (one block per
+    // gesture), and nothing else should be stepping the page under it.
+    // Synced on scroll so both listeners always see a fresh value.
+    const syncDeck = () => {
+      const pinned =
+        !!ref.current && Math.abs(ref.current.getBoundingClientRect().top - pinnedTop()) <= 4;
+      if (pinned) document.documentElement.dataset.deck = 'pinned';
+      else delete document.documentElement.dataset.deck;
+    };
+    syncDeck();
+    window.addEventListener('scroll', syncDeck, { passive: true });
+
     const endGesture = () => {
       window.clearTimeout(gestureTimer);
       // A committed flick that never reached STEP still earns one block —
@@ -63,6 +76,7 @@ function useStageStepper(count: number, ref: RefObject<HTMLDivElement | null>) {
       // Not pinned yet: let the page scroll. If the stage slid below the
       // viewport (user scrolled back up out of the section), restart the deck.
       if (Math.abs(r.top - pt) > 4) {
+        delete document.documentElement.dataset.deck;
         if (r.top > pt + 8 && activeRef.current !== 0) setActive(0);
         return;
       }
@@ -74,17 +88,31 @@ function useStageStepper(count: number, ref: RefObject<HTMLDivElement | null>) {
 
       // Release the ends to the page: once you're on the first/last card a
       // further no-op/up-down scroll should move the page, not the deck.
-      // Gesture state drops too, so momentum carried into the release can't
-      // fire a stale block step after re-entry.
-      if (e.deltaY === 0 || (down && atEnd) || (up && atStart)) {
+      // The data-deck flag drops with the release, so ScrollChaining takes
+      // the very same event over as a normal screen step — momentum
+      // carried into the release can't fire a stale block step after
+      // re-entry either. A zero-delta tick only resets gesture state: the
+      // flag is geometry, and stays until the stage actually unpins.
+      if (e.deltaY === 0) {
         acc = 0;
         lastDir = 0;
         mouseish = false;
         stepped = false;
         return;
       }
+      if ((down && atEnd) || (up && atStart)) {
+        acc = 0;
+        lastDir = 0;
+        mouseish = false;
+        stepped = false;
+        delete document.documentElement.dataset.deck;
+        return;
+      }
 
       e.preventDefault();
+      // Claim the gesture for the deck before ScrollChaining's bubble
+      // handler runs: it reads this flag and yields.
+      document.documentElement.dataset.deck = 'pinned';
 
       const d =
         e.deltaMode === 1
@@ -151,6 +179,8 @@ function useStageStepper(count: number, ref: RefObject<HTMLDivElement | null>) {
     window.addEventListener('keydown', onKey);
     return () => {
       window.clearTimeout(gestureTimer);
+      window.removeEventListener('scroll', syncDeck);
+      delete document.documentElement.dataset.deck;
       window.removeEventListener('wheel', onWheel, { capture: true });
       window.removeEventListener('keydown', onKey);
     };

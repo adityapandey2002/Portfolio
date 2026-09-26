@@ -2,19 +2,24 @@
 
 import { useEffect } from 'react';
 
-/* The home page moves in panel-sized steps driven by explicit intent: a
+/* Home and /health move in screen-sized steps driven by explicit intent: a
    wheel notch, a committed flick, or a full screen of trackpad scroll.
    Everything else a gesture produces is swallowed — the old code leaked
    native scroll mid-gesture (inGesture returned without preventDefault),
    which drifted the document and fought the smooth step. Steps chain from
    the in-flight target, so a held wheel or fast stream glides panel to
-   panel instead of stalling while one animates. Snap is off globally, so
-   nothing ever yanks a committed scroll back. Inner scrollable boxes keep
-   their native scroll and hand the gesture over at their edge. */
+   panel instead of stalling while one animates. Each step is at most one
+   viewport: between adjacent panels that lands exactly on the next panel
+   top (home); through /health's long flowing chapters it advances one
+   screen at a time instead of trying to leap to a panel kilometres away.
+   Snap is off globally, so nothing ever yanks a committed scroll back.
+   Inner scrollable boxes keep their native scroll and hand the gesture
+   over at their edge. The pinned WHO deck on /health owns its own
+   gestures — it flags data-deck and this bails out. */
 export function ScrollChaining() {
   useEffect(() => {
-    // Touch devices keep native scroll; /health is gated per-event below
-    // (data-scroll is set by RouteScrollMode's own effect, after ours).
+    // Touch devices keep native scroll; the pinned WHO deck yields via
+    // its data-deck flag (kept in sync by PillarsOfWork's stepper).
     if (!window.matchMedia('(pointer: fine)').matches) return;
 
     const NOISE = 8; // deltas below this are trackpad jitter
@@ -95,6 +100,11 @@ export function ScrollChaining() {
           if (y0 >= max - 1) return false; // footer already shown: release
           target = max; // past the last panel: reveal the footer
         }
+        // Cap the hop at one screen: never leap past the next panel — land
+        // on its top exactly. Home's panels are one viewport apart, so the
+        // cap never bites there; on /health's tall flowing sections it
+        // keeps every flick a single screenful instead of one giant jump.
+        target = Math.min(y0 + window.innerHeight, target);
       } else {
         for (let i = list.length - 1; i >= 0; i -= 1) {
           const t = panelTop(list[i]);
@@ -104,6 +114,7 @@ export function ScrollChaining() {
           }
         }
         if (target === null) return false; // top of page: release to native
+        target = Math.max(y0 - window.innerHeight, target);
       }
 
       // Too far ahead: let the current glide catch up (the caller retries).
@@ -135,9 +146,10 @@ export function ScrollChaining() {
       if (e.ctrlKey || e.deltaY === 0) return;
       const target = e.target instanceof Element ? e.target : null;
       if (!target || target.closest('[role="dialog"]')) return;
-      // /health owns its own pinned WHO chapters — never step it here.
-      if (document.documentElement.dataset.scroll === 'health') return;
-      if (target.closest('.who-stage')) return;
+      // The pinned WHO deck on /health owns wheel and keys: its stepper
+      // preventDefaults in the capture phase and paces one block per
+      // gesture. Yield so the two never fight over the same event.
+      if (document.documentElement.dataset.deck === 'pinned') return;
       if (!panelList().length) return;
 
       // An inner box that can still move takes the gesture first.
@@ -212,7 +224,7 @@ export function ScrollChaining() {
 
     const onKeyDown = (e: KeyboardEvent) => {
       if (e.altKey || e.metaKey || e.ctrlKey) return;
-      if (document.documentElement.dataset.scroll === 'health') return;
+      if (document.documentElement.dataset.deck === 'pinned') return;
       if (!panelList().length) return;
       if (interactive(document.activeElement)) return;
 
