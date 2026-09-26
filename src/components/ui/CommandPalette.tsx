@@ -100,6 +100,9 @@ export function CommandPaletteProvider({ children }: { children: ReactNode }) {
       <AnimatePresence>
         {isOpen && (
           <motion.div
+            role="dialog"
+            aria-modal="true"
+            aria-label="Command palette"
             className="fixed inset-0 z-[250] flex items-end justify-center bg-bg/60 p-4 backdrop-blur-md md:items-start md:pt-[14vh]"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
