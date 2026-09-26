@@ -354,7 +354,7 @@ function SystemScrub({ layer }: { layer: PillarLayer }) {
             }}
           />
 
-          <div className="grid h-full w-full grid-cols-1 lg:grid-cols-[320px_1fr]">
+          <div className="grid h-full w-full grid-cols-1 lg:grid-cols-[264px_1fr]">
             {/* rail */}
             <div className="flex shrink-0 flex-row gap-1 overflow-x-auto p-2 lg:flex-col lg:overflow-y-auto lg:overflow-x-visible lg:border-r lg:border-[var(--line-2)] lg:p-3">
               {items.map((it, i) => {
@@ -365,21 +365,26 @@ function SystemScrub({ layer }: { layer: PillarLayer }) {
                     key={it.id}
                     onClick={() => setActive(i)}
                     className={cn(
-                      'relative min-w-[190px] shrink-0 rounded-xl border px-2.5 py-2 text-left transition-colors duration-300 lg:min-w-0',
+                      'relative min-w-[124px] flex-1 rounded-xl border px-2 py-1.5 text-left transition-colors duration-300 lg:min-w-0 lg:flex-none',
                       isActive
                         ? 'border-[var(--line-2)] bg-bg-3'
                         : 'border-transparent bg-transparent hover:bg-bg-3/60'
                     )}
                   >
-                    <span className="flex items-center gap-2.5">
-                      <span className={cn('font-mono text-[10px]', isActive ? 'text-primary' : 'text-ink-4')}>
+                    <span className="flex items-start gap-2">
+                      <span className={cn('mt-px font-mono text-[10px]', isActive ? 'text-primary' : 'text-ink-4')}>
                         {String(i + 1).padStart(2, '0')}
                       </span>
-                      <span className={cn('truncate text-[12px] font-medium', isActive ? 'text-ink' : 'text-ink-3')}>
+                      <span
+                        className={cn(
+                          'text-[11.5px] font-medium leading-[1.3] break-words hyphens-auto',
+                          isActive ? 'text-ink' : 'text-ink-3'
+                        )}
+                      >
                         {it.label}
                       </span>
                     </span>
-                    <span className="absolute inset-x-3.5 bottom-1 h-[2px] overflow-hidden rounded-full bg-[var(--line-2)]">
+                    <span className="absolute inset-x-2 bottom-1 h-[2px] overflow-hidden rounded-full bg-[var(--line-2)]">
                       <span
                         className="block h-full bg-gradient-to-r from-primary to-accent"
                         style={{ width: `${fill * 100}%` }}
@@ -426,9 +431,9 @@ function SystemScrub({ layer }: { layer: PillarLayer }) {
                         >
                           <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-primary" />
                           <div className="min-w-0">
-                            <span className="text-[12.5px] font-medium text-ink">{a.label}</span>
+                            <span className="block text-[12.5px] font-medium break-words text-ink">{a.label}</span>
                             {a.note && (
-                              <span className="block font-mono text-[10px] uppercase tracking-[0.14em] text-ink-4">
+                              <span className="mt-0.5 block font-mono text-[9.5px] uppercase leading-[1.35] tracking-[0.08em] break-words text-ink-4">
                                 {a.note}
                               </span>
                             )}

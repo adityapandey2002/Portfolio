@@ -53,7 +53,7 @@ export function Education() {
             className="mb-5"
             title={<>Proof of <span className="text-gradient">work</span></>}
           />
-          <div className="section-inner-scroll grid gap-2 sm:grid-cols-2" style={{ maxHeight: 'clamp(200px, 34vh, 320px)' }}>
+          <div className="grid gap-2 sm:grid-cols-2">
             {certs.map((c, i) => (
               <motion.div
                 key={c.name}
