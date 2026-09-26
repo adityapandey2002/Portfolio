@@ -22,13 +22,37 @@ function useStageStepper(count: number, ref: RefObject<HTMLDivElement | null>) {
 
   useEffect(() => {
     const last = count - 1;
-    const STEP = 160;
-    const GESTURE_GAP = 160;
+    const NOISE = 8; // deltas below this are trackpad jitter
+    const STEP = 300; // px of scroll that advances one block
+    const COOLDOWN = 150; // ms after a block before the next may fire
+    const REPEAT = 400; // held wheel: minimum ms between blocks
+    const NOTCH = 100; // a single notch / fling-sized delta
+    const FLICK = 120; // committed flick that ends a gesture
+    const GESTURE_END = 220; // ms of quiet that ends a gesture
     let acc = 0;
-    let lastWheel = 0;
+    let lastDir = 0;
+    let mouseish = false;
+    let stepped = false;
+    let lastStep = 0;
+    let gestureTimer = 0;
 
     const pinnedTop = () =>
       (parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--nav-h')) || 0) + 24;
+
+    const endGesture = () => {
+      window.clearTimeout(gestureTimer);
+      // A committed flick that never reached STEP still earns one block —
+      // but only if this gesture stepped nowhere yet.
+      const now = performance.now();
+      if (!stepped && Math.abs(acc) >= FLICK && now - lastStep >= COOLDOWN) {
+        setActive((a) => Math.max(0, Math.min(last, a + (acc > 0 ? 1 : -1))));
+        lastStep = now;
+      }
+      acc = 0;
+      lastDir = 0;
+      mouseish = false;
+      stepped = false;
+    };
 
     const onWheel = (e: WheelEvent) => {
       const el = ref.current;
@@ -50,41 +74,62 @@ function useStageStepper(count: number, ref: RefObject<HTMLDivElement | null>) {
 
       // Release the ends to the page: once you're on the first/last card a
       // further no-op/up-down scroll should move the page, not the deck.
-      if (e.deltaY === 0 || (down && atEnd) || (up && atStart)) return;
+      // Gesture state drops too, so momentum carried into the release can't
+      // fire a stale block step after re-entry.
+      if (e.deltaY === 0 || (down && atEnd) || (up && atStart)) {
+        acc = 0;
+        lastDir = 0;
+        mouseish = false;
+        stepped = false;
+        return;
+      }
 
       e.preventDefault();
 
-      // New gesture (paused long enough) restarts the accumulator so each
-      // discrete scroll maps to steps instead of carrying momentum across
-      // separate flicks.
-      const now = performance.now();
-      if (now - lastWheel > GESTURE_GAP) acc = 0;
-      lastWheel = now;
+      const d =
+        e.deltaMode === 1
+          ? e.deltaY * 16
+          : e.deltaMode === 2
+            ? e.deltaY * window.innerHeight
+            : e.deltaY;
+      if (Math.abs(d) < NOISE) return;
 
-      const d = e.deltaMode === 1 ? 16 : e.deltaMode === 2 ? window.innerHeight : e.deltaY;
+      const now = performance.now();
+      window.clearTimeout(gestureTimer);
+      gestureTimer = window.setTimeout(endGesture, GESTURE_END);
+
+      const dir = d > 0 ? 1 : -1;
+      if (dir !== lastDir) {
+        acc = 0;
+        mouseish = false;
+        stepped = false;
+        lastDir = dir;
+      }
+      if (Math.abs(d) >= NOTCH) mouseish = true;
       acc += d;
 
-      let position = activeRef.current;
-      let guard = 0;
-      while (Math.abs(acc) >= STEP && guard < 4) {
-        if (acc > 0) {
-          acc -= STEP;
-          if (position >= last) {
-            acc = 0;
-            break;
-          }
-          position += 1;
-        } else {
-          acc += STEP;
-          if (position <= 0) {
-            acc = 0;
-            break;
-          }
-          position -= 1;
-        }
-        guard++;
+      // Exactly one block per trigger: the old while-loop burned through
+      // all six on a single flick (multi-step per event, accumulator that
+      // never reset mid-gesture).
+      let fire = false;
+      if (now - lastStep >= COOLDOWN) {
+        if (mouseish && !stepped) fire = true; // a notch / fling start
+        else if (!mouseish && Math.abs(acc) >= STEP) fire = true; // steady stream
+        else if (
+          mouseish &&
+          stepped &&
+          now - lastStep >= REPEAT &&
+          Math.abs(acc) >= 150
+        )
+          fire = true; // held wheel
       }
-      if (position !== activeRef.current) setActive(position);
+
+      if (fire) {
+        acc = 0;
+        stepped = true;
+        lastStep = now;
+        setActive((a) => Math.max(0, Math.min(last, a + dir)));
+      }
     };
 
     const onKey = (e: KeyboardEvent) => {
@@ -105,6 +150,7 @@ function useStageStepper(count: number, ref: RefObject<HTMLDivElement | null>) {
     window.addEventListener('wheel', onWheel, { capture: true, passive: false });
     window.addEventListener('keydown', onKey);
     return () => {
+      window.clearTimeout(gestureTimer);
       window.removeEventListener('wheel', onWheel, { capture: true });
       window.removeEventListener('keydown', onKey);
     };
@@ -332,7 +378,10 @@ function SystemScrub({ layer }: { layer: PillarLayer }) {
 
   return (
     <ChapterBlock>
-      <div className="relative" style={{ height: `${items.length * 65}vh` }}>
+      {/* One screen of approach plus ~one screen pinned past the last
+          block: the old 65vh-per-block (390vh) stranded the page on a
+          frozen deck for three full scrolls after block 06. */}
+      <div className="relative" style={{ height: '180vh' }}>
         <div ref={stageRef} className="sticky" style={{ top: 'calc(var(--nav-h) + 24px)' }}>
           <SectionHeading
             eyebrow={layer.eyebrow}

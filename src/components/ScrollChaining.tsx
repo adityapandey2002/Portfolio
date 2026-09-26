@@ -2,25 +2,37 @@
 
 import { useEffect } from 'react';
 
-/* One discrete wheel gesture moves exactly ONE snap-section, so a single
-   flick lands on the next panel instead of creeping toward it (the page
-   uses proximity snap, which on its own needs two flicks per panel).
-   Inner scrollable boxes — a section whose content overflows on short
-   screens, palette lists, chat — keep their own scroll and hand the
-   gesture back to the page only once they reach their edge. */
+/* The home page moves in panel-sized steps driven by explicit intent: a
+   wheel notch, a committed flick, or a full screen of trackpad scroll.
+   Everything else a gesture produces is swallowed — the old code leaked
+   native scroll mid-gesture (inGesture returned without preventDefault),
+   which drifted the document and fought the smooth step. Steps chain from
+   the in-flight target, so a held wheel or fast stream glides panel to
+   panel instead of stalling while one animates. Snap is off globally, so
+   nothing ever yanks a committed scroll back. Inner scrollable boxes keep
+   their native scroll and hand the gesture over at their edge. */
 export function ScrollChaining() {
   useEffect(() => {
-    // Touch devices keep native snap; /health is gated per-event below
+    // Touch devices keep native scroll; /health is gated per-event below
     // (data-scroll is set by RouteScrollMode's own effect, after ours).
     if (!window.matchMedia('(pointer: fine)').matches) return;
 
-    const GESTURE_END = 240;    // ms of quiet that ends a gesture
-    const MOMENTUM_GUARD = 300; // ignore a step this soon after the last one
-    const SETTLE = 900;         // ms to consider the smooth scroll done
+    const NOISE = 8; // deltas below this are trackpad jitter
+    const GESTURE_END = 220; // ms of quiet that ends a gesture
+    const COOLDOWN = 160; // ms after a step before the next may fire
+    const REPEAT = 400; // held wheel: minimum ms between steps
+    const NOTCH = 100; // a single notch / fling-sized delta
+    const FLICK = 120; // committed flick that ends a gesture
+    const SETTLE = 900; // ms to consider a smooth scroll finished
+    const QUEUE = 2.2; // screens of scroll allowed ahead of the viewport
 
-    let inGesture = false;
+    let acc = 0;
+    let lastDir = 0;
+    let mouseish = false;
+    let stepped = false;
     let lastStep = 0;
     let animating = false;
+    let targetY: number | null = null;
     let gestureTimer = 0;
     let settleTimer = 0;
 
@@ -32,73 +44,91 @@ export function ScrollChaining() {
     const scrollableAncestor = (start: Element | null) => {
       let el = start as HTMLElement | null;
       while (el && el !== document.body && el !== document.documentElement) {
-        if (el.scrollHeight - el.clientHeight > 1) return el;
+        if (el.scrollHeight - el.clientHeight > 1) {
+          // Only real wheel-scroll containers count. overflow:visible
+          // children (flex items with min-h-0, grids) report overflow but
+          // Chrome skips them and scrolls the document instead — treating
+          // them as boxes leaked native scroll mid-gesture and drifted the
+          // page away from the panel the step was aiming at.
+          const oy = getComputedStyle(el).overflowY;
+          if (oy === 'auto' || oy === 'scroll') return el;
+        }
         el = el.parentElement;
       }
       return null;
     };
 
-    const endGesture = () => {
-      window.clearTimeout(gestureTimer);
-      inGesture = false;
-    };
-
     const settle = () => {
       window.clearTimeout(settleTimer);
-      animating = false;
-      // Parked exactly on a panel (wheel step, anchor jump, scrollbar):
-      // put proximity snap back in charge of gentle settling.
-      const html = document.documentElement;
-      if (html.style.scrollSnapType === 'none') {
-        const y = window.scrollY;
-        if (panelList().some((el) => Math.abs(panelTop(el) - y) <= 2)) html.style.scrollSnapType = '';
+      // A box-level scrollend can bubble while the page is still gliding to
+      // a panel — re-arm instead of dropping the chain target.
+      if (animating && targetY !== null && Math.abs(window.scrollY - targetY) > 2) {
+        settleTimer = window.setTimeout(settle, SETTLE);
+        return;
       }
+      animating = false;
+      targetY = null;
     };
 
     const step = (dir: 1 | -1) => {
       const list = panelList();
       if (!list.length) return false;
-      const y = window.scrollY;
+
+      // Base on the in-flight target so consecutive steps chain forward
+      // instead of re-measuring a document that is still animating.
+      const y0 =
+        targetY !== null && Math.abs(window.scrollY - targetY) <= window.innerHeight
+          ? targetY
+          : window.scrollY;
 
       let target: number | null = null;
-      let toFooter = false;
       if (dir === 1) {
         for (const el of list) {
           const t = panelTop(el);
-          if (t > y + 8) { target = t; break; }
+          if (t > y0 + 8) {
+            target = t;
+            break;
+          }
         }
         if (target === null) {
           const max = document.documentElement.scrollHeight - window.innerHeight;
-          if (y >= max - 1) return false;   // footer already shown: release
-          target = max;                     // past the last panel: reveal footer
-          toFooter = true;
+          if (y0 >= max - 1) return false; // footer already shown: release
+          target = max; // past the last panel: reveal the footer
         }
       } else {
         for (let i = list.length - 1; i >= 0; i -= 1) {
           const t = panelTop(list[i]);
-          if (t < y - 8) { target = t; break; }
+          if (t < y0 - 8) {
+            target = t;
+            break;
+          }
         }
-        if (target === null) return false;  // top of page: release to native
+        if (target === null) return false; // top of page: release to native
       }
 
-      const now = performance.now();
-      if (now - lastStep < MOMENTUM_GUARD) return true;
-      lastStep = now;
+      // Too far ahead: let the current glide catch up (the caller retries).
+      if (Math.abs(target - window.scrollY) > QUEUE * window.innerHeight) return false;
 
-      if (toFooter) {
-        // Proximity snap yanks a footer jump back onto the last panel, so
-        // park there with snap off; it is restored the moment we step back
-        // onto a panel (below, or on scrollend in settle()).
-        document.documentElement.style.scrollSnapType = 'none';
-        window.scrollTo({ top: target });
-      } else {
-        document.documentElement.style.scrollSnapType = '';
-        animating = true;
-        window.clearTimeout(settleTimer);
-        settleTimer = window.setTimeout(settle, SETTLE);
-        window.scrollTo({ top: target, behavior: 'smooth' });
-      }
+      animating = true;
+      targetY = target;
+      window.clearTimeout(settleTimer);
+      settleTimer = window.setTimeout(settle, SETTLE);
+      window.scrollTo({ top: target, behavior: 'smooth' });
       return true;
+    };
+
+    const endGesture = () => {
+      window.clearTimeout(gestureTimer);
+      // A committed flick that never crossed a mid-gesture threshold still
+      // earns one panel — but only if this gesture stepped nowhere yet.
+      const now = performance.now();
+      if (!stepped && Math.abs(acc) >= FLICK && now - lastStep >= COOLDOWN) {
+        if (step(acc > 0 ? 1 : -1)) lastStep = now;
+      }
+      acc = 0;
+      lastDir = 0;
+      mouseish = false;
+      stepped = false;
     };
 
     const onWheel = (e: WheelEvent) => {
@@ -112,28 +142,66 @@ export function ScrollChaining() {
 
       // An inner box that can still move takes the gesture first.
       const box = scrollableAncestor(target);
+      let atEdge = false;
       if (box) {
         const down = e.deltaY > 0;
-        const atEdge = down
+        atEdge = down
           ? box.scrollTop + box.clientHeight >= box.scrollHeight - 1
           : box.scrollTop <= 1;
         if (!atEdge) return;
       }
 
-      if (animating) {
-        e.preventDefault();
-        return;
-      }
+      // At a page end in this direction, hand the gesture back untouched.
+      const y = window.scrollY;
+      const max = document.documentElement.scrollHeight - window.innerHeight;
+      if ((e.deltaY < 0 && y <= 1) || (e.deltaY > 0 && y >= max - 1)) return;
 
-      // Trackpad inertia decays into small deltas — they must not read as a
-      // fresh gesture, or one flick would advance two panels.
-      if (Math.abs(e.deltaY) < 12) return;
-      if (inGesture) return;
-      inGesture = true;
+      // Own the gesture completely from here: swallowing every delta (the
+      // old inGesture path skipped preventDefault) stops wheel tails and
+      // trackpad momentum from drifting the document between steps.
+      e.preventDefault();
+
+      const d =
+        e.deltaMode === 1
+          ? e.deltaY * 16
+          : e.deltaMode === 2
+            ? e.deltaY * window.innerHeight
+            : e.deltaY;
+      if (Math.abs(d) < NOISE) return;
+
+      const now = performance.now();
       window.clearTimeout(gestureTimer);
       gestureTimer = window.setTimeout(endGesture, GESTURE_END);
 
-      if (step(e.deltaY > 0 ? 1 : -1)) e.preventDefault();
+      const dir = d > 0 ? 1 : -1;
+      if (dir !== lastDir) {
+        acc = 0;
+        mouseish = false;
+        stepped = false;
+        lastDir = dir;
+      }
+      if (Math.abs(d) >= NOTCH) mouseish = true;
+      acc += d;
+
+      let fire = false;
+      if (now - lastStep >= COOLDOWN) {
+        if (atEdge && !stepped && Math.abs(d) >= NOISE * 2) fire = true; // box handed over
+        else if (mouseish && !stepped) fire = true; // a notch / fling start
+        else if (Math.abs(acc) >= window.innerHeight) fire = true; // a full screen of stream
+        else if (
+          mouseish &&
+          stepped &&
+          now - lastStep >= REPEAT &&
+          Math.abs(acc) >= 150
+        )
+          fire = true; // held wheel
+      }
+
+      if (fire && step(dir)) {
+        lastStep = now;
+        stepped = true;
+        acc = 0;
+      }
     };
 
     const interactive = (el: Element | null) =>
@@ -154,6 +222,7 @@ export function ScrollChaining() {
       if (dir === null) return;
 
       const target = e.target instanceof Element ? e.target : null;
+      if (target?.closest('[role="dialog"]')) return;
       const box = scrollableAncestor(target);
       if (box) {
         const down = dir === 1;
@@ -163,11 +232,10 @@ export function ScrollChaining() {
         if (!atEdge) return;
       }
 
-      if (animating) {
-        e.preventDefault();
-        return;
-      }
-      if (step(dir)) e.preventDefault();
+      // Keyboard intent is discrete: one press, one panel — chained from
+      // whatever glide is already in flight, never dropped mid-animation.
+      e.preventDefault();
+      if (step(dir)) lastStep = performance.now();
     };
 
     window.addEventListener('wheel', onWheel, { passive: false });
@@ -179,10 +247,6 @@ export function ScrollChaining() {
       window.removeEventListener('wheel', onWheel);
       window.removeEventListener('scrollend', settle);
       window.removeEventListener('keydown', onKeyDown);
-      // Leaving the route: never strand the page with snap switched off.
-      if (document.documentElement.style.scrollSnapType === 'none') {
-        document.documentElement.style.scrollSnapType = '';
-      }
     };
   }, []);
 

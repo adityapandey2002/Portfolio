@@ -111,12 +111,14 @@
 }
 html {
   /* Programmatic scrolls stay instant; explicit behavior:'smooth' calls still animate.
-     Smooth + mandatory snap can queue/jank — auto keeps one-step snappy.
-     proximity (not mandatory) so normal scrolling stays in the user's hand and
-     near a section edge it gently settles — no full-viewport yank between panels. */
+     No snap at all: panels are plain full-viewport sections and the document
+     stays wherever the user leaves it. Proximity used to yank committed
+     flicks back to the panel start (the old two-flicks-per-page feel) and
+     pulled /health's free scrolls off position mid-journey. Panel stepping
+     on pointer devices comes from ScrollChaining.tsx instead. */
   scroll-behavior: auto;
   color-scheme: light;
-  scroll-snap-type: y proximity;
+  scroll-snap-type: none;
 }
 html,
 body {
@@ -274,16 +276,14 @@ body {
   transition: background 0.6s ease, color 0.4s ease;
 }
 
-/* Free-scroll routes (e.g. /health): turn off page snap so sticky
-   chapters drive the document scroller. overflow-x: clip (not hidden)
-   avoids creating a scroll container that would break position: sticky. */
-/* Page-wise routes (e.g. /health): each top-level section is a fixed
-   full-screen page that snaps into place (proximity) while the pinned
-   pillar chapters keep enough free scroll room for the step-scrolling.
+/* /health scrolls free: the pinned WHO chapters pace themselves
+   (PillarsOfWork's stepper) and the panels simply pass by. Proximity snap
+   here used to yank the document back to a panel start a few scrolls into
+   the page ("after 3 full scrolls the page moves down").
    overflow-x: clip (not hidden) avoids creating a scroll container
    that would break position: sticky. */
 html[data-scroll='health'] {
-  scroll-snap-type: y proximity;
+  scroll-snap-type: none;
   scroll-padding-top: 1rem;
 }
 html[data-scroll='health'] body {
