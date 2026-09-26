@@ -73,12 +73,31 @@ const ROUTES: string[] = [
   `M${HQ[0]},${HQ[1]} Q 140,220 132,220`,
 ];
 
+/** Real-world features, clipped to the district: the Gandak and Baghmati
+    rivers along the west / north borders, the Delhi–Howrah rail line with
+    its Darbhanga branch, and the NH spokes that radiate from HQ. */
+const RIVERS: string[] = [
+  'M30,64 C24,104 34,146 44,186 C54,226 68,264 92,298',
+  'M36,86 C86,66 138,58 192,54 C244,50 286,44 322,54 C344,60 360,74 372,92',
+];
+
+const HIGHWAYS: string[] = [
+  'M214,178 C176,170 132,164 88,160 C60,157 36,156 14,158',
+  'M214,178 C210,140 202,100 198,58',
+  'M214,178 C224,214 240,252 262,286 C272,300 282,310 292,318',
+];
+
+const RAIL: string[] = [
+  'M14,150 C64,148 112,152 156,160 C184,165 200,172 214,178',
+  'M214,178 C252,164 288,146 324,130 C352,118 376,112 396,108',
+];
+
 export function DistrictVisitMap() {
   const ref = useRef<HTMLDivElement>(null);
   const inView = useInView(ref, { once: true, margin: '-80px' });
 
   return (
-    <div ref={ref} className="flex h-full w-full min-h-0 flex-col items-stretch justify-center gap-2">
+    <div ref={ref} className="flex h-full w-full min-h-0 flex-col items-stretch justify-center">
       <div className="flex min-h-0 flex-1 items-center justify-center overflow-hidden">
       <svg
         viewBox="0 0 400 340"
@@ -116,6 +135,50 @@ export function DistrictVisitMap() {
           animate={inView ? { opacity: 1, pathLength: 1 } : {}}
           transition={{ duration: 1.4, delay: 0.1, ease: EASE }}
         />
+
+        {/* terrain: rivers, highways and rail — clipped to the district */}
+        <defs>
+          <clipPath id="districtClip">
+            <path d={DISTRICT_OUTLINE} />
+          </clipPath>
+        </defs>
+        <motion.g
+          clipPath="url(#districtClip)"
+          initial={{ opacity: 0 }}
+          animate={inView ? { opacity: 1 } : {}}
+          transition={{ duration: 0.8, delay: 0.7, ease: EASE }}
+        >
+          {RIVERS.map((d, i) => (
+            <g key={`riv-${i}`}>
+              <path d={d} fill="none" stroke="var(--cyan)" strokeWidth="3.5" strokeLinecap="round" opacity="0.25" />
+              <path d={d} fill="none" stroke="var(--cyan)" strokeWidth="1.3" strokeLinecap="round" opacity="0.75" />
+            </g>
+          ))}
+          {HIGHWAYS.map((d, i) => (
+            <path
+              key={`nh-${i}`}
+              d={d}
+              fill="none"
+              stroke="var(--accent)"
+              strokeWidth="2.2"
+              strokeLinecap="round"
+              opacity="0.5"
+            />
+          ))}
+          {RAIL.map((d, i) => (
+            <g key={`rail-${i}`}>
+              <path d={d} fill="none" stroke="var(--ink-3)" strokeWidth="2.4" strokeLinecap="round" opacity="0.6" />
+              <path
+                d={d}
+                fill="none"
+                stroke="var(--bg)"
+                strokeWidth="2.4"
+                strokeDasharray="1 5"
+                opacity="0.9"
+              />
+            </g>
+          ))}
+        </motion.g>
 
         {/* blocks */}
         {BLOCKS.map((b, i) => (
@@ -219,8 +282,19 @@ export function DistrictVisitMap() {
           ))
         )}
 
-        {/* HQ */}
+        {/* HQ + urban area */}
         <motion.g aria-label="Muzaffarpur — District HQ" initial={{ opacity: 0 }} animate={inView ? { opacity: 1 } : {}} transition={{ delay: 0.7 }}>
+          <circle
+            cx={HQ[0]}
+            cy={HQ[1]}
+            r="13"
+            fill="var(--primary)"
+            fillOpacity="0.14"
+            stroke="var(--primary)"
+            strokeOpacity="0.45"
+            strokeWidth="1"
+            strokeDasharray="2.5 2.5"
+          />
           <circle cx={HQ[0]} cy={HQ[1]} r="9" fill="var(--primary)" opacity="0.25">
             <animate attributeName="r" values="9;16" dur="2s" repeatCount="indefinite" />
             <animate attributeName="opacity" values="0.3;0" dur="2s" repeatCount="indefinite" />
@@ -251,14 +325,9 @@ export function DistrictVisitMap() {
             <rect x="0" y="-4" width="8" height="7" rx="1" fill="var(--primary)" fillOpacity="0.22" stroke="var(--primary)" strokeWidth="1.2" />
             <text x="13" y="4" className="fill-ink-3">VISITED BLOCK</text>
           </g>
-          <text x="388" y="334" textAnchor="end" className="fill-ink-4">STYLISED · NOT TO SCALE</text>
+          <text x="388" y="334" textAnchor="end" className="fill-ink-4">16 BLOCKS · HQ → FIELD ROUTES</text>
         </g>
       </svg>
-      </div>
-
-      <div className="flex shrink-0 flex-wrap items-center justify-between gap-2 border-t border-[var(--line)] pt-2">
-        <span className="font-mono text-[10px] uppercase tracking-[0.2em] text-ink-3">16 blocks</span>
-        <span className="font-mono text-[10px] uppercase tracking-[0.2em] text-ink-4">HQ → field routes</span>
       </div>
     </div>
   );

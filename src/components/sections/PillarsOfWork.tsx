@@ -608,7 +608,7 @@ export function PillarsOfWork() {
       <EnergyConduit />
 
       {/* 06 — Onward */}
-      <ChapterBlock className="text-center">
+      <ChapterBlock className="text-center !py-5">
         <SectionHeading
           eyebrow="/* FIELD MONITOR */"
           title={

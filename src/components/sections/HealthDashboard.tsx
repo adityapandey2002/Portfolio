@@ -172,23 +172,9 @@ function FieldKmMeter() {
           </div>
         </div>
 
-        <div className="flex min-h-0 flex-col gap-3 p-5 lg:p-6" style={{ background: 'var(--bg-2)' }}>
-          <div className="flex shrink-0 items-center justify-between font-mono text-[10.5px] uppercase tracking-[0.2em] text-ink-3">
-            <span>Block visits · field map</span>
-            <span className="text-ink-4">Muzaffarpur district</span>
-          </div>
+        <div className="flex min-h-0 flex-col p-5 lg:p-6" style={{ background: 'var(--bg-2)' }}>
           <div className="flex min-h-0 flex-1 items-center justify-center overflow-hidden">
             <DistrictVisitMap />
-          </div>
-          <div className="flex shrink-0 flex-wrap gap-2">
-            {['Bike & field visits', 'Block-level CHC audits', 'The odometer only goes up'].map((t) => (
-              <span
-                key={t}
-                className="rounded-full border border-[var(--line-2)] px-3 py-1 font-mono text-[10px] uppercase tracking-[0.16em] text-ink-3"
-              >
-                {t}
-              </span>
-            ))}
           </div>
         </div>
       </div>
