@@ -201,12 +201,12 @@ function AmbientBg() {
 }
 
 /* ── Energy conduit between chapters: traveling data packets ────── */
-function EnergyConduit() {
+export function EnergyConduit({ className }: { className?: string }) {
   const ref = useRef<HTMLDivElement>(null);
   const inView = useInView(ref, { once: true, margin: '-40px' });
 
   return (
-    <div ref={ref} className="relative flex justify-center py-1">
+    <div ref={ref} className={cn('relative flex justify-center py-1', className)}>
       {/* translate-y-2.5 = the requested 10px downward nudge, kept out of
           layout flow so every conduit on the page stays at the same distance. */}
       <div className="relative h-14 w-px translate-y-2.5 overflow-visible">
@@ -632,7 +632,10 @@ export function PillarsOfWork() {
       {/* 04 — Capabilities */}
       <CapabilityGrid layer={layers.capabilities} />
 
-      <EnergyConduit />
+      {/* -mt-16: the centered capabilities block left a void above the WHO
+          chapter — pull the line + WHO cluster up 64px (line↔heading rhythm
+          untouched; everything below simply shifts with it). */}
+      <EnergyConduit className="-mt-16" />
 
       {/* 05 — WHO blocks: scroll-linked scrub */}
       <SystemScrub layer={layers['system-outcomes']} />

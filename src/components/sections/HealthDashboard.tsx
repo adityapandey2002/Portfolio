@@ -5,7 +5,7 @@ import { ArrowDownLeft, Activity, HeartPulse, Compass, Flower2 } from 'lucide-re
 import { motion } from 'framer-motion';
 import { SectionHeading } from './SectionHeading';
 import { CountUp } from './CountUp';
-import { PillarsOfWork } from './PillarsOfWork';
+import { PillarsOfWork, EnergyConduit } from './PillarsOfWork';
 import { FieldSection } from './FieldSection';
 import { DistrictVisitMap } from './DistrictVisitMap';
 
@@ -186,7 +186,10 @@ export function HealthDashboard() {
   return (
     <>
       {/* Header */}
-      <div className="snap-section">
+      <div className="snap-section relative">
+        {/* Moving gradient line just below the top bar, over the empty band
+            above the (vertically centered) hero content. */}
+        <EnergyConduit className="pointer-events-none absolute inset-x-0 top-[calc(var(--nav-h)+12px)] max-md:hidden" />
         <header className="relative mx-auto max-w-[1500px] px-5 lg:px-10">
           <span className="eyebrow">{'/* FIELD VITALS */'}</span>
           <h1 className="mt-3 font-serif text-[clamp(38px,5vw,64px)] leading-[1.05] tracking-tight">

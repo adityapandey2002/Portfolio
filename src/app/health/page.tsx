@@ -1,6 +1,7 @@
 import { HealthDashboard } from '@/components/sections/HealthDashboard';
 import { Footer } from '@/components/sections/Footer';
 import { RouteScrollMode } from '@/components/RouteScrollMode';
+import { EnergyConduit } from '@/components/sections/PillarsOfWork';
 
 export const metadata = {
   title: 'Health Dashboard — Aditya Pandey',
@@ -14,6 +15,8 @@ export default function HealthPage() {
       <RouteScrollMode />
       <HealthDashboard />
       <Footer />
+      {/* Moving gradient line at the very bottom edge of the page. */}
+      <EnergyConduit />
     </>
   );
 }
