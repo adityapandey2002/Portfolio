@@ -8,6 +8,7 @@ import { CountUp } from './CountUp';
 import { PillarsOfWork, EnergyConduit } from './PillarsOfWork';
 import { FieldSection } from './FieldSection';
 import { DistrictVisitMap } from './DistrictVisitMap';
+import { HealthcarePanel } from './HealthcarePanel';
 
 const TRAINING = [
   {
@@ -274,33 +275,11 @@ export function HealthDashboard() {
             </div>
           </div>
 
-          {/* Side rails */}
-          <div className="flex flex-col gap-px bg-[var(--line)] lg:col-span-2">
-            {[
-              { k: 'Field sessions logged', v: 1200, unit: 'sessions', pct: 86 },
-              { k: 'Data quality score', v: 96, unit: '%', pct: 96 },
-              { k: 'ASHA coverage', v: 94, unit: '%', pct: 94 },
-            ].map((m, i) => (
-              <div key={m.k} className="flex flex-1 flex-col justify-center gap-3 p-7" style={{ background: 'var(--bg-2)' }}>
-                <div className="flex items-center justify-between font-mono text-[10.5px] uppercase tracking-[0.2em] text-ink-3">
-                  <span>{m.k}</span>
-                  <span className="text-primary">{m.unit}</span>
-                </div>
-                <div className="font-serif text-[clamp(30px,3vw,44px)] leading-none tracking-tight text-ink">
-                  <CountUp target={m.v} />
-                </div>
-                <div className="h-2 overflow-hidden rounded-full bg-[var(--bg-3)]">
-                  <motion.div
-                    className="h-full"
-                    style={{ background: m.pct > 90 ? 'var(--primary)' : 'var(--accent)' }}
-                    initial={{ width: 0 }}
-                    whileInView={{ width: `${m.pct}%` }}
-                    viewport={{ once: true, margin: '-40px' }}
-                    transition={{ duration: 1.2, delay: 0.1 + i * 0.15, ease: EASE }}
-                  />
-                </div>
-              </div>
-            ))}
+          {/* Live healthcare readout — India's value + global rank for 8
+              indicators, pulled fresh from India in the World on every load.
+              Takes the old side-rail slots (and the empty right columns). */}
+          <div className="flex min-w-0 lg:col-span-4">
+            <HealthcarePanel />
           </div>
         </div>
         </section>
