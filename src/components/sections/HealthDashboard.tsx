@@ -214,7 +214,7 @@ export function HealthDashboard() {
       {/* Monitor panel — one page: chapter-06's "Back to the vitals" heading
           sits over the monitor grid (they used to be two blocks). */}
       <div className="snap-section">
-        <section className="mx-auto max-w-[1500px] px-5 lg:px-10">
+        <section className="mx-auto max-w-[1500px] gap-4 px-5 lg:px-10" style={{ paddingBottom: 40 }}>
         <SectionHeading
           eyebrow="/* FIELD MONITOR */"
           title={
@@ -223,9 +223,11 @@ export function HealthDashboard() {
             </>
           }
           sub="Everything above feeds the monitors below — the fellowship, on vitals."
-          className="mx-auto max-w-[34ch] text-center"
         />
-        <div className="grid grid-cols-1 gap-px overflow-hidden rounded-2xl border border-[var(--line)] bg-[var(--line)] lg:grid-cols-5">
+        {/* flex-1: the grid claims the whole band below the heading (as
+            FieldKmMeter's does), so the dashboard grows instead of leaving a
+            dead gap above it and a slice of unused page below it. */}
+        <div className="grid flex-1 grid-cols-1 gap-px overflow-hidden rounded-2xl border border-[var(--line)] bg-[var(--line)] lg:grid-cols-5">
           {/* Patient monitor */}
           <div className="relative flex flex-col justify-between gap-8 p-8" style={{ background: 'var(--bg-2)' }}>
             <div className="flex items-center justify-between font-mono text-[10.5px] uppercase tracking-[0.2em] text-ink-3">

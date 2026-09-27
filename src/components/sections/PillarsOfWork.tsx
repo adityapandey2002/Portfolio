@@ -244,7 +244,10 @@ export function EnergyConduit({ className }: { className?: string }) {
 /* ── Chapter shell: quiet margins, no overflow ancestors ────────── */
 function ChapterBlock({ children, className }: { children: ReactNode; className?: string }) {
   return (
-    <div className={cn('relative px-5 py-[clamp(4rem,9vh,6.5rem)] lg:px-10', className)}>
+    // data-chapter: ScrollChaining lands on each chapter top. #pillars is not
+    // a .snap-section, so a fixed one-screen hop through it used to drop the
+    // viewport in the void between chapters (headings cut off, dead space).
+    <div data-chapter className={cn('relative px-5 py-[clamp(4rem,9vh,6.5rem)] lg:px-10', className)}>
       <div className="mx-auto w-full max-w-[1500px]">{children}</div>
     </div>
   );
@@ -414,8 +417,12 @@ function SystemScrub({ layer }: { layer: PillarLayer }) {
     <ChapterBlock>
       {/* One screen of approach plus ~one screen pinned past the last
           block: the old 65vh-per-block (390vh) stranded the page on a
-          frozen deck for three full scrolls after block 06. */}
-      <div className="relative" style={{ height: '180vh' }}>
+          frozen deck for three full scrolls after block 06.
+          data-chapter-pin: ScrollChaining targets the scroll position where
+          this sticky stage actually engages (its top − the sticky offset)
+          instead of the chapter's own top, so arriving here hands straight
+          over to the deck rather than showing the card half off-screen. */}
+      <div className="relative" data-chapter-pin style={{ height: '180vh' }}>
         <div ref={stageRef} className="sticky" style={{ top: 'calc(var(--nav-h) - 6px)' }}>
           <SectionHeading
             eyebrow={layer.eyebrow}
