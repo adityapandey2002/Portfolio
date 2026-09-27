@@ -911,9 +911,14 @@ textarea {
 
 .about-fade strong,
 .xp-bullet strong {
-  color: var(--ink);
-  font-weight: 600;
-}
+    color: var(--ink);
+    font-weight: 600;
+  }
+
+  /* Experience section: larger eyebrow to match the section's bigger type scale */
+  #experience .eyebrow {
+    font-size: 12.5px;
+  }
 
 .icon-link {
   display: inline-flex;
