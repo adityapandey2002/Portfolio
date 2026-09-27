@@ -214,7 +214,13 @@ export function HealthDashboard() {
       {/* Monitor panel — one page: chapter-06's "Back to the vitals" heading
           sits over the monitor grid (they used to be two blocks). */}
       <div className="snap-section">
-        <section className="mx-auto max-w-[1500px] gap-4 px-5 lg:px-10" style={{ paddingBottom: 40 }}>
+        {/* The band's own padding: 10px tighter than the shared health rule on
+            both edges, so the heading rides 10px higher and the grid claims
+            those 10px at the top plus another 10px at the bottom. */}
+        <section
+          className="mx-auto max-w-[1500px] gap-4 px-5 lg:px-10"
+          style={{ paddingTop: 'calc(var(--nav-h) + 2.5vh - 10px)', paddingBottom: 30 }}
+        >
         <SectionHeading
           eyebrow="/* FIELD MONITOR */"
           title={
