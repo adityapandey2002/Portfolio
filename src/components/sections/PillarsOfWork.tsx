@@ -207,7 +207,9 @@ function EnergyConduit() {
 
   return (
     <div ref={ref} className="relative flex justify-center py-1">
-      <div className="relative h-14 w-px overflow-visible">
+      {/* translate-y-2.5 = the requested 10px downward nudge, kept out of
+          layout flow so every conduit on the page stays at the same distance. */}
+      <div className="relative h-14 w-px translate-y-2.5 overflow-visible">
         <motion.div
           className="absolute inset-0 origin-top"
           style={{
@@ -357,7 +359,7 @@ function DomainStage({ layer }: { layer: PillarLayer }) {
   const inView = useInView(ref, { once: true, margin: '-60px' });
 
   return (
-    <ChapterBlock>
+    <ChapterBlock className="flex min-h-[100svh] flex-col justify-center">
       <SectionHeading
         eyebrow={layer.eyebrow}
         title={
@@ -538,7 +540,7 @@ function CapabilityGrid({ layer }: { layer: PillarLayer }) {
   const inView = useInView(ref, { once: true, margin: '-60px' });
 
   return (
-    <ChapterBlock>
+    <ChapterBlock className="flex min-h-[100svh] flex-col justify-center">
       <SectionHeading
         eyebrow={layer.eyebrow}
         title={
@@ -638,7 +640,7 @@ export function PillarsOfWork() {
       <EnergyConduit />
 
       {/* 06 — Onward */}
-      <ChapterBlock className="text-center !py-5">
+      <ChapterBlock className="text-center !pt-[clamp(4rem,9vh,6.5rem)] !pb-5">
         <SectionHeading
           eyebrow="/* FIELD MONITOR */"
           title={
