@@ -210,9 +210,20 @@ export function HealthDashboard() {
       {/* Pillars of Work — strategic framework */}
       <PillarsOfWork />
 
-      {/* Monitor panel */}
+      {/* Monitor panel — one page: chapter-06's "Back to the vitals" heading
+          sits over the monitor grid (they used to be two blocks). */}
       <div className="snap-section">
         <section className="mx-auto max-w-[1500px] px-5 lg:px-10">
+        <SectionHeading
+          eyebrow="/* FIELD MONITOR */"
+          title={
+            <>
+              Back to the <span className="text-gradient">vitals</span>
+            </>
+          }
+          sub="Everything above feeds the monitors below — the fellowship, on vitals."
+          className="mx-auto max-w-[34ch] text-center"
+        />
         <div className="grid grid-cols-1 gap-px overflow-hidden rounded-2xl border border-[var(--line)] bg-[var(--line)] lg:grid-cols-5">
           {/* Patient monitor */}
           <div className="relative flex flex-col justify-between gap-8 p-8" style={{ background: 'var(--bg-2)' }}>

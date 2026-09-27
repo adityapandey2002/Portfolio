@@ -36,8 +36,10 @@ function useStageStepper(count: number, ref: RefObject<HTMLDivElement | null>) {
     let lastStep = 0;
     let gestureTimer = 0;
 
+    // Matches SystemScrub's sticky top (nav-h - 6): the deck sits 30px
+    // higher than the old nav-h + 24 so the WHO card lands where it should.
     const pinnedTop = () =>
-      (parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--nav-h')) || 0) + 24;
+      (parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--nav-h')) || 0) - 6;
 
     // ScrollChaining reads this flag to stay out of the way: while the
     // deck is pinned this stepper owns wheel and keys (one block per
@@ -414,7 +416,7 @@ function SystemScrub({ layer }: { layer: PillarLayer }) {
           block: the old 65vh-per-block (390vh) stranded the page on a
           frozen deck for three full scrolls after block 06. */}
       <div className="relative" style={{ height: '180vh' }}>
-        <div ref={stageRef} className="sticky" style={{ top: 'calc(var(--nav-h) + 24px)' }}>
+        <div ref={stageRef} className="sticky" style={{ top: 'calc(var(--nav-h) - 6px)' }}>
           <SectionHeading
             eyebrow={layer.eyebrow}
             title={
@@ -640,21 +642,10 @@ export function PillarsOfWork() {
       {/* 05 — WHO blocks: scroll-linked scrub */}
       <SystemScrub layer={layers['system-outcomes']} />
 
+      {/* Closing line: the monitor panel's snap-section (HealthDashboard)
+          picks up right after this and carries the "Back to the vitals"
+          heading — chapter 06 lives there as that page's heading. */}
       <EnergyConduit />
-
-      {/* 06 — Onward */}
-      <ChapterBlock className="text-center !pt-[clamp(4rem,9vh,6.5rem)] !pb-5">
-        <SectionHeading
-          eyebrow="/* FIELD MONITOR */"
-          title={
-            <>
-              Back to the <span className="text-gradient">vitals</span>
-            </>
-          }
-          sub="Everything above feeds the monitors below — the fellowship, on vitals."
-          className="mx-auto max-w-[34ch]"
-        />
-      </ChapterBlock>
     </section>
   );
 }
