@@ -15,24 +15,40 @@ interface FormState {
 
 const EMPTY: FormState = { name: '', email: '', message: '' };
 
-interface DockLink {
+interface ContactLink {
   icon: typeof Mail;
   label: string;
   href?: string;
 }
 
-function DockItem({ mouse, link }: { mouse: MotionValue<number>; link: DockLink }) {
+interface MousePos {
+  x: number;
+  y: number;
+}
+
+const FAR: MousePos = { x: Infinity, y: Infinity };
+
+/** One vertical contact row. The icon and its full name spring-magnify with
+ *  cursor proximity (macOS-dock feel) while the row itself never reflows. */
+function ContactRow({ mouse, link, index, inView }: {
+  mouse: MotionValue<MousePos>;
+  link: ContactLink;
+  index: number;
+  inView: boolean;
+}) {
   const ref = useRef<HTMLAnchorElement>(null);
   const Icon = link.icon;
 
-  const dist = useTransform(mouse, (x) => {
+  // Distance from the cursor to the nearest edge of the row (0 while hovering it).
+  const dist = useTransform(mouse, (m) => {
     const b = ref.current?.getBoundingClientRect();
-    return b ? x - (b.left + b.width / 2) : 999;
+    if (!b) return 999;
+    const dx = Math.max(b.left - m.x, 0, m.x - b.right);
+    const dy = Math.max(b.top - m.y, 0, m.y - b.bottom);
+    return Math.hypot(dx, dy);
   });
-  const size = useSpring(useTransform(dist, [-120, 0, 120], [40, 64, 40]), {
-    stiffness: 400,
-    damping: 28,
-  });
+  const iconScale = useSpring(useTransform(dist, [0, 140], [1.55, 1]), { stiffness: 400, damping: 28 });
+  const labelScale = useSpring(useTransform(dist, [0, 140], [1.14, 1]), { stiffness: 400, damping: 28 });
 
   return (
     <motion.a
@@ -41,13 +57,20 @@ function DockItem({ mouse, link }: { mouse: MotionValue<number>; link: DockLink 
       target={link.href?.startsWith('http') ? '_blank' : undefined}
       rel="noopener noreferrer"
       aria-label={link.label}
-      style={{ width: size, height: size }}
-      className="group relative flex shrink-0 items-center justify-center rounded-2xl border border-[var(--line-2)] bg-bg-3 text-ink-3 transition-colors hover:border-[var(--line)] hover:text-ink"
+      className="group flex items-center gap-3 rounded-lg px-2 py-1.5 text-[13px] text-ink-2 transition-colors hover:text-ink"
+      initial={{ opacity: 0, x: -16 }}
+      animate={inView ? { opacity: 1, x: 0 } : {}}
+      transition={{ duration: 0.5, delay: 0.1 + index * 0.06 }}
     >
-      <Icon className="h-[45%] w-[45%]" strokeWidth={1.7} />
-      <span className="pointer-events-none absolute -top-9 left-1/2 z-10 -translate-x-1/2 whitespace-nowrap rounded-md border border-[var(--line-2)] bg-bg-2 px-2 py-0.5 text-[11px] text-ink opacity-0 transition-opacity duration-200 group-hover:opacity-100">
+      <motion.span
+        style={{ scale: iconScale }}
+        className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg border border-[var(--line)] bg-bg-2/70 text-primary"
+      >
+        <Icon size={14} />
+      </motion.span>
+      <motion.span style={{ scale: labelScale }} className="origin-left">
         {link.label}
-      </span>
+      </motion.span>
     </motion.a>
   );
 }
@@ -59,7 +82,7 @@ export function Contact() {
   const [form, setForm] = useState<FormState>(EMPTY);
   const [sending, setSending] = useState(false);
   const [sent, setSent] = useState(false);
-  const mouse = useMotionValue(Infinity);
+  const mouse = useMotionValue<MousePos>(FAR);
 
   const set = (k: keyof FormState) => (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) =>
     setForm((f) => ({ ...f, [k]: e.target.value }));
@@ -92,7 +115,7 @@ export function Contact() {
     }
   };
 
-  const links: DockLink[] = [
+  const links: ContactLink[] = [
     { icon: Mail,     label: profile.emails.personal,                  href: `mailto:${profile.emails.personal}` },
     { icon: Phone,    label: profile.phone,                            href: `tel:${profile.phone.replace(/\s/g, '')}` },
     { icon: MapPin,   label: profile.location,                         href: undefined },
@@ -105,7 +128,11 @@ export function Contact() {
     <section id="contact" className="relative flex h-full w-full items-center overflow-hidden px-5 lg:px-10">
       <div className="mx-auto grid w-full max-w-[1500px] items-center gap-8 lg:grid-cols-[0.9fr_1.1fr]">
         {/* Left — info + links */}
-        <div ref={ref}>
+        <div
+          ref={ref}
+          onMouseMove={(e) => mouse.set({ x: e.clientX, y: e.clientY })}
+          onMouseLeave={() => mouse.set(FAR)}
+        >
           <SectionHeading
             eyebrow="/* 11 · CONTACT */"
             className="mb-5"
@@ -117,18 +144,11 @@ export function Contact() {
             sub="Field data, dashboards, full-stack products, or just a conversation about public health — my inbox is open."
           />
 
-          <motion.div
-            className="flex h-[76px] w-fit items-end gap-2.5 rounded-3xl border border-[var(--line)] bg-bg-2/80 px-3 pb-3 backdrop-blur"
-            onMouseMove={(e) => mouse.set(e.clientX)}
-            onMouseLeave={() => mouse.set(Infinity)}
-            initial={{ opacity: 0, y: 16 }}
-            animate={inView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.6, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
-          >
-            {links.map((l) => (
-              <DockItem key={l.label} mouse={mouse} link={l} />
+          <div className="space-y-1.5">
+            {links.map((l, i) => (
+              <ContactRow key={l.label} mouse={mouse} link={l} index={i} inView={inView} />
             ))}
-          </motion.div>
+          </div>
         </div>
 
         {/* Right — form */}
