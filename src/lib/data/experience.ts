@@ -32,12 +32,12 @@ export const experience: Experience[] = [
     period: 'Jul 2025 – Present',
     current: true,
     bullets: [
-      'Built and deployed a <strong>production e-commerce platform (biharkaswaad.in)</strong> — catalog, cart, payments, shipping & support, end-to-end on Hostinger with PM2.',
+      'Built and deployed a <strong>production e-commerce platform (biharkaswaad.in)</strong> — catalog, cart, payments, shipping & support, end-to-end on Hostinger.',
       'Designed a <strong>secure Razorpay payment pipeline</strong> — HMAC SHA-256 verification, server-side amount re-validation, and webhook reconciliation.',
       'Engineered the <strong>full order lifecycle</strong> with variant-aware stock, courier tracking, and automated branded emails.',
       'Sole developer and <strong>ongoing web in-charge</strong>.',
     ],
-    tags: ['React', 'Node.js', 'Express', 'MySQL', 'Razorpay', 'PM2'],
+    tags: ['React', 'Node.js', 'Express', 'MySQL', 'Razorpay'],
   },
   {
     role: 'Full-Stack Web Developer Intern',

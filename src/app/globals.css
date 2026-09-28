@@ -120,6 +120,18 @@ html {
   color-scheme: light;
   scroll-snap-type: none;
 }
+
+/* Desktop renders as if the browser were at 80% zoom: a 1920×1080 screen
+   becomes a 2400×1350 CSS canvas, so full-viewport panels breathe the way
+   they do at 80%. Gated to ≥1024px so phone/tablet breakpoints are
+   untouched; @supports skips browsers without CSS zoom (pre-FF 126). */
+@media (min-width: 1024px) {
+  @supports (zoom: 0.8) {
+    html {
+      zoom: 0.8;
+    }
+  }
+}
 html,
 body {
   overscroll-behavior-y: none;

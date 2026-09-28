@@ -11,19 +11,19 @@ Fellow, Health System Strengthening, Muzaffarpur, Bihar (Jul 2025 – Present). 
 ## Work experience
 
 - Gandhi Fellow, Health System Strengthening, Piramal Foundation (Jul 2025 – Present).
-- Full-Stack Developer & Web In-Charge, BiharKaSwaad, a Bihari food e-commerce platform (Jul 2025 – Present). He designed and built the complete platform end-to-end, implementing JWT authentication, CRUD, product catalogue, cart and order management with the MERN stack (MongoDB, Express, React, Node). He deployed it to production on a VPS with Nginx, PM2 and SSL. He is the sole developer and ongoing web in-charge.
+- Full-Stack Developer & Web In-Charge, BiharKaSwaad, a Bihari food e-commerce platform (Jul 2025 – Present). He designed and built the complete platform end-to-end, implementing JWT authentication, CRUD, product catalogue, cart and order management with the MERN stack (MongoDB, Express, React, Node). He deployed it to production on a VPS with SSL. He is the sole developer and ongoing web in-charge.
 - Full-Stack Web Developer Intern, Prodigy InfoTech (Jun – Jul 2025). Built and tested REST APIs with JWT/OAuth for a full-stack e-commerce platform.
 - Open Source Developer, MinVayu (Aug – Dec 2024). Applied 3D modeling and automation to renewable-energy hardware prototyping.
 
 ## Skills
 
-Field & public health: ODK Collect, ODK Central, Apache Superset, DHIS2. Data & analysis: Python, Pandas, SQL/SQLite, Dash, Plotly, Excel. Full-stack & DevOps: React, Node, Express, MongoDB, Nginx, PM2, Git. AI tools: Gemini, GitHub Copilot, ChatGPT, Cursor. Self-assessed strengths: ODK 90%, data cleaning with Pandas 87%, SQL 82%, Dash/Plotly/Excel 80%, MERN 78%, REST APIs/JWT 76%, AI tools 72%.
+Field & public health: ODK Collect, ODK Central, Apache Superset, DHIS2. Data & analysis: Python, Pandas, SQL/SQLite, Dash, Plotly, Excel. Full-stack & DevOps: React, Node, Express, MongoDB, Git. AI tools: Gemini, GitHub Copilot, ChatGPT, Cursor. Self-assessed strengths: ODK 90%, data cleaning with Pandas 87%, SQL 82%, Dash/Plotly/Excel 80%, MERN 78%, REST APIs/JWT 76%, AI tools 72%.
 
 ## Projects
 
 1. SpaceX Launch Success Prediction — IBM Data Science Professional Certificate capstone. 100+ Falcon 9 launches collected via the SpaceX REST API and Wikipedia scraping; data wrangling with one-hot encoding and missing-value handling; EDA via SQL queries and visualisations; classification models including Logistic Regression, SVM, Decision Tree and KNN; deployed as an interactive Dash + Plotly dashboard. Stack: Python, Pandas, Scikit-learn, SQLite, Dash, Plotly.
 2. VHSND Field Data Quality & Insights — Built during the Gandhi Fellowship for community health session data from ODK Collect. Automated validation against the VHSND schema, block- and ANM-level data-quality breakdowns, analysis-ready datasets for the MIS pipeline, and weekly summary emails to block officers. Stack: Python, Pandas, ODK Central API.
-3. BiharKaSwaad — Production e-commerce platform for indigenous Bihari snacks. Customer storefront and admin panel, JWT auth with role-based admin routes, full CRUD, cart, checkout and order management. Deployed in production on a VPS with Nginx, PM2 and SSL. Live at biharkaswaad.in. Stack: React, Node, Express, MongoDB, JWT, Nginx, PM2.
+3. BiharKaSwaad — Production e-commerce platform for indigenous Bihari snacks. Customer storefront and admin panel, JWT auth with role-based admin routes, full CRUD, cart, checkout and order management. Deployed in production on a VPS with SSL. Live at biharkaswaad.in. Stack: React, Node, Express, MongoDB, JWT.
 
 ## Education
 

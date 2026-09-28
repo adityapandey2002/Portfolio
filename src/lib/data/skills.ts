@@ -24,7 +24,7 @@ export const techCats = [
   },
   {
     title: 'Full-Stack & DevOps',
-    pills: ['React', 'Node', 'Express', 'MongoDB', 'WebSockets', 'Nginx', 'PM2', 'Git'],
+    pills: ['React', 'Node', 'Express', 'MongoDB', 'WebSockets', 'Git'],
   },
   {
     title: 'Fabrication & Innovation',
@@ -54,7 +54,7 @@ export const skillThemes: SkillTheme[] = [
     index: '02',
     name: 'WEB DEVELOPER',
     line: 'Production apps, catalog to checkout, end-to-end.',
-    pills: ['React', 'Next.js', 'TypeScript', 'Tailwind', 'Node', 'Express', 'MySQL', 'MongoDB', 'REST / JWT', 'WebSockets', 'Nginx', 'PM2', 'Git', 'Docker', 'SEO'],
+    pills: ['React', 'Next.js', 'TypeScript', 'Tailwind', 'Node', 'Express', 'MySQL', 'MongoDB', 'REST / JWT', 'WebSockets', 'Git', 'Docker', 'SEO'],
     barLabel: 'Full-Stack (MERN)',
     barPct: 78,
   },

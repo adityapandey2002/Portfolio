@@ -68,13 +68,13 @@ export const projects: Project[] = [
     caseStudy: {
       intro: 'A live online store selling authentic Bihari food across India — the complete order-to-delivery lifecycle, owned end-to-end.',
       bullets: [
-        'Deployed to <strong>production (biharkaswaad.in)</strong> on Hostinger with PM2 cluster mode — catalog, cart, payments, shipping & support for real customers across India',
+        'Deployed to <strong>production (biharkaswaad.in)</strong> on Hostinger — catalog, cart, payments, shipping & support for real customers across India',
         'Secure <strong>Razorpay payment pipeline</strong> — HMAC SHA-256 signature verification, server-side amount re-validation from DB, webhook reconciliation & 30-min auto-expiry of abandoned orders',
         'Full <strong>order lifecycle</strong> — pending → processing → shipped → delivered with variant-aware stock, Shipmojo courier tracking & automated branded emails',
         'Role-based system (customer/admin/support) — <strong>JWT + httpOnly cookies</strong>, bcrypt, rate-limited login & protected admin CRUD',
         'Performance & security — <strong>60s response caching</strong>, helmet CSP for gateways, XSS-sanitized emails & Excel bulk catalog uploads',
       ],
-      stack: 'React 18 · Redux Toolkit · Node.js · Express · MySQL · Sequelize · Razorpay · JWT · Nodemailer · PM2 · Multer · Cloudinary · Docker.',
+      stack: 'React 18 · Redux Toolkit · Node.js · Express · MySQL · Sequelize · Razorpay · JWT · Nodemailer · Multer · Cloudinary · Docker.',
       note: 'biharkaswaad.in · live in production',
     },
   },

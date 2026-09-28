@@ -64,7 +64,7 @@ export function Terminal() {
       print('<span class="t-cmt">Opening the AI…</span>');
       router.push('/ask');
     },
-    skills: () => print('<span class="t-out">Python · SQL · Pandas · MERN · ODK · Nginx · PM2 · Git · AI Tools</span>'),
+    skills: () => print('<span class="t-out">Python · SQL · Pandas · MERN · ODK · Git · AI Tools</span>'),
     experience: () => {
       print('  · Gandhi Fellow · Piramal Foundation <span class="t-cmt">(Jul 2025 – Present)</span>');
       print('  · BiharKaSwaad · Full-Stack Dev <span class="t-cmt">(Jul 2025 – Present)</span>');
