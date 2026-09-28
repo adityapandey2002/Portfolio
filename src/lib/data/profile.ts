@@ -20,7 +20,7 @@ export const profile = {
   },
   phone: '+91 8601862114',
   github: 'https://github.com/adityapandey2002/',
-  linkedin: 'https://www.linkedin.com/in/adityapandey-a-fellow',
+  linkedin: 'https://www.linkedin.com/in/aditya-pandey-a-fellow/',
   liveSite: 'https://biharkaswaad.in/',
   degrees: {
     highest: 'MCA · 2025',

@@ -30,7 +30,7 @@ export function SectionHeading({
     return (
       <div className={cn('relative mb-4 shrink-0', className)}>
         <span className="eyebrow">{eyebrow}</span>
-        <h2 className="mt-2 leading-[1.05] tracking-tight" style={{ fontSize: titleSize, maxWidth: '26ch' }}>
+        <h2 className="mt-2 leading-[1.05] tracking-tight" style={{ fontSize: `calc(${titleSize} * var(--fs-bump))`, maxWidth: '26ch' }}>
           {title}
         </h2>
         {sub && <p className="section-sub mt-1.5">{sub}</p>}
@@ -50,7 +50,7 @@ export function SectionHeading({
       </motion.span>
       <h2
         className={cn('draw-title mt-2 leading-[1.05] tracking-tight', inView && 'in')}
-        style={{ fontSize: titleSize, maxWidth: '26ch' }}
+        style={{ fontSize: `calc(${titleSize} * var(--fs-bump))`, maxWidth: '26ch' }}
       >
         {title}
       </h2>

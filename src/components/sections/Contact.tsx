@@ -120,7 +120,7 @@ export function Contact() {
     { icon: Phone,    label: profile.phone,                            href: `tel:${profile.phone.replace(/\s/g, '')}` },
     { icon: MapPin,   label: profile.location,                         href: undefined },
     { icon: Github,   label: 'github.com/adityapandey2002',            href: profile.github },
-    { icon: Linkedin, label: 'linkedin.com/in/adityapandey-a-fellow',  href: profile.linkedin },
+    { icon: Linkedin, label: 'linkedin.com/in/aditya-pandey-a-fellow',  href: profile.linkedin },
     { icon: Globe,    label: 'biharkaswaad.in',                        href: profile.liveSite },
   ];
 

@@ -128,7 +128,10 @@ export function Hero() {
           {/* Headline */}
           <h1
             className="font-serif leading-[0.98] tracking-tight"
-            style={{ fontFamily: 'var(--font-lora), serif', fontSize: 'clamp(24px, 3vw, 48px)' }}
+            style={{
+              fontFamily: 'var(--font-lora), serif',
+              fontSize: 'calc(clamp(24px, 3vw, 48px) * var(--fs-bump))',
+            }}
           >
             <span className="block">
               <SplitWord text={line1.a} started={started} delay={0.15} />
