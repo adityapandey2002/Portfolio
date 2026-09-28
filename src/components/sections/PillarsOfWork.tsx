@@ -7,188 +7,81 @@ import {
   AnimatePresence,
 } from 'framer-motion';
 import { cn } from '@/lib/utils';
+import { glide } from '@/lib/glideEngine';
 import { SectionHeading } from './SectionHeading';
 import { PILLAR_LAYERS, type PillarLayer } from '@/lib/data/pillars';
 
 const EASE: [number, number, number, number] = [0.16, 1, 0.3, 1];
 
-/* ── Stage stepper: pinned deck, scroll distance maps to steps (both ways) ── */
-function useStageStepper(count: number, ref: RefObject<HTMLDivElement | null>) {
+/* ── Pinned deck: the active block is a function of scroll position ──
+   The deck used to own wheel and keys in the capture phase and pace one block
+   per gesture while the document stayed frozen — six screens of no visible
+   motion and then a hard jump. Geometry is now the single source of truth: the
+   glide engine publishes one stop per card across the sticky travel, so
+   scrolling and clicking a rail row run the same code path and cannot
+   disagree, and touch, scrollbar drags and find-in-page advance the deck too. */
+function useScrollStage(count: number, ref: RefObject<HTMLDivElement | null>) {
   const [active, setActive] = useState(0);
-  const activeRef = useRef(0);
-  useEffect(() => {
-    activeRef.current = active;
-  }, [active]);
+  const geo = useRef<{ start: number; travel: number } | null>(null);
 
   useEffect(() => {
-    const last = count - 1;
-    const NOISE = 8; // deltas below this are trackpad jitter
-    const STEP = 300; // px of scroll that advances one block
-    const COOLDOWN = 150; // ms after a block before the next may fire
-    const REPEAT = 400; // held wheel: minimum ms between blocks
-    const NOTCH = 100; // a single notch / fling-sized delta
-    const FLICK = 120; // committed flick that ends a gesture
-    const GESTURE_END = 220; // ms of quiet that ends a gesture
-    let acc = 0;
-    let lastDir = 0;
-    let mouseish = false;
-    let stepped = false;
-    let lastStep = 0;
-    let gestureTimer = 0;
-
-    // Matches SystemScrub's sticky top (nav-h - 6): the deck sits 30px
-    // higher than the old nav-h + 24 so the WHO card lands where it should.
-    const pinnedTop = () =>
-      (parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--nav-h')) || 0) - 6;
-
-    // ScrollChaining reads this flag to stay out of the way: while the
-    // deck is pinned this stepper owns wheel and keys (one block per
-    // gesture), and nothing else should be stepping the page under it.
-    // Synced on scroll so both listeners always see a fresh value.
-    const syncDeck = () => {
-      const pinned =
-        !!ref.current && Math.abs(ref.current.getBoundingClientRect().top - pinnedTop()) <= 4;
-      if (pinned) document.documentElement.dataset.deck = 'pinned';
-      else delete document.documentElement.dataset.deck;
+    const measure = () => {
+      const sticky = ref.current;
+      // stageRef sits on the sticky child; its rect freezes at the pinned
+      // offset the moment the deck engages, so the pin wrapper is the only
+      // element whose top and travel still describe the section.
+      const pin = sticky?.closest<HTMLElement>('[data-chapter-pin]');
+      if (!sticky || !pin) return;
+      const nav =
+        parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--nav-h')) || 0;
+      const travel = Math.max(1, pin.offsetHeight - sticky.offsetHeight);
+      geo.current = {
+        start: pin.getBoundingClientRect().top + window.scrollY - (nav - 6),
+        travel,
+      };
     };
-    syncDeck();
-    window.addEventListener('scroll', syncDeck, { passive: true });
+    measure();
 
-    const endGesture = () => {
-      window.clearTimeout(gestureTimer);
-      // A committed flick that never reached STEP still earns one block —
-      // but only if this gesture stepped nowhere yet.
-      const now = performance.now();
-      if (!stepped && Math.abs(acc) >= FLICK && now - lastStep >= COOLDOWN) {
-        setActive((a) => Math.max(0, Math.min(last, a + (acc > 0 ? 1 : -1))));
-        lastStep = now;
-      }
-      acc = 0;
-      lastDir = 0;
-      mouseish = false;
-      stepped = false;
+    let raf = 0;
+    const update = () => {
+      raf = 0;
+      const g = geo.current;
+      if (!g) return;
+      const p = (window.scrollY - g.start) / g.travel;
+      const idx = Math.min(count - 1, Math.max(0, Math.round(p * (count - 1))));
+      setActive((prev) => (prev === idx ? prev : idx));
     };
-
-    const onWheel = (e: WheelEvent) => {
-      const el = ref.current;
-      if (!el) return;
-      const r = el.getBoundingClientRect();
-      const pt = pinnedTop();
-
-      // Not pinned yet: let the page scroll. If the stage slid below the
-      // viewport (user scrolled back up out of the section), restart the deck.
-      if (Math.abs(r.top - pt) > 4) {
-        delete document.documentElement.dataset.deck;
-        if (r.top > pt + 8 && activeRef.current !== 0) setActive(0);
-        return;
-      }
-
-      const down = e.deltaY > 0;
-      const up = e.deltaY < 0;
-      const atStart = activeRef.current === 0;
-      const atEnd = activeRef.current >= last;
-
-      // Release the ends to the page: once you're on the first/last card a
-      // further no-op/up-down scroll should move the page, not the deck.
-      // The data-deck flag drops with the release, so ScrollChaining takes
-      // the very same event over as a normal screen step — momentum
-      // carried into the release can't fire a stale block step after
-      // re-entry either. A zero-delta tick only resets gesture state: the
-      // flag is geometry, and stays until the stage actually unpins.
-      if (e.deltaY === 0) {
-        acc = 0;
-        lastDir = 0;
-        mouseish = false;
-        stepped = false;
-        return;
-      }
-      if ((down && atEnd) || (up && atStart)) {
-        acc = 0;
-        lastDir = 0;
-        mouseish = false;
-        stepped = false;
-        delete document.documentElement.dataset.deck;
-        return;
-      }
-
-      e.preventDefault();
-      // Claim the gesture for the deck before ScrollChaining's bubble
-      // handler runs: it reads this flag and yields.
-      document.documentElement.dataset.deck = 'pinned';
-
-      const d =
-        e.deltaMode === 1
-          ? e.deltaY * 16
-          : e.deltaMode === 2
-            ? e.deltaY * window.innerHeight
-            : e.deltaY;
-      if (Math.abs(d) < NOISE) return;
-
-      const now = performance.now();
-      window.clearTimeout(gestureTimer);
-      gestureTimer = window.setTimeout(endGesture, GESTURE_END);
-
-      const dir = d > 0 ? 1 : -1;
-      if (dir !== lastDir) {
-        acc = 0;
-        mouseish = false;
-        stepped = false;
-        lastDir = dir;
-      }
-      if (Math.abs(d) >= NOTCH) mouseish = true;
-      acc += d;
-
-      // Exactly one block per trigger: the old while-loop burned through
-      // all six on a single flick (multi-step per event, accumulator that
-      // never reset mid-gesture).
-      let fire = false;
-      if (now - lastStep >= COOLDOWN) {
-        if (mouseish && !stepped) fire = true; // a notch / fling start
-        else if (!mouseish && Math.abs(acc) >= STEP) fire = true; // steady stream
-        else if (
-          mouseish &&
-          stepped &&
-          now - lastStep >= REPEAT &&
-          Math.abs(acc) >= 150
-        )
-          fire = true; // held wheel
-      }
-
-      if (fire) {
-        acc = 0;
-        stepped = true;
-        lastStep = now;
-        setActive((a) => Math.max(0, Math.min(last, a + dir)));
-      }
+    const onScroll = () => {
+      if (!raf) raf = requestAnimationFrame(update);
     };
-
-    const onKey = (e: KeyboardEvent) => {
-      const el = ref.current;
-      if (!el) return;
-      const r = el.getBoundingClientRect();
-      if (Math.abs(r.top - pinnedTop()) > 4) return;
-      if (['ArrowDown', 'PageDown', ' '].includes(e.key) && activeRef.current < last) {
-        e.preventDefault();
-        setActive((a) => Math.max(0, Math.min(last, a + 1)));
-      }
-      if (['ArrowUp', 'PageUp'].includes(e.key) && activeRef.current > 0) {
-        e.preventDefault();
-        setActive((a) => Math.max(0, Math.min(last, a - 1)));
-      }
+    const onResize = () => {
+      measure();
+      onScroll();
     };
+    // Geometry only moves when the sticky stage or the viewport does. Reading
+    // it from the scroll handler would force a layout on every frame.
+    const ro = typeof ResizeObserver !== 'undefined' ? new ResizeObserver(onResize) : null;
+    if (ro && ref.current) ro.observe(ref.current);
+    if (ro && ref.current?.firstElementChild) ro.observe(ref.current.firstElementChild);
+    window.addEventListener('scroll', onScroll, { passive: true });
+    window.addEventListener('resize', onResize);
+    update();
 
-    window.addEventListener('wheel', onWheel, { capture: true, passive: false });
-    window.addEventListener('keydown', onKey);
     return () => {
-      window.clearTimeout(gestureTimer);
-      window.removeEventListener('scroll', syncDeck);
-      delete document.documentElement.dataset.deck;
-      window.removeEventListener('wheel', onWheel, { capture: true });
-      window.removeEventListener('keydown', onKey);
+      if (raf) cancelAnimationFrame(raf);
+      ro?.disconnect();
+      window.removeEventListener('scroll', onScroll);
+      window.removeEventListener('resize', onResize);
     };
   }, [count, ref]);
 
-  return [active, setActive] as const;
+  const goTo = (i: number) => {
+    const g = geo.current;
+    if (!g) return;
+    glide.goTo(g.start + (i * g.travel) / Math.max(1, count - 1));
+  };
+
+  return [active, goTo] as const;
 }
 
 /* ── Ambient background: drifting field + grid ──────────────────── */
@@ -408,7 +301,7 @@ function DomainStage({ layer }: { layer: PillarLayer }) {
 function SystemScrub({ layer }: { layer: PillarLayer }) {
   const stageRef = useRef<HTMLDivElement>(null);
   const items = layer.items;
-  const [active, setActive] = useStageStepper(items.length, stageRef);
+  const [active, goTo] = useScrollStage(items.length, stageRef);
 
   const activeItem = items[active];
   const ActiveIcon = activeItem.icon;
@@ -422,7 +315,12 @@ function SystemScrub({ layer }: { layer: PillarLayer }) {
           this sticky stage actually engages (its top − the sticky offset)
           instead of the chapter's own top, so arriving here hands straight
           over to the deck rather than showing the card half off-screen. */}
-      <div className="relative" data-chapter-pin style={{ height: '180vh' }}>
+      <div
+        className="relative"
+        data-chapter-pin
+        data-chapter-pin-count={items.length}
+        style={{ height: '180vh' }}
+      >
         <div ref={stageRef} className="sticky" style={{ top: 'calc(var(--nav-h) - 6px)' }}>
           <SectionHeading
             eyebrow={layer.eyebrow}
@@ -453,7 +351,7 @@ function SystemScrub({ layer }: { layer: PillarLayer }) {
                 return (
                   <button
                     key={it.id}
-                    onClick={() => setActive(i)}
+                    onClick={() => goTo(i)}
                     className={cn(
                       'relative min-w-[124px] flex-1 rounded-xl border px-2 py-1.5 text-left transition-colors duration-300 lg:min-w-0 lg:flex-none',
                       isActive

@@ -166,7 +166,17 @@ label {
 .snap-section > header {
   width: 100%;
   height: 100%;
-  overflow-y: auto;
+  /* Exactly one screen, never a scroll box. The bands are sized to fit (the
+     scale above exists to make them fit), so the only thing that ever trips
+     `auto` is decorative art — the hero's orbit rings over by 5px at 1600x700
+     and 44px at 1366x620 — and that turned into a real inner scrollbar the
+     first wheel notch had to drain before the page could move. Anything past
+     the band is already hidden by .snap-section's own overflow: hidden, so
+     clipping here loses nothing the user could see. Copy that has to be
+     reachable goes in a .section-inner-scroll box instead.
+     `clip` rather than `hidden` keeps this from becoming a scroll container,
+     so position:sticky inside still resolves against the viewport. */
+  overflow: clip;
   scrollbar-width: none;
   padding-top: clamp(2.25rem, 6.5vh, 3.25rem);
   padding-bottom: clamp(0.75rem, 2vh, 1.5rem);
