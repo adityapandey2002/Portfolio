@@ -257,7 +257,7 @@ function DomainStage({ layer }: { layer: PillarLayer }) {
   const inView = useInView(ref, { once: true, margin: '-60px' });
 
   return (
-    <ChapterBlock className="flex min-h-[100svh] flex-col justify-center">
+    <ChapterBlock className="flex min-h-[calc(100svh_*_var(--zoom-inv))] flex-col justify-center">
       <SectionHeading
         eyebrow={layer.eyebrow}
         title={
@@ -319,7 +319,7 @@ function SystemScrub({ layer }: { layer: PillarLayer }) {
         className="relative"
         data-chapter-pin
         data-chapter-pin-count={items.length}
-        style={{ height: '180vh' }}
+        style={{ height: 'calc(180vh * var(--zoom-inv))' }}
       >
         <div ref={stageRef} className="sticky" style={{ top: 'calc(var(--nav-h) - 6px)' }}>
           <SectionHeading
@@ -447,7 +447,7 @@ function CapabilityGrid({ layer }: { layer: PillarLayer }) {
   const inView = useInView(ref, { once: true, margin: '-60px' });
 
   return (
-    <ChapterBlock className="flex min-h-[100svh] flex-col justify-center">
+    <ChapterBlock className="flex min-h-[calc(100svh_*_var(--zoom-inv))] flex-col justify-center">
       <SectionHeading
         eyebrow={layer.eyebrow}
         title={

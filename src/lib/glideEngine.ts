@@ -43,6 +43,15 @@ type Mode = 'idle' | 'track' | 'glide';
 const top = (el: HTMLElement) => el.getBoundingClientRect().top + window.scrollY;
 const vh = () => window.innerHeight;
 const docMax = () => Math.max(0, document.documentElement.scrollHeight - window.innerHeight);
+/* Everything above and below is document pixels — the unit `scrollTo`,
+   `scrollY` and every `getBoundingClientRect()` here agree on. `offsetHeight`
+   is not one: under `html { zoom }` it reports layout pixels (1125 for a
+   900px band), so any measurement that comes back in it has to be scaled back
+   before it can be compared with `window.innerHeight` or added to a position. */
+const screenScale = () => {
+  const z = parseFloat(getComputedStyle(document.documentElement).zoom);
+  return Number.isFinite(z) && z > 0 ? z : 1;
+};
 
 let stops: number[] = [];
 
@@ -75,7 +84,7 @@ let obs: ResizeObserver | null = null;
 function scan() {
   const nav =
     parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--nav-h')) || 0;
-  const stickyTop = nav - 6; // matches PillarsOfWork's sticky offset
+  const stickyTop = (nav - 6) * screenScale(); // matches PillarsOfWork's sticky offset
   const out: number[] = [];
 
   document.querySelectorAll<HTMLElement>('.snap-section').forEach((el) => {
@@ -86,8 +95,12 @@ function scan() {
        stop is the following panel's top and one notch clears the whole thing,
        leaving every role in the middle unreachable by wheel. Stops are spaced
        evenly so no segment exceeds one screen; a fixed-height panel never
-       clears the threshold and keeps exactly the one stop it had before. */
-    const h = el.offsetHeight;
+       clears the threshold and keeps exactly the one stop it had before.
+       The height has to be read in document pixels: `offsetHeight` under
+       `html { zoom }` comes back in layout pixels and would clear the
+       threshold on every panel, handing each one an extra stop at its
+       midpoint — one screen, two notches. */
+    const h = el.getBoundingClientRect().height;
     const vh = window.innerHeight;
     if (h > vh * 1.05) {
       const n = Math.max(1, Math.ceil(h / vh) - 1);
@@ -103,7 +116,12 @@ function scan() {
     const count = Math.max(2, parseInt(pin.dataset.chapterPinCount || '2', 10) || 2);
     const sticky = pin.firstElementChild as HTMLElement | null;
     const start = top(pin) - stickyTop;
-    const travel = sticky ? pin.offsetHeight - sticky.offsetHeight : 0;
+    /* Rect heights, not `offsetHeight` — `start` above is a document position,
+       and the layout-pixel travel `offsetHeight` yields would place the last
+       card a quarter of the deck past where it actually pins. */
+    const travel = sticky
+      ? pin.getBoundingClientRect().height - sticky.getBoundingClientRect().height
+      : 0;
     if (travel > 40) {
       for (let i = 0; i < count; i += 1) out.push(start + (i * travel) / (count - 1));
     } else {

@@ -192,7 +192,7 @@ export function Hero() {
         </div>
 
         {/* 3D scene */}
-        <div className="relative hidden h-[clamp(240px,34vh,420px)] min-h-[210px] items-center justify-center lg:flex">
+        <div className="relative hidden h-[clamp(240px,calc(34vh_*_var(--zoom-inv)),420px)] min-h-[210px] items-center justify-center lg:flex">
           <div className="sphere-halo absolute inset-0" />
           <div className="orbit-ring orbit-ring-1" />
           <div className="orbit-ring orbit-ring-2" />

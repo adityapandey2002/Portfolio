@@ -141,6 +141,19 @@ body {
   --nav-h: 48px;
   --safe-top: env(safe-area-inset-top, 0px);
   --safe-bottom: env(safe-area-inset-bottom, 0px);
+  /* 1 = no root zoom. Under html { zoom: 0.8 } viewport units (vh/svh/dvh)
+     do NOT scale with the root the way px do — 100svh still resolves to the
+     unscaled 1080 layout px while the layout viewport has already widened to
+     1350 — so every full-bleed height multiplies by this inverse to keep
+     filling the screen exactly like a real 80% browser zoom would. */
+  --zoom-inv: 1;
+}
+@media (min-width: 1024px) {
+  @supports (zoom: 0.8) {
+    :root {
+      --zoom-inv: 1.25;
+    }
+  }
 }
 
 /* Kill 300ms tap delay / double-tap auto-zoom on mobile */
@@ -160,8 +173,8 @@ label {
    Each section fills a screen; content clears the fixed nav.
 ========================================================= */
 .snap-section {
-  height: 100svh;
-  max-height: 100svh;
+  height: calc(100svh * var(--zoom-inv));
+  max-height: calc(100svh * var(--zoom-inv));
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -191,8 +204,14 @@ label {
      so position:sticky inside still resolves against the viewport. */
   overflow: clip;
   scrollbar-width: none;
-  padding-top: clamp(2.25rem, 6.5vh, 3.25rem);
-  padding-bottom: clamp(0.75rem, 2vh, 1.5rem);
+  /* The two insets every fixed panel gets, as variables so anything that has
+     to line up with them reads the same numbers — including the content-sized
+     Experience panel and the short-window rule further down that tightens
+     both of them. */
+  --band-pad-t: clamp(2.25rem, 6.5vh, 3.25rem);
+  --band-pad-b: clamp(0.75rem, 2vh, 1.5rem);
+  padding-top: var(--band-pad-t);
+  padding-bottom: var(--band-pad-b);
 }
 .snap-section > section::-webkit-scrollbar,
 .snap-section > header::-webkit-scrollbar {
@@ -218,9 +237,7 @@ label {
 /* The one panel that is not a screen. The Experience timeline carries four
    roles of bullets, so it sizes to its content and the document scrolls
    through it — there is no box inside it to scroll. Every rule that makes
-   .snap-section a fixed, clipped screen is switched off here, and the
-   pull-back scale goes with it: a transform on a content-sized panel would
-   leave a tenth of it empty at the top and the bottom. */
+   .snap-section a fixed, clipped screen is switched off here. */
 .snap-section--tall {
   height: auto;
   max-height: none;
@@ -231,12 +248,43 @@ label {
   overflow: visible;
 }
 @media (min-width: 769px) {
-  .snap-section--tall > section {
-    padding-top: clamp(3.5rem, 9vh, 6rem);
-    padding-bottom: clamp(3.5rem, 9vh, 6rem);
+  /* Every stop has to land on a full screen, so when the timeline happens to
+     lay out shorter than one — a wide monitor, four short roles — the panel
+     still claims a screen and .snap-section's own justify-content centres it,
+     which keeps the slack split evenly above and below instead of piling it
+     under the last tag. */
+  .snap-section--tall {
+    min-height: calc(100svh * var(--zoom-inv));
   }
-  html:not([data-scroll='health']) .snap-section.snap-section--tall > section > .mx-auto {
-    transform: none;
+  /* A fixed panel insets its content twice over: once by the section padding,
+     and once more because the wrapper fills the band and is then shrunk about
+     its centre by scale(0.9) — 5% of the band on each side. This panel has no
+     band to fill and nothing to centre, so both of those land straight in the
+     padding. The two padding values are the shared --band-pad-* variables, so
+     the short-window rule below tightens this panel exactly as it tightens
+     every other one. */
+  .snap-section--tall > section {
+    --band: calc(100svh * var(--zoom-inv));
+    padding-top: calc(var(--band-pad-t) + (var(--band) - var(--band-pad-t) - var(--band-pad-b)) * 0.05);
+    padding-bottom: calc(var(--band-pad-b) + (var(--band) - var(--band-pad-t) - var(--band-pad-b)) * 0.05);
+  }
+  /* The same pull-back every other panel gets, applied as zoom rather than a
+     transform: the panel is content-sized, so a transform would paint the
+     timeline 10% smaller while keeping its full height in layout — a tenth of
+     the panel of phantom space hanging under the last tag. zoom shrinks the
+     layout with the paint, so the panel ends exactly where the tags do, and
+     the wrapper lands on the same centre line and the same 1080px the
+     neighbouring wrappers paint at. */
+  @supports not (zoom: 0.9) {
+    html:not([data-scroll='health']) .snap-section.snap-section--tall > section > .mx-auto {
+      transform: scale(0.9);
+    }
+  }
+  @supports (zoom: 0.9) {
+    html:not([data-scroll='health']) .snap-section.snap-section--tall > section > .mx-auto {
+      transform: none;
+      zoom: 0.9;
+    }
   }
 }
 
@@ -279,8 +327,8 @@ label {
 @media (max-height: 720px) {
   .snap-section > section,
   .snap-section > header {
-    padding-top: clamp(1.25rem, 3vh, 1.75rem);
-    padding-bottom: 0.5rem;
+    --band-pad-t: clamp(1.25rem, 3vh, 1.75rem);
+    --band-pad-b: 0.5rem;
   }
   .eyebrow {
     font-size: 9px;
@@ -354,11 +402,11 @@ html[data-scroll='free'] body {
 /* WHO scrub stage: short enough to sit on one screen with its section
    heading (heading + gap ≈ 140px), with 30px breathing room. */
 .who-stage {
-  height: calc(100vh - var(--nav-h) - 170px);
+  height: calc((100vh - var(--nav-h) - 170px) * var(--zoom-inv));
 }
 @supports (height: 100svh) {
   .who-stage {
-    height: calc(100svh - var(--nav-h) - 170px);
+    height: calc((100svh - var(--nav-h) - 170px) * var(--zoom-inv));
   }
 }
 ::selection {
@@ -1109,11 +1157,11 @@ textarea {
    list in the middle (only thing that scrolls), input pinned at the bottom,
    clearing the fixed nav and the mobile tab bar. */
 .ask-shell {
-  height: 100vh;
+  height: calc(100vh * var(--zoom-inv));
 }
 @supports (height: 100dvh) {
   .ask-shell {
-    height: 100dvh;
+    height: calc(100dvh * var(--zoom-inv));
   }
 }
 /* This route reserves its own bottom chrome inside .ask-shell — drop the
