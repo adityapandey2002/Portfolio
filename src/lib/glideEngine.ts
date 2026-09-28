@@ -64,10 +64,12 @@ let obs: ResizeObserver | null = null;
 /* ── stop model ─────────────────────────────────────────────────────────── */
 
 /* Positions the page may come to rest on, in document order: every full-page
-   panel plus every chapter inside #pillars. Chapters are content-sized, so a
-   fixed one-screen hop used to drop the viewport in the void between them —
-   headings cut off at the top, dead space below. A chapter hosting the pinned
-   WHO deck contributes one stop per card across its sticky travel, so arrival
+   panel plus every chapter inside #pillars. Chapters are content-sized, and
+   so is the Experience panel (`.snap-section--tall`) — a fixed one-screen hop
+   used to drop the viewport in the void between them, or clear an entire
+   timeline in a single notch, leaving headings cut off at the top and every
+   role in the middle unreachable by wheel. A chapter hosting the pinned WHO
+   deck contributes one stop per card across its sticky travel, so arrival
    hands straight over to the deck and each notch advances exactly one card
    instead of freezing the document for six gestures and then jumping. */
 function scan() {
@@ -76,7 +78,22 @@ function scan() {
   const stickyTop = nav - 6; // matches PillarsOfWork's sticky offset
   const out: number[] = [];
 
-  document.querySelectorAll<HTMLElement>('.snap-section').forEach((el) => out.push(top(el)));
+  document.querySelectorAll<HTMLElement>('.snap-section').forEach((el) => {
+    const start = top(el);
+    out.push(start);
+    /* A panel that sizes to its content (the Experience timeline) is read by
+       scrolling through it, so it needs a stop inside — otherwise the next
+       stop is the following panel's top and one notch clears the whole thing,
+       leaving every role in the middle unreachable by wheel. Stops are spaced
+       evenly so no segment exceeds one screen; a fixed-height panel never
+       clears the threshold and keeps exactly the one stop it had before. */
+    const h = el.offsetHeight;
+    const vh = window.innerHeight;
+    if (h > vh * 1.05) {
+      const n = Math.max(1, Math.ceil(h / vh) - 1);
+      for (let i = 1; i <= n; i += 1) out.push(start + (i * h) / (n + 1));
+    }
+  });
   document.querySelectorAll<HTMLElement>('#pillars [data-chapter]').forEach((el) => {
     const pin = el.querySelector<HTMLElement>('[data-chapter-pin]');
     if (!pin) {

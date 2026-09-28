@@ -173,7 +173,8 @@ label {
      first wheel notch had to drain before the page could move. Anything past
      the band is already hidden by .snap-section's own overflow: hidden, so
      clipping here loses nothing the user could see. Copy that has to be
-     reachable goes in a .section-inner-scroll box instead.
+     reachable lives in a .snap-section--tall panel instead, which sizes to
+     its content and scrolls with the document.
      `clip` rather than `hidden` keeps this from becoming a scroll container,
      so position:sticky inside still resolves against the viewport. */
   overflow: clip;
@@ -202,19 +203,29 @@ label {
   }
 }
 
-/* soft inner scroll for content-heavy sections */
-.section-inner-scroll {
-  overflow-y: auto;
-  scrollbar-width: thin;
-  scrollbar-color: var(--bg-3) transparent;
-  overscroll-behavior: auto;
+/* The one panel that is not a screen. The Experience timeline carries four
+   roles of bullets, so it sizes to its content and the document scrolls
+   through it — there is no box inside it to scroll. Every rule that makes
+   .snap-section a fixed, clipped screen is switched off here, and the
+   pull-back scale goes with it: a transform on a content-sized panel would
+   leave a tenth of it empty at the top and the bottom. */
+.snap-section--tall {
+  height: auto;
+  max-height: none;
+  overflow: visible;
 }
-.section-inner-scroll::-webkit-scrollbar {
-  width: 4px;
+.snap-section--tall > section {
+  height: auto;
+  overflow: visible;
 }
-.section-inner-scroll::-webkit-scrollbar-thumb {
-  background: var(--bg-3);
-  border-radius: 99px;
+@media (min-width: 769px) {
+  .snap-section--tall > section {
+    padding-top: clamp(3.5rem, 9vh, 6rem);
+    padding-bottom: clamp(3.5rem, 9vh, 6rem);
+  }
+  html:not([data-scroll='health']) .snap-section.snap-section--tall > section > .mx-auto {
+    transform: none;
+  }
 }
 
 @media (max-width: 768px) {
@@ -233,10 +244,6 @@ label {
   }
   .snap-section + .snap-section {
     border-top: 1px solid color-mix(in srgb, var(--line) 40%, transparent);
-  }
-  .section-inner-scroll {
-    overflow-y: visible;
-    max-height: none !important;
   }
   /* 16px inputs — prevents iOS auto-zoom on focus */
   .input-field {

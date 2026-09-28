@@ -7,8 +7,8 @@ import { SectionHeading } from './SectionHeading';
 
 export function Experience() {
   return (
-    <section id="experience" className="relative flex h-full w-full flex-col justify-center overflow-hidden px-5 lg:px-10">
-      <div className="mx-auto flex min-h-0 w-full max-w-[1500px] flex-1 flex-col">
+    <section id="experience" className="relative flex w-full flex-col px-5 lg:px-10">
+      <div className="mx-auto flex w-full max-w-[1500px] flex-col">
         {/* Fixed header area */}
         <div className="flex flex-wrap items-end justify-between gap-4">
           <SectionHeading
@@ -32,11 +32,9 @@ export function Experience() {
           </Link>
         </div>
 
-        {/* Scrollable timeline — flex-1 fills whatever space the panel leaves.
-            Fully static: no entrance animation, so it only ever moves when the user scrolls it. */}
-        <div
-          className="section-inner-scroll relative min-h-0 flex-1 ml-2 border-l border-[var(--line)] pl-5 lg:pl-8"
-        >
+        {/* Timeline — the panel is content-sized and the document scrolls
+            through it, so nothing inside is a scroll box. */}
+        <div className="relative ml-2 mt-6 border-l border-[var(--line)] pl-5 lg:pl-8">
           {experience.map((xp) => (
             <article key={xp.role} className="relative mb-9 last:mb-4">
               <span
@@ -86,12 +84,6 @@ export function Experience() {
             </article>
           ))}
         </div>
-
-        {/* Fade-out gradient at bottom of scroll container */}
-        <div
-          className="pointer-events-none relative -mt-8 h-8"
-          style={{ background: 'linear-gradient(to bottom, transparent, var(--bg))' }}
-        />
       </div>
     </section>
   );

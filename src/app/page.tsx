@@ -17,7 +17,7 @@ export default function HomePage() {
       <div className="snap-section"><Hero /></div>
       <div className="snap-section"><PipelineSection /></div>
       <div className="snap-section"><About /></div>
-      <div className="snap-section"><Experience /></div>
+      <div className="snap-section snap-section--tall"><Experience /></div>
       <div className="snap-section"><Skills /></div>
       <div className="snap-section"><Education /></div>
       <div className="snap-section"><BeyondField /></div>
