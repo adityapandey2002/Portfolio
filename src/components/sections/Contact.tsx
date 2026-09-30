@@ -1,10 +1,11 @@
 'use client';
 
 import { useRef, useState, type FormEvent } from 'react';
-import { motion, useInView, useMotionValue, useSpring, useTransform, type MotionValue } from 'framer-motion';
+import { motion, useInView } from 'framer-motion';
 import { Mail, Phone, MapPin, Send, Github, Linkedin, Globe, CheckCircle2, Loader2 } from 'lucide-react';
 import { profile } from '@/lib/data/profile';
 import { useToast } from '@/hooks/useToaster';
+import { MagnifyDock, useMagnify } from '@/components/ui/MagnifyDock';
 import { SectionHeading } from './SectionHeading';
 
 interface FormState {
@@ -21,34 +22,16 @@ interface ContactLink {
   href?: string;
 }
 
-interface MousePos {
-  x: number;
-  y: number;
-}
-
-const FAR: MousePos = { x: Infinity, y: Infinity };
-
 /** One vertical contact row. The icon and its full name spring-magnify with
  *  cursor proximity (macOS-dock feel) while the row itself never reflows. */
-function ContactRow({ mouse, link, index, inView }: {
-  mouse: MotionValue<MousePos>;
+function ContactRow({ link, index, inView }: {
   link: ContactLink;
   index: number;
   inView: boolean;
 }) {
   const ref = useRef<HTMLAnchorElement>(null);
   const Icon = link.icon;
-
-  // Distance from the cursor to the nearest edge of the row (0 while hovering it).
-  const dist = useTransform(mouse, (m) => {
-    const b = ref.current?.getBoundingClientRect();
-    if (!b) return 999;
-    const dx = Math.max(b.left - m.x, 0, m.x - b.right);
-    const dy = Math.max(b.top - m.y, 0, m.y - b.bottom);
-    return Math.hypot(dx, dy);
-  });
-  const iconScale = useSpring(useTransform(dist, [0, 140], [1.55, 1]), { stiffness: 400, damping: 28 });
-  const labelScale = useSpring(useTransform(dist, [0, 140], [1.14, 1]), { stiffness: 400, damping: 28 });
+  const { iconScale, labelScale } = useMagnify(ref);
 
   return (
     <motion.a
@@ -82,7 +65,6 @@ export function Contact() {
   const [form, setForm] = useState<FormState>(EMPTY);
   const [sending, setSending] = useState(false);
   const [sent, setSent] = useState(false);
-  const mouse = useMotionValue<MousePos>(FAR);
 
   const set = (k: keyof FormState) => (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) =>
     setForm((f) => ({ ...f, [k]: e.target.value }));
@@ -128,27 +110,25 @@ export function Contact() {
     <section id="contact" className="relative flex h-full w-full items-center overflow-hidden px-5 lg:px-10">
       <div className="mx-auto grid w-full max-w-[1500px] items-center gap-8 lg:grid-cols-[0.9fr_1.1fr]">
         {/* Left — info + links */}
-        <div
-          ref={ref}
-          onMouseMove={(e) => mouse.set({ x: e.clientX, y: e.clientY })}
-          onMouseLeave={() => mouse.set(FAR)}
-        >
-          <SectionHeading
-            eyebrow="/* 11 · CONTACT */"
-            className="mb-5"
-            title={
-              <>
-                Let&apos;s build something that <span className="text-gradient">matters</span>
-              </>
-            }
-            sub="Field data, dashboards, full-stack products, or just a conversation about public health — my inbox is open."
-          />
+        <div ref={ref}>
+          <MagnifyDock>
+            <SectionHeading
+              eyebrow="/* 11 · CONTACT */"
+              className="mb-5"
+              title={
+                <>
+                  Let&apos;s build something that <span className="text-gradient">matters</span>
+                </>
+              }
+              sub="Field data, dashboards, full-stack products, or just a conversation about public health — my inbox is open."
+            />
 
-          <div className="space-y-1.5">
-            {links.map((l, i) => (
-              <ContactRow key={l.label} mouse={mouse} link={l} index={i} inView={inView} />
-            ))}
-          </div>
+            <div className="space-y-1.5">
+              {links.map((l, i) => (
+                <ContactRow key={l.label} link={l} index={i} inView={inView} />
+              ))}
+            </div>
+          </MagnifyDock>
         </div>
 
         {/* Right — form */}

@@ -1016,7 +1016,9 @@ textarea {
   border: 1px solid var(--line);
   background: var(--bg-2);
   color: var(--ink-3);
-  transition: all 0.3s;
+  /* transform is left out on purpose: the dock magnify spring drives it every
+     frame, and a CSS transition here would double-smooth the movement. */
+  transition: color 0.3s, border-color 0.3s, background-color 0.3s, box-shadow 0.3s;
 }
 .icon-link:hover {
   color: var(--primary);

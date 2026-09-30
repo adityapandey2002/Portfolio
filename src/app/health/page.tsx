@@ -1,7 +1,7 @@
 import { HealthDashboard } from '@/components/sections/HealthDashboard';
 import { Footer } from '@/components/sections/Footer';
 import { RouteScrollMode } from '@/components/RouteScrollMode';
-import { EnergyConduit } from '@/components/sections/PillarsOfWork';
+import { EnergyConduit } from '@/components/sections/pillars';
 
 export const metadata = {
   title: 'Health Dashboard — Aditya Pandey',
