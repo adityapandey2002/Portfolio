@@ -39,8 +39,7 @@ export function HealthDashboard() {
 
       <div className="snap-section">
         <section
-          className="mx-auto max-w-[1500px] gap-4 px-5 lg:px-10"
-          style={{ paddingTop: 'calc(var(--nav-h) + 2vh)', paddingBottom: '2vh' }}
+          className="mx-auto flex min-h-0 w-full max-w-[1500px] flex-col gap-4 px-5 lg:px-10"
         >
           <SectionHeading
             eyebrow="/* FIELD MONITOR */"
@@ -52,7 +51,7 @@ export function HealthDashboard() {
             sub="Everything above feeds the monitors below — the fellowship, on vitals."
           />
           <div className="grid flex-1 min-h-0 grid-cols-1 gap-px overflow-hidden rounded-2xl border border-[var(--line)] bg-[var(--line)] lg:grid-cols-5">
-            <div className="relative flex flex-col justify-between gap-8 p-8" style={{ background: 'var(--bg-2)' }}>
+            <div className="relative flex min-h-0 flex-col justify-between gap-6 p-6" style={{ background: 'var(--bg-2)' }}>
               <div className="flex items-center justify-between font-mono text-[10.5px] uppercase tracking-[0.2em] text-ink-3">
                 <span>PATIENT · BIHAR FIELD PROGRAM</span>
                 <span className="inline-flex items-center gap-1.5 text-primary">
@@ -61,7 +60,7 @@ export function HealthDashboard() {
               </div>
 
               <div className="relative">
-                <svg viewBox="0 0 600 120" className="h-28 w-full" preserveAspectRatio="none" aria-hidden="true">
+                <svg viewBox="0 0 600 120" className="h-24 w-full" preserveAspectRatio="none" aria-hidden="true">
                   <path
                     d="M0,60 L30,60 L36,53 L44,67 L50,60 L120,60 L140,26 L156,92 L172,60 L250,60 L258,50 L266,70 L274,60 L340,60 L356,30 L372,58 L382,62 L400,60 L470,60 L478,52 L486,68 L494,60 L600,60"
                     fill="none"
@@ -77,11 +76,11 @@ export function HealthDashboard() {
               <div>
                 <div className="flex items-end justify-between">
                   <span className="font-mono text-[10.5px] uppercase tracking-[0.2em] text-ink-3">System Health</span>
-                  <span className="font-serif text-[44px] leading-none tracking-tight">
+                  <span className="font-serif text-[36px] leading-none tracking-tight">
                     <CountUp target={94} suffix="%" className="text-gradient" />
                   </span>
                 </div>
-                <div className="mt-4 h-3.5 overflow-hidden rounded-full border border-[var(--line-2)] bg-[var(--bg-3)]">
+                <div className="mt-3 h-3.5 overflow-hidden rounded-full border border-[var(--line-2)] bg-[var(--bg-3)]">
                   <motion.div
                     className="h-full rounded-full"
                     style={{
@@ -100,7 +99,7 @@ export function HealthDashboard() {
               </div>
             </div>
 
-            <div className="flex min-w-0 lg:col-span-4">
+            <div className="flex min-h-0 min-w-0 lg:col-span-4">
               <HealthcarePanel />
             </div>
           </div>

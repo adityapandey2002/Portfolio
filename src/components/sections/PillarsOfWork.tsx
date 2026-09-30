@@ -59,18 +59,7 @@ export function PillarsOfWork() {
 
       <EnergyConduit />
 
-      <ChapterBlock>
-        <SectionHeading
-          eyebrow={layers.capabilities.eyebrow}
-          title={
-            <>
-              How we <span className="text-gradient">enable change</span>
-            </>
-          }
-          sub="The operating principles that carry every program — from leadership to local co-design."
-        />
-        <CapabilityGrid layer={layers.capabilities} />
-      </ChapterBlock>
+      <CapabilityGrid layer={layers.capabilities} />
 
       <EnergyConduit className="-mt-16" />
 

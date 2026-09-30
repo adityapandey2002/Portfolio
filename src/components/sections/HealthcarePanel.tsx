@@ -48,27 +48,27 @@ function Tile({ it }: { it: Item }) {
       rel="noopener noreferrer"
       title={it.description}
       aria-label={`${it.name} — open full detail on India in the World`}
-      className="group flex min-w-0 flex-col justify-between gap-4 bg-[var(--bg-2)] p-4 transition-colors duration-300 hover:bg-[var(--bg-3)] lg:p-5"
+      className="group flex min-h-0 min-w-0 flex-col justify-between gap-2.5 overflow-hidden bg-[var(--bg-2)] px-4 py-[15px] transition-colors duration-300 hover:bg-[var(--bg-3)] lg:px-5"
     >
       <span className="font-mono text-[10px] uppercase leading-[1.45] tracking-[0.16em] text-ink-3">
         {it.name}
       </span>
       <span className="block">
         <span className="flex items-baseline gap-1.5">
-          <span className="font-serif text-[clamp(26px,2.3vw,36px)] leading-none tracking-tight text-ink transition-colors duration-300 group-hover:text-primary">
+          <span className="font-serif text-[clamp(22px,1.9vw,32px)] leading-none tracking-tight text-ink transition-colors duration-300 group-hover:text-primary">
             {fmt(it.value)}
           </span>
           <span className="font-mono text-[10px] uppercase tracking-[0.16em] text-ink-4">
             {unitLabel(it.unit)}
           </span>
         </span>
-        <span className="mt-3 block h-1.5 overflow-hidden rounded-full bg-[var(--bg-3)]">
+        <span className="mt-2 block h-1.5 overflow-hidden rounded-full bg-[var(--bg-3)]">
           <span
             className="block h-full rounded-full transition-[width] duration-700"
             style={{ width: `${pct}%`, background: pct >= 50 ? 'var(--primary)' : 'var(--accent)' }}
           />
         </span>
-        <span className="mt-2.5 flex items-center justify-between font-mono text-[10px] uppercase tracking-[0.16em] text-ink-4">
+        <span className="mt-2 flex items-center justify-between font-mono text-[10px] uppercase tracking-[0.16em] text-ink-4">
           <span>
             #{it.rank ?? '—'} / {it.total}
           </span>
@@ -82,11 +82,11 @@ function Tile({ it }: { it: Item }) {
 function Skeleton() {
   return (
     <div
-      className="grid min-h-0 flex-1 animate-pulse grid-cols-2 gap-px bg-[var(--line)] sm:grid-cols-4"
+      className="grid min-h-0 flex-1 animate-pulse grid-cols-2 gap-px bg-[var(--line)] sm:grid-cols-4 sm:grid-rows-2"
       aria-hidden="true"
     >
       {Array.from({ length: SKELETON }).map((_, i) => (
-        <div key={i} className="flex flex-col justify-between gap-4 bg-[var(--bg-2)] p-4 lg:p-5">
+        <div key={i} className="flex min-h-0 flex-col justify-between gap-2.5 overflow-hidden bg-[var(--bg-2)] px-4 py-[15px] lg:px-5">
           <div className="h-2.5 w-3/4 rounded bg-[var(--bg-3)]" />
           <div>
             <div className="h-7 w-1/3 rounded bg-[var(--bg-3)]" />
@@ -139,7 +139,7 @@ export function HealthcarePanel() {
 
   return (
     <div className="flex min-w-0 flex-1 flex-col bg-[var(--bg-2)]">
-      <div className="flex flex-wrap items-center justify-between gap-x-4 gap-y-2 border-b border-[var(--line)] px-5 py-4 lg:px-7">
+      <div className="flex flex-wrap items-center justify-between gap-x-4 gap-y-2 border-b border-[var(--line)] px-4 py-3 lg:px-6">
         <span className="inline-flex items-center gap-2 font-mono text-[10.5px] uppercase tracking-[0.2em] text-ink-3">
           <span
             className={`h-2 w-2 rounded-full bg-primary ${state !== 'error' ? 'blip' : ''}`}
@@ -161,7 +161,7 @@ export function HealthcarePanel() {
       {state === 'loading' && <Skeleton />}
 
       {state === 'ready' && (
-        <div className="grid min-h-0 flex-1 grid-cols-2 gap-px bg-[var(--line)] sm:grid-cols-4">
+        <div className="grid min-h-0 flex-1 grid-cols-2 gap-px bg-[var(--line)] sm:grid-cols-4 sm:grid-rows-2">
           {items.map((it) => (
             <Tile key={it.id} it={it} />
           ))}

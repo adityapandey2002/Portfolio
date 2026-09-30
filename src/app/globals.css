@@ -1527,6 +1527,9 @@ html[data-page='health'] .text-\[17px\] {
 html[data-page='health'] .text-\[18px\] {
   font-size: calc(18px * var(--fs-bump));
 }
+html[data-page='health'] .text-\[36px\] {
+  font-size: calc(36px * var(--fs-bump));
+}
 html[data-page='health'] .text-\[44px\] {
   font-size: calc(44px * var(--fs-bump));
 }

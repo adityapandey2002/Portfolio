@@ -3,20 +3,30 @@
 import { motion } from 'framer-motion';
 import { CountUp } from '../CountUp';
 import { HeartPulse } from 'lucide-react';
+import { SectionHeading } from '../SectionHeading';
 import { VITALS } from './constants';
 
 const EASE: [number, number, number, number] = [0.16, 1, 0.3, 1];
 
 export function VitalsGrid() {
   return (
-    <section className="mx-auto max-w-[1500px] px-5 lg:px-10">
+    <section className="mx-auto flex min-h-0 w-full max-w-[1500px] flex-col gap-4 px-5 lg:px-10">
+      <SectionHeading
+        eyebrow="/* VITALS */"
+        title={
+          <>
+            What the field <span className="text-gradient">reads back</span>
+          </>
+        }
+        sub="Capacity built, data cleaned, systems moving. These are the vitals I track week to week."
+      />
       <div
-        className="grid grid-cols-1 gap-px overflow-hidden rounded-2xl border border-[var(--line)] bg-[var(--line)] sm:grid-cols-2 xl:grid-cols-4"
+        className="grid min-h-0 flex-1 grid-cols-1 gap-px overflow-hidden rounded-2xl border border-[var(--line)] bg-[var(--line)] sm:grid-cols-2 xl:grid-cols-4"
       >
         {VITALS.map((v, i) => (
           <motion.div
             key={v.label}
-            className="group relative flex flex-col justify-between gap-5 p-5 lg:p-6"
+            className="group relative flex min-h-0 flex-col justify-between gap-4 overflow-hidden p-4 lg:p-5"
             style={{ background: 'var(--bg-2)' }}
             initial={{ opacity: 0, y: 24 }}
             whileInView={{ opacity: 1, y: 0 }}
