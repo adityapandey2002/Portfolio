@@ -223,7 +223,7 @@ export const PILLAR_LAYERS: PillarLayer[] = [
   },
   {
     id: 'capabilities',
-    eyebrow: '/* 4 KEY CAPABILITIES */',
+    eyebrow: '',
     title: 'How we enable change',
     style: 'grid-4',
     items: [

@@ -158,7 +158,7 @@ html[data-page='home'] {
   --fs-bump: 1.15;
 }
 html[data-page='health'] {
-  --fs-bump: 1.15;
+  --fs-bump: 1.2;
 }
 @media (min-width: 1024px) {
   @supports (zoom: 0.8) {
