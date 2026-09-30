@@ -6,7 +6,7 @@ import { Gauge } from './Gauge';
 
 export function FieldKmMeter() {
   return (
-    <section className="mx-auto flex h-full min-h-0 w-full max-w-[1500px] flex-col justify-center gap-4 px-5 lg:px-10">
+    <section className="mx-auto flex h-full min-h-0 w-full max-w-[1500px] flex-col gap-4 px-5 lg:px-10 pt-4">
       <SectionHeading
         eyebrow="/* FIELD KM */"
         title={
