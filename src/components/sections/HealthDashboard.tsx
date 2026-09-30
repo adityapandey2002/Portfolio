@@ -6,6 +6,7 @@ import { motion } from 'framer-motion';
 import { SectionHeading } from './SectionHeading';
 import { CountUp } from './CountUp';
 import { EnergyConduit } from './pillars';
+import { PillarsOfWork } from './PillarsOfWork';
 import { FieldSection } from './FieldSection';
 import { DistrictVisitMap } from './DistrictVisitMap';
 import { HealthcarePanel } from './HealthcarePanel';
@@ -33,6 +34,8 @@ export function HealthDashboard() {
       <div className="snap-section">
         <FieldSection />
       </div>
+
+      <PillarsOfWork />
 
       <div className="snap-section">
         <section
