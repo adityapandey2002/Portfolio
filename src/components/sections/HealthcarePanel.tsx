@@ -48,7 +48,7 @@ function Tile({ it }: { it: Item }) {
       rel="noopener noreferrer"
       title={it.description}
       aria-label={`${it.name} — open full detail on India in the World`}
-      className="group flex min-w-0 flex-col justify-between gap-4 bg-[var(--bg-2)] p-5 transition-colors duration-300 hover:bg-[var(--bg-3)] lg:p-6"
+      className="group flex min-w-0 flex-col justify-between gap-4 bg-[var(--bg-2)] p-4 transition-colors duration-300 hover:bg-[var(--bg-3)] lg:p-5"
     >
       <span className="font-mono text-[10px] uppercase leading-[1.45] tracking-[0.16em] text-ink-3">
         {it.name}
@@ -86,7 +86,7 @@ function Skeleton() {
       aria-hidden="true"
     >
       {Array.from({ length: SKELETON }).map((_, i) => (
-        <div key={i} className="flex flex-col justify-between gap-4 bg-[var(--bg-2)] p-5 lg:p-6">
+        <div key={i} className="flex flex-col justify-between gap-4 bg-[var(--bg-2)] p-4 lg:p-5">
           <div className="h-2.5 w-3/4 rounded bg-[var(--bg-3)]" />
           <div>
             <div className="h-7 w-1/3 rounded bg-[var(--bg-3)]" />

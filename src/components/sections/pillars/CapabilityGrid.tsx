@@ -19,7 +19,7 @@ export function CapabilityGrid({ layer }: { layer: PillarLayer }) {
         eyebrow={layer.eyebrow}
         title={
           <>
-            How we <span className="text-gradient">enable change</span>
+            <span className="text-gradient">How we</span> enable change
           </>
         }
         sub="The operating principles that carry every program — from leadership to local co-design."
