@@ -1,10 +1,9 @@
 'use client';
 
 import { motion } from 'framer-motion';
+import { KM_TOTAL, KM_MAX } from './constants';
 
 const EASE: [number, number, number, number] = [0.16, 1, 0.3, 1];
-const KM_TOTAL = 13000;
-const KM_MAX = 20000;
 
 export function Gauge() {
   const frac = KM_TOTAL / KM_MAX;
@@ -15,8 +14,8 @@ export function Gauge() {
   const ticks = Array.from({ length: 21 }, (_, i) => i * (KM_MAX / 20));
 
   return (
-    <div className="relative mx-auto w-full max-w-[340px] shrink">
-      <svg viewBox="0 0 340 240" className="h-auto max-h-[min(36vh,240px)] w-full">
+    <div className="mx-auto flex w-full max-w-[340px] shrink flex-col items-center gap-1.5">
+      <svg viewBox="0 0 340 176" className="h-auto max-h-[min(36vh,200px)] w-full">
         <defs>
           <linearGradient id="gaugeGrad" x1="0%" y1="0%" x2="100%" y2="0%">
             <stop offset="0%" stopColor="var(--accent)" />
@@ -95,7 +94,7 @@ export function Gauge() {
         <circle cx={cx} cy={cy} r="2.5" fill="var(--accent)" />
       </svg>
 
-      <div className="absolute inset-x-0 bottom-2 flex flex-col items-center gap-1">
+      <div className="flex flex-col items-center gap-1">
         <div className="flex items-end gap-2" style={{ fontVariantNumeric: 'tabular-nums' }}>
           <span className="font-serif text-[clamp(40px,4.5vw,58px)] leading-none tracking-tight text-ink">
             {KM_TOTAL.toLocaleString('en-IN')}

@@ -32,7 +32,7 @@ export const DIAGNOSTICS = [
   { name: 'Medicine & equipment forecasting', status: 'IN PROGRESS', tone: 'amber' },
 ] as const;
 
-export const KM_TOTAL = 13000;
+export const KM_TOTAL = 13627;
 export const KM_MAX = 20000;
 
 // Animation Easing
