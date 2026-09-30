@@ -157,6 +157,9 @@ body {
 html[data-page='home'] {
   --fs-bump: 1.15;
 }
+html[data-page='health'] {
+  --fs-bump: 1.15;
+}
 @media (min-width: 1024px) {
   @supports (zoom: 0.8) {
     :root {
@@ -1474,5 +1477,56 @@ html[data-page='home'] .text-\[18px\] {
   font-size: calc(18px * var(--fs-bump));
 }
 html[data-page='home'] .text-\[44px\] {
+  font-size: calc(44px * var(--fs-bump));
+}
+
+/* =========================================================
+   HEALTH TYPE SCALE
+   Health page mirrors home's larger type scale for readability
+   of dense field data and monitor panels.
+ ========================================================= */
+html[data-page='health'] .text-\[9px\] {
+  font-size: calc(9px * var(--fs-bump));
+}
+html[data-page='health'] .text-\[9\.5px\] {
+  font-size: calc(9.5px * var(--fs-bump));
+}
+html[data-page='health'] .text-\[10px\] {
+  font-size: calc(10px * var(--fs-bump));
+}
+html[data-page='health'] .text-\[10\.5px\] {
+  font-size: calc(10.5px * var(--fs-bump));
+}
+html[data-page='health'] .text-\[11px\] {
+  font-size: calc(11px * var(--fs-bump));
+}
+html[data-page='health'] .text-\[11\.5px\] {
+  font-size: calc(11.5px * var(--fs-bump));
+}
+html[data-page='health'] .text-\[12px\] {
+  font-size: calc(12px * var(--fs-bump));
+}
+html[data-page='health'] .text-\[12\.5px\] {
+  font-size: calc(12.5px * var(--fs-bump));
+}
+html[data-page='health'] .text-\[13px\] {
+  font-size: calc(13px * var(--fs-bump));
+}
+html[data-page='health'] .text-\[13\.5px\] {
+  font-size: calc(13.5px * var(--fs-bump));
+}
+html[data-page='health'] .text-\[14px\] {
+  font-size: calc(14px * var(--fs-bump));
+}
+html[data-page='health'] .text-\[14\.5px\] {
+  font-size: calc(14.5px * var(--fs-bump));
+}
+html[data-page='health'] .text-\[17px\] {
+  font-size: calc(17px * var(--fs-bump));
+}
+html[data-page='health'] .text-\[18px\] {
+  font-size: calc(18px * var(--fs-bump));
+}
+html[data-page='health'] .text-\[44px\] {
   font-size: calc(44px * var(--fs-bump));
 }

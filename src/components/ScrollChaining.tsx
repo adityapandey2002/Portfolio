@@ -28,11 +28,12 @@ const PANEL_NOISE = 12;
 export function ScrollChaining() {
   const pathname = usePathname();
 
-  /* Home sets its type one step larger than the shared section components
-     render at everywhere else, so the stylesheet can find the page from a
-     single attribute instead of every section carrying a modifier class. */
+  /* Home and health set their type one step larger than the shared section
+     components render at everywhere else, so the stylesheet can find the page
+     from a single attribute instead of every section carrying a modifier class. */
   useEffect(() => {
     if (pathname === '/') document.documentElement.dataset.page = 'home';
+    else if (pathname.startsWith('/health')) document.documentElement.dataset.page = 'health';
     else delete document.documentElement.dataset.page;
   }, [pathname]);
 
