@@ -4,9 +4,10 @@ import { useRef, useState, type FormEvent } from 'react';
 import { motion, useInView } from 'framer-motion';
 import { Mail, Phone, MapPin, Send, Github, Linkedin, Globe, CheckCircle2, Loader2 } from 'lucide-react';
 import { profile } from '@/lib/data/profile';
-import { useToast } from '@/hooks/useToaster';
-import { MagnifyDock, useMagnify } from '@/components/ui/MagnifyDock';
-import { SectionHeading } from './SectionHeading';
+import { Section } from '@/components/ui/Section';
+import { Card } from '@/components/ui/Card';
+import { Chip } from '@/components/ui/Chip';
+import { Button } from '@/components/ui/Button';
 
 interface FormState {
   name: string;
@@ -22,46 +23,9 @@ interface ContactLink {
   href?: string;
 }
 
-/** One vertical contact row. The icon and its full name spring-magnify with
- *  cursor proximity (macOS-dock feel) while the row itself never reflows. */
-function ContactRow({ link, index, inView }: {
-  link: ContactLink;
-  index: number;
-  inView: boolean;
-}) {
-  const ref = useRef<HTMLAnchorElement>(null);
-  const Icon = link.icon;
-  const { iconScale, labelScale } = useMagnify(ref);
-
-  return (
-    <motion.a
-      ref={ref}
-      href={link.href}
-      target={link.href?.startsWith('http') ? '_blank' : undefined}
-      rel="noopener noreferrer"
-      aria-label={link.label}
-      className="group flex items-center gap-3 rounded-lg px-2 py-1.5 text-[13px] text-ink-2 transition-colors hover:text-ink"
-      initial={{ opacity: 0, x: -16 }}
-      animate={inView ? { opacity: 1, x: 0 } : {}}
-      transition={{ duration: 0.5, delay: 0.1 + index * 0.06 }}
-    >
-      <motion.span
-        style={{ scale: iconScale }}
-        className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg border border-[var(--line)] bg-bg-2/70 text-primary"
-      >
-        <Icon size={14} />
-      </motion.span>
-      <motion.span style={{ scale: labelScale }} className="origin-left">
-        {link.label}
-      </motion.span>
-    </motion.a>
-  );
-}
-
 export function Contact() {
   const ref = useRef<HTMLDivElement>(null);
   const inView = useInView(ref, { once: true, margin: '-80px' });
-  const { toast } = useToast();
   const [form, setForm] = useState<FormState>(EMPTY);
   const [sending, setSending] = useState(false);
   const [sent, setSent] = useState(false);
@@ -71,96 +35,131 @@ export function Contact() {
 
   const onSubmit = async (e: FormEvent) => {
     e.preventDefault();
-    if (!form.name || !form.email || !form.message) {
-      toast('Fill in all fields first.', 'rose');
-      return;
-    }
+    if (!form.name || !form.email || !form.message) return;
     setSending(true);
     try {
-      const res = await fetch('/api/messages', {
+      const res = await fetch('/api/contact', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(form),
       });
-      if (res.status === 503) throw new Error('unconfigured');
       if (!res.ok) throw new Error('failed');
       setSent(true);
       setForm(EMPTY);
-      toast('Message stored. Real humans reply fast.', 'primary');
     } catch {
       const subject = encodeURIComponent(`Portfolio message from ${form.name}`);
       const body = encodeURIComponent(`${form.message}\n\n— ${form.name} (${form.email})`);
       window.location.href = `mailto:${profile.emails.personal}?subject=${subject}&body=${body}`;
-      toast('Supabase not connected — opened your mail client instead.', 'accent');
     } finally {
       setSending(false);
     }
   };
 
   const links: ContactLink[] = [
-    { icon: Mail,     label: profile.emails.personal,                  href: `mailto:${profile.emails.personal}` },
-    { icon: Phone,    label: profile.phone,                            href: `tel:${profile.phone.replace(/\s/g, '')}` },
-    { icon: MapPin,   label: profile.location,                         href: undefined },
-    { icon: Github,   label: 'github.com/adityapandey2002',            href: profile.github },
-    { icon: Linkedin, label: 'linkedin.com/in/aditya-pandey-a-fellow',  href: profile.linkedin },
-    { icon: Globe,    label: 'biharkaswaad.in',                        href: profile.liveSite },
+    { icon: Mail, label: profile.emails.personal, href: `mailto:${profile.emails.personal}` },
+    { icon: Phone, label: profile.phone, href: `tel:${profile.phone.replace(/\s/g, '')}` },
+    { icon: MapPin, label: profile.location, href: undefined },
+    { icon: Github, label: 'github.com/adityapandey2002', href: profile.github },
+    { icon: Linkedin, label: 'linkedin.com/in/aditya-pandey-a-fellow', href: profile.linkedin },
+    { icon: Globe, label: 'biharkaswaad.in', href: profile.liveSite },
   ];
 
   return (
-    <section id="contact" className="relative flex h-full w-full items-center overflow-hidden px-5 lg:px-10">
-      <div className="mx-auto grid w-full max-w-[1500px] items-center gap-8 lg:grid-cols-[0.9fr_1.1fr]">
-        {/* Left — info + links */}
-        <div ref={ref}>
-          <MagnifyDock>
-            <SectionHeading
-              eyebrow="/* 11 · CONTACT */"
-              className="mb-5"
-              title={
-                <>
-                  Let&apos;s build something that <span className="text-gradient">matters</span>
-                </>
-              }
-              sub="Field data, dashboards, full-stack products, or just a conversation about public health — my inbox is open."
-            />
-
-            <div className="space-y-1.5">
-              {links.map((l, i) => (
-                <ContactRow key={l.label} link={l} index={i} inView={inView} />
-              ))}
-            </div>
-          </MagnifyDock>
+    <section id="contact" className="border-b-4 border-primary dark:border-white">
+      <Section className="py-12">
+        <div className="mb-6">
+          <span className="font-mono text-xs font-bold uppercase tracking-widest text-on-surface-variant dark:text-ink-dark">
+            11 · CONTACT
+          </span>
+          <h2 className="mt-2 font-headline text-3xl font-bold tracking-tight text-on-surface dark:text-ink-dark sm:text-4xl uppercase">
+            Let&apos;s build something that matters
+          </h2>
+          <p className="mt-2 text-sm text-on-surface-variant dark:text-ink-dark/70">
+            Field data, dashboards, full-stack products, or just a conversation about public health — my inbox is open.
+          </p>
         </div>
-
-        {/* Right — form */}
-        <motion.div
-          className="h-fit rounded-2xl border border-[var(--line)] bg-bg-2/60 p-5"
-          initial={{ opacity: 0, y: 24 }}
-          animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.7, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
-        >
-          <form onSubmit={onSubmit} className="space-y-3">
-            <div className="grid gap-3 sm:grid-cols-2">
-              <label className="block">
-                <span className="mb-1 block font-mono text-[10px] uppercase tracking-[0.18em] text-ink-3">Name</span>
-                <input value={form.name} onChange={set('name')} placeholder="Your name" className="input-field" required />
-              </label>
-              <label className="block">
-                <span className="mb-1 block font-mono text-[10px] uppercase tracking-[0.18em] text-ink-3">Email</span>
-                <input value={form.email} onChange={set('email')} type="email" placeholder="you@example.com" className="input-field" required />
-              </label>
+        <div className="grid grid-cols-1 gap-8 lg:grid-cols-[0.9fr_1.1fr]">
+          <div ref={ref}>
+            <div className="space-y-1.5">
+              {links.map((l, i) => {
+                const Icon = l.icon;
+                return (
+                  <motion.a
+                    key={l.label}
+                    href={l.href}
+                    target={l.href?.startsWith('http') ? '_blank' : undefined}
+                    rel="noopener noreferrer"
+                    aria-label={l.label}
+                    className="flex items-center gap-3 border-2 border-transparent px-3 py-2 text-sm text-on-surface-variant transition-colors hover:border-primary hover:text-primary dark:text-ink-dark/70 dark:hover:border-white dark:hover:text-white"
+                    initial={{ opacity: 0, x: -16 }}
+                    animate={inView ? { opacity: 1, x: 0 } : {}}
+                    transition={{ duration: 0.5, delay: 0.1 + i * 0.06 }}
+                  >
+                    <span className="flex h-8 w-8 shrink-0 items-center justify-center border-2 border-primary bg-surface text-primary dark:border-white dark:bg-surface-l1 dark:text-white">
+                      <Icon size={14} />
+                    </span>
+                    <span className="font-mono text-xs">{l.label}</span>
+                  </motion.a>
+                );
+              })}
             </div>
-            <label className="block">
-              <span className="mb-1 block font-mono text-[10px] uppercase tracking-[0.18em] text-ink-3">Message</span>
-              <textarea value={form.message} onChange={set('message')} rows={4} placeholder="Tell me about the data problem you're trying to solve…" className="input-field resize-none" required />
-            </label>
-            <button type="submit" disabled={sending} className="btn-primary inline-flex w-full items-center justify-center gap-2 disabled:opacity-60">
-              {sent ? <CheckCircle2 size={16} /> : sending ? <Loader2 size={16} className="animate-spin" /> : <Send size={15} />}
-              {sent ? 'Message sent' : sending ? 'Sending…' : 'Send message'}
-            </button>
-            <p className="text-center font-mono text-[10px] text-ink-4">Stored in Supabase · broadcast live to visitors · falls back to email</p>
-          </form>
-        </motion.div>
-      </div>
+          </div>
+          <motion.div
+            className="border-2 border-primary bg-surface p-5 shadow-[4px_4px_0_#000000] dark:border-white dark:bg-surface-l1 dark:shadow-[4px_4px_0_#ffffff]"
+            initial={{ opacity: 0, y: 24 }}
+            animate={inView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.7, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
+          >
+            <form onSubmit={onSubmit} className="space-y-3">
+              <div className="grid gap-3 sm:grid-cols-2">
+                <label className="block">
+                  <span className="mb-1 block font-mono text-[10px] font-bold uppercase tracking-wider text-on-surface-variant dark:text-ink-dark/60">Name</span>
+                  <input
+                    value={form.name}
+                    onChange={set('name')}
+                    placeholder="Your name"
+                    className="w-full border-2 border-primary bg-surface px-3 py-2 text-sm text-on-surface outline-none focus:border-accent-yellow focus:shadow-[3px_3px_0_#facc15] dark:border-white dark:bg-surface-l1 dark:text-ink-dark"
+                    required
+                  />
+                </label>
+                <label className="block">
+                  <span className="mb-1 block font-mono text-[10px] font-bold uppercase tracking-wider text-on-surface-variant dark:text-ink-dark/60">Email</span>
+                  <input
+                    value={form.email}
+                    onChange={set('email')}
+                    type="email"
+                    placeholder="you@example.com"
+                    className="w-full border-2 border-primary bg-surface px-3 py-2 text-sm text-on-surface outline-none focus:border-accent-yellow focus:shadow-[3px_3px_0_#facc15] dark:border-white dark:bg-surface-l1 dark:text-ink-dark"
+                    required
+                  />
+                </label>
+              </div>
+              <label className="block">
+                <span className="mb-1 block font-mono text-[10px] font-bold uppercase tracking-wider text-on-surface-variant dark:text-ink-dark/60">Message</span>
+                <textarea
+                  value={form.message}
+                  onChange={set('message')}
+                  rows={4}
+                  placeholder="Tell me about the data problem you're trying to solve…"
+                  className="w-full resize-none border-2 border-primary bg-surface px-3 py-2 text-sm text-on-surface outline-none focus:border-accent-yellow focus:shadow-[3px_3px_0_#facc15] dark:border-white dark:bg-surface-l1 dark:text-ink-dark"
+                  required
+                />
+              </label>
+              <button
+                type="submit"
+                disabled={sending}
+                className="inline-flex w-full items-center justify-center gap-2 border-2 border-primary bg-primary px-6 py-3 font-headline text-xs font-bold uppercase tracking-wider text-on-primary shadow-[4px_4px_0_#000000] transition-all hover:translate-x-0.5 hover:translate-y-0.5 hover:shadow-[2px_2px_0_#000000] disabled:opacity-60 dark:border-white dark:bg-primary-yellow dark:text-on-primary dark:shadow-[4px_4px_0_#ffffff] dark:hover:shadow-[2px_2px_0_#ffffff]"
+              >
+                {sent ? <CheckCircle2 size={16} /> : sending ? <Loader2 size={16} className="animate-spin" /> : <Send size={15} />}
+                {sent ? 'Message sent' : sending ? 'Sending…' : 'Send message'}
+              </button>
+              <p className="text-center font-mono text-[10px] text-on-surface-variant dark:text-ink-dark/40">
+                Stored in Supabase · broadcast live to visitors · falls back to email
+              </p>
+            </form>
+          </motion.div>
+        </div>
+      </Section>
     </section>
   );
 }
