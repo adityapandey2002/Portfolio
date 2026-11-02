@@ -4,74 +4,85 @@ import { useRef } from 'react';
 import { motion, useInView } from 'framer-motion';
 import { GraduationCap, Award } from 'lucide-react';
 import { education, certs } from '@/lib/data/skills';
-import { SectionHeading } from './SectionHeading';
+import { Section } from '@/components/ui/Section';
+import { Card } from '@/components/ui/Card';
+import { Chip } from '@/components/ui/Chip';
 
 export function Education() {
   const ref = useRef<HTMLDivElement>(null);
   const inView = useInView(ref, { once: true, margin: '-80px' });
 
   return (
-    <section id="education" className="relative flex h-full w-full flex-col justify-center overflow-hidden px-5 lg:px-10">
-      <div className="mx-auto grid min-h-0 w-full max-w-[1500px] flex-1 content-start gap-8 lg:grid-cols-2" ref={ref}>
-        {/* Education */}
-        <div>
-          <SectionHeading
-            eyebrow="/* 06 · EDUCATION */"
-            className="mb-5"
-            title={
-              <>
-                School of <span className="text-gradient">hard data</span>
-              </>
-            }
-          />
-          <div className="space-y-3">
-            {education.map((e, i) => (
-              <motion.div
-                key={e.degree}
-                className="flex items-start gap-4 rounded-xl border border-[var(--line)] bg-bg-2/60 p-4"
-                initial={{ opacity: 0, y: 20 }}
-                animate={inView ? { opacity: 1, y: 0 } : {}}
-                transition={{ duration: 0.6, delay: 0.1 + i * 0.08 }}
-              >
-                <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-primary/10 text-primary">
-                  <GraduationCap size={17} />
-                </span>
-                <div>
-                  <h3 className="text-[14.5px] font-semibold text-ink">{e.degree}</h3>
-                  <p className="mt-0.5 text-[12.5px] text-ink-2">{e.school}</p>
-                  <p className="mt-0.5 font-mono text-[11px] text-ink-3">{e.year}</p>
-                </div>
-              </motion.div>
-            ))}
+    <section id="education" className="border-b-4 border-primary dark:border-white">
+      <Section className="py-12">
+        <div className="grid grid-cols-1 gap-8 lg:grid-cols-2">
+          <div ref={ref}>
+            <div className="mb-5">
+              <span className="font-mono text-xs font-bold uppercase tracking-widest text-on-surface-variant dark:text-ink-dark">
+                06 · EDUCATION
+              </span>
+              <h2 className="mt-2 font-headline text-3xl font-bold tracking-tight text-on-surface dark:text-ink-dark sm:text-4xl uppercase">
+                School of hard data
+              </h2>
+            </div>
+            <div className="space-y-3">
+              {education.map((e, i) => (
+                <motion.div
+                  key={e.degree}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={inView ? { opacity: 1, y: 0 } : {}}
+                  transition={{ duration: 0.6, delay: 0.1 + i * 0.08 }}
+                >
+                  <Card padding="p-4">
+                    <div className="flex items-start gap-4">
+                      <span className="flex h-10 w-10 shrink-0 items-center justify-center border-2 border-primary bg-primary-container text-primary dark:border-white dark:bg-primary-yellow dark:text-on-primary">
+                        <GraduationCap size={18} />
+                      </span>
+                      <div>
+                        <h3 className="font-headline text-sm font-bold text-on-surface dark:text-ink-dark">{e.degree}</h3>
+                        <p className="mt-0.5 text-sm text-on-surface-variant dark:text-ink-dark/70">{e.school}</p>
+                        <p className="mt-0.5 font-mono text-xs text-on-surface-variant dark:text-ink-dark/60">{e.year}</p>
+                      </div>
+                    </div>
+                  </Card>
+                </motion.div>
+              ))}
+            </div>
+          </div>
+          <div>
+            <div className="mb-5">
+              <span className="font-mono text-xs font-bold uppercase tracking-widest text-on-surface-variant dark:text-ink-dark">
+                07 · CERTIFICATIONS
+              </span>
+              <h2 className="mt-2 font-headline text-3xl font-bold tracking-tight text-on-surface dark:text-ink-dark sm:text-4xl uppercase">
+                Proof of work
+              </h2>
+            </div>
+            <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
+              {certs.map((c, i) => (
+                <motion.div
+                  key={c.name}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={inView ? { opacity: 1, y: 0 } : {}}
+                  transition={{ duration: 0.6, delay: 0.1 + i * 0.08 }}
+                >
+                  <Card padding="p-4">
+                    <div className="flex items-start gap-3">
+                      <span className="flex h-8 w-8 shrink-0 items-center justify-center border-2 border-primary bg-surface dark:border-white dark:bg-surface-l1">
+                        <Award size={15} className="text-primary dark:text-white" />
+                      </span>
+                      <div>
+                        <h3 className="font-headline text-xs font-bold leading-snug text-on-surface dark:text-ink-dark">{c.name}</h3>
+                        <p className="mt-0.5 font-mono text-[10px] font-bold uppercase tracking-wider text-on-surface-variant dark:text-ink-dark/60">{c.issuer}</p>
+                      </div>
+                    </div>
+                  </Card>
+                </motion.div>
+              ))}
+            </div>
           </div>
         </div>
-
-        {/* Certifications */}
-        <div>
-          <SectionHeading
-            eyebrow="/* 07 · CERTIFICATIONS */"
-            className="mb-5"
-            title={<>Proof of <span className="text-gradient">work</span></>}
-          />
-          <div className="grid gap-2 sm:grid-cols-2">
-            {certs.map((c, i) => (
-              <motion.div
-                key={c.name}
-                className="group rounded-xl border border-[var(--line)] bg-bg-2/60 p-4 transition-colors duration-300 hover:border-primary/50"
-                initial={{ opacity: 0, y: 20 }}
-                animate={inView ? { opacity: 1, y: 0 } : {}}
-                transition={{ duration: 0.6, delay: 0.1 + i * 0.08 }}
-              >
-                <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-bg-3 text-primary transition-transform duration-300 group-hover:scale-110">
-                  <Award size={15} />
-                </span>
-                <h3 className="mt-2.5 text-[13px] font-semibold leading-snug text-ink">{c.name}</h3>
-                <p className="mt-0.5 font-mono text-[10px] uppercase tracking-wider text-ink-3">{c.issuer}</p>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </div>
+      </Section>
     </section>
   );
 }
