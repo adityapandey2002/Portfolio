@@ -5,8 +5,10 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { ArrowRight } from 'lucide-react';
 import Link from 'next/link';
 import { projects, projectFilters } from '@/lib/data/projects';
-import { SectionHeading } from '../sections/SectionHeading';
-import { ProjectCard } from './ProjectCard';
+import { Section } from '@/components/ui/Section';
+import { Card } from '@/components/ui/Card';
+import { Chip } from '@/components/ui/Chip';
+import { Button } from '@/components/ui/Button';
 import { useLiveStatus } from '@/hooks/useLiveStatus';
 
 export function ProjectGrid({ featured = false }: { featured?: boolean }) {
@@ -19,73 +21,83 @@ export function ProjectGrid({ featured = false }: { featured?: boolean }) {
       ? projects
       : projects.filter((p) => p.category === filter);
 
-  // ─── FEATURED (homepage snap-section) — one row of three ─────────────
   if (featured) {
     return (
-      <section id="work" className="relative flex h-full w-full flex-col justify-center overflow-hidden px-5 lg:px-10">
-        <div className="mx-auto flex min-h-0 w-full max-w-[1500px] flex-1 flex-col">
-          {/* Header row */}
-          <div className="flex flex-wrap items-end justify-between gap-4">
-            <SectionHeading
-              static
-              eyebrow="/* 09 · SELECTED WORK */"
-              className="mb-3"
-              title={
-                <>
-                  Built, deployed, <span className="text-gradient">shipped</span>
-                </>
-              }
-              sub="A few things I built end-to-end — from field forms to live production apps."
-            />
-            <div className="mb-3 flex items-center gap-2">
-              <Link href="/work" className="btn-ghost inline-flex items-center gap-2">
-                View all <ArrowRight size={15} />
-              </Link>
+      <section id="work" className="border-b-4 border-primary dark:border-white">
+        <Section className="py-12">
+          <div className="mb-6 flex flex-wrap items-end justify-between gap-4">
+            <div>
+              <span className="font-mono text-xs font-bold uppercase tracking-widest text-on-surface-variant dark:text-ink-dark">
+                09 · SELECTED WORK
+              </span>
+              <h2 className="mt-2 font-headline text-3xl font-bold tracking-tight text-on-surface dark:text-ink-dark sm:text-4xl uppercase">
+                Built, deployed, shipped
+              </h2>
+              <p className="mt-2 text-sm text-on-surface-variant dark:text-ink-dark/70">
+                A few things I built end-to-end — from field forms to live production apps.
+              </p>
             </div>
+            <Link
+              href="/work"
+              className="inline-flex items-center gap-2 border-2 border-primary bg-surface px-4 py-2 font-headline text-xs font-bold uppercase tracking-wider text-primary shadow-[4px_4px_0_#000000] transition-all hover:translate-x-0.5 hover:translate-y-0.5 hover:shadow-[2px_2px_0_#000000] dark:border-white dark:bg-surface-l1 dark:text-white dark:shadow-[4px_4px_0_#ffffff] dark:hover:shadow-[2px_2px_0_#ffffff]"
+            >
+              View all <ArrowRight size={15} />
+            </Link>
           </div>
-
-          <motion.div layout className="grid min-h-0 flex-1 grid-cols-1 gap-5 md:grid-cols-3">
+          <motion.div layout className="grid grid-cols-1 gap-4 md:grid-cols-3">
             <AnimatePresence mode="popLayout">
               {shown.map((p, i) => (
-                <ProjectCard key={p.id} project={p} index={i} liveInfo={liveStatus[p.id] ?? null} compact />
+                <Card key={p.id} padding="p-5">
+                  <h3 className="font-headline text-lg font-bold text-on-surface dark:text-ink-dark">{p.title}</h3>
+                  <p className="mt-2 text-sm text-on-surface-variant dark:text-ink-dark/70">{p.desc}</p>
+                  <div className="mt-4 flex flex-wrap gap-1.5">
+                    {p.tags?.slice(0, 4).map((t: string) => (
+                      <Chip key={t}>{t}</Chip>
+                    ))}
+                  </div>
+                </Card>
               ))}
             </AnimatePresence>
           </motion.div>
-        </div>
+        </Section>
       </section>
     );
   }
 
-  // ─── FULL WORK PAGE — original vertical grid ──────────────────────────
   return (
-    <section id="work" className="relative py-16">
-      <div className="mx-auto max-w-[1500px] px-5 lg:px-10">
-        {/* Filter chips */}
-        <div className="mb-10 flex flex-wrap gap-2">
+    <section id="work" className="border-b-4 border-primary dark:border-white">
+      <Section className="py-12">
+        <div className="mb-6 flex flex-wrap gap-2">
           {projectFilters.map((f) => (
             <button
               key={f.id}
               onClick={() => setFilter(f.id)}
-              className={`rounded-full border px-4 py-1.5 font-mono text-[11px] uppercase tracking-wider transition-colors duration-300 ${
+              className={`border-2 px-4 py-1.5 font-mono text-xs font-bold uppercase tracking-wider transition-all ${
                 filter === f.id
-                  ? 'border-primary bg-primary/10 text-primary'
-                  : 'border-[var(--line)] bg-bg-2/50 text-ink-3 hover:text-ink'
+                  ? 'border-primary bg-primary text-on-primary shadow-[2px_2px_0_#000000] dark:border-white dark:bg-white dark:text-primary dark:shadow-[2px_2px_0_#ffffff]'
+                  : 'border-primary bg-surface text-primary shadow-[2px_2px_0_#000000] hover:translate-x-0.5 hover:translate-y-0.5 hover:shadow-none dark:border-white dark:bg-surface-l1 dark:text-white dark:shadow-[2px_2px_0_#ffffff]'
               }`}
             >
               {f.label}
             </button>
           ))}
         </div>
-
-        {/* Vertical grid — original layout */}
-        <motion.div layout className="grid gap-6 md:grid-cols-2 xl:grid-cols-3">
+        <motion.div layout className="grid grid-cols-1 gap-4 md:grid-cols-2 xl:grid-cols-3">
           <AnimatePresence mode="popLayout">
             {shown.map((p, i) => (
-              <ProjectCard key={p.id} project={p} index={i} />
+              <Card key={p.id} padding="p-5">
+                <h3 className="font-headline text-lg font-bold text-on-surface dark:text-ink-dark">{p.title}</h3>
+                <p className="mt-2 text-sm text-on-surface-variant dark:text-ink-dark/70">{p.desc}</p>
+                <div className="mt-4 flex flex-wrap gap-1.5">
+                  {p.tags?.slice(0, 4).map((t: string) => (
+                    <Chip key={t}>{t}</Chip>
+                  ))}
+                </div>
+              </Card>
             ))}
           </AnimatePresence>
         </motion.div>
-      </div>
+      </Section>
     </section>
   );
 }
