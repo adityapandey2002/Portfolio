@@ -1,9 +1,32 @@
 import type { Metadata, Viewport } from 'next';
-import { Outfit, JetBrains_Mono, Lora } from 'next/font/google';
+import { Inter, JetBrains_Mono, Lora, Outfit, Space_Grotesk } from 'next/font/google';
 import { Providers } from '@/components/providers/Providers';
+import { ThemeProvider } from '@/components/providers/ThemeProvider';
+import { ThemeToggle } from '@/components/ui/ThemeToggle';
+import { AmbientBackground } from '@/components/three/AmbientBackground';
 import { ScrollProgress } from '@/components/ui/ScrollProgress';
 import { ScrollChaining } from '@/components/ScrollChaining';
 import './globals.css';
+
+const inter = Inter({
+  subsets: ['latin'],
+  variable: '--font-inter',
+  display: 'swap',
+});
+
+const spaceGrotesk = Space_Grotesk({
+  subsets: ['latin'],
+  variable: '--font-space-grotesk',
+  display: 'swap',
+});
+
+// JetBrains Mono (labels). Kept alongside the legacy --font-jetbrains
+// variable so existing V1 styles that reference it keep working.
+const jetbrainsMono = JetBrains_Mono({
+  subsets: ['latin'],
+  variable: '--font-jetbrains-mono',
+  display: 'swap',
+});
 
 const outfit = Outfit({
   subsets: ['latin'],
@@ -63,10 +86,15 @@ export const viewport: Viewport = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en" data-theme="cyberpunk" data-scroll-behavior="smooth" suppressHydrationWarning>
-      <body className={`${outfit.variable} ${jetbrains.variable} ${lora.variable} bg-bg font-sans text-ink antialiased`}>
-        <ScrollProgress />
-        <ScrollChaining />
-        <Providers>{children}</Providers>
+      <body className={`${inter.variable} ${spaceGrotesk.variable} ${jetbrainsMono.variable} ${outfit.variable} ${jetbrains.variable} ${lora.variable} bg-surface dark:bg-surface-dark font-sans text-primary dark:text-ink-dark antialiased`}>
+        <ThemeProvider>
+          {/* V2 theme toggle lives in the header area of the shell. */}
+          <AmbientBackground />
+          <ThemeToggle />
+          <ScrollProgress />
+          <ScrollChaining />
+          <Providers>{children}</Providers>
+        </ThemeProvider>
       </body>
     </html>
   );

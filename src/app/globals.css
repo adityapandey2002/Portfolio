@@ -1533,3 +1533,26 @@ html[data-page='health'] .text-\[36px\] {
 html[data-page='health'] .text-\[44px\] {
   font-size: calc(44px * var(--fs-bump));
 }
+
+/* =========================================================
+   V2 BAUHAUS NEO-BRUTALIST BASE (design-system task 1)
+   `darkMode: 'class'` — the `dark` class lives on <html>.
+   V1 components are left untouched; they opt into the new
+   tokens and utilities as they are redesigned.
+========================================================= */
+html.dark {
+  color-scheme: dark;
+}
+
+/* Zero-radius base utility for brutalist components. */
+.radius-none {
+  border-radius: 0 !important;
+}
+
+/* Thick solid borders: near-black in light, white in dark. */
+.border-brutalist {
+  border: 2px solid #1a1a1a;
+}
+html.dark .border-brutalist {
+  border-color: #ffffff;
+}
