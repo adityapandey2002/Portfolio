@@ -10,28 +10,28 @@ import { Chip } from '@/components/ui/Chip';
 export function Experience() {
   return (
     <section id="experience" className="border-b-4 border-primary dark:border-white">
-      <Section className="py-12">
-        <div className="mb-6 flex flex-wrap items-end justify-between gap-4">
+      <Section className="py-8">
+        <div className="mb-4 flex flex-wrap items-end justify-between gap-3">
           <div>
-            <span className="font-mono text-xs font-bold uppercase tracking-widest text-on-surface-variant dark:text-ink-dark">
+            <span className="font-mono text-[10px] font-bold uppercase tracking-widest text-on-surface-variant dark:text-ink-dark">
               04 · EXPERIENCE
             </span>
-            <h2 className="mt-2 font-headline text-3xl font-bold tracking-tight text-on-surface dark:text-ink-dark sm:text-4xl uppercase">
+            <h2 className="mt-2 font-headline text-2xl sm:text-3xl font-bold tracking-tight text-on-surface dark:text-ink-dark sm:text-4xl uppercase">
               What I&apos;ve actually been up to
             </h2>
           </div>
           <Link
             href="/health"
-            className="inline-flex items-center gap-2 border-2 border-primary bg-surface px-4 py-2 font-headline text-xs font-bold uppercase tracking-wider text-primary shadow-[4px_4px_0_#000000] transition-all hover:translate-x-0.5 hover:translate-y-0.5 hover:shadow-[2px_2px_0_#000000] dark:border-white dark:bg-surface-l1 dark:text-white dark:shadow-[4px_4px_0_#ffffff] dark:hover:shadow-[2px_2px_0_#ffffff]"
+            className="inline-flex items-center gap-2 border-2 border-primary bg-surface px-3 sm:px-4 py-1.5 sm:py-2 font-headline text-[10px] sm:text-xs font-bold uppercase tracking-wider text-primary shadow-[4px_4px_0_#000000] transition-all hover:translate-x-0.5 hover:translate-y-0.5 hover:shadow-[2px_2px_0_#000000] dark:border-white dark:bg-surface-l1 dark:text-white dark:shadow-[4px_4px_0_#ffffff] dark:hover:shadow-[2px_2px_0_#ffffff]"
           >
-            <HeartPulse size={15} />
+            <HeartPulse size={14} />
             Live field dashboard
-            <ArrowDownRight size={14} />
+            <ArrowDownRight size={13} />
           </Link>
         </div>
-        <div className="grid grid-cols-1 gap-4 lg:grid-cols-2">
+        <div className="grid grid-cols-1 gap-3 lg:grid-cols-2">
           {experience.map((xp) => (
-            <Card key={xp.role} padding="p-5">
+            <Card key={xp.role} padding="p-4 sm:p-5">
               <div className="flex flex-wrap items-center gap-x-3 gap-y-1">
                 <h3 className="font-headline text-lg font-bold text-on-surface dark:text-ink-dark">{xp.role}</h3>
                 {xp.current && (

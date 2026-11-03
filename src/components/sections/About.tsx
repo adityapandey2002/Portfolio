@@ -24,18 +24,18 @@ export function About() {
 
   return (
     <section id="about" className="border-b-4 border-primary dark:border-white">
-      <Section className="py-12">
-        <div className="mb-6">
-          <span className="font-mono text-xs font-bold uppercase tracking-widest text-on-surface-variant dark:text-ink-dark">
+      <Section className="py-8">
+        <div className="mb-4">
+          <span className="font-mono text-[10px] font-bold uppercase tracking-widest text-on-surface-variant dark:text-ink-dark">
             03 · ABOUT
           </span>
-          <h2 className="mt-2 font-headline text-3xl font-bold tracking-tight text-on-surface dark:text-ink-dark sm:text-4xl uppercase">
+          <h2 className="mt-2 font-headline text-2xl sm:text-3xl font-bold tracking-tight text-on-surface dark:text-ink-dark sm:text-4xl uppercase">
             Full stack AI and data engineer
           </h2>
         </div>
-        <div className="grid grid-cols-1 gap-8 lg:grid-cols-[1.05fr_0.95fr]">
+        <div className="grid grid-cols-1 gap-6 lg:grid-cols-[1.05fr_0.95fr]">
           <div ref={ref}>
-            <div className="space-y-4 text-sm leading-relaxed text-on-surface-variant dark:text-ink-dark/80">
+            <div className="space-y-3 text-sm leading-relaxed text-on-surface-variant dark:text-ink-dark/80">
               {profile.aboutParagraphs.slice(0, 2).map((p, i) => (
                 <motion.div
                   key={i}
@@ -47,7 +47,7 @@ export function About() {
               ))}
             </div>
             <motion.div
-              className="mt-6 flex flex-wrap gap-2"
+              className="mt-5 flex flex-wrap gap-2"
               initial={{ opacity: 0, y: 16 }}
               animate={inView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.7, delay: 0.5 }}
@@ -62,7 +62,7 @@ export function About() {
             animate={inView ? { opacity: 1, x: 0 } : {}}
             transition={{ duration: 0.7, delay: 0.25, ease: [0.16, 1, 0.3, 1] }}
           >
-            <Card padding="p-5">
+            <Card padding="p-4 sm:p-5">
               <div className="mb-4 flex items-center justify-between">
                 <span className="font-mono text-xs font-bold uppercase tracking-widest text-on-surface-variant dark:text-ink-dark">
                   Identity card
