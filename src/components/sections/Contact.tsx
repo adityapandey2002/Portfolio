@@ -5,9 +5,6 @@ import { motion, useInView } from 'framer-motion';
 import { Mail, Phone, MapPin, Send, Github, Linkedin, Globe, CheckCircle2, Loader2 } from 'lucide-react';
 import { profile } from '@/lib/data/profile';
 import { Section } from '@/components/ui/Section';
-import { Card } from '@/components/ui/Card';
-import { Chip } from '@/components/ui/Chip';
-import { Button } from '@/components/ui/Button';
 
 interface FormState {
   name: string;
@@ -17,12 +14,6 @@ interface FormState {
 
 const EMPTY: FormState = { name: '', email: '', message: '' };
 
-interface ContactLink {
-  icon: typeof Mail;
-  label: string;
-  href?: string;
-}
-
 export function Contact() {
   const ref = useRef<HTMLDivElement>(null);
   const inView = useInView(ref, { once: true, margin: '-80px' });
@@ -30,7 +21,7 @@ export function Contact() {
   const [sending, setSending] = useState(false);
   const [sent, setSent] = useState(false);
 
-  const set = (k: keyof FormState) => (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) =>
+  const set = (k: keyof FormState) => (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) =>
     setForm((f) => ({ ...f, [k]: e.target.value }));
 
   const onSubmit = async (e: FormEvent) => {
@@ -55,109 +46,173 @@ export function Contact() {
     }
   };
 
-  const links: ContactLink[] = [
-    { icon: Mail, label: profile.emails.personal, href: `mailto:${profile.emails.personal}` },
-    { icon: Phone, label: profile.phone, href: `tel:${profile.phone.replace(/\s/g, '')}` },
-    { icon: MapPin, label: profile.location, href: undefined },
-    { icon: Github, label: 'github.com/adityapandey2002', href: profile.github },
-    { icon: Linkedin, label: 'linkedin.com/in/aditya-pandey-a-fellow', href: profile.linkedin },
-    { icon: Globe, label: 'biharkaswaad.in', href: profile.liveSite },
-  ];
-
   return (
-    <section id="contact" className="border-b-4 border-primary dark:border-white">
-      <Section className="py-8">
-        <div className="mb-4">
-          <span className="font-mono text-[10px] font-bold uppercase tracking-widest text-on-surface-variant dark:text-ink-dark">
-            11 · CONTACT
-          </span>
-          <h2 className="mt-2 font-headline text-2xl sm:text-3xl font-bold tracking-tight text-on-surface dark:text-ink-dark sm:text-4xl uppercase">
-            Let&apos;s build something that matters
-          </h2>
-          <p className="mt-2 text-sm text-on-surface-variant dark:text-ink-dark/70">
-            Field data, dashboards, full-stack products, or just a conversation about public health — my inbox is open.
-          </p>
-        </div>
-        <div className="grid grid-cols-1 gap-6 lg:grid-cols-[0.9fr_1.1fr]">
-          <div ref={ref}>
-            <div className="space-y-1">
-              {links.map((l, i) => {
-                const Icon = l.icon;
-                return (
-                  <motion.a
-                    key={l.label}
-                    href={l.href}
-                    target={l.href?.startsWith('http') ? '_blank' : undefined}
-                    rel="noopener noreferrer"
-                    aria-label={l.label}
-                    className="flex items-center gap-2 border-2 border-transparent px-2.5 py-1.5 text-sm text-on-surface-variant transition-colors hover:border-primary hover:text-primary dark:text-ink-dark/70 dark:hover:border-white dark:hover:text-white"
-                    initial={{ opacity: 0, x: -16 }}
-                    animate={inView ? { opacity: 1, x: 0 } : {}}
-                    transition={{ duration: 0.5, delay: 0.1 + i * 0.06 }}
-                  >
-                    <span className="flex h-7 sm:h-8 w-7 sm:w-8 shrink-0 items-center justify-center border-2 border-primary bg-surface text-primary dark:border-white dark:bg-surface-l1 dark:text-white">
-                      <Icon size={13} />
-                    </span>
-                    <span className="font-mono text-[10px] sm:text-xs">{l.label}</span>
-                  </motion.a>
-                );
-              })}
+    <section id="dispatch" className="border-b-4 border-primary dark:border-white bg-surface-container-lowest dark:bg-surface-l2">
+      <Section className="py-12">
+        <div className="mb-8">
+          <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 border-b-2 border-primary dark:border-white pb-4">
+            <div>
+              <span className="font-headline text-xs font-bold uppercase tracking-widest text-secondary dark:text-vermilion block">
+                08 // TRANSMISSION & ENGAGEMENT
+              </span>
+              <h2 className="font-headline text-3xl sm:text-5xl font-bold uppercase tracking-tight text-on-surface dark:text-ink-dark mt-1">
+                Initiate Direct Dispatch
+              </h2>
+            </div>
+            <div className="font-mono text-xs text-on-surface-variant dark:text-ink-dark/70 font-bold">
+              SECURE CHANNEL // UNENCRYPTED PGP READY
             </div>
           </div>
-          <motion.div
-            className="border-2 border-primary bg-surface p-4 sm:p-5 shadow-[4px_4px_0_#000000] dark:border-white dark:bg-surface-l1 dark:shadow-[4px_4px_0_#ffffff]"
-            initial={{ opacity: 0, y: 24 }}
-            animate={inView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.7, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
-          >
-            <form onSubmit={onSubmit} className="space-y-3">
-              <div className="grid gap-2 sm:grid-cols-2">
-                <label className="block">
-                  <span className="mb-1 block font-mono text-[10px] font-bold uppercase tracking-wider text-on-surface-variant dark:text-ink-dark/60">Name</span>
-                  <input
-                    value={form.name}
-                    onChange={set('name')}
-                    placeholder="Your name"
-                    className="w-full border-2 border-primary bg-surface px-3 py-2 text-sm text-on-surface outline-none focus:border-accent-yellow focus:shadow-[3px_3px_0_#facc15] dark:border-white dark:bg-surface-l1 dark:text-ink-dark"
-                    required
-                  />
-                </label>
-                <label className="block">
-                  <span className="mb-1 block font-mono text-[10px] font-bold uppercase tracking-wider text-on-surface-variant dark:text-ink-dark/60">Email</span>
+        </div>
+
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+          {/* Contact Form */}
+          <div className="lg:col-span-7 bg-surface dark:bg-surface-l1 border-3 border-primary dark:border-white p-6 sm:p-8 shadow-[6px_6px_0px_#1a1a1a] dark:shadow-[6px_6px_0px_#ffffff]">
+            <div className="border-b-2 border-primary dark:border-white pb-4 mb-6">
+              <h3 className="font-headline text-xl font-bold uppercase text-on-surface dark:text-ink-dark">Direct Transmission Form</h3>
+              <p className="font-body text-xs text-on-surface-variant dark:text-ink-dark/70 mt-1">
+                Reach out for public health data consulting, health-tech engineering partnerships, fellowship collaborations, or full-stack speaking sessions.
+              </p>
+            </div>
+            <form onSubmit={onSubmit} className="space-y-6">
+              <div className="space-y-1">
+                <label className="font-headline text-xs font-bold uppercase text-on-surface dark:text-ink-dark block tracking-wider">Your Identity & Title *</label>
+                <input
+                  value={form.name}
+                  onChange={set('name')}
+                  className="w-full bg-surface-container-lowest dark:bg-surface-l2 border-b-3 border-primary dark:border-white p-3 text-sm font-body text-on-surface dark:text-ink-dark focus:outline-none focus:bg-primary-container/20 dark:focus:bg-primary-yellow/20 transition-colors"
+                  placeholder="e.g. Dr. Ramesh Kumar / Chief Medical Officer"
+                  required
+                  type="text"
+                />
+              </div>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div className="space-y-1">
+                  <label className="font-headline text-xs font-bold uppercase text-on-surface dark:text-ink-dark block tracking-wider">Official Email Coordinates *</label>
                   <input
                     value={form.email}
                     onChange={set('email')}
                     type="email"
-                    placeholder="you@example.com"
-                    className="w-full border-2 border-primary bg-surface px-3 py-2 text-sm text-on-surface outline-none focus:border-accent-yellow focus:shadow-[3px_3px_0_#facc15] dark:border-white dark:bg-surface-l1 dark:text-ink-dark"
+                    className="w-full bg-surface-container-lowest dark:bg-surface-l2 border-b-3 border-primary dark:border-white p-3 text-sm font-body text-on-surface dark:text-ink-dark focus:outline-none focus:bg-primary-container/20 dark:focus:bg-primary-yellow/20 transition-colors"
+                    placeholder="name@organization.gov.in"
                     required
                   />
-                </label>
+                </div>
+                <div className="space-y-1">
+                  <label className="font-headline text-xs font-bold uppercase text-on-surface dark:text-ink-dark block tracking-wider">Phone / WhatsApp Vector</label>
+                  <input
+                    className="w-full bg-surface-container-lowest dark:bg-surface-l2 border-b-3 border-primary dark:border-white p-3 text-sm font-body text-on-surface dark:text-ink-dark focus:outline-none focus:bg-primary-container/20 dark:focus:bg-primary-yellow/20 transition-colors"
+                    placeholder="+91 XXXXX XXXXX"
+                    type="tel"
+                  />
+                </div>
               </div>
-              <label className="block">
-                <span className="mb-1 block font-mono text-[10px] font-bold uppercase tracking-wider text-on-surface-variant dark:text-ink-dark/60">Message</span>
+              <div className="space-y-1">
+                <label className="font-headline text-xs font-bold uppercase text-on-surface dark:text-ink-dark block tracking-wider">Vector Category *</label>
+                <select className="w-full bg-surface-container-lowest dark:bg-surface-l2 border-b-3 border-primary dark:border-white p-3 text-sm font-body text-on-surface dark:text-ink-dark focus:outline-none focus:bg-primary-container/20 dark:focus:bg-primary-yellow/20 transition-colors">
+                  <option>Public Health MIS / Data System Architecture</option>
+                  <option>Engineering Fellowship / Organization Role</option>
+                  <option>Full-Stack Web / Offline PWA Deployment</option>
+                  <option>District Health Analytics & ASHA Workflow Mentoring</option>
+                  <option>Other Strategic Inquiry</option>
+                </select>
+              </div>
+              <div className="space-y-1">
+                <label className="font-headline text-xs font-bold uppercase text-on-surface dark:text-ink-dark block tracking-wider">Operational Dispatch Payload *</label>
                 <textarea
                   value={form.message}
                   onChange={set('message')}
-                  rows={4}
-                  placeholder="Tell me about the data problem you're trying to solve…"
-                  className="w-full resize-none border-2 border-primary bg-surface px-3 py-2 text-sm text-on-surface outline-none focus:border-accent-yellow focus:shadow-[3px_3px_0_#facc15] dark:border-white dark:bg-surface-l1 dark:text-ink-dark"
+                  className="w-full bg-surface-container-lowest dark:bg-surface-l2 border-b-3 border-primary dark:border-white p-3 text-sm font-body text-on-surface dark:text-ink-dark focus:outline-none focus:bg-primary-container/20 dark:focus:bg-primary-yellow/20 transition-colors resize-none"
+                  placeholder="State requirements, technical constraints, field location, or collaboration scope..."
                   required
+                  rows={4}
                 />
-              </label>
-              <button
-                type="submit"
-                disabled={sending}
-                className="inline-flex w-full items-center justify-center gap-2 border-2 border-primary bg-primary px-4 sm:px-6 py-2 sm:py-3 font-headline text-[10px] sm:text-xs font-bold uppercase tracking-wider text-on-primary shadow-[4px_4px_0_#000000] transition-all hover:translate-x-0.5 hover:translate-y-0.5 hover:shadow-[2px_2px_0_#000000] disabled:opacity-60 dark:border-white dark:bg-primary-yellow dark:text-on-primary dark:shadow-[4px_4px_0_#ffffff] dark:hover:shadow-[2px_2px_0_#ffffff]"
-              >
-                {sent ? <CheckCircle2 size={14} /> : sending ? <Loader2 size={14} className="animate-spin" /> : <Send size={14} />}
-                {sent ? 'Message sent' : sending ? 'Sending…' : 'Send message'}
-              </button>
-              <p className="text-center font-mono text-[10px] text-on-surface-variant dark:text-ink-dark/40">
-                Stored in Supabase · broadcast live to visitors · falls back to email
-              </p>
+              </div>
+              <div className="pt-2">
+                <button
+                  type="submit"
+                  disabled={sending}
+                  className="w-full sm:w-auto inline-flex items-center justify-center gap-3 px-8 py-4 bg-primary dark:bg-primary-yellow text-on-primary dark:text-on-primary font-headline font-bold text-sm uppercase tracking-widest border-2 border-primary dark:border-white shadow-[5px_5px_0px_#ffcc00] dark:shadow-[5px_5px_0px_#facc15] hover:bg-secondary dark:hover:bg-vermilion hover:text-on-secondary dark:hover:text-white transition-all active:translate-x-0.5 active:translate-y-0.5 active:shadow-[2px_2px_0px_#ffcc00] dark:active:shadow-[2px_2px_0px_#facc15] disabled:opacity-60"
+                >
+                  {sent ? <CheckCircle2 size={16} /> : sending ? <Loader2 size={16} className="animate-spin" /> : <Send size={16} />}
+                  {sent ? 'Message Transmitted' : sending ? 'Transmitting...' : 'Transmit Message to Aditya Pandey'}
+                  <span className="material-symbols-outlined text-base">send</span>
+                </button>
+              </div>
+              {sent && (
+                <div className="p-3 bg-primary-container dark:bg-primary-yellow border-2 border-primary dark:border-white font-mono text-xs text-on-primary-container dark:text-on-primary font-bold">
+                  [TELEMETRY DISPATCHED]: Message queued to Aditya Pandey. Response latency ~ 4 hours.
+                </div>
+              )}
             </form>
-          </motion.div>
+          </div>
+
+          {/* Operational Coordinates Card */}
+          <div className="lg:col-span-5 space-y-6">
+            <div className="bg-primary dark:bg-primary-yellow text-on-primary dark:text-on-primary border-3 border-primary dark:border-white p-6 sm:p-8 shadow-[6px_6px_0px_#1a1a1a] dark:shadow-[6px_6px_0px_#ffffff] space-y-6">
+              <div className="flex items-center justify-between border-b-2 border-on-primary dark:border-on-primary pb-3">
+                <span className="font-headline font-bold text-xs uppercase tracking-widest text-primary-container dark:text-on-primary">
+                  FIELD OPERATIONAL COORDINATES
+                </span>
+                <span className="w-2.5 h-2.5 bg-primary-container dark:bg-on-primary rounded-none" />
+              </div>
+              <div className="space-y-5 font-mono text-xs sm:text-sm">
+                <div>
+                  <span className="text-surface-container-highest dark:text-on-primary/70 uppercase block text-[11px]">Primary Comms [Email]</span>
+                  <a className="text-primary-container dark:text-white font-bold hover:underline break-all text-sm" href={`mailto:${profile.emails.personal}`}>
+                    {profile.emails.personal}
+                  </a>
+                </div>
+                <div>
+                  <span className="text-surface-container-highest dark:text-on-primary/70 uppercase block text-[11px]">Phone / Direct Wire</span>
+                  <a className="text-on-primary dark:text-on-primary font-bold hover:underline text-sm" href={`tel:${profile.phone.replace(/\s/g, '')}`}>
+                    {profile.phone}
+                  </a>
+                </div>
+                <div>
+                  <span className="text-surface-container-highest dark:text-on-primary/70 uppercase block text-[11px]">Stationed Jurisdiction</span>
+                  <div className="text-on-primary dark:text-on-primary font-bold">Muzaffarpur & Araria, Bihar, India</div>
+                  <div className="text-xs text-surface-container-highest dark:text-on-primary/70 font-sans">Hometown: Pratapgarh, Uttar Pradesh</div>
+                </div>
+                <div>
+                  <span className="text-surface-container-highest dark:text-on-primary/70 uppercase block text-[11px]">Operational Status</span>
+                  <div className="inline-flex items-center gap-2 bg-secondary dark:bg-vermilion text-on-secondary dark:text-white px-2.5 py-0.5 mt-1 font-bold">
+                    ACTIVE ON FIELD // OPEN FOR STRATEGIC ROLES
+                  </div>
+                </div>
+              </div>
+              <div className="pt-6 border-t-2 border-on-primary dark:border-on-primary space-y-3">
+                <span className="font-headline text-xs font-bold uppercase tracking-wider block text-surface-container-high dark:text-on-primary/80">External Public Keys & Profiles</span>
+                <div className="grid grid-cols-2 gap-3">
+                  <a
+                    className="p-2.5 bg-surface dark:bg-surface-l1 text-on-surface dark:text-ink-dark font-headline font-bold text-xs uppercase border border-primary dark:border-white text-center hover:bg-primary-container dark:hover:bg-primary-yellow hover:text-on-primary-container dark:hover:text-on-primary transition-colors"
+                    href={profile.github}
+                    rel="noreferrer"
+                    target="_blank"
+                  >
+                    GitHub Profile →
+                  </a>
+                  <a
+                    className="p-2.5 bg-surface dark:bg-surface-l1 text-on-surface dark:text-ink-dark font-headline font-bold text-xs uppercase border border-primary dark:border-white text-center hover:bg-primary-container dark:hover:bg-primary-yellow hover:text-on-primary-container dark:hover:text-on-primary transition-colors"
+                    href={profile.linkedin}
+                    rel="noreferrer"
+                    target="_blank"
+                  >
+                    LinkedIn →
+                  </a>
+                </div>
+              </div>
+            </div>
+
+            {/* Quick Quote / Manifesto Card */}
+            <div className="bg-surface-container dark:bg-surface-l1 border-2 border-primary dark:border-white p-5 shadow-[4px_4px_0px_#1a1a1a] dark:shadow-[4px_4px_0px_#ffffff]">
+              <span className="font-mono text-xs font-bold text-secondary dark:text-vermilion uppercase block mb-1">FIELD MANIFESTO</span>
+              <p className="font-headline text-sm font-bold text-on-surface dark:text-ink-dark leading-snug">
+                &quot;No clinical prediction algorithm matters if the auxiliary nurse midwife cannot save her entry on a 2G network before her battery dies. Build from the dirt upward.&quot;
+              </p>
+              <div className="mt-2 text-right font-mono text-xs text-on-surface-variant dark:text-ink-dark/70">— Aditya Pandey</div>
+            </div>
+          </div>
         </div>
       </Section>
     </section>
