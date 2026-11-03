@@ -47,7 +47,7 @@ export function Contact() {
   };
 
   return (
-    <section id="dispatch" className="border-b-4 border-primary dark:border-white bg-surface-container-lowest dark:bg-surface-l2">
+    <section id="dispatch" className="border-b-4 border-primary dark:border-white bg-surface dark:bg-surface-l1 dark:bg-surface-l2">
       <Section className="py-12">
         <div className="mb-8">
           <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 border-b-2 border-primary dark:border-white pb-4">
@@ -80,7 +80,7 @@ export function Contact() {
                 <input
                   value={form.name}
                   onChange={set('name')}
-                  className="w-full bg-surface-container-lowest dark:bg-surface-l2 border-b-3 border-primary dark:border-white p-3 text-sm font-body text-on-surface dark:text-ink-dark focus:outline-none focus:bg-primary-container/20 dark:focus:bg-primary-yellow/20 transition-colors"
+                  className="w-full bg-surface dark:bg-surface-l1 dark:bg-surface-l2 border-b-3 border-primary dark:border-white p-3 text-sm font-body text-on-surface dark:text-ink-dark focus:outline-none focus:bg-primary-container/20 dark:focus:bg-primary-yellow/20 transition-colors"
                   placeholder="e.g. Dr. Ramesh Kumar / Chief Medical Officer"
                   required
                   type="text"
@@ -93,7 +93,7 @@ export function Contact() {
                     value={form.email}
                     onChange={set('email')}
                     type="email"
-                    className="w-full bg-surface-container-lowest dark:bg-surface-l2 border-b-3 border-primary dark:border-white p-3 text-sm font-body text-on-surface dark:text-ink-dark focus:outline-none focus:bg-primary-container/20 dark:focus:bg-primary-yellow/20 transition-colors"
+                    className="w-full bg-surface dark:bg-surface-l1 dark:bg-surface-l2 border-b-3 border-primary dark:border-white p-3 text-sm font-body text-on-surface dark:text-ink-dark focus:outline-none focus:bg-primary-container/20 dark:focus:bg-primary-yellow/20 transition-colors"
                     placeholder="name@organization.gov.in"
                     required
                   />
@@ -101,7 +101,7 @@ export function Contact() {
                 <div className="space-y-1">
                   <label className="font-headline text-xs font-bold uppercase text-on-surface dark:text-ink-dark block tracking-wider">Phone / WhatsApp Vector</label>
                   <input
-                    className="w-full bg-surface-container-lowest dark:bg-surface-l2 border-b-3 border-primary dark:border-white p-3 text-sm font-body text-on-surface dark:text-ink-dark focus:outline-none focus:bg-primary-container/20 dark:focus:bg-primary-yellow/20 transition-colors"
+                    className="w-full bg-surface dark:bg-surface-l1 dark:bg-surface-l2 border-b-3 border-primary dark:border-white p-3 text-sm font-body text-on-surface dark:text-ink-dark focus:outline-none focus:bg-primary-container/20 dark:focus:bg-primary-yellow/20 transition-colors"
                     placeholder="+91 XXXXX XXXXX"
                     type="tel"
                   />
@@ -109,7 +109,7 @@ export function Contact() {
               </div>
               <div className="space-y-1">
                 <label className="font-headline text-xs font-bold uppercase text-on-surface dark:text-ink-dark block tracking-wider">Vector Category *</label>
-                <select className="w-full bg-surface-container-lowest dark:bg-surface-l2 border-b-3 border-primary dark:border-white p-3 text-sm font-body text-on-surface dark:text-ink-dark focus:outline-none focus:bg-primary-container/20 dark:focus:bg-primary-yellow/20 transition-colors">
+                <select className="w-full bg-surface dark:bg-surface-l1 dark:bg-surface-l2 border-b-3 border-primary dark:border-white p-3 text-sm font-body text-on-surface dark:text-ink-dark focus:outline-none focus:bg-primary-container/20 dark:focus:bg-primary-yellow/20 transition-colors">
                   <option>Public Health MIS / Data System Architecture</option>
                   <option>Engineering Fellowship / Organization Role</option>
                   <option>Full-Stack Web / Offline PWA Deployment</option>
@@ -122,7 +122,7 @@ export function Contact() {
                 <textarea
                   value={form.message}
                   onChange={set('message')}
-                  className="w-full bg-surface-container-lowest dark:bg-surface-l2 border-b-3 border-primary dark:border-white p-3 text-sm font-body text-on-surface dark:text-ink-dark focus:outline-none focus:bg-primary-container/20 dark:focus:bg-primary-yellow/20 transition-colors resize-none"
+                  className="w-full bg-surface dark:bg-surface-l1 dark:bg-surface-l2 border-b-3 border-primary dark:border-white p-3 text-sm font-body text-on-surface dark:text-ink-dark focus:outline-none focus:bg-primary-container/20 dark:focus:bg-primary-yellow/20 transition-colors resize-none"
                   placeholder="State requirements, technical constraints, field location, or collaboration scope..."
                   required
                   rows={4}

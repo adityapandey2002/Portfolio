@@ -70,7 +70,7 @@ export function SelectedSystems() {
   const inView = useInView(ref, { once: true, margin: '-80px' });
 
   return (
-    <section id="systems" className="border-b-4 border-primary dark:border-white bg-surface-container-low dark:bg-surface-l1">
+    <section id="systems" className="border-b-4 border-primary dark:border-white bg-surface dark:bg-surface-l1">
       <Section className="py-12">
         <div className="mb-8">
           <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 border-b-2 border-primary dark:border-white pb-4">

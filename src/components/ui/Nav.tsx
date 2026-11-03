@@ -67,7 +67,7 @@ export function Nav() {
               className={`px-4 py-2 text-xs font-headline font-semibold uppercase tracking-wider transition-colors ${
                 isActive(l.href)
                   ? 'bg-primary-container text-on-primary-container font-bold border-2 border-primary'
-                  : 'text-on-surface-variant dark:text-ink-dark/70 hover:text-on-surface dark:hover:text-ink-dark hover:bg-surface-container dark:hover:bg-surface-l1'
+                  : 'text-on-surface-variant dark:text-ink-dark/70 hover:text-on-surface dark:hover:text-ink-dark hover:bg-surface dark:hover:bg-surface-l1'
               }`}
             >
               {l.label}
@@ -126,7 +126,7 @@ export function Nav() {
               className={`block border-b border-primary px-4 py-2.5 text-[13px] font-headline font-semibold uppercase tracking-wider transition-colors ${
                 isActive(l.href)
                   ? 'bg-primary-container text-on-primary-container'
-                  : 'text-on-surface-variant hover:bg-surface-container hover:text-on-surface'
+                  : 'text-on-surface-variant hover:bg-surface hover:text-on-surface'
               }`}
             >
               {l.label}

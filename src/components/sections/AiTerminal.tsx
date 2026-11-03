@@ -36,7 +36,7 @@ export function AiTerminal() {
           className="bg-primary text-[#33ff33] border-4 border-primary dark:border-white shadow-[8px_8px_0px_#1a1a1a] dark:shadow-[8px_8px_0px_#ffffff] font-mono text-xs sm:text-sm"
         >
           {/* Terminal Header Bar */}
-          <div className="bg-surface-container dark:bg-surface-l1 text-on-surface dark:text-ink-dark p-3 border-b-2 border-primary dark:border-white flex items-center justify-between font-headline font-bold text-xs uppercase tracking-wider">
+          <div className="bg-surface dark:bg-surface-l1 text-on-surface dark:text-ink-dark p-3 border-b-2 border-primary dark:border-white flex items-center justify-between font-headline font-bold text-xs uppercase tracking-wider">
             <div className="flex items-center gap-2">
               <span className="w-3 h-3 bg-secondary dark:bg-vermilion inline-block border border-primary dark:border-white" />
               <span className="w-3 h-3 bg-primary-container dark:bg-primary-yellow inline-block border border-primary dark:border-white" />
