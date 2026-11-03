@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport"/><meta content="mobile_tab" name="shell-type"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" rel="stylesheet"/><link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config = { darkMode: "class", theme: { extend: { colors: { "on-primary-fixed-variant": "#574500", "on-surface": "#e5e1e4", "primary-container": "#facc15", "surface-container-highest": "#353437", "on-primary": "#3c2f00", "inverse-primary": "#735c00", "on-secondary-container": "#4a1c00", "outline-variant": "#4d4632", "on-secondary": "#552100", "tertiary-fixed-dim": "#adc6ff", "surface-dim": "#131315", "inverse-on-surface": "#303032", "surface-container-high": "#2a2a2c", "tertiary-container": "#bed1ff", "surface-container": "#201f21", "surface-tint": "#eec200", "on-primary-container": "#6c5700", "outline": "#9a9078", "surface-variant": "#353437", "primary": "#ffecb9", "secondary-fixed": "#ffdbca", "on-tertiary": "#002e6a", "on-tertiary-container": "#0055b9", "surface-bright": "#39393b", "primary-fixed-dim": "#eec200", "secondary-fixed-dim": "#ffb690", "secondary": "#ffb690", "on-background": "#e5e1e4", "surface-container-lowest": "#0e0e10", "on-tertiary-fixed": "#001a42", "tertiary": "#e8edff", "on-surface-variant": "#d1c6ab", "on-secondary-fixed-variant": "#783200", "surface": "#131315", "on-error-container": "#ffdad6", "secondary-container": "#ec6a06", "error": "#ffb4ab", "surface-container-low": "#1b1b1d", "primary-fixed": "#ffe083", "on-error": "#690005", "on-primary-fixed": "#231b00", "error-container": "#93000a", "background": "#131315", "on-secondary-fixed": "#341100", "on-tertiary-fixed-variant": "#004395", "inverse-surface": "#e5e1e4", "tertiary-fixed": "#d8e2ff" }, borderRadius: { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px" }, spacing: { "space-xl": "2.5rem", "space-lg": "1.5rem", "margin": "2rem", "gutter": "1.5rem", "margin-mobile": "1rem", "space-xs": "0.25rem", "space-sm": "0.5rem", "gutter-mobile": "1rem", "space-md": "1rem" }, fontFamily: { "label-md": ["JetBrains Mono"], "display-mobile": ["Space Grotesk"], "headline-lg": ["Space Grotesk"], "body-lg": ["Space Grotesk"], "display": ["Space Grotesk"], "headline-md": ["Space Grotesk"], "label-lg": ["JetBrains Mono"], "headline-sm": ["Space Grotesk"], "headline-lg-mobile": ["Space Grotesk"], "body-sm": ["Space Grotesk"], "body-md": ["Space Grotesk"], "label-sm": ["JetBrains Mono"] }, fontSize: { "label-md": ["12px", { lineHeight: "16px", letterSpacing: "0.04em", fontWeight: "500" }], "display-mobile": ["36px", { lineHeight: "40px", letterSpacing: "-0.03em", fontWeight: "700" }], "headline-lg": ["40px", { lineHeight: "44px", letterSpacing: "-0.03em", fontWeight: "700" }], "body-lg": ["18px", { lineHeight: "28px", fontWeight: "400" }], "display": ["56px", { lineHeight: "60px", letterSpacing: "-0.04em", fontWeight: "700" }], "headline-md": ["28px", { lineHeight: "34px", letterSpacing: "-0.02em", fontWeight: "600" }], "label-lg": ["14px", { lineHeight: "18px", letterSpacing: "0.02em", fontWeight: "600" }], "headline-sm": ["20px", { lineHeight: "26px", letterSpacing: "-0.01em", fontWeight: "600" }], "headline-lg-mobile": ["28px", { lineHeight: "32px", letterSpacing: "-0.02em", fontWeight: "700" }], "body-sm": ["13px", { lineHeight: "18px", fontWeight: "400" }], "body-md": ["15px", { lineHeight: "22px", fontWeight: "400" }], "label-sm": ["10px", { lineHeight: "12px", letterSpacing: "0.06em", fontWeight: "500" }] } } } }</script><style>@layer base{html,body{width:100%;margin:0;padding:0;background-color:#131315;}body{overscroll-behavior-y:none;-webkit-tap-highlight-color:transparent;}.pb-safe{padding-bottom:env(safe-area-inset-bottom,0px);}.pt-safe{padding-top:env(safe-area-inset-top,0px);}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style></head><body class="bg-surface font-body-md text-body-md text-on-surface flex flex-col min-h-screen antialiased selection:bg-primary-container selection:text-on-primary"><header class="fixed top-0 w-full z-50 pt-safe bg-surface/90 backdrop-blur-xl shadow-[0_1px_8px_rgba(0,0,0,0.04)]"><div class="h-16 px-gutter-mobile flex items-center justify-between"><div class="flex items-center gap-space-sm"><div class="w-10 h-10 bg-primary-container flex items-center justify-center"><span class="font-label-lg text-label-lg font-bold text-on-primary tracking-tighter">AP</span></div><div class="flex flex-col"><span class="font-headline-sm text-headline-sm uppercase tracking-tight text-on-surface">Health</span><div class="flex items-center gap-1.5"><span class="w-1.5 h-1.5 bg-primary-container animate-pulse"></span><span class="font-label-sm text-label-sm uppercase tracking-wider text-on-surface-variant">MUZAFFARPUR · 38°C</span></div></div></div><div class="flex items-center gap-space-sm"><div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center"><span class="material-symbols-outlined text-on-primary text-[18px]">person</span></div></div></div></header><main class="flex flex-col relative w-full pt-16 pb-24 px-gutter-mobile bg-surface min-h-screen"><div class="flex flex-col w-full space-y-space-lg">
+<!-- TOP CHAPTER BANNER & MONOLITH HEADER -->
+<section class="flex flex-col space-y-space-sm">
+<div class="inline-flex items-center gap-space-xs self-start bg-surface-container-high px-space-xs py-0.5">
+<span class="w-1.5 h-1.5 bg-primary-container"></span>
+<span class="font-label-sm text-label-sm text-primary-container tracking-widest uppercase">/* 01 // FELLOWSHIP OPERATIONAL RECORD &amp; CLINICAL VITALS */</span>
+</div>
+<h1 class="font-headline-lg-mobile text-headline-lg-mobile uppercase text-on-surface tracking-tight leading-tight">
+      Health-System Strengthening Across Bihar: Every Number Tracked Like Patient Data
+    </h1>
+<!-- STRUCTURAL TAG CHIPS -->
+<div class="flex flex-wrap gap-space-xs pt-space-xs">
+<span class="font-label-sm text-label-sm bg-surface-container-high text-on-surface px-space-xs py-0.5">GANDHI FELLOWSHIP</span>
+<span class="font-label-sm text-label-sm bg-surface-container-high text-on-surface px-space-xs py-0.5">PIRAMAL FOUNDATION</span>
+<span class="font-label-sm text-label-sm bg-primary-container text-on-primary font-bold px-space-xs py-0.5">MUZAFFARPUR · BIHAR</span>
+</div>
+</section>
+<!-- STICKY JUMP STRIP -->
+<div class="sticky top-16 z-40 bg-surface/95 backdrop-blur-md py-space-xs -mx-gutter-mobile px-gutter-mobile">
+<div class="flex items-center gap-space-xs overflow-x-auto no-scrollbar py-1">
+<span class="font-label-sm text-label-sm text-on-surface-variant font-bold uppercase tracking-wider shrink-0 pr-1">JUMP //</span>
+<a class="shrink-0 bg-surface-container-highest hover:bg-primary-container hover:text-on-primary transition-colors text-on-surface px-space-sm py-1 font-label-sm text-label-sm flex items-center gap-1 shadow-[2px_2px_0px_0px_#000000]" href="#section-metrics">
+<span>⚡</span> FIELD METRICS
+      </a>
+<a class="shrink-0 bg-surface-container-highest hover:bg-primary-container hover:text-on-primary transition-colors text-on-surface px-space-sm py-1 font-label-sm text-label-sm flex items-center gap-1 shadow-[2px_2px_0px_0px_#000000]" href="#section-outcomes">
+<span>🎯</span> TWO OUTCOMES
+      </a>
+<a class="shrink-0 bg-surface-container-highest hover:bg-primary-container hover:text-on-primary transition-colors text-on-surface px-space-sm py-1 font-label-sm text-label-sm flex items-center gap-1 shadow-[2px_2px_0px_0px_#000000]" href="#section-who-pillars">
+<span>🏛</span> WHO PILLARS
+      </a>
+</div>
+</div>
+<!-- BRUTALIST FIELD QUOTE MODULE -->
+<section class="bg-surface-container-high p-space-md shadow-[4px_4px_0px_0px_#000000]">
+<div class="flex items-start gap-space-sm">
+<div class="w-2 self-stretch bg-primary-container shrink-0"></div>
+<div class="flex flex-col space-y-space-xs">
+<span class="font-label-sm text-label-sm text-primary-container uppercase tracking-widest">// FIELD MEMORANDUM · EXTREME CLIMATE DEPLOYMENT</span>
+<blockquote class="font-body-md text-body-md text-on-surface italic leading-snug">
+          “I have stood next to an ASHA worker filling an ODK form on a tablet in 38°C heat. Every pipeline I build starts with that moment.”
+        </blockquote>
+<div class="pt-space-xs">
+<p class="font-label-md text-label-md font-semibold text-primary">Aditya Pandey <span class="text-on-surface-variant font-normal">· Muzaffarpur, Bihar</span></p>
+</div>
+</div>
+</div>
+</section>
+<!-- AUDITED PRIMARY FIELD METRICS LEDGER -->
+<section class="flex flex-col space-y-space-md pt-space-xs" id="section-metrics">
+<div class="flex items-center justify-between bg-surface-container-high px-space-sm py-space-xs">
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-primary-container text-[18px]">verified</span>
+<span class="font-label-md text-label-md font-bold uppercase tracking-wider text-on-surface">Audited Field Metrics Ledger</span>
+</div>
+<div class="flex items-center gap-1">
+<span class="w-1.5 h-1.5 bg-secondary-container animate-pulse"></span>
+<span class="font-label-sm text-label-sm text-secondary tracking-widest">LIVE PROD DATA</span>
+</div>
+</div>
+<!-- METRIC 01: CAPACITY -->
+<article class="bg-surface-container flex flex-col shadow-[4px_4px_0px_0px_#000000]">
+<div class="bg-surface-container-high px-space-md py-space-xs flex justify-between items-center">
+<span class="font-label-sm text-label-sm text-primary-container tracking-wider">METRIC_01 // CAPACITY</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">SUB-CENTRE ROLLOUT</span>
+</div>
+<div class="p-space-md flex flex-col space-y-space-sm">
+<div class="flex items-baseline justify-between">
+<div class="font-headline-lg-mobile text-headline-lg-mobile font-bold text-primary-container">700+</div>
+<span class="font-label-sm text-label-sm bg-surface-container-highest text-on-surface px-space-xs py-0.5">100+ MICRO-SESSIONS</span>
+</div>
+<div class="font-body-md text-body-md text-on-surface font-medium">ASHA WORKERS TRAINED IN DIGITAL PROTOCOLS</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+          Complete hardware handling, maternal risk flag indicators, and point-of-care digital data ingestion scaled across rural primary sub-centers.
+        </p>
+<!-- Documentary Photo -->
+<div class="w-full mt-space-xs overflow-hidden bg-surface-container-lowest">
+<img alt="ASHA workers participating in hands-on mobile digital health tablet training session" class="w-full aspect-[16/9] object-cover grayscale contrast-125 hover:grayscale-0 transition-all duration-300" src="https://lh3.googleusercontent.com/aida/AEtjO1V8IVYc_IQFvpuDK7Yepzqrppv3uE5egL8p26Cj_IgKylL-ts8K2Dyspg-w1eAnhEb4Jo4wykw96DZwfXLN8cR6bQ5CyFgJ4I96o04rVtGPPxWobKog8Xej0q_SQtzbjnve4Dx9uqwlhUV52X3-37cTf1Q-JCqkNS9fkAoMQJ9XhSSivwCZx8zWllfVrfqS3KYmXrzG-TDKdSa2H2sedMyMqgvtz2caM7vOys6zcTqPLw"/>
+<div class="p-space-xs bg-surface-container-lowest flex items-center justify-between text-on-surface-variant">
+<span class="font-label-sm text-label-sm uppercase tracking-wider">DOC_REF: ASHA_TAB_TRG_BHR</span>
+<span class="font-label-sm text-label-sm">PRIMARY HEALTH CENTER</span>
+</div>
+</div>
+</div>
+</article>
+<!-- METRIC 02: CLINICAL RIGOR -->
+<article class="bg-surface-container flex flex-col shadow-[4px_4px_0px_0px_#000000]">
+<div class="bg-surface-container-high px-space-md py-space-xs flex justify-between items-center">
+<span class="font-label-sm text-label-sm text-primary-container tracking-wider">METRIC_02 // CLINICAL RIGOR</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">5-WEEK RESIDENCY</span>
+</div>
+<div class="p-space-md flex flex-col space-y-space-sm">
+<div class="flex items-baseline justify-between">
+<div class="font-headline-lg-mobile text-headline-lg-mobile font-bold text-primary-container">185-HR</div>
+<span class="font-label-sm text-label-sm bg-surface-container-highest text-on-surface px-space-xs py-0.5">HRP TRIAGE ENGINE</span>
+</div>
+<div class="font-body-md text-body-md text-on-surface font-medium">CLINICAL SKILLS REFRESHER &amp; EMERGENCY ESCALATION</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+          Progressive simulation curriculum for 12 Staff Nurses &amp; 4 Medical Officers on High-Risk Pregnancy (HRP) identification, intrapartum triage, and referral linkage.
+        </p>
+<!-- Documentary Photo -->
+<div class="w-full mt-space-xs overflow-hidden bg-surface-container-lowest">
+<img alt="Clinical skills refresher training in a district hospital seminar room with doctor and staff nurses" class="w-full aspect-[16/9] object-cover grayscale contrast-125 hover:grayscale-0 transition-all duration-300" src="https://lh3.googleusercontent.com/aida/AEtjO1WJjtpq7fchnH2otKmy4_Sw1l2a8b239caMbfx9NnSSXSSGXP_evHD_HPaTDb4_ioqlv1qayqRex4do0_1J5akCMHl_7hNzPjkuftsAglb054yGUu6xmG1YFmq_KWrm5nTeRRbw-KVj8p3BEKL0vG4cZvApFTaM2m1TMGUWbydcsM0xW4fSiEuDLTfRB6_L1DDLSBOLeR7QZL_C8sdWpVHUYXjJBKx3RQemNgjNQjDZqg"/>
+<div class="p-space-xs bg-surface-container-lowest flex items-center justify-between text-on-surface-variant">
+<span class="font-label-sm text-label-sm uppercase tracking-wider">DOC_REF: CLIN_SIM_HRP_DH</span>
+<span class="font-label-sm text-label-sm">DISTRICT HOSPITAL LAB</span>
+</div>
+</div>
+</div>
+</article>
+<!-- METRIC 03: LOGISTICS WITH ANALOG ODOMETER -->
+<article class="bg-surface-container flex flex-col shadow-[4px_4px_0px_0px_#000000]">
+<div class="bg-surface-container-high px-space-md py-space-xs flex justify-between items-center">
+<span class="font-label-sm text-label-sm text-primary-container tracking-wider">METRIC_03 // LOGISTICS</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">GPS AUDITED RECORD</span>
+</div>
+<div class="p-space-md flex flex-col space-y-space-sm">
+<span class="font-label-sm text-label-sm uppercase text-on-surface-variant tracking-wider">Total Field Distance Traversed:</span>
+<!-- Analog Mechanical Counter -->
+<div class="flex items-center gap-1 bg-surface-container-lowest p-space-sm self-start">
+<div class="w-7 h-9 bg-surface-bright flex items-center justify-center font-label-lg text-label-lg font-bold text-on-surface shadow-[inset_0_2px_4px_rgba(0,0,0,0.8)]">0</div>
+<div class="w-7 h-9 bg-surface-bright flex items-center justify-center font-label-lg text-label-lg font-bold text-on-surface shadow-[inset_0_2px_4px_rgba(0,0,0,0.8)]">1</div>
+<div class="w-7 h-9 bg-surface-bright flex items-center justify-center font-label-lg text-label-lg font-bold text-on-surface shadow-[inset_0_2px_4px_rgba(0,0,0,0.8)]">3</div>
+<div class="w-7 h-9 bg-surface-bright flex items-center justify-center font-label-lg text-label-lg font-bold text-on-surface shadow-[inset_0_2px_4px_rgba(0,0,0,0.8)]">6</div>
+<div class="w-7 h-9 bg-surface-bright flex items-center justify-center font-label-lg text-label-lg font-bold text-on-surface shadow-[inset_0_2px_4px_rgba(0,0,0,0.8)]">2</div>
+<div class="w-7 h-9 bg-primary-container flex items-center justify-center font-label-lg text-label-lg font-bold text-on-primary shadow-[inset_0_2px_4px_rgba(0,0,0,0.5)]">7</div>
+<span class="font-label-sm text-label-sm font-bold text-primary pl-1">KM</span>
+</div>
+<!-- Block Distance Table -->
+<div class="flex flex-col w-full mt-space-xs bg-surface-container-low">
+<div class="grid grid-cols-2 p-space-xs bg-surface-container-highest text-on-surface font-label-sm text-label-sm font-bold">
+<span>FIELD GEOGRAPHY / BLOCK</span>
+<span class="text-right">LOGGED DISTANCE</span>
+</div>
+<div class="grid grid-cols-2 p-space-xs text-on-surface font-label-sm text-label-sm hover:bg-surface-container-high transition-colors">
+<span>East Champaran</span>
+<span class="text-right text-primary-container font-mono">4,120 km</span>
+</div>
+<div class="grid grid-cols-2 p-space-xs text-on-surface font-label-sm text-label-sm hover:bg-surface-container-high transition-colors bg-surface-container">
+<span>Sheohar District</span>
+<span class="text-right text-primary-container font-mono">1,890 km</span>
+</div>
+<div class="grid grid-cols-2 p-space-xs text-on-surface font-label-sm text-label-sm hover:bg-surface-container-high transition-colors">
+<span>Sitamarhi Blocks</span>
+<span class="text-right text-primary-container font-mono">3,450 km</span>
+</div>
+<div class="grid grid-cols-2 p-space-xs text-on-surface font-label-sm text-label-sm hover:bg-surface-container-high transition-colors bg-surface-container">
+<span>Muzaffarpur Baseline</span>
+<span class="text-right text-primary-container font-mono">4,167 km</span>
+</div>
+</div>
+</div>
+</article>
+<!-- METRICS 04 & 05: TWO COMPACT TILES -->
+<div class="grid grid-cols-1 gap-space-sm">
+<!-- Metric 04 -->
+<article class="bg-surface-container p-space-md shadow-[4px_4px_0px_0px_#000000]">
+<div class="flex items-center justify-between">
+<span class="font-label-sm text-label-sm text-primary-container">METRIC_04 // QUALITY COMPLIANCE</span>
+<span class="material-symbols-outlined text-on-surface-variant text-[16px]">domain</span>
+</div>
+<div class="font-headline-lg-mobile text-headline-lg-mobile font-bold text-on-surface mt-space-xs">154</div>
+<div class="font-body-md text-body-md text-on-surface font-semibold">FACILITIES CLINICALLY AUDITED</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-1">
+          Full baseline &amp; gap identification using National Quality Assurance Standards (NQAS) across Sub-Centres, PHCs, CHCs, and District Hospitals.
+        </p>
+</article>
+<!-- Metric 05 -->
+<article class="bg-surface-container p-space-md shadow-[4px_4px_0px_0px_#000000]">
+<div class="flex items-center justify-between">
+<span class="font-label-sm text-label-sm text-primary-container">METRIC_05 // ETL PIPELINE VOLUME</span>
+<span class="material-symbols-outlined text-secondary text-[16px]">terminal</span>
+</div>
+<div class="font-headline-lg-mobile text-headline-lg-mobile font-bold text-primary-container mt-space-xs">118k+</div>
+<div class="font-body-md text-body-md text-on-surface font-semibold">VALIDATED RECORDS PROCESSED</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-1">
+          ODK Collect automated aggregation to ODK Central. Custom Python/Pandas parsing scripts operating at a 99.84% verified error-free rate.
+        </p>
+</article>
+</div>
+</section>
+<!-- SYSTEM-LEVEL ARCHITECTURE & WHO BUILDING BLOCKS BANNER -->
+<section class="bg-surface-container-high p-space-md shadow-[4px_4px_0px_0px_#000000]">
+<div class="flex items-center gap-space-xs mb-space-xs">
+<span class="material-symbols-outlined text-primary-container text-[20px]">account_tree</span>
+<span class="font-label-sm text-label-sm uppercase tracking-widest text-primary-container">SYSTEM-LEVEL ARCHITECTURE</span>
+</div>
+<h2 class="font-headline-sm text-headline-sm uppercase text-on-surface leading-tight mb-space-xs">
+      Strengthening Public Health Systems
+    </h2>
+<p class="font-body-md text-body-md text-on-surface-variant">
+      Deploying a proven holistic approach to systems change to support the transformation of the public health system — structurally grounded in the World Health Organization (WHO) Building Blocks of Health Systems.
+    </p>
+</section>
+<!-- TWO OUTCOMES SECTION -->
+<section class="flex flex-col space-y-space-sm" id="section-outcomes">
+<div class="inline-flex items-center gap-space-xs self-start bg-surface-container-highest px-space-xs py-0.5">
+<span class="font-label-sm text-label-sm text-primary tracking-widest">/* TWO OUTCOMES */ WHAT WE DRIVE TOWARD</span>
+</div>
+<div class="grid grid-cols-1 gap-space-sm">
+<!-- Outcome 01 -->
+<div class="bg-surface-container p-space-md shadow-[4px_4px_0px_0px_#000000]">
+<div class="flex items-center justify-between">
+<span class="font-label-lg text-label-lg font-bold text-primary-container">01 // COMMUNITY OUTCOMES</span>
+<span class="material-symbols-outlined text-primary-container text-[20px]">groups</span>
+</div>
+<p class="font-body-md text-body-md text-on-surface font-medium mt-space-xs">
+          Measurably Improved Health Behaviors &amp; Village Accessibility
+        </p>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-1">
+          Proactive antenatal screening utilization, community-level adherence to immunization calendars, and timely maternal emergency response at the final mile.
+        </p>
+</div>
+<!-- Outcome 02 -->
+<div class="bg-surface-container p-space-md shadow-[4px_4px_0px_0px_#000000]">
+<div class="flex items-center justify-between">
+<span class="font-label-lg text-label-lg font-bold text-secondary">02 // SERVICE DELIVERY</span>
+<span class="material-symbols-outlined text-secondary text-[20px]">local_hospital</span>
+</div>
+<p class="font-body-md text-body-md text-on-surface font-medium mt-space-xs">
+          Enhanced Clinical Health Service Delivery
+        </p>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-1">
+          Anchored in verified clinical safety protocols, institutional triage pathways, reliable consumable pipelines, and dignified primary patient care.
+        </p>
+</div>
+</div>
+</section>
+<!-- WHO BUILDING BLOCKS UNDER FOCUS (INTERACTIVE ACCORDION CARDS) -->
+<section class="flex flex-col space-y-space-sm" id="section-who-pillars">
+<div class="flex items-center justify-between bg-surface-container-high px-space-sm py-space-xs">
+<span class="font-label-sm text-label-sm text-on-surface font-bold uppercase tracking-wider">WHO Building Blocks Under Focus (6 Pillars)</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">TAP TO EXPAND</span>
+</div>
+<!-- Accordion Container -->
+<div class="flex flex-col space-y-space-xs" id="who-accordion">
+<!-- Pillar 01 -->
+<details class="group bg-surface-container shadow-[2px_2px_0px_0px_#000000]" open="">
+<summary class="flex items-center justify-between p-space-sm cursor-pointer list-none select-none bg-surface-container-high">
+<div class="flex items-center gap-space-xs">
+<span class="font-label-md text-label-md font-bold text-primary-container">01</span>
+<span class="font-label-md text-label-md uppercase font-semibold text-on-surface">Service Delivery</span>
+</div>
+<span class="material-symbols-outlined text-[18px] text-on-surface group-open:rotate-180 transition-transform">expand_more</span>
+</summary>
+<div class="p-space-md bg-surface-container space-y-space-xs">
+<p class="font-body-sm text-body-sm text-on-surface">
+            Standardization of labor rooms, Cold Chain compliance points, and first-line triage setups across 154 health centers.
+          </p>
+<div class="flex flex-wrap gap-1 pt-1">
+<span class="font-label-sm text-label-sm bg-surface-container-highest text-on-surface px-1.5 py-0.5">NQAS AUDITS</span>
+<span class="font-label-sm text-label-sm bg-surface-container-highest text-on-surface px-1.5 py-0.5">FRU CAPABILITY</span>
+<span class="font-label-sm text-label-sm bg-surface-container-highest text-on-surface px-1.5 py-0.5">CEU MONITORING</span>
+</div>
+</div>
+</details>
+<!-- Pillar 02 -->
+<details class="group bg-surface-container shadow-[2px_2px_0px_0px_#000000]">
+<summary class="flex items-center justify-between p-space-sm cursor-pointer list-none select-none bg-surface-container-high">
+<div class="flex items-center gap-space-xs">
+<span class="font-label-md text-label-md font-bold text-primary-container">02</span>
+<span class="font-label-md text-label-md uppercase font-semibold text-on-surface">HRH Structures &amp; Capacities</span>
+</div>
+<span class="material-symbols-outlined text-[18px] text-on-surface group-open:rotate-180 transition-transform">expand_more</span>
+</summary>
+<div class="p-space-md bg-surface-container space-y-space-xs">
+<p class="font-body-sm text-body-sm text-on-surface">
+            Continuous skill refreshes for Staff Nurses and ANMs; structured cadence for supportive supervision visits from block-level medical officers.
+          </p>
+<div class="flex flex-wrap gap-1 pt-1">
+<span class="font-label-sm text-label-sm bg-surface-container-highest text-on-surface px-1.5 py-0.5">700+ ASHAS</span>
+<span class="font-label-sm text-label-sm bg-surface-container-highest text-on-surface px-1.5 py-0.5">185-HR CLINICAL</span>
+<span class="font-label-sm text-label-sm bg-surface-container-highest text-on-surface px-1.5 py-0.5">ROLE BENCHMARKS</span>
+</div>
+</div>
+</details>
+<!-- Pillar 03 -->
+<details class="group bg-surface-container shadow-[2px_2px_0px_0px_#000000]">
+<summary class="flex items-center justify-between p-space-sm cursor-pointer list-none select-none bg-surface-container-high">
+<div class="flex items-center gap-space-xs">
+<span class="font-label-md text-label-md font-bold text-primary-container">03</span>
+<span class="font-label-md text-label-md uppercase font-semibold text-on-surface">Procurement &amp; Supply Chain</span>
+</div>
+<span class="material-symbols-outlined text-[18px] text-on-surface group-open:rotate-180 transition-transform">expand_more</span>
+</summary>
+<div class="p-space-md bg-surface-container space-y-space-xs">
+<p class="font-body-sm text-body-sm text-on-surface">
+            Inventory pipeline auditing for Essential Drug Lists (EDL), preventing stockouts of oxytocin, iron folic tablets, and clean delivery kits.
+          </p>
+<div class="flex flex-wrap gap-1 pt-1">
+<span class="font-label-sm text-label-sm bg-surface-container-highest text-on-surface px-1.5 py-0.5">DVDMS AUDIT</span>
+<span class="font-label-sm text-label-sm bg-surface-container-highest text-on-surface px-1.5 py-0.5">COLD CHAIN TRACE</span>
+<span class="font-label-sm text-label-sm bg-surface-container-highest text-on-surface px-1.5 py-0.5">STOCK DRIFT ZERO</span>
+</div>
+</div>
+</details>
+<!-- Pillar 04 -->
+<details class="group bg-surface-container shadow-[2px_2px_0px_0px_#000000]">
+<summary class="flex items-center justify-between p-space-sm cursor-pointer list-none select-none bg-surface-container-high">
+<div class="flex items-center gap-space-xs">
+<span class="font-label-md text-label-md font-bold text-primary-container">04</span>
+<span class="font-label-md text-label-md uppercase font-semibold text-on-surface">Strategic Financing &amp; Budgeting</span>
+</div>
+<span class="material-symbols-outlined text-[18px] text-on-surface group-open:rotate-180 transition-transform">expand_more</span>
+</summary>
+<div class="p-space-md bg-surface-container space-y-space-xs">
+<p class="font-body-sm text-body-sm text-on-surface">
+            Rogi Kalyan Samiti (RKS) untied fund utilization tracking and accelerated payout workflows for JSY maternal incentives.
+          </p>
+<div class="flex flex-wrap gap-1 pt-1">
+<span class="font-label-sm text-label-sm bg-surface-container-highest text-on-surface px-1.5 py-0.5">RKS BUDGETS</span>
+<span class="font-label-sm text-label-sm bg-surface-container-highest text-on-surface px-1.5 py-0.5">JSY AUDIT PIPELINE</span>
+<span class="font-label-sm text-label-sm bg-surface-container-highest text-on-surface px-1.5 py-0.5">DISBURSEMENT SPEED</span>
+</div>
+</div>
+</details>
+<!-- Pillar 05 -->
+<details class="group bg-surface-container shadow-[2px_2px_0px_0px_#000000]">
+<summary class="flex items-center justify-between p-space-sm cursor-pointer list-none select-none bg-surface-container-high">
+<div class="flex items-center gap-space-xs">
+<span class="font-label-md text-label-md font-bold text-primary-container">05</span>
+<span class="font-label-md text-label-md uppercase font-semibold text-on-surface">Governance &amp; Accountability</span>
+</div>
+<span class="material-symbols-outlined text-[18px] text-on-surface group-open:rotate-180 transition-transform">expand_more</span>
+</summary>
+<div class="p-space-md bg-surface-container space-y-space-xs">
+<p class="font-body-sm text-body-sm text-on-surface">
+            Institutional review rituals with District Magistrates (DM) and Civil Surgeons to convert data into immediate resource allocations.
+          </p>
+<div class="flex flex-wrap gap-1 pt-1">
+<span class="font-label-sm text-label-sm bg-surface-container-highest text-on-surface px-1.5 py-0.5">DISTRICT REVIEWS</span>
+<span class="font-label-sm text-label-sm bg-surface-container-highest text-on-surface px-1.5 py-0.5">CIVIL SURGEON COMMS</span>
+<span class="font-label-sm text-label-sm bg-surface-container-highest text-on-surface px-1.5 py-0.5">COMMUNITY JURY</span>
+</div>
+</div>
+</details>
+<!-- Pillar 06 -->
+<details class="group bg-surface-container shadow-[2px_2px_0px_0px_#000000]">
+<summary class="flex items-center justify-between p-space-sm cursor-pointer list-none select-none bg-surface-container-high">
+<div class="flex items-center gap-space-xs">
+<span class="font-label-md text-label-md font-bold text-primary-container">06</span>
+<span class="font-label-md text-label-md uppercase font-semibold text-on-surface">Information &amp; Data Systems</span>
+</div>
+<span class="material-symbols-outlined text-[18px] text-on-surface group-open:rotate-180 transition-transform">expand_more</span>
+</summary>
+<div class="p-space-md bg-surface-container space-y-space-xs">
+<p class="font-body-sm text-body-sm text-on-surface">
+            Modern mobile data ingestion with strict schema enforcement, eliminating duplicate paper registries and unvalidated reports.
+          </p>
+<div class="flex flex-wrap gap-1 pt-1">
+<span class="font-label-sm text-label-sm bg-surface-container-highest text-on-surface px-1.5 py-0.5">ODK CENTRAL SYNC</span>
+<span class="font-label-sm text-label-sm bg-surface-container-highest text-on-surface px-1.5 py-0.5">PYTHON ETL</span>
+<span class="font-label-sm text-label-sm bg-surface-container-highest text-on-surface px-1.5 py-0.5">99.84% AUDIT ACCURACY</span>
+</div>
+</div>
+</details>
+</div>
+</section>
+<!-- INNER OPERATIONS: FIELD MIND & DISCIPLINE -->
+<section class="flex flex-col space-y-space-xs">
+<div class="inline-flex items-center gap-space-xs self-start bg-surface-container-highest px-space-xs py-0.5">
+<span class="font-label-sm text-label-sm text-on-surface tracking-widest uppercase">/* INNER OPERATIONS */ FIELD MIND &amp; DISCIPLINE</span>
+</div>
+<div class="grid grid-cols-1 gap-space-xs">
+<!-- Discipline 1 -->
+<div class="bg-surface-container p-space-md flex items-start gap-space-sm shadow-[2px_2px_0px_0px_#000000]">
+<span class="material-symbols-outlined text-primary-container text-[22px] shrink-0">self_improvement</span>
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm uppercase text-primary font-bold">HAJIPUR RESIDENCY</span>
+<span class="font-body-md text-body-md text-on-surface font-semibold">CBCT &amp; Compassion-Based Leadership</span>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-0.5">
+            Cognitively-Based Compassion Training framework practiced in high-friction administrative and crisis environments.
+          </p>
+</div>
+</div>
+<!-- Discipline 2 -->
+<div class="bg-surface-container p-space-md flex items-start gap-space-sm shadow-[2px_2px_0px_0px_#000000]">
+<span class="material-symbols-outlined text-primary-container text-[22px] shrink-0">hourglass_bottom</span>
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm uppercase text-primary font-bold">DHAMMA VAISHALI</span>
+<span class="font-body-md text-body-md text-on-surface font-semibold">10-Day Silent Vipassana Meditation</span>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-0.5">
+            Complete silence, deep mental equanimity, and perceptual clarity applied to endurance-heavy field problem solving.
+          </p>
+</div>
+</div>
+</div>
+</section>
+<!-- LIVE OPERATIONAL TELEMETRY FEED -->
+<section class="bg-surface-container flex flex-col shadow-[4px_4px_0px_0px_#000000]">
+<div class="bg-surface-container-high px-space-md py-space-xs flex items-center justify-between">
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-[16px] text-primary-container">sensors</span>
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-on-surface font-bold">Live Operational Telemetry</span>
+</div>
+<span class="font-label-sm text-label-sm text-on-surface-variant">AUTO-POLL 15s</span>
+</div>
+<div class="divide-none p-space-sm flex flex-col space-y-1">
+<div class="flex items-center justify-between p-space-xs bg-surface-container-low">
+<span class="font-label-sm text-label-sm text-on-surface">M-ASHA Rollout Protocol</span>
+<div class="flex items-center gap-1.5">
+<span class="w-2 h-2 bg-primary-container"></span>
+<span class="font-label-sm text-label-sm text-primary-container font-bold">OPERATIONAL</span>
+</div>
+</div>
+<div class="flex items-center justify-between p-space-xs bg-surface-container-low">
+<span class="font-label-sm text-label-sm text-on-surface">ODK Central Multi-District Sync</span>
+<div class="flex items-center gap-1.5">
+<span class="w-2 h-2 bg-primary-container"></span>
+<span class="font-label-sm text-label-sm text-primary-container font-bold">OPERATIONAL</span>
+</div>
+</div>
+<div class="flex items-center justify-between p-space-xs bg-surface-container-low">
+<span class="font-label-sm text-label-sm text-on-surface">MIS Automated Reporting Aggregator</span>
+<div class="flex items-center gap-1.5">
+<span class="w-2 h-2 bg-primary-container"></span>
+<span class="font-label-sm text-label-sm text-primary-container font-bold">OPERATIONAL</span>
+</div>
+</div>
+<div class="flex items-center justify-between p-space-xs bg-surface-container-low">
+<span class="font-label-sm text-label-sm text-on-surface">Medicine Forecasting Algorithm</span>
+<div class="flex items-center gap-1.5">
+<span class="w-2 h-2 bg-secondary-container animate-pulse"></span>
+<span class="font-label-sm text-label-sm text-secondary font-bold">IN PROGRESS</span>
+</div>
+</div>
+</div>
+</section>
+<!-- BRIDGE TO CODE CALL-TO-ACTION -->
+<section class="bg-surface-container-high p-space-md shadow-[4px_4px_0px_0px_#000000] flex flex-col space-y-space-sm">
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-primary-container text-[20px]">code</span>
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-primary font-bold">REPRODUCIBLE ARCHITECTURE</span>
+</div>
+<p class="font-headline-sm text-headline-sm text-on-surface uppercase leading-tight font-bold">
+      Interested in the underlying code &amp; pipeline architecture?
+    </p>
+<a class="inline-flex items-center justify-center gap-space-xs w-full bg-primary-container text-on-primary py-space-sm font-label-md text-label-md font-bold uppercase shadow-[4px_4px_0px_0px_#000000] active:translate-x-1 active:translate-y-1 active:shadow-none transition-transform" data-path="work" href="#">
+<span>EXPLORE PRODUCTION WORK &amp; SYSTEMS</span>
+<span class="material-symbols-outlined text-[18px]">arrow_forward</span>
+</a>
+</section>
+</div>
+<script>
+  // Interactive micro-interaction for smooth jumps
+  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function(e) {
+      e.preventDefault();
+      const target = document.querySelector(this.getAttribute('href'));
+      if (target) {
+        target.scrollIntoView({
+          behavior: 'smooth',
+          block: 'start'
+        });
+      }
+    });
+  });
+</script></main><nav class="fixed bottom-0 w-full z-50 pb-safe bg-surface/90 backdrop-blur-xl shadow-[0_-1px_8px_rgba(0,0,0,0.04)]" data-active-classes="bg-primary-container text-on-primary font-bold"><div class="flex items-center justify-between h-16 px-space-xs"><a class="flex flex-col items-center justify-center flex-1 h-full min-w-[44px] min-h-[44px] py-1 text-on-surface-variant hover:text-on-surface transition-colors" data-path="home" href="#"><span class="material-symbols-outlined text-[20px]">home</span><span class="font-label-sm text-label-sm uppercase tracking-wider mt-0.5">Home</span></a><a class="flex flex-col items-center justify-center flex-1 h-full min-w-[44px] min-h-[44px] py-1 text-on-surface-variant hover:text-on-surface transition-colors" data-path="work" href="#"><span class="material-symbols-outlined text-[20px]">terminal</span><span class="font-label-sm text-label-sm uppercase tracking-wider mt-0.5">Work</span></a><a aria-current="page" class="flex flex-col items-center justify-center flex-1 h-full min-w-[44px] min-h-[44px] py-1 transition-colors bg-primary-container text-on-primary font-bold" data-path="health" href="#"><span class="material-symbols-outlined text-[20px]">ecg_heart</span><span class="font-label-sm text-label-sm uppercase tracking-wider mt-0.5">Health</span></a><a class="flex flex-col items-center justify-center flex-1 h-full min-w-[44px] min-h-[44px] py-1 text-on-surface-variant hover:text-on-surface transition-colors" data-path="ask-ai" href="#"><span class="material-symbols-outlined text-[20px]">smart_toy</span><span class="font-label-sm text-label-sm uppercase tracking-wider mt-0.5">Ask AI</span></a><a class="flex flex-col items-center justify-center flex-1 h-full min-w-[44px] min-h-[44px] py-1 text-on-surface-variant hover:text-on-surface transition-colors" data-path="contact" href="#"><span class="material-symbols-outlined text-[20px]">alternate_email</span><span class="font-label-sm text-label-sm uppercase tracking-wider mt-0.5">Contact</span></a></div></nav></body></html>

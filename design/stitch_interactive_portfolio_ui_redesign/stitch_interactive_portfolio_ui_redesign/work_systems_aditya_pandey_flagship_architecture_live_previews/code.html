@@ -1,0 +1,1329 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<meta content="web_standard" name="shell-type"/>
+<title>Work &amp; Systems | Aditya Pandey</title>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&amp;family=Space+Grotesk:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+    @layer base {
+      html, body { margin:0; padding:0; background-color: #131315; color: #e5e1e4; }
+      body { overscroll-behavior:none; }
+      main > :first-child { margin-top:0 !important; }
+      main > :last-child { margin-bottom:0 !important; }
+    }
+    ::-webkit-scrollbar { display:none; }
+  </style>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            "surface": "#131315",
+            "surface-dim": "#131315",
+            "surface-bright": "#39393b",
+            "surface-container-lowest": "#0e0e10",
+            "surface-container-low": "#1b1b1d",
+            "surface-container": "#201f21",
+            "surface-container-high": "#2a2a2c",
+            "surface-container-highest": "#353437",
+            "surface-variant": "#353437",
+            "on-surface": "#f3f4f6",
+            "on-surface-variant": "#9ca3af",
+            "on-background": "#f3f4f6",
+            "background": "#131315",
+            "outline": "#39393b",
+            "outline-variant": "#2c2c30",
+            "primary": "#facc15",
+            "primary-container": "#facc15",
+            "on-primary": "#131315",
+            "on-primary-container": "#131315",
+            "secondary": "#ff6b4a",
+            "secondary-container": "#ec6a06",
+            "on-secondary": "#ffffff",
+            "tertiary": "#60a5fa",
+            "tertiary-container": "#1e3a8a",
+            "on-tertiary": "#ffffff",
+            "error": "#ef4444"
+          },
+          fontFamily: {
+            headline: ["Space Grotesk", "sans-serif"],
+            display: ["Space Grotesk", "sans-serif"],
+            body: ["Space Grotesk", "sans-serif"],
+            label: ["JetBrains Mono", "monospace"],
+            mono: ["JetBrains Mono", "monospace"]
+          }
+        }
+      }
+    };
+  </script>
+</head>
+<body class="bg-[#131315] font-body text-[#f3f4f6]">
+<!-- =========================================================================
+       PERSISTENT HEADER NAVIGATION (DARK BAUHAUS)
+       ========================================================================= -->
+<header class="fixed top-0 left-0 w-full z-50 bg-[#131315] border-b-2 border-[#39393b]">
+<div class="h-24 w-full flex flex-col justify-between">
+<div class="h-16 px-6 lg:px-12 flex items-center justify-between border-b border-[#2c2c30]">
+<div class="flex items-center gap-3">
+<a class="flex items-center gap-2 group" data-path="home" href="#">
+<span class="bg-[#facc15] text-[#131315] font-headline font-bold text-base px-2 py-1 tracking-wider border border-[#facc15] shadow-[2px_2px_0px_#facc15]">AP</span>
+<span class="font-headline font-bold tracking-tight text-sm md:text-base uppercase text-[#ffffff]">ADITYA PANDEY <span class="text-[#facc15] font-mono text-xs hidden sm:inline">[SYSTEMS &amp; HEALTH AI]</span></span>
+</a>
+</div>
+<nav class="hidden lg:flex items-center h-full gap-1">
+<a class="h-full flex items-center px-4 font-headline text-xs font-bold uppercase tracking-wider text-[#9ca3af] hover:text-[#ffffff] hover:bg-[#201f21] transition-colors" data-path="home" href="#">Home</a>
+<a class="h-full flex items-center px-4 font-headline text-xs font-bold uppercase tracking-wider bg-[#facc15] text-[#131315] border-b-2 border-[#facc15] shadow-[0_2px_0px_#facc15]" data-path="work-and-systems" href="#">Work &amp; Systems</a>
+<a class="h-full flex items-center px-4 font-headline text-xs font-bold uppercase tracking-wider text-[#9ca3af] hover:text-[#ffffff] hover:bg-[#201f21] transition-colors" data-path="health-and-field-impact" href="#">Health &amp; Field Impact</a>
+<a class="h-full flex items-center px-4 font-headline text-xs font-bold uppercase tracking-wider text-[#9ca3af] hover:text-[#ffffff] hover:bg-[#201f21] transition-colors" data-path="interactive-ai" href="#">Interactive AI</a>
+<a class="h-full flex items-center px-4 font-headline text-xs font-bold uppercase tracking-wider text-[#9ca3af] hover:text-[#ffffff] hover:bg-[#201f21] transition-colors" data-path="contact" href="#">Contact</a>
+</nav>
+<div class="flex items-center gap-3">
+<a class="hidden md:inline-flex items-center justify-center font-headline text-xs font-bold uppercase tracking-widest px-4 py-2 bg-[#201f21] text-[#f3f4f6] border-2 border-[#39393b] hover:border-[#facc15] hover:text-[#facc15] transition-colors shadow-[2px_2px_0px_#0e0e10]" data-path="contact" href="#">Engage Fellow</a>
+<a class="inline-flex items-center justify-center font-headline text-xs font-bold uppercase tracking-widest px-3 py-2 bg-[#facc15] text-[#131315] border-2 border-[#facc15] hover:bg-[#ffe083] transition-colors shadow-[2px_2px_0px_#0e0e10] font-bold" href="https://github.com/adityapandey2002" rel="noopener noreferrer" target="_blank">Code Repos</a>
+<button class="inline-flex items-center gap-1.5 px-2.5 py-1.5 bg-[#1b1b1d] text-[#facc15] border-2 border-[#39393b] font-headline font-bold text-[11px] uppercase tracking-wider shadow-[2px_2px_0px_#0e0e10] hover:bg-[#201f21] transition-transform active:translate-x-0.5 active:translate-y-0.5 cursor-pointer" id="theme-toggle">
+<span class="material-symbols-outlined text-[16px]" id="theme-icon">dark_mode</span>
+<span id="theme-label">MODE: DARK</span>
+</button>
+<div class="w-8 h-8 rounded-full bg-[#facc15] text-[#131315] flex items-center justify-center border-2 border-[#39393b] ml-1 shrink-0 font-bold">
+<span class="material-symbols-outlined text-[#131315] text-[18px]">person</span>
+</div>
+</div>
+</div>
+<div class="h-8 px-6 lg:px-12 flex items-center justify-between bg-[#0e0e10] text-[#facc15] font-label text-[11px] font-bold tracking-widest overflow-hidden select-none border-t border-[#2c2c30]/50">
+<div class="flex items-center gap-2 whitespace-nowrap">
+<span class="inline-block w-2 h-2 rounded-full bg-[#ff6b4a] animate-pulse"></span>
+<span>STATUS: FIELD ACTIVE // BIHAR PUBLIC HEALTH &amp; COMMERCIAL COMMERCE ENGINE // LIVE DEPLOYMENTS</span>
+</div>
+<div class="hidden md:flex items-center gap-4 text-[#9ca3af] text-[10px] uppercase font-mono tracking-widest">
+<span>SYS_EPOCH: 2026.04</span>
+<span>GEO: 26.1209°N, 85.3647°E</span>
+</div>
+</div>
+</div>
+</header>
+<!-- =========================================================================
+       MAIN CONTENT CONTAINER
+       ========================================================================= -->
+<main class="w-full pt-24 bg-[#131315] min-h-[calc(100vh-14rem)]">
+<div class="flex flex-col w-full">
+<!-- =========================================================================
+           HERO & TELEMETRY SECTION
+           ========================================================================= -->
+<section class="w-full border-b-2 border-[#39393b] bg-[#131315] px-6 lg:px-12 py-10 md:py-16">
+<div class="max-w-7xl mx-auto space-y-8">
+<div class="flex flex-wrap items-center gap-3">
+<span class="inline-block bg-[#201f21] text-[#facc15] font-mono text-xs uppercase px-2.5 py-1 tracking-widest border border-[#39393b] shadow-[2px_2px_0px_#0e0e10]">
+              /* 01 // PRODUCTION CODEBASES &amp; SYSTEMS ARCHITECTURE */
+            </span>
+<span class="font-mono text-xs font-bold tracking-wider text-[#9ca3af] uppercase flex items-center gap-1.5">
+<span class="w-2 h-2 rounded-full bg-[#ff6b4a] animate-ping"></span>
+              ORDERED TECHNICAL LEDGER // LIVE PRODUCTION RUNTIMES
+            </span>
+</div>
+<div class="space-y-4">
+<h1 class="font-headline font-bold text-3xl sm:text-5xl lg:text-6xl text-[#ffffff] tracking-tight uppercase leading-[0.95] max-w-5xl">
+              ENGINEERED FOR <span class="bg-[#facc15] text-[#131315] px-2 py-0.5 border-2 border-[#39393b] inline-block shadow-[3px_3px_0px_#0e0e10]">HIGH-INTEGRITY COMMERCE</span> &amp; DETERMINISTIC FRONTLINE SCALE
+            </h1>
+<p class="font-body text-base md:text-xl text-[#9ca3af] max-w-4xl font-normal leading-relaxed">
+              Production transactional e-commerce engines, civic district hospital queues, zero-connectivity clinical maternal triage PWAs, and sub-district macro data spatial platforms built for extreme reliability.
+            </p>
+</div>
+<!-- 4-Up Bento Stat Strip (Dark Bauhaus) -->
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 pt-4">
+<div class="bg-[#1b1b1d] p-5 border-2 border-[#39393b] shadow-[4px_4px_0px_#0e0e10] flex flex-col justify-between hover:border-[#facc15]/60 transition-colors">
+<div class="font-mono text-xs font-bold uppercase tracking-widest text-[#9ca3af] pb-2 border-b border-[#2c2c30]">
+                FLAGSHIP LEDGER // ORDERED
+              </div>
+<div class="py-4">
+<div class="font-headline font-bold text-4xl lg:text-5xl text-[#ffffff]">04+3</div>
+<div class="font-mono text-xs uppercase font-bold text-[#ff6b4a] mt-1">4 FLAGSHIPS + 3 SPECIALIZED</div>
+</div>
+<div class="font-body text-xs text-[#9ca3af]">Ranked strictly by operational impact.</div>
+</div>
+<div class="bg-[#201f21] p-5 border-2 border-[#facc15] shadow-[4px_4px_0px_#facc15] flex flex-col justify-between text-[#ffffff]">
+<div class="font-mono text-xs font-bold uppercase tracking-widest text-[#facc15] pb-2 border-b border-[#39393b]">
+                SECURITY // HMAC SHA-256
+              </div>
+<div class="py-4">
+<div class="font-headline font-bold text-4xl lg:text-5xl text-[#facc15]">100%</div>
+<div class="font-mono text-xs uppercase font-bold text-[#ffffff] mt-1">TAMPER-PROOF PAYMENTS</div>
+</div>
+<div class="font-body text-xs text-[#9ca3af] font-medium">Server-side amount re-validation pipeline.</div>
+</div>
+<div class="bg-[#1b1b1d] p-5 border-2 border-[#39393b] shadow-[4px_4px_0px_#0e0e10] flex flex-col justify-between hover:border-[#facc15]/60 transition-colors">
+<div class="font-mono text-xs font-bold uppercase tracking-widest text-[#9ca3af] pb-2 border-b border-[#2c2c30]">
+                EDGE RESPONSIVENESS
+              </div>
+<div class="py-4">
+<div class="font-headline font-bold text-4xl lg:text-5xl text-[#ffffff]">&lt;50ms</div>
+<div class="font-mono text-xs uppercase font-bold text-[#60a5fa] mt-1">QUERY LATENCY (DUCKDB)</div>
+</div>
+<div class="font-body text-xs text-[#9ca3af]">118k+ indicators indexed across districts.</div>
+</div>
+<div class="bg-[#1b1b1d] p-5 border-2 border-[#39393b] shadow-[4px_4px_0px_#0e0e10] flex flex-col justify-between hover:border-[#facc15]/60 transition-colors">
+<div class="font-mono text-xs font-bold uppercase tracking-widest text-[#9ca3af] pb-2 border-b border-[#2c2c30]">
+                OFFLINE PROTOCOL
+              </div>
+<div class="py-4">
+<div class="font-headline font-bold text-4xl lg:text-5xl text-[#ffffff]">0%</div>
+<div class="font-mono text-xs uppercase font-bold text-[#ff6b4a] mt-1">DATA LOSS ON 2G/ZERO-CONN</div>
+</div>
+<div class="font-body text-xs text-[#9ca3af]">Dexie.js IndexedDB append-only sync.</div>
+</div>
+</div>
+</div>
+</section>
+<!-- =========================================================================
+           STICKY CATEGORY FILTER BAR
+           ========================================================================= -->
+<section class="w-full bg-[#1b1b1d] border-b-2 border-[#39393b] px-6 lg:px-12 py-4 sticky top-24 z-40">
+<div class="max-w-7xl mx-auto flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-[#facc15] text-[20px]">filter_alt</span>
+<span class="font-mono text-xs font-bold uppercase tracking-wider text-[#ffffff]">PROJECT INDEX FILTER:</span>
+</div>
+<div class="flex flex-wrap gap-2" id="filter-container">
+<button class="filter-pill bg-[#facc15] text-[#131315] font-headline text-xs font-bold uppercase tracking-wider px-3.5 py-1.5 border-2 border-[#facc15] shadow-[2px_2px_0px_#0e0e10] hover:bg-[#ffe083] transition-transform active:translate-x-0.5 active:translate-y-0.5" id="btn-all" onclick="filterCategory('all')">
+              ALL SYSTEMS (07)
+            </button>
+<button class="filter-pill bg-[#201f21] text-[#9ca3af] font-headline text-xs font-bold uppercase tracking-wider px-3.5 py-1.5 border-2 border-[#39393b] shadow-[2px_2px_0px_#0e0e10] hover:border-[#facc15] hover:text-[#facc15] transition-transform active:translate-x-0.5 active:translate-y-0.5" id="btn-flagship" onclick="filterCategory('flagship')">
+              FLAGSHIPS #1-4
+            </button>
+<button class="filter-pill bg-[#201f21] text-[#9ca3af] font-headline text-xs font-bold uppercase tracking-wider px-3.5 py-1.5 border-2 border-[#39393b] shadow-[2px_2px_0px_#0e0e10] hover:border-[#facc15] hover:text-[#facc15] transition-transform active:translate-x-0.5 active:translate-y-0.5" id="btn-ecommerce" onclick="filterCategory('ecommerce')">
+              E-COMMERCE (01)
+            </button>
+<button class="filter-pill bg-[#201f21] text-[#9ca3af] font-headline text-xs font-bold uppercase tracking-wider px-3.5 py-1.5 border-2 border-[#39393b] shadow-[2px_2px_0px_#0e0e10] hover:border-[#facc15] hover:text-[#facc15] transition-transform active:translate-x-0.5 active:translate-y-0.5" id="btn-civic" onclick="filterCategory('civic')">
+              CIVIC &amp; CLINICAL (02)
+            </button>
+<button class="filter-pill bg-[#201f21] text-[#9ca3af] font-headline text-xs font-bold uppercase tracking-wider px-3.5 py-1.5 border-2 border-[#39393b] shadow-[2px_2px_0px_#0e0e10] hover:border-[#facc15] hover:text-[#facc15] transition-transform active:translate-x-0.5 active:translate-y-0.5" id="btn-data" onclick="filterCategory('data')">
+              MACRO DATA &amp; AI (01)
+            </button>
+<button class="filter-pill bg-[#201f21] text-[#9ca3af] font-headline text-xs font-bold uppercase tracking-wider px-3.5 py-1.5 border-2 border-[#39393b] shadow-[2px_2px_0px_#0e0e10] hover:border-[#facc15] hover:text-[#facc15] transition-transform active:translate-x-0.5 active:translate-y-0.5" id="btn-specialized" onclick="filterCategory('specialized')">
+              HARDWARE &amp; CAPSTONE (03)
+            </button>
+</div>
+</div>
+</section>
+<!-- =========================================================================
+           FLAGSHIP #1: BIHARKASWAAD E-COMMERCE PLATFORM (biharkaswaad.in)
+           ========================================================================= -->
+<article class="project-card w-full border-b-2 border-[#39393b] bg-[#1b1b1d] px-6 lg:px-12 py-12 lg:py-16" data-category="flagship ecommerce">
+<div class="max-w-7xl mx-auto space-y-8">
+<!-- Top Badges -->
+<div class="flex flex-wrap items-center justify-between gap-4 border-b border-[#2c2c30] pb-4">
+<div class="flex flex-wrap items-center gap-2">
+<span class="bg-[#facc15] text-[#131315] font-headline text-xs font-bold uppercase px-3 py-1 border-2 border-[#facc15] tracking-wider shadow-[2px_2px_0px_#0e0e10]">
+                FLAGSHIP 01 // PRODUCTION COMMERCE
+              </span>
+<span class="bg-[#ff6b4a] text-white font-headline text-xs font-bold uppercase px-3 py-1 border-2 border-[#ff6b4a] tracking-wider shadow-[2px_2px_0px_#0e0e10]">
+                LIVE PRODUCTION // biharkaswaad.in
+              </span>
+<span class="bg-[#201f21] text-[#9ca3af] font-mono text-xs font-bold uppercase px-3 py-1 border-2 border-[#39393b] tracking-wider">
+                HOSTINGER CLOUD + NODE RUNTIME
+              </span>
+</div>
+<div class="font-mono text-xs font-bold uppercase tracking-widest text-[#9ca3af] flex items-center gap-2">
+<span class="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-pulse"></span>
+              DEPLOYMENT: PROD_COMMERCE_v2
+            </div>
+</div>
+<!-- Title and Overview -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+<div class="lg:col-span-8 space-y-4">
+<h2 class="font-headline font-bold text-3xl sm:text-4xl lg:text-5xl text-[#ffffff] tracking-tight uppercase leading-tight">
+                BIHARKASWAAD E-COMMERCE PLATFORM
+                <span class="block text-xl sm:text-2xl text-[#facc15] font-normal tracking-normal mt-1">Full-Stack Artisanal Food Logistics, Deterministic Payments &amp; Order Pipeline</span>
+</h2>
+<p class="font-body text-base text-[#9ca3af] leading-relaxed">
+                Direct-to-consumer high-integrity commerce system engineered for authentic regional food distribution across India. Built with a zero-tamper Razorpay payment verification engine, variant-aware relational inventory controls, automated courier tracking webhooks, and an optimized React frontend running in production.
+              </p>
+</div>
+<div class="lg:col-span-4 flex flex-col gap-3 p-4 bg-[#201f21] border-2 border-[#39393b] shadow-[4px_4px_0px_#0e0e10]">
+<div class="font-mono text-xs font-bold uppercase text-[#facc15] border-b border-[#2c2c30] pb-2 flex items-center justify-between">
+<span>COMMERCE QUALITY GATES</span>
+<span class="material-symbols-outlined text-[#facc15] text-sm">verified</span>
+</div>
+<div class="space-y-2 text-xs font-mono">
+<div class="flex justify-between items-center"><span class="text-[#9ca3af]">PAYMENT VERIFY:</span> <span class="font-bold text-[#ffffff]">HMAC SHA-256 Signature</span></div>
+<div class="flex justify-between items-center"><span class="text-[#9ca3af]">TAMPER PROTECTION:</span> <span class="font-bold text-[#ff6b4a]">Server Price Re-Validation</span></div>
+<div class="flex justify-between items-center"><span class="text-[#9ca3af]">INVENTORY LOCK:</span> <span class="font-bold text-[#facc15]">ACID Relational MySQL</span></div>
+<div class="flex justify-between items-center"><span class="text-[#9ca3af]">PRODUCTION STORE:</span> <span class="font-bold text-[#60a5fa]">biharkaswaad.in</span></div>
+</div>
+</div>
+</div>
+<!-- Split: Live Browser Window Preview vs Technical Architecture -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-8 pt-4">
+<!-- Left: Browser Window Mockup with Screenshot (5 Cols) -->
+<div class="lg:col-span-5 space-y-4">
+<div class="border-2 border-[#39393b] bg-[#131315] shadow-[6px_6px_0px_#0e0e10] overflow-hidden">
+<!-- Browser Chrome Topbar -->
+<div class="bg-[#0e0e10] text-[#f3f4f6] px-4 py-2.5 border-b-2 border-[#39393b] flex items-center justify-between font-mono text-xs">
+<div class="flex items-center gap-2">
+<span class="w-3 h-3 rounded-full bg-[#ff6b4a] inline-block"></span>
+<span class="w-3 h-3 rounded-full bg-[#facc15] inline-block"></span>
+<span class="w-3 h-3 rounded-full bg-[#60a5fa] inline-block"></span>
+<span class="font-bold ml-2 tracking-wide text-[#facc15]">LIVE BROWSER PREVIEW</span>
+</div>
+<span class="text-[11px] font-mono text-[#9ca3af] bg-[#201f21] px-2 py-0.5 border border-[#39393b]">biharkaswaad.in</span>
+</div>
+<!-- Browser Content: Live Screenshot inside scrollable window -->
+<div class="relative bg-[#1b1b1d] border-b border-[#2c2c30] max-h-[520px] overflow-y-auto">
+<img alt="BiharKaSwaad live website production storefront screenshot" class="w-full h-auto block object-cover opacity-90 hover:opacity-100 transition-opacity" loading="lazy" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB7nhZrb8TMBXX8vsTyFob-je_00wUI_g0L_pT98VVgOvAtA6x_eTci8fTTLWLNvQ9BFryRGAvBeKGgfGGVK35wbfGaaZqTxzZXzTNw7CKaEKH88uCJuktopKV6BflkLUE3VoLF4KpG5G3Nd7-8i4cqhj1ODGs0_O6oncbdP8ljy1IZeEO4Z1ku6MbCneEz5R_GY46FT3BpaauSbGA4HSZa-n4yXbaMMWhMRHhzRL8B"/>
+</div>
+<!-- Browser Footer Strip -->
+<div class="p-3 bg-[#131315] flex items-center justify-between text-xs font-mono">
+<span class="font-bold uppercase text-[#ffffff] flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[#facc15] text-sm">lock</span>
+                    SSL SHA-256 Validated
+                  </span>
+<span class="text-[#9ca3af] text-[11px]">Production Hostinger Cloud</span>
+</div>
+</div>
+<!-- Action buttons -->
+<div class="flex flex-col sm:flex-row gap-3">
+<a class="flex-1 py-3 px-4 bg-[#facc15] text-[#131315] font-headline font-bold text-xs uppercase tracking-wider border-2 border-[#facc15] shadow-[3px_3px_0px_#0e0e10] hover:bg-[#ffe083] transition-colors flex items-center justify-center gap-2" href="https://biharkaswaad.in" rel="noopener noreferrer" target="_blank">
+<span>Open Live Site: biharkaswaad.in</span>
+<span class="material-symbols-outlined text-[16px]">arrow_outward</span>
+</a>
+<a class="py-3 px-4 bg-[#201f21] text-[#ffffff] font-headline font-bold text-xs uppercase tracking-wider border-2 border-[#39393b] shadow-[3px_3px_0px_#0e0e10] hover:border-[#facc15] hover:text-[#facc15] transition-colors flex items-center justify-center gap-1.5" href="https://github.com/adityapandey2002" rel="noopener noreferrer" target="_blank">
+<span class="material-symbols-outlined text-[16px]">code</span>
+<span>View Git Repository</span>
+</a>
+</div>
+</div>
+<!-- Right: Technical Architecture & Security Pipeline (7 Cols) -->
+<div class="lg:col-span-7 space-y-6">
+<!-- Security & Reconciliation Card -->
+<div class="border-2 border-[#39393b] bg-[#201f21] p-6 shadow-[4px_4px_0px_#0e0e10] space-y-4">
+<div class="flex items-center justify-between border-b border-[#2c2c30] pb-3">
+<span class="font-headline font-bold text-sm uppercase tracking-wider text-[#ffffff] flex items-center gap-2">
+<span class="material-symbols-outlined text-[#facc15] text-[20px]">security</span>
+                    Razorpay HMAC SHA-256 Webhook Reconciliation &amp; Anti-Tamper Pipeline
+                  </span>
+<span class="bg-[#ff6b4a] text-white font-mono text-[10px] font-bold px-2 py-0.5 border border-[#ff6b4a]">STRICT ZERO-TRUST</span>
+</div>
+<p class="font-body text-xs text-[#9ca3af] leading-relaxed">
+                  Eliminates client-side price tampering vectors. When a checkout order initiates, the backend recalculates exact SKU prices, discounts, and courier weight tariffs directly from relational tables—never accepting client-supplied amounts.
+                </p>
+<div class="space-y-2 font-mono text-xs">
+<div class="p-2.5 bg-[#131315] border border-[#2c2c30] flex items-start gap-3">
+<span class="font-bold text-[#131315] bg-[#facc15] px-2 py-0.5 text-[10px]">STEP 01</span>
+<div>
+<div class="font-bold text-[#ffffff] uppercase">Server-Side Amount Re-Validation</div>
+<div class="text-[#9ca3af] text-[11px]">Database lookup for variant pricing &amp; tax before generating <code>order_id</code> via Razorpay Orders API.</div>
+</div>
+</div>
+<div class="p-2.5 bg-[#131315] border border-[#2c2c30] flex items-start gap-3">
+<span class="font-bold text-[#131315] bg-[#facc15] px-2 py-0.5 text-[10px]">STEP 02</span>
+<div>
+<div class="font-bold text-[#ffffff] uppercase">Cryptographic HMAC Verification</div>
+<div class="text-[#9ca3af] text-[11px]">Calculates <code>crypto.createHmac('sha256', secret).update(order_id + '|' + payment_id).digest('hex')</code> to confirm authenticity.</div>
+</div>
+</div>
+<div class="p-2.5 bg-[#131315] border border-[#2c2c30] flex items-start gap-3">
+<span class="font-bold text-[#131315] bg-[#facc15] px-2 py-0.5 text-[10px]">STEP 03</span>
+<div>
+<div class="font-bold text-[#ffffff] uppercase">Webhook Failover &amp; Idempotency</div>
+<div class="text-[#9ca3af] text-[11px]">Webhook listens for <code>payment.captured</code> events with unique transaction idempotency keys to prevent double-crediting.</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Database & Order Lifecycle Grid -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+<div class="p-4 bg-[#201f21] border-2 border-[#39393b] shadow-[3px_3px_0px_#0e0e10] space-y-2">
+<div class="font-mono font-bold text-xs uppercase text-[#facc15] border-b border-[#2c2c30] pb-1.5 flex items-center justify-between">
+<span>MYSQL RELATIONAL SCHEMA</span>
+<span class="text-[10px] text-[#9ca3af]">ACID</span>
+</div>
+<ul class="text-xs space-y-1 font-body text-[#9ca3af]">
+<li>• <strong class="text-[#ffffff]">Variant-Aware Inventory:</strong> Tracks granular weights (250g, 500g, 1kg) with row-locking transactions.</li>
+<li>• <strong class="text-[#ffffff]">Normalized Orders &amp; Items:</strong> Decoupled tracking for multi-item baskets with immutable invoice snaps.</li>
+<li>• <strong class="text-[#ffffff]">Customer Ledger:</strong> Encrypted PII, verified phone tokens, and delivery address histories.</li>
+</ul>
+</div>
+<div class="p-4 bg-[#201f21] border-2 border-[#39393b] shadow-[3px_3px_0px_#0e0e10] space-y-2">
+<div class="font-mono font-bold text-xs uppercase text-[#60a5fa] border-b border-[#2c2c30] pb-1.5 flex items-center justify-between">
+<span>ORDER LIFECYCLE &amp; LOGISTICS</span>
+<span class="text-[10px] text-[#9ca3af]">DISPATCH</span>
+</div>
+<ul class="text-xs space-y-1 font-body text-[#9ca3af]">
+<li>• <strong class="text-[#ffffff]">Lifecycle States:</strong> PENDING → PAID → PACKED → DISPATCHED → OUT_FOR_DELIVERY → DELIVERED.</li>
+<li>• <strong class="text-[#ffffff]">Automated Courier Sync:</strong> Integration ready for Shiprocket/Delhivery tracking webhooks.</li>
+<li>• <strong class="text-[#ffffff]">Admin Dashboard:</strong> Real-time order dispatch board with printable shipping bills.</li>
+</ul>
+</div>
+</div>
+<!-- Tech Stack Badges -->
+<div class="flex flex-wrap gap-2 pt-1 font-mono">
+<span class="px-2.5 py-1 bg-[#201f21] border border-[#39393b] text-[#f3f4f6] text-[11px] font-bold uppercase">React 18</span>
+<span class="px-2.5 py-1 bg-[#201f21] border border-[#39393b] text-[#f3f4f6] text-[11px] font-bold uppercase">Node.js</span>
+<span class="px-2.5 py-1 bg-[#201f21] border border-[#39393b] text-[#f3f4f6] text-[11px] font-bold uppercase">Express REST</span>
+<span class="px-2.5 py-1 bg-[#201f21] border border-[#39393b] text-[#f3f4f6] text-[11px] font-bold uppercase">MySQL DB</span>
+<span class="px-2.5 py-1 bg-[#facc15] text-[#131315] border border-[#facc15] text-[11px] font-bold uppercase">Razorpay HMAC</span>
+<span class="px-2.5 py-1 bg-[#201f21] border border-[#39393b] text-[#f3f4f6] text-[11px] font-bold uppercase">Hostinger Cloud</span>
+<span class="px-2.5 py-1 bg-[#201f21] border border-[#39393b] text-[#f3f4f6] text-[11px] font-bold uppercase">Tailwind CSS</span>
+</div>
+</div>
+</div>
+</div>
+</article>
+<!-- =========================================================================
+           FLAGSHIP #2: DISTRICT HOSPITAL ARARIA CIVIC HEALTHCARE PORTAL
+           ========================================================================= -->
+<article class="project-card w-full border-b-2 border-[#39393b] bg-[#131315] px-6 lg:px-12 py-12 lg:py-16" data-category="flagship civic">
+<div class="max-w-7xl mx-auto space-y-8">
+<!-- Top Badges -->
+<div class="flex flex-wrap items-center justify-between gap-4 border-b border-[#2c2c30] pb-4">
+<div class="flex flex-wrap items-center gap-2">
+<span class="bg-[#60a5fa] text-[#0e0e10] font-headline text-xs font-bold uppercase px-3 py-1 border-2 border-[#60a5fa] tracking-wider shadow-[2px_2px_0px_#0e0e10]">
+                FLAGSHIP 02 // CIVIC INFRASTRUCTURE
+              </span>
+<span class="bg-[#facc15] text-[#131315] font-headline text-xs font-bold uppercase px-3 py-1 border-2 border-[#facc15] tracking-wider">
+                GOVT OF BIHAR COLLABORATION
+              </span>
+<span class="bg-[#201f21] text-[#9ca3af] font-mono text-xs font-bold uppercase px-3 py-1 border-2 border-[#39393b] tracking-wider">
+                CAMPUS: SADAR HOSPITAL ARARIA
+              </span>
+</div>
+<div class="font-mono text-xs font-bold uppercase tracking-widest text-[#9ca3af]">
+              OFFICIAL: dh.araria@bihar.gov.in
+            </div>
+</div>
+<!-- Headline and Overview -->
+<div class="space-y-4 max-w-4xl">
+<h2 class="font-headline font-bold text-3xl sm:text-4xl lg:text-5xl text-[#ffffff] tracking-tight uppercase leading-tight">
+              DISTRICT HOSPITAL ARARIA CIVIC HEALTHCARE PORTAL
+              <span class="block text-xl sm:text-2xl text-[#facc15] font-normal tracking-normal mt-1">Real-Time OPD Dispatch, Emergency Blood Reserves &amp; Public Transparency Engine</span>
+</h2>
+<p class="font-body text-base text-[#9ca3af] leading-relaxed">
+              Engineered to dismantle severe OPD congestion and eliminate emergency blood shortages across the 250+ bed Sadar Hospital campus near Araria Collectorate. Replaces manual paper registration with deterministic queue state machines and live blood bank inventory telemetry.
+            </p>
+</div>
+<!-- Split: Live Website Preview vs Subsystems -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+<!-- Left: Browser Window Mockup with Screenshot (5 Cols) -->
+<div class="lg:col-span-5 space-y-4">
+<div class="border-2 border-[#39393b] bg-[#1b1b1d] shadow-[6px_6px_0px_#0e0e10] overflow-hidden">
+<div class="bg-[#0e0e10] text-[#f3f4f6] px-4 py-2.5 border-b-2 border-[#39393b] flex items-center justify-between font-mono text-xs">
+<div class="flex items-center gap-2">
+<span class="w-3 h-3 rounded-full bg-[#ff6b4a] inline-block"></span>
+<span class="w-3 h-3 rounded-full bg-[#facc15] inline-block"></span>
+<span class="w-3 h-3 rounded-full bg-[#60a5fa] inline-block"></span>
+<span class="font-bold ml-2 tracking-wide text-[#60a5fa]">LIVE CIVIC PORTAL</span>
+</div>
+<span class="text-[11px] font-mono text-[#9ca3af] bg-[#201f21] px-2 py-0.5 border border-[#39393b]">hospital-araria-f5wl.vercel.app</span>
+</div>
+<div class="relative bg-[#131315] border-b border-[#2c2c30] max-h-[520px] overflow-y-auto">
+<img alt="District Hospital Araria Civic Healthcare Portal screenshot" class="w-full h-auto block object-cover opacity-90 hover:opacity-100 transition-opacity" loading="lazy" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDFME_BBYluOK2k121WRVc0DD2mtjpDnDI9BHoCBuJ_rHNUeHnkmP2bnFfm5Q6EvjrF-VoARHDixORiLsfm-RZf2dB2NChAEV8JejBGAkR_3ZawMN_mY3lDuKCUxx-wwRxHm61NEmkDdFNFYfTlChVHQAyM_LoNxuniIDTb5XoBQ-1aasySJqe_1P4nnuVyMrn-ZUBsKYelcrppjcAVbqIu9vZH-efu-xz1bWO7U6cI"/>
+</div>
+<div class="p-3 bg-[#131315] flex items-center justify-between text-xs font-mono">
+<span class="font-bold uppercase text-[#ffffff] flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[#ff6b4a] text-sm">local_hospital</span>
+                    250+ Bed Sadar Campus
+                  </span>
+<span class="text-[#60a5fa] font-bold text-[11px]">Supabase Realtime + Redis</span>
+</div>
+</div>
+<!-- Action buttons -->
+<div class="flex flex-col sm:flex-row gap-3">
+<a class="flex-1 py-3 px-4 bg-[#60a5fa] text-[#0e0e10] font-headline font-bold text-xs uppercase tracking-wider border-2 border-[#60a5fa] shadow-[3px_3px_0px_#0e0e10] hover:bg-[#93c5fd] transition-colors flex items-center justify-center gap-2" href="https://hospital-araria-f5wl.vercel.app/" rel="noopener noreferrer" target="_blank">
+<span>Open Live Portal</span>
+<span class="material-symbols-outlined text-[16px]">arrow_outward</span>
+</a>
+<a class="py-3 px-4 bg-[#201f21] text-[#ffffff] font-headline font-bold text-xs uppercase tracking-wider border-2 border-[#39393b] shadow-[3px_3px_0px_#0e0e10] hover:border-[#facc15] hover:text-[#facc15] transition-colors flex items-center justify-center gap-1.5" href="mailto:dh.araria@bihar.gov.in">
+<span class="material-symbols-outlined text-[16px]">badge</span>
+<span>Gov Specs Dossier</span>
+</a>
+</div>
+</div>
+<!-- Right: Architectural Subsystems (7 Cols) -->
+<div class="lg:col-span-7 space-y-4">
+<div class="font-mono font-bold text-sm uppercase tracking-wider text-[#ffffff] pb-2 border-b-2 border-[#39393b] flex items-center justify-between">
+<span>CIVIC DISPATCH ARCHITECTURE</span>
+<span class="text-xs font-bold text-[#60a5fa]">REDIS + SUPABASE REALTIME</span>
+</div>
+<div class="p-4 bg-[#201f21] border-2 border-[#39393b] shadow-[3px_3px_0px_#0e0e10] flex gap-4">
+<div class="w-12 h-12 bg-[#facc15] text-[#131315] font-headline font-bold text-lg flex items-center justify-center shrink-0 border border-[#facc15]">
+                  01
+                </div>
+<div class="space-y-1">
+<h3 class="font-headline font-bold text-sm uppercase text-[#ffffff]">Tokenized OPD Queue Engine</h3>
+<p class="font-body text-xs text-[#9ca3af]">
+                    Redis-backed non-repeating cryptographically signed token queue. Dismantles physical registration bottlenecks with live display calling boards across 12 specialty consultation chambers.
+                  </p>
+</div>
+</div>
+<div class="p-4 bg-[#201f21] border-2 border-[#39393b] shadow-[3px_3px_0px_#0e0e10] flex gap-4">
+<div class="w-12 h-12 bg-[#ff6b4a] text-white font-headline font-bold text-lg flex items-center justify-center shrink-0 border border-[#ff6b4a]">
+                  02
+                </div>
+<div class="space-y-1">
+<h3 class="font-headline font-bold text-sm uppercase text-[#ffffff]">Live Blood Bank Reserves &amp; Alert System</h3>
+<p class="font-body text-xs text-[#9ca3af]">
+                    Publicly broadcast inventory ledger displaying exact available units of whole blood and packed red cells (PRBC) across all ABO/Rh groups. Automated SMS alerts for emergency donor networks when units drop below safety thresholds.
+                  </p>
+</div>
+</div>
+<div class="p-4 bg-[#201f21] border-2 border-[#39393b] shadow-[3px_3px_0px_#0e0e10] flex gap-4">
+<div class="w-12 h-12 bg-[#facc15] text-[#131315] font-headline font-bold text-lg flex items-center justify-center shrink-0 border border-[#facc15]">
+                  03
+                </div>
+<div class="space-y-1">
+<h3 class="font-headline font-bold text-sm uppercase text-[#ffffff]">Emergency 102/108 Ambulance Referral Matrix</h3>
+<p class="font-body text-xs text-[#9ca3af]">
+                    Direct driver carrier links and emergency room dispatch status. Instant alert routing for obstetric and trauma emergencies from remote border blocks (Sikti, Palasi, Forbesganj) with zero delay.
+                  </p>
+</div>
+</div>
+<div class="p-4 bg-[#201f21] border-2 border-[#39393b] shadow-[3px_3px_0px_#0e0e10] flex gap-4">
+<div class="w-12 h-12 bg-[#1b1b1d] font-headline font-bold text-lg flex items-center justify-center shrink-0 border border-[#39393b] text-[#facc15]">
+                  04
+                </div>
+<div class="space-y-1">
+<h3 class="font-headline font-bold text-sm uppercase text-[#ffffff]">Bilingual Circulars &amp; Public Notices</h3>
+<p class="font-body text-xs text-[#9ca3af]">
+                    Instant Hindi/English push circulars for pulse polio drives, Japanese Encephalitis alerts, doctor leave announcements, and Janani Suraksha Yojana payment disbursement schedules.
+                  </p>
+</div>
+</div>
+<div class="flex flex-wrap gap-2 pt-2 font-mono">
+<span class="px-2 py-1 bg-[#201f21] border border-[#39393b] text-[#f3f4f6] text-[11px] font-bold uppercase">React 18</span>
+<span class="px-2 py-1 bg-[#201f21] border border-[#39393b] text-[#f3f4f6] text-[11px] font-bold uppercase">TypeScript</span>
+<span class="px-2 py-1 bg-[#201f21] border border-[#39393b] text-[#f3f4f6] text-[11px] font-bold uppercase">Supabase Realtime</span>
+<span class="px-2 py-1 bg-[#201f21] border border-[#39393b] text-[#f3f4f6] text-[11px] font-bold uppercase">Redis Queue</span>
+<span class="px-2 py-1 bg-[#201f21] border border-[#39393b] text-[#f3f4f6] text-[11px] font-bold uppercase">Vercel Edge</span>
+<span class="px-2 py-1 bg-[#201f21] border border-[#39393b] text-[#f3f4f6] text-[11px] font-bold uppercase">Tailwind CSS</span>
+</div>
+</div>
+</div>
+</div>
+</article>
+<!-- =========================================================================
+           FLAGSHIP #3: MATRU SURAKSHA (मातृ सुरक्षा)
+           ========================================================================= -->
+<article class="project-card w-full border-b-2 border-[#39393b] bg-[#1b1b1d] px-6 lg:px-12 py-12 lg:py-16" data-category="flagship civic">
+<div class="max-w-7xl mx-auto space-y-8">
+<!-- Top Badges -->
+<div class="flex flex-wrap items-center justify-between gap-4 border-b border-[#2c2c30] pb-4">
+<div class="flex flex-wrap items-center gap-2">
+<span class="bg-[#ff6b4a] text-white font-headline text-xs font-bold uppercase px-3 py-1 border-2 border-[#ff6b4a] tracking-wider shadow-[2px_2px_0px_#0e0e10]">
+                FLAGSHIP 03 // CLINICAL TRIAGE PWA
+              </span>
+<span class="bg-[#facc15] text-[#131315] font-headline text-xs font-bold uppercase px-3 py-1 border-2 border-[#facc15] tracking-wider">
+                ACTIVE FIELD PILOT // BIHAR HEALTH OPS
+              </span>
+<span class="bg-[#201f21] text-[#9ca3af] font-mono text-xs font-bold uppercase px-3 py-1 border-2 border-[#39393b] tracking-wider">
+                OFFLINE-FIRST ARCHITECTURE
+              </span>
+</div>
+<div class="font-mono text-xs font-bold uppercase tracking-widest text-[#9ca3af]">
+              NODE: PWA-MS-01 // FIELD VERIFIED
+            </div>
+</div>
+<!-- Name & Synopsis -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+<div class="lg:col-span-8 space-y-4">
+<h2 class="font-headline font-bold text-3xl sm:text-4xl lg:text-5xl text-[#ffffff] tracking-tight uppercase leading-tight">
+                MATRU SURAKSHA (मातृ सुरक्षा)
+                <span class="block text-xl sm:text-2xl text-[#facc15] font-normal tracking-normal mt-1">Multi-Tier High-Risk Pregnancy Care &amp; Clinical Triage Engine</span>
+</h2>
+<p class="font-body text-base text-[#9ca3af] leading-relaxed">
+                Engineered to eliminate systemic communication delays in agrarian rural clinics. Enables Auxiliary Nurse Midwives (ANMs) to triage maternal danger signs without active cellular reception, calculating instant risk stratifications while synchronizing cryptographically validated records up through district governance desks.
+              </p>
+</div>
+<div class="lg:col-span-4 flex flex-col gap-3 p-4 bg-[#201f21] border-2 border-[#39393b] shadow-[4px_4px_0px_#0e0e10]">
+<div class="font-mono text-xs font-bold uppercase text-[#facc15] border-b border-[#2c2c30] pb-2 flex items-center justify-between">
+<span>CORE QUALITY GATES</span>
+<span class="material-symbols-outlined text-[#facc15] text-sm">verified</span>
+</div>
+<div class="space-y-2 text-xs font-mono">
+<div class="flex justify-between items-center"><span class="text-[#9ca3af]">TEST COVERAGE:</span> <span class="font-bold text-[#ffffff]">&gt;=80% Changed Lines</span></div>
+<div class="flex justify-between items-center"><span class="text-[#9ca3af]">A11Y AUDIT:</span> <span class="font-bold text-[#ff6b4a]">0 Violations (WCAG AAA)</span></div>
+<div class="flex justify-between items-center"><span class="text-[#9ca3af]">3G LCP BENCHMARK:</span> <span class="font-bold text-[#60a5fa]">&lt;=2.18s Verified</span></div>
+<div class="flex justify-between items-center"><span class="text-[#9ca3af]">CLIENT FOOTPRINT:</span> <span class="font-bold text-[#facc15]">&lt;=170kB gzipped</span></div>
+</div>
+</div>
+</div>
+<!-- Dual-Pane Presentation: Hierarchy/Matrix vs Interactive PWA Simulator -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-8 pt-4">
+<!-- Left: 6-Tier Administrative Hierarchy & Danger Signs Matrix (7 Cols) -->
+<div class="lg:col-span-7 space-y-6">
+<!-- 6-Tier Escalation Hierarchy Breakdown -->
+<div class="border-2 border-[#39393b] bg-[#201f21] p-6 shadow-[4px_4px_0px_#0e0e10]">
+<div class="flex items-center justify-between border-b border-[#2c2c30] pb-3 mb-4">
+<span class="font-headline font-bold text-sm uppercase tracking-wider text-[#ffffff] flex items-center gap-2">
+<span class="material-symbols-outlined text-[#facc15] text-[18px]">account_tree</span>
+                    6-Tier Administrative Escalation Hierarchy &amp; SLA Chain
+                  </span>
+<span class="font-mono text-[11px] font-bold text-[#9ca3af]">15-DAY AUDIT CLOCK</span>
+</div>
+<div class="space-y-2.5">
+<div class="p-2.5 bg-[#131315] border border-[#2c2c30] flex items-start gap-3">
+<span class="font-mono font-bold text-xs bg-[#facc15] text-[#131315] px-2 py-0.5 shrink-0">TIER 1</span>
+<div>
+<div class="font-headline text-xs font-bold uppercase text-[#ffffff]">Field ANM // Health Sub-Centre</div>
+<div class="font-body text-xs text-[#9ca3af]">Offline PWA registration, 8 danger signs check, auto-graded risk score.</div>
+</div>
+</div>
+<div class="p-2.5 bg-[#131315] border border-[#2c2c30] flex items-start gap-3">
+<span class="font-mono font-bold text-xs bg-[#facc15] text-[#131315] px-2 py-0.5 shrink-0">TIER 2</span>
+<div>
+<div class="font-headline text-xs font-bold uppercase text-[#ffffff]">CHO / Ayush Medical Officer // HWC</div>
+<div class="font-body text-xs text-[#9ca3af]">Clinical validation, lab verification (Hb &amp; Proteinuria), tele-consult review.</div>
+</div>
+</div>
+<div class="p-2.5 bg-[#131315] border border-[#2c2c30] flex items-start gap-3">
+<span class="font-mono font-bold text-xs bg-[#facc15] text-[#131315] px-2 py-0.5 shrink-0">TIER 3</span>
+<div>
+<div class="font-headline text-xs font-bold uppercase text-[#ffffff]">Block Helpdesk // Primary Health Centre</div>
+<div class="font-body text-xs text-[#9ca3af]">15-day strict SLA countdown tracker, auto-tele follow-up call queue dispatch.</div>
+</div>
+</div>
+<div class="p-2.5 bg-[#131315] border border-[#2c2c30] flex items-start gap-3">
+<span class="font-mono font-bold text-xs bg-[#facc15] text-[#131315] px-2 py-0.5 shrink-0">TIER 4</span>
+<div>
+<div class="font-headline text-xs font-bold uppercase text-[#ffffff]">BHM / Block Medical Officer of Health</div>
+<div class="font-body text-xs text-[#9ca3af]">Inter-facility transport coordination and emergency blood arrangement.</div>
+</div>
+</div>
+<div class="p-2.5 bg-[#131315] border border-[#2c2c30] flex items-start gap-3">
+<span class="font-mono font-bold text-xs bg-[#facc15] text-[#131315] px-2 py-0.5 shrink-0">TIER 5</span>
+<div>
+<div class="font-headline text-xs font-bold uppercase text-[#ffffff]">District Desk Coordinator // Sadar Hospital</div>
+<div class="font-body text-xs text-[#9ca3af]">High-dependency triage bed booking, specialist obstetrician assignment.</div>
+</div>
+</div>
+<div class="p-2.5 bg-[#ff6b4a] text-white border border-[#ff6b4a] flex items-start gap-3">
+<span class="font-mono font-bold text-xs bg-white text-[#ff6b4a] px-2 py-0.5 shrink-0">TIER 6</span>
+<div>
+<div class="font-headline text-xs font-bold uppercase text-white">DHS / CMO (Civil Surgeon) Escalation</div>
+<div class="font-body text-xs text-white/90">Autonomous trigger when 15-day SLA window lapses or Grade-A triage breaches.</div>
+</div>
+</div>
+</div>
+</div>
+<!-- 8 Danger Signs Scoring Matrix -->
+<div class="border-2 border-[#39393b] bg-[#201f21] p-6 shadow-[4px_4px_0px_#0e0e10]">
+<div class="font-mono font-bold text-sm uppercase tracking-wider text-[#ffffff] mb-3 flex items-center justify-between border-b border-[#2c2c30] pb-2">
+<span class="flex items-center gap-2">
+<span class="material-symbols-outlined text-[#ff6b4a] text-[18px]">warning</span>
+                    8 Severe Danger Signs Clinical Triage Spec
+                  </span>
+<span class="text-xs text-[#facc15] font-bold">ALGORITHMIC SCORING</span>
+</div>
+<div class="grid grid-cols-2 sm:grid-cols-4 gap-2">
+<div class="p-2 bg-[#131315] border border-[#39393b] text-center">
+<div class="font-mono text-[11px] font-bold uppercase text-[#ffffff]">ECLAMPSIA</div>
+<div class="font-mono text-[10px] text-[#ff6b4a] font-bold">Immediate Tier-5</div>
+</div>
+<div class="p-2 bg-[#131315] border border-[#39393b] text-center">
+<div class="font-mono text-[11px] font-bold uppercase text-[#ffffff]">APH / PPH</div>
+<div class="font-mono text-[10px] text-[#ff6b4a] font-bold">Haemorrhage Alert</div>
+</div>
+<div class="p-2 bg-[#131315] border border-[#39393b] text-center">
+<div class="font-mono text-[11px] font-bold uppercase text-[#ffffff]">SEVERE ANEMIA</div>
+<div class="font-mono text-[10px] text-[#9ca3af]">Hb &lt; 7.0 g/dL</div>
+</div>
+<div class="p-2 bg-[#131315] border border-[#39393b] text-center">
+<div class="font-mono text-[11px] font-bold uppercase text-[#ffffff]">OBSTRUCTED LABOUR</div>
+<div class="font-mono text-[10px] text-[#ff6b4a] font-bold">Surgical Urgent</div>
+</div>
+<div class="p-2 bg-[#131315] border border-[#39393b] text-center">
+<div class="font-mono text-[11px] font-bold uppercase text-[#ffffff]">HYPERTENSION</div>
+<div class="font-mono text-[10px] text-[#9ca3af]">BP &gt;=110 Diastolic</div>
+</div>
+<div class="p-2 bg-[#131315] border border-[#39393b] text-center">
+<div class="font-mono text-[11px] font-bold uppercase text-[#ffffff]">SEPSIS / FEVER</div>
+<div class="font-mono text-[10px] text-[#9ca3af]">&gt;102°F + Foul Odor</div>
+</div>
+<div class="p-2 bg-[#131315] border border-[#39393b] text-center">
+<div class="font-mono text-[11px] font-bold uppercase text-[#ffffff]">CONVULSIONS</div>
+<div class="font-mono text-[10px] text-[#ff6b4a] font-bold">MgSO4 Protocol</div>
+</div>
+<div class="p-2 bg-[#131315] border border-[#39393b] text-center">
+<div class="font-mono text-[11px] font-bold uppercase text-[#ffffff]">FOETAL DISTRESS</div>
+<div class="font-mono text-[10px] text-[#9ca3af]">Abnormal FHR</div>
+</div>
+</div>
+</div>
+<!-- Engine & Backend Specs -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+<div class="p-4 bg-[#201f21] border-2 border-[#39393b] shadow-[2px_2px_0px_#0e0e10]">
+<div class="font-mono text-xs font-bold uppercase text-[#60a5fa] pb-1 mb-2 border-b border-[#2c2c30]">
+                    CLIENT-SIDE ENGINE
+                  </div>
+<ul class="text-xs space-y-1 font-body text-[#9ca3af]">
+<li>• React 18 + Vite + TypeScript</li>
+<li>• Workbox Service Worker precaching</li>
+<li>• Dexie.js (IndexedDB local client replica)</li>
+<li>• Exponential backoff sync queue</li>
+<li>• SHA-256 state hashing for offline records</li>
+</ul>
+</div>
+<div class="p-4 bg-[#201f21] border-2 border-[#39393b] shadow-[2px_2px_0px_#0e0e10]">
+<div class="font-mono text-xs font-bold uppercase text-[#facc15] pb-1 mb-2 border-b border-[#2c2c30]">
+                    BACKEND &amp; PERSISTENCE
+                  </div>
+<ul class="text-xs space-y-1 font-body text-[#9ca3af]">
+<li>• Fastify Node.js high-throughput gateway</li>
+<li>• Kysely SQL query builder (type-safe)</li>
+<li>• PostgreSQL immutable append audit log</li>
+<li>• Dockerized stateless task runners</li>
+<li>• Gov SMS gateway &amp; escalation triggers</li>
+</ul>
+</div>
+</div>
+</div>
+<!-- Right: Interactive Terminal / PWA Simulator (5 Cols) -->
+<div class="lg:col-span-5 space-y-4">
+<div class="border-2 border-[#39393b] bg-[#0e0e10] text-[#f3f4f6] p-4 shadow-[6px_6px_0px_#0e0e10]">
+<div class="flex items-center justify-between border-b border-[#2c2c30] pb-3 mb-4 font-mono text-xs">
+<div class="flex items-center gap-2">
+<span class="w-3 h-3 bg-[#ff6b4a] rounded-full inline-block"></span>
+<span class="w-3 h-3 bg-[#facc15] rounded-full inline-block"></span>
+<span class="w-3 h-3 bg-[#60a5fa] rounded-full inline-block"></span>
+<span class="font-bold tracking-widest text-[#facc15] ml-2">SIMULATOR // PWA CLIENT</span>
+</div>
+<span class="font-mono text-[10px] text-[#9ca3af]">SW: ACTIVE_OFFLINE</span>
+</div>
+<div class="space-y-4">
+<!-- Patient Record Banner -->
+<div class="bg-[#1b1b1d] text-[#ffffff] p-3 border-2 border-[#39393b]">
+<div class="flex items-center justify-between text-xs font-mono font-bold">
+<span>PATIENT: SUNITA DEVI (24Y)</span>
+<span class="bg-[#ff6b4a] text-white px-2 py-0.5 text-[10px] uppercase">HIGH RISK: GRADE-A</span>
+</div>
+<div class="font-mono text-[11px] text-[#9ca3af] mt-1">
+                      RCH ID: 109283748291 // GP: RAMPUR // SUB-CENTRE: WARD-03
+                    </div>
+</div>
+<!-- Triage Diagnostics -->
+<div class="space-y-2 text-xs font-mono bg-[#131315] p-3 border border-[#2c2c30]">
+<div class="flex justify-between items-center text-[#f3f4f6]">
+<span>BP SYSTOLIC / DIASTOLIC:</span>
+<span class="font-bold text-[#ff6b4a]">160 / 112 mmHg [CRITICAL]</span>
+</div>
+<div class="flex justify-between items-center text-[#f3f4f6]">
+<span>HAEMOGLOBIN (Hb):</span>
+<span class="font-bold text-[#ff6b4a]">6.4 g/dL [SEVERE ANEMIA]</span>
+</div>
+<div class="flex justify-between items-center text-[#f3f4f6]">
+<span>PROTEINURIA:</span>
+<span class="font-bold text-[#facc15]">3+ DIPSTICK</span>
+</div>
+<div class="flex justify-between items-center text-[#f3f4f6]">
+<span>GESTATIONAL AGE:</span>
+<span class="text-[#ffffff]">34 WEEKS 2 DAYS</span>
+</div>
+</div>
+<!-- Dexie Queue Status -->
+<div class="p-3 bg-[#1b1b1d] text-[#ffffff] border-2 border-[#39393b] space-y-2">
+<div class="flex items-center justify-between text-xs font-mono font-bold">
+<span class="flex items-center gap-1.5 text-[#ffffff]">
+<span class="material-symbols-outlined text-[16px] text-[#facc15]">sync_problem</span>
+                        DEXIE SYNC QUEUE:
+                      </span>
+<span class="bg-[#facc15] text-[#131315] px-2 py-0.5 text-[10px]">4 RECORDS PENDING</span>
+</div>
+<div class="font-mono text-[10px] text-[#9ca3af] leading-tight">
+                      Carrier disconnected. Local append-only mutation #042 staged in IndexedDB. Will flush automatically upon 2G handshake.
+                    </div>
+<div class="w-full bg-[#131315] h-2 border border-[#39393b] overflow-hidden">
+<div class="bg-[#ff6b4a] h-full w-3/4 animate-pulse"></div>
+</div>
+</div>
+<!-- Interactive Action Buttons -->
+<div class="space-y-2 pt-2">
+<button class="w-full py-2.5 bg-[#facc15] text-[#131315] border-2 border-[#facc15] font-headline font-bold text-xs uppercase tracking-wider hover:bg-[#ffe083] transition-colors flex items-center justify-center gap-2 shadow-[2px_2px_0px_#0e0e10]" onclick="triggerSimSync(this)">
+<span class="material-symbols-outlined text-sm">wifi</span>
+                      SIMULATE CARRIER RESTORATION &amp; FLUSH
+                    </button>
+<div class="grid grid-cols-2 gap-2">
+<a class="py-2 text-center bg-[#201f21] text-[#ffffff] border-2 border-[#39393b] font-headline font-bold text-[11px] uppercase tracking-wider hover:border-[#facc15] hover:text-[#facc15] transition-colors" href="https://github.com/adityapandey2002" rel="noopener noreferrer" target="_blank">
+                        View Architecture
+                      </a>
+<a class="py-2 text-center bg-[#201f21] text-[#ffffff] border-2 border-[#39393b] font-headline font-bold text-[11px] uppercase tracking-wider hover:border-[#facc15] hover:text-[#facc15] transition-colors" href="#" onclick="alert('Synthetic Sandbox Demo environment spins up a sandbox IndexedDB instance with 50 mock rural encounters.'); return false;">
+                        Open Demo Sandbox
+                      </a>
+</div>
+</div>
+</div>
+</div>
+<!-- Security Callout -->
+<div class="p-4 bg-[#201f21] border-2 border-[#39393b] flex items-center gap-3">
+<span class="material-symbols-outlined text-[#facc15] text-2xl">verified_user</span>
+<div class="font-body text-xs text-[#9ca3af]">
+<strong class="font-headline uppercase text-[#ffffff]">Zero-Knowledge Offline Security:</strong> Records encrypted locally via Web Crypto API prior to persistent storage in IndexedDB storage engine.
+                </div>
+</div>
+</div>
+</div>
+</div>
+</article>
+<!-- =========================================================================
+           FLAGSHIP #4: INDIA DEVELOPMENT DATA ENGINE & SOCIO-ECONOMIC CHOROPLETH
+           ========================================================================= -->
+<article class="project-card w-full border-b-2 border-[#39393b] bg-[#131315] px-6 lg:px-12 py-12 lg:py-16" data-category="flagship data">
+<div class="max-w-7xl mx-auto space-y-8">
+<!-- Top Badges -->
+<div class="flex flex-wrap items-center justify-between gap-4 border-b border-[#2c2c30] pb-4">
+<div class="flex flex-wrap items-center gap-2">
+<span class="bg-[#facc15] text-[#131315] font-headline text-xs font-bold uppercase px-3 py-1 border-2 border-[#facc15] tracking-wider shadow-[2px_2px_0px_#0e0e10]">
+                FLAGSHIP 04 // SPATIAL ANALYTICS &amp; VECTOR AI
+              </span>
+<span class="bg-[#201f21] text-[#9ca3af] font-mono text-xs font-bold uppercase px-3 py-1 border-2 border-[#39393b] tracking-wider">
+                118K+ INDICATORS INDEXED
+              </span>
+<span class="bg-[#1b1b1d] text-[#facc15] font-mono text-xs font-bold uppercase px-3 py-1 border-2 border-[#39393b] tracking-wider">
+                DUCKDB + PGVECTOR + GROQ LLM
+              </span>
+</div>
+<div class="font-mono text-xs font-bold uppercase tracking-widest text-[#9ca3af]">
+              NFHS-5 // CENSUS // NITI AAYOG
+            </div>
+</div>
+<!-- Headline and Overview -->
+<div class="space-y-4 max-w-4xl">
+<h2 class="font-headline font-bold text-3xl sm:text-4xl lg:text-5xl text-[#ffffff] tracking-tight uppercase leading-tight">
+              INDIA DEVELOPMENT DATA ENGINE &amp; SOCIO-ECONOMIC CHOROPLETH
+              <span class="block text-xl sm:text-2xl text-[#facc15] font-normal tracking-normal mt-1">High-Throughput Spatial Analytics &amp; Vectorized Indicator Discovery</span>
+</h2>
+<p class="font-body text-base text-[#9ca3af] leading-relaxed">
+              Exploratory macro-data portal built to digest and visualize massive socio-economic census sharding. Unifies complex cross-sector datasets from NFHS-5 (National Family Health Survey), Census of India, and NITI Aayog into an instant, vectorized analytical workspace with sub-50ms execution.
+            </p>
+</div>
+<!-- Split: Browser Preview vs Technical Pipeline -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+<!-- Left: Browser Window Mockup with Screenshot (5 Cols) -->
+<div class="lg:col-span-5 space-y-4">
+<div class="border-2 border-[#39393b] bg-[#1b1b1d] shadow-[6px_6px_0px_#0e0e10] overflow-hidden">
+<div class="bg-[#0e0e10] text-[#f3f4f6] px-4 py-2.5 border-b-2 border-[#39393b] flex items-center justify-between font-mono text-xs">
+<div class="flex items-center gap-2">
+<span class="w-3 h-3 rounded-full bg-[#ff6b4a] inline-block"></span>
+<span class="w-3 h-3 rounded-full bg-[#facc15] inline-block"></span>
+<span class="w-3 h-3 rounded-full bg-[#60a5fa] inline-block"></span>
+<span class="font-bold ml-2 tracking-wide text-[#facc15]">LIVE DATA DASHBOARD</span>
+</div>
+<span class="text-[11px] font-mono text-[#9ca3af] bg-[#201f21] px-2 py-0.5 border border-[#39393b]">india-dashboard-delta.vercel.app</span>
+</div>
+<div class="relative bg-[#131315] border-b border-[#2c2c30] max-h-[520px] overflow-y-auto">
+<img alt="India Development Data Engine live dashboard screenshot" class="w-full h-auto block object-cover opacity-90 hover:opacity-100 transition-opacity" loading="lazy" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAbwUP1lqSAddiZxRlRDDjWffvEX2MnGQS0Hxgfrc7Jcezg-g9XSOo8bjzo85ck5XxeywIPnohwMsq-dav5kxJBEs23yx8oHpu0hh8TKLiPtsQ28E-Qmv9LrvgUDXPrpg_vIvVY6iUjmcbryzFjBtcVEdoHAYIQ7l_BKoV7zg-nk173CpMP3BA9T34MDkeZpHe_eH7S4YJtGnGnfA9QRA-OtTa2Eo1ToAG_ox2ZBfny"/>
+</div>
+<div class="p-3 bg-[#131315] flex items-center justify-between text-xs font-mono">
+<span class="font-bold uppercase text-[#ffffff] flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[#60a5fa] text-sm">query_stats</span>
+                    Sub-50ms OLAP Queries
+                  </span>
+<span class="text-[#9ca3af] text-[11px]">252,170 Data Points</span>
+</div>
+</div>
+<!-- Action buttons -->
+<div class="flex flex-col sm:flex-row gap-3">
+<a class="flex-1 py-3 px-4 bg-[#facc15] text-[#131315] font-headline font-bold text-xs uppercase tracking-wider border-2 border-[#facc15] shadow-[3px_3px_0px_#0e0e10] hover:bg-[#ffe083] transition-colors flex items-center justify-center gap-2" href="https://india-dashboard-delta.vercel.app/" rel="noopener noreferrer" target="_blank">
+<span>Open Live Engine</span>
+<span class="material-symbols-outlined text-[16px]">arrow_outward</span>
+</a>
+<a class="py-3 px-4 bg-[#201f21] text-[#ffffff] font-headline font-bold text-xs uppercase tracking-wider border-2 border-[#39393b] shadow-[3px_3px_0px_#0e0e10] hover:border-[#facc15] hover:text-[#facc15] transition-colors flex items-center justify-center gap-1.5" href="https://github.com/adityapandey2002" rel="noopener noreferrer" target="_blank">
+<span class="material-symbols-outlined text-[16px]">code</span>
+<span>Data Pipeline Git</span>
+</a>
+</div>
+</div>
+<!-- Right: Technical Data Architecture & Pipeline (7 Cols) -->
+<div class="lg:col-span-7 space-y-6">
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+<div class="p-4 bg-[#201f21] border-2 border-[#39393b] shadow-[3px_3px_0px_#0e0e10]">
+<div class="font-mono font-bold text-xs uppercase text-[#ff6b4a] pb-1 mb-2 border-b border-[#2c2c30]">
+                    DUCKDB IN-MEMORY OLAP
+                  </div>
+<p class="font-body text-xs text-[#9ca3af] leading-relaxed">
+                    Executes in-memory analytical aggregation directly against Parquet shards in milliseconds. Calculates sub-district percentiles, Z-scores, and cross-sector correlations without database locks.
+                  </p>
+</div>
+<div class="p-4 bg-[#201f21] border-2 border-[#39393b] shadow-[3px_3px_0px_#0e0e10]">
+<div class="font-mono font-bold text-xs uppercase text-[#60a5fa] pb-1 mb-2 border-b border-[#2c2c30]">
+                    PGVECTOR &amp; GROQ LLM RETRIEVAL
+                  </div>
+<p class="font-body text-xs text-[#9ca3af] leading-relaxed">
+                    Vectorized queries (e.g., <em>"Maternal anemia in flood-prone northern plains"</em>) mapped to statistical indicators via Groq LLM streaming embeddings in sub-50ms latency.
+                  </p>
+</div>
+</div>
+<!-- Pipeline Architecture Steps -->
+<div class="border-2 border-[#39393b] bg-[#201f21] p-5 shadow-[4px_4px_0px_#0e0e10] space-y-3">
+<div class="font-mono font-bold text-xs uppercase tracking-wider text-[#ffffff] border-b border-[#2c2c30] pb-2 flex items-center justify-between">
+<span>DATA HARVESTING &amp; CHOROPLETH ENGINE</span>
+<span class="font-mono text-[10px] text-[#60a5fa]">&lt;48ms MEDIAN</span>
+</div>
+<div class="space-y-2 text-xs font-mono">
+<div class="p-2 bg-[#131315] border border-[#2c2c30] flex items-center gap-3">
+<span class="bg-[#facc15] text-[#131315] px-2 py-0.5 font-bold shrink-0">STEP 01</span>
+<span class="text-[#9ca3af]">Raw Govt PDF / CSV Dumps (NFHS-5, HMIS, UDISE+, Census of India)</span>
+</div>
+<div class="p-2 bg-[#131315] border border-[#2c2c30] flex items-center gap-3">
+<span class="bg-[#facc15] text-[#131315] px-2 py-0.5 font-bold shrink-0">STEP 02</span>
+<span class="text-[#9ca3af]">Python/Pandas sanitization pipeline, normalization &amp; FIPS/LGD boundary mapping</span>
+</div>
+<div class="p-2 bg-[#131315] border border-[#2c2c30] flex items-center gap-3">
+<span class="bg-[#facc15] text-[#131315] px-2 py-0.5 font-bold shrink-0">STEP 03</span>
+<span class="text-[#9ca3af]">Zstandard compressed columnar Parquet shards + Postgres pgvector embeddings</span>
+</div>
+<div class="p-2 bg-[#131315] border border-[#facc15] flex items-center gap-3">
+<span class="bg-[#facc15] text-[#131315] px-2 py-0.5 font-bold shrink-0">STEP 04</span>
+<span class="text-[#facc15]">Interactive Leaflet / D3.js TopoJSON sub-district choropleth renderer</span>
+</div>
+</div>
+</div>
+<!-- Simulated Vector Query Result -->
+<div class="p-4 bg-[#1b1b1d] border-2 border-[#39393b] space-y-2 font-mono text-xs">
+<div class="text-[10px] text-[#9ca3af] uppercase font-bold">GROQ NATURAL LANGUAGE VECTOR QUERY TEST:</div>
+<div class="p-2 bg-[#131315] text-[#ffffff] border border-[#2c2c30] text-[11px]">
+                  &gt; "Find 5 worst performing sub-districts for maternal anemia in Araria"
+                </div>
+<div class="text-[11px] text-[#ff6b4a] font-bold">
+                  ✓ Correlated: NFHS-5 Indicator #74 (P&lt;0.001) in 32ms. TopoJSON boundaries injected to viewport.
+                </div>
+</div>
+</div>
+</div>
+</div>
+</article>
+<!-- =========================================================================
+           SECONDARY SYSTEMS & PHYSICAL TELEMETRY (3 CARDS)
+           ========================================================================= -->
+<section class="w-full border-b-2 border-[#39393b] bg-[#1b1b1d] px-6 lg:px-12 py-12 lg:py-16">
+<div class="max-w-7xl mx-auto space-y-8">
+<div class="flex flex-wrap items-center justify-between gap-4 border-b border-[#2c2c30] pb-4">
+<div>
+<span class="font-mono text-xs font-bold uppercase tracking-widest text-[#ff6b4a] block">SECONDARY PRODUCTION ARCHIVES</span>
+<h2 class="font-headline font-bold text-2xl sm:text-3xl text-[#ffffff] uppercase">SPECIALIZED SYSTEMS &amp; PHYSICAL COMPUTING</h2>
+</div>
+<div class="font-mono text-xs font-bold text-[#9ca3af] uppercase">
+              DISTRIBUTED REALTIME &amp; HARDWARE EMBEDDED
+            </div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+<!-- Specialized Card 1: Prodigy InfoTech -->
+<div class="project-card bg-[#201f21] p-6 border-2 border-[#39393b] shadow-[4px_4px_0px_#0e0e10] flex flex-col justify-between space-y-6 hover:border-[#facc15]/60 transition-colors" data-category="specialized">
+<div class="space-y-4">
+<div class="flex items-center justify-between border-b border-[#2c2c30] pb-2">
+<span class="bg-[#131315] text-[#facc15] font-mono text-[10px] font-bold uppercase px-2 py-0.5 border border-[#39393b]">
+                    REAL-TIME WEBSOCKETS
+                  </span>
+<span class="font-mono text-xs font-bold text-[#9ca3af]">AUTH LIFECYCLE</span>
+</div>
+<h3 class="font-headline font-bold text-xl text-[#ffffff] uppercase leading-tight">
+                  Prodigy InfoTech Concurrency Suites
+                </h3>
+<p class="font-body text-xs text-[#9ca3af] leading-relaxed">
+                  Full-stack collaboration and messaging suites engineered during Prodigy InfoTech engagements. Stateless JWT token rotation with Redis blacklist, WebSocket pub/sub live room state synchronization, and scalable CRUD APIs.
+                </p>
+</div>
+<div class="space-y-3 pt-4 border-t border-[#2c2c30]">
+<div class="flex flex-wrap gap-1.5 font-mono text-[10px] font-bold uppercase">
+<span class="px-2 py-0.5 bg-[#131315] border border-[#2c2c30] text-[#9ca3af]">MERN Stack</span>
+<span class="px-2 py-0.5 bg-[#131315] border border-[#2c2c30] text-[#9ca3af]">Socket.io</span>
+<span class="px-2 py-0.5 bg-[#131315] border border-[#2c2c30] text-[#9ca3af]">JWT Auth</span>
+<span class="px-2 py-0.5 bg-[#131315] border border-[#2c2c30] text-[#9ca3af]">Docker</span>
+</div>
+<a class="inline-flex items-center gap-1.5 font-headline text-xs font-bold uppercase text-[#facc15] hover:underline" href="https://github.com/adityapandey2002" rel="noopener noreferrer" target="_blank">
+<span>Review Codebase Commit Logs</span>
+<span class="material-symbols-outlined text-[14px]">arrow_outward</span>
+</a>
+</div>
+</div>
+<!-- Specialized Card 2: Auroville FabLab (MinVayu) -->
+<div class="project-card bg-[#201f21] p-6 border-2 border-[#39393b] shadow-[4px_4px_0px_#0e0e10] flex flex-col justify-between space-y-6 hover:border-[#facc15]/60 transition-colors" data-category="specialized">
+<div class="space-y-4">
+<div class="flex items-center justify-between border-b border-[#2c2c30] pb-2">
+<span class="bg-[#ff6b4a] text-white font-mono text-[10px] font-bold uppercase px-2 py-0.5 border border-[#ff6b4a]">
+                    EMBEDDED HARDWARE
+                  </span>
+<span class="font-mono text-xs font-bold text-[#9ca3af]">MINVAYU PROJECT</span>
+</div>
+<h3 class="font-headline font-bold text-xl text-[#ffffff] uppercase leading-tight">
+                  Auroville FabLab Hardware Telemetry
+                </h3>
+<p class="font-body text-xs text-[#9ca3af] leading-relaxed">
+                  Open-source small-scale wind turbine telemetry and rapid additive manufacturing prototyping. Engineered micro-controller interfaces for RPM/output power monitoring and large-format 3D printing workflows for sustainable off-grid housing.
+                </p>
+</div>
+<div class="space-y-3 pt-4 border-t border-[#2c2c30]">
+<div class="flex flex-wrap gap-1.5 font-mono text-[10px] font-bold uppercase">
+<span class="px-2 py-0.5 bg-[#131315] border border-[#2c2c30] text-[#9ca3af]">Microcontrollers</span>
+<span class="px-2 py-0.5 bg-[#131315] border border-[#2c2c30] text-[#9ca3af]">C++ / AVR</span>
+<span class="px-2 py-0.5 bg-[#131315] border border-[#2c2c30] text-[#9ca3af]">CAD Modeling</span>
+<span class="px-2 py-0.5 bg-[#131315] border border-[#2c2c30] text-[#9ca3af]">Sensor I/O</span>
+</div>
+<span class="inline-flex items-center gap-1.5 font-headline text-xs font-bold uppercase text-[#9ca3af]">
+<span>Auroville Physical Systems Lab</span>
+</span>
+</div>
+</div>
+<!-- Specialized Card 3: SpaceX Launch Prediction -->
+<div class="project-card bg-[#201f21] p-6 border-2 border-[#39393b] shadow-[4px_4px_0px_#0e0e10] flex flex-col justify-between space-y-6 hover:border-[#facc15]/60 transition-colors" data-category="specialized">
+<div class="space-y-4">
+<div class="flex items-center justify-between border-b border-[#2c2c30] pb-2">
+<span class="bg-[#facc15] text-[#131315] font-mono text-[10px] font-bold uppercase px-2 py-0.5 border border-[#facc15]">
+                    DATA SCIENCE CAPSTONE
+                  </span>
+<span class="font-mono text-xs font-bold text-[#9ca3af]">IBM CERTIFIED</span>
+</div>
+<h3 class="font-headline font-bold text-xl text-[#ffffff] uppercase leading-tight">
+                  Space-X Falcon 9 First-Stage Recovery Model
+                </h3>
+<p class="font-body text-xs text-[#9ca3af] leading-relaxed">
+                  Predictive machine learning pipeline estimating booster landing success. Built with web scraping of SpaceX telemetry, EDA with SQL, interactive Folium spatial maps, and classification benchmarking across Logistic Regression, SVM, Decision Tree, and KNN models.
+                </p>
+</div>
+<div class="space-y-3 pt-4 border-t border-[#2c2c30]">
+<div class="flex flex-wrap gap-1.5 font-mono text-[10px] font-bold uppercase">
+<span class="px-2 py-0.5 bg-[#131315] border border-[#2c2c30] text-[#9ca3af]">Python</span>
+<span class="px-2 py-0.5 bg-[#131315] border border-[#2c2c30] text-[#9ca3af]">Scikit-Learn</span>
+<span class="px-2 py-0.5 bg-[#131315] border border-[#2c2c30] text-[#9ca3af]">Plotly Dash</span>
+<span class="px-2 py-0.5 bg-[#131315] border border-[#2c2c30] text-[#9ca3af]">Folium</span>
+</div>
+<a class="inline-flex items-center gap-1.5 font-headline text-xs font-bold uppercase text-[#facc15] hover:underline" href="https://github.com/adityapandey2002" rel="noopener noreferrer" target="_blank">
+<span>View Capstone Notebooks</span>
+<span class="material-symbols-outlined text-[14px]">arrow_outward</span>
+</a>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- =========================================================================
+           ARCHITECTURAL PILLARS (4 DETERMINISTIC GUARANTEES)
+           ========================================================================= -->
+<section class="w-full border-b-2 border-[#39393b] bg-[#131315] px-6 lg:px-12 py-12 lg:py-16">
+<div class="max-w-7xl mx-auto space-y-10">
+<div>
+<span class="font-mono text-xs font-bold uppercase tracking-widest text-[#facc15] block">/* 02 // ARCHITECTURAL PILLARS */</span>
+<h2 class="font-headline font-bold text-3xl sm:text-4xl text-[#ffffff] uppercase tracking-tight">
+              FOUR DETERMINISTIC GUARANTEES FOR LOW-RESOURCE COMPUTING
+            </h2>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+<div class="p-5 bg-[#1b1b1d] border-2 border-[#39393b] shadow-[4px_4px_0px_#0e0e10] space-y-3">
+<div class="w-10 h-10 bg-[#facc15] text-[#131315] font-headline font-bold text-base flex items-center justify-center border-2 border-[#facc15]">
+                P1
+              </div>
+<h3 class="font-headline font-bold text-sm uppercase text-[#ffffff]">Offline-First By Default</h3>
+<p class="font-body text-xs text-[#9ca3af] leading-relaxed">
+                No patient, doctor, or nurse midwife should ever be blocked by 2G/EDGE network dropouts. Client mutations serialize to IndexedDB first and flush asynchronously.
+              </p>
+</div>
+<div class="p-5 bg-[#1b1b1d] border-2 border-[#39393b] shadow-[4px_4px_0px_#0e0e10] space-y-3">
+<div class="w-10 h-10 bg-[#ff6b4a] text-white font-headline font-bold text-base flex items-center justify-center border-2 border-[#ff6b4a]">
+                P2
+              </div>
+<h3 class="font-headline font-bold text-sm uppercase text-[#ffffff]">Cryptographic Audit Logs</h3>
+<p class="font-body text-xs text-[#9ca3af] leading-relaxed">
+                Financial checkouts and healthcare clinical metrics are append-only. Each mutation receives SHA-256 validation timestamps before reaching central servers.
+              </p>
+</div>
+<div class="p-5 bg-[#1b1b1d] border-2 border-[#39393b] shadow-[4px_4px_0px_#0e0e10] space-y-3">
+<div class="w-10 h-10 bg-[#201f21] text-[#facc15] font-headline font-bold text-base flex items-center justify-center border-2 border-[#39393b]">
+                P3
+              </div>
+<h3 class="font-headline font-bold text-sm uppercase text-[#ffffff]">Deterministic Budgets</h3>
+<p class="font-body text-xs text-[#9ca3af] leading-relaxed">
+                Strict sub-2.5s LCP on throttled 3G connections. Micro-bundles (&lt;170kB gzip) ensure budget Android devices render without crashing browser tabs.
+              </p>
+</div>
+<div class="p-5 bg-[#1b1b1d] border-2 border-[#39393b] shadow-[4px_4px_0px_#0e0e10] space-y-3">
+<div class="w-10 h-10 bg-[#60a5fa] text-[#0e0e10] font-headline font-bold text-base flex items-center justify-center border-2 border-[#60a5fa]">
+                P4
+              </div>
+<h3 class="font-headline font-bold text-sm uppercase text-[#ffffff]">Field-Hardened Ergonomics</h3>
+<p class="font-body text-xs text-[#9ca3af] leading-relaxed">
+                High-contrast visual design engineered for extreme glare in direct Bihar sunlight (44°C summers). Bilingual UI strings with zero reliance on ambiguous iconography.
+              </p>
+</div>
+</div>
+</div>
+</section>
+<!-- =========================================================================
+           CONSOLIDATED SYSTEMS MATRIX (ORDERED TO MATCH HIERARCHY)
+           ========================================================================= -->
+<section class="w-full border-b-2 border-[#39393b] bg-[#1b1b1d] px-6 lg:px-12 py-12 lg:py-16">
+<div class="max-w-7xl mx-auto space-y-6">
+<div class="flex flex-col sm:flex-row justify-between items-start sm:items-end gap-2 border-b border-[#2c2c30] pb-4">
+<div>
+<span class="font-mono text-xs font-bold uppercase tracking-widest text-[#9ca3af]">TECHNICAL INVENTORY</span>
+<h2 class="font-headline font-bold text-2xl sm:text-3xl text-[#ffffff] uppercase">CONSOLIDATED SYSTEMS MATRIX</h2>
+</div>
+<span class="font-mono text-xs font-bold uppercase text-[#131315] bg-[#facc15] px-2 py-1 border border-[#facc15]">
+              ORDERED HIERARCHY // AUDIT: APRIL 2026
+            </span>
+</div>
+<div class="overflow-x-auto border-2 border-[#39393b] bg-[#131315] shadow-[4px_4px_0px_#0e0e10]">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="bg-[#0e0e10] text-[#facc15] font-mono text-xs font-bold uppercase tracking-wider border-b-2 border-[#39393b]">
+<th class="p-3 border-r border-[#2c2c30]">RANK // SYSTEM</th>
+<th class="p-3 border-r border-[#2c2c30]">CORE TECH STACK</th>
+<th class="p-3 border-r border-[#2c2c30]">SYNC &amp; PROTOCOL</th>
+<th class="p-3 border-r border-[#2c2c30]">QUALITY BAR</th>
+<th class="p-3">DEPLOYMENT STATE</th>
+</tr>
+</thead>
+<tbody class="font-body text-xs divide-y divide-[#2c2c30]">
+<tr class="hover:bg-[#201f21] transition-colors">
+<td class="p-3 font-headline font-bold uppercase border-r border-[#2c2c30] text-[#ffffff]">
+                    #1 BiharKaSwaad E-Commerce
+                  </td>
+<td class="p-3 border-r border-[#2c2c30] font-mono text-[11px] text-[#9ca3af]">
+                    React 18, Node.js, Express, MySQL, Hostinger
+                  </td>
+<td class="p-3 border-r border-[#2c2c30] text-[#9ca3af]">
+                    Razorpay HMAC SHA-256 Webhooks + Re-validation
+                  </td>
+<td class="p-3 border-r border-[#2c2c30] font-mono font-bold text-[#ff6b4a]">
+                    Zero-Tamper Payment Validation
+                  </td>
+<td class="p-3 font-mono font-bold text-[#60a5fa]">
+                    Live Production Storefront
+                  </td>
+</tr>
+<tr class="hover:bg-[#201f21] transition-colors">
+<td class="p-3 font-headline font-bold uppercase border-r border-[#2c2c30] text-[#ffffff]">
+                    #2 Sadar Hospital Araria Portal
+                  </td>
+<td class="p-3 border-r border-[#2c2c30] font-mono text-[11px] text-[#9ca3af]">
+                    React, TypeScript, Redis, Supabase, Tailwind
+                  </td>
+<td class="p-3 border-r border-[#2c2c30] text-[#9ca3af]">
+                    WebSocket pub/sub dispatch queues
+                  </td>
+<td class="p-3 border-r border-[#2c2c30] font-mono font-bold text-[#60a5fa]">
+                    &lt;100ms Telemetry Tick Speed
+                  </td>
+<td class="p-3 font-mono font-bold text-[#facc15]">
+                    Civic Gov Production Node
+                  </td>
+</tr>
+<tr class="hover:bg-[#201f21] transition-colors">
+<td class="p-3 font-headline font-bold uppercase border-r border-[#2c2c30] text-[#ffffff]">
+                    #3 Matru Suraksha (मातृ सुरक्षा)
+                  </td>
+<td class="p-3 border-r border-[#2c2c30] font-mono text-[11px] text-[#9ca3af]">
+                    React 18, Vite, Fastify, Dexie.js, PostgreSQL
+                  </td>
+<td class="p-3 border-r border-[#2c2c30] text-[#9ca3af]">
+                    IndexedDB offline replica + Exponential backoff
+                  </td>
+<td class="p-3 border-r border-[#2c2c30] font-mono font-bold text-[#ff6b4a]">
+                    80% Line Coverage // 0 A11y Violations
+                  </td>
+<td class="p-3 font-mono font-bold text-[#facc15]">
+                    Active Field Pilot (Bihar)
+                  </td>
+</tr>
+<tr class="hover:bg-[#201f21] transition-colors">
+<td class="p-3 font-headline font-bold uppercase border-r border-[#2c2c30] text-[#ffffff]">
+                    #4 India Development Data Engine
+                  </td>
+<td class="p-3 border-r border-[#2c2c30] font-mono text-[11px] text-[#9ca3af]">
+                    DuckDB, Python, pgvector, Groq LLM, Leaflet
+                  </td>
+<td class="p-3 border-r border-[#2c2c30] text-[#9ca3af]">
+                    Parquet in-memory OLAP + Vector Embedding
+                  </td>
+<td class="p-3 border-r border-[#2c2c30] font-mono font-bold text-[#facc15]">
+                    &lt;48ms Sub-district Query Median
+                  </td>
+<td class="p-3 font-mono font-bold text-[#facc15]">
+                    Live Macro Analytics
+                  </td>
+</tr>
+<tr class="hover:bg-[#201f21] transition-colors">
+<td class="p-3 font-headline font-bold uppercase border-r border-[#2c2c30] text-[#ffffff]">
+                    #5 Prodigy InfoTech Suites
+                  </td>
+<td class="p-3 border-r border-[#2c2c30] font-mono text-[11px] text-[#9ca3af]">
+                    MongoDB, Express, React, Node.js, Socket.io
+                  </td>
+<td class="p-3 border-r border-[#2c2c30] text-[#9ca3af]">
+                    WebSocket live rooms + JWT rotation
+                  </td>
+<td class="p-3 border-r border-[#2c2c30] font-mono font-bold text-[#9ca3af]">
+                    High-Concurrency Stress Pass
+                  </td>
+<td class="p-3 font-mono font-bold text-[#9ca3af]">
+                    Enterprise Codebase Archive
+                  </td>
+</tr>
+<tr class="hover:bg-[#201f21] transition-colors">
+<td class="p-3 font-headline font-bold uppercase border-r border-[#2c2c30] text-[#ffffff]">
+                    #6 Auroville MinVayu Hardware
+                  </td>
+<td class="p-3 border-r border-[#2c2c30] font-mono text-[11px] text-[#9ca3af]">
+                    C++, AVR Microcontrollers, CAD, Rapid Prototyping
+                  </td>
+<td class="p-3 border-r border-[#2c2c30] text-[#9ca3af]">
+                    Analog Sensor I/O &amp; RPM Polling
+                  </td>
+<td class="p-3 border-r border-[#2c2c30] font-mono font-bold text-[#facc15]">
+                    Physical Wind Turbine Telemetry
+                  </td>
+<td class="p-3 font-mono font-bold text-[#9ca3af]">
+                    Research Lab Deployment
+                  </td>
+</tr>
+<tr class="hover:bg-[#201f21] transition-colors">
+<td class="p-3 font-headline font-bold uppercase border-r border-[#2c2c30] text-[#ffffff]">
+                    #7 Space-X Launch Prediction
+                  </td>
+<td class="p-3 border-r border-[#2c2c30] font-mono text-[11px] text-[#9ca3af]">
+                    Python, Scikit-Learn, Plotly Dash, Folium, SQL
+                  </td>
+<td class="p-3 border-r border-[#2c2c30] text-[#9ca3af]">
+                    REST ETL Telemetry Pipeline
+                  </td>
+<td class="p-3 border-r border-[#2c2c30] font-mono font-bold text-[#60a5fa]">
+                    83.3% Cross-Validated Accuracy
+                  </td>
+<td class="p-3 font-mono font-bold text-[#9ca3af]">
+                    IBM Capstone Verified
+                  </td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</section>
+<!-- =========================================================================
+           ACTION BANNER & GITHUB ENGAGEMENT SECTION (DARK BAUHAUS)
+           ========================================================================= -->
+<section class="w-full bg-[#0e0e10] border-b-2 border-[#39393b] text-[#f3f4f6] px-6 lg:px-12 py-12 md:py-16">
+<div class="max-w-7xl mx-auto flex flex-col md:flex-row items-start md:items-center justify-between gap-8">
+<div class="space-y-2 max-w-2xl">
+<span class="bg-[#facc15] text-[#131315] font-mono font-bold text-xs uppercase px-2.5 py-1 tracking-wider inline-block">
+              SOURCE CODE &amp; AUDIT PRIVILEGES
+            </span>
+<h2 class="font-headline font-bold text-2xl sm:text-3xl lg:text-4xl uppercase tracking-tight text-[#ffffff] leading-tight">
+              WANT TO DIVE INTO PRODUCTION CODEBASES OR ARCHITECTURAL REPOSITORIES?
+            </h2>
+<p class="font-body text-sm text-[#9ca3af] leading-relaxed">
+              Open-source repositories, reproducible offline-first benchmarks, and deep-dive technical reports are maintained for public health institutions, civic bodies, and engineering collaborators.
+            </p>
+</div>
+<div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 w-full md:w-auto shrink-0">
+<a class="inline-flex items-center justify-center font-headline text-xs font-bold uppercase tracking-wider px-6 py-3.5 bg-[#facc15] text-[#131315] border-2 border-[#facc15] hover:bg-[#ffe083] transition-colors shadow-[4px_4px_0px_#0e0e10]" href="https://github.com/adityapandey2002" rel="noopener noreferrer" target="_blank">
+<span class="material-symbols-outlined text-[18px] mr-2">terminal</span>
+              GitHub Repositories (@adityapandey2002)
+            </a>
+<a class="inline-flex items-center justify-center font-headline text-xs font-bold uppercase tracking-wider px-6 py-3.5 bg-[#201f21] text-[#ffffff] border-2 border-[#39393b] hover:border-[#facc15] hover:text-[#facc15] transition-colors shadow-[4px_4px_0px_#0e0e10]" data-path="health-and-field-impact" href="#">
+<span class="material-symbols-outlined text-[18px] mr-2">medical_services</span>
+              Explore Field Groundwork (/health)
+            </a>
+</div>
+</div>
+</section>
+<!-- Filter Script & Simulation Interaction -->
+<script>
+        function filterCategory(cat) {
+          const buttons = document.querySelectorAll('.filter-pill');
+          buttons.forEach(btn => {
+            btn.classList.remove('bg-[#facc15]', 'text-[#131315]', 'border-[#facc15]');
+            btn.classList.add('bg-[#201f21]', 'text-[#9ca3af]', 'border-[#39393b]');
+          });
+          const activeBtn = document.getElementById('btn-' + cat);
+          if (activeBtn) {
+            activeBtn.classList.remove('bg-[#201f21]', 'text-[#9ca3af]', 'border-[#39393b]');
+            activeBtn.classList.add('bg-[#facc15]', 'text-[#131315]', 'border-[#facc15]');
+          }
+
+          const cards = document.querySelectorAll('.project-card');
+          cards.forEach(card => {
+            const categories = card.getAttribute('data-category') || '';
+            if (cat === 'all' || categories.split(' ').includes(cat)) {
+              card.style.display = '';
+            } else {
+              card.style.display = 'none';
+            }
+          });
+        }
+
+        function triggerSimSync(btn) {
+          btn.disabled = true;
+          const originalText = btn.innerHTML;
+          btn.innerHTML = '<span class="material-symbols-outlined text-sm animate-spin">refresh</span> FLUSHING 4 LOCAL RECORDS TO POSTGRES...';
+          btn.classList.remove('bg-[#facc15]', 'text-[#131315]');
+          btn.classList.add('bg-[#ff6b4a]', 'text-white');
+          
+          setTimeout(() => {
+            btn.innerHTML = '✓ ALL 4 RECORDS FLUSHED // STATE HASH MATCHED';
+            btn.classList.remove('bg-[#ff6b4a]');
+            btn.classList.add('bg-[#60a5fa]', 'text-[#0e0e10]');
+            
+            setTimeout(() => {
+              btn.innerHTML = originalText;
+              btn.classList.remove('bg-[#60a5fa]', 'text-[#0e0e10]');
+              btn.classList.add('bg-[#facc15]', 'text-[#131315]');
+              btn.disabled = false;
+            }, 3000);
+          }, 1400);
+        }
+      </script>
+</div>
+</main>
+<!-- =========================================================================
+       PERSISTENT FOOTER (DARK BAUHAUS)
+       ========================================================================= -->
+<footer class="w-full bg-[#0e0e10] border-t-2 border-[#39393b] text-[#f3f4f6]">
+<div class="w-full border-b border-[#2c2c30] px-6 lg:px-12 py-3 bg-[#131315] flex flex-wrap items-center justify-between font-mono text-xs tracking-wider gap-4">
+<div class="flex items-center gap-6 font-bold text-[#ffffff]">
+<span>LOG_ID: BIO-TELEMETRY-NODE-09</span>
+<span>GRID: NORTH_BIHAR_PUBLIC_HEALTH</span>
+</div>
+<div class="flex items-center gap-4 text-xs font-bold uppercase">
+<span class="text-[#ff6b4a]">● LIVE UPTIME: 99.84%</span>
+<span class="text-[#9ca3af]">STACK: FASTAPI / RAG / POSTGRES</span>
+</div>
+</div>
+<div class="max-w-7xl mx-auto px-6 lg:px-12 py-12 grid grid-cols-1 md:grid-cols-4 gap-8">
+<div class="md:col-span-2 space-y-4">
+<div class="font-headline font-bold text-xl tracking-tight text-[#ffffff] uppercase flex items-center gap-2">
+<span>AP // ADITYA PANDEY</span>
+<span class="text-[#facc15] font-mono text-xs">[2026.04]</span>
+</div>
+<p class="font-body text-sm text-[#9ca3af] max-w-md">
+          Architecting resilient full-stack systems, distributed clinical data pipelines, and offline-first intelligence architectures across underserved public health frontlines in India.
+        </p>
+<div class="font-mono text-xs tracking-widest uppercase font-bold text-[#facc15]">FIELD DESK: MUZAFFARPUR &amp; PATNA // HQ IN ARARIA</div>
+</div>
+<div>
+<div class="font-mono text-xs font-bold uppercase tracking-wider text-[#ffffff] border-b-2 border-[#39393b] pb-2 mb-4">SYSTEM REGISTRIES</div>
+<ul class="space-y-2 font-mono text-xs uppercase font-bold text-[#9ca3af]">
+<li class="flex items-center gap-2"><span class="text-[#facc15]">■</span><a class="hover:text-[#ffffff] transition-colors" href="https://github.com/adityapandey2002" rel="noopener noreferrer" target="_blank">GitHub Registry</a></li>
+<li class="flex items-center gap-2"><span class="text-[#facc15]">■</span><a class="hover:text-[#ffffff] transition-colors" href="https://linkedin.com" rel="noopener noreferrer" target="_blank">LinkedIn Profile</a></li>
+<li class="flex items-center gap-2"><span class="text-[#facc15]">■</span><a class="hover:text-[#ffffff] transition-colors" href="https://biharkaswaad.in" rel="noopener noreferrer" target="_blank">BiharKaSwaad Storefront</a></li>
+<li class="flex items-center gap-2"><span class="text-[#facc15]">■</span><a class="hover:text-[#ffffff] transition-colors" href="https://hospital-araria-f5wl.vercel.app/" rel="noopener noreferrer" target="_blank">Sadar Hospital Portal</a></li>
+</ul>
+</div>
+<div>
+<div class="font-mono text-xs font-bold uppercase tracking-wider text-[#ffffff] border-b-2 border-[#39393b] pb-2 mb-4">COORDINATES &amp; OPS</div>
+<div class="font-mono text-xs space-y-1 text-[#9ca3af] uppercase">
+<div>LAT/LONG: 26.1209° N, 85.3647° E</div>
+<div>LOC: BIHAR HEALTH SECTOR INITIATIVE</div>
+<div>SEC: SHA-256 SIGNED LOGS</div>
+<div>DISPATCH: FELLOWSHIP VERIFIED</div>
+</div>
+</div>
+</div>
+<div class="border-t-2 border-[#39393b] py-4 px-6 lg:px-12 bg-[#0e0e10] text-[#9ca3af] flex flex-col sm:flex-row items-center justify-between font-mono text-xs tracking-wider gap-2">
+<span>© 2026 ADITYA PANDEY — DATA SYSTEMS &amp; PUBLIC HEALTH FULL-STACK BUILDER. ALL RIGHTS RESERVED.</span>
+<span class="uppercase font-bold text-[#facc15]">OBSIDIAN BAUHAUS BRUTALISM</span>
+</div>
+</footer>
+</body></html>

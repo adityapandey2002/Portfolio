@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<meta content="web_standard" name="shell-type"/>
+<title>Interactive AI — Aditya Pandey</title>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&amp;family=Space+Grotesk:wght@500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+@layer base {
+  html, body { margin:0; padding:0; }
+  body { overscroll-behavior: none; }
+}
+::-webkit-scrollbar { display: none; }
+</style>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+  tailwind.config = {
+    darkMode: "class",
+    theme: {
+      extend: {
+        colors: {
+          "primary": "#facc15",
+          "primary-hover": "#eab308",
+          "background": "#131315",
+          "surface": "#1c1c1f",
+          "surface-container": "#232328",
+          "surface-container-high": "#2c2c32",
+          "surface-dim": "#0e0e10",
+          "border-dark": "#333338",
+          "border-accent": "#facc15",
+          "on-background": "#f4f4f5",
+          "on-surface-variant": "#a1a1aa",
+          "accent-red": "#ef4444",
+          "accent-blue": "#38bdf8",
+          "accent-green": "#22c55e"
+        },
+        fontFamily: {
+          headline: ["Space Grotesk", "sans-serif"],
+          body: ["Space Grotesk", "sans-serif"],
+          mono: ["JetBrains Mono", "monospace"]
+        }
+      }
+    }
+  }
+</script>
+</head>
+<body class="bg-[#131315] font-body text-[#f4f4f5] antialiased min-h-screen selection:bg-[#facc15] selection:text-black">
+<!-- Top Navigation Bar -->
+<header class="fixed top-0 left-0 right-0 z-50 bg-[#1c1c1f] border-b-2 border-[#333338]">
+<div class="h-20 w-full px-6 lg:px-12 flex items-center justify-between">
+<!-- Brand / Identifier -->
+<div class="flex items-center gap-4">
+<a class="flex items-center justify-center w-12 h-12 bg-[#facc15] text-black font-headline font-bold text-xl tracking-tighter hover:bg-yellow-400 transition-colors border-2 border-[#facc15] shadow-[2px_2px_0px_#000]" data-path="home" href="#">
+        AP
+      </a>
+<div class="hidden sm:flex flex-col">
+<span class="font-headline font-bold text-sm tracking-wider uppercase text-[#f4f4f5]">Aditya Pandey</span>
+<span class="font-mono text-[11px] tracking-wider text-[#a1a1aa] uppercase">Systems &amp; Health AI</span>
+</div>
+</div>
+<!-- Navigation links -->
+<nav class="hidden xl:flex items-center gap-1.5">
+<a class="px-4 py-2 text-xs font-headline font-semibold uppercase tracking-wider text-[#a1a1aa] hover:text-[#f4f4f5] hover:bg-[#232328] transition-colors" data-path="home" href="#">
+        Home
+      </a>
+<a class="px-4 py-2 text-xs font-headline font-semibold uppercase tracking-wider text-[#a1a1aa] hover:text-[#f4f4f5] hover:bg-[#232328] transition-colors" data-path="work-and-systems" href="#">
+        Work &amp; Systems
+      </a>
+<a class="px-4 py-2 text-xs font-headline font-semibold uppercase tracking-wider text-[#a1a1aa] hover:text-[#f4f4f5] hover:bg-[#232328] transition-colors" data-path="health-impact" href="#">
+        Health Impact
+      </a>
+<a class="px-4 py-2 text-xs font-headline uppercase tracking-wider bg-[#facc15] text-black font-bold border-2 border-[#facc15] shadow-[2px_2px_0px_#000]" data-path="interactive-ai" href="#">
+        Interactive AI
+      </a>
+<a class="px-4 py-2 text-xs font-headline font-semibold uppercase tracking-wider text-[#a1a1aa] hover:text-[#f4f4f5] hover:bg-[#232328] transition-colors" data-path="contact" href="#">
+        Contact
+      </a>
+</nav>
+<!-- Header Actions -->
+<div class="flex items-center gap-3">
+<a class="hidden sm:inline-flex items-center justify-center px-4 py-2.5 bg-[#facc15] text-black font-headline font-bold text-xs uppercase tracking-wider border-2 border-[#facc15] hover:bg-yellow-400 transition-all shadow-[2px_2px_0px_#000000]" data-path="contact" href="#">
+        Engage Fellow
+      </a>
+<a class="hidden md:inline-flex items-center justify-center px-4 py-2.5 bg-[#232328] text-[#f4f4f5] font-headline font-bold text-xs uppercase tracking-wider border-2 border-[#333338] hover:border-[#facc15] hover:text-[#facc15] transition-all shadow-[2px_2px_0px_#000000]" data-path="resume" href="#">
+        Resume
+      </a>
+<button class="border-2 border-[#333338] bg-[#1c1c1f] font-mono font-bold text-[11px] px-2.5 py-1.5 inline-flex items-center gap-1.5 shadow-[2px_2px_0px_#000000] hover:border-[#facc15] hover:text-[#facc15] active:translate-x-0.5 active:translate-y-0.5 transition-all uppercase tracking-wider text-[#f4f4f5]" id="themeToggleBtn" onclick="(function(){const isDark=document.documentElement.classList.toggle('dark');const btn=document.getElementById('themeToggleBtn');if(btn){btn.innerHTML=isDark?'&lt;span class=\'material-symbols-outlined text-[14px]\'&gt;dark_mode&lt;/span&gt;&lt;span&gt;MODE: DARK&lt;/span&gt;':'&lt;span class=\'material-symbols-outlined text-[14px]\'&gt;light_mode&lt;/span&gt;&lt;span&gt;MODE: LIGHT&lt;/span&gt;';}})()" title="Toggle Theme">
+<span class="material-symbols-outlined text-[14px] text-[#facc15]">dark_mode</span>
+<span>MODE: DARK</span>
+</button>
+<div class="w-8 h-8 rounded bg-[#232328] flex items-center justify-center border-2 border-[#333338] text-[#facc15]">
+<span class="material-symbols-outlined text-[18px]">person</span>
+</div>
+</div>
+</div>
+</header>
+<main class="w-full pt-20 bg-[#131315]">
+<div class="flex flex-col w-full">
+<!-- Sub-header Status Indicator Bar -->
+<div class="w-full bg-[#18181b] border-b-2 border-[#333338] py-2.5 px-6 lg:px-12 flex flex-wrap items-center justify-between gap-3 text-xs font-mono">
+<div class="flex items-center gap-2.5 text-[#f4f4f5]">
+<span class="w-2.5 h-2.5 rounded-full bg-[#ef4444] inline-block animate-pulse shadow-[0_0_8px_#ef4444]"></span>
+<span class="font-bold font-headline uppercase tracking-wider text-[11px] text-[#facc15]">AI Assistant Online</span>
+<span class="text-[#a1a1aa]">— Grounded in verified portfolio &amp; field records</span>
+</div>
+<div class="flex items-center gap-3 text-[#a1a1aa] text-[11px]">
+<span class="bg-[#232328] px-2 py-0.5 border border-[#333338] text-[#f4f4f5]">Llama-3-70B via Groq</span>
+<span>•</span>
+<span class="text-[#22c55e] flex items-center gap-1">
+<span class="w-1.5 h-1.5 rounded-full bg-[#22c55e]"></span>
+          Zero-Hallucination Guardrails
+        </span>
+</div>
+</div>
+<!-- Hero Header -->
+<section class="w-full border-b-2 border-[#333338] px-6 lg:px-12 py-12 lg:py-16 bg-[#18181b]">
+<div class="max-w-4xl mx-auto text-center space-y-4">
+<div class="inline-flex items-center gap-2 border-2 border-[#facc15] bg-[#facc15] text-black px-3.5 py-1 text-xs font-headline font-bold uppercase tracking-wider shadow-[3px_3px_0px_#000]">
+<span class="material-symbols-outlined text-[16px]">chat_spark</span>
+          /* Interactive AI &amp; Portfolio Assistant */
+        </div>
+<h1 class="font-headline font-bold text-3xl sm:text-5xl lg:text-6xl tracking-tight text-[#f4f4f5] uppercase">
+          Ask Aditya’s Knowledge Base
+        </h1>
+<p class="font-body text-sm sm:text-base lg:text-lg text-[#a1a1aa] leading-relaxed max-w-2xl mx-auto">
+          Ask questions directly to an AI assistant with full context on Aditya Pandey’s public health data engineering, Piramal Gandhi Fellowship operations across 16 Bihar blocks, and production full-stack systems.
+        </p>
+</div>
+</section>
+<!-- Main Interactive Ask & Console Section -->
+<section class="w-full border-b-2 border-[#333338] px-6 lg:px-12 py-10 bg-[#131315]">
+<div class="max-w-4xl mx-auto space-y-6">
+<!-- Quick Prompt Chips -->
+<div class="space-y-2.5">
+<div class="flex items-center justify-between text-xs">
+<span class="font-headline font-bold uppercase tracking-wider text-[#a1a1aa] flex items-center gap-2">
+<span class="material-symbols-outlined text-[16px] text-[#facc15]">lightbulb</span>
+              Suggested Questions (Click to Ask)
+            </span>
+<span class="text-[#a1a1aa] font-mono text-[11px] hidden sm:inline">Sub-second retrieval</span>
+</div>
+<div class="flex flex-wrap gap-2">
+<button class="px-3.5 py-2 bg-[#1c1c1f] text-[#f4f4f5] hover:bg-[#facc15] hover:text-black hover:border-[#facc15] border-2 border-[#333338] text-xs font-headline font-semibold transition-all shadow-[2px_2px_0px_#000] active:translate-x-0.5 active:translate-y-0.5 text-left" onclick="askPreset('How does offline sync work in Matru Suraksha?')">
+              ⚡ How does offline sync work in Matru Suraksha?
+            </button>
+<button class="px-3.5 py-2 bg-[#1c1c1f] text-[#f4f4f5] hover:bg-[#facc15] hover:text-black hover:border-[#facc15] border-2 border-[#333338] text-xs font-headline font-semibold transition-all shadow-[2px_2px_0px_#000] active:translate-x-0.5 active:translate-y-0.5 text-left" onclick="askPreset('What did Aditya achieve in the Gandhi Fellowship across 16 blocks?')">
+              🏥 What did Aditya achieve in the Gandhi Fellowship?
+            </button>
+<button class="px-3.5 py-2 bg-[#1c1c1f] text-[#f4f4f5] hover:bg-[#facc15] hover:text-black hover:border-[#facc15] border-2 border-[#333338] text-xs font-headline font-semibold transition-all shadow-[2px_2px_0px_#000] active:translate-x-0.5 active:translate-y-0.5 text-left" onclick="askPreset('Explain the DuckDB + Parquet pipeline in the India Development Data Engine.')">
+              📊 Explain the DuckDB + Parquet pipeline
+            </button>
+<button class="px-3.5 py-2 bg-[#1c1c1f] text-[#f4f4f5] hover:bg-[#facc15] hover:text-black hover:border-[#facc15] border-2 border-[#333338] text-xs font-headline font-semibold transition-all shadow-[2px_2px_0px_#000] active:translate-x-0.5 active:translate-y-0.5 text-left" onclick="askPreset('How is HMAC SHA-256 implemented in BiharKaSwaad webhook security?')">
+              🔐 How is HMAC SHA-256 implemented in BiharKaSwaad?
+            </button>
+</div>
+</div>
+<!-- Query Form Box -->
+<div class="border-2 border-[#333338] bg-[#1c1c1f] p-4 sm:p-5 shadow-[4px_4px_0px_#000]">
+<form class="space-y-3" onsubmit="handleQuerySubmit(event)">
+<div class="flex flex-col sm:flex-row gap-2.5">
+<div class="relative flex-1 flex items-center bg-[#131315] border-2 border-[#333338] px-3.5 shadow-[2px_2px_0px_#000] focus-within:border-[#facc15] transition-colors">
+<span class="material-symbols-outlined text-[#a1a1aa] text-[20px] mr-2">search</span>
+<input class="w-full bg-transparent border-0 outline-none text-[#f4f4f5] font-body text-sm py-2.5 px-1 focus:ring-0 placeholder:text-[#a1a1aa]/60" id="terminalInput" placeholder="Ask any question about Aditya's projects, clinical tools, or research..." type="text" value="How does Matru Suraksha handle zero connectivity in remote Bihar sub-centres and escalate high-risk cases?"/>
+<button class="text-xs font-mono font-bold uppercase text-[#a1a1aa] hover:text-[#facc15] px-2 py-1 transition-colors" onclick="clearTerminalInput()" title="Clear text" type="button">CLR</button>
+</div>
+<button class="px-6 py-2.5 bg-[#facc15] text-black hover:bg-yellow-400 border-2 border-[#facc15] font-headline font-bold text-xs uppercase tracking-wider transition-all shadow-[3px_3px_0px_#000] flex items-center justify-center gap-2 active:translate-x-0.5 active:translate-y-0.5 shrink-0" type="submit">
+<span>Ask Assistant</span>
+<span class="material-symbols-outlined text-[16px]">bolt</span>
+</button>
+</div>
+</form>
+</div>
+<!-- Clean Grounded Response Card -->
+<div class="border-2 border-[#333338] bg-[#1c1c1f] p-6 sm:p-8 space-y-6 shadow-[4px_4px_0px_#000]">
+<!-- Active Question Header -->
+<div class="flex items-start justify-between gap-4 pb-4 border-b-2 border-[#333338]">
+<div class="space-y-1">
+<span class="font-mono text-[11px] font-bold uppercase text-[#facc15] block tracking-wider">Current Question</span>
+<h2 class="font-headline font-bold text-base sm:text-lg text-[#f4f4f5]" id="activeQueryText">
+                How does Matru Suraksha handle zero connectivity in remote Bihar sub-centres and escalate high-risk cases?
+              </h2>
+</div>
+<span class="inline-flex items-center gap-1.5 px-3 py-1 bg-[#232328] text-[#22c55e] border-2 border-[#22c55e]/40 font-headline font-bold text-xs uppercase shrink-0">
+<span class="material-symbols-outlined text-[15px]">verified</span>
+<span>Grounded (98.4%)</span>
+</span>
+</div>
+<!-- Response Body -->
+<div class="font-body text-sm leading-relaxed text-[#f4f4f5] space-y-4" id="responseStreamContainer">
+<div class="bg-[#232328] p-4 sm:p-5 border-2 border-[#333338] space-y-2">
+<h3 class="font-headline font-bold text-xs uppercase tracking-wider text-[#facc15] flex items-center gap-2">
+<span class="w-2.5 h-2.5 bg-[#facc15] inline-block"></span>
+                1. Offline-First Architecture (Dexie.js &amp; IndexedDB)
+              </h3>
+<p class="text-xs sm:text-sm text-[#a1a1aa] leading-relaxed">
+                Matru Suraksha was engineered for zero-bandwidth rural health sub-centres across Bihar. The front-end leverages <strong class="text-[#f4f4f5] font-semibold">Dexie.js over IndexedDB</strong> to maintain an immutable local store. Auxiliary Nurse Midwives (ANMs) register antenatal checkups, track 8 critical maternal danger signs (severe anemia, pre-eclampsia, systolic BP &gt; 140, gestational diabetes), and generate patient records entirely without internet.
+              </p>
+</div>
+<div class="bg-[#232328] p-4 sm:p-5 border-2 border-[#333338] space-y-2">
+<h3 class="font-headline font-bold text-xs uppercase tracking-wider text-[#ef4444] flex items-center gap-2">
+<span class="w-2.5 h-2.5 bg-[#ef4444] inline-block"></span>
+                2. Optimistic Sync &amp; Cryptographic Conflict Resolution
+              </h3>
+<p class="text-xs sm:text-sm text-[#a1a1aa] leading-relaxed">
+                When connectivity (intermittent 2G/3G) is detected, sync queues push updates to Fastify backend services. Records use <strong class="text-[#f4f4f5] font-semibold">SHA-256 state hashing</strong> for optimistic concurrency control, ensuring zero data loss even when ANMs and Community Health Officers (CHOs) update vitals simultaneously.
+              </p>
+</div>
+<div class="bg-[#232328] p-4 sm:p-5 border-2 border-[#333338] space-y-2">
+<h3 class="font-headline font-bold text-xs uppercase tracking-wider text-[#facc15] flex items-center gap-2">
+<span class="w-2.5 h-2.5 bg-[#facc15] inline-block"></span>
+                3. Deterministic 15-Day High-Risk Pregnancy (HRP) Escalation
+              </h3>
+<p class="text-xs sm:text-sm text-[#a1a1aa] leading-relaxed mb-2">
+                Any pregnancy flagged with high-risk parameters starts an automated 15-day clinical clock:
+              </p>
+<ul class="list-disc pl-5 space-y-1 text-xs text-[#a1a1aa]">
+<li><strong class="text-[#f4f4f5] font-semibold">Day 1:</strong> SMS alerts sent automatically to designated ANM and CHO.</li>
+<li><strong class="text-[#f4f4f5] font-semibold">Day 12 (if unverified):</strong> Escalated to the Block Health Manager (BHM) dashboard with priority overdue flag.</li>
+<li><strong class="text-[#f4f4f5] font-semibold">Day 15 (SLA breach):</strong> Automatically reported in District Health Society (DHS) escalation report for maternal mortality prevention.</li>
+</ul>
+</div>
+</div>
+<!-- Sources & Confidence Footer -->
+<div class="pt-4 border-t-2 border-[#333338] flex flex-wrap items-center justify-between gap-3 text-xs text-[#a1a1aa]">
+<div class="flex flex-wrap items-center gap-2">
+<span class="font-headline font-bold uppercase text-[11px] text-[#f4f4f5]">Verified Sources:</span>
+<span class="px-2.5 py-0.5 bg-[#232328] border border-[#333338] text-[#f4f4f5] font-mono text-[10px]">Matru Suraksha Spec 4.2</span>
+<span class="px-2.5 py-0.5 bg-[#232328] border border-[#333338] text-[#f4f4f5] font-mono text-[10px]">Dexie Store Service</span>
+<span class="px-2.5 py-0.5 bg-[#232328] border border-[#333338] text-[#f4f4f5] font-mono text-[10px]">Muzaffarpur Field Logs</span>
+</div>
+<div class="font-mono text-[11px] text-[#facc15] font-semibold">
+              Similarity Score: 94.2%
+            </div>
+</div>
+</div>
+</div>
+</section>
+<!-- 4 Clean Knowledge Dossier Cards Grid -->
+<section class="w-full border-b-2 border-[#333338] bg-[#18181b] px-6 lg:px-12 py-14">
+<div class="max-w-6xl mx-auto space-y-8">
+<div class="text-center max-w-2xl mx-auto space-y-1.5">
+<span class="font-mono text-xs font-bold uppercase tracking-wider text-[#facc15]">Knowledge Repository</span>
+<h2 class="font-headline font-bold text-2xl sm:text-3xl text-[#f4f4f5] uppercase tracking-tight">Explore Core Topics</h2>
+<p class="font-body text-xs sm:text-sm text-[#a1a1aa]">Click any cluster below to prime a targeted inquiry.</p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+<!-- Card 1 -->
+<div class="cursor-pointer border-2 border-[#333338] bg-[#1c1c1f] p-5 shadow-[3px_3px_0px_#000] hover:border-[#ef4444] hover:bg-[#232328] transition-all flex flex-col justify-between group active:translate-x-0.5 active:translate-y-0.5" onclick="askPreset('What maternal and public health operations were implemented during the Gandhi Fellowship in Bihar?')">
+<div class="space-y-3">
+<div class="flex items-center justify-between">
+<span class="material-symbols-outlined text-[#ef4444] text-[24px]">local_hospital</span>
+<span class="text-[10px] font-mono px-2 py-0.5 bg-[#232328] border border-[#333338] text-[#f4f4f5]">16 BLOCKS</span>
+</div>
+<h3 class="font-headline font-bold text-sm uppercase text-[#f4f4f5] group-hover:text-[#ef4444] transition-colors">Public Health &amp; Field Ops</h3>
+<p class="font-body text-xs text-[#a1a1aa] leading-relaxed">
+                Piramal Gandhi Fellowship in Muzaffarpur, 13,627 KM field travel, 700+ ASHAs trained, 185h clinical coaching, and high-risk pregnancy tracking.
+              </p>
+</div>
+<div class="mt-5 pt-3 border-t border-[#333338] flex items-center justify-between text-xs font-headline font-bold uppercase text-[#a1a1aa] group-hover:text-[#ef4444] transition-colors">
+<span>Ask this topic</span>
+<span>→</span>
+</div>
+</div>
+<!-- Card 2 -->
+<div class="cursor-pointer border-2 border-[#333338] bg-[#1c1c1f] p-5 shadow-[3px_3px_0px_#000] hover:border-[#facc15] hover:bg-[#232328] transition-all flex flex-col justify-between group active:translate-x-0.5 active:translate-y-0.5" onclick="askPreset('How is the offline-first Matru Suraksha platform engineered?')">
+<div class="space-y-3">
+<div class="flex items-center justify-between">
+<span class="material-symbols-outlined text-[#facc15] text-[24px]">devices</span>
+<span class="text-[10px] font-mono px-2 py-0.5 bg-[#232328] border border-[#333338] text-[#f4f4f5]">DEXIE.JS</span>
+</div>
+<h3 class="font-headline font-bold text-sm uppercase text-[#f4f4f5] group-hover:text-[#facc15] transition-colors">Matru Suraksha Platform</h3>
+<p class="font-body text-xs text-[#a1a1aa] leading-relaxed">
+                Offline IndexedDB persistence, Docker microservices, Fastify REST APIs, and automated 15-day triage escalations.
+              </p>
+</div>
+<div class="mt-5 pt-3 border-t border-[#333338] flex items-center justify-between text-xs font-headline font-bold uppercase text-[#a1a1aa] group-hover:text-[#facc15] transition-colors">
+<span>Ask this topic</span>
+<span>→</span>
+</div>
+</div>
+<!-- Card 3 -->
+<div class="cursor-pointer border-2 border-[#333338] bg-[#1c1c1f] p-5 shadow-[3px_3px_0px_#000] hover:border-[#38bdf8] hover:bg-[#232328] transition-all flex flex-col justify-between group active:translate-x-0.5 active:translate-y-0.5" onclick="askPreset('How does the India Development Data Engine use DuckDB and Parquet to aggregate 118k+ metrics?')">
+<div class="space-y-3">
+<div class="flex items-center justify-between">
+<span class="material-symbols-outlined text-[#38bdf8] text-[24px]">database</span>
+<span class="text-[10px] font-mono px-2 py-0.5 bg-[#232328] border border-[#333338] text-[#f4f4f5]">DUCKDB</span>
+</div>
+<h3 class="font-headline font-bold text-sm uppercase text-[#f4f4f5] group-hover:text-[#38bdf8] transition-colors">India Data Engine</h3>
+<p class="font-body text-xs text-[#a1a1aa] leading-relaxed">
+                DuckDB OLAP analytics processing 118,000+ district indicators, Apache Parquet storage, and Leaflet GIS mapping.
+              </p>
+</div>
+<div class="mt-5 pt-3 border-t border-[#333338] flex items-center justify-between text-xs font-headline font-bold uppercase text-[#a1a1aa] group-hover:text-[#38bdf8] transition-colors">
+<span>Ask this topic</span>
+<span>→</span>
+</div>
+</div>
+<!-- Card 4 -->
+<div class="cursor-pointer border-2 border-[#333338] bg-[#1c1c1f] p-5 shadow-[3px_3px_0px_#000] hover:border-[#22c55e] hover:bg-[#232328] transition-all flex flex-col justify-between group active:translate-x-0.5 active:translate-y-0.5" onclick="askPreset('Explain the full-stack architecture and HMAC security in BiharKaSwaad and Araria Hospital systems.')">
+<div class="space-y-3">
+<div class="flex items-center justify-between">
+<span class="material-symbols-outlined text-[#22c55e] text-[24px]">security</span>
+<span class="text-[10px] font-mono px-2 py-0.5 bg-[#232328] border border-[#333338] text-[#f4f4f5]">NEXT.JS</span>
+</div>
+<h3 class="font-headline font-bold text-sm uppercase text-[#f4f4f5] group-hover:text-[#22c55e] transition-colors">Full-Stack &amp; Security</h3>
+<p class="font-body text-xs text-[#a1a1aa] leading-relaxed">
+                Razorpay payment gateway with HMAC SHA-256 webhooks, OPD clinical queue dispatch at Araria Hospital, and Next.js.
+              </p>
+</div>
+<div class="mt-5 pt-3 border-t border-[#333338] flex items-center justify-between text-xs font-headline font-bold uppercase text-[#a1a1aa] group-hover:text-[#22c55e] transition-colors">
+<span>Ask this topic</span>
+<span>→</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Bottom Cross-Links CTA Banner -->
+<section class="w-full bg-[#facc15] border-b-2 border-black px-6 lg:px-12 py-10 text-black">
+<div class="max-w-4xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-6 text-center sm:text-left">
+<div class="space-y-1">
+<h2 class="font-headline font-bold text-xl sm:text-2xl uppercase tracking-tight text-black">
+            Looking for Detailed Case Studies?
+          </h2>
+<p class="font-body text-xs sm:text-sm text-black/80 font-medium">
+            Explore interactive architectural diagrams and verified clinical field vitals.
+          </p>
+</div>
+<div class="flex flex-wrap items-center justify-center gap-3">
+<a class="px-5 py-2.5 bg-[#131315] text-[#f4f4f5] font-headline font-bold text-xs uppercase tracking-wider border-2 border-black hover:bg-black transition-all shadow-[3px_3px_0px_#000] inline-flex items-center gap-1.5" data-path="work-and-systems" href="#">
+<span>Work &amp; Systems</span>
+<span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+</a>
+<a class="px-5 py-2.5 bg-[#131315] text-[#f4f4f5] font-headline font-bold text-xs uppercase tracking-wider border-2 border-black hover:bg-black transition-all shadow-[3px_3px_0px_#000] inline-flex items-center gap-1.5" data-path="health-impact" href="#">
+<span>Health Impact</span>
+<span class="material-symbols-outlined text-[16px]">monitoring</span>
+</a>
+</div>
+</div>
+</section>
+</div>
+</main>
+<!-- Technical Bauhaus Dark Footer -->
+<footer class="w-full bg-[#18181b] border-t-2 border-[#333338]">
+<div class="w-full px-6 lg:px-12 py-12">
+<div class="grid grid-cols-1 md:grid-cols-4 gap-8 pb-12 border-b-2 border-[#333338]">
+<!-- Brand column -->
+<div class="space-y-3">
+<div class="w-10 h-10 bg-[#facc15] text-black font-headline font-bold flex items-center justify-center text-lg border-2 border-[#facc15] shadow-[2px_2px_0px_#000]">
+          AP
+        </div>
+<p class="font-headline text-xs font-bold uppercase tracking-wider text-[#f4f4f5]">Form Follows Function</p>
+<p class="text-xs text-[#a1a1aa] max-w-xs font-body leading-relaxed">
+          Architecting deterministic clinical systems, autonomous agents, and bio-computational interfaces.
+        </p>
+</div>
+<!-- Telemetry Column -->
+<div class="space-y-2">
+<span class="font-headline text-xs font-bold uppercase tracking-widest text-[#facc15] block">Telemetry &amp; Coords</span>
+<div class="text-xs text-[#a1a1aa] space-y-1 font-mono">
+<div>LAT: 37.7749° N / LON: 122.4194° W</div>
+<div>ALT: 16M / TIMEZONE: UTC-8</div>
+<div>GRID: BAUHAUS-SYS-09</div>
+<div class="text-[#22c55e]">STATUS: OPERATIONAL [200 OK]</div>
+</div>
+</div>
+<!-- Dispatches Column -->
+<div class="space-y-2">
+<span class="font-headline text-xs font-bold uppercase tracking-widest text-[#facc15] block">Dispatches</span>
+<div class="flex flex-col space-y-2 text-xs font-headline uppercase font-semibold">
+<a class="text-[#a1a1aa] hover:text-[#facc15] transition-colors" data-path="work-and-systems" href="#">01 // Systems Index</a>
+<a class="text-[#a1a1aa] hover:text-[#facc15] transition-colors" data-path="health-impact" href="#">02 // Clinical Models</a>
+<a class="text-[#a1a1aa] hover:text-[#facc15] transition-colors" data-path="interactive-ai" href="#">03 // Autonomous Agents</a>
+<a class="text-[#a1a1aa] hover:text-[#facc15] transition-colors" data-path="resume" href="#">04 // Vitae Dossier</a>
+</div>
+</div>
+<!-- Interface Vectors -->
+<div class="space-y-2">
+<span class="font-headline text-xs font-bold uppercase tracking-widest text-[#facc15] block">Interface Vectors</span>
+<div class="flex flex-col space-y-2 text-xs font-headline uppercase font-semibold">
+<a class="text-[#a1a1aa] hover:text-[#facc15] transition-colors" data-path="contact" href="#">Secure Comms</a>
+<a class="text-[#a1a1aa] hover:text-[#facc15] transition-colors" href="https://github.com" rel="noreferrer" target="_blank">Code Repository</a>
+<a class="text-[#a1a1aa] hover:text-[#facc15] transition-colors" href="https://linkedin.com" rel="noreferrer" target="_blank">Executive Network</a>
+<a class="text-[#a1a1aa] hover:text-[#facc15] transition-colors" href="https://scholar.google.com" rel="noreferrer" target="_blank">Scholar / Publications</a>
+</div>
+</div>
+</div>
+<!-- Bottom copyright / spec bar -->
+<div class="pt-8 flex flex-col md:flex-row items-center justify-between gap-4">
+<div class="font-headline text-xs uppercase font-bold tracking-wider text-[#a1a1aa]">
+        © 2025 Aditya Pandey. All Functional Systems Reserved.
+      </div>
+<div class="flex items-center gap-6 font-mono text-xs uppercase tracking-wider text-[#a1a1aa]">
+<span>Brutalist Spec 2.4</span>
+<span class="w-2 h-2 bg-[#ef4444] inline-block"></span>
+<span class="text-[#facc15]">Zero Softness Rule</span>
+</div>
+</div>
+</div>
+</footer>
+<script>
+  function clearTerminalInput() {
+    const input = document.getElementById('terminalInput');
+    if (input) {
+      input.value = '';
+      input.focus();
+    }
+  }
+
+  function askPreset(promptText) {
+    const input = document.getElementById('terminalInput');
+    if (input) {
+      input.value = promptText;
+      handleQuerySubmit(new Event('submit'));
+    }
+  }
+
+  function handleQuerySubmit(event) {
+    if (event && event.preventDefault) event.preventDefault();
+    const input = document.getElementById('terminalInput');
+    const queryDisplay = document.getElementById('activeQueryText');
+    const streamContainer = document.getElementById('responseStreamContainer');
+
+    if (!input || !queryDisplay || !streamContainer) return;
+    const userVal = input.value.trim();
+    if (!userVal) return;
+
+    queryDisplay.innerText = userVal;
+    streamContainer.innerHTML = '<div class="p-5 bg-[#232328] border-2 border-[#333338] text-center font-mono text-xs animate-pulse text-[#facc15]">[RETRIEVING FROM EMBEDDED KNOWLEDGE BASE] Resolving cosine distance against Bihar public health records...</div>';
+
+    setTimeout(() => {
+      streamContainer.innerHTML = `
+        <div class="bg-[#232328] p-4 sm:p-5 border-2 border-[#333338] space-y-2">
+          <h3 class="font-headline font-bold text-xs uppercase tracking-wider text-[#facc15] flex items-center gap-2">
+            <span class="w-2.5 h-2.5 bg-[#facc15] inline-block"></span> 1. Offline-First Architecture (Dexie.js & IndexedDB)
+          </h3>
+          <p class="text-xs sm:text-sm text-[#a1a1aa] leading-relaxed">
+            Matru Suraksha was engineered for zero-bandwidth rural health sub-centres across Bihar. The front-end leverages <strong class="text-[#f4f4f5] font-semibold">Dexie.js over IndexedDB</strong> to maintain an immutable local store. Auxiliary Nurse Midwives (ANMs) register antenatal checkups, track 8 critical maternal danger signs (severe anemia, pre-eclampsia, systolic BP &gt; 140, gestational diabetes), and generate patient records entirely without internet.
+          </p>
+        </div>
+        <div class="bg-[#232328] p-4 sm:p-5 border-2 border-[#333338] space-y-2">
+          <h3 class="font-headline font-bold text-xs uppercase tracking-wider text-[#ef4444] flex items-center gap-2">
+            <span class="w-2.5 h-2.5 bg-[#ef4444] inline-block"></span> 2. Optimistic Sync & Cryptographic Conflict Resolution
+          </h3>
+          <p class="text-xs sm:text-sm text-[#a1a1aa] leading-relaxed">
+            When connectivity (intermittent 2G/3G) is detected, sync queues push updates to Fastify backend services. Records use <strong class="text-[#f4f4f5] font-semibold">SHA-256 state hashing</strong> for optimistic concurrency control, ensuring zero data loss even when ANMs and Community Health Officers (CHOs) update vitals simultaneously.
+          </p>
+        </div>
+        <div class="bg-[#232328] p-4 sm:p-5 border-2 border-[#333338] space-y-2">
+          <h3 class="font-headline font-bold text-xs uppercase tracking-wider text-[#facc15] flex items-center gap-2">
+            <span class="w-2.5 h-2.5 bg-[#facc15] inline-block"></span> 3. Deterministic 15-Day High-Risk Pregnancy (HRP) Escalation
+          </h3>
+          <p class="text-xs sm:text-sm text-[#a1a1aa] leading-relaxed mb-2">
+            Any pregnancy flagged with high-risk parameters starts an automated 15-day clinical clock:
+          </p>
+          <ul class="list-disc pl-5 space-y-1 text-xs text-[#a1a1aa]">
+            <li><strong class="text-[#f4f4f5] font-semibold">Day 1:</strong> SMS alerts sent automatically to designated ANM and CHO.</li>
+            <li><strong class="text-[#f4f4f5] font-semibold">Day 12 (if unverified):</strong> Escalated to the Block Health Manager (BHM) dashboard with priority overdue flag.</li>
+            <li><strong class="text-[#f4f4f5] font-semibold">Day 15 (SLA breach):</strong> Automatically reported in District Health Society (DHS) escalation report for maternal mortality prevention.</li>
+          </ul>
+        </div>
+      `;
+    }, 380);
+  }
+</script>
+</body></html>

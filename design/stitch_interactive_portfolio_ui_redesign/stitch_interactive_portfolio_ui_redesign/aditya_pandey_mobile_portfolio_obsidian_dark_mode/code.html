@@ -1,0 +1,526 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport"/><meta content="mobile_tab" name="shell-type"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" rel="stylesheet"/><link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config = { darkMode: "class", theme: { extend: { colors: { "on-primary-fixed-variant": "#574500", "on-surface": "#e5e1e4", "primary-container": "#facc15", "surface-container-highest": "#353437", "on-primary": "#3c2f00", "inverse-primary": "#735c00", "on-secondary-container": "#4a1c00", "outline-variant": "#4d4632", "on-secondary": "#552100", "tertiary-fixed-dim": "#adc6ff", "surface-dim": "#131315", "inverse-on-surface": "#303032", "surface-container-high": "#2a2a2c", "tertiary-container": "#bed1ff", "surface-container": "#201f21", "surface-tint": "#eec200", "on-primary-container": "#6c5700", "outline": "#9a9078", "surface-variant": "#353437", "primary": "#ffecb9", "secondary-fixed": "#ffdbca", "on-tertiary": "#002e6a", "on-tertiary-container": "#0055b9", "surface-bright": "#39393b", "primary-fixed-dim": "#eec200", "secondary-fixed-dim": "#ffb690", "secondary": "#ffb690", "on-background": "#e5e1e4", "surface-container-lowest": "#0e0e10", "on-tertiary-fixed": "#001a42", "tertiary": "#e8edff", "on-surface-variant": "#d1c6ab", "on-secondary-fixed-variant": "#783200", "surface": "#131315", "on-error-container": "#ffdad6", "secondary-container": "#ec6a06", "error": "#ffb4ab", "surface-container-low": "#1b1b1d", "primary-fixed": "#ffe083", "on-error": "#690005", "on-primary-fixed": "#231b00", "error-container": "#93000a", "background": "#131315", "on-secondary-fixed": "#341100", "on-tertiary-fixed-variant": "#004395", "inverse-surface": "#e5e1e4", "tertiary-fixed": "#d8e2ff" }, borderRadius: { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px" }, spacing: { "space-xl": "2.5rem", "space-lg": "1.5rem", "margin": "2rem", "gutter": "1.5rem", "margin-mobile": "1rem", "space-xs": "0.25rem", "space-sm": "0.5rem", "gutter-mobile": "1rem", "space-md": "1rem" }, fontFamily: { "label-md": ["JetBrains Mono"], "display-mobile": ["Space Grotesk"], "headline-lg": ["Space Grotesk"], "body-lg": ["Space Grotesk"], "display": ["Space Grotesk"], "headline-md": ["Space Grotesk"], "label-lg": ["JetBrains Mono"], "headline-sm": ["Space Grotesk"], "headline-lg-mobile": ["Space Grotesk"], "body-sm": ["Space Grotesk"], "body-md": ["Space Grotesk"], "label-sm": ["JetBrains Mono"] }, fontSize: { "label-md": ["12px", { lineHeight: "16px", letterSpacing: "0.04em", fontWeight: "500" }], "display-mobile": ["36px", { lineHeight: "40px", letterSpacing: "-0.03em", fontWeight: "700" }], "headline-lg": ["40px", { lineHeight: "44px", letterSpacing: "-0.03em", fontWeight: "700" }], "body-lg": ["18px", { lineHeight: "28px", fontWeight: "400" }], "display": ["56px", { lineHeight: "60px", letterSpacing: "-0.04em", fontWeight: "700" }], "headline-md": ["28px", { lineHeight: "34px", letterSpacing: "-0.02em", fontWeight: "600" }], "label-lg": ["14px", { lineHeight: "18px", letterSpacing: "0.02em", fontWeight: "600" }], "headline-sm": ["20px", { lineHeight: "26px", letterSpacing: "-0.01em", fontWeight: "600" }], "headline-lg-mobile": ["28px", { lineHeight: "32px", letterSpacing: "-0.02em", fontWeight: "700" }], "body-sm": ["13px", { lineHeight: "18px", fontWeight: "400" }], "body-md": ["15px", { lineHeight: "22px", fontWeight: "400" }], "label-sm": ["10px", { lineHeight: "12px", letterSpacing: "0.06em", fontWeight: "500" }] } } } }</script><style>@layer base{html,body{width:100%;margin:0;padding:0;background-color:#131315;}body{overscroll-behavior-y:none;-webkit-tap-highlight-color:transparent;}.pb-safe{padding-bottom:env(safe-area-inset-bottom,0px);}.pt-safe{padding-top:env(safe-area-inset-top,0px);}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head><body class="bg-surface font-body-md text-body-md text-on-surface flex flex-col min-h-screen antialiased selection:bg-primary-container selection:text-on-primary"><header class="fixed top-0 w-full z-50 pt-safe bg-surface/90 backdrop-blur-xl shadow-[0_1px_8px_rgba(0,0,0,0.04)]"><div class="h-16 px-gutter-mobile flex items-center justify-between"><div class="flex items-center gap-space-sm"><div class="w-10 h-10 bg-primary-container flex items-center justify-center"><span class="font-label-lg text-label-lg font-bold text-on-primary tracking-tighter">AP</span></div><div class="flex flex-col"><span class="font-headline-sm text-headline-sm uppercase tracking-tight text-on-surface">Home</span><div class="flex items-center gap-1.5"><span class="w-1.5 h-1.5 bg-primary-container animate-pulse"></span><span class="font-label-sm text-label-sm uppercase tracking-wider text-on-surface-variant">MUZAFFARPUR · 38°C</span></div></div></div><div class="flex items-center gap-space-sm"><div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center"><span class="material-symbols-outlined text-on-primary text-[18px]">person</span></div></div></div></header><main class="flex flex-col relative w-full pt-16 pb-24 px-gutter-mobile bg-surface min-h-screen"><div class="flex flex-col w-full pb-12 selection:bg-primary-container selection:text-on-primary">
+<!-- 01 // HERO SYSTEM BANNER -->
+<section class="w-full flex flex-col pt-2 pb-6" id="section-hero">
+<div class="flex items-center justify-between gap-space-sm mb-space-sm">
+<div class="flex items-center gap-2">
+<span class="font-label-md text-label-md text-primary-container tracking-wider font-semibold">/* 01 // SYSTEMS &amp; HEALTH AI */</span>
+</div>
+<div class="flex items-center gap-1.5 px-2 py-0.5 bg-primary-container text-on-primary font-label-sm text-label-sm font-bold uppercase tracking-widest shadow-[2px_2px_0px_0px_#000000]">
+<span class="w-1.5 h-1.5 bg-on-primary"></span>
+        SYS_ACTIVE
+      </div>
+</div>
+<h1 class="font-headline-lg-mobile text-headline-lg-mobile text-on-surface uppercase font-bold tracking-tight mb-space-sm">
+      Building data systems that turn field work into <span class="text-primary-container underline decoration-2 underline-offset-4">real decisions</span>.
+    </h1>
+<p class="font-body-md text-body-md text-on-surface-variant mb-space-md">
+<span class="font-semibold text-on-surface">Aditya Pandey</span> — Data Analyst &amp; Full-Stack Engineer bridging frontline public health operational realities in Bihar with mission-critical production telemetry.
+    </p>
+<!-- Field & System Badges -->
+<div class="flex flex-wrap gap-2 mb-space-md">
+<div class="px-2 py-1 bg-surface-container font-label-sm text-label-sm text-on-surface flex items-center gap-1.5 shadow-[2px_2px_0px_0px_#000000]">
+<span class="text-secondary-container font-bold">📍</span>
+<span>MUZAFFARPUR, BIHAR</span>
+</div>
+<div class="px-2 py-1 bg-surface-container font-label-sm text-label-sm text-on-surface flex items-center gap-1.5 shadow-[2px_2px_0px_0px_#000000]">
+<span class="text-tertiary-container font-bold">🔷</span>
+<span>GANDHI FELLOW - PIRAMAL</span>
+</div>
+<div class="px-2 py-1 bg-surface-container font-label-sm text-label-sm text-primary-container flex items-center gap-1.5 shadow-[2px_2px_0px_0px_#000000]">
+<span>☁</span>
+<span class="font-semibold">UPTIME: 99.84%</span>
+</div>
+</div>
+<!-- Dual Actions -->
+<div class="grid grid-cols-2 gap-space-sm mb-space-md">
+<a class="flex items-center justify-center gap-1.5 py-3 px-space-sm bg-primary-container text-on-primary font-display font-bold text-label-lg tracking-wider uppercase transition-transform active:translate-x-1 active:translate-y-1 shadow-[4px_4px_0px_0px_#000000]" href="#section-work">
+<span>EXPLORE WORK (4)</span>
+<span class="material-symbols-outlined text-[18px]">south</span>
+</a>
+<a class="flex items-center justify-center gap-1.5 py-3 px-space-sm bg-surface-container-high text-on-surface font-display font-bold text-label-lg tracking-wider uppercase transition-transform active:translate-x-1 active:translate-y-1 shadow-[4px_4px_0px_0px_#000000]" href="#section-pipeline">
+<span>FIELD IMPACT</span>
+<span class="material-symbols-outlined text-[18px]">north_east</span>
+</a>
+</div>
+<!-- Highlight Card: Primary Data Engine -->
+<div class="p-space-md bg-surface-container shadow-[4px_4px_0px_0px_#000000] flex flex-col gap-2">
+<div class="flex items-center justify-between">
+<span class="font-label-sm text-label-sm text-primary-container font-semibold uppercase tracking-wider">ENGINE // ODK COLLECT → POSTGRES</span>
+<span class="flex h-2 w-2 relative">
+<span class="animate-ping absolute inline-flex h-full w-full bg-primary-container opacity-75"></span>
+<span class="relative inline-flex h-2 w-2 bg-primary-container"></span>
+</span>
+</div>
+<div class="font-label-md text-label-md font-semibold text-on-surface uppercase">M-ASHA Tracking &amp; Maternal Danger Protocol</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+        Real-time maternal triage pipeline ingesting multi-variable field forms across 700+ frontline health workers. Direct alerting to PHC medical officers.
+      </p>
+<div class="flex items-center justify-between pt-1 text-on-surface-variant font-label-sm text-label-sm">
+<span>LATENCY: 420ms</span>
+<span class="text-primary-container font-bold">ACTIVE NODES: 712</span>
+</div>
+</div>
+</section>
+<!-- 02 // STICKY JUMP NAV STRIP -->
+<div class="sticky top-16 z-30 -mx-gutter-mobile px-gutter-mobile py-2.5 bg-surface-container-lowest/95 backdrop-blur-md mb-space-md flex items-center justify-between gap-1 shadow-[0_4px_0px_0px_#000000]">
+<span class="font-label-sm text-label-sm text-primary-container font-bold tracking-wider mr-1">JUMP //</span>
+<div class="flex items-center gap-1.5 overflow-x-auto no-scrollbar">
+<a class="px-2.5 py-1 bg-surface-container-high text-on-surface font-label-sm text-label-sm font-semibold tracking-wider uppercase active:bg-primary-container active:text-on-primary" href="#section-pipeline">02.DAG</a>
+<a class="px-2.5 py-1 bg-surface-container-high text-on-surface font-label-sm text-label-sm font-semibold tracking-wider uppercase active:bg-primary-container active:text-on-primary" href="#section-about">03.ETHOS</a>
+<a class="px-2.5 py-1 bg-surface-container-high text-on-surface font-label-sm text-label-sm font-semibold tracking-wider uppercase active:bg-primary-container active:text-on-primary" href="#section-experience">04.XP</a>
+<a class="px-2.5 py-1 bg-surface-container-high text-on-surface font-label-sm text-label-sm font-semibold tracking-wider uppercase active:bg-primary-container active:text-on-primary" href="#section-work">05.WORK</a>
+<a class="px-2.5 py-1 bg-primary-container text-on-primary font-label-sm text-label-sm font-bold tracking-wider uppercase" href="#section-contact">07.NODE</a>
+</div>
+</div>
+<!-- 03 // THE PIPELINE.DAG INTERACTIVE STAGE -->
+<section class="w-full flex flex-col mb-space-lg" id="section-pipeline">
+<div class="flex items-center justify-between mb-space-xs">
+<span class="font-label-md text-label-md text-primary-container font-semibold uppercase tracking-wider">/* 02 · THE PIPELINE */</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant font-mono">FLOW: 4_STAGE_DAG</span>
+</div>
+<h2 class="font-headline-sm text-headline-sm uppercase text-on-surface font-bold tracking-tight mb-space-sm">
+      Raw data flows through four stages — never more
+    </h2>
+<!-- Interactive Terminal Canvas -->
+<div class="bg-surface-container-lowest p-space-sm shadow-[4px_4px_0px_0px_#000000] flex flex-col gap-space-sm">
+<div class="flex items-center justify-between pb-2 bg-surface-container-low px-2 py-1.5">
+<div class="flex items-center gap-1.5">
+<span class="w-2.5 h-2.5 bg-secondary-container"></span>
+<span class="w-2.5 h-2.5 bg-primary-container"></span>
+<span class="w-2.5 h-2.5 bg-tertiary-container"></span>
+<span class="font-label-sm text-label-sm font-mono text-on-surface ml-2">dag_runtime.sh</span>
+</div>
+<span class="font-label-sm text-label-sm text-primary-container">RUNNING (THREAD_04)</span>
+</div>
+<!-- Pipeline Steps Matrix -->
+<div class="grid grid-cols-2 gap-2" id="dag-steps-container">
+<!-- Stage 01 -->
+<button class="dag-btn text-left p-2.5 bg-surface-container flex flex-col gap-1 transition-all active:translate-x-0.5 active:translate-y-0.5 shadow-[2px_2px_0px_0px_#000000]" onclick="setPipelineStep(0)" type="button">
+<div class="flex items-center justify-between">
+<span class="font-label-sm text-label-sm font-bold text-on-surface-variant">01. COLLECT</span>
+<span class="material-symbols-outlined text-[14px] text-primary-container">check_circle</span>
+</div>
+<span class="font-label-md text-label-md font-bold text-on-surface">ODK Mobile Sync</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Offline First SQLite</span>
+</button>
+<!-- Stage 02 -->
+<button class="dag-btn text-left p-2.5 bg-surface-container flex flex-col gap-1 transition-all active:translate-x-0.5 active:translate-y-0.5 shadow-[2px_2px_0px_0px_#000000]" onclick="setPipelineStep(1)" type="button">
+<div class="flex items-center justify-between">
+<span class="font-label-sm text-label-sm font-bold text-on-surface-variant">02. CLEAN</span>
+<span class="material-symbols-outlined text-[14px] text-primary-container">check_circle</span>
+</div>
+<span class="font-label-md text-label-md font-bold text-on-surface">Pandas Sanitizer</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Schema Validation</span>
+</button>
+<!-- Stage 03 (Active Default) -->
+<button class="dag-btn text-left p-2.5 bg-surface-container-high flex flex-col gap-1 transition-all active:translate-x-0.5 active:translate-y-0.5 shadow-[2px_2px_0px_0px_#000000] ring-2 ring-primary-container" onclick="setPipelineStep(2)" type="button">
+<div class="flex items-center justify-between">
+<span class="font-label-sm text-label-sm font-bold text-primary-container">03. ANALYSE</span>
+<span class="w-2 h-2 bg-primary-container animate-pulse"></span>
+</div>
+<span class="font-label-md text-label-md font-bold text-on-surface">DuckDB + OLAP</span>
+<span class="font-label-sm text-label-sm text-primary-container font-semibold">Triage Scoring</span>
+</button>
+<!-- Stage 04 -->
+<button class="dag-btn text-left p-2.5 bg-surface-container flex flex-col gap-1 transition-all active:translate-x-0.5 active:translate-y-0.5 shadow-[2px_2px_0px_0px_#000000]" onclick="setPipelineStep(3)" type="button">
+<div class="flex items-center justify-between">
+<span class="font-label-sm text-label-sm font-bold text-on-surface-variant">04. DECIDE</span>
+<span class="material-symbols-outlined text-[14px] text-on-surface-variant">schedule</span>
+</div>
+<span class="font-label-md text-label-md font-bold text-on-surface">PHC Action Alert</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">SMS/WhatsApp Matrix</span>
+</button>
+</div>
+<!-- Real-time Console Readout Box -->
+<div class="p-2.5 bg-surface-container-high font-label-sm text-label-sm text-on-surface-variant flex flex-col gap-1">
+<div class="text-primary-container font-mono" id="pipeline-status-text">&gt; PIPELINE: ANALYSING CURRENT EPIDEMIOLOGY BLOCK [SARAIYA]</div>
+<div class="text-on-surface font-mono" id="pipeline-detail-text">&gt; High-risk indicators parsed: 18 flag clusters out of 712 telemetry packets.</div>
+<div class="text-secondary-fixed-dim font-mono text-[11px]">&gt; Memory footprint: 18.4MB • 0 missing schema keys</div>
+</div>
+</div>
+</section>
+<!-- 04 // ABOUT / FIELD ETHOS -->
+<section class="w-full flex flex-col mb-space-lg" id="section-about">
+<div class="flex items-center justify-between mb-space-xs">
+<span class="font-label-md text-label-md text-primary-container font-semibold uppercase tracking-wider">/* 03 · ABOUT */</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">FIELD ETHOS</span>
+</div>
+<div class="bg-surface-container p-space-md shadow-[4px_4px_0px_0px_#000000] flex flex-col gap-space-sm">
+<div class="flex items-center gap-space-sm">
+<div class="w-12 h-12 bg-primary-container text-on-primary flex items-center justify-center font-display font-bold text-headline-sm">
+          AP
+        </div>
+<div class="flex flex-col">
+<span class="font-headline-sm text-headline-sm text-on-surface font-bold uppercase">Aditya Pandey</span>
+<span class="font-label-sm text-label-sm text-primary-container uppercase">MCA • Gandhi Fellow (Piramal) • Builder</span>
+</div>
+</div>
+<!-- Field Photo Placeholder -->
+<div class="w-full h-44 bg-surface-container-high shadow-[2px_2px_0px_0px_#000000] overflow-hidden relative">
+<img class="w-full h-full object-cover" data-alt="High contrast atmospheric documentary photo of Aditya Pandey in a rural public health centre in Muzaffarpur Bihar standing with ASHA community health workers holding ruggedized tablet computers. Golden hour harsh natural sunlight stark geometric shadows Obsidian Bauhaus aesthetic cinematic realism." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAGcMQKLLOqIEUBtsoJ8AoLOSHBx5a_faCd8CxOJOgs6znsTlUVv5lo0dhHzpS1ZB6ekobhd9gUFoBClb9CeucsWgH4yVVzc_4if5SaJEoN_ACrjiCQ_A47GEWCSRWK9ZlkbkO-ML48drY7y2XGlM0O_0RWXLrkPXCkRLHjxq26ettnIwYW4a0wghOCzAf2BGFbqSXVfOeoHvShDYLTxyGsWf5iNdt0T9hsCR3WyrCe"/>
+<div class="absolute bottom-2 left-2 bg-surface-container-lowest/90 px-2 py-0.5 font-label-sm text-label-sm text-primary-container font-mono">
+          FIELD NOTE // SARAIYA PHC, BIHAR
+        </div>
+</div>
+<!-- Grounding Quote -->
+<blockquote class="bg-surface-container-low p-space-sm shadow-[2px_2px_0px_0px_#000000] text-on-surface italic font-body-md text-body-md">
+        “I have stood next to an ASHA worker filling an ODK form on a tablet in 38°C heat. Every pipeline I build starts with that moment.”
+      </blockquote>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+        Designing for the extreme margins means zero reliance on infinite bandwidth. Systems must execute locally, reconcile without schema collision, and generate human-executable decisions for sub-district administration.
+      </p>
+<!-- Competency Matrix -->
+<div class="grid grid-cols-2 gap-2 pt-1">
+<div class="bg-surface-container-high p-2 shadow-[2px_2px_0px_0px_#000000]">
+<span class="font-label-sm text-label-sm text-primary-container block font-bold">TELEMETRY &amp; MIS</span>
+<span class="font-body-sm text-body-sm text-on-surface">ODK, PostgreSQL, Fastify, Offline Dexie</span>
+</div>
+<div class="bg-surface-container-high p-2 shadow-[2px_2px_0px_0px_#000000]">
+<span class="font-label-sm text-label-sm text-primary-container block font-bold">ANALYSIS &amp; AI</span>
+<span class="font-body-sm text-body-sm text-on-surface">DuckDB, pgvector, Pandas, Geospatial</span>
+</div>
+</div>
+</div>
+</section>
+<!-- 05 // EXPERIENCE -->
+<section class="w-full flex flex-col mb-space-lg" id="section-experience">
+<div class="flex items-center justify-between mb-space-xs">
+<span class="font-label-md text-label-md text-primary-container font-semibold uppercase tracking-wider">/* 04 · EXPERIENCE */</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">2024 — PRESENT</span>
+</div>
+<div class="flex flex-col gap-space-sm">
+<!-- Role 1: Piramal Foundation -->
+<div class="p-space-md bg-surface-container shadow-[4px_4px_0px_0px_#000000] flex flex-col gap-2">
+<div class="flex items-start justify-between">
+<div>
+<span class="font-label-sm text-label-sm text-primary-container font-bold uppercase">JUL 2025 — PRESENT</span>
+<h3 class="font-headline-sm text-headline-sm font-bold text-on-surface">GAVB Gandhi Fellow</h3>
+<span class="font-label-md text-label-md text-on-surface-variant">Piramal Foundation • Public Health Field Node</span>
+</div>
+<span class="px-2 py-0.5 bg-primary-container text-on-primary font-label-sm text-label-sm font-bold">PRIMARY</span>
+</div>
+<ul class="font-body-sm text-body-sm text-on-surface-variant flex flex-col gap-1.5 list-disc pl-4 mt-1">
+<li>Upskilled &amp; systematized daily telemetry logs for <span class="text-on-surface font-semibold">700+ ASHA workers</span> across rural sub-divisions.</li>
+<li>Engineered 185-hr clinical skills &amp; field diagnostic refresher modules aligned with state protocols.</li>
+<li>Built Python/Pandas triage pipeline ingesting multi-variable maternal danger indicators for Block Medical Officers.</li>
+</ul>
+</div>
+<!-- Role 2: BiharKaSwaad -->
+<div class="p-space-md bg-surface-container shadow-[4px_4px_0px_0px_#000000] flex flex-col gap-2">
+<div class="flex items-start justify-between">
+<div>
+<span class="font-label-sm text-label-sm text-on-surface-variant font-bold uppercase">2024 — 2025</span>
+<h3 class="font-headline-sm text-headline-sm font-bold text-on-surface">Full-Stack Web In-Charge</h3>
+<span class="font-label-md text-label-md text-on-surface-variant">BiharKaSwaad E-Commerce Platform</span>
+</div>
+<span class="px-2 py-0.5 bg-surface-container-high text-on-surface font-label-sm text-label-sm font-bold">COMMERCE</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+          Architected production e-commerce stack for indigenous agricultural items: built Razorpay HMAC SHA-256 webhook reconciliation, live variant inventory, and zero-drop transactional workflows.
+        </p>
+</div>
+<!-- Role 3: Prodigy InfoTech -->
+<div class="p-space-md bg-surface-container shadow-[4px_4px_0px_0px_#000000] flex flex-col gap-2">
+<div class="flex items-start justify-between">
+<div>
+<span class="font-label-sm text-label-sm text-on-surface-variant font-bold uppercase">2024</span>
+<h3 class="font-headline-sm text-headline-sm font-bold text-on-surface">Full-Stack Developer</h3>
+<span class="font-label-md text-label-md text-on-surface-variant">Prodigy InfoTech Remote Eng Lab</span>
+</div>
+<span class="px-2 py-0.5 bg-surface-container-high text-on-surface font-label-sm text-label-sm font-bold">SYSTEMS</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+          Implemented high-concurrency WebSocket client telemetry hubs, dashboard data visualization grids, and responsive modular micro-services.
+        </p>
+</div>
+<!-- Role 4: Auroville FabLab -->
+<div class="p-space-md bg-surface-container shadow-[4px_4px_0px_0px_#000000] flex flex-col gap-2">
+<div class="flex items-start justify-between">
+<div>
+<span class="font-label-sm text-label-sm text-on-surface-variant font-bold uppercase">EARLIER</span>
+<h3 class="font-headline-sm text-headline-sm font-bold text-on-surface">Hardware &amp; Telemetry Intern</h3>
+<span class="font-label-md text-label-md text-on-surface-variant">Auroville FabLab • MinVayu Rural Energy</span>
+</div>
+<span class="px-2 py-0.5 bg-surface-container-high text-on-surface font-label-sm text-label-sm font-bold">HARDWARE</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+          Fabricated IoT telemetry logging prototypes for rural micro-wind turbine setups; conducted CAD rapid prototyping and localized embedded performance analysis.
+        </p>
+</div>
+</div>
+</section>
+<!-- 06 // SELECTED WORK (4 DEPLOYED PROJECTS) -->
+<section class="w-full flex flex-col mb-space-lg" id="section-work">
+<div class="flex items-center justify-between mb-space-xs">
+<span class="font-label-md text-label-md text-primary-container font-semibold uppercase tracking-wider">/* 05 · SELECTED WORK */</span>
+<span class="px-2 py-0.5 bg-surface-container font-label-sm text-label-sm text-primary-container font-bold">DEPLOYED (4)</span>
+</div>
+<div class="flex flex-col gap-space-md">
+<!-- Project 1: Matru Suraksha -->
+<article class="bg-surface-container p-space-md shadow-[4px_4px_0px_0px_#000000] flex flex-col gap-space-sm">
+<div class="w-full h-40 bg-surface-container-high shadow-[2px_2px_0px_0px_#000000] overflow-hidden relative">
+<img class="w-full h-full object-cover" data-alt="High tech minimal dashboard UI wireframe of high-risk maternal healthcare triage system Matru Suraksha displaying yellow telemetry data points, severity cards, and medical graphs on a dark obsidian brutalist background with high visual clarity." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAgCPozT8xFMg1Ve2hKarbKfVcShLfNnqLgQHzXqfpPu7C7pzUB8ITO0gigA9jlYZvN8tP7Hk-aUJe9_MwcMwCKieOf1y8UYl1quVn_Xt-NC5A9Wlj7GNgbJLxW1InsdRbUanlR8IjpFG_2OAvAYVjIO4A-YYa1lCMzJ1IlQuUklQjmNoK6tX0d9Iw198xbIRAkUwayj2w-gnd_vMiP6XSQBpU_j_mIBG0PmAHMfxJu"/>
+<div class="absolute top-2 left-2 px-2 py-0.5 bg-primary-container text-on-primary font-label-sm text-label-sm font-bold">
+            HEALTH TELEMETRY
+          </div>
+</div>
+<div class="flex items-start justify-between">
+<div>
+<h3 class="font-headline-sm text-headline-sm font-bold text-on-surface">Matru Suraksha (मातृ सुरक्षा)</h3>
+<span class="font-label-sm text-label-sm text-primary-container">OFFLINE-FIRST TRIAGE ENGINE</span>
+</div>
+<span class="font-label-sm text-label-sm text-on-surface font-bold bg-secondary-container px-2 py-0.5 text-on-secondary-container">EMERGENCY</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+          High-risk pregnancy triage PWA with an 8-danger-sign clinical matrix. Implements 6-tier SLA escalation to block hospitals. Fully operational without cellular data via IndexedDB syncing.
+        </p>
+<div class="flex flex-wrap gap-1.5 pt-1">
+<span class="px-2 py-0.5 bg-surface-container-high font-label-sm text-label-sm text-on-surface">Dexie.js</span>
+<span class="px-2 py-0.5 bg-surface-container-high font-label-sm text-label-sm text-on-surface">Fastify</span>
+<span class="px-2 py-0.5 bg-surface-container-high font-label-sm text-label-sm text-on-surface">ODK Compat</span>
+<span class="px-2 py-0.5 bg-surface-container-high font-label-sm text-label-sm text-on-surface">Postgres</span>
+</div>
+<div class="flex items-center justify-between pt-2">
+<span class="font-label-sm text-label-sm text-on-surface-variant font-mono">STATUS: FIELD_TRIAL_V2</span>
+<a class="px-3 py-1.5 bg-primary-container text-on-primary font-label-sm text-label-sm font-bold uppercase tracking-wider flex items-center gap-1 shadow-[2px_2px_0px_0px_#000000]" href="#">
+            CASE STUDY <span class="material-symbols-outlined text-[14px]">arrow_forward</span>
+</a>
+</div>
+</article>
+<!-- Project 2: District Hospital Araria Portal -->
+<article class="bg-surface-container p-space-md shadow-[4px_4px_0px_0px_#000000] flex flex-col gap-space-sm">
+<div class="w-full h-40 bg-surface-container-high shadow-[2px_2px_0px_0px_#000000] overflow-hidden relative">
+<img class="w-full h-full object-cover" data-alt="Technical architectural diagram and dark mode interface of hospital queue and blood bank dispatch control monitor with solar yellow status badges and brutalist grid layout." src="https://lh3.googleusercontent.com/aida-public/AB6AXuC4JnOO7hjJ00ZhWGlXuEKaYRv0IKkkRIEKJwRkJKD9BKfiPJW1iMlE_CIA_5-MgxuRmJif6qD4tbnmI8ZJr7ZB3QyPQ97UBvv3egxPB5wpM-oZzDyvvCGsIDGseQQKmLNaJJuRZNqBXVk9rNWpwA2stSr7VyC7RdOGXFF0Y4k8tIXe6cTq_dy-WqI6aELcEw2JMP1JC0yNdDa34TApMoAFpnotV_NlqkTbM3k_9a0b"/>
+<div class="absolute top-2 left-2 px-2 py-0.5 bg-surface-container-lowest text-on-surface font-label-sm text-label-sm font-bold">
+            FACILITY MIS
+          </div>
+</div>
+<div class="flex items-start justify-between">
+<div>
+<h3 class="font-headline-sm text-headline-sm font-bold text-on-surface">District Hospital Araria Portal</h3>
+<span class="font-label-sm text-label-sm text-primary-container">OPD QUEUE &amp; LOGISTICS TELEMETRY</span>
+</div>
+<span class="font-label-sm text-label-sm text-on-surface font-bold bg-surface-container-high px-2 py-0.5">LIVE</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+          Tokenized OPD queue manager, live blood component inventory, and emergency 102/108 ambulance dispatch tracker for high-footfall public facilities.
+        </p>
+<div class="flex flex-wrap gap-1.5 pt-1">
+<span class="px-2 py-0.5 bg-surface-container-high font-label-sm text-label-sm text-on-surface">Next.js</span>
+<span class="px-2 py-0.5 bg-surface-container-high font-label-sm text-label-sm text-on-surface">Node.js</span>
+<span class="px-2 py-0.5 bg-surface-container-high font-label-sm text-label-sm text-on-surface">Redis Cache</span>
+<span class="px-2 py-0.5 bg-surface-container-high font-label-sm text-label-sm text-on-surface">Tailwind</span>
+</div>
+<div class="flex items-center justify-between pt-2">
+<span class="font-label-sm text-label-sm text-on-surface-variant font-mono">THROUGHPUT: 1.2K TOKENS/DAY</span>
+<a class="px-3 py-1.5 bg-surface-container-high text-on-surface font-label-sm text-label-sm font-bold uppercase tracking-wider flex items-center gap-1 shadow-[2px_2px_0px_0px_#000000]" href="#">
+            VIEW ARCH <span class="material-symbols-outlined text-[14px]">arrow_forward</span>
+</a>
+</div>
+</article>
+<!-- Project 3: India Development Data Engine -->
+<article class="bg-surface-container p-space-md shadow-[4px_4px_0px_0px_#000000] flex flex-col gap-space-sm">
+<div class="flex items-start justify-between">
+<div>
+<h3 class="font-headline-sm text-headline-sm font-bold text-on-surface">India Development Data Engine</h3>
+<span class="font-label-sm text-label-sm text-primary-container">DUCKDB OLAP &amp; PGVECTOR EMBEDDINGS</span>
+</div>
+<span class="font-label-sm text-label-sm text-on-surface font-bold bg-primary-container text-on-primary px-2 py-0.5">ANALYTICS</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+          Synthesizes Census 2011, NFHS-5, and sub-district health metrics into lightning-fast vector-indexed search. Enables natural language queries across socioeconomic indicators.
+        </p>
+<div class="flex flex-wrap gap-1.5">
+<span class="px-2 py-0.5 bg-surface-container-high font-label-sm text-label-sm text-on-surface">DuckDB</span>
+<span class="px-2 py-0.5 bg-surface-container-high font-label-sm text-label-sm text-on-surface">pgvector</span>
+<span class="px-2 py-0.5 bg-surface-container-high font-label-sm text-label-sm text-on-surface">Python</span>
+<span class="px-2 py-0.5 bg-surface-container-high font-label-sm text-label-sm text-on-surface">Streamlit</span>
+</div>
+<div class="flex items-center justify-between pt-2">
+<span class="font-label-sm text-label-sm text-on-surface-variant font-mono">RECORDS: 640+ DISTRICTS</span>
+<a class="px-3 py-1.5 bg-surface-container-high text-on-surface font-label-sm text-label-sm font-bold uppercase tracking-wider flex items-center gap-1 shadow-[2px_2px_0px_0px_#000000]" href="#">
+            REPO <span class="material-symbols-outlined text-[14px]">terminal</span>
+</a>
+</div>
+</article>
+<!-- Project 4: BiharKaSwaad E-Commerce -->
+<article class="bg-surface-container p-space-md shadow-[4px_4px_0px_0px_#000000] flex flex-col gap-space-sm">
+<div class="flex items-start justify-between">
+<div>
+<h3 class="font-headline-sm text-headline-sm font-bold text-on-surface">BiharKaSwaad Engine</h3>
+<span class="font-label-sm text-label-sm text-primary-container">GI-TAGGED AGRI COMMERCE</span>
+</div>
+<span class="font-label-sm text-label-sm text-on-surface font-bold bg-surface-container-high px-2 py-0.5">PROD</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+          Complete direct-to-consumer infrastructure powering authentic regional agricultural goods with automated inventory, Razorpay payment capture webhooks, and SMS dispatch telemetry.
+        </p>
+<div class="flex flex-wrap gap-1.5">
+<span class="px-2 py-0.5 bg-surface-container-high font-label-sm text-label-sm text-on-surface">Full-Stack JS</span>
+<span class="px-2 py-0.5 bg-surface-container-high font-label-sm text-label-sm text-on-surface">Razorpay API</span>
+<span class="px-2 py-0.5 bg-surface-container-high font-label-sm text-label-sm text-on-surface">SQL</span>
+</div>
+</article>
+</div>
+</section>
+<!-- 07 // CREDENTIALS & CERTS -->
+<section class="w-full flex flex-col mb-space-lg">
+<div class="flex items-center justify-between mb-space-xs">
+<span class="font-label-md text-label-md text-primary-container font-semibold uppercase tracking-wider">/* 06 · CREDENTIALS &amp; CERTS */</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">ACADEMICS</span>
+</div>
+<div class="bg-surface-container p-space-md shadow-[4px_4px_0px_0px_#000000] flex flex-col gap-space-sm">
+<div class="flex flex-col gap-2">
+<!-- MCA -->
+<div class="p-2.5 bg-surface-container-high shadow-[2px_2px_0px_0px_#000000] flex items-center justify-between">
+<div>
+<div class="font-headline-sm text-headline-sm font-bold text-on-surface">Master of Computer Applications</div>
+<div class="font-label-sm text-label-sm text-on-surface-variant">Pondicherry Central University • 2025</div>
+</div>
+<span class="px-2 py-1 bg-primary-container text-on-primary font-label-sm text-label-sm font-bold">1ST CLASS</span>
+</div>
+<!-- MA Poli Sci -->
+<div class="p-2.5 bg-surface-container-high shadow-[2px_2px_0px_0px_#000000] flex items-center justify-between">
+<div>
+<div class="font-headline-sm text-headline-sm font-bold text-on-surface">M.A. Political Science</div>
+<div class="font-label-sm text-label-sm text-on-surface-variant">Public Policy &amp; State Machinery</div>
+</div>
+<span class="px-2 py-1 bg-surface-container font-label-sm text-label-sm text-on-surface font-semibold">POSTGRAD</span>
+</div>
+<!-- B.Sc Maths -->
+<div class="p-2.5 bg-surface-container-high shadow-[2px_2px_0px_0px_#000000] flex items-center justify-between">
+<div>
+<div class="font-headline-sm text-headline-sm font-bold text-on-surface">B.Sc. Mathematics &amp; Statistics</div>
+<div class="font-label-sm text-label-sm text-on-surface-variant">Foundational Quantitative Reasoning</div>
+</div>
+<span class="px-2 py-1 bg-surface-container font-label-sm text-label-sm text-on-surface font-semibold">GRAD</span>
+</div>
+</div>
+<!-- Professional Badges -->
+<div class="pt-2">
+<span class="font-label-sm text-label-sm text-primary-container font-bold block uppercase mb-1.5">INDUSTRY CERTIFICATIONS</span>
+<div class="grid grid-cols-1 gap-1.5 font-label-sm text-label-sm">
+<div class="px-2.5 py-1.5 bg-surface-container-lowest text-on-surface flex items-center justify-between shadow-[2px_2px_0px_0px_#000000]">
+<span class="font-medium">• IBM Data Science Professional</span>
+<span class="text-primary-container font-mono">VERIFIED</span>
+</div>
+<div class="px-2.5 py-1.5 bg-surface-container-lowest text-on-surface flex items-center justify-between shadow-[2px_2px_0px_0px_#000000]">
+<span class="font-medium">• NPTEL: Python for Data Science</span>
+<span class="text-primary-container font-mono">ELITE</span>
+</div>
+<div class="px-2.5 py-1.5 bg-surface-container-lowest text-on-surface flex items-center justify-between shadow-[2px_2px_0px_0px_#000000]">
+<span class="font-medium">• NPTEL: Data Mining in R</span>
+<span class="text-primary-container font-mono">COMPLETED</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- 08 // CONTACT NODE -->
+<section class="w-full flex flex-col mb-4" id="section-contact">
+<div class="flex items-center justify-between mb-space-xs">
+<span class="font-label-md text-label-md text-primary-container font-semibold uppercase tracking-wider">/* 07 · CONTACT NODE */</span>
+<span class="font-label-sm text-label-sm text-secondary-container font-bold">OPEN PROTOCOL</span>
+</div>
+<div class="bg-surface-container p-space-md shadow-[4px_4px_0px_0px_#000000] flex flex-col gap-space-sm">
+<h3 class="font-headline-lg-mobile text-headline-lg-mobile font-bold text-on-surface uppercase">
+        Let's deploy impactful code.
+      </h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+        Available for production data pipeline architecture, public health telemetry engineering, and high-stakes full-stack systems.
+      </p>
+<!-- Direct Reach Out Buttons -->
+<div class="flex flex-col gap-2 pt-1">
+<a class="p-3 bg-primary-container text-on-primary flex items-center justify-between font-label-md text-label-md font-bold uppercase tracking-wider shadow-[3px_3px_0px_0px_#000000] active:translate-x-0.5 active:translate-y-0.5" href="mailto:adityapandey.adu@gmail.com">
+<span class="flex items-center gap-2">
+<span class="material-symbols-outlined text-[18px]">mail</span>
+            adityapandey.adu@gmail.com
+          </span>
+<span class="material-symbols-outlined text-[16px]">arrow_outward</span>
+</a>
+<a class="p-3 bg-surface-container-high text-on-surface flex items-center justify-between font-label-md text-label-md font-semibold tracking-wider shadow-[3px_3px_0px_0px_#000000] active:translate-x-0.5 active:translate-y-0.5" href="tel:+918601862114">
+<span class="flex items-center gap-2 font-mono">
+<span class="material-symbols-outlined text-[18px]">call</span>
+            +91 86018 62114
+          </span>
+<span class="font-label-sm text-label-sm text-primary-container">VOICE // WA</span>
+</a>
+</div>
+<!-- Quick Social Matrix -->
+<div class="grid grid-cols-2 gap-2 pt-1">
+<a class="p-2.5 bg-surface-container-high text-on-surface flex items-center justify-center gap-1.5 font-label-sm text-label-sm font-bold uppercase shadow-[2px_2px_0px_0px_#000000]" href="https://github.com" rel="noopener noreferrer" target="_blank">
+<span class="material-symbols-outlined text-[16px]">code</span>
+          GITHUB
+        </a>
+<a class="p-2.5 bg-surface-container-high text-on-surface flex items-center justify-center gap-1.5 font-label-sm text-label-sm font-bold uppercase shadow-[2px_2px_0px_0px_#000000]" href="https://linkedin.com" rel="noopener noreferrer" target="_blank">
+<span class="material-symbols-outlined text-[16px]">hub</span>
+          LINKEDIN
+        </a>
+</div>
+<div class="text-center pt-2 font-label-sm text-label-sm text-on-surface-variant font-mono">
+        ADITYA PANDEY • OBSIDIAN BAUHAUS CORE • 2025
+      </div>
+</div>
+</section>
+<!-- 09 // TACTILE FLOATING QUICK-JUMP ACTION -->
+<aside class="fixed bottom-20 right-4 z-40">
+<a aria-label="Jump to top of portfolio" class="w-12 h-12 bg-primary-container text-on-primary flex items-center justify-center shadow-[4px_4px_0px_0px_#000000] active:translate-x-1 active:translate-y-1 transition-transform" href="#section-hero">
+<span class="material-symbols-outlined text-[24px] font-bold">bolt</span>
+</a>
+</aside>
+</div>
+<script>
+  (function() {
+    const pipelineData = [
+      {
+        status: "> STAGE 01: ODK DATA SYNC & MOBILE INGESTION [SARAIYA SECTOR]",
+        detail: "> 712 frontline tablets pushing offline-first XML records. SQLite cached.",
+        ringClass: "ring-2 ring-primary-container bg-surface-container-high"
+      },
+      {
+        status: "> STAGE 02: PANDAS PURIFICATION & SANITIZATION PASS",
+        detail: "> Missing blood pressure and LMP attributes scrubbed. Null handling: STRICT.",
+        ringClass: "ring-2 ring-primary-container bg-surface-container-high"
+      },
+      {
+        status: "> STAGE 03: TRIAGE SCORING & DUCKDB OLAP COMPUTE",
+        detail: "> High-risk indicators parsed: 18 flag clusters out of 712 telemetry packets.",
+        ringClass: "ring-2 ring-primary-container bg-surface-container-high"
+      },
+      {
+        status: "> STAGE 04: DISPATCH AUTOMATION & MEDICAL OFFICER ALERT",
+        detail: "> Triggering priority SMS triage payload to Saraiya Primary Health Centre.",
+        ringClass: "ring-2 ring-primary-container bg-surface-container-high"
+      }
+    ];
+
+    window.setPipelineStep = function(index) {
+      const statusEl = document.getElementById('pipeline-status-text');
+      const detailEl = document.getElementById('pipeline-detail-text');
+      const buttons = document.querySelectorAll('#dag-steps-container .dag-btn');
+
+      if (!statusEl || !detailEl) return;
+
+      statusEl.textContent = pipelineData[index].status;
+      detailEl.textContent = pipelineData[index].detail;
+
+      buttons.forEach((btn, i) => {
+        if (i === index) {
+          btn.classList.add('ring-2', 'ring-primary-container', 'bg-surface-container-high');
+          btn.classList.remove('bg-surface-container');
+        } else {
+          btn.classList.remove('ring-2', 'ring-primary-container', 'bg-surface-container-high');
+          btn.classList.add('bg-surface-container');
+        }
+      });
+    };
+  })();
+</script></main><nav class="fixed bottom-0 w-full z-50 pb-safe bg-surface/90 backdrop-blur-xl shadow-[0_-1px_8px_rgba(0,0,0,0.04)]" data-active-classes="bg-primary-container text-on-primary font-bold"><div class="flex items-center justify-between h-16 px-space-xs"><a aria-current="page" class="flex flex-col items-center justify-center flex-1 h-full min-w-[44px] min-h-[44px] py-1 transition-colors bg-primary-container text-on-primary font-bold" data-path="home" href="#"><span class="material-symbols-outlined text-[20px]">home</span><span class="font-label-sm text-label-sm uppercase tracking-wider mt-0.5">Home</span></a><a class="flex flex-col items-center justify-center flex-1 h-full min-w-[44px] min-h-[44px] py-1 text-on-surface-variant hover:text-on-surface transition-colors" data-path="work" href="#"><span class="material-symbols-outlined text-[20px]">terminal</span><span class="font-label-sm text-label-sm uppercase tracking-wider mt-0.5">Work</span></a><a class="flex flex-col items-center justify-center flex-1 h-full min-w-[44px] min-h-[44px] py-1 text-on-surface-variant hover:text-on-surface transition-colors" data-path="health" href="#"><span class="material-symbols-outlined text-[20px]">ecg_heart</span><span class="font-label-sm text-label-sm uppercase tracking-wider mt-0.5">Health</span></a><a class="flex flex-col items-center justify-center flex-1 h-full min-w-[44px] min-h-[44px] py-1 text-on-surface-variant hover:text-on-surface transition-colors" data-path="ask-ai" href="#"><span class="material-symbols-outlined text-[20px]">smart_toy</span><span class="font-label-sm text-label-sm uppercase tracking-wider mt-0.5">Ask AI</span></a><a class="flex flex-col items-center justify-center flex-1 h-full min-w-[44px] min-h-[44px] py-1 text-on-surface-variant hover:text-on-surface transition-colors" data-path="contact" href="#"><span class="material-symbols-outlined text-[20px]">alternate_email</span><span class="font-label-sm text-label-sm uppercase tracking-wider mt-0.5">Contact</span></a></div></nav></body></html>
