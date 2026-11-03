@@ -98,15 +98,15 @@ export function Pipeline() {
         className={cn(
           'border-b-4 border-primary dark:border-white',
           'bg-surface dark:bg-surface-dark',
-          'pb-12 lg:pb-20',
+          'pb-8 lg:pb-20',
         )}
       >
-        <div className="mb-10 lg:mb-14">
+        <div className="mb-6 lg:mb-14">
           <span className="eyebrow dark:text-ink-dark">02 · THE PIPELINE</span>
-          <h2 className="font-display mt-3 text-[22px] font-bold uppercase tracking-wider leading-[1.12] text-ink dark:text-ink-dark">
+          <h2 className="font-display mt-3 text-[20px] sm:text-[22px] font-bold uppercase tracking-wider leading-[1.12] text-ink dark:text-ink-dark">
             Raw data flows through four stages — never more
           </h2>
-          <p className="section-sub mt-4 text-ink-2 dark:text-gray-300">
+          <p className="section-sub mt-3 text-sm text-ink-2 dark:text-gray-300">
             Every project I touch follows the same pipeline. It keeps the work honest: collect only
             what matters, clean what’s broken, prove the insight, then act on it.
           </p>
@@ -114,7 +114,7 @@ export function Pipeline() {
 
         <div
           className={cn(
-            'relative grid grid-cols-1 gap-4 md:grid-cols-2 md:gap-6 lg:grid-cols-4 lg:gap-8',
+            'relative grid grid-cols-1 gap-3 sm:gap-4 md:grid-cols-2 md:gap-6 lg:grid-cols-4 lg:gap-8',
           )}
         >
           {/* Vertical connector line for the stacked mobile layout — visible only in the gaps between cards. */}
@@ -126,6 +126,7 @@ export function Pipeline() {
           {STAGES.map((stage, i) => (
             <div key={stage.num} className="relative">
               <Card
+                padding="p-4 sm:p-6"
                 className={cn(
                   // Thick 2px base border with a 4px accent left border per stage.
                   `border-l-4 ${stage.borderLight} dark:${stage.borderDark}`,
