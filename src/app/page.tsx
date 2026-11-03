@@ -1,5 +1,6 @@
 import { Hero } from '@/components/sections/Hero';
-import { PipelineSection } from '@/components/sections/PipelineSection';
+import { Pipeline } from '@/components/sections/Pipeline';
+import { Capabilities } from '@/components/sections/Capabilities';
 import { About } from '@/components/sections/About';
 import { Experience } from '@/components/sections/Experience';
 import { Skills } from '@/components/sections/Skills';
@@ -15,7 +16,8 @@ export default function HomePage() {
     <>
 
       <div className="snap-section"><Hero /></div>
-      <div className="snap-section"><PipelineSection /></div>
+      <div className="snap-section"><Pipeline /></div>
+      <div className="snap-section"><Capabilities /></div>
       <div className="snap-section"><About /></div>
       <div className="snap-section snap-section--tall"><Experience /></div>
       <div className="snap-section"><Skills /></div>
