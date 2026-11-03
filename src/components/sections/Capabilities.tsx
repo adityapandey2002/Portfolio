@@ -83,26 +83,27 @@ export function Capabilities() {
         className={cn(
           'border-b-4 border-primary dark:border-white',
           'bg-surface dark:bg-surface-dark',
-          'pb-12 lg:pb-20',
+          'pb-8 lg:pb-20',
         )}
       >
-        <div className="mb-10 lg:mb-14">
-          <span className="font-mono text-[11px] font-bold uppercase tracking-wider text-ink dark:text-ink-dark">
+        <div className="mb-6 lg:mb-14">
+          <span className="font-mono text-[10px] font-bold uppercase tracking-wider text-ink dark:text-ink-dark">
             05 · CAPABILITIES
           </span>
-          <h2 className="font-display mt-3 text-[22px] font-bold uppercase tracking-wider leading-[1.12] text-ink dark:text-ink-dark">
+          <h2 className="font-display mt-3 text-[20px] sm:text-[22px] font-bold uppercase tracking-wider leading-[1.12] text-ink dark:text-ink-dark">
             Four lanes, one pipeline
           </h2>
-          <p className="mt-4 text-sm font-sans text-ink-2 dark:text-gray-300 leading-relaxed">
+          <p className="mt-3 text-sm font-sans text-ink-2 dark:text-gray-300 leading-relaxed">
             Data science, web development, automation and community — the skills that move a project
             from field to production.
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8">
+        <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-8">
           {CAPABILITIES.map((cap) => (
             <Card
               key={cap.num}
+              padding="p-4 sm:p-5"
               className={cn(
                 'group flex flex-col h-full',
                 // Base shadow: hard 4px offset, white in dark so it reads on dark surfaces.
@@ -112,13 +113,12 @@ export function Capabilities() {
                 'active:translate-[4px_4px] active:shadow-none',
                 'transition-all duration-100',
               )}
-              padding="p-5"
             >
               <div className="flex flex-col h-full">
-                <div className="mb-3">
+                <div className="mb-2">
                   <span
                     className={cn(
-                      'font-mono text-[10px] font-bold uppercase tracking-wider border border-current px-2 py-0.5 shrink-0',
+                      'font-mono text-[9px] sm:text-[10px] font-bold uppercase tracking-wider border border-current px-2 py-0.5 shrink-0',
                       cap.accentText,
                     )}
                   >
@@ -126,22 +126,22 @@ export function Capabilities() {
                   </span>
                 </div>
 
-                <h3 className="font-display mt-1 mb-3 text-[15px] font-bold uppercase tracking-wider leading-none text-ink dark:text-ink-dark">
+                <h3 className="font-display mt-1 mb-2 text-[14px] sm:text-[15px] font-bold uppercase tracking-wider leading-none text-ink dark:text-ink-dark">
                   {cap.name}
                 </h3>
 
-                <p className="mt-2 mb-auto font-sans text-[11px] leading-relaxed text-ink-3 dark:text-gray-400">
+                <p className="mt-1 mb-auto font-sans text-xs sm:text-[11px] leading-relaxed text-ink-3 dark:text-gray-400">
                   {cap.skills.join(', ')}
                 </p>
 
-                <div className="mt-auto pt-4">
-                  <div className="relative w-full h-10 rounded-0 border-2 border-ink-2/40 dark:border-white/30 overflow-hidden">
+                <div className="mt-auto pt-3">
+                  <div className="relative w-full h-8 rounded-0 border-2 border-ink-2/40 dark:border-white/30 overflow-hidden">
                     <div
                       className={cn('absolute left-0 top-0 h-full', cap.accentFill)}
                       style={{ width: `${cap.pct}%` }}
                     />
                     <span
-                      className="absolute top-1/2 -translate-y-1/2 -translate-x-1/2 z-10 font-mono text-[10px] font-bold text-ink dark:text-ink-dark"
+                      className="absolute top-1/2 -translate-y-1/2 -translate-x-1/2 z-10 font-mono text-[9px] sm:text-[10px] font-bold text-ink dark:text-ink-dark"
                       style={{ left: `${cap.pct}%` }}
                     >
                       {cap.pct}%
