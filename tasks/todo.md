@@ -41,7 +41,7 @@
 - [ ] Contact form submits to Supabase
 
 ## Phase 7: Content Review & Subtraction Decision
-- [ ] Task 17: Content review — decide what to keep/subtract (user sign-off)
+- [x] Task 17: Content review — remove static HTML, unused API routes, move design/ to docs/ — DONE
 
 ## Phase 8: Deployment
 - [ ] Task 18: Build, test, deploy to Vercel (preview → merge to master)
