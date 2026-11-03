@@ -5,18 +5,19 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { Menu, X } from 'lucide-react';
 import { profile } from '@/lib/data/profile';
-import { ThemeToggle } from '@/components/ui/ThemeToggle';
+import { useTheme } from '@/components/providers/ThemeProvider';
 
 const LINKS = [
   { href: '/', label: 'Home' },
-  { href: '/work', label: 'Work' },
-  { href: '/health', label: 'Health' },
-  { href: '/ask', label: 'Ask AI' },
+  { href: '/work', label: 'Work & Systems' },
+  { href: '/health', label: 'Health Impact' },
+  { href: '/ask', label: 'Interactive AI' },
   { href: '/#contact', label: 'Contact' },
 ];
 
 export function Nav() {
   const pathname = usePathname();
+  const { theme, toggleTheme } = useTheme();
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
 
@@ -34,33 +35,39 @@ export function Nav() {
     return pathname.startsWith(path) && path !== '/';
   };
 
+  const isDark = theme === 'dark';
+
   return (
-    <header
-      className={`fixed inset-x-0 top-0 z-[100] transition-all duration-300 ${
-        scrolled
-          ? 'bg-surface dark:bg-surface-dark border-b-4 border-primary dark:border-white shadow-[4px_4px_0_#000000] dark:shadow-[4px_4px_0_#ffffff]'
-          : 'bg-transparent'
-      }`}
-    >
-      <div className="mx-auto flex max-w-7xl items-center justify-between px-3 sm:px-6 py-2 sm:py-3">
-        {/* Logo */}
-        <Link
-          href="/"
-          className="flex items-center gap-2 border-2 border-primary dark:border-white bg-primary dark:bg-primary-yellow px-2.5 py-1.5 font-display text-xs font-bold uppercase tracking-wider text-on-primary dark:text-on-primary shadow-[2px_2px_0_#000000] dark:shadow-[2px_2px_0_#ffffff] transition-all hover:translate-x-0.5 hover:translate-y-0.5 hover:shadow-none"
-        >
-          {profile.initials}
-        </Link>
+    <header className="fixed top-0 left-0 right-0 z-50 bg-surface dark:bg-surface-dark border-b-2 border-primary dark:border-white">
+      <div className="h-20 w-full px-6 lg:px-12 flex items-center justify-between">
+        {/* Left: AP logo + name */}
+        <div className="flex items-center gap-6">
+          <Link
+            href="/"
+            className="flex items-center justify-center w-12 h-12 bg-primary text-on-primary font-headline font-bold text-xl tracking-tighter hover:bg-primary-container hover:text-on-primary-container transition-colors border-2 border-primary"
+          >
+            {profile.initials}
+          </Link>
+          <div className="hidden sm:flex flex-col">
+            <span className="font-headline font-bold text-sm tracking-widest uppercase text-on-surface dark:text-ink-dark">
+              Aditya Pandey
+            </span>
+            <span className="font-headline text-xs tracking-wider text-on-surface-variant dark:text-ink-dark/70 uppercase">
+              Systems & Health AI
+            </span>
+          </div>
+        </div>
 
         {/* Desktop nav links */}
-        <nav className="hidden items-center gap-1 md:flex">
+        <nav className="hidden xl:flex items-center gap-2">
           {LINKS.map((l) => (
             <Link
               key={l.href}
               href={l.href}
-              className={`border-2 px-3 py-1.5 font-mono text-[10px] font-bold uppercase tracking-wider transition-all ${
+              className={`px-4 py-2 text-xs font-headline font-semibold uppercase tracking-wider transition-colors ${
                 isActive(l.href)
-                  ? 'border-primary bg-primary text-on-primary shadow-[2px_2px_0_#000000] dark:border-white dark:bg-white dark:text-primary dark:shadow-[2px_2px_0_#ffffff]'
-                  : 'border-transparent text-gray-500 dark:text-gray-400 hover:border-primary dark:hover:border-white hover:text-primary dark:hover:text-white'
+                  ? 'bg-primary-container text-on-primary-container font-bold border-2 border-primary'
+                  : 'text-on-surface-variant dark:text-ink-dark/70 hover:text-on-surface dark:hover:text-ink-dark hover:bg-surface-container dark:hover:bg-surface-l1'
               }`}
             >
               {l.label}
@@ -69,12 +76,38 @@ export function Nav() {
         </nav>
 
         {/* Right actions */}
-        <div className="flex items-center gap-2">
-          <ThemeToggle />
+        <div className="flex items-center gap-3">
+          <a
+            href="#contact"
+            className="hidden sm:inline-flex items-center justify-center px-4 py-2.5 bg-primary-container text-on-primary-container font-headline font-bold text-xs uppercase tracking-wider border-2 border-primary hover:bg-primary hover:text-on-primary transition-all shadow-[3px_3px_0px_#1a1a1a]"
+          >
+            Engage Fellow
+          </a>
+          <a
+            href="/resume"
+            className="hidden md:inline-flex items-center justify-center px-4 py-2.5 bg-surface text-on-surface font-headline font-bold text-xs uppercase tracking-wider border-2 border-primary hover:bg-secondary hover:text-on-secondary hover:border-secondary transition-all shadow-[3px_3px_0px_#1a1a1a]"
+          >
+            Resume
+          </a>
+          <button
+            onClick={toggleTheme}
+            className="inline-flex items-center gap-1.5 px-3 py-2 bg-surface text-on-surface font-headline font-bold text-xs uppercase tracking-wider border-2 border-primary hover:bg-primary-container hover:text-on-primary-container transition-all shadow-[3px_3px_0px_#1a1a1a] cursor-pointer"
+            title="Toggle Dark / Light Mode"
+          >
+            <span className="material-symbols-outlined text-[16px]">
+              {isDark ? 'dark_mode' : 'light_mode'}
+            </span>
+            <span className="font-mono text-[11px]">
+              THEME: {isDark ? 'DARK' : 'LIGHT'}
+            </span>
+          </button>
+          <div className="w-8 h-8 rounded-full bg-primary flex items-center justify-center border-2 border-primary">
+            <span className="material-symbols-outlined text-on-primary text-[18px]">person</span>
+          </div>
 
           {/* Mobile hamburger */}
           <button
-            className="flex h-8 w-8 items-center justify-center border-2 border-primary dark:border-white text-black dark:text-white md:hidden"
+            className="inline-flex h-8 w-8 items-center justify-center border-2 border-primary text-on-surface-variant md:hidden"
             onClick={() => setOpen((o) => !o)}
             aria-label="Menu"
           >
@@ -85,15 +118,15 @@ export function Nav() {
 
       {/* Mobile dropdown */}
       {open && (
-        <div className="mx-3 mb-2 border-2 border-primary dark:border-white bg-surface dark:bg-surface-dark shadow-[4px_4px_0_#000000] dark:shadow-[4px_4px_0_#ffffff] md:hidden">
+        <div className="mx-6 mb-4 border-2 border-primary bg-surface shadow-[4px_4px_0px_#1a1a1a] md:hidden">
           {LINKS.map((l) => (
             <Link
               key={l.href}
               href={l.href}
-              className={`block border-b border-primary dark:border-white px-4 py-2.5 font-mono text-[10px] font-bold uppercase tracking-wider transition-colors ${
+              className={`block border-b border-primary px-4 py-2.5 text-[13px] font-headline font-semibold uppercase tracking-wider transition-colors ${
                 isActive(l.href)
-                  ? 'bg-primary text-on-primary dark:bg-white dark:text-primary'
-                  : 'text-gray-500 dark:text-gray-400 hover:bg-surface-container dark:hover:bg-surface-l1 hover:text-black dark:hover:text-white'
+                  ? 'bg-primary-container text-on-primary-container'
+                  : 'text-on-surface-variant hover:bg-surface-container hover:text-on-surface'
               }`}
             >
               {l.label}

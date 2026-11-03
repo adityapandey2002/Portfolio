@@ -3,7 +3,6 @@ import { Inter, JetBrains_Mono, Lora, Outfit, Space_Grotesk } from 'next/font/go
 import { Providers } from '@/components/providers/Providers';
 import { ThemeProvider } from '@/components/providers/ThemeProvider';
 import { ThemeToggle } from '@/components/ui/ThemeToggle';
-import { MobileHeader } from '@/components/ui/MobileHeader';
 import { AmbientBackground } from '@/components/three/AmbientBackground';
 import './globals.css';
 
@@ -87,9 +86,12 @@ export const viewport: Viewport = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en" data-scroll-behavior="smooth" suppressHydrationWarning>
-      <body className={`${inter.variable} ${spaceGrotesk.variable} ${jetbrainsMono.variable} ${outfit.variable} ${jetbrains.variable} ${lora.variable} bg-surface dark:bg-surface-dark font-sans text-primary dark:text-ink-dark antialiased pt-[4rem] lg:pt-0`}>
+      <head>
+        <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" rel="stylesheet" />
+        <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet" />
+      </head>
+      <body className={`${inter.variable} ${spaceGrotesk.variable} ${jetbrainsMono.variable} ${outfit.variable} ${jetbrains.variable} ${lora.variable} bg-surface dark:bg-surface-dark font-sans text-primary dark:text-ink-dark antialiased pt-16 lg:pt-20`}>
         <ThemeProvider>
-          <MobileHeader />
           {/* V2 theme toggle lives in the header area of the shell. */}
           <AmbientBackground />
           <Providers>{children}</Providers>
