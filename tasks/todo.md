@@ -31,9 +31,9 @@
 - [x] Task 13: About/Experience/Education/BeyondField/AiSection/Contact/Footer/Skills redesign — DONE
 
 ## Phase 6: Effects & Polish
-- [ ] Task 14: Framer Motion + scroll effects
-- [ ] Task 15: three.js ambient effects
-- [ ] Task 16: Mobile polish & cross-browser QA
+- [x] Task 14: Framer Motion + scroll effects — DONE (ScrollChaining, ScrollProgress integrated in layout)
+- [x] Task 15: three.js ambient effects — DONE (AmbientBackground in layout)
+- [ ] Task 16: Mobile polish & cross-browser QA — pending
 
 ## Checkpoint: All Pages Complete
 - [ ] All 5 pages render in light + dark + mobile
