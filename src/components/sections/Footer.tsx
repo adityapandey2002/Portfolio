@@ -7,7 +7,7 @@ import { Section } from '@/components/ui/Section';
 
 export function Footer() {
   return (
-    <footer className="w-full bg-surface-container dark:bg-surface-l1 border-t-2 border-primary dark:border-white">
+    <footer className="w-full bg-surface dark:bg-surface-l1 border-t-2 border-primary dark:border-white">
       <Section className="py-12">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8 pb-12 border-b-2 border-primary dark:border-white">
           {/* Column 1: AP logo + description */}
@@ -76,3 +76,4 @@ export function Footer() {
     </footer>
   );
 }
+

@@ -178,11 +178,11 @@ export function AskTerminal() {
               <span className="font-bold text-on-surface dark:text-ink-dark">
                 AI Assistant Online
               </span>
-              <span className="text-ink-3 dark:text-ink-4">
+              <span className="text-on-surface-variant dark:text-ink-dark/60">
                 — Grounded in verified portfolio &amp; field records
               </span>
             </div>
-            <div className="flex items-center gap-3 text-[11px] text-ink-3 dark:text-ink-4 hidden md:flex">
+            <div className="flex items-center gap-3 text-[11px] text-on-surface-variant dark:text-ink-dark/60 hidden md:flex">
               <span>Llama-3-70B via Groq</span>
               <span className="mx-1">·</span>
               <span>Zero-Hallucination Guardrails</span>
@@ -194,7 +194,7 @@ export function AskTerminal() {
             {/* Quick prompt chips */}
             <div className="px-4 py-4 border-b-2 primary dark:border-white bg-surface dark:bg-surface-dark">
               <div className="flex items-center justify-between mb-3">
-                <span className="font-mono text-[11px] font-bold uppercase tracking-wider text-ink-3 dark:text-ink-4 flex items-center gap-1.5">
+                <span className="font-mono text-[11px] font-bold uppercase tracking-wider text-on-surface-variant dark:text-ink-dark/60 flex items-center gap-1.5">
                   💡 Suggested Questions
                 </span>
                 <span className="text-[11px] text-on-surface-variant dark:text-ink-dark/40/60 hidden sm:inline">
@@ -219,7 +219,7 @@ export function AskTerminal() {
             <form onSubmit={handleSubmit} className="px-4 py-4 border-b-2 primary dark:border-white bg-surface dark:bg-surface-dark">
               <div className="flex flex-col sm:flex-row gap-2">
                 <div className="relative flex-1 flex items-center border-2 border-primary dark:border-white shadow-[2px_2px_0_#000000]">
-                  <span className="text-ink-3 dark:text-ink-4 mx-1.5">🔍</span>
+                  <span className="text-on-surface-variant dark:text-ink-dark/60 mx-1.5">🔍</span>
                   <input
                     ref={inputRef}
                     value={query}
@@ -230,7 +230,7 @@ export function AskTerminal() {
                       }
                     }}
                     placeholder="Ask anything about Aditya&apos;s projects, clinical tools, or research…"
-                    className="w-full bg-transparent border-0 outline-none text-[13px] font-mono text-on-surface dark:text-ink-dark py-2.5 px-1 placeholder:text-ink-4 dark:placeholder:text-ink-3"
+                    className="w-full bg-transparent border-0 outline-none text-[13px] font-mono text-on-surface dark:text-ink-dark py-2.5 px-1 placeholder:text-on-surface-variant dark:placeholder:text-ink-dark/60"
                     autoComplete="off"
                     spellCheck={false}
                   />
@@ -258,7 +258,7 @@ export function AskTerminal() {
               <div className="px-4 pb-4 border-b-2 primary dark:border-white bg-surface dark:bg-surface-dark">
                 <div className="flex items-start justify-between gap-4">
                   <div className="space-y-1">
-                    <span className="font-mono text-[11px] font-bold uppercase tracking-wider text-ink-3 dark:text-ink-4 block">
+                    <span className="font-mono text-[11px] font-bold uppercase tracking-wider text-on-surface-variant dark:text-ink-dark/60 block">
                       Current Question
                     </span>
                     <h2 className="font-display font-bold text-base sm:text-lg text-on-surface dark:text-ink-dark leading-snug">
@@ -314,7 +314,7 @@ export function AskTerminal() {
               )}
 
               {error && (
-                <div className="border-2 border-accent-red dark:border-vermilion bg-surface-container dark:bg-surface-l1 p-4 font-mono text-xs text-accent-red dark:text-vermilion leading-relaxed">
+                <div className="border-2 border-accent-red dark:border-vermilion bg-surface dark:bg-surface-l1 p-4 font-mono text-xs text-accent-red dark:text-vermilion leading-relaxed">
                   {error}
                 </div>
               )}
@@ -337,3 +337,4 @@ export function AskTerminal() {
     </>
   );
 }
+

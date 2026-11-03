@@ -46,7 +46,7 @@ const COMPETENCIES = [
 
 export function Pipeline() {
   return (
-    <section id="pipeline" className="border-b-4 border-primary dark:border-white bg-surface-container-high dark:bg-surface-l1">
+    <section id="pipeline" className="border-b-4 border-primary dark:border-white bg-surface dark:bg-surface-l1">
       <Section className="py-12">
         <div className="mb-8">
           <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 border-b-2 border-primary dark:border-white pb-4">
@@ -75,7 +75,7 @@ export function Pipeline() {
           {STAGES.map((stage) => (
             <div
               key={stage.num}
-              className="bg-surface-container-lowest dark:bg-surface-l2 border-3 border-primary dark:border-white p-6 shadow-[5px_5px_0px_#1a1a1a] dark:shadow-[5px_5px_0px_#ffffff] flex flex-col justify-between"
+              className="bg-surface dark:bg-surface-l1 border-3 border-primary dark:border-white p-6 shadow-[5px_5px_0px_#1a1a1a] dark:shadow-[5px_5px_0px_#ffffff] flex flex-col justify-between"
             >
               <div>
                 <div className={`w-10 h-10 ${stage.accentBg} font-headline font-bold text-lg flex items-center justify-center border-2 border-primary dark:border-white mb-4`}>
@@ -93,10 +93,10 @@ export function Pipeline() {
         </div>
 
         {/* Competency Percentage Meters */}
-        <div className="border-3 border-primary dark:border-white bg-surface-container dark:bg-surface-l1 p-6 sm:p-8 shadow-[6px_6px_0px_#1a1a1a] dark:shadow-[6px_6px_0px_#ffffff] space-y-6">
+        <div className="border-3 border-primary dark:border-white bg-surface dark:bg-surface-l1 p-6 sm:p-8 shadow-[6px_6px_0px_#1a1a1a] dark:shadow-[6px_6px_0px_#ffffff] space-y-6">
           <div className="flex items-center justify-between border-b-2 border-primary dark:border-white pb-3">
             <h3 className="font-headline text-xl font-bold uppercase text-on-surface dark:text-ink-dark">Engineering & Domain Competency Index</h3>
-            <span className="font-mono text-xs font-bold bg-surface-container-lowest dark:bg-surface-l2 px-2 py-1 border border-primary dark:border-white text-on-surface dark:text-ink-dark">
+            <span className="font-mono text-xs font-bold bg-surface dark:bg-surface-l1 px-2 py-1 border border-primary dark:border-white text-on-surface dark:text-ink-dark">
               BENCHMARK 2025
             </span>
           </div>
@@ -107,7 +107,7 @@ export function Pipeline() {
                   <span className="text-on-surface dark:text-ink-dark">{comp.name}</span>
                   <span className="font-mono text-on-surface dark:text-ink-dark">{comp.pct}%</span>
                 </div>
-                <div className="w-full bg-surface-container-lowest dark:bg-surface-l2 h-6 border-2 border-primary dark:border-white p-0.5">
+                <div className="w-full bg-surface dark:bg-surface-l1 h-6 border-2 border-primary dark:border-white p-0.5">
                   <div className={`${comp.color} h-full`} style={{ width: `${comp.pct}%` }} />
                 </div>
                 <span className="text-[11px] font-mono text-on-surface-variant dark:text-ink-dark/70">{comp.desc}</span>
@@ -119,3 +119,4 @@ export function Pipeline() {
     </section>
   );
 }
+

@@ -102,3 +102,4 @@ export function AiTerminal() {
     </section>
   );
 }
+

@@ -87,13 +87,13 @@ export function Capabilities() {
         )}
       >
         <div className="mb-6 lg:mb-14">
-          <span className="font-mono text-[10px] font-bold uppercase tracking-wider text-ink dark:text-ink-dark">
+          <span className="font-mono text-[10px] font-bold uppercase tracking-wider text-on-surface dark:text-ink-dark">
             05 · CAPABILITIES
           </span>
-          <h2 className="font-display mt-3 text-[20px] sm:text-[22px] font-bold uppercase tracking-wider leading-[1.12] text-ink dark:text-ink-dark">
+          <h2 className="font-display mt-3 text-[20px] sm:text-[22px] font-bold uppercase tracking-wider leading-[1.12] text-on-surface dark:text-ink-dark">
             Four lanes, one pipeline
           </h2>
-          <p className="mt-3 text-sm font-sans text-ink-2 dark:text-gray-300 leading-relaxed">
+          <p className="mt-3 text-sm font-sans text-on-surface-variant dark:text-ink-dark/70 leading-relaxed">
             Data science, web development, automation and community — the skills that move a project
             from field to production.
           </p>
@@ -126,11 +126,11 @@ export function Capabilities() {
                   </span>
                 </div>
 
-                <h3 className="font-display mt-1 mb-2 text-[14px] sm:text-[15px] font-bold uppercase tracking-wider leading-none text-ink dark:text-ink-dark">
+                <h3 className="font-display mt-1 mb-2 text-[14px] sm:text-[15px] font-bold uppercase tracking-wider leading-none text-on-surface dark:text-ink-dark">
                   {cap.name}
                 </h3>
 
-                <p className="mt-1 mb-auto font-sans text-xs sm:text-[11px] leading-relaxed text-ink-3 dark:text-gray-400">
+                <p className="mt-1 mb-auto font-sans text-xs sm:text-[11px] leading-relaxed text-on-surface-variant dark:text-ink-dark/60">
                   {cap.skills.join(', ')}
                 </p>
 
@@ -141,7 +141,7 @@ export function Capabilities() {
                       style={{ width: `${cap.pct}%` }}
                     />
                     <span
-                      className="absolute top-1/2 -translate-y-1/2 -translate-x-1/2 z-10 font-mono text-[9px] sm:text-[10px] font-bold text-ink dark:text-ink-dark"
+                      className="absolute top-1/2 -translate-y-1/2 -translate-x-1/2 z-10 font-mono text-[9px] sm:text-[10px] font-bold text-on-surface dark:text-ink-dark"
                       style={{ left: `${cap.pct}%` }}
                     >
                       {cap.pct}%
@@ -156,3 +156,4 @@ export function Capabilities() {
     </section>
   );
 }
+

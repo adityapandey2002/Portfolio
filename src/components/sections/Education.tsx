@@ -88,7 +88,7 @@ export function Education() {
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-start">
           {/* Left: Formal Degrees */}
-          <div className="border-3 border-primary dark:border-white bg-surface-container-lowest dark:bg-surface-l2 p-6 sm:p-8 shadow-[6px_6px_0px_#1a1a1a] dark:shadow-[6px_6px_0px_#ffffff] space-y-6">
+          <div className="border-3 border-primary dark:border-white bg-surface dark:bg-surface-l1 p-6 sm:p-8 shadow-[6px_6px_0px_#1a1a1a] dark:shadow-[6px_6px_0px_#ffffff] space-y-6">
             <div className="flex items-center justify-between border-b-2 border-primary dark:border-white pb-3">
               <h3 className="font-headline text-xl font-bold uppercase text-on-surface dark:text-ink-dark">Formal University Degrees</h3>
               <span className="material-symbols-outlined text-primary dark:text-white">school</span>
@@ -106,14 +106,14 @@ export function Education() {
           </div>
 
           {/* Right: Accreditations & Leadership */}
-          <div className="border-3 border-primary dark:border-white bg-surface-container dark:bg-surface-l1 p-6 sm:p-8 shadow-[6px_6px_0px_#1a1a1a] dark:shadow-[6px_6px_0px_#ffffff] space-y-6">
+          <div className="border-3 border-primary dark:border-white bg-surface dark:bg-surface-l1 p-6 sm:p-8 shadow-[6px_6px_0px_#1a1a1a] dark:shadow-[6px_6px_0px_#ffffff] space-y-6">
             <div className="flex items-center justify-between border-b-2 border-primary dark:border-white pb-3">
               <h3 className="font-headline text-xl font-bold uppercase text-on-surface dark:text-ink-dark">Accreditations & Leadership</h3>
               <span className="material-symbols-outlined text-primary dark:text-white">verified</span>
             </div>
             <div className="space-y-4">
               {CERTS.map((cert) => (
-                <div key={cert.title} className="bg-surface-container-lowest dark:bg-surface-l2 p-4 border-2 border-primary dark:border-white">
+                <div key={cert.title} className="bg-surface dark:bg-surface-l1 p-4 border-2 border-primary dark:border-white">
                   <div className="flex justify-between items-start">
                     <span className={`${cert.badgeBg} px-2 py-0.5 font-headline text-xs font-bold uppercase`}>
                       {cert.badge}
@@ -131,3 +131,4 @@ export function Education() {
     </section>
   );
 }
+

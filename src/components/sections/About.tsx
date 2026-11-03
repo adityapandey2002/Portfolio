@@ -12,7 +12,7 @@ export function About() {
   const inView = useInView(ref, { once: true, margin: '-80px' });
 
   return (
-    <section id="about" className="border-b-4 border-primary dark:border-white bg-surface-container-low dark:bg-surface-l1">
+    <section id="about" className="border-b-4 border-primary dark:border-white bg-surface dark:bg-surface-l1">
       <Section className="py-12">
         <div className="mb-8">
           <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 border-b-2 border-primary dark:border-white pb-4">
@@ -32,7 +32,7 @@ export function About() {
 
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">
           {/* Left Column: Biography Narrative */}
-          <div className="lg:col-span-7 bg-surface-container-lowest dark:bg-surface-l2 border-3 border-primary dark:border-white p-6 sm:p-8 shadow-[6px_6px_0px_#1a1a1a] dark:shadow-[6px_6px_0px_#ffffff] flex flex-col justify-between">
+          <div className="lg:col-span-7 bg-surface dark:bg-surface-l1 border-3 border-primary dark:border-white p-6 sm:p-8 shadow-[6px_6px_0px_#1a1a1a] dark:shadow-[6px_6px_0px_#ffffff] flex flex-col justify-between">
             <div className="space-y-5">
               <div className="inline-block bg-primary dark:bg-primary-yellow text-on-primary dark:text-on-primary px-3 py-1 font-headline text-xs uppercase font-bold tracking-widest">
                 Field Engineer Biography
@@ -59,7 +59,7 @@ export function About() {
             </div>
             <div className="mt-8 flex flex-wrap gap-2 pt-4 border-t-2 border-primary dark:border-white">
               {['#PublicHealthData', '#PostgreSQL', '#NextJS', '#OfflineFirst', '#VectorRAG'].map((tag) => (
-                <span key={tag} className="font-mono text-xs uppercase px-2 py-1 bg-surface-container dark:bg-surface-l1 border border-primary dark:border-white font-bold text-on-surface dark:text-ink-dark">
+                <span key={tag} className="font-mono text-xs uppercase px-2 py-1 bg-surface dark:bg-surface-l1 border border-primary dark:border-white font-bold text-on-surface dark:text-ink-dark">
                   {tag}
                 </span>
               ))}
@@ -67,7 +67,7 @@ export function About() {
           </div>
 
           {/* Right Column: Identity Dossier Card */}
-          <div className="lg:col-span-5 bg-surface-container dark:bg-surface-l1 border-3 border-primary dark:border-white p-6 sm:p-8 shadow-[6px_6px_0px_#1a1a1a] dark:shadow-[6px_6px_0px_#ffffff] flex flex-col justify-between">
+          <div className="lg:col-span-5 bg-surface dark:bg-surface-l1 border-3 border-primary dark:border-white p-6 sm:p-8 shadow-[6px_6px_0px_#1a1a1a] dark:shadow-[6px_6px_0px_#ffffff] flex flex-col justify-between">
             <div className="space-y-6">
               <div className="flex items-center justify-between border-b-2 border-primary dark:border-white pb-3">
                 <span className="font-headline font-bold text-xs uppercase tracking-widest text-on-surface dark:text-ink-dark">IDENTITY DOSSIER // SPEC</span>
@@ -113,7 +113,7 @@ export function About() {
                 <span className="font-headline text-xs font-bold uppercase tracking-wider block text-on-surface dark:text-ink-dark">Field Operating Badges</span>
                 <div className="flex flex-wrap gap-2">
                   {['PHC Direct Immersion', 'Deterministic QA Pipelines', 'State Portal Diagnostics', 'IndexedDB Local Cache'].map((badge) => (
-                    <span key={badge} className="text-[11px] font-mono font-semibold bg-surface-container-lowest dark:bg-surface-l2 px-2 py-1 border border-primary dark:border-white text-on-surface dark:text-ink-dark">
+                    <span key={badge} className="text-[11px] font-mono font-semibold bg-surface dark:bg-surface-l1 px-2 py-1 border border-primary dark:border-white text-on-surface dark:text-ink-dark">
                       {badge}
                     </span>
                   ))}
@@ -126,3 +126,4 @@ export function About() {
     </section>
   );
 }
+

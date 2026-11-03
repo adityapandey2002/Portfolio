@@ -21,7 +21,7 @@ export function Experience() {
                 Field & Systems Experience
               </h2>
             </div>
-            <span className="font-headline text-xs font-bold uppercase tracking-wider bg-surface-container dark:bg-surface-l1 px-3 py-1 border border-primary dark:border-white text-on-surface dark:text-ink-dark">
+            <span className="font-headline text-xs font-bold uppercase tracking-wider bg-surface dark:bg-surface-l1 px-3 py-1 border border-primary dark:border-white text-on-surface dark:text-ink-dark">
               CHRONOLOGICAL LOGS [2024–2025]
             </span>
           </div>
@@ -55,7 +55,7 @@ export function Experience() {
           {experience.map((xp, i) => (
             <div
               key={xp.role}
-              className="bg-surface-container-lowest dark:bg-surface-l2 border-3 border-primary dark:border-white p-6 shadow-[5px_5px_0px_#1a1a1a] dark:shadow-[5px_5px_0px_#ffffff] flex flex-col justify-between"
+              className="bg-surface dark:bg-surface-l1 border-3 border-primary dark:border-white p-6 shadow-[5px_5px_0px_#1a1a1a] dark:shadow-[5px_5px_0px_#ffffff] flex flex-col justify-between"
             >
               <div className="space-y-4">
                 <div className="flex items-start justify-between gap-2 border-b-2 border-primary dark:border-white pb-3">
@@ -80,7 +80,7 @@ export function Experience() {
               </div>
               <div className="mt-6 pt-4 border-t border-primary dark:border-white flex flex-wrap gap-2">
                 {xp.tags.map((t) => (
-                  <span key={t} className="font-mono text-[11px] bg-surface-container dark:bg-surface-l1 px-2 py-0.5 border border-primary dark:border-white text-on-surface dark:text-ink-dark">
+                  <span key={t} className="font-mono text-[11px] bg-surface dark:bg-surface-l1 px-2 py-0.5 border border-primary dark:border-white text-on-surface dark:text-ink-dark">
                     {t}
                   </span>
                 ))}
@@ -92,3 +92,4 @@ export function Experience() {
     </section>
   );
 }
+

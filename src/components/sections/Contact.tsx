@@ -205,7 +205,7 @@ export function Contact() {
             </div>
 
             {/* Quick Quote / Manifesto Card */}
-            <div className="bg-surface-container dark:bg-surface-l1 border-2 border-primary dark:border-white p-5 shadow-[4px_4px_0px_#1a1a1a] dark:shadow-[4px_4px_0px_#ffffff]">
+            <div className="bg-surface dark:bg-surface-l1 border-2 border-primary dark:border-white p-5 shadow-[4px_4px_0px_#1a1a1a] dark:shadow-[4px_4px_0px_#ffffff]">
               <span className="font-mono text-xs font-bold text-secondary dark:text-vermilion uppercase block mb-1">FIELD MANIFESTO</span>
               <p className="font-headline text-sm font-bold text-on-surface dark:text-ink-dark leading-snug">
                 &quot;No clinical prediction algorithm matters if the auxiliary nurse midwife cannot save her entry on a 2G network before her battery dies. Build from the dirt upward.&quot;
