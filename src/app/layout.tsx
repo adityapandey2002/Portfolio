@@ -3,6 +3,7 @@ import { Inter, JetBrains_Mono, Lora, Outfit, Space_Grotesk } from 'next/font/go
 import { Providers } from '@/components/providers/Providers';
 import { ThemeProvider } from '@/components/providers/ThemeProvider';
 import { ThemeToggle } from '@/components/ui/ThemeToggle';
+import { MobileHeader } from '@/components/ui/MobileHeader';
 import { AmbientBackground } from '@/components/three/AmbientBackground';
 import { ScrollProgress } from '@/components/ui/ScrollProgress';
 import { ScrollChaining } from '@/components/ScrollChaining';
@@ -80,14 +81,17 @@ export const viewport: Viewport = {
   themeColor: '#0a0e17',
   width: 'device-width',
   initialScale: 1,
+  maximumScale: 1,
+  userScalable: false,
   viewportFit: 'cover',
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en" data-theme="cyberpunk" data-scroll-behavior="smooth" suppressHydrationWarning>
-      <body className={`${inter.variable} ${spaceGrotesk.variable} ${jetbrainsMono.variable} ${outfit.variable} ${jetbrains.variable} ${lora.variable} bg-surface dark:bg-surface-dark font-sans text-primary dark:text-ink-dark antialiased`}>
+      <body className={`${inter.variable} ${spaceGrotesk.variable} ${jetbrainsMono.variable} ${outfit.variable} ${jetbrains.variable} ${lora.variable} bg-surface dark:bg-surface-dark font-sans text-primary dark:text-ink-dark antialiased pt-[4rem] lg:pt-0`}>
         <ThemeProvider>
+          <MobileHeader />
           {/* V2 theme toggle lives in the header area of the shell. */}
           <AmbientBackground />
           <ThemeToggle />
