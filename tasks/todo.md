@@ -33,7 +33,7 @@
 ## Phase 6: Effects & Polish
 - [x] Task 14: Framer Motion + scroll effects — DONE (ScrollChaining, ScrollProgress integrated in layout)
 - [x] Task 15: three.js ambient effects — DONE (AmbientBackground in layout)
-- [ ] Task 16: Mobile polish & cross-browser QA — pending
+- [x] Task 16: Mobile polish & cross-browser QA — DONE
 
 ## Checkpoint: All Pages Complete
 - [ ] All 5 pages render in light + dark + mobile
