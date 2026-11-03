@@ -33,7 +33,7 @@ const BTN_VARIANTS = {
   systems:
     'bg-accent-yellow dark:bg-primary-yellow text-black dark:text-white hover:bg-primary dark:hover-surface-dark hover:text-white',
   vector:
-    'bg-surface-container-lowest dark:bg-surface-l2 text-black dark:text-white hover:bg-accent-red dark:hover-vermilion hover:text-white',
+    'bg-surface dark:bg-surface-l1 text-black dark:text-white hover:bg-accent-red dark:hover-vermilion hover:text-white',
   dispatch:
     'bg-surface dark:bg-surface-dark text-black dark:text-white hover:bg-accent-blue dark:hover-electric-blue hover:text-white',
 } as const;
@@ -113,7 +113,7 @@ const METRICS = [
     desc: 'Digitized M-ASHA workflow, field diagnostics, and portal verification sessions across frontline clusters.',
     Icon: Users,
     iconColor: 'text-accent-yellow dark:text-primary-yellow',
-    bg: 'bg-surface-container dark:bg-surface-l1',
+    bg: 'bg-surface dark:bg-surface-l1',
   },
   {
     number: '02',
@@ -133,7 +133,7 @@ const METRICS = [
     desc: 'Processed, cleaned, and reconciled across physical registers and state portals via Python pipelines.',
     Icon: Database,
     iconColor: 'text-accent-blue dark:text-electric-blue',
-    bg: 'bg-surface-container-lowest dark:bg-surface-l2',
+    bg: 'bg-surface dark:bg-surface-l1',
   },
   {
     number: '04',
@@ -143,7 +143,7 @@ const METRICS = [
     desc: 'Executed inside Sub-Centres, PHCs & CHCs addressing frontline data-entry bottlenecks.',
     Icon: MapPin,
     iconColor: 'text-accent-red dark:text-vermilion',
-    bg: 'bg-surface-container-lowest dark:bg-surface-l2',
+    bg: 'bg-surface dark:bg-surface-l1',
   },
 ] as const;
 
@@ -179,14 +179,14 @@ export function Hero() {
           {/* Meta Grid */}
           <div className="flex flex-wrap items-center justify-between gap-3 border-b-2 border-primary dark:border-white pb-3 mb-6 lg:mb-8">
             <div className="flex items-center gap-2">
-              <span className="font-display text-xs font-bold uppercase tracking-wider bg-surface-container dark:bg-surface-l1 text-black dark:text-ink-dark px-2.5 py-1 border-2 border-primary dark:border-white">
+              <span className="font-display text-xs font-bold uppercase tracking-wider bg-surface dark:bg-surface-l1 text-black dark:text-ink-dark px-2.5 py-1 border-2 border-primary dark:border-white">
                 SPEC: 01 // OVERVIEW
               </span>
               <span className="font-mono text-[10px] uppercase tracking-wider text-gray-500 dark:text-gray-400">
                 COORDINATES: 26.1209&deg; N, 85.3647&deg; E
               </span>
             </div>
-            <div className="inline-flex items-center gap-1.5 font-display text-xs font-bold uppercase tracking-wider bg-tertiary-container dark:bg-surface-l2 text-black dark:text-ink-dark px-2.5 py-1 border-2 border-primary dark:border-white">
+            <div className="inline-flex items-center gap-1.5 font-display text-xs font-bold uppercase tracking-wider bg-accent-blue dark:bg-electric-blue text-black dark:text-ink-dark px-2.5 py-1 border-2 border-primary dark:border-white">
               <Activity size={14} className="shrink-0" aria-hidden="true" />
               FIELD TELEMETRY: ONLINE
             </div>
@@ -226,7 +226,7 @@ export function Hero() {
 
             {/* Live Kernel telemetry box */}
             <div className="lg:col-span-4">
-              <div className="relative rounded-0 border-[3px] border-primary dark:border-white bg-surface-container-lowest dark:bg-surface-l2 shadow-[6px_6px_0_#000000] dark:shadow-[6px_6px_0_#ffffff] p-4">
+              <div className="relative rounded-0 border-[3px] border-primary dark:border-white bg-surface dark:bg-surface-l1 shadow-[6px_6px_0_#000000] dark:shadow-[6px_6px_0_#ffffff] p-4">
                 <div className="absolute -top-2 right-3 bg-accent-red dark:bg-vermilion text-white px-2 py-0.5 font-display font-bold text-[10px] uppercase tracking-wider border-2 border-primary dark:border-white">
                   LIVE KERNEL
                 </div>
