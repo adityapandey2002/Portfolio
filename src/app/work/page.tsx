@@ -2,6 +2,7 @@ import { WorkProjectCard } from '@/components/projects/WorkProjectCard';
 import { Footer } from '@/components/sections/Footer';
 import Link from 'next/link';
 import { ArrowRight } from 'lucide-react';
+import { Section } from '@/components/ui/Section';
 
 export const metadata = {
   title: 'Work — Aditya Pandey',
@@ -55,57 +56,85 @@ const WORK_PROJECTS: WorkProject[] = [
     tech: ['Python', 'SQLite', 'Dash', 'ML'],
     caseStudy: 'https://github.com/adityapandey2002/',
   },
-] as const;
+];
 
 export default function WorkPage() {
   return (
     <>
       {/* Page header */}
-      <section className="mb-16">
-        <div className="mx-auto max-w-[1500px] px-4 lg:px-8">
-          <span className="block mb-4 font-mono text-[11px] font-bold uppercase tracking-wider text-primary dark:text-ink-dark">
-            09 · SELECTED WORK
-          </span>
-          <h1 className="font-display font-bold text-[34px] lg:text-[48px] leading-[1.04] text-primary dark:text-ink-dark">
-            Built, deployed, shipped
-          </h1>
-          <p className="mt-5 text-[16px] leading-relaxed text-primary dark:text-ink-dark font-sans max-w-[560px]">
-            A few things I built end-to-end — from field forms to live production apps.
-          </p>
-        </div>
+      <section className="border-b-4 border-primary dark:border-white bg-surface dark:bg-surface-dark">
+        <Section className="py-12">
+          <div className="mb-6">
+            <span className="font-mono text-xs font-bold uppercase tracking-widest text-on-surface-variant dark:text-ink-dark">
+              09 · SELECTED WORK
+            </span>
+            <h1 className="mt-2 font-headline text-3xl sm:text-5xl font-bold uppercase tracking-tight text-on-surface dark:text-ink-dark">
+              Built, deployed, shipped
+            </h1>
+            <p className="mt-4 text-sm text-on-surface-variant dark:text-ink-dark/70 max-w-[560px]">
+              A few things I built end-to-end — from field forms to live production apps.
+            </p>
+          </div>
+        </Section>
       </section>
 
-      {/* Projects grid — 12-col desktop → 6-col tablet → 4-col mobile */}
-      <section className="mb-20">
-        <div className="mx-auto max-w-[1500px] px-4 lg:px-8">
-          <div
-            className={[
-              'grid grid-cols-4 md:grid-cols-6 lg:grid-cols-12',
-              'gap-x-4 lg:gap-x-6 gap-y-10',
-            ].join(' ')}
-          >
+      {/* Projects grid */}
+      <section className="border-b-4 border-primary dark:border-white bg-surface dark:bg-surface-dark">
+        <Section className="py-12">
+          <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
             {WORK_PROJECTS.map((project) => (
               <div
                 key={project.id}
-                className="col-span-4 md:col-span-3 lg:col-span-4"
+                className="border-2 border-primary dark:border-white bg-surface-container-lowest dark:bg-surface-l2 p-6 shadow-[4px_4px_0_#1a1a1a] dark:shadow-[4px_4px_0_#ffffff]"
               >
-                <WorkProjectCard {...project} />
+                <div className="flex items-center justify-between border-b-2 border-primary dark:border-white pb-3 mb-4">
+                  <span className="bg-primary-container dark:bg-primary-yellow text-on-primary-container dark:text-on-primary px-2.5 py-0.5 font-headline font-bold text-xs uppercase border border-primary dark:border-white">
+                    {project.status === 'LIVE' ? 'LIVE' : 'CASE STUDY'}
+                  </span>
+                  <span className="font-mono text-xs font-bold text-on-surface-variant dark:text-ink-dark/70">
+                    {project.number}
+                  </span>
+                </div>
+                <h3 className="font-headline text-xl font-bold text-on-surface dark:text-ink-dark uppercase">
+                  {project.title}
+                </h3>
+                <p className="mt-2 text-sm text-on-surface-variant dark:text-ink-dark/70 leading-relaxed">
+                  {project.desc}
+                </p>
+                <div className="mt-4 flex flex-wrap gap-1.5">
+                  {project.tech.map((t) => (
+                    <span
+                      key={t}
+                      className="font-mono text-[11px] font-semibold bg-surface-container dark:bg-surface-l1 px-2 py-0.5 border border-primary dark:border-white text-on-surface dark:text-ink-dark"
+                    >
+                      {t}
+                    </span>
+                  ))}
+                </div>
+                <div className="mt-6 pt-4 border-t-2 border-primary dark:border-white flex gap-3">
+                  <a
+                    href={project.caseStudy}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-2 border-2 border-primary dark:border-white bg-surface dark:bg-surface-l1 px-3 py-1.5 font-headline text-[10px] font-bold uppercase tracking-wider text-primary dark:text-white shadow-[2px_2px_0_#1a1a1a] dark:shadow-[2px_2px_0_#ffffff] transition-all hover:translate-x-0.5 hover:translate-y-0.5 hover:shadow-none"
+                  >
+                    GitHub →
+                  </a>
+                  {project.live && (
+                    <a
+                      href={project.live}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-2 border-2 border-primary dark:border-white bg-primary-container dark:bg-primary-yellow px-3 py-1.5 font-headline text-[10px] font-bold uppercase tracking-wider text-on-primary-container dark:text-on-primary shadow-[2px_2px_0_#1a1a1a] dark:shadow-[2px_2px_0_#ffffff] transition-all hover:translate-x-0.5 hover:translate-y-0.5 hover:shadow-none"
+                    >
+                      Live Site →
+                    </a>
+                  )}
+                </div>
               </div>
             ))}
           </div>
-        </div>
-      </section>
-
-      {/* View all link */}
-      <section>
-        <div className="mx-auto max-w-[1500px] px-4 lg:px-8 mt-10 mb-24">
-          <Link
-            href="/work"
-            className="inline-flex items-center gap-2 font-mono text-[11px] font-bold uppercase tracking-wider text-primary dark:text-ink-dark hover:text-accent-yellow dark:hover:text-primary-yellow transition-colors"
-          >
-            View all <ArrowRight size={15} strokeWidth={2} aria-hidden="true" />
-          </Link>
-        </div>
+        </Section>
       </section>
 
       <Footer />

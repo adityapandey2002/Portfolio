@@ -117,8 +117,8 @@ export function HealthMetricCard({
   const Icon = ICONS[m.id];
   const a = ACCENT[m.accent];
   const kernel = !!m.kernel;
-  const surfaceText = kernel ? a.ink : 'text-primary dark:text-ink-dark';
-  const descText = kernel ? 'text-black/80 dark:text-surface-dark/80' : 'text-ink-3 dark:text-ink-3';
+  const surfaceText = kernel ? a.ink : 'text-on-surface dark:text-ink-dark';
+  const descText = kernel ? 'text-black/80 dark:text-surface-dark/80' : 'text-on-surface-variant dark:text-ink-dark/70';
 
   return (
     <Card
@@ -169,11 +169,11 @@ export function HealthMetrics() {
           <span className="font-mono text-xs font-bold uppercase tracking-widest text-accent-red dark:text-vermilion block mb-1">
             Audited Telemetry
           </span>
-          <h2 className="font-display text-3xl sm:text-5xl font-bold uppercase tracking-tight text-primary dark:text-ink-dark leading-none">
+          <h2 className="font-display text-3xl sm:text-5xl font-bold uppercase tracking-tight text-on-surface dark:text-ink-dark leading-none">
             Primary Field Metrics Ledger
           </h2>
         </div>
-        <div className="font-mono text-xs font-bold uppercase tracking-wider text-ink-3 dark:text-ink-3">
+        <div className="font-mono text-xs font-bold uppercase tracking-wider text-on-surface-variant dark:text-ink-dark/70">
           Total Active Blocks: 16 &nbsp;//&nbsp; Population Footprint: 4.8M+
         </div>
       </div>

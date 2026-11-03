@@ -114,7 +114,7 @@ export function HealthSystemStrengthening() {
             Health System Strengthening
           </h2>
         </div>
-        <p className="text-base leading-relaxed text-ink-2 dark:text-ink-2 max-w-md">
+        <p className="text-base leading-relaxed text-on-surface-variant dark:text-ink-dark/70 max-w-md">
           Day-to-day fellowship work — support activities woven across Bihar\u2019s public health system, frontline to block.
         </p>
       </div>
@@ -159,7 +159,7 @@ export function HealthSystemStrengthening() {
                 <h3 className={`font-display text-lg font-bold uppercase tracking-tight ${item.accent === 'yellow' ? 'text-black dark:text-surface-dark' : 'text-primary dark:text-ink-dark'}`}>
                   {item.title}
                 </h3>
-                <p className="mt-3 text-sm leading-relaxed text-ink-3 dark:text-ink-3">{item.body}</p>
+                <p className="mt-3 text-sm leading-relaxed text-on-surface-variant dark:text-ink-dark/70">{item.body}</p>
               </div>
             </Card>
           );

@@ -154,13 +154,13 @@ export function AskTerminal() {
         <div className="mx-auto w-full max-w-4xl">
           {/* Page header */}
           <header className="mb-10 lg:mb-14 shrink-0">
-            <span className="font-mono text-[11px] font-bold uppercase tracking-wider text-primary dark:text-ink-dark">
+            <span className="font-mono text-[11px] font-bold uppercase tracking-wider text-on-surface dark:text-ink-dark">
               10 · THE AI
             </span>
-            <h1 className="mt-3 font-display font-bold text-[clamp(34px,5.5vw,56px)] uppercase tracking-tight text-primary dark:text-ink-dark leading-none">
+            <h1 className="mt-3 font-display font-bold text-[clamp(34px,5.5vw,56px)] uppercase tracking-tight text-on-surface dark:text-ink-dark leading-none">
               This portfolio has a RAG brain
             </h1>
-            <p className="mt-5 text-base leading-relaxed text-ink-2 dark:text-ink-2 max-w-[64ch]">
+            <p className="mt-5 text-base leading-relaxed text-on-surface-variant dark:text-ink-dark/80 max-w-[64ch]">
               Every experience, project and skill on this site is chunked into a vector database. Ask it anything — &apos;what did you build in Bihar?&apos; — and an LLM answers with the actual knowledge base as context, streamed word by word.
             </p>
           </header>
@@ -175,7 +175,7 @@ export function AskTerminal() {
                   style={{ animationDelay: '400ms' }}
                 />
               </span>
-              <span className="font-bold text-primary dark:text-ink-dark">
+              <span className="font-bold text-on-surface dark:text-ink-dark">
                 AI Assistant Online
               </span>
               <span className="text-ink-3 dark:text-ink-4">
@@ -190,14 +190,14 @@ export function AskTerminal() {
           </div>
 
           {/* Terminal */}
-          <div className="border-2 border-brutalist bg-surface dark:bg-surface-dark shadow-[4px_4px_0_#000000] overflow-hidden">
+          <div className="border-2 border-primary dark:border-white bg-surface dark:bg-surface-dark shadow-[4px_4px_0_#000000] overflow-hidden">
             {/* Quick prompt chips */}
-            <div className="px-4 py-4 border-b-2 border-brutalist bg-surface dark:bg-surface-dark">
+            <div className="px-4 py-4 border-b-2 primary dark:border-white bg-surface dark:bg-surface-dark">
               <div className="flex items-center justify-between mb-3">
                 <span className="font-mono text-[11px] font-bold uppercase tracking-wider text-ink-3 dark:text-ink-4 flex items-center gap-1.5">
                   💡 Suggested Questions
                 </span>
-                <span className="text-[11px] text-ink-4 dark:text-ink-4/60 hidden sm:inline">
+                <span className="text-[11px] text-on-surface-variant dark:text-ink-dark/40/60 hidden sm:inline">
                   Sub-second retrieval
                 </span>
               </div>
@@ -207,7 +207,7 @@ export function AskTerminal() {
                     key={s}
                     type="button"
                     onClick={() => pickSuggestion(s)}
-                    className="min-w-[150px] px-3 py-1.5 bg-surface dark:bg-surface-dark text-[11px] sm:text-xs font-mono font-semibold text-left text-primary dark:text-ink-dark border-2 border-brutalist shadow-[2px_2px_0_#000000] hover:-translate-y-1 hover:shadow-[3px_3px_0_#000000] active:translate-x-1 active:translate-y-1 active:shadow-none transition-all duration-100"
+                    className="min-w-[150px] px-3 py-1.5 bg-surface dark:bg-surface-dark text-[11px] sm:text-xs font-mono font-semibold text-left text-on-surface dark:text-ink-dark border-2 border-primary dark:border-white shadow-[2px_2px_0_#000000] hover:-translate-y-1 hover:shadow-[3px_3px_0_#000000] active:translate-x-1 active:translate-y-1 active:shadow-none transition-all duration-100"
                   >
                     {s}
                   </button>
@@ -216,9 +216,9 @@ export function AskTerminal() {
             </div>
 
             {/* Query form */}
-            <form onSubmit={handleSubmit} className="px-4 py-4 border-b-2 border-brutalist bg-surface dark:bg-surface-dark">
+            <form onSubmit={handleSubmit} className="px-4 py-4 border-b-2 primary dark:border-white bg-surface dark:bg-surface-dark">
               <div className="flex flex-col sm:flex-row gap-2">
-                <div className="relative flex-1 flex items-center border-2 border-brutalist shadow-[2px_2px_0_#000000]">
+                <div className="relative flex-1 flex items-center border-2 border-primary dark:border-white shadow-[2px_2px_0_#000000]">
                   <span className="text-ink-3 dark:text-ink-4 mx-1.5">🔍</span>
                   <input
                     ref={inputRef}
@@ -230,14 +230,14 @@ export function AskTerminal() {
                       }
                     }}
                     placeholder="Ask anything about Aditya&apos;s projects, clinical tools, or research…"
-                    className="w-full bg-transparent border-0 outline-none text-[13px] font-mono text-primary dark:text-ink-dark py-2.5 px-1 placeholder:text-ink-4 dark:placeholder:text-ink-3"
+                    className="w-full bg-transparent border-0 outline-none text-[13px] font-mono text-on-surface dark:text-ink-dark py-2.5 px-1 placeholder:text-ink-4 dark:placeholder:text-ink-3"
                     autoComplete="off"
                     spellCheck={false}
                   />
                   <button
                     type="button"
                     onClick={handleClear}
-                    className="text-[11px] font-mono font-bold uppercase text-ink-3 dark:text-ink-3 hover:text-primary dark:hover:text-ink-dark px-2 py-1"
+                    className="text-[11px] font-mono font-bold uppercase text-on-surface-variant dark:text-ink-dark/60 hover:text-primary dark:hover:text-ink-dark px-2 py-1"
                     title="Clear text"
                   >
                     CLR
@@ -246,7 +246,7 @@ export function AskTerminal() {
                 <button
                   type="submit"
                   disabled={streaming || !query.trim()}
-                  className="px-6 py-2.5 bg-accent-yellow dark:bg-primary-yellow text-[#1a1a1a] dark:text-[#131315] font-mono font-bold text-[12px] uppercase tracking-wider border-2 border-brutalist shadow-[3px_3px_0_#000000] hover:shadow-[2px_2px_0_#000000] active:translate-x-1 active:translate-y-1 active:shadow-none disabled:opacity-50 disabled:pointer-events-none transition-all duration-100"
+                  className="px-6 py-2.5 bg-accent-yellow dark:bg-primary-yellow text-[#1a1a1a] dark:text-[#131315] font-mono font-bold text-[12px] uppercase tracking-wider border-2 border-primary dark:border-white shadow-[3px_3px_0_#000000] hover:shadow-[2px_2px_0_#000000] active:translate-x-1 active:translate-y-1 active:shadow-none disabled:opacity-50 disabled:pointer-events-none transition-all duration-100"
                 >
                   Ask Assistant
                 </button>
@@ -255,17 +255,17 @@ export function AskTerminal() {
 
             {/* Active question header */}
             {activeQuestion && (
-              <div className="px-4 pb-4 border-b-2 border-brutalist bg-surface dark:bg-surface-dark">
+              <div className="px-4 pb-4 border-b-2 primary dark:border-white bg-surface dark:bg-surface-dark">
                 <div className="flex items-start justify-between gap-4">
                   <div className="space-y-1">
                     <span className="font-mono text-[11px] font-bold uppercase tracking-wider text-ink-3 dark:text-ink-4 block">
                       Current Question
                     </span>
-                    <h2 className="font-display font-bold text-base sm:text-lg text-primary dark:text-ink-dark leading-snug">
+                    <h2 className="font-display font-bold text-base sm:text-lg text-on-surface dark:text-ink-dark leading-snug">
                       {activeQuestion}
                     </h2>
                   </div>
-                  <span className="inline-flex items-center gap-1.5 px-2.5 py-1 bg-accent-yellow dark:bg-primary-yellow text-[#1a1a1a] dark:text-[#131315] font-mono font-bold text-[11px] uppercase border-2 border-brutalist shrink-0">
+                  <span className="inline-flex items-center gap-1.5 px-2.5 py-1 bg-accent-yellow dark:bg-primary-yellow text-[#1a1a1a] dark:text-[#131315] font-mono font-bold text-[11px] uppercase border-2 border-primary dark:border-white shrink-0">
                     🔖 Grounded
                   </span>
                 </div>
@@ -275,16 +275,16 @@ export function AskTerminal() {
             {/* Response container */}
             <div className="p-4 sm:p-5 space-y-3" aria-live="polite">
               {!activeQuestion && !streaming && !error && (
-                <div className="p-6 border-2 border-brutalist bg-[#e8e3da] dark:bg-surface-l1 text-center font-mono text-xs text-ink-3 dark:text-ink-3 space-y-1">
+                <div className="p-6 border-2 border-primary dark:border-white bg-surface dark:bg-surface-l1 dark:bg-surface-l1 text-center font-mono text-xs text-on-surface-variant dark:text-ink-dark/60 space-y-1">
                   <span>Empty — no active question.</span>
-                  <span className="text-ink-4 dark:text-ink-4/60">
+                  <span className="text-on-surface-variant dark:text-ink-dark/40/60">
                     Type above or tap a chip, then hit Ask Assistant.
                   </span>
                 </div>
               )}
 
               {streaming && blocks.length === 0 && !error && (
-                <div className="p-6 border-2 border-brutalist bg-[#e8e3da] dark:bg-surface-l1 text-center font-mono text-xs animate-pulse text-ink-3 dark:text-ink-3">
+                <div className="p-6 border-2 border-primary dark:border-white bg-surface dark:bg-surface-l1 dark:bg-surface-l1 text-center font-mono text-xs animate-pulse text-on-surface-variant dark:text-ink-dark/60">
                   Generating grounded answer…
                 </div>
               )}
@@ -293,19 +293,19 @@ export function AskTerminal() {
                 blocks.map((block) => (
                   <div
                     key={block.num}
-                    className="border-2 border-brutalist bg-[#e8e3da] dark:bg-surface-l1 p-4 space-y-2"
+                    className="border-2 border-primary dark:border-white bg-surface dark:bg-surface-l1 dark:bg-surface-l1 p-4 space-y-2"
                   >
                     {block.heading && (
-                      <h3 className="font-display font-bold text-xs uppercase tracking-wider text-primary dark:text-ink-dark flex items-center gap-2">
+                      <h3 className="font-display font-bold text-xs uppercase tracking-wider text-on-surface dark:text-ink-dark flex items-center gap-2">
                         <span className="w-2 h-2 bg-accent-yellow dark:bg-primary-yellow" />
                         {block.num}. {block.heading}
                       </h3>
                     )}
-                    <p className="text-xs sm:text-sm leading-relaxed text-ink-2 dark:text-ink-2">
+                    <p className="text-xs sm:text-sm leading-relaxed text-on-surface-variant dark:text-ink-dark/80">
                       {block.body}
                     </p>
                     {streaming && (
-                      <span className="font-mono text-primary dark:text-ink-dark cursor-blink">
+                      <span className="font-mono text-on-surface dark:text-ink-dark cursor-blink">
                         ▋
                       </span>
                     )}
@@ -314,19 +314,19 @@ export function AskTerminal() {
               )}
 
               {error && (
-                <div className="border-2 border-accent-red dark:border-vermilion bg-[#ffdad6] dark:bg-[rgba(249,115,22,0.12)] p-4 font-mono text-xs text-accent-red dark:text-vermilion leading-relaxed">
+                <div className="border-2 border-accent-red dark:border-vermilion bg-surface-container dark:bg-surface-l1 p-4 font-mono text-xs text-accent-red dark:text-vermilion leading-relaxed">
                   {error}
                 </div>
               )}
             </div>
 
             {/* Terminal prompt */}
-            <div className="px-4 py-4 border-t-2 border-brutalist bg-surface dark:bg-surface-dark">
+            <div className="px-4 py-4 border-t-2 primary dark:border-white bg-surface dark:bg-surface-dark">
               <div className="flex items-center gap-2 font-mono text-[12px]">
-                <span className="text-primary dark:text-ink-dark">
+                <span className="text-on-surface dark:text-ink-dark">
                   aditya@portfolio:~$
                 </span>
-                <span className="text-ink-3 dark:text-ink-3">
+                <span className="text-on-surface-variant dark:text-ink-dark/60">
                   try: help · projects · hire · ask
                 </span>
               </div>
