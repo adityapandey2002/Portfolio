@@ -11,14 +11,14 @@ import { Footer } from '@/components/sections/Footer';
 export default function HomePage() {
   return (
     <>
-      <div className="snap-section"><Hero /></div>
-      <div className="snap-section"><About /></div>
-      <div className="snap-section snap-section--tall"><Experience /></div>
-      <div className="snap-section"><SelectedSystems /></div>
-      <div className="snap-section"><Education /></div>
-      <div className="snap-section"><Pipeline /></div>
-      <div className="snap-section"><AiTerminal /></div>
-      <div className="snap-section"><Contact /></div>
+      <Hero />
+      <About />
+      <Experience />
+      <SelectedSystems />
+      <Education />
+      <Pipeline />
+      <AiTerminal />
+      <Contact />
 
       <Footer />
     </>
