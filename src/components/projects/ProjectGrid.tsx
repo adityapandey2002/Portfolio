@@ -9,11 +9,9 @@ import { Section } from '@/components/ui/Section';
 import { Card } from '@/components/ui/Card';
 import { Chip } from '@/components/ui/Chip';
 import { Button } from '@/components/ui/Button';
-import { useLiveStatus } from '@/hooks/useLiveStatus';
 
 export function ProjectGrid({ featured = false }: { featured?: boolean }) {
   const [filter, setFilter] = useState<(typeof projectFilters)[number]['id']>('all');
-  const liveStatus = useLiveStatus();
 
   const shown = featured
     ? projects.slice(0, 3)
