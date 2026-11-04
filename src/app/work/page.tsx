@@ -330,6 +330,155 @@ export default function WorkPage() {
         </div>
       </section>
 
+      {/* Sadar Hospital Araria Flagship */}
+      <section className="w-full border-b-2 border-primary dark:border-white bg-surface-bright dark:bg-surface-low px-4 sm:px-8 lg:px-12 py-10 lg:py-12">
+        <div className="max-w-7xl mx-auto space-y-8">
+          {/* Top Badges */}
+          <div className="flex flex-wrap items-center justify-between gap-4 border-b-2 border-primary dark:border-white pb-4">
+            <div className="flex flex-wrap items-center gap-2">
+              <span className="bg-accent-blue dark:bg-accent-blue text-white font-headline text-xs font-bold uppercase px-3 py-1 border-2 border-primary dark:border-white tracking-wider shadow-[2px_2px_0px_#1a1a1a] dark:shadow-[2px_2px_0px_#ffffff]">
+                FLAGSHIP 02 // CIVIC INFRASTRUCTURE
+              </span>
+              <span className="bg-accent-yellow dark:bg-primary-yellow text-black dark:text-black font-headline text-xs font-bold uppercase px-3 py-1 border-2 border-primary dark:border-white tracking-wider">
+                GOVT OF BIHAR COLLABORATION
+              </span>
+              <span className="bg-surface-container dark:bg-surface-low text-primary dark:text-on-surface font-headline text-xs font-bold uppercase px-3 py-1 border-2 border-primary dark:border-white tracking-wider">
+                CAMPUS: SADAR HOSPITAL ARARIA
+              </span>
+            </div>
+            <div className="font-headline text-xs font-bold uppercase tracking-widest text-on-surface-variant dark:text-on-surface-variant">
+              OFFICIAL: dh.araria@bihar.gov.in
+            </div>
+          </div>
+          {/* Headline and Overview */}
+          <div className="space-y-4 max-w-4xl">
+            <h2 className="font-headline font-bold text-3xl sm:text-4xl lg:text-5xl text-primary dark:text-on-surface tracking-tight uppercase leading-tight">
+              DISTRICT HOSPITAL ARARIA CIVIC HEALTHCARE PORTAL
+              <span className="block text-xl sm:text-2xl text-on-surface-variant dark:text-on-surface-variant font-normal tracking-normal mt-1">
+                Real-Time OPD Dispatch, Emergency Blood Reserves &amp; Public Transparency Engine
+              </span>
+            </h2>
+            <p className="font-body text-base text-on-surface-variant dark:text-on-surface-variant leading-relaxed">
+              Engineered to dismantle severe OPD congestion and eliminate emergency blood shortages across the 250+ bed Sadar Hospital campus near Araria Collectorate. Replaces manual paper registration with deterministic queue state machines and live blood bank inventory telemetry.
+            </p>
+          </div>
+          {/* Split: Live Website Preview vs Subsystems */}
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+            {/* Left: Browser Window Mockup */}
+            <div className="lg:col-span-5 space-y-4">
+              <div className="border-2 border-primary dark:border-white bg-surface-bright dark:bg-surface-low shadow-[6px_6px_0px_#1a1a1a] dark:shadow-[6px_6px_0px_#ffffff] overflow-hidden">
+                <div className="bg-primary dark:bg-on-surface text-on-primary dark:text-surface px-4 py-2.5 border-b-2 border-primary dark:border-white flex items-center justify-between font-headline text-xs">
+                  <div className="flex items-center gap-2">
+                    <span className="w-3 h-3 rounded-full bg-accent-red dark:bg-accent-red inline-block" />
+                    <span className="w-3 h-3 rounded-full bg-accent-yellow dark:bg-primary-yellow inline-block" />
+                    <span className="w-3 h-3 rounded-full bg-accent-blue dark:bg-accent-blue inline-block" />
+                    <span className="font-bold ml-2 tracking-wide text-accent-yellow dark:text-primary-yellow">LIVE CIVIC PORTAL</span>
+                  </div>
+                  <span className="text-[11px] font-mono text-on-surface-variant dark:text-on-surface-variant bg-accent-yellow/20 dark:bg-primary-yellow/20 px-2 py-0.5 border border-accent-yellow/30 dark:border-primary-yellow/30">
+                    hospital-araria-f5wl.vercel.app
+                  </span>
+                </div>
+                <div className="relative bg-surface dark:bg-surface-container-lowest border-b border-primary dark:border-white max-h-[520px] overflow-y-auto">
+                  <img
+                    alt="District Hospital Araria Civic Healthcare Portal screenshot"
+                    className="w-full h-auto block object-cover"
+                    loading="lazy"
+                    src="https://www.gstatic.com/labs-code/stitch/stitch-placeholder-300x300.svg"
+                  />
+                </div>
+                <div className="p-3 bg-surface-container dark:bg-surface-low flex items-center justify-between text-xs font-headline">
+                  <span className="font-bold uppercase text-primary dark:text-on-surface flex items-center gap-1.5">
+                    <span className="material-symbols-outlined text-accent-red dark:text-accent-red text-sm">local_hospital</span>
+                    250+ Bed Sadar Campus
+                  </span>
+                  <span className="text-accent-blue dark:text-accent-blue font-bold text-[11px]">Supabase Realtime + Redis</span>
+                </div>
+              </div>
+              {/* Action buttons */}
+              <div className="flex flex-col sm:flex-row gap-3">
+                <a
+                  className="flex-1 py-3 px-4 bg-accent-blue dark:bg-accent-blue text-white font-headline font-bold text-xs uppercase tracking-wider border-2 border-primary dark:border-white shadow-[3px_3px_0px_#1a1a1a] dark:shadow-[3px_3px_0px_#ffffff] hover:bg-primary dark:hover:bg-on-surface hover:text-on-primary dark:hover:text-surface transition-colors flex items-center justify-center gap-2"
+                  href="https://hospital-araria-f5wl.vercel.app/"
+                  rel="noopener noreferrer"
+                  target="_blank"
+                >
+                  <span>Open Live Portal</span>
+                  <span className="material-symbols-outlined text-[16px]">arrow_outward</span>
+                </a>
+                <a
+                  className="py-3 px-4 bg-surface dark:bg-surface-container-lowest text-primary dark:text-on-surface font-headline font-bold text-xs uppercase tracking-wider border-2 border-primary dark:border-white shadow-[3px_3px_0px_#1a1a1a] dark:shadow-[3px_3px_0px_#ffffff] hover:bg-surface-container dark:hover:bg-surface-low transition-colors flex items-center justify-center gap-1.5"
+                  href="mailto:dh.araria@bihar.gov.in"
+                >
+                  <span className="material-symbols-outlined text-[16px]">badge</span>
+                  <span>Gov Specs Dossier</span>
+                </a>
+              </div>
+            </div>
+            {/* Right: Architectural Subsystems */}
+            <div className="lg:col-span-7 space-y-4">
+              <div className="font-headline font-bold text-sm uppercase tracking-wider text-primary dark:text-on-surface pb-2 border-b-2 border-primary dark:border-white flex items-center justify-between">
+                <span>CIVIC DISPATCH ARCHITECTURE</span>
+                <span className="text-xs font-bold text-accent-blue dark:text-accent-blue">REDIS + SUPABASE REALTIME</span>
+              </div>
+              <div className="p-4 bg-surface-bright dark:bg-surface-low border-2 border-primary dark:border-white shadow-[3px_3px_0px_#1a1a1a] dark:shadow-[3px_3px_0px_#ffffff] flex gap-4">
+                <div className="w-12 h-12 bg-primary dark:bg-on-surface text-accent-yellow dark:text-primary-yellow font-headline font-bold text-lg flex items-center justify-center shrink-0 border border-primary dark:border-white">
+                  01
+                </div>
+                <div className="space-y-1">
+                  <h3 className="font-headline font-bold text-sm uppercase text-primary dark:text-on-surface">Tokenized OPD Queue Engine</h3>
+                  <p className="font-body text-xs text-on-surface-variant dark:text-on-surface-variant">
+                    Redis-backed non-repeating cryptographically signed token queue. Dismantles physical registration bottlenecks with live display calling boards across 12 specialty consultation chambers.
+                  </p>
+                </div>
+              </div>
+              <div className="p-4 bg-surface-bright dark:bg-surface-low border-2 border-primary dark:border-white shadow-[3px_3px_0px_#1a1a1a] dark:shadow-[3px_3px_0px_#ffffff] flex gap-4">
+                <div className="w-12 h-12 bg-accent-red dark:bg-accent-red text-white dark:text-white font-headline font-bold text-lg flex items-center justify-center shrink-0 border border-primary dark:border-white">
+                  02
+                </div>
+                <div className="space-y-1">
+                  <h3 className="font-headline font-bold text-sm uppercase text-primary dark:text-on-surface">Live Blood Bank Reserves &amp; Alert System</h3>
+                  <p className="font-body text-xs text-on-surface-variant dark:text-on-surface-variant">
+                    Publicly broadcast inventory ledger displaying exact available units of whole blood and packed red cells (PRBC) across all ABO/Rh groups. Automated SMS alerts for emergency donor networks when units drop below safety thresholds.
+                  </p>
+                </div>
+              </div>
+              <div className="p-4 bg-surface-bright dark:bg-surface-low border-2 border-primary dark:border-white shadow-[3px_3px_0px_#1a1a1a] dark:shadow-[3px_3px_0px_#ffffff] flex gap-4">
+                <div className="w-12 h-12 bg-primary dark:bg-on-surface text-accent-yellow dark:text-primary-yellow font-headline font-bold text-lg flex items-center justify-center shrink-0 border border-primary dark:border-white">
+                  03
+                </div>
+                <div className="space-y-1">
+                  <h3 className="font-headline font-bold text-sm uppercase text-primary dark:text-on-surface">Emergency 102/108 Ambulance Referral Matrix</h3>
+                  <p className="font-body text-xs text-on-surface-variant dark:text-on-surface-variant">
+                    Direct driver carrier links and emergency room dispatch status. Instant alert routing for obstetric and trauma emergencies from remote border blocks (Sikti, Palasi, Forbesganj) with zero delay.
+                  </p>
+                </div>
+              </div>
+              <div className="p-4 bg-surface-bright dark:bg-surface-low border-2 border-primary dark:border-white shadow-[3px_3px_0px_#1a1a1a] dark:shadow-[3px_3px_0px_#ffffff] flex gap-4">
+                <div className="w-12 h-12 bg-surface-container dark:bg-surface-low text-primary dark:text-on-surface font-headline font-bold text-lg flex items-center justify-center shrink-0 border border-primary dark:border-white">
+                  04
+                </div>
+                <div className="space-y-1">
+                  <h3 className="font-headline font-bold text-sm uppercase text-primary dark:text-on-surface">Bilingual Circulars &amp; Public Notices</h3>
+                  <p className="font-body text-xs text-on-surface-variant dark:text-on-surface-variant">
+                    Instant Hindi/English push circulars for pulse polio drives, Japanese Encephalitis alerts, doctor leave announcements, and Janani Suraksha Yojana payment disbursement schedules.
+                  </p>
+                </div>
+              </div>
+              <div className="flex flex-wrap gap-2 pt-2">
+                {['React 18', 'TypeScript', 'Supabase Realtime', 'Redis Queue', 'Vercel Edge', 'Tailwind CSS'].map((t) => (
+                  <span
+                    key={t}
+                    className="px-2 py-1 bg-surface-container dark:bg-surface-low border border-primary dark:border-white font-headline text-[11px] font-bold uppercase text-primary dark:text-on-surface"
+                  >
+                    {t}
+                  </span>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Specialized Systems */}
       <section className="w-full border-b-2 border-primary dark:border-white bg-surface-container-low dark:bg-surface-low px-4 sm:px-8 lg:px-12 py-10 lg:py-12">
         <div className="max-w-7xl mx-auto space-y-8">
