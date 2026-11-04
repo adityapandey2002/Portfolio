@@ -177,9 +177,9 @@ export function Contact() {
 
           {/* Operational Coordinates Card */}
           <div className="lg:col-span-5 space-y-6">
-            <div className="bg-primary dark:bg-accent-red text-on-primary dark:text-on-primary border-3 border-primary dark:border-white p-6 sm:p-8 shadow-[6px_6px_0px_#1a1a1a] dark:shadow-[6px_6px_0px_#ffffff] space-y-6">
-              <div className="flex items-center justify-between border-b-2 border-on-primary dark:border-on-primary pb-3">
-                <span className="font-headline font-bold text-xs uppercase tracking-widest text-on-primary-container dark:text-on-primary-container">
+            <div className="bg-primary dark:bg-accent-red text-on-primary dark:text-white border-3 border-primary dark:border-white p-6 sm:p-8 shadow-[6px_6px_0px_#1a1a1a] dark:shadow-[6px_6px_0px_#ffffff] space-y-6">
+              <div className="flex items-center justify-between border-b-2 border-on-primary dark:border-white pb-3">
+                <span className="font-headline font-bold text-xs uppercase tracking-widest text-on-primary-container dark:text-white">
                   FIELD OPERATIONAL COORDINATES
                 </span>
                 <span className="w-2.5 h-2.5 bg-accent-yellow dark:bg-accent-yellow rounded-none" />
@@ -197,7 +197,7 @@ export function Contact() {
                   <span className="text-surface-container-high dark:text-surface-high uppercase block text-[11px]">
                     Phone / Direct Wire
                   </span>
-                  <a className="text-on-primary dark:text-on-primary font-bold hover:underline text-sm" href={`tel:${profile.phone.replace(/\s/g, '')}`}>
+                  <a className="text-on-primary dark:text-white font-bold hover:underline text-sm" href={`tel:${profile.phone.replace(/\s/g, '')}`}>
                     {profile.phone}
                   </a>
                 </div>
@@ -205,7 +205,7 @@ export function Contact() {
                   <span className="text-surface-container-high dark:text-surface-high uppercase block text-[11px]">
                     Stationed Jurisdiction
                   </span>
-                  <div className="text-on-primary dark:text-on-primary font-bold">Muzaffarpur & Araria, Bihar, India</div>
+                  <div className="text-on-primary dark:text-white font-bold">Muzaffarpur & Araria, Bihar, India</div>
                   <div className="text-xs text-surface-container-high dark:text-surface-high font-sans">Hometown: Pratapgarh, Uttar Pradesh</div>
                 </div>
                 <div>
@@ -217,7 +217,7 @@ export function Contact() {
                   </div>
                 </div>
               </div>
-              <div className="pt-6 border-t-2 border-on-primary dark:border-on-primary space-y-3">
+              <div className="pt-6 border-t-2 border-on-primary dark:border-white space-y-3">
                 <span className="font-headline text-xs font-bold uppercase tracking-widest block text-surface-container-high dark:text-surface-high">
                   External Public Keys & Profiles
                 </span>

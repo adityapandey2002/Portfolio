@@ -164,7 +164,7 @@ export function Hero() {
 
               {/* Headline */}
               <h1 className="font-headline text-3xl sm:text-4xl lg:text-6xl font-bold tracking-tight text-on-surface dark:text-on-surface leading-[1.02] uppercase">
-                Building data systems that turn <span className="bg-primary dark:bg-surface-dark text-on-primary dark:text-on-primary px-2 inline-block">field work</span> into real decisions.
+                Building data systems that turn <span className="bg-primary text-on-primary px-2 inline-block">field work</span> into real decisions.
               </h1>
 
               {/* Paragraph */}

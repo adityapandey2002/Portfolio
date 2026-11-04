@@ -34,7 +34,7 @@ export function About() {
           {/* Left Column: Biography Narrative */}
           <div className="lg:col-span-7 bg-surface-container-lowest dark:bg-surface-lowest border-3 border-primary dark:border-white p-6 sm:p-8 shadow-[6px_6px_0px_#1a1a1a] dark:shadow-[6px_6px_0px_#ffffff] flex flex-col justify-between">
             <div className="space-y-5">
-              <div className="inline-block bg-primary dark:bg-surface-dark text-on-primary dark:text-on-primary px-3 py-1 font-headline text-xs uppercase font-bold tracking-widest">
+              <div className="inline-block bg-primary text-on-primary px-3 py-1 font-headline text-xs uppercase font-bold tracking-widest">
                 Field Engineer Biography
               </div>
               <p className="font-headline text-xl sm:text-2xl font-bold text-on-surface dark:text-on-surface leading-snug">
