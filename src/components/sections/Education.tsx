@@ -14,14 +14,14 @@
 const DEGREES = [
   {
     period: '2023 – 2025 // POSTGRADUATE',
-    accent: 'text-accent-red dark:text-accent-red',
+    accent: 'text-primary dark:text-white',
     degree: 'Master of Computer Applications (MCA)',
     school: 'Pondicherry University (Central University), Puducherry',
     desc: 'Specialized in Advanced Data Structures, Distributed Database Systems, Cloud Architecture, Network Protocols, and Applied Machine Learning.',
   },
   {
     period: '2022 – 2023 // POSTGRADUATE',
-    accent: 'text-accent-blue dark:text-accent-blue',
+    accent: 'text-primary dark:text-white',
     degree: 'Master of Arts in Political Science & Government',
     school: 'Prof. Rajendra Singh (Rajju Bhaiya) University, Prayagraj, UP',
     desc: 'Focus on Public Administration, Democratic Institutions, Comparative Public Policy, and State Welfare Apparatuses.',
@@ -73,7 +73,7 @@ export function Education() {
         {/* Section Header */}
         <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 border-b-2 border-primary dark:border-white pb-4">
           <div>
-            <span className="font-headline text-xs font-bold uppercase tracking-widest text-accent-red dark:text-accent-red block">
+            <span className="font-headline text-xs font-bold uppercase tracking-widest text-primary dark:text-white block">
               05 // CREDENTIALS & FOUNDATION
             </span>
             <h2 className="font-headline text-3xl sm:text-5xl font-bold uppercase tracking-tight text-on-surface dark:text-on-surface mt-1">
@@ -90,7 +90,7 @@ export function Education() {
           <div className="border-3 border-primary dark:border-white bg-surface-container-lowest dark:bg-surface-low p-6 sm:p-8 shadow-[6px_6px_0px_#1a1a1a] dark:shadow-[6px_6px_0px_#ffffff] space-y-6">
             <div className="flex items-center justify-between border-b-2 border-primary dark:border-white pb-3">
               <h3 className="font-headline text-xl font-bold uppercase text-on-surface dark:text-on-surface">Formal University Degrees</h3>
-              <span className="material-symbols-outlined text-accent-yellow dark:text-accent-yellow">school</span>
+              <span className="material-symbols-outlined text-primary dark:text-white">school</span>
             </div>
             <div className="space-y-6">
               {DEGREES.map((deg) => (
@@ -110,7 +110,7 @@ export function Education() {
           <div className="border-3 border-primary dark:border-white bg-surface-container dark:bg-surface-container p-6 sm:p-8 shadow-[6px_6px_0px_#1a1a1a] dark:shadow-[6px_6px_0px_#ffffff] space-y-6">
             <div className="flex items-center justify-between border-b-2 border-primary dark:border-white pb-3">
               <h3 className="font-headline text-xl font-bold uppercase text-on-surface dark:text-on-surface">Accreditations & Leadership</h3>
-              <span className="material-symbols-outlined text-accent-yellow dark:text-accent-yellow">verified</span>
+              <span className="material-symbols-outlined text-primary dark:text-white">verified</span>
             </div>
             <div className="space-y-4">
               {CERTS.map((cert) => (

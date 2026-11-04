@@ -62,7 +62,7 @@ export function SelectedSystems() {
       <div className="max-w-7xl mx-auto space-y-10">
         <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 border-b-2 border-primary dark:border-white pb-4">
           <div>
-            <span className="font-headline text-xs font-bold uppercase tracking-widest text-accent-red dark:text-accent-red block">
+            <span className="font-headline text-xs font-bold uppercase tracking-widest text-primary dark:text-white block">
               04 // FLAGSHIP ENGINEERING DEPLOYMENTS
             </span>
             <h2 className="font-headline text-3xl sm:text-5xl font-bold uppercase tracking-tight text-on-surface dark:text-on-surface mt-1">
@@ -92,7 +92,7 @@ export function SelectedSystems() {
                   <span className={`font-mono text-xs font-bold ${sys.techColor}`}>{sys.tech}</span>
                 </div>
                 <div className="space-y-1">
-                  <div className="font-headline text-sm font-bold text-accent-yellow dark:text-accent-yellow uppercase">
+                  <div className="font-headline text-sm font-bold text-primary dark:text-white uppercase">
                     {sys.subtitle}
                   </div>
                   <h3 className="font-headline text-2xl font-bold text-on-surface dark:text-on-surface uppercase">
@@ -128,12 +128,12 @@ export function SelectedSystems() {
 
         <div className="p-4 bg-surface dark:bg-surface-container border-2 border-primary dark:border-white flex flex-col sm:flex-row items-center justify-between gap-4 font-mono text-xs">
           <div className="flex items-center gap-2">
-            <span className="material-symbols-outlined text-base text-accent-yellow dark:text-accent-yellow">folder_special</span>
+            <span className="material-symbols-outlined text-base text-primary dark:text-white">folder_special</span>
             <span className="text-on-surface dark:text-on-surface">SYSTEMS PORTFOLIO CATALOG: 5 PRODUCTION REPOSITORIES ACTIVE</span>
           </div>
           <Link
             href="/work"
-            className="font-bold underline text-accent-yellow dark:text-accent-yellow uppercase tracking-wider hover:text-accent-red dark:hover:text-accent-red"
+            className="font-bold underline text-primary dark:text-white uppercase tracking-wider hover:text-accent-yellow dark:hover:text-accent-red"
           >
             Explore all 5 deployed systems, architecture diagrams, database schemas, and source repositories on the Work page &rarr;
           </Link>

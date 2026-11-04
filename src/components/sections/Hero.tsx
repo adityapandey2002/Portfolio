@@ -211,11 +211,11 @@ export function Hero() {
                   </div>
                   <div className="flex justify-between items-center p-1.5 bg-surface dark:bg-surface-container-lowest border border-primary dark:border-white">
                     <span className="text-on-surface-variant dark:text-on-surface-variant uppercase">High-Burden Blocks:</span>
-                    <span className="font-bold text-accent-red dark:text-accent-red">16 Blocks</span>
+                    <span className="font-bold text-primary dark:text-white">16 Blocks</span>
                   </div>
                   <div className="flex justify-between items-center p-1.5 bg-surface dark:bg-surface-container-lowest border border-primary dark:border-white">
                     <span className="text-on-surface-variant dark:text-on-surface-variant uppercase">Field Distance Logged:</span>
-                    <span className="font-bold text-accent-blue dark:text-accent-blue">13,627 KM</span>
+                    <span className="font-bold text-primary dark:text-white">13,627 KM</span>
                   </div>
                   <div className="flex justify-between items-center p-1.5 bg-surface dark:bg-surface-container-lowest border border-primary dark:border-white">
                     <span className="text-on-surface-variant dark:text-on-surface-variant uppercase">Validation Rule Engines:</span>

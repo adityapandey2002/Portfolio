@@ -61,7 +61,7 @@ export function Pipeline() {
         {/* Section Header */}
         <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 border-b-2 border-primary dark:border-white pb-4">
           <div>
-            <span className="font-headline text-xs font-bold uppercase tracking-widest text-accent-yellow dark:text-accent-yellow block">
+            <span className="font-headline text-xs font-bold uppercase tracking-widest text-primary dark:text-white block">
               06 // DATA SYSTEMS METHODOLOGY
             </span>
             <h2 className="font-headline text-3xl sm:text-5xl font-bold uppercase tracking-tight text-on-surface dark:text-on-surface mt-1">
@@ -93,7 +93,7 @@ export function Pipeline() {
                 <div className={`w-10 h-10 ${stage.accent} font-headline font-bold text-lg flex items-center justify-center border-2 border-primary dark:border-white mb-4`}>
                   {stage.num}
                 </div>
-                <span className="font-mono text-xs font-bold text-accent-yellow dark:text-accent-yellow uppercase block mb-1">
+                <span className="font-mono text-xs font-bold text-primary dark:text-white uppercase block mb-1">
                   {stage.stage}
                 </span>
                 <h3 className="font-headline text-2xl font-bold uppercase text-on-surface dark:text-on-surface mb-3">{stage.title}</h3>

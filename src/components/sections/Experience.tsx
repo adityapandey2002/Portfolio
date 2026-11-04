@@ -66,7 +66,7 @@ export function Experience() {
               <div className="space-y-4">
                 <div className="flex items-start justify-between gap-2 border-b-2 border-primary dark:border-white pb-3">
                   <div>
-                    <span className={`font-mono text-xs font-bold ${xp.current ? 'text-accent-yellow dark:text-accent-yellow' : 'text-on-surface-variant dark:text-on-surface-variant'} uppercase block`}>
+                    <span className={`font-mono text-xs font-bold text-primary dark:text-white uppercase block`}>
                       {xp.period} {"/"} {xp.org}
                     </span>
                     <h4 className="font-headline text-xl font-bold text-on-surface dark:text-on-surface mt-1">{xp.role}</h4>
