@@ -181,6 +181,171 @@ export default function WorkPage() {
         </div>
       </section>
 
+      {/* BiharKaSwaad E-Commerce Flagship */}
+      <section className="w-full border-b-2 border-primary dark:border-white bg-surface-bright dark:bg-surface-low px-4 sm:px-8 lg:px-12 py-10 lg:py-12">
+        <div className="max-w-7xl mx-auto space-y-8">
+          {/* Top Badges */}
+          <div className="flex flex-wrap items-center justify-between gap-4 border-b-2 border-primary dark:border-white pb-4">
+            <div className="flex flex-wrap items-center gap-2">
+              <span className="bg-primary dark:bg-on-surface text-accent-yellow dark:text-primary-yellow font-headline text-xs font-bold uppercase px-3 py-1 border-2 border-primary dark:border-white tracking-wider shadow-[2px_2px_0px_#1a1a1a] dark:shadow-[2px_2px_0px_#ffffff]">
+                FLAGSHIP 01 // PRODUCTION COMMERCE
+              </span>
+              <span className="bg-accent-red dark:bg-accent-red text-white font-headline text-xs font-bold uppercase px-3 py-1 border-2 border-primary dark:border-white tracking-wider shadow-[2px_2px_0px_#1a1a1a] dark:shadow-[2px_2px_0px_#ffffff]">
+                LIVE PRODUCTION // biharkaswaad.in
+              </span>
+              <span className="bg-surface dark:bg-surface-container-lowest text-primary dark:text-on-surface font-headline text-xs font-bold uppercase px-3 py-1 border-2 border-primary dark:border-white tracking-wider">
+                HOSTINGER CLOUD + NODE RUNTIME
+              </span>
+            </div>
+            <div className="font-headline text-xs font-bold uppercase tracking-widest text-on-surface-variant dark:text-on-surface-variant flex items-center gap-2">
+              <span className="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse" />
+              DEPLOYMENT: PROD_COMMERCE_v2
+            </div>
+          </div>
+          {/* Title and Overview */}
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+            <div className="lg:col-span-8 space-y-4">
+              <h2 className="font-headline font-bold text-3xl sm:text-4xl lg:text-5xl text-primary dark:text-on-surface tracking-tight uppercase leading-tight">
+                BIHARKASWAAD E-COMMERCE PLATFORM
+                <span className="block text-xl sm:text-2xl text-on-surface-variant dark:text-on-surface-variant font-normal tracking-normal mt-1">
+                  Full-Stack Artisanal Food Logistics, Deterministic Payments &amp; Order Pipeline
+                </span>
+              </h2>
+              <p className="font-body text-base text-on-surface-variant dark:text-on-surface-variant leading-relaxed">
+                Direct-to-consumer high-integrity commerce system engineered for authentic regional food distribution across India. Built with a zero-tamper Razorpay payment verification engine, variant-aware relational inventory controls, automated courier tracking webhooks, and an optimized React frontend running in production.
+              </p>
+            </div>
+            <div className="lg:col-span-4 flex flex-col gap-3 p-4 bg-surface-container dark:bg-surface-low border-2 border-primary dark:border-white shadow-[4px_4px_0px_#1a1a1a] dark:shadow-[4px_4px_0px_#ffffff]">
+              <div className="font-headline text-xs font-bold uppercase text-primary dark:text-on-surface border-b border-primary dark:border-white pb-2 flex items-center justify-between">
+                <span>COMMERCE QUALITY GATES</span>
+                <span className="material-symbols-outlined text-accent-red dark:text-accent-red text-sm">verified</span>
+              </div>
+              <div className="space-y-2 text-xs font-headline">
+                <div className="flex justify-between items-center"><span className="text-on-surface-variant dark:text-on-surface-variant">PAYMENT VERIFY:</span> <span className="font-bold text-primary dark:text-on-surface">HMAC SHA-256 Signature</span></div>
+                <div className="flex justify-between items-center"><span className="text-on-surface-variant dark:text-on-surface-variant">TAMPER PROTECTION:</span> <span className="font-bold text-accent-red dark:text-accent-red">Server Price Re-Validation</span></div>
+                <div className="flex justify-between items-center"><span className="text-on-surface-variant dark:text-on-surface-variant">INVENTORY LOCK:</span> <span className="font-bold text-primary dark:text-on-surface">ACID Relational MySQL</span></div>
+                <div className="flex justify-between items-center"><span className="text-on-surface-variant dark:text-on-surface-variant">PRODUCTION STORE:</span> <span className="font-bold text-accent-blue dark:text-accent-blue">biharkaswaad.in</span></div>
+              </div>
+            </div>
+          </div>
+          {/* Split: Live Browser Window Preview vs Technical Architecture */}
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 pt-4">
+            {/* Left: Browser Window Mockup */}
+            <div className="lg:col-span-5 space-y-4">
+              <div className="border-2 border-primary dark:border-white bg-surface-bright dark:bg-surface-low shadow-[6px_6px_0px_#1a1a1a] dark:shadow-[6px_6px_0px_#ffffff] overflow-hidden">
+                {/* Browser Chrome Topbar */}
+                <div className="bg-primary dark:bg-on-surface text-on-primary dark:text-surface px-4 py-2.5 border-b-2 border-primary dark:border-white flex items-center justify-between font-headline text-xs">
+                  <div className="flex items-center gap-2">
+                    <span className="w-3 h-3 rounded-full bg-accent-red dark:bg-accent-red inline-block" />
+                    <span className="w-3 h-3 rounded-full bg-accent-yellow dark:bg-primary-yellow inline-block" />
+                    <span className="w-3 h-3 rounded-full bg-accent-blue dark:bg-accent-blue inline-block" />
+                    <span className="font-bold ml-2 tracking-wide text-accent-yellow dark:text-primary-yellow">LIVE BROWSER PREVIEW</span>
+                  </div>
+                  <span className="text-[11px] font-mono text-on-surface-variant dark:text-on-surface-variant bg-accent-yellow/20 dark:bg-primary-yellow/20 px-2 py-0.5 border border-accent-yellow/30 dark:border-primary-yellow/30">
+                    biharkaswaad.in
+                  </span>
+                </div>
+                {/* Browser Content */}
+                <div className="relative bg-surface dark:bg-surface-container-lowest border-b border-primary dark:border-white max-h-[520px] overflow-y-auto">
+                  <img alt="BiharKaSwaad live website production storefront screenshot" className="w-full h-auto block object-cover" loading="lazy" src="https://www.gstatic.com/labs-code/stitch/stitch-placeholder-300x300.svg" />
+                </div>
+                {/* Browser Footer Strip */}
+                <div className="p-3 bg-surface-container dark:bg-surface-low flex items-center justify-between text-xs font-headline">
+                  <span className="font-bold uppercase text-primary dark:text-on-surface flex items-center gap-1.5">
+                    <span className="material-symbols-outlined text-accent-red dark:text-accent-red text-sm">lock</span>
+                    SSL SHA-256 Validated
+                  </span>
+                  <span className="text-on-surface-variant dark:text-on-surface-variant text-[11px]">Production Hostinger Cloud</span>
+                </div>
+              </div>
+              {/* Action buttons */}
+              <div className="flex flex-col sm:flex-row gap-3">
+                <a className="flex-1 py-3 px-4 bg-primary dark:bg-on-surface text-on-primary dark:text-surface font-headline font-bold text-xs uppercase tracking-wider border-2 border-primary dark:border-white shadow-[3px_3px_0px_#1a1a1a] dark:shadow-[3px_3px_0px_#ffffff] hover:bg-accent-yellow dark:hover:bg-primary-yellow hover:text-black dark:hover:text-black transition-colors flex items-center justify-center gap-2" href="https://biharkaswaad.in" rel="noopener noreferrer" target="_blank">
+                  <span>Open Live Site: biharkaswaad.in</span>
+                  <span className="material-symbols-outlined text-[16px]">arrow_outward</span>
+                </a>
+                <a className="py-3 px-4 bg-surface dark:bg-surface-container-lowest text-primary dark:text-on-surface font-headline font-bold text-xs uppercase tracking-wider border-2 border-primary dark:border-white shadow-[3px_3px_0px_#1a1a1a] dark:shadow-[3px_3px_0px_#ffffff] hover:bg-surface-container dark:hover:bg-surface-low transition-colors flex items-center justify-center gap-1.5" href="https://github.com/adityapandey2002" rel="noopener noreferrer" target="_blank">
+                  <span className="material-symbols-outlined text-[16px]">code</span>
+                  <span>View Git Repository</span>
+                </a>
+              </div>
+            </div>
+            {/* Right: Technical Architecture & Security Pipeline */}
+            <div className="lg:col-span-7 space-y-6">
+              {/* Security & Reconciliation Card */}
+              <div className="border-2 border-primary dark:border-white bg-surface dark:bg-surface-container-lowest p-6 shadow-[4px_4px_0px_#1a1a1a] dark:shadow-[4px_4px_0px_#ffffff] space-y-4">
+                <div className="flex items-center justify-between border-b-2 border-primary dark:border-white pb-3">
+                  <span className="font-headline font-bold text-sm uppercase tracking-wider text-primary dark:text-on-surface flex items-center gap-2">
+                    <span className="material-symbols-outlined text-accent-red dark:text-accent-red text-[20px]">security</span>
+                    Razorpay HMAC SHA-256 Webhook Reconciliation &amp; Anti-Tamper Pipeline
+                  </span>
+                  <span className="bg-accent-red dark:bg-accent-red text-white font-headline text-[10px] font-bold px-2 py-0.5 border border-primary dark:border-white">STRICT ZERO-TRUST</span>
+                </div>
+                <p className="font-body text-xs text-on-surface-variant dark:text-on-surface-variant leading-relaxed">
+                  Eliminates client-side price tampering vectors. When a checkout order initiates, the backend recalculates exact SKU prices, discounts, and courier weight tariffs directly from relational tables—never accepting client-supplied amounts.
+                </p>
+                <div className="space-y-2 font-mono text-xs">
+                  <div className="p-2.5 bg-surface-container dark:bg-surface-low border border-primary dark:border-white flex items-start gap-3">
+                    <span className="font-bold text-primary dark:text-on-surface bg-accent-yellow dark:bg-primary-yellow px-2 py-0.5 text-[10px]">STEP 01</span>
+                    <div>
+                      <div className="font-bold text-primary dark:text-on-surface uppercase">Server-Side Amount Re-Validation</div>
+                      <div className="text-on-surface-variant dark:text-on-surface-variant text-[11px]">Database lookup for variant pricing &amp; tax before generating <code>order_id</code> via Razorpay Orders API.</div>
+                    </div>
+                  </div>
+                  <div className="p-2.5 bg-surface-container dark:bg-surface-low border border-primary dark:border-white flex items-start gap-3">
+                    <span className="font-bold text-primary dark:text-on-surface bg-accent-yellow dark:bg-primary-yellow px-2 py-0.5 text-[10px]">STEP 02</span>
+                    <div>
+                      <div className="font-bold text-primary dark:text-on-surface uppercase">Cryptographic HMAC Verification</div>
+                      <div className="text-on-surface-variant dark:text-on-surface-variant text-[11px]">Calculates <code>crypto.createHmac(&apos;sha256&apos;, secret).update(order_id + &apos;|&apos; + payment_id).digest(&apos;hex&apos;)</code> to confirm authenticity.</div>
+                    </div>
+                  </div>
+                  <div className="p-2.5 bg-surface-container dark:bg-surface-low border border-primary dark:border-white flex items-start gap-3">
+                    <span className="font-bold text-primary dark:text-on-surface bg-accent-yellow dark:bg-primary-yellow px-2 py-0.5 text-[10px]">STEP 03</span>
+                    <div>
+                      <div className="font-bold text-primary dark:text-on-surface uppercase">Webhook Failover &amp; Idempotency</div>
+                      <div className="text-on-surface-variant dark:text-on-surface-variant text-[11px]">Webhook listens for <code>payment.captured</code> events with unique transaction idempotency keys to prevent double-crediting.</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              {/* Database & Order Lifecycle Grid */}
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div className="p-4 bg-surface dark:bg-surface-container-lowest border-2 border-primary dark:border-white shadow-[3px_3px_0px_#1a1a1a] dark:shadow-[3px_3px_0px_#ffffff] space-y-2">
+                  <div className="font-headline font-bold text-xs uppercase text-primary dark:text-on-surface border-b border-primary dark:border-white pb-1.5 flex items-center justify-between">
+                    <span>MYSQL RELATIONAL SCHEMA</span>
+                    <span className="text-[10px] text-on-surface-variant dark:text-on-surface-variant font-mono">ACID</span>
+                  </div>
+                  <ul className="text-xs space-y-1 font-body text-on-surface-variant dark:text-on-surface-variant">
+                    <li>• <strong>Variant-Aware Inventory:</strong> Tracks granular weights (250g, 500g, 1kg) with row-locking transactions.</li>
+                    <li>• <strong>Normalized Orders &amp; Items:</strong> Decoupled tracking for multi-item baskets with immutable invoice snaps.</li>
+                    <li>• <strong>Customer Ledger:</strong> Encrypted PII, verified phone tokens, and delivery address histories.</li>
+                  </ul>
+                </div>
+                <div className="p-4 bg-surface dark:bg-surface-container-lowest border-2 border-primary dark:border-white shadow-[3px_3px_0px_#1a1a1a] dark:shadow-[3px_3px_0px_#ffffff] space-y-2">
+                  <div className="font-headline font-bold text-xs uppercase text-primary dark:text-on-surface border-b border-primary dark:border-white pb-1.5 flex items-center justify-between">
+                    <span>ORDER LIFECYCLE &amp; LOGISTICS</span>
+                    <span className="text-[10px] text-accent-blue dark:text-accent-blue font-mono">DISPATCH</span>
+                  </div>
+                  <ul className="text-xs space-y-1 font-body text-on-surface-variant dark:text-on-surface-variant">
+                    <li>• <strong>Lifecycle States:</strong> PENDING → PAID → PACKED → DISPATCHED → OUT_FOR_DELIVERY → DELIVERED.</li>
+                    <li>• <strong>Automated Courier Sync:</strong> Integration ready for Shiprocket/Delhivery tracking webhooks.</li>
+                    <li>• <strong>Admin Dashboard:</strong> Real-time order dispatch board with printable shipping bills.</li>
+                  </ul>
+                </div>
+              </div>
+              {/* Tech Stack Badges */}
+              <div className="flex flex-wrap gap-2 pt-1">
+                {['React 18', 'Node.js', 'Express REST', 'MySQL DB', 'Razorpay HMAC', 'Hostinger Cloud', 'Tailwind CSS'].map((t) => (
+                  <span key={t} className="px-2.5 py-1 bg-surface-container dark:bg-surface-low border border-primary dark:border-white font-headline text-[11px] font-bold uppercase text-primary dark:text-on-surface">
+                    {t}
+                  </span>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Projects grid */}
       <section className="border-b-4 border-primary dark:border-white bg-surface dark:bg-surface-dark py-12 px-4 sm:px-8 lg:px-12">
         <div className="max-w-7xl mx-auto">
