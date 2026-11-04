@@ -295,6 +295,182 @@ export default function HealthPage() {
         </Section>
       </section>
 
+      {/* Outcomes */}
+      <section className="w-full px-4 sm:px-8 lg:px-12 py-10 lg:py-12 bg-surface dark:bg-surface-dark border-b-2 border-primary dark:border-white">
+        <div className="max-w-7xl mx-auto space-y-8">
+          <div className="border-b-2 border-primary dark:border-white pb-4 flex flex-col md:flex-row md:items-end justify-between gap-4">
+            <div>
+              <span className="font-headline text-xs font-bold uppercase tracking-widest text-accent-red dark:text-accent-red block mb-1">
+                {'/* OUTCOMES */'}
+              </span>
+              <h2 className="font-headline text-2xl sm:text-4xl font-bold uppercase tracking-tight text-primary dark:text-on-surface">
+                WHAT WE DRIVE TOWARD
+              </h2>
+            </div>
+            <p className="font-body text-xs md:text-sm text-on-surface-variant dark:text-on-surface-variant max-w-md">
+              Two outcome strands anchor every intervention in the field.
+            </p>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div className="bg-surface dark:bg-surface-container-lowest border-2 border-primary dark:border-white p-6 shadow-[6px_6px_0px_#1a1a1a] dark:shadow-[6px_6px_0px_#ffffff] flex flex-col justify-between space-y-4">
+              <div className="space-y-3">
+                <div className="flex items-center justify-between border-b-2 border-primary dark:border-white pb-2">
+                  <span className="font-headline text-xs font-bold uppercase tracking-wider bg-primary dark:bg-on-surface text-on-primary dark:text-surface px-2 py-0.5">
+                    OUTCOME 01
+                  </span>
+                  <span className="material-symbols-outlined text-primary dark:text-on-surface text-2xl">diversity_3</span>
+                </div>
+                <h3 className="font-headline text-xl sm:text-2xl font-bold uppercase tracking-tight text-primary dark:text-on-surface">
+                  Community Outcomes
+                </h3>
+                <p className="font-body text-sm text-on-surface-variant dark:text-on-surface-variant leading-relaxed">
+                  Improved health behaviors, service utilization, and citizen experience within communities — making health systems work for the people they serve.
+                </p>
+              </div>
+              <div className="pt-4 border-t border-primary dark:border-white flex items-center justify-between font-headline text-xs uppercase font-bold text-primary dark:text-on-surface">
+                <span className="text-accent-red dark:text-accent-red">{'/* OUTCOMES */'}</span>
+                <span className="bg-accent-yellow dark:bg-primary-yellow px-2 py-0.5 border border-primary dark:border-white text-black dark:text-black">
+                  PEOPLE-FIRST
+                </span>
+              </div>
+            </div>
+            <div className="bg-primary dark:bg-surface-container-lowest text-on-primary dark:text-on-surface border-2 border-primary dark:border-white p-6 shadow-[6px_6px_0px_#ffcc00] dark:shadow-[6px_6px_0px_#ffcc00] flex flex-col justify-between space-y-4">
+              <div className="space-y-3">
+                <div className="flex items-center justify-between border-b-2 border-on-primary/30 dark:border-white pb-2">
+                  <span className="font-headline text-xs font-bold uppercase tracking-wider bg-accent-yellow dark:bg-primary-yellow text-black dark:text-black px-2 py-0.5">
+                    OUTCOME 02
+                  </span>
+                  <span className="material-symbols-outlined text-accent-yellow dark:text-primary-yellow text-2xl">hub</span>
+                </div>
+                <h3 className="font-headline text-xl sm:text-2xl font-bold uppercase tracking-tight text-on-primary dark:text-on-surface">
+                  System Outcomes
+                </h3>
+                <p className="font-body text-sm text-on-primary/80 dark:text-on-surface-variant leading-relaxed">
+                  Stronger governance, better resource allocation, and resilient public health infrastructure — systems that sustain beyond any single intervention.
+                </p>
+              </div>
+              <div className="pt-4 border-t border-on-primary/30 dark:border-white flex items-center justify-between font-headline text-xs uppercase font-bold text-on-primary dark:text-on-surface">
+                <span className="text-accent-yellow dark:text-primary-yellow">{'/* SYSTEMS */'}</span>
+                <span className="bg-on-primary dark:bg-on-surface text-primary dark:text-surface px-2 py-0.5 border border-on-primary/30 dark:border-white">
+                  RESILIENT
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* WHO Building Blocks */}
+      <section className="w-full px-4 sm:px-8 lg:px-12 py-10 lg:py-12 bg-surface-container dark:bg-surface-low border-b-2 border-primary dark:border-white">
+        <div className="max-w-7xl mx-auto space-y-8">
+          <div className="border-b-2 border-primary dark:border-white pb-4 flex flex-col md:flex-row md:items-end justify-between gap-4">
+            <div>
+              <span className="font-headline text-xs font-bold uppercase tracking-widest text-accent-red dark:text-accent-red block mb-1">
+                {'/* SYSTEM OUTCOMES */'}
+              </span>
+              <h2 className="font-headline text-2xl sm:text-4xl font-bold uppercase tracking-tight text-primary dark:text-on-surface">
+                WHO BUILDING BLOCKS, UNDER FOCUS
+              </h2>
+            </div>
+            <div className="flex flex-col items-start md:items-end gap-1">
+              <p className="font-body text-xs md:text-sm text-on-surface-variant dark:text-on-surface-variant max-w-md">
+                Day-to-day fellowship work — support activities woven across the 6 WHO building blocks.
+              </p>
+              <div className="flex items-center gap-2 font-headline text-[10px] uppercase font-bold text-primary dark:text-on-surface">
+                <span className="bg-accent-yellow dark:bg-primary-yellow px-2 py-0.5 border border-primary dark:border-white text-black dark:text-black">
+                  6 PILLARS IN FOCUS
+                </span>
+              </div>
+            </div>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {[
+              { id: '01', title: 'Service Delivery', desc: 'Strengthening frontline service delivery at sub-centres and PHCs through protocol adherence and digital tools.', color: 'bg-accent-yellow dark:bg-primary-yellow' },
+              { id: '02', title: 'Health Workforce (HRH)', desc: 'Capacity building for ASHA, ANM, CHO, and PHC staff through 100+ micro-sessions.', color: 'bg-accent-red dark:bg-accent-red' },
+              { id: '03', title: 'Health Information Systems', desc: 'ODK Collect, M-ASHA digital app, and automated MIS reporting pipelines.', color: 'bg-accent-blue dark:bg-accent-blue' },
+              { id: '04', title: 'Access to Medicines', desc: 'Supply chain monitoring and medicine forecasting to prevent stockouts.', color: 'bg-accent-yellow dark:bg-primary-yellow' },
+              { id: '05', title: 'Financing', desc: 'Resource allocation and budget tracking for block-level health programs.', color: 'bg-accent-red dark:bg-accent-red' },
+              { id: '06', title: 'Leadership & Governance', desc: 'Block and district review cycles, NQAS certification support, and quality assurance.', color: 'bg-accent-blue dark:bg-accent-blue' },
+            ].map((pillar) => (
+              <div
+                key={pillar.id}
+                className="bg-surface dark:bg-surface-container-lowest border-2 border-primary dark:border-white p-6 shadow-[4px_4px_0px_#1a1a1a] dark:shadow-[4px_4px_0px_#ffffff] space-y-3 transition-transform hover:-translate-y-1"
+              >
+                <div className="flex items-center justify-between border-b-2 border-primary dark:border-white pb-2">
+                  <span className={`font-headline text-xs font-bold uppercase tracking-wider ${pillar.color} text-black dark:text-black px-2 py-0.5 border border-primary dark:border-white`}>
+                    {pillar.id}{' // '}{pillar.title}
+                  </span>
+                </div>
+                <p className="font-body text-xs text-on-surface-variant dark:text-on-surface-variant leading-relaxed">
+                  {pillar.desc}
+                </p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Field Mind */}
+      <section className="w-full px-4 sm:px-8 lg:px-12 py-10 lg:py-12 bg-surface-container-low dark:bg-surface-low border-b-2 border-primary dark:border-white">
+        <div className="max-w-7xl mx-auto space-y-8">
+          <div className="border-b-2 border-primary dark:border-white pb-4 flex flex-col md:flex-row md:items-end justify-between gap-4">
+            <div>
+              <span className="font-headline text-xs font-bold uppercase tracking-widest text-accent-red dark:text-accent-red block mb-1">
+                INTERNAL DISCIPLINE &amp; EQUANIMITY
+              </span>
+              <h2 className="font-headline text-2xl sm:text-4xl font-bold uppercase tracking-tight text-primary dark:text-on-surface">
+                FIELD MIND &amp; SUSTAINED OPERATIONAL DISCIPLINE
+              </h2>
+            </div>
+            <div className="font-headline text-xs font-bold uppercase tracking-wider bg-primary dark:bg-on-surface text-on-primary dark:text-surface px-3 py-1">
+              INNER ARCHITECTURE // HIGH-BURDEN CONTEXT
+            </div>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div className="border-2 border-primary dark:border-white p-6 bg-surface dark:bg-surface-container-lowest shadow-[4px_4px_0px_#1a1a1a] dark:shadow-[4px_4px_0px_#ffffff] flex flex-col justify-between space-y-4">
+              <div className="space-y-3">
+                <div className="flex items-center justify-between border-b-2 border-primary dark:border-white pb-2">
+                  <span className="font-headline text-xs font-bold uppercase tracking-wider text-accent-red dark:text-accent-red">
+                    PRACTICE 01 // COGNITIVE TRAINING
+                  </span>
+                  <span className="material-symbols-outlined text-primary dark:text-on-surface text-xl">psychology</span>
+                </div>
+                <h3 className="font-headline text-xl font-bold uppercase tracking-tight text-primary dark:text-on-surface">
+                  Cognitively-Based Compassion Training (CBCT®) &amp; Leadership Workshop
+                </h3>
+                <p className="font-body text-xs text-on-surface-variant dark:text-on-surface-variant leading-relaxed">
+                  Formal compassion methodology and emotional resilience training. Developed systemic empathy to engage with frontline workers facing severe burnout, resource scarcity, and structural fatigue.
+                </p>
+              </div>
+              <div className="pt-3 border-t border-primary dark:border-white flex items-center justify-between text-[11px] font-headline uppercase font-bold text-primary dark:text-on-surface">
+                <span>LOCATION: HAJIPUR RESIDENTIAL</span>
+                <span className="bg-accent-yellow dark:bg-primary-yellow px-2 py-0.5 text-black dark:text-black">COMPASSIONATE SYSTEMS</span>
+              </div>
+            </div>
+            <div className="border-2 border-primary dark:border-white p-6 bg-surface dark:bg-surface-container-lowest shadow-[4px_4px_0px_#1a1a1a] dark:shadow-[4px_4px_0px_#ffffff] flex flex-col justify-between space-y-4">
+              <div className="space-y-3">
+                <div className="flex items-center justify-between border-b-2 border-primary dark:border-white pb-2">
+                  <span className="font-headline text-xs font-bold uppercase tracking-wider text-accent-blue dark:text-accent-blue">
+                    PRACTICE 02 // INTELLECTUAL EQUANIMITY
+                  </span>
+                  <span className="material-symbols-outlined text-primary dark:text-on-surface text-xl">self_improvement</span>
+                </div>
+                <h3 className="font-headline text-xl font-bold uppercase tracking-tight text-primary dark:text-on-surface">
+                  10-Day Silent Vipassana Meditation Course at Dhamma Vaishali
+                </h3>
+                <p className="font-body text-xs text-on-surface-variant dark:text-on-surface-variant leading-relaxed">
+                  Rigorous ten days of Noble Silence and sensory austerity. Cultivated unbroken focus, non-reactive clarity under extreme pressure, and radical endurance.
+                </p>
+              </div>
+              <div className="pt-3 border-t border-primary dark:border-white flex items-center justify-between text-[11px] font-headline uppercase font-bold text-primary dark:text-on-surface">
+                <span>DHAMMA VAISHALI, BIHAR</span>
+                <span className="bg-accent-yellow dark:bg-primary-yellow px-2 py-0.5 text-black dark:text-black">10-DAY SILENT RETREAT</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Telemetry Feed */}
       <section className="w-full px-4 sm:px-8 lg:px-12 py-10 lg:py-12 bg-primary dark:bg-surface-container-lowest text-on-primary dark:text-on-surface border-b-2 border-primary dark:border-white">
         <div className="max-w-7xl mx-auto space-y-6">
