@@ -1,8 +1,6 @@
-import { WorkProjectCard } from '@/components/projects/WorkProjectCard';
-import { Footer } from '@/components/sections/Footer';
 import Link from 'next/link';
-import { ArrowRight } from 'lucide-react';
 import { Section } from '@/components/ui/Section';
+import { Footer } from '@/components/sections/Footer';
 
 export const metadata = {
   title: 'Work — Aditya Pandey',
@@ -65,13 +63,13 @@ export default function WorkPage() {
       <section className="border-b-4 border-primary dark:border-white bg-surface dark:bg-surface-dark">
         <Section className="py-12">
           <div className="mb-6">
-            <span className="font-mono text-xs font-bold uppercase tracking-widest text-on-surface-variant dark:text-ink-dark">
+            <span className="font-mono text-xs font-bold uppercase tracking-widest text-on-surface-variant dark:text-on-surface-variant">
               09 · SELECTED WORK
             </span>
-            <h1 className="mt-2 font-headline text-3xl sm:text-5xl font-bold uppercase tracking-tight text-on-surface dark:text-ink-dark">
+            <h1 className="mt-2 font-headline text-3xl sm:text-5xl font-bold uppercase tracking-tight text-on-surface dark:text-on-surface">
               Built, deployed, shipped
             </h1>
-            <p className="mt-4 text-sm text-on-surface-variant dark:text-ink-dark/70 max-w-[560px]">
+            <p className="mt-4 text-sm text-on-surface-variant dark:text-on-surface-variant/70 max-w-[560px]">
               A few things I built end-to-end — from field forms to live production apps.
             </p>
           </div>
@@ -79,33 +77,33 @@ export default function WorkPage() {
       </section>
 
       {/* Projects grid */}
-      <section className="border-b-4 border-primary dark:border-white bg-surface dark:bg-surface-dark">
-        <Section className="py-12">
+      <section className="border-b-4 border-primary dark:border-white bg-surface dark:bg-surface-dark py-12 px-4 sm:px-8 lg:px-12">
+        <div className="max-w-7xl mx-auto">
           <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
             {WORK_PROJECTS.map((project) => (
               <div
                 key={project.id}
-                className="border-2 border-primary dark:border-white bg-surface-container-lowest dark:bg-surface-l2 p-6 shadow-[4px_4px_0_#1a1a1a] dark:shadow-[4px_4px_0_#ffffff]"
+                className="border-2 border-primary dark:border-white bg-surface-container-lowest dark:bg-surface-low p-6 shadow-[4px_4px_0px_#1a1a1a] dark:shadow-[4px_4px_0px_#ffffff]"
               >
                 <div className="flex items-center justify-between border-b-2 border-primary dark:border-white pb-3 mb-4">
-                  <span className="bg-primary-container dark:bg-primary-yellow text-on-primary-container dark:text-on-primary px-2.5 py-0.5 font-headline font-bold text-xs uppercase border border-primary dark:border-white">
-                    {project.status === 'LIVE' ? 'LIVE' : 'CASE STUDY'}
+                  <span className="bg-accent-yellow dark:bg-accent-yellow text-black dark:text-black px-2.5 py-0.5 font-headline font-bold text-xs uppercase border border-primary dark:border-white">
+                    {project.status}
                   </span>
-                  <span className="font-mono text-xs font-bold text-on-surface-variant dark:text-ink-dark/70">
+                  <span className="font-mono text-xs font-bold text-on-surface-variant dark:text-on-surface-variant">
                     {project.number}
                   </span>
                 </div>
-                <h3 className="font-headline text-xl font-bold text-on-surface dark:text-ink-dark uppercase">
+                <h3 className="font-headline text-xl font-bold text-on-surface dark:text-on-surface uppercase">
                   {project.title}
                 </h3>
-                <p className="mt-2 text-sm text-on-surface-variant dark:text-ink-dark/70 leading-relaxed">
+                <p className="mt-2 text-sm text-on-surface-variant dark:text-on-surface-variant/70 leading-relaxed">
                   {project.desc}
                 </p>
                 <div className="mt-4 flex flex-wrap gap-1.5">
                   {project.tech.map((t) => (
                     <span
                       key={t}
-                      className="font-mono text-[11px] font-semibold bg-surface-container dark:bg-surface-l1 px-2 py-0.5 border border-primary dark:border-white text-on-surface dark:text-ink-dark"
+                      className="font-mono text-[11px] font-semibold bg-surface-container dark:bg-surface-low px-2 py-0.5 border border-primary dark:border-white text-on-surface dark:text-on-surface"
                     >
                       {t}
                     </span>
@@ -116,7 +114,7 @@ export default function WorkPage() {
                     href={project.caseStudy}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center gap-2 border-2 border-primary dark:border-white bg-surface dark:bg-surface-l1 px-3 py-1.5 font-headline text-[10px] font-bold uppercase tracking-wider text-primary dark:text-white shadow-[2px_2px_0_#1a1a1a] dark:shadow-[2px_2px_0_#ffffff] transition-all hover:translate-x-0.5 hover:translate-y-0.5 hover:shadow-none"
+                    className="inline-flex items-center gap-2 border-2 border-primary dark:border-white bg-surface dark:bg-surface-low px-3 py-1.5 font-headline text-[10px] font-bold uppercase tracking-wider text-primary dark:text-white shadow-[2px_2px_0px_#1a1a1a] dark:shadow-[2px_2px_0px_#ffffff] transition-all hover:translate-x-0.5 hover:translate-y-0.5 hover:shadow-none"
                   >
                     GitHub →
                   </a>
@@ -125,7 +123,7 @@ export default function WorkPage() {
                       href={project.live}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="inline-flex items-center gap-2 border-2 border-primary dark:border-white bg-primary-container dark:bg-primary-yellow px-3 py-1.5 font-headline text-[10px] font-bold uppercase tracking-wider text-on-primary-container dark:text-on-primary shadow-[2px_2px_0_#1a1a1a] dark:shadow-[2px_2px_0_#ffffff] transition-all hover:translate-x-0.5 hover:translate-y-0.5 hover:shadow-none"
+                      className="inline-flex items-center gap-2 border-2 border-primary dark:border-white bg-accent-yellow dark:bg-accent-yellow text-black dark:text-black px-3 py-1.5 font-headline text-[10px] font-bold uppercase tracking-wider shadow-[2px_2px_0px_#1a1a1a] dark:shadow-[2px_2px_0px_#ffffff] transition-all hover:translate-x-0.5 hover:translate-y-0.5 hover:shadow-none"
                     >
                       Live Site →
                     </a>
@@ -134,7 +132,7 @@ export default function WorkPage() {
               </div>
             ))}
           </div>
-        </Section>
+        </div>
       </section>
 
       <Footer />

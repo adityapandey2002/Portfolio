@@ -1,7 +1,5 @@
 import { Section } from '@/components/ui/Section';
 import { Footer } from '@/components/sections/Footer';
-import { HealthMetrics } from '@/components/sections/HealthMetrics';
-import { HealthSystemStrengthening } from '@/components/sections/HealthSystemStrengthening';
 
 export const metadata = {
   title: 'Health Field Impact — Aditya Pandey',
@@ -15,22 +13,252 @@ export default function HealthPage() {
       <section className="border-b-4 border-primary dark:border-white bg-surface dark:bg-surface-dark">
         <Section className="py-12">
           <div className="mb-6">
-            <span className="font-mono text-xs font-bold uppercase tracking-widest text-on-surface-variant dark:text-ink-dark">
+            <span className="font-mono text-xs font-bold uppercase tracking-widest text-on-surface-variant dark:text-on-surface-variant">
               03 · HEALTH FIELD IMPACT
             </span>
-            <h1 className="mt-2 font-headline text-3xl sm:text-5xl font-bold uppercase tracking-tight text-on-surface dark:text-ink-dark">
+            <h1 className="mt-2 font-headline text-3xl sm:text-5xl font-bold uppercase tracking-tight text-on-surface dark:text-on-surface">
               Health Field Impact
             </h1>
-            <p className="mt-4 text-sm text-on-surface-variant dark:text-ink-dark/70 max-w-2xl">
+            <p className="mt-4 text-sm text-on-surface-variant dark:text-on-surface-variant/70 max-w-2xl">
               Gandhi Fellowship · Piramal Foundation. Public health data work across Bihar&apos;s high-burden blocks — frontline worker capacity building (ASHA, ANM, CHO, PHC), 185-hour clinical skills refreshers, NQAS certification support, maternal and child health programs, and VHSND / Godbharai / PMSMA data pipelines — tracked like patient data, from Muzaffarpur.
             </p>
           </div>
         </Section>
       </section>
 
-      <HealthMetrics />
-      <HealthSystemStrengthening />
+      {/* Health Metrics */}
+      <section className="border-b-4 border-primary dark:border-white bg-surface dark:bg-surface-dark py-12 px-4 sm:px-8 lg:px-12">
+        <Section className="py-12">
+          <div className="flex flex-col md:flex-row sm:items-end justify-between gap-4 border-b-2 border-primary dark:border-white pb-6 mb-8">
+            <div>
+              <span className="font-mono text-xs font-bold uppercase tracking-widest text-accent-red dark:text-accent-red block mb-1">
+                Audited Telemetry
+              </span>
+              <h2 className="font-headline text-3xl sm:text-5xl font-bold uppercase tracking-tight text-on-surface dark:text-on-surface leading-none">
+                Primary Field Metrics Ledger
+              </h2>
+            </div>
+            <div className="font-mono text-xs font-bold uppercase tracking-wider text-on-surface-variant dark:text-on-surface-variant/70">
+              Total Active Blocks: 16 &nbsp;//&nbsp; Population Footprint: 4.8M+
+            </div>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {/* Metric 1: ASHA */}
+            <div className="bg-surface-container-lowest dark:bg-surface-low border-3 border-primary dark:border-white p-6 shadow-[5px_5px_0px_#1a1a1a] dark:shadow-[5px_5px_0px_#ffffff] flex flex-col justify-between">
+              <div className="space-y-4">
+                <div className="flex items-start justify-between gap-2 border-b-2 border-primary dark:border-white pb-3">
+                  <div className="flex items-center gap-2">
+                    <span className="font-mono text-xs font-bold uppercase tracking-widest text-accent-yellow dark:text-accent-yellow">
+                      METRIC // 01
+                    </span>
+                    <span className="material-symbols-outlined text-accent-yellow dark:text-accent-yellow">people</span>
+                  </div>
+                </div>
+                <div className="pt-1 lg:pt-0">
+                  <div className="font-display font-bold text-5xl lg:text-6xl tracking-tight leading-none text-on-surface dark:text-on-surface">
+                    700+
+                  </div>
+                  <h3 className="mt-2 font-display text-base font-bold uppercase tracking-tight text-on-surface dark:text-on-surface">
+                    ASHA Workers Mentored
+                  </h3>
+                  <p className="mt-3 text-sm text-on-surface-variant dark:text-on-surface-variant/70 leading-relaxed">
+                    M-ASHA digital application rollout across 100+ micro-sessions at sector meetings, sub-centres and block headquarters — frontline worker capacity building, hands-on.
+                  </p>
+                </div>
+                <div className="mt-6 pt-4 border-t-2 border-primary dark:border-white flex items-center justify-between text-[11px] font-mono uppercase font-bold gap-3">
+                  <span>MICRO-SESSIONS: 100+</span>
+                  <span className="bg-accent-yellow dark:bg-accent-yellow text-black dark:text-black px-2 py-0.5 border border-accent-yellow dark:border-accent-yellow">
+                    COMPLIANCE: 94%
+                  </span>
+                </div>
+              </div>
+            </div>
+
+            {/* Metric 2: Clinical */}
+            <div className="bg-surface-container-lowest dark:bg-surface-low border-3 border-primary dark:border-white p-6 shadow-[5px_5px_0px_#1a1a1a] dark:shadow-[5px_5px_0px_#ffffff] flex flex-col justify-between">
+              <div className="space-y-4">
+                <div className="flex items-start justify-between gap-2 border-b-2 border-primary dark:border-white pb-3">
+                  <div className="flex items-center gap-2">
+                    <span className="font-mono text-xs font-bold uppercase tracking-widest text-accent-red dark:text-accent-red">
+                      METRIC // 02
+                    </span>
+                    <span className="material-symbols-outlined text-accent-red dark:text-accent-red">medical_services</span>
+                  </div>
+                </div>
+                <div className="pt-1 lg:pt-0">
+                  <div className="font-display font-bold text-5xl lg:text-6xl tracking-tight leading-none text-on-surface dark:text-on-surface">
+                    185-hr
+                  </div>
+                  <h3 className="mt-2 font-display text-base font-bold uppercase tracking-tight text-on-surface dark:text-on-surface">
+                    Clinical Skills Refresher
+                  </h3>
+                  <p className="mt-3 text-sm text-on-surface-variant dark:text-on-surface-variant/70 leading-relaxed">
+                    185-hour structured curriculum for 12 Staff Nurses and 4 Doctors — High-Risk Pregnancy management and labor room protocols, district hospital.
+                  </p>
+                </div>
+                <div className="mt-6 pt-4 border-t-2 border-primary dark:border-white flex items-center justify-between text-[11px] font-mono uppercase font-bold gap-3">
+                  <span>COHORT: 16 CLINICIANS</span>
+                  <span className="bg-accent-red dark:bg-accent-red text-white dark:text-white px-2 py-0.5 border border-accent-red dark:border-accent-red">
+                    HRP PROTOCOLS
+                  </span>
+                </div>
+              </div>
+            </div>
+
+            {/* Metric 3: Sub-centres */}
+            <div className="bg-surface-container-lowest dark:bg-surface-low border-3 border-primary dark:border-white p-6 shadow-[5px_5px_0px_#1a1a1a] dark:shadow-[5px_5px_0px_#ffffff] flex flex-col justify-between">
+              <div className="space-y-4">
+                <div className="flex items-start justify-between gap-2 border-b-2 border-primary dark:border-white pb-3">
+                  <div className="flex items-center gap-2">
+                    <span className="font-mono text-xs font-bold uppercase tracking-widest text-accent-blue dark:text-accent-blue">
+                      METRIC // 03
+                    </span>
+                    <span className="material-symbols-outlined text-accent-blue dark:text-accent-blue">location_on</span>
+                  </div>
+                </div>
+                <div className="pt-1 lg:pt-0">
+                  <div className="font-display font-bold text-5xl lg:text-6xl tracking-tight leading-none text-on-surface dark:text-on-surface">
+                    154
+                  </div>
+                  <h3 className="mt-2 font-display text-base font-bold uppercase tracking-tight text-on-surface dark:text-on-surface">
+                    Sub-Centres Audited
+                  </h3>
+                  <p className="mt-3 text-sm text-on-surface-variant dark:text-on-surface-variant/70 leading-relaxed">
+                    Physical vs digital register reconciliation across Sub-Centres and PHCs under the National Quality Assurance Standards (NQAS) framework.
+                  </p>
+                </div>
+                <div className="mt-6 pt-4 border-t-2 border-primary dark:border-white flex items-center justify-between text-[11px] font-mono uppercase font-bold gap-3">
+                  <span>NQAS FRAMEWORK</span>
+                  <span className="bg-accent-blue dark:bg-accent-blue text-black dark:text-black px-2 py-0.5 border border-accent-blue dark:border-accent-blue">
+                    REGISTER RECON
+                  </span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </Section>
+      </section>
+
+      {/* Health System Strengthening */}
+      <section className="border-b-4 border-primary dark:border-white bg-surface dark:bg-surface-dark py-12 px-4 sm:px-8 lg:px-12">
+        <Section className="py-12">
+          <div className="flex flex-col md:flex-row sm:items-end justify-between gap-4 border-b-2 border-primary dark:border-white pb-6 mb-10">
+            <div>
+              <span className="font-mono text-xs font-bold uppercase tracking-widest text-accent-blue dark:text-accent-blue block mb-1">
+                  {`/* System Outcomes */`}
+              </span>
+              <h2 className="font-headline text-3xl sm:text-5xl font-bold uppercase tracking-tight text-on-surface dark:text-on-surface leading-none">
+                Health System Strengthening
+              </h2>
+            </div>
+            <p className="text-base leading-relaxed text-on-surface-variant dark:text-on-surface-variant/70 max-w-md">
+              Day-to-day fellowship work — support activities woven across Bihar&apos;s public health system, frontline to block.
+            </p>
+          </div>
+
+          {/* Field note */}
+          <div className="relative mb-12 lg:mb-16 bg-accent-red dark:bg-accent-red text-black dark:text-black border-2 border-primary dark:border-white shadow-[6px_6px_0px_#e63b2e] dark:shadow-[6px_6px_0px_#f97316] p-6 sm:p-8">
+            <div className="absolute top-0 right-0 transform translate-x-2 -translate-y-3 bg-accent-yellow dark:bg-accent-yellow px-3 py-1 font-mono text-xs font-bold uppercase tracking-widest text-black dark:text-black border-2 border-accent-yellow dark:border-accent-yellow">
+              FIELD NOTE
+            </div>
+            <div className="flex items-start gap-4">
+              <span className="text-accent-yellow dark:text-accent-yellow text-4xl shrink-0" aria-hidden="true">
+                &#x201C;
+              </span>
+              <div className="space-y-2">
+                <blockquote className="font-display text-lg sm:text-xl font-bold tracking-tight text-on-accent-red dark:text-on-accent-red leading-snug">
+                  &#x201C;I&rsquo;ve stood next to an ASHA worker filling an ODK form on a tablet in 38&deg;C heat. Every pipeline I build starts with that moment.&#x201D;
+                </blockquote>
+                <div className="font-mono text-xs uppercase tracking-widest text-black dark:text-black font-bold">
+                  — ADITYA PANDEY · DISTRICT RESOURCE FELLOW, MUZAFFARPUR, BIHAR
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5">
+            {[
+              {
+                rank: 1,
+                title: 'GAVB Gandhi Fellow — Bihar',
+                tag: 'GANDHI FELLOWSHIP · PIRAMAL FOUNDATION',
+                body: 'District Resource Fellow, Gandhi Fellowship (Piramal Foundation), based in Muzaffarpur — living in the high-burden blocks and working the frontlines of Bihar&apos;s public health system.',
+                accent: 'bg-accent-yellow dark:bg-accent-yellow text-black dark:text-black border border-accent-yellow dark:border-accent-yellow',
+              },
+              {
+                rank: 2,
+                title: 'Frontline Worker Capacity Building',
+                tag: 'ASHA · ANM · CHO · PHC',
+                body: 'Training frontline workers across the public health cadre — ASHA, ANM, CHO and PHC staff — on clinical protocols, records and digital tools that keep sub-centres running.',
+                accent: 'bg-accent-red dark:bg-accent-red text-black dark:text-black border border-accent-red dark:border-accent-red',
+              },
+              {
+                rank: 3,
+                title: 'M-ASHA Digital Application Training',
+                tag: '100+ MICRO-SESSIONS',
+                body: 'Hands-on rollout of the M-ASHA digital application across 100+ micro-sessions at sector meetings, sub-centres and block headquarters — paper to tablet, village by village.',
+                accent: 'bg-accent-yellow dark:bg-accent-yellow text-black dark:text-black border border-accent-yellow dark:border-accent-yellow',
+              },
+              {
+                rank: 4,
+                title: 'NQAS Certification Support',
+                tag: 'NATIONAL QUALITY ASSURANCE',
+                body: 'Physical vs digital register reconciliation across Sub-Centres and PHCs under the NQAS framework, prepping facilities for certification audits.',
+                accent: 'bg-accent-blue dark:bg-accent-blue text-black dark:text-black border border-accent-blue dark:border-accent-blue',
+              },
+              {
+                rank: 5,
+                title: 'Maternal & Child Health Programs',
+                tag: 'VHSND · GODBHARAI · PMSMA',
+                body: 'High-Risk Pregnancy tracking, labor room protocols and maternal-child health outreach at Village Health Sanitation and Nutrition Days, Godbharai and PMSMA clinics.',
+                accent: 'bg-accent-red dark:bg-accent-red text-black dark:text-black border border-accent-red dark:border-accent-red',
+              },
+              {
+                rank: 6,
+                title: '185-Hour Clinical Skills Refresher',
+                tag: '12 NURSES · 4 DOCTORS',
+                body: 'Structured 5-week clinical skills refresher for 12 Staff Nurses and 4 Doctors — obstetric emergencies and labor room protocols at the district hospital.',
+                accent: 'bg-accent-red dark:bg-accent-red text-black dark:text-black border border-accent-red dark:border-accent-red',
+              },
+              {
+                rank: 7,
+                title: 'VHSND · Godbharai · PMSMA Data Pipeline',
+                tag: 'PYTHON · PANDAS',
+                body: 'Python + Pandas pipelines scrubbing, validating and automating grassroots survey records to eliminate discrepancy windows ahead of Monday district review meetings.',
+                accent: 'bg-accent-blue dark:bg-accent-blue text-black dark:text-black border border-accent-blue dark:border-accent-blue',
+              },
+              {
+                rank: 8,
+                title: 'MIS Reports for Block & District Review',
+                tag: 'WEEKLY BLOCK SUMMARIES',
+                body: 'Automated MIS outputs verified ahead of block and district review cycles — field data turned into review-ready tables for BMOs and district leadership.',
+                accent: 'bg-accent-blue dark:bg-accent-blue text-black dark:text-black border border-accent-blue dark:border-accent-blue',
+              },
+            ].map((item) => (
+              <div
+                key={item.rank}
+                className="bg-surface-container-lowest dark:bg-surface-low border-3 border-primary dark:border-white p-6 shadow-[5px_5px_0px_#1a1a1a] dark:shadow-[5px_5px_0px_#ffffff] flex flex-col justify-between"
+              >
+                <div className="space-y-3">
+                  <div className="flex items-start justify-between gap-2 border-b-2 border-primary dark:border-white pb-3">
+                    <span className={`font-mono text-[10px] font-bold uppercase tracking-widest ${item.accent}`}>
+                      0{item.rank} &nbsp;//&nbsp; {item.tag}
+                    </span>
+                  </div>
+                  <h3 className={`font-display text-lg font-bold uppercase tracking-tight ${item.accent === 'bg-accent-yellow dark:bg-accent-yellow text-black dark:text-black border border-accent-yellow dark:border-accent-yellow' ? 'text-black dark:text-black' : 'text-primary dark:text-white'}`}>
+                    {item.title}
+                  </h3>
+                  <p className="mt-3 text-sm leading-relaxed text-on-surface-variant dark:text-on-surface-variant/70">{item.body}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </Section>
+      </section>
+
       <Footer />
     </>
   );
 }
+
