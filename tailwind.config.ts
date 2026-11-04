@@ -6,60 +6,57 @@ const config: Config = {
   theme: {
     extend: {
       // ── Neutral / Surface ──
-      primary: '#1a1a1a',
-      surface: '#f5f0e8',
-      background: '#f5f0e8',
-      'surface-dark': {
-        light: '#1a1a1a',
-        dark: '#0e0e10',
-      },
-      'surface-container-lowest': {
-        light: '#ffffff',
-        dark: '#2a2a2a',
-      },
-      'surface-container-low': {
-        light: '#f2ede5',
-        dark: '#3a3a3a',
-      },
-      'surface-container': {
-        light: '#eee9e0',
-        dark: '#3a3a3a',
-      },
-      'surface-container-high': {
-        light: '#e8e3da',
-        dark: '#4a4a4a',
-      },
-      'surface-container-highest': {
-        light: '#e2ddd4',
-        dark: '#5a5a5a',
-      },
-      'surface-dim': '#d6d1c9',
-      'surface-bright': '#faf7f2',
-      'surface-variant': '#e8e3da',
-      'surface-tint': '#1a1a1a',
+      colors: {
+        primary: '#1a1a1a',
+        surface: '#f5f0e8',
+        background: '#f5f0e8',
+        'surface-container-lowest': {
+          light: '#ffffff',
+          dark: '#2a2a2a',
+        },
+        'surface-container-low': {
+          light: '#f2ede5',
+          dark: '#3a3a3a',
+        },
+        'surface-container': {
+          light: '#eee9e0',
+          dark: '#3a3a3a',
+        },
+        'surface-container-high': {
+          light: '#e8e3da',
+          dark: '#4a4a4a',
+        },
+        'surface-container-highest': {
+          light: '#e2ddd4',
+          dark: '#5a5a5a',
+        },
+        'surface-dim': '#d6d1c9',
+        'surface-bright': '#faf7f2',
+        'surface-variant': '#e8e3da',
+        'surface-tint': '#1a1a1a',
 
-      // ── On-Surface ──
-      'on-surface': '#1a1a1a',
-      'on-surface-variant': '#4a4a4a',
-      'on-background': '#1a1a1a',
+        // ── On-Surface ──
+        'on-surface': '#1a1a1a',
+        'on-surface-variant': '#4a4a4a',
+        'on-background': '#1a1a1a',
 
-      // ── Accents ──
-      'accent-yellow': '#ffcc00',
-      'accent-red': '#e63b2e',
-      'accent-blue': '#0055ff',
+        // ── Accents ──
+        'accent-yellow': '#ffcc00',
+        'accent-red': '#e63b2e',
+        'accent-blue': '#0055ff',
 
-      // ── On-accent ──
-      'on-accent-yellow': '#000000',
-      'on-accent-red': '#ffffff',
-      'on-accent-blue': '#ffffff',
+        // ── On-accent ──
+        'on-accent-yellow': '#000000',
+        'on-accent-red': '#ffffff',
+        'on-accent-blue': '#ffffff',
 
-      // ── Material Design 3 tokens ──
-      'primary-container': '#ffcc00',
-      'on-primary-container': '#1a1a1a',
-      'primary-fixed': '#ffcc00',
-      'primary-fixed-dim': '#e6b800',
-      'on-primary-fixed': '#1a1a1a',
-      'on-primary-fixed-variant': '#1a1a1a',
+        // ── Material Design 3 tokens ──
+        'primary-container': '#ffcc00',
+        'on-primary-container': '#1a1a1a',
+        'primary-fixed': '#ffcc00',
+        'primary-fixed-dim': '#e6b800',
+        'on-primary-fixed': '#1a1a1a',
+        'on-primary-fixed-variant': '#1a1a1a',
 
         secondary: '#e63b2e',
         'secondary-container': '#ffdad6',
@@ -175,5 +172,3 @@ const config: Config = {
   ],
   plugins: [],
 };
-
-export default config;
