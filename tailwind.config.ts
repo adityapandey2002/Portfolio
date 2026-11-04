@@ -1,40 +1,82 @@
 import type { Config } from 'tailwindcss';
 
+/**
+ * V2 Bauhaus tokens.
+ *
+ * Every theme-dependent colour is a CSS variable holding RGB channels, so:
+ *   - the utility names stay flat (`text-primary`, `bg-surface`, `bg-bg-2`)
+ *   - the value swaps automatically under `html.dark`
+ *   - opacity modifiers such as `border-primary/30` still work
+ *
+ * The actual values live in `src/app/globals.css` under `:root` / `html.dark`.
+ */
+const cssVar = (name: string) => `rgb(var(${name}) / <alpha-value>)`;
+
 const config: Config = {
   content: ['./src/**/*.{ts,tsx}'],
   darkMode: 'class',
   theme: {
     extend: {
-      // ── Neutral / Surface ──
-      primary: '#1a1a1a',
-      surface: '#f5f0e8',
-      background: '#f5f0e8',
-      'surface-container-lowest': '#ffffff',
-      'surface-container-low': '#f2ede5',
-      'surface-container': '#eee9e0',
-      'surface-container-high': '#e8e3da',
-      'surface-container-highest': '#e2ddd4',
-      'surface-dim': '#d6d1c9',
-      'surface-bright': '#faf7f2',
-      'surface-variant': '#e8e3da',
-      'surface-tint': '#1a1a1a',
+      colors: {
+        // ── Theme-adaptive neutrals ──
+        primary: cssVar('--v2-primary-rgb'),
+        surface: cssVar('--v2-surface-rgb'),
+        background: cssVar('--v2-surface-rgb'),
+        'surface-lowest': cssVar('--v2-surface-lowest-rgb'),
+        'surface-low': cssVar('--v2-surface-low-rgb'),
+        'surface-container-lowest': cssVar('--v2-surface-lowest-rgb'),
+        'surface-container-low': cssVar('--v2-surface-low-rgb'),
+        'surface-container': cssVar('--v2-surface-container-rgb'),
+        'surface-container-high': cssVar('--v2-surface-container-high-rgb'),
+        'surface-container-highest': cssVar('--v2-surface-container-highest-rgb'),
+        'surface-variant': cssVar('--v2-surface-container-high-rgb'),
+        'surface-dim': cssVar('--v2-surface-dim-rgb'),
+        'surface-bright': cssVar('--v2-surface-bright-rgb'),
+        'surface-tint': cssVar('--v2-primary-rgb'),
+        'on-surface': cssVar('--v2-on-surface-rgb'),
+        'on-surface-variant': cssVar('--v2-on-surface-variant-rgb'),
+        'on-background': cssVar('--v2-on-surface-rgb'),
+        'on-primary': cssVar('--v2-on-primary-rgb'),
+        outline: cssVar('--v2-outline-rgb'),
+        'outline-variant': cssVar('--v2-outline-variant-rgb'),
 
-      // ── On-Surface ──
-      'on-surface': '#1a1a1a',
-      'on-surface-variant': '#4a4a4a',
-      'on-background': '#1a1a1a',
+        // ── Fixed "on dark" colours (terminal / inverted panels) ──
+        'surface-dark': '#0e0e10',
+        'surface-l1': '#1a1a1c',
+        'surface-l2': '#2a2a2e',
+        'dark-surface-dark': '#0e0e10',
+        'dark-surface-l1': '#1a1a1c',
+        'dark-primary': '#e5e1e4',
+        'ink-dark': '#e5e1e4',
+        /* Used as light text on the red contact / experience cards. */
+        'surface-high': '#e8e3da',
 
-      // ── Accents ──
-      'accent-yellow': '#ffcc00',
-      'accent-red': '#e63b2e',
-      'accent-blue': '#0055ff',
+        // ── Legacy aliases used by the V2 components ──
+        bg: cssVar('--v2-surface-rgb'),
+        'bg-2': cssVar('--v2-surface-low-rgb'),
+        'bg-3': cssVar('--v2-surface-container-rgb'),
+        ink: cssVar('--v2-on-surface-rgb'),
+        'ink-2': cssVar('--v2-on-surface-variant-rgb'),
+        'ink-3': cssVar('--v2-ink-3-rgb'),
+        'ink-4': cssVar('--v2-ink-4-rgb'),
+        accent: '#0055ff',
+        indigo: '#166534',
+        rose: '#c41e2a',
+        cyan: '#92400e',
 
-      // ── On-accent ──
-      'on-accent-yellow': '#000000',
-      'on-accent-red': '#ffffff',
-      'on-accent-blue': '#ffffff',
+        // ── Static accents ──
+        'accent-yellow': '#ffcc00',
+        'accent-red': '#e63b2e',
+        'accent-blue': '#0055ff',
+        'dark-accent-yellow': '#ffcc00',
+        'primary-yellow': '#ffcc00',
+        vermilion: '#e63b2e',
+        'electric-blue': '#0055ff',
+        'on-accent-yellow': '#000000',
+        'on-accent-red': '#ffffff',
+        'on-accent-blue': '#ffffff',
 
-        // ── Material Design 3 tokens ──
+        // ── Material-style semantic roles ──
         'primary-container': '#ffcc00',
         'on-primary-container': '#1a1a1a',
         'primary-fixed': '#ffcc00',
@@ -47,7 +89,7 @@ const config: Config = {
         'on-secondary-container': '#1a1a1a',
         'secondary-fixed': '#ffdad6',
         'secondary-fixed-dim': '#ffb3ab',
-        'on-secondary': '#1a1a1a',
+        'on-secondary': '#ffffff',
         'on-secondary-fixed': '#1a1a1a',
         'on-secondary-fixed-variant': '#1a1a1a',
 
@@ -65,38 +107,20 @@ const config: Config = {
         'on-error': '#ffffff',
         'on-error-container': '#93000a',
 
-        // ── Inverse ──
         'inverse-surface': '#1a1a1a',
         'inverse-on-surface': '#f5f0e8',
         'inverse-primary': '#f5f0e8',
-
-        // ── Outline / Borders ──
-        outline: '#1a1a1a',
-        'outline-variant': '#d0cbc3',
-
-        // ── Legacy V1 tokens ──
-        bg: 'var(--bg)',
-        'bg-2': 'var(--bg-2)',
-        'bg-3': 'var(--bg-3)',
-        ink: 'var(--ink)',
-        'ink-2': 'var(--ink-2)',
-        'ink-3': 'var(--ink-3)',
-        'ink-4': 'var(--ink-4)',
-        accent: 'var(--accent)',
-        indigo: 'var(--indigo)',
-        rose: 'var(--rose)',
-        cyan: 'var(--cyan)',
-
-        // ── Dark mode colors ──
-        'dark-surface-dark': '#1a1a1a',
-        'dark-surface-l1': '#2a2a2a',
-        'dark-primary': '#e5e1e4',
+      },
+      borderWidth: {
+        3: '3px',
       },
       borderRadius: {
         DEFAULT: '0px',
+        0: '0px',
       },
       fontFamily: {
         sans: ['var(--font-inter)', 'system-ui', 'sans-serif'],
+        body: ['var(--font-inter)', 'system-ui', 'sans-serif'],
         display: ['var(--font-space-grotesk)', 'system-ui', 'sans-serif'],
         mono: ['var(--font-jetbrains-mono)', 'ui-monospace', 'monospace'],
         serif: ['var(--font-lora)', 'Georgia', 'serif'],
@@ -105,62 +129,8 @@ const config: Config = {
     },
   },
   safelist: [
-    // Grid columns
-    'lg:grid-cols-1',
-    'lg:grid-cols-2',
-    'lg:grid-cols-3',
-    'lg:grid-cols-4',
-    'lg:grid-cols-5',
-    'lg:grid-cols-6',
-    'lg:grid-cols-7',
-    'lg:grid-cols-8',
-    'lg:grid-cols-9',
-    'lg:grid-cols-10',
-    'lg:grid-cols-11',
-    'lg:grid-cols-12',
-    // Container max-width
-    'max-w-xs',
-    'max-w-sm',
-    'max-w-md',
-    'max-w-lg',
-    'max-w-xl',
-    'max-w-2xl',
-    'max-w-3xl',
-    'max-w-4xl',
-    'max-w-5xl',
-    'max-w-6xl',
-    'max-w-7xl',
-    // Dark mode utility classes
-    'dark:border-white',
-    'dark:bg-white',
-    'dark:text-white',
-    'dark:text-ink-dark',
-    'dark:bg-surface-dark',
-    'dark:bg-surface-l1',
-    'dark:bg-surface-l2',
-    'dark:bg-primary-yellow',
-    'dark:text-primary-yellow',
-    'dark:border-primary-yellow',
-    'dark:bg-vermilion',
-    'dark:text-vermilion',
-    'dark:bg-electric-blue',
-    'dark:text-electric-blue',
-    'dark:shadow-[4px_4px_0_#ffffff]',
-    'dark:shadow-[6px_6px_0_#ffffff]',
-    'dark:shadow-[2px_2px_0_#ffffff]',
-    // On-accent text colors
-    'text-on-accent-yellow',
-    'text-on-accent-red',
-    'text-on-accent-blue',
-    'dark:text-on-accent-yellow',
-    'dark:text-on-accent-red',
-    'dark:text-on-accent-blue',
-    // On-primary text color
-    'text-primary',
-    'dark:text-primary',
-    // Dark mode text color
-    'text-dark-primary',
-    'dark:text-dark-primary',
+    // `src/components/ui/Grid.tsx` builds this class dynamically.
+    ...Array.from({ length: 12 }, (_, i) => `lg:grid-cols-${i + 1}`),
   ],
   plugins: [],
 };
