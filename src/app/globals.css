@@ -525,7 +525,7 @@ textarea {
     box-shadow: 3px 3px 0 var(--ink);
   }
   .tag {
-    @apply inline-flex items-center rounded border border-[var(--line)] bg-bg-2 px-2.5 py-1 font-mono text-xs text-ink-2 transition-all duration-200;
+    @apply inline-flex items-center rounded border border-[var(--line)] bg-surface-container-lowest px-2.5 py-1 font-mono text-xs text-ink-2 transition-all duration-200;
     border-radius: 3px;
   }
   .tag:hover {
