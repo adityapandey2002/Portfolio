@@ -240,6 +240,96 @@ export default function WorkPage() {
         </div>
       </section>
 
+      {/* Matru Suraksha Flagship */}
+      <section className="w-full border-b-2 border-primary dark:border-white bg-surface-bright dark:bg-surface-low px-4 sm:px-8 lg:px-12 py-10 lg:py-12">
+        <div className="max-w-7xl mx-auto space-y-8">
+          <div className="flex flex-wrap items-center justify-between gap-4 border-b-2 border-primary dark:border-white pb-4">
+            <div className="flex flex-wrap items-center gap-2">
+              <span className="bg-accent-red dark:bg-accent-red text-white font-headline text-xs font-bold uppercase px-3 py-1 border-2 border-primary dark:border-white tracking-wider shadow-[2px_2px_0px_#1a1a1a] dark:shadow-[2px_2px_0px_#ffffff]">
+                FLAGSHIP 03 // CLINICAL TRIAGE PWA
+              </span>
+              <span className="bg-accent-yellow dark:bg-primary-yellow text-black dark:text-black font-headline text-xs font-bold uppercase px-3 py-1 border-2 border-primary dark:border-white tracking-wider">
+                ACTIVE FIELD PILOT // BIHAR HEALTH OPS
+              </span>
+              <span className="bg-surface dark:bg-surface-container-lowest text-primary dark:text-on-surface font-headline text-xs font-bold uppercase px-3 py-1 border-2 border-primary dark:border-white tracking-wider">
+                OFFLINE-FIRST ARCHITECTURE
+              </span>
+            </div>
+            <div className="font-headline text-xs font-bold uppercase tracking-widest text-on-surface-variant dark:text-on-surface-variant">
+              NODE: PWA-MS-01 // FIELD VERIFIED
+            </div>
+          </div>
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+            <div className="lg:col-span-8 space-y-4">
+              <h2 className="font-headline font-bold text-3xl sm:text-4xl lg:text-5xl text-primary dark:text-on-surface tracking-tight uppercase leading-tight">
+                MATRU SURAKSHA (मातृ सुरक्षा)
+                <span className="block text-xl sm:text-2xl text-on-surface-variant dark:text-on-surface-variant font-normal tracking-normal mt-1">
+                  Multi-Tier High-Risk Pregnancy Care &amp; Clinical Triage Engine
+                </span>
+              </h2>
+              <p className="font-body text-base text-on-surface-variant dark:text-on-surface-variant leading-relaxed">
+                Engineered to eliminate systemic communication delays in agrarian rural clinics. Enables Auxiliary Nurse Midwives (ANMs) to triage maternal danger signs without active cellular reception, calculating instant risk stratifications while synchronizing cryptographically validated records up through district governance desks.
+              </p>
+            </div>
+            <div className="lg:col-span-4 flex flex-col gap-3 p-4 bg-surface-container dark:bg-surface-low border-2 border-primary dark:border-white shadow-[4px_4px_0px_#1a1a1a] dark:shadow-[4px_4px_0px_#ffffff]">
+              <div className="font-headline text-xs font-bold uppercase text-primary dark:text-on-surface border-b border-primary dark:border-white pb-2 flex items-center justify-between">
+                <span>CORE QUALITY GATES</span>
+                <span className="material-symbols-outlined text-accent-red dark:text-accent-red text-sm">verified</span>
+              </div>
+              <div className="space-y-2 text-xs font-headline">
+                {[
+                  { label: 'TEST COVERAGE:', value: '>=80% Changed Lines', color: 'text-primary dark:text-on-surface' },
+                  { label: 'A11Y AUDIT:', value: '0 Violations (WCAG AAA)', color: 'text-accent-red dark:text-accent-red' },
+                  { label: '3G LCP BENCHMARK:', value: '<=2.18s Verified', color: 'text-accent-blue dark:text-accent-blue' },
+                  { label: 'CLIENT FOOTPRINT:', value: '<=170kB gzipped', color: 'text-primary dark:text-on-surface' },
+                ].map((g) => (
+                  <div key={g.label} className="flex justify-between items-center">
+                    <span className="text-on-surface-variant dark:text-on-surface-variant">{g.label}</span>
+                    <span className={`font-bold ${g.color}`}>{g.value}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+          {/* 6-Tier Escalation Hierarchy */}
+          <div className="border-2 border-primary dark:border-white bg-surface dark:bg-surface-container-lowest p-6 shadow-[4px_4px_0px_#1a1a1a] dark:shadow-[4px_4px_0px_#ffffff]">
+            <div className="flex items-center justify-between border-b-2 border-primary dark:border-white pb-3 mb-4">
+              <span className="font-headline font-bold text-sm uppercase tracking-wider text-primary dark:text-on-surface flex items-center gap-2">
+                <span className="material-symbols-outlined text-accent-red dark:text-accent-red text-[18px]">account_tree</span>
+                6-Tier Administrative Escalation Hierarchy &amp; SLA Chain
+              </span>
+              <span className="font-headline text-[11px] font-bold text-on-surface-variant dark:text-on-surface-variant">
+                15-DAY AUDIT CLOCK
+              </span>
+            </div>
+            <div className="space-y-2.5">
+              {[
+                { tier: 'TIER 1', label: 'Field ANM // Health Sub-Centre', desc: 'Offline PWA registration, 8 danger signs check, auto-graded risk score.', bg: 'bg-primary dark:bg-on-surface', text: 'text-on-primary dark:text-surface' },
+                { tier: 'TIER 2', label: 'Sector MOIC // Block HQ', desc: 'Real-time sync on 2G, clinical review dashboard, referral authorization.', bg: 'bg-accent-red dark:bg-accent-red', text: 'text-white dark:text-white' },
+                { tier: 'TIER 3', label: 'Block Health Manager (BHM)', desc: 'Overdue flag escalation, resource reallocation, field visit scheduling.', bg: 'bg-accent-yellow dark:bg-primary-yellow', text: 'text-black dark:text-black' },
+                { tier: 'TIER 4', label: 'District Hospital // Labor Room', desc: 'HRP admission, clinical intervention, 24-hr monitoring protocol.', bg: 'bg-accent-blue dark:bg-accent-blue', text: 'text-white dark:text-white' },
+                { tier: 'TIER 5', label: 'District Health Society (DHS)', desc: 'SLA breach reporting, mortality review, systemic gap analysis.', bg: 'bg-primary dark:bg-on-surface', text: 'text-on-primary dark:text-surface' },
+                { tier: 'TIER 6', label: 'State Health Mission', desc: 'Policy feedback loop, budget reallocation, program scale-up.', bg: 'bg-surface-container dark:bg-surface-low', text: 'text-primary dark:text-on-surface' },
+              ].map((t) => (
+                <div key={t.tier} className="p-2.5 bg-surface-container dark:bg-surface-low border border-primary dark:border-white flex items-start gap-3">
+                  <span className={`font-headline font-bold text-xs ${t.bg} ${t.text} px-2 py-0.5 shrink-0`}>
+                    {t.tier}
+                  </span>
+                  <div>
+                    <div className="font-headline text-xs font-bold uppercase text-primary dark:text-on-surface">
+                      {t.label}
+                    </div>
+                    <div className="font-body text-xs text-on-surface-variant dark:text-on-surface-variant">
+                      {t.desc}
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Specialized Systems */}
       <section className="w-full border-b-2 border-primary dark:border-white bg-surface-container-low dark:bg-surface-low px-4 sm:px-8 lg:px-12 py-10 lg:py-12">
         <div className="max-w-7xl mx-auto space-y-8">
