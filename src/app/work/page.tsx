@@ -644,6 +644,140 @@ export default function WorkPage() {
         </div>
       </section>
 
+      {/* India Development Data Engine Flagship */}
+      <section className="w-full border-b-2 border-primary dark:border-white bg-surface dark:bg-surface-dark px-4 sm:px-8 lg:px-12 py-10 lg:py-12">
+        <div className="max-w-7xl mx-auto space-y-8">
+          {/* Top Badges */}
+          <div className="flex flex-wrap items-center justify-between gap-4 border-b-2 border-primary dark:border-white pb-4">
+            <div className="flex flex-wrap items-center gap-2">
+              <span className="bg-primary dark:bg-on-surface text-accent-yellow dark:text-primary-yellow font-headline text-xs font-bold uppercase px-3 py-1 border-2 border-primary dark:border-white tracking-wider shadow-[2px_2px_0px_#1a1a1a] dark:shadow-[2px_2px_0px_#ffffff]">
+                FLAGSHIP 04 // SPATIAL ANALYTICS &amp; VECTOR AI
+              </span>
+              <span className="bg-surface-container dark:bg-surface-low text-primary dark:text-on-surface font-headline text-xs font-bold uppercase px-3 py-1 border-2 border-primary dark:border-white tracking-wider">
+                118K+ INDICATORS INDEXED
+              </span>
+              <span className="bg-accent-yellow dark:bg-primary-yellow text-black dark:text-black font-headline text-xs font-bold uppercase px-3 py-1 border-2 border-primary dark:border-white tracking-wider">
+                DUCKDB + PGVECTOR + GROQ LLM
+              </span>
+            </div>
+            <div className="font-headline text-xs font-bold uppercase tracking-widest text-on-surface-variant dark:text-on-surface-variant">
+              NFHS-5 // CENSUS // NITI AAYOG
+            </div>
+          </div>
+          {/* Headline and Overview */}
+          <div className="space-y-4 max-w-4xl">
+            <h2 className="font-headline font-bold text-3xl sm:text-4xl lg:text-5xl text-primary dark:text-on-surface tracking-tight uppercase leading-tight">
+              INDIA DEVELOPMENT DATA ENGINE &amp; SOCIO-ECONOMIC CHOROPLETH
+              <span className="block text-xl sm:text-2xl text-on-surface-variant dark:text-on-surface-variant font-normal tracking-normal mt-1">
+                High-Throughput Spatial Analytics &amp; Vectorized Indicator Discovery
+              </span>
+            </h2>
+            <p className="font-body text-base text-on-surface-variant dark:text-on-surface-variant leading-relaxed">
+              Exploratory macro-data portal built to digest and visualize massive socio-economic census sharding. Unifies complex cross-sector datasets from NFHS-5 (National Family Health Survey), Census of India, and NITI Aayog into an instant, vectorized analytical workspace with sub-50ms execution.
+            </p>
+          </div>
+          {/* Split: Browser Preview vs Technical Pipeline */}
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+            {/* Left: Browser Window Mockup */}
+            <div className="lg:col-span-5 space-y-4">
+              <div className="border-2 border-primary dark:border-white bg-surface-bright dark:bg-surface-low shadow-[6px_6px_0px_#1a1a1a] dark:shadow-[6px_6px_0px_#ffffff] overflow-hidden">
+                {/* Browser Chrome Topbar */}
+                <div className="bg-primary dark:bg-on-surface text-on-primary dark:text-surface px-4 py-2.5 border-b-2 border-primary dark:border-white flex items-center justify-between font-headline text-xs">
+                  <div className="flex items-center gap-2">
+                    <span className="w-3 h-3 rounded-full bg-accent-red dark:bg-accent-red inline-block" />
+                    <span className="w-3 h-3 rounded-full bg-accent-yellow dark:bg-primary-yellow inline-block" />
+                    <span className="w-3 h-3 rounded-full bg-accent-blue dark:bg-accent-blue inline-block" />
+                    <span className="font-bold ml-2 tracking-wide text-accent-yellow dark:text-primary-yellow">LIVE DATA DASHBOARD</span>
+                  </div>
+                  <span className="text-[11px] font-mono text-on-surface-variant dark:text-on-surface-variant bg-accent-yellow/20 dark:bg-primary-yellow/20 px-2 py-0.5 border border-accent-yellow/30 dark:border-primary-yellow/30">
+                    india-dashboard-delta.vercel.app
+                  </span>
+                </div>
+                {/* Browser Content */}
+                <div className="relative bg-surface dark:bg-surface-container-lowest border-b border-primary dark:border-white max-h-[520px] overflow-y-auto">
+                  <img alt="India Development Data Engine live dashboard screenshot" className="w-full h-auto block object-cover" loading="lazy" src="https://www.gstatic.com/labs-code/stitch/stitch-placeholder-300x300.svg" />
+                </div>
+                {/* Browser Footer Strip */}
+                <div className="p-3 bg-surface-container dark:bg-surface-low flex items-center justify-between text-xs font-headline">
+                  <span className="font-bold uppercase text-primary dark:text-on-surface flex items-center gap-1.5">
+                    <span className="material-symbols-outlined text-accent-blue dark:text-accent-blue text-sm">query_stats</span>
+                    Sub-50ms OLAP Queries
+                  </span>
+                  <span className="text-on-surface-variant dark:text-on-surface-variant text-[11px]">252,170 Data Points</span>
+                </div>
+              </div>
+              {/* Action buttons */}
+              <div className="flex flex-col sm:flex-row gap-3">
+                <a className="flex-1 py-3 px-4 bg-primary dark:bg-on-surface text-on-primary dark:text-surface font-headline font-bold text-xs uppercase tracking-wider border-2 border-primary dark:border-white shadow-[3px_3px_0px_#1a1a1a] dark:shadow-[3px_3px_0px_#ffffff] hover:bg-accent-yellow dark:hover:bg-primary-yellow hover:text-black dark:hover:text-black transition-colors flex items-center justify-center gap-2" href="https://india-dashboard-delta.vercel.app/" rel="noopener noreferrer" target="_blank">
+                  <span>Open Live Engine</span>
+                  <span className="material-symbols-outlined text-[16px]">arrow_outward</span>
+                </a>
+                <a className="py-3 px-4 bg-surface dark:bg-surface-container-lowest text-primary dark:text-on-surface font-headline font-bold text-xs uppercase tracking-wider border-2 border-primary dark:border-white shadow-[3px_3px_0px_#1a1a1a] dark:shadow-[3px_3px_0px_#ffffff] hover:bg-surface-container dark:hover:bg-surface-low transition-colors flex items-center justify-center gap-1.5" href="https://github.com/adityapandey2002" rel="noopener noreferrer" target="_blank">
+                  <span className="material-symbols-outlined text-[16px]">code</span>
+                  <span>Data Pipeline Git</span>
+                </a>
+              </div>
+            </div>
+            {/* Right: Technical Data Architecture & Pipeline */}
+            <div className="lg:col-span-7 space-y-6">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div className="p-4 bg-surface dark:bg-surface-container-lowest border-2 border-primary dark:border-white shadow-[3px_3px_0px_#1a1a1a] dark:shadow-[3px_3px_0px_#ffffff]">
+                  <div className="font-headline font-bold text-xs uppercase text-accent-red dark:text-accent-red pb-1 mb-2 border-b border-primary dark:border-white">
+                    DUCKDB IN-MEMORY OLAP
+                  </div>
+                  <p className="font-body text-xs text-on-surface-variant dark:text-on-surface-variant leading-relaxed">
+                    Executes in-memory analytical aggregation directly against Parquet shards in milliseconds. Calculates sub-district percentiles, Z-scores, and cross-sector correlations without database locks.
+                  </p>
+                </div>
+                <div className="p-4 bg-surface dark:bg-surface-container-lowest border-2 border-primary dark:border-white shadow-[3px_3px_0px_#1a1a1a] dark:shadow-[3px_3px_0px_#ffffff]">
+                  <div className="font-headline font-bold text-xs uppercase text-accent-blue dark:text-accent-blue pb-1 mb-2 border-b border-primary dark:border-white">
+                    PGVECTOR &amp; GROQ LLM RETRIEVAL
+                  </div>
+                  <p className="font-body text-xs text-on-surface-variant dark:text-on-surface-variant leading-relaxed">
+                    Vectorized queries (e.g., <em>&quot;Maternal anemia in flood-prone northern plains&quot;</em>) mapped to statistical indicators via Groq LLM streaming embeddings in sub-50ms latency.
+                  </p>
+                </div>
+              </div>
+              {/* Pipeline Architecture Steps */}
+              <div className="border-2 border-primary dark:border-white bg-surface dark:bg-surface-container-lowest p-5 shadow-[4px_4px_0px_#1a1a1a] dark:shadow-[4px_4px_0px_#ffffff] space-y-3">
+                <div className="font-headline font-bold text-xs uppercase tracking-wider text-primary dark:text-on-surface border-b border-primary dark:border-white pb-2 flex items-center justify-between">
+                  <span>DATA HARVESTING &amp; CHOROPLETH ENGINE</span>
+                  <span className="font-mono text-[10px] text-accent-blue dark:text-accent-blue">&lt;48ms MEDIAN</span>
+                </div>
+                <div className="space-y-2 text-xs font-mono">
+                  <div className="p-2 bg-surface-container dark:bg-surface-low border border-primary dark:border-white flex items-center gap-3">
+                    <span className="bg-primary dark:bg-on-surface text-on-primary dark:text-surface px-2 py-0.5 font-bold shrink-0">STEP 01</span>
+                    <span>Raw Govt PDF / CSV Dumps (NFHS-5, HMIS, UDISE+, Census of India)</span>
+                  </div>
+                  <div className="p-2 bg-surface-container dark:bg-surface-low border border-primary dark:border-white flex items-center gap-3">
+                    <span className="bg-primary dark:bg-on-surface text-on-primary dark:text-surface px-2 py-0.5 font-bold shrink-0">STEP 02</span>
+                    <span>Python/Pandas sanitization pipeline, normalization &amp; FIPS/LGD boundary mapping</span>
+                  </div>
+                  <div className="p-2 bg-surface-container dark:bg-surface-low border border-primary dark:border-white flex items-center gap-3">
+                    <span className="bg-primary dark:bg-on-surface text-on-primary dark:text-surface px-2 py-0.5 font-bold shrink-0">STEP 03</span>
+                    <span>Zstandard compressed columnar Parquet shards + Postgres pgvector embeddings</span>
+                  </div>
+                  <div className="p-2 bg-primary dark:bg-on-surface text-accent-yellow dark:text-primary-yellow border border-primary dark:border-white flex items-center gap-3">
+                    <span className="bg-accent-yellow dark:bg-primary-yellow text-black dark:text-black px-2 py-0.5 font-bold shrink-0">STEP 04</span>
+                    <span>Interactive Leaflet / D3.js TopoJSON sub-district choropleth renderer</span>
+                  </div>
+                </div>
+              </div>
+              {/* Simulated Vector Query Result */}
+              <div className="p-4 bg-surface-container dark:bg-surface-low border-2 border-primary dark:border-white space-y-2 font-mono text-xs">
+                <div className="text-[10px] text-on-surface-variant dark:text-on-surface-variant uppercase font-bold">GROQ NATURAL LANGUAGE VECTOR QUERY TEST:</div>
+                <div className="p-2 bg-surface dark:bg-surface-container-lowest text-primary dark:text-on-surface border border-primary dark:border-white text-[11px]">
+                  &gt; &quot;Find 5 worst performing sub-districts for maternal anemia in Araria&quot;
+                </div>
+                <div className="text-[11px] text-accent-red dark:text-accent-red font-bold">
+                  ✓ Correlated: NFHS-5 Indicator #74 (P&lt;0.001) in 32ms. TopoJSON boundaries injected to viewport.
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Specialized Systems */}
       <section className="w-full border-b-2 border-primary dark:border-white bg-surface-container-low dark:bg-surface-low px-4 sm:px-8 lg:px-12 py-10 lg:py-12">
         <div className="max-w-7xl mx-auto space-y-8">
