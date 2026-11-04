@@ -1,208 +1,23 @@
 'use client';
 
-import { createContext, useCallback, useContext, useEffect, useState, type ReactNode } from 'react';
-import { motion } from 'framer-motion';
+import { createContext, useContext, type ReactNode } from 'react';
 
-const PreloaderContext = createContext<{ done: boolean }>({ done: false });
+/**
+ * Kept as a compatibility shim for components that still call
+ * `usePreloader()`. The V1 six-second splash overlay was removed because
+ * it is not part of the V2 Bauhaus design and it delayed every hard
+ * navigation (including the theme being applied after reload).
+ */
+const PreloaderContext = createContext<{ done: boolean }>({ done: true });
 
 export function usePreloader() {
   return useContext(PreloaderContext);
 }
 
 export function PreloaderProvider({ children }: { children: ReactNode }) {
-  const [done, setDone] = useState(false);
-
-  const finish = useCallback(() => {
-    setDone(true);
-    try {
-      sessionStorage.setItem('preloader-skipped', '1');
-    } catch {
-      // ignore
-    }
-  }, []);
-
-  useEffect(() => {
-    const skip = sessionStorage.getItem('preloader-skipped');
-    if (skip === '1') {
-      setDone(true);
-      return;
-    }
-    const t = setTimeout(finish, 5800);
-    return () => clearTimeout(t);
-  }, [finish]);
-
   return (
-    <PreloaderContext.Provider value={{ done }}>
-      {!done && <PreloaderOverlay onSkip={finish} />}
+    <PreloaderContext.Provider value={{ done: true }}>
       {children}
     </PreloaderContext.Provider>
-  );
-}
-
-function PreloaderOverlay({ onSkip }: { onSkip: () => void }) {
-  const [skip, setSkip] = useState(false);
-  const [pct, setPct] = useState(0);
-
-  useEffect(() => {
-    if (skip) return;
-    const DUR = 5650;
-    const start = performance.now();
-    let raf: number;
-    const tick = (t: number) => {
-      const k = Math.min(1, (t - start) / DUR);
-      setPct(Math.floor(100 * (1 - Math.pow(1 - k, 1.7))));
-      if (k < 1) raf = requestAnimationFrame(tick);
-    };
-    raf = requestAnimationFrame(tick);
-    return () => cancelAnimationFrame(raf);
-  }, [skip]);
-
-  return (
-    <motion.div
-      className="fixed inset-0 z-[600] flex items-center justify-center bg-bg"
-      initial={{ opacity: 1 }}
-      exit={{ opacity: 0, transition: { duration: 0.45, ease: 'easeOut' } }}
-      onClick={() => {
-        setSkip(true);
-        onSkip();
-      }}
-    >
-      <div className="relative w-[min(880px,92vw)]">
-        <svg viewBox="0 0 900 200" className="w-full" style={{ height: 160 }} preserveAspectRatio="xMidYMid meet">
-          <defs>
-            <filter id="pl-glow">
-              <feGaussianBlur stdDeviation="3" result="b" />
-              <feMerge>
-                <feMergeNode in="b" />
-                <feMergeNode in="SourceGraphic" />
-              </feMerge>
-            </filter>
-          </defs>
-
-          <line x1="140" y1="100" x2="340" y2="100" stroke="var(--line)" strokeWidth="1.5" />
-          <line x1="560" y1="100" x2="760" y2="100" stroke="var(--line)" strokeWidth="1.5" />
-          <line
-            x1="140" y1="100" x2="340" y2="100"
-            stroke="var(--primary)" strokeWidth="2"
-            strokeDasharray="200" strokeDashoffset="200" filter="url(#pl-glow)"
-            style={{ animation: skip ? 'none' : 'dash 1.1s ease 0.6s forwards' }}
-          />
-          <line
-            x1="560" y1="100" x2="760" y2="100"
-            stroke="var(--primary)" strokeWidth="2"
-            strokeDasharray="200" strokeDashoffset="200" filter="url(#pl-glow)"
-            style={{ animation: skip ? 'none' : 'dash 1.2s ease 2.1s forwards' }}
-          />
-
-          {/* raw dots */}
-          <g>
-            {[
-              [40, 60, 3], [70, 120, 2.5], [100, 80, 3], [60, 160, 2], [90, 40, 2.5], [30, 100, 3], [110, 140, 2], [25, 70, 2.5], [70, 180, 3], [95, 120, 2],
-            ].map(([x, y, r], i) => (
-              <circle key={i} cx={x} cy={y} r={r} fill="var(--ink-4)" opacity={skip ? 1 : 0} style={{ animation: skip ? undefined : `dotIn 0.45s ease ${0.35 + i * 0.16}s forwards` }} />
-            ))}
-          </g>
-
-          {/* center Py node */}
-          <g transform="translate(450,100)">
-            <circle r="46" fill="none" stroke="var(--line)" strokeWidth="1" />
-            <circle
-              r="46" fill="none" stroke="var(--primary)" strokeWidth="2"
-              strokeDasharray="300" strokeDashoffset="300" filter="url(#pl-glow)"
-              style={{ animation: skip ? 'none' : 'dash 1.2s ease 1.5s forwards' }}
-            />
-            <text y="8" textAnchor="middle" fill="var(--ink)" fontFamily="var(--font-outfit)" fontSize="20" fontWeight="600">AP</text>
-          </g>
-
-          {/* decision bars */}
-          {skip ? null : (
-            <g>
-              {[0, 0, 0, 0, 0, 0].map((_, i) => (
-                <rect
-                  key={i}
-                  x={800 + i * 15}
-                  y={0}
-                  width="6" height="0" fill="var(--primary)" opacity="0"
-                  style={{ animation: `barUp 0.55s ease ${3.6 + i * 0.16}s forwards` }}
-                />
-              ))}
-            </g>
-          )}
-        </svg>
-
-        <div className="pointer-events-none relative z-10 text-center" style={{ marginTop: -90 }}>
-          {[
-            { text: 'Building data systems that turn', d: 1.3 },
-            { text: 'field work into', d: 2.7 },
-            { text: 'real decisions.', d: 4.1, accent: true },
-          ].map((l) => (
-            <div
-              key={l.text}
-              className="font-semibold"
-              style={{
-                fontSize: 'clamp(24px, 3.6vw, 42px)',
-                letterSpacing: '-0.025em',
-                opacity: skip ? 1 : 0,
-                transform: skip ? 'none' : 'translateY(20px)',
-                filter: skip ? 'none' : 'blur(8px)',
-                color: l.accent ? 'var(--primary)' : 'var(--ink)',
-                animation: skip ? undefined : `titleIn 1s cubic-bezier(0.16,1,0.3,1) ${l.d}s forwards`,
-              }}
-            >
-              {l.text}
-            </div>
-          ))}
-        </div>
-
-        {/* progress row — animates for the full preloader duration */}
-        <div className="pointer-events-none relative z-10 mt-10">
-          <div className="flex items-center justify-between font-mono text-[9.5px] uppercase tracking-[0.22em] text-ink-4">
-            <span>system analysis in progress</span>
-            <span className="text-ink-3">field data → clean outputs ({pct}%)</span>
-          </div>
-          <div className="mt-2 h-[3px] w-full overflow-hidden rounded-full bg-[var(--line)]">
-            <div
-              className="h-full rounded-full transition-[width] duration-100 ease-linear"
-              style={{
-                width: `${pct}%`,
-                background: 'linear-gradient(to right, var(--primary), var(--accent))',
-                boxShadow: '0 0 12px var(--primary-glow)',
-              }}
-            />
-          </div>
-        </div>
-
-        <div className="mt-6 flex items-center justify-between">
-          <span className="font-mono text-[9.5px] uppercase tracking-[0.22em] text-ink-4">
-            pb · portfolio of aditya pandey
-          </span>
-          <button
-            className="rounded-full border border-[var(--line)] px-4 py-2 font-mono text-xs tracking-wider text-ink-3 transition-colors hover:border-primary/50 hover:text-ink"
-            onClick={() => {
-              setSkip(true);
-              onSkip();
-            }}
-          >
-            SKIP →
-          </button>
-        </div>
-      </div>
-
-      <style jsx>{`
-        @keyframes dash {
-          to { stroke-dashoffset: 0; }
-        }
-        @keyframes dotIn {
-          to { opacity: 1; }
-        }
-        @keyframes barUp {
-          from { height: 0; opacity: 0; }
-          to { height: 70px; opacity: 1; }
-        }
-        @keyframes titleIn {
-          to { opacity: 1; transform: none; filter: blur(0); }
-        }
-      `}</style>
-    </motion.div>
   );
 }
