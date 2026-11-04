@@ -43,7 +43,7 @@ export function MobileHeader() {
           <div className="flex items-center gap-2">
             <Link
               href="#hero"
-              className="flex h-8 w-8 shrink-0 items-center justify-center rounded-0 border-2 border-primary dark:border-white bg-accent-yellow dark:bg-primary-yellow text-black dark:text-white font-headline font-bold text-[10px] uppercase tracking-tighter"
+              className="flex h-8 w-8 shrink-0 items-center justify-center rounded-0 border-2 border-primary dark:border-white bg-accent-yellow dark:bg-primary-yellow text-black dark:text-black font-headline font-bold text-[10px] uppercase tracking-tighter"
               onClick={() => setOpen(false)}
             >
               AP
@@ -88,7 +88,7 @@ export function MobileHeader() {
             <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-none border-2 ${
               isDark
                 ? 'border-white bg-transparent text-white'
-                : 'border-primary bg-accent-yellow text-black dark:border-white dark:bg-primary-yellow dark:text-white'
+                : 'border-primary bg-accent-yellow text-black dark:border-white dark:bg-primary-yellow dark:text-black'
             }">
               <span className="material-symbols-outlined text-[16px]">person</span>
             </div>

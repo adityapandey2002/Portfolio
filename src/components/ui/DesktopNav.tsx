@@ -56,7 +56,7 @@ export function DesktopNav() {
             <span className="font-headline font-bold text-sm tracking-widest uppercase text-on-surface dark:text-on-surface">
               Aditya Pandey
             </span>
-            <span className="font-headline text-xs tracking-wider text-on-surface-variant dark:text-on-surface-variant/70 uppercase">
+            <span className="font-headline text-xs tracking-wider text-on-surface-variant dark:text-on-surface-variant uppercase">
               Systems & Health AI
             </span>
           </div>
@@ -71,7 +71,7 @@ export function DesktopNav() {
               className={`px-4 py-2 text-xs font-headline font-semibold uppercase tracking-wider transition-colors ${
                 isActive(l.href)
                   ? 'bg-primary-container text-on-primary-container font-bold border-2 border-primary'
-                  : 'text-on-surface-variant dark:text-on-surface-variant/70 hover:text-on-surface dark:hover:text-on-surface hover:bg-surface-container dark:hover:bg-surface-container-lowest'
+                  : 'text-on-surface-variant dark:text-on-surface-variant hover:text-on-surface dark:hover:text-on-surface hover:bg-surface-container dark:hover:bg-surface-container-lowest'
               }`}
             >
               {l.label}
@@ -122,7 +122,7 @@ export function DesktopNav() {
           <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-none border-2 ${
             isDark
               ? 'border-white bg-transparent text-white'
-              : 'border-primary bg-accent-yellow text-black dark:border-white dark:bg-primary-yellow dark:text-white'
+              : 'border-primary bg-accent-yellow text-black dark:border-white dark:bg-primary-yellow dark:text-black'
           }">
             <span className="material-symbols-outlined text-[18px]">person</span>
           </div>

@@ -34,7 +34,7 @@ export function Experience() {
         </div>
 
         {/* Prominent Brutalist Health Dashboard Banner Card */}
-        <div className="bg-primary dark:bg-accent-red text-on-primary dark:text-on-accent-red border-3 border-primary dark:border-white p-6 sm:p-8 shadow-[8px_8px_0px_#e63b2e] dark:shadow-[8px_8px_0px_#accent-red] flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
+        <div className="bg-primary dark:bg-accent-red text-on-primary dark:text-on-accent-red border-3 border-primary dark:border-white p-6 sm:p-8 shadow-[8px_8px_0px_#e63b2e] dark:shadow-[8px_8px_0px_#e63b2e] flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
           <div className="space-y-3 max-w-3xl">
             <div className="inline-flex items-center gap-2 bg-accent-red dark:bg-accent-red text-white dark:text-white px-3 py-1 font-headline font-bold text-xs uppercase tracking-widest">
               <span className="material-symbols-outlined text-sm">monitor_heart</span>
