@@ -123,7 +123,7 @@ function MetricBlock({ number, label, value, unit, desc, icon, iconColor, bg }: 
     >
       <div className="flex items-start justify-between gap-2">
         <span className="font-mono text-xs font-bold text-on-surface-variant dark:text-on-surface-variant uppercase">
-          {number} // {label}
+          {number} {"/"} {label}
         </span>
         <span className={`material-symbols-outlined text-xl ${iconColor}`}>{icon}</span>
       </div>
