@@ -27,11 +27,17 @@ const config: Config = {
         'on-surface': '#1a1a1a',
         'on-surface-variant': '#4a4a4a',
         'on-background': '#1a1a1a',
+        'on-primary': '#ffffff',
 
         // ── Accents (light) ──
         'accent-yellow': '#ffcc00',
         'accent-red': '#e63b2e',
         'accent-blue': '#0055ff',
+
+        // ── On-accent (light) ──
+        'on-accent-yellow': '#000000',
+        'on-accent-red': '#ffffff',
+        'on-accent-blue': '#ffffff',
 
         // ── Material Design 3 tokens (light) ──
         'primary-container': '#ffcc00',
@@ -103,7 +109,7 @@ const config: Config = {
         'dark-on-background': '#e5e1e4',
 
         'dark-primary': '#ffecb9',
-        'dark-on-primary': '#3c2f00',
+        'dark-on-primary': '#e5e1e4',
         'dark-primary-container': '#facc15',
         'dark-on-primary-container': '#6c5700',
         'dark-inverse-primary': '#735c00',
@@ -148,6 +154,9 @@ const config: Config = {
         'dark-accent-yellow': '#facc15',
         'dark-accent-red': '#f97316',
         'dark-accent-blue': '#3b82f6',
+        'dark-on-accent-yellow': '#000000',
+        'dark-on-accent-red': '#ffffff',
+        'dark-on-accent-blue': '#ffffff',
 
         'dark-ink-dark': '#e5e1e4',
       },
@@ -211,6 +220,16 @@ const config: Config = {
     'dark:shadow-[4px_4px_0_#ffffff]',
     'dark:shadow-[6px_6px_0_#ffffff]',
     'dark:shadow-[2px_2px_0_#ffffff]',
+    // On-accent text colors
+    'text-on-accent-yellow',
+    'text-on-accent-red',
+    'text-on-accent-blue',
+    'dark:text-on-accent-yellow',
+    'dark:text-on-accent-red',
+    'dark:text-on-accent-blue',
+    // On-primary text color
+    'text-on-primary',
+    'dark:text-on-primary',
   ],
   plugins: [],
 };

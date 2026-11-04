@@ -7,7 +7,6 @@ import { Activity, ArrowDownRight, FileTerminal, SendHorizontal } from 'lucide-r
  * V2 Hero — Bauhaus Neo-Brutalist home page hero.
  *
  * Matches the design file exactly:
- * - Top Marquee Ticker (STATUS // FIELD ACTIVE + scrolling telemetry)
  * - Meta Grid (SPEC badge + FIELD TELEMETRY)
  * - Headline Grid (8-col left / 4-col Live Kernel telemetry box)
  * - 4 Brutalist Key Metric Blocks
@@ -21,15 +20,6 @@ import { Activity, ArrowDownRight, FileTerminal, SendHorizontal } from 'lucide-r
  *   • Space Grotesk headlines, Inter body, JetBrains Mono labels
  *   • Light + dark mode via Tailwind `dark:` variants
  */
-
-const TICKER_ITEMS = [
-  '// PIRAMAL FOUNDATION GAVB FELLOW',
-  '// MUZAFFARPUR & ARARIA, BIHAR',
-  '// 99.8% PIPELINE SYNC RATE',
-  '// FRONT-LINE CLINICAL SURVEILLANCE',
-  '// DEPLOYING DETERMINISTIC CODE',
-  '// 154 SUB-CENTRES INTEGRATED',
-];
 
 const METRICS = [
   {
@@ -131,7 +121,7 @@ function MetricBlock({ number, label, value, unit, desc, icon, iconColor, bg }: 
         <div className="font-headline text-5xl font-bold tracking-tight text-on-surface dark:text-on-surface">
           {value}
         </div>
-        <div className={`font-headline font-bold text-xs uppercase tracking-wider mt-1 ${iconColor.replace('text', 'text')}`}>
+        <div className={`font-headline font-bold text-xs uppercase tracking-wider mt-1 ${iconColor}`}>
           {unit}
         </div>
       </div>
@@ -145,28 +135,7 @@ function MetricBlock({ number, label, value, unit, desc, icon, iconColor, bg }: 
 export function Hero() {
   return (
     <section id="hero" className="relative w-full flex flex-col">
-      {/* 1 · Top Marquee Ticker */}
-      <div className="w-full shrink-0 bg-primary dark:bg-surface-dark border-b-2 border-primary dark:border-white py-2.5 px-4 flex items-center gap-6">
-        <div className="flex items-center gap-2 font-headline font-bold text-xs uppercase tracking-widest bg-accent-yellow dark:bg-primary-yellow text-black dark:text-white px-2 py-0.5 border border-primary shrink-0">
-          <span className="w-2 h-2 rounded-none bg-accent-red dark:bg-accent-red animate-ping inline-block" />
-          STATUS // FIELD ACTIVE
-        </div>
-        <div className="flex-1 min-w-0" aria-label="Field telemetry ticker">
-          <div
-            className="font-mono text-xs uppercase tracking-widest flex items-center gap-8 whitespace-nowrap overflow-x-auto no-scrollbar animate-[marquee_22s_linear_infinite] will-change-transform"
-            aria-hidden="true"
-          >
-            {TICKER_ITEMS.map((item, i) => (
-              <span key={i}>{item}</span>
-            ))}
-            {TICKER_ITEMS.map((item, i) => (
-              <span key={i + 1000}>{item}</span>
-            ))}
-          </div>
-        </div>
-      </div>
-
-      {/* 2 · Hero Section */}
+      {/* 1 · Hero Section */}
       <section className="w-full border-b-4 border-primary dark:border-white py-10 lg:py-16 bg-surface dark:bg-surface-dark">
         <div className="max-w-7xl mx-auto flex flex-col gap-10">
           {/* Meta Grid */}
