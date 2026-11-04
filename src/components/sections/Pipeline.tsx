@@ -56,7 +56,7 @@ const COMPETENCIES = [
 
 export function Pipeline() {
   return (
-    <section id="pipeline" className="border-b-4 border-primary dark:border-white bg-surface-container-high dark:bg-surface-container-high py-12 px-4 sm:px-8 lg:px-12">
+    <section id="pipeline" className="border-b-4 border-primary dark:border-white bg-surface-container-high dark:bg-surface-container-high py-10 px-4 sm:px-8 lg:px-12">
       <div className="max-w-7xl mx-auto space-y-12">
         {/* Section Header */}
         <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 border-b-2 border-primary dark:border-white pb-4">

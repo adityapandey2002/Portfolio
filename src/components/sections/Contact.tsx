@@ -57,7 +57,7 @@ export function Contact() {
 
   return (
     <section id="dispatch" className="border-b-4 border-primary dark:border-white bg-surface-container-lowest dark:bg-surface-lowest">
-      <div className="max-w-7xl mx-auto space-y-12 py-12 px-4 sm:px-8 lg:px-12">
+      <div className="max-w-7xl mx-auto space-y-12 py-10 px-4 sm:px-8 lg:px-12">
         {/* Section Header */}
         <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 border-b-2 border-primary dark:border-white pb-4">
           <div>

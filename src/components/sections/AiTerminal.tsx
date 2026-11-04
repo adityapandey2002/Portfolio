@@ -12,7 +12,7 @@
 
 export function AiTerminal() {
   return (
-    <section id="vector-terminal" className="border-b-4 border-primary dark:border-white bg-surface dark:bg-surface-dark py-12 px-4 sm:px-8 lg:px-12">
+    <section id="vector-terminal" className="border-b-4 border-primary dark:border-white bg-surface dark:bg-surface-dark py-10 px-4 sm:px-8 lg:px-12">
       <div className="max-w-7xl mx-auto space-y-10">
         {/* Section Header */}
         <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 border-b-2 border-primary dark:border-white pb-4">

@@ -136,7 +136,7 @@ export function Hero() {
   return (
     <section id="hero" className="relative w-full flex flex-col">
       {/* 1 · Hero Section */}
-      <section className="w-full border-b-4 border-primary dark:border-white py-8 lg:py-16 bg-surface dark:bg-surface-dark px-4 sm:px-6 lg:px-8">
+      <section className="w-full border-b-4 border-primary dark:border-white py-5 lg:py-10 bg-surface dark:bg-surface-dark px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto flex flex-col gap-10">
           {/* Meta Grid */}
           <div className="flex flex-wrap items-center justify-between gap-3 border-b-2 border-primary dark:border-white pb-3 mb-6">
