@@ -105,10 +105,6 @@ const config: Config = {
         indigo: 'var(--indigo)',
         rose: 'var(--rose)',
         cyan: 'var(--cyan)',
-
-        // ── Dark mode color names (used with dark:bg-* classes) ──
-        'dark-surface-dark': '#1a1a1a',
-        'dark-surface-l1': '#2a2a2a',
       },
       borderRadius: {
         DEFAULT: '0px',
@@ -176,6 +172,11 @@ const config: Config = {
     // On-primary text color
     'text-on-primary',
     'dark:text-on-primary',
+    // Text-on-surface colors for dark mode
+    'text-on-surface',
+    'dark:text-on-surface',
+    'text-on-surface-variant',
+    'dark:text-on-surface-variant',
   ],
   plugins: [],
 };
