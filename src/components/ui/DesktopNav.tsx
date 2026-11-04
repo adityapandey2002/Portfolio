@@ -37,11 +37,11 @@ export function DesktopNav() {
 
   return (
     <header
-      className="fixed top-0 left-0 right-0 z-50 h-20 ${
+      className={`relative left-0 right-0 z-50 h-20 ${
         isDark
-          ? 'bg-dark-surface dark:border-white border-b-2 border-white'
+          ? 'bg-dark-surface border-b-2 border-white'
           : 'bg-surface border-b-2 border-primary'
-      } lg:block hidden"
+      } lg:block hidden`}
     >
       <div className="flex items-center justify-between px-6 lg:px-12">
         {/* Left: AP logo + name */}
