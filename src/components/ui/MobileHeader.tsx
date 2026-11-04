@@ -148,7 +148,7 @@ export function MobileHeader() {
           }`}
         >
           <div className="absolute inset-0 bg-black dark:bg-black opacity-50 dark:opacity-50" onClick={() => setOpen(false)} />
-          <div className="absolute right-0 top-0 bottom-0 w-80 bg-surface dark:bg-surface dark:border-white border-l shadow-2xl transform transition-transform duration-300 translate-x-0">
+          <div className="absolute right-0 top-0 bottom-0 w-80 bg-surface bg-dark-surface dark:border-white border-l shadow-2xl transform transition-transform duration-300 translate-x-0">
             <div className="p-4">
               <div className="flex items-center justify-between mb-6">
                 <span className="font-mono text-xs font-bold uppercase tracking-widest text-on-surface dark:text-on-surface">
@@ -203,3 +203,4 @@ function getIcon(sectionId: string): string {
   };
   return icons[sectionId] || 'help';
 }
+

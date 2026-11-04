@@ -37,7 +37,7 @@ export function ProjectGrid({ featured = false }: { featured?: boolean }) {
             </div>
             <Link
               href="/work"
-              className="inline-flex items-center gap-2 border-2 border-primary bg-surface px-3 sm:px-4 py-1.5 sm:py-2 font-headline text-[10px] sm:text-xs font-bold uppercase tracking-wider text-primary shadow-[4px_4px_0_#000000] transition-all hover:translate-x-0.5 hover:translate-y-0.5 hover:shadow-[2px_2px_0_#000000] dark:border-white dark:bg-surface-l1 dark:text-white dark:shadow-[4px_4px_0_#ffffff] dark:hover:shadow-[2px_2px_0_#ffffff]"
+              className="inline-flex items-center gap-2 border-2 border-primary bg-surface px-3 sm:px-4 py-1.5 sm:py-2 font-headline text-[10px] sm:text-xs font-bold uppercase tracking-wider text-primary shadow-[4px_4px_0_#000000] transition-all hover:translate-x-0.5 hover:translate-y-0.5 hover:shadow-[2px_2px_0_#000000] dark:border-white bg-dark-surface-l1 dark:text-white dark:shadow-[4px_4px_0_#ffffff] dark:hover:shadow-[2px_2px_0_#ffffff]"
             >
               View all <ArrowRight size={14} />
             </Link>
@@ -73,7 +73,7 @@ export function ProjectGrid({ featured = false }: { featured?: boolean }) {
               className={`border-2 px-3 sm:px-4 py-1 sm:py-1.5 font-mono text-[10px] sm:text-xs font-bold uppercase tracking-wider transition-all ${
                 filter === f.id
                   ? 'border-primary bg-primary text-on-primary shadow-[2px_2px_0_#000000] dark:border-white dark:bg-white dark:text-primary dark:shadow-[2px_2px_0_#ffffff]'
-                  : 'border-primary bg-surface text-primary shadow-[2px_2px_0_#000000] hover:translate-x-0.5 hover:translate-y-0.5 hover:shadow-none dark:border-white dark:bg-surface-l1 dark:text-white dark:shadow-[2px_2px_0_#ffffff]'
+                  : 'border-primary bg-surface text-primary shadow-[2px_2px_0_#000000] hover:translate-x-0.5 hover:translate-y-0.5 hover:shadow-none dark:border-white bg-dark-surface-l1 dark:text-white dark:shadow-[2px_2px_0_#ffffff]'
               }`}
             >
               {f.label}
@@ -99,3 +99,4 @@ export function ProjectGrid({ featured = false }: { featured?: boolean }) {
     </section>
   );
 }
+

@@ -22,7 +22,7 @@ const SHADOW = 'shadow-[4px_4px_0_#000000] dark:shadow-[4px_4px_0_#ffffff]';
 
 const VARIANTS: Record<ButtonVariant, string> = {
   primary: 'bg-accent-yellow dark:bg-primary-yellow text-black border-primary dark:border-white',
-  secondary: 'bg-surface dark:bg-surface-l1 text-white border-white',
+  secondary: 'bg-surface bg-dark-surface-l1 text-white border-white',
   ghost: 'bg-transparent text-white border-white shadow-none dark:shadow-none',
   destructive: 'bg-vermilion text-black border-vermilion dark:border-vermilion',
 };
@@ -57,3 +57,4 @@ export function Button({
     </button>
   );
 }
+

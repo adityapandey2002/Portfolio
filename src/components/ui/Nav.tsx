@@ -38,7 +38,7 @@ export function Nav() {
   const isDark = theme === 'dark';
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 bg-surface dark:bg-surface-dark border-b-2 border-primary dark:border-white">
+    <header className="fixed top-0 left-0 right-0 z-50 bg-surface bg-dark-surface-dark border-b-2 border-primary dark:border-white">
       <div className="h-20 w-full px-6 lg:px-12 flex items-center justify-between">
         {/* Left: AP logo + name */}
         <div className="flex items-center gap-6">
@@ -137,3 +137,4 @@ export function Nav() {
     </header>
   );
 }
+

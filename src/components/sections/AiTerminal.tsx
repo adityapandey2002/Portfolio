@@ -12,12 +12,12 @@
 
 export function AiTerminal() {
   return (
-    <section id="vector-terminal" className="border-b-4 border-primary dark:border-white bg-surface dark:bg-surface-dark py-12 px-4 sm:px-8 lg:px-12">
+    <section id="vector-terminal" className="border-b-4 border-primary dark:border-white bg-surface bg-dark-surface-dark py-12 px-4 sm:px-8 lg:px-12">
       <div className="max-w-7xl mx-auto space-y-10">
         {/* Section Header */}
         <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 border-b-2 border-primary dark:border-white pb-4">
           <div>
-            <span className="font-headline text-xs font-bold uppercase tracking-widest text-accent-red dark:text-accent-red block">
+            <span className="font-headline text-xs font-bold uppercase tracking-widest text-primary dark:text-white block">
               07 // CLIENT-SIDE INTELLIGENCE
             </span>
             <h2 className="font-headline text-3xl sm:text-5xl font-bold uppercase tracking-tight text-on-surface dark:text-on-surface mt-1">
@@ -33,7 +33,7 @@ export function AiTerminal() {
         {/* Terminal Component */}
         <div className="bg-accent-yellow dark:bg-accent-yellow text-black dark:text-black border-4 border-primary dark:border-white shadow-[8px_8px_0px_#1a1a1a] dark:shadow-[8px_8px_0px_#ffffff] font-mono text-xs sm:text-sm">
           {/* Terminal Header Bar */}
-          <div className="bg-surface-container dark:bg-surface-container-low p-3 border-b-2 border-primary dark:border-white flex items-center justify-between font-headline font-bold text-xs uppercase tracking-wider">
+          <div className="bg-surface-container bg-dark-surface-container-low p-3 border-b-2 border-primary dark:border-white flex items-center justify-between font-headline font-bold text-xs uppercase tracking-wider">
             <div className="flex items-center gap-2">
               <span className="w-3 h-3 bg-accent-yellow dark:bg-accent-yellow inline-block border border-primary dark:border-white" />
               <span className="w-3 h-3 bg-accent-yellow dark:bg-accent-yellow inline-block border border-primary dark:border-white" />
@@ -62,7 +62,7 @@ export function AiTerminal() {
               </div>
             </div>
             <div className="flex items-center gap-2 text-white pt-2 border-t border-dashed border-[#333333]">
-              <span className="text-accent-yellow dark:text-accent-yellow font-bold">&gt;</span>
+              <span className="text-primary dark:text-white font-bold">&gt;</span>
               <span className="text-[#33ff33]" id="active-terminal-cursor">
                 awaiting input...
               </span>
@@ -91,3 +91,5 @@ export function AiTerminal() {
     </section>
   );
 }
+
+

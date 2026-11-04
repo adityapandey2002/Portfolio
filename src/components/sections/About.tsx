@@ -13,7 +13,7 @@
 
 export function About() {
   return (
-    <section id="about" className="border-b-4 border-primary dark:border-white bg-surface-container-low dark:bg-surface-container-low">
+    <section id="about" className="border-b-4 border-primary dark:border-white bg-surface-container-low bg-dark-surface-container-low">
       <div className="max-w-7xl mx-auto space-y-10 py-12 px-4 sm:px-8 lg:px-12">
         {/* Section Header */}
         <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 border-b-2 border-primary dark:border-white pb-4">
@@ -32,9 +32,9 @@ export function About() {
 
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">
           {/* Left Column: Biography Narrative */}
-          <div className="lg:col-span-7 bg-surface-container-lowest dark:bg-surface-lowest border-3 border-primary dark:border-white p-6 sm:p-8 shadow-[6px_6px_0px_#1a1a1a] dark:shadow-[6px_6px_0px_#ffffff] flex flex-col justify-between">
+          <div className="lg:col-span-7 bg-surface-container-lowest bg-dark-surface-lowest border-3 border-primary dark:border-white p-6 sm:p-8 shadow-[6px_6px_0px_#1a1a1a] dark:shadow-[6px_6px_0px_#ffffff] flex flex-col justify-between">
             <div className="space-y-5">
-              <div className="inline-block bg-primary dark:bg-surface-dark text-on-primary dark:text-on-primary px-3 py-1 font-headline text-xs uppercase font-bold tracking-widest">
+              <div className="inline-block bg-primary bg-dark-surface-dark text-on-primary dark:text-on-primary px-3 py-1 font-headline text-xs uppercase font-bold tracking-widest">
                 Field Engineer Biography
               </div>
               <p className="font-headline text-xl sm:text-2xl font-bold text-on-surface dark:text-on-surface leading-snug">
@@ -47,7 +47,7 @@ export function About() {
                 When I am not auditing maternal health registers under ceiling fans in rural PHCs, I am writing Python automation scripts, architecting offline-first IndexedDB Progressive Web Apps, and engineering deterministic SQL validation pipelines to ensure government decision-makers act on truthful, high-fidelity data.
               </p>
               <div className="pt-4 border-t-2 border-primary dark:border-white grid grid-cols-1 sm:grid-cols-2 gap-4">
-                <div className="p-3 bg-surface dark:bg-surface-low border border-primary dark:border-white">
+                <div className="p-3 bg-surface bg-dark-surface-low border border-primary dark:border-white">
                   <span className="block font-headline text-xs font-bold uppercase text-on-surface-variant dark:text-on-surface-variant">
                     Current Deployment Base
                   </span>
@@ -55,7 +55,7 @@ export function About() {
                     Muzaffarpur & Araria, Bihar
                   </span>
                 </div>
-                <div className="p-3 bg-surface dark:bg-surface-low border border-primary dark:border-white">
+                <div className="p-3 bg-surface bg-dark-surface-low border border-primary dark:border-white">
                   <span className="block font-headline text-xs font-bold uppercase text-on-surface-variant dark:text-on-surface-variant">
                     Native Hometown
                   </span>
@@ -67,7 +67,7 @@ export function About() {
             </div>
             <div className="mt-8 flex flex-wrap gap-2 pt-4 border-t-2 border-primary dark:border-white">
               {['#PublicHealthData', '#PostgreSQL', '#NextJS', '#OfflineFirst', '#VectorRAG'].map((tag) => (
-                <span key={tag} className="font-mono text-xs uppercase px-2 py-1 bg-surface-container dark:bg-surface-container border border-primary dark:border-white font-bold text-on-surface dark:text-on-surface">
+                <span key={tag} className="font-mono text-xs uppercase px-2 py-1 bg-surface-container bg-dark-surface-container border border-primary dark:border-white font-bold text-on-surface dark:text-on-surface">
                   {tag}
                 </span>
               ))}
@@ -75,7 +75,7 @@ export function About() {
           </div>
 
           {/* Right Column: Identity Dossier Card */}
-          <div className="lg:col-span-5 bg-surface-container dark:bg-surface-container border-3 border-primary dark:border-white p-6 sm:p-8 shadow-[6px_6px_0px_#1a1a1a] dark:shadow-[6px_6px_0px_#ffffff] flex flex-col justify-between">
+          <div className="lg:col-span-5 bg-surface-container bg-dark-surface-container border-3 border-primary dark:border-white p-6 sm:p-8 shadow-[6px_6px_0px_#1a1a1a] dark:shadow-[6px_6px_0px_#ffffff] flex flex-col justify-between">
             <div className="space-y-6">
               <div className="flex items-center justify-between border-b-2 border-primary dark:border-white pb-3">
                 <span className="font-headline font-bold text-xs uppercase tracking-widest text-on-surface dark:text-on-surface">
@@ -127,7 +127,7 @@ export function About() {
                 </span>
                 <div className="flex flex-wrap gap-2">
                   {['PHC Direct Immersion', 'Deterministic QA Pipelines', 'State Portal Diagnostics', 'IndexedDB Local Cache'].map((badge) => (
-                    <span key={badge} className="text-[11px] font-mono font-semibold bg-surface-container-lowest dark:bg-surface-low px-2 py-1 border border-primary dark:border-white text-on-surface dark:text-on-surface">
+                    <span key={badge} className="text-[11px] font-mono font-semibold bg-surface-container-lowest bg-dark-surface-low px-2 py-1 border border-primary dark:border-white text-on-surface dark:text-on-surface">
                       {badge}
                     </span>
                   ))}
@@ -140,3 +140,4 @@ export function About() {
     </section>
   );
 }
+

@@ -43,7 +43,7 @@ const CAPABILITIES: Capability[] = [
     num: '02',
     name: 'Web Developer',
     pct: 78,
-    accentText: 'text-accent-red dark:text-accent-red', // #e63b2e
+    accentText: 'text-primary dark:text-white', // #e63b2e
     accentFill: 'bg-accent-red',
     skills: [
       'React', 'Next.js', 'TypeScript', 'Tailwind', 'Node', 'Express', 'MySQL',
@@ -55,7 +55,7 @@ const CAPABILITIES: Capability[] = [
     num: '03',
     name: 'AI & Automation',
     pct: 74,
-    accentText: 'text-accent-blue dark:text-accent-blue', // #0055ff
+    accentText: 'text-primary dark:text-white', // #0055ff
     accentFill: 'bg-accent-blue',
     skills: [
       'AI Tools', 'LLM / RAG', 'Groq', 'Prompt Engineering', 'Automation Scripts',
@@ -82,7 +82,7 @@ export function Capabilities() {
       <Section
         className={cn(
           'border-b-4 border-primary dark:border-white',
-          'bg-surface dark:bg-surface-dark',
+          'bg-surface bg-dark-surface-dark',
           'pb-8 lg:pb-20',
         )}
       >
@@ -156,4 +156,6 @@ export function Capabilities() {
     </section>
   );
 }
+
+
 

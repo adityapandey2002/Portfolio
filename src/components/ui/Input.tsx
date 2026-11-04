@@ -37,7 +37,7 @@ export function Input({
         onChange={onChange}
         className={clsx(
           // Surface fill, 2px border, zero radius, white text, hard offset shadow.
-        'rounded-0 border-2 border-primary dark:border-white bg-surface dark:bg-surface-l1 text-white placeholder:text-ink-3 dark:placeholder:text-ink-4 shadow-[4px_4px_0_#000000] dark:shadow-[4px_4px_0_#000000]',
+        'rounded-0 border-2 border-primary dark:border-white bg-surface bg-dark-surface-l1 text-white placeholder:text-ink-3 dark:placeholder:text-ink-4 shadow-[4px_4px_0_#000000] dark:shadow-[4px_4px_0_#000000]',
           // Instant, non-blurred focus ring in accent yellow (#facc15) in both themes.
         'focus:outline-none focus:border-primary-yellow dark:focus:border-primary-yellow focus:shadow-[4px_4px_0_#000000,3px_3px_0_#facc15] dark:focus:shadow-[4px_4px_0_#000000,3px_3px_0_#facc15] transition-colors duration-75',
         )}
@@ -45,3 +45,4 @@ export function Input({
     </div>
   );
 }
+

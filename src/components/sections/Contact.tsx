@@ -56,7 +56,7 @@ export function Contact() {
   };
 
   return (
-    <section id="dispatch" className="border-b-4 border-primary dark:border-white bg-surface-container-lowest dark:bg-surface-lowest">
+    <section id="dispatch" className="border-b-4 border-primary dark:border-white bg-surface-container-lowest bg-dark-surface-lowest">
       <div className="max-w-7xl mx-auto space-y-12 py-12 px-4 sm:px-8 lg:px-12">
         {/* Section Header */}
         <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 border-b-2 border-primary dark:border-white pb-4">
@@ -75,7 +75,7 @@ export function Contact() {
 
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
           {/* Contact Form */}
-          <div className="lg:col-span-7 bg-surface dark:bg-surface-container border-3 border-primary dark:border-white p-6 sm:p-8 shadow-[6px_6px_0px_#1a1a1a] dark:shadow-[6px_6px_0px_#ffffff]">
+          <div className="lg:col-span-7 bg-surface bg-dark-surface-container border-3 border-primary dark:border-white p-6 sm:p-8 shadow-[6px_6px_0px_#1a1a1a] dark:shadow-[6px_6px_0px_#ffffff]">
             <div className="border-b-2 border-primary dark:border-white pb-4 mb-6">
               <h3 className="font-headline text-xl font-bold uppercase text-on-surface dark:text-on-surface">
                 Direct Transmission Form
@@ -92,7 +92,7 @@ export function Contact() {
                 <input
                   value={form.name}
                   onChange={set('name')}
-                  className="w-full bg-surface-container-lowest dark:bg-surface-low border-b-3 border-primary dark:border-white p-3 text-sm font-body text-on-surface dark:text-on-surface focus:outline-none focus:bg-primary-container/20 dark:focus:bg-primary-yellow/20 transition-colors"
+                  className="w-full bg-surface-container-lowest bg-dark-surface-low border-b-3 border-primary dark:border-white p-3 text-sm font-body text-on-surface dark:text-on-surface focus:outline-none focus:bg-primary-container/20 dark:focus:bg-primary-yellow/20 transition-colors"
                   placeholder="e.g. Dr. Ramesh Kumar / Chief Medical Officer"
                   required
                   type="text"
@@ -107,7 +107,7 @@ export function Contact() {
                     value={form.email}
                     onChange={set('email')}
                     type="email"
-                    className="w-full bg-surface-container-lowest dark:bg-surface-low border-b-3 border-primary dark:border-white p-3 text-sm font-body text-on-surface dark:text-on-surface focus:outline-none focus:bg-primary-container/20 dark:focus:bg-primary-yellow/20 transition-colors"
+                    className="w-full bg-surface-container-lowest bg-dark-surface-low border-b-3 border-primary dark:border-white p-3 text-sm font-body text-on-surface dark:text-on-surface focus:outline-none focus:bg-primary-container/20 dark:focus:bg-primary-yellow/20 transition-colors"
                     placeholder="name@organization.gov.in"
                     required
                   />
@@ -117,7 +117,7 @@ export function Contact() {
                     Phone / WhatsApp Vector
                   </label>
                   <input
-                    className="w-full bg-surface-container-lowest dark:bg-surface-low border-b-3 border-primary dark:border-white p-3 text-sm font-body text-on-surface dark:text-on-surface focus:outline-none focus:bg-primary-container/20 dark:focus:bg-primary-yellow/20 transition-colors"
+                    className="w-full bg-surface-container-lowest bg-dark-surface-low border-b-3 border-primary dark:border-white p-3 text-sm font-body text-on-surface dark:text-on-surface focus:outline-none focus:bg-primary-container/20 dark:focus:bg-primary-yellow/20 transition-colors"
                     placeholder="+91 XXXXX XXXXX"
                     type="tel"
                   />
@@ -127,7 +127,7 @@ export function Contact() {
                 <label className="font-headline text-xs font-bold uppercase text-on-surface dark:text-on-surface block tracking-wider">
                   Vector Category *
                 </label>
-                <select className="w-full bg-surface-container-lowest dark:bg-surface-low border-b-3 border-primary dark:border-white p-3 text-sm font-body text-on-surface dark:text-on-surface focus:outline-none focus:bg-primary-container/20 dark:focus:bg-primary-yellow/20 transition-colors">
+                <select className="w-full bg-surface-container-lowest bg-dark-surface-low border-b-3 border-primary dark:border-white p-3 text-sm font-body text-on-surface dark:text-on-surface focus:outline-none focus:bg-primary-container/20 dark:focus:bg-primary-yellow/20 transition-colors">
                   <option>Public Health MIS / Data System Architecture</option>
                   <option>Engineering Fellowship / Organization Role</option>
                   <option>Full-Stack Web / Offline PWA Deployment</option>
@@ -142,7 +142,7 @@ export function Contact() {
                 <textarea
                   value={form.message}
                   onChange={set('message')}
-                  className="w-full bg-surface-container-lowest dark:bg-surface-low border-b-3 border-primary dark:border-white p-3 text-sm font-body text-on-surface dark:text-on-surface focus:outline-none focus:bg-primary-container/20 dark:focus:bg-primary-yellow/20 transition-colors resize-none"
+                  className="w-full bg-surface-container-lowest bg-dark-surface-low border-b-3 border-primary dark:border-white p-3 text-sm font-body text-on-surface dark:text-on-surface focus:outline-none focus:bg-primary-container/20 dark:focus:bg-primary-yellow/20 transition-colors resize-none"
                   placeholder="State requirements, technical constraints, field location, or collaboration scope..."
                   required
                   rows={4}
@@ -189,7 +189,7 @@ export function Contact() {
                   <span className="text-surface-container-high dark:text-surface-high uppercase block text-[11px]">
                     Primary Comms [Email]
                   </span>
-                  <a className="text-accent-yellow dark:text-accent-yellow font-bold hover:underline break-all text-sm" href={`mailto:${profile.emails.personal}`}>
+                  <a className="text-primary dark:text-white font-bold hover:underline break-all text-sm" href={`mailto:${profile.emails.personal}`}>
                     {profile.emails.personal}
                   </a>
                 </div>
@@ -223,7 +223,7 @@ export function Contact() {
                 </span>
                 <div className="grid grid-cols-2 gap-3">
                   <a
-                    className="p-2.5 bg-surface dark:bg-surface-low text-on-surface dark:text-on-surface font-headline font-bold text-xs uppercase border border-primary dark:border-white text-center hover:bg-accent-yellow dark:hover:bg-accent-yellow hover:text-black dark:hover:text-black transition-colors"
+                    className="p-2.5 bg-surface bg-dark-surface-low text-on-surface dark:text-on-surface font-headline font-bold text-xs uppercase border border-primary dark:border-white text-center hover:bg-accent-yellow dark:hover:bg-accent-yellow hover:text-black dark:hover:text-black transition-colors"
                     href={profile.github}
                     rel="noreferrer"
                     target="_blank"
@@ -231,7 +231,7 @@ export function Contact() {
                     GitHub Profile &rarr;
                   </a>
                   <a
-                    className="p-2.5 bg-surface dark:bg-surface-low text-on-surface dark:text-on-surface font-headline font-bold text-xs uppercase border border-primary dark:border-white text-center hover:bg-accent-yellow dark:hover:bg-accent-yellow hover:text-black dark:hover:text-black transition-colors"
+                    className="p-2.5 bg-surface bg-dark-surface-low text-on-surface dark:text-on-surface font-headline font-bold text-xs uppercase border border-primary dark:border-white text-center hover:bg-accent-yellow dark:hover:bg-accent-yellow hover:text-black dark:hover:text-black transition-colors"
                     href={profile.linkedin}
                     rel="noreferrer"
                     target="_blank"
@@ -243,7 +243,7 @@ export function Contact() {
             </div>
 
             {/* Quick Quote / Manifesto Card */}
-            <div className="bg-surface-container dark:bg-surface-container border-2 border-primary dark:border-white p-5 shadow-[4px_4px_0px_#1a1a1a] dark:shadow-[4px_4px_0px_#ffffff]">
+            <div className="bg-surface-container bg-dark-surface-container border-2 border-primary dark:border-white p-5 shadow-[4px_4px_0px_#1a1a1a] dark:shadow-[4px_4px_0px_#ffffff]">
               <span className="font-mono text-xs font-bold text-primary dark:text-white uppercase block mb-1">
                 FIELD MANIFESTO
               </span>
@@ -260,3 +260,5 @@ export function Contact() {
     </section>
   );
 }
+
+

@@ -25,7 +25,7 @@ export function ThemeToggle() {
         px-3 py-2
         font-headline font-bold text-xs uppercase tracking-wider
         border-2 border-primary
-        ${isDark ? 'dark:bg-surface-dark dark:text-on-surface dark:border-white' : 'bg-surface text-on-surface border-primary'}
+        ${isDark ? 'bg-dark-surface-dark dark:text-on-surface dark:border-white' : 'bg-surface text-on-surface border-primary'}
         shadow-[3px_3px_0px_#1a1a1a]
         ${isDark ? 'dark:shadow-[3px_3px_0px_#ffffff]' : ''}
         hover:bg-accent-yellow hover:text-primary
@@ -46,3 +46,4 @@ export function ThemeToggle() {
     </button>
   );
 }
+

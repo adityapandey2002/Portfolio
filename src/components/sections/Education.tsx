@@ -68,7 +68,7 @@ const CERTS = [
 
 export function Education() {
   return (
-    <section id="education" className="border-b-4 border-primary dark:border-white bg-surface dark:bg-surface-dark py-12 px-4 sm:px-8 lg:px-12">
+    <section id="education" className="border-b-4 border-primary dark:border-white bg-surface bg-dark-surface-dark py-12 px-4 sm:px-8 lg:px-12">
       <div className="max-w-7xl mx-auto space-y-10 py-4 sm:px-8 lg:px-12">
         {/* Section Header */}
         <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 border-b-2 border-primary dark:border-white pb-4">
@@ -87,7 +87,7 @@ export function Education() {
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-start">
           {/* Left: Formal Degrees */}
-          <div className="border-3 border-primary dark:border-white bg-surface-container-lowest dark:bg-surface-low p-6 sm:p-8 shadow-[6px_6px_0px_#1a1a1a] dark:shadow-[6px_6px_0px_#ffffff] space-y-6">
+          <div className="border-3 border-primary dark:border-white bg-surface-container-lowest bg-dark-surface-low p-6 sm:p-8 shadow-[6px_6px_0px_#1a1a1a] dark:shadow-[6px_6px_0px_#ffffff] space-y-6">
             <div className="flex items-center justify-between border-b-2 border-primary dark:border-white pb-3">
               <h3 className="font-headline text-xl font-bold uppercase text-on-surface dark:text-on-surface">Formal University Degrees</h3>
               <span className="material-symbols-outlined text-primary dark:text-white">school</span>
@@ -107,14 +107,14 @@ export function Education() {
           </div>
 
           {/* Right: Accreditations & Leadership */}
-          <div className="border-3 border-primary dark:border-white bg-surface-container dark:bg-surface-container p-6 sm:p-8 shadow-[6px_6px_0px_#1a1a1a] dark:shadow-[6px_6px_0px_#ffffff] space-y-6">
+          <div className="border-3 border-primary dark:border-white bg-surface-container bg-dark-surface-container p-6 sm:p-8 shadow-[6px_6px_0px_#1a1a1a] dark:shadow-[6px_6px_0px_#ffffff] space-y-6">
             <div className="flex items-center justify-between border-b-2 border-primary dark:border-white pb-3">
               <h3 className="font-headline text-xl font-bold uppercase text-on-surface dark:text-on-surface">Accreditations & Leadership</h3>
               <span className="material-symbols-outlined text-primary dark:text-white">verified</span>
             </div>
             <div className="space-y-4">
               {CERTS.map((cert) => (
-                <div key={cert.title} className="bg-surface-container-lowest dark:bg-surface-low p-4 border-2 border-primary dark:border-white">
+                <div key={cert.title} className="bg-surface-container-lowest bg-dark-surface-low p-4 border-2 border-primary dark:border-white">
                   <div className="flex justify-between items-start">
                     <span className={`px-2 py-0.5 font-headline text-xs font-bold uppercase ${cert.badgeBg}`}>
                       {cert.badge}
@@ -132,3 +132,4 @@ export function Education() {
     </section>
   );
 }
+

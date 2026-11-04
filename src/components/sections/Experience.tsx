@@ -16,7 +16,7 @@ import { experience } from '@/lib/data/experience';
 
 export function Experience() {
   return (
-    <section id="experience" className="border-b-4 border-primary dark:border-white bg-surface dark:bg-surface-dark py-12 px-4 sm:px-8 lg:px-12">
+    <section id="experience" className="border-b-4 border-primary dark:border-white bg-surface bg-dark-surface-dark py-12 px-4 sm:px-8 lg:px-12">
       <div className="max-w-7xl mx-auto space-y-10">
         {/* Section Header */}
         <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 border-b-2 border-primary dark:border-white pb-4">
@@ -28,7 +28,7 @@ export function Experience() {
               Field & Systems Experience
             </h2>
           </div>
-          <span className="font-headline text-xs font-bold uppercase tracking-wider bg-surface-container dark:bg-surface-lowest px-3 py-1 border border-primary dark:border-white">
+          <span className="font-headline text-xs font-bold uppercase tracking-wider bg-surface-container bg-dark-surface-lowest px-3 py-1 border border-primary dark:border-white">
             CHRONOLOGICAL LOGS [2024–2025]
           </span>
         </div>
@@ -61,7 +61,7 @@ export function Experience() {
           {experience.map((xp) => (
             <div
               key={xp.role}
-              className="bg-surface-container-lowest dark:bg-surface-low border-3 border-primary dark:border-white p-6 shadow-[5px_5px_0px_#1a1a1a] dark:shadow-[5px_5px_0px_#ffffff] flex flex-col justify-between"
+              className="bg-surface-container-lowest bg-dark-surface-low border-3 border-primary dark:border-white p-6 shadow-[5px_5px_0px_#1a1a1a] dark:shadow-[5px_5px_0px_#ffffff] flex flex-col justify-between"
             >
               <div className="space-y-4">
                 <div className="flex items-start justify-between gap-2 border-b-2 border-primary dark:border-white pb-3">
@@ -86,7 +86,7 @@ export function Experience() {
               </div>
               <div className="mt-6 pt-4 border-t border-primary dark:border-white flex flex-wrap gap-2">
                 {xp.tags.map((t) => (
-                  <span key={t} className="font-mono text-[11px] bg-surface-container dark:bg-surface-low px-2 py-0.5 border border-primary dark:border-white text-on-surface dark:text-on-surface">
+                  <span key={t} className="font-mono text-[11px] bg-surface-container bg-dark-surface-low px-2 py-0.5 border border-primary dark:border-white text-on-surface dark:text-on-surface">
                     {t}
                   </span>
                 ))}
@@ -98,3 +98,4 @@ export function Experience() {
     </section>
   );
 }
+
