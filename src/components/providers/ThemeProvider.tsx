@@ -26,43 +26,35 @@ const ThemeContext = createContext<ThemeContextValue>({
 /**
  * V2 Bauhaus theme context.
  *
- * - Persists the preference in localStorage under the key `theme`.
- * - Applies the `dark` class to <html> so Tailwind's `darkMode: 'class'`
- *   strategy picks up dark-mode variants.
- * - Defaults to light mode (no `dark` class).
+ * The saved theme is applied by the inline script in `layout.tsx` before
+ * hydration, so there is no light flash and no race between "read stored
+ * value" and "write default value" effects. This provider only mirrors the
+ * class that is already on <html> and persists later user changes.
  */
 export function ThemeProvider({ children }: { children: ReactNode }) {
   const [theme, setThemeState] = useState<Theme>('light');
+  const [ready, setReady] = useState(false);
 
-  // Hydrate from localStorage, defaulting to light mode.
+  // Adopt whatever the pre-hydration script already applied.
   useEffect(() => {
-    const html = document.documentElement;
-    const stored = localStorage.getItem('theme');
-    const initial: Theme = (stored === 'light' || stored === 'dark'
-      ? stored
-      : 'light');
+    const initial: Theme = document.documentElement.classList.contains('dark')
+      ? 'dark'
+      : 'light';
     setThemeState(initial);
-    if (initial === 'dark') {
-      html.classList.add('dark');
-    } else {
-      html.classList.remove('dark');
-    }
+    setReady(true);
   }, []);
 
-  // Apply the chosen theme to <html> and persist it.
+  // Persist and apply only after the initial theme has been adopted.
   useEffect(() => {
+    if (!ready) return;
     const html = document.documentElement;
-    if (theme === 'dark') {
-      html.classList.add('dark');
-    } else {
-      html.classList.remove('dark');
-    }
+    html.classList.toggle('dark', theme === 'dark');
     try {
       localStorage.setItem('theme', theme);
     } catch {
       // localStorage unavailable; ignore.
     }
-  }, [theme]);
+  }, [theme, ready]);
 
   const setTheme = useCallback((next: Theme) => {
     setThemeState(next);
