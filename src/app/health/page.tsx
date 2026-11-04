@@ -130,7 +130,7 @@ export default function HealthPage() {
                 </div>
                 <div className="mt-6 pt-4 border-t-2 border-primary dark:border-white flex items-center justify-between text-[11px] font-mono uppercase font-bold gap-3">
                   <span>NQAS FRAMEWORK</span>
-                  <span className="bg-accent-blue dark:bg-accent-blue text-black dark:text-black px-2 py-0.5 border border-accent-blue dark:border-accent-blue">
+                  <span className="bg-accent-blue dark:bg-accent-blue text-white dark:text-white px-2 py-0.5 border border-accent-blue dark:border-accent-blue">
                     REGISTER RECON
                   </span>
                 </div>
@@ -205,7 +205,7 @@ export default function HealthPage() {
                 title: 'NQAS Certification Support',
                 tag: 'NATIONAL QUALITY ASSURANCE',
                 body: 'Physical vs digital register reconciliation across Sub-Centres and PHCs under the NQAS framework, prepping facilities for certification audits.',
-                accent: 'bg-accent-blue dark:bg-accent-blue text-black dark:text-black border border-accent-blue dark:border-accent-blue',
+                accent: 'bg-accent-blue dark:bg-accent-blue text-white dark:text-white border border-accent-blue dark:border-accent-blue',
               },
               {
                 rank: 5,
@@ -226,14 +226,14 @@ export default function HealthPage() {
                 title: 'VHSND · Godbharai · PMSMA Data Pipeline',
                 tag: 'PYTHON · PANDAS',
                 body: 'Python + Pandas pipelines scrubbing, validating and automating grassroots survey records to eliminate discrepancy windows ahead of Monday district review meetings.',
-                accent: 'bg-accent-blue dark:bg-accent-blue text-black dark:text-black border border-accent-blue dark:border-accent-blue',
+                accent: 'bg-accent-blue dark:bg-accent-blue text-white dark:text-white border border-accent-blue dark:border-accent-blue',
               },
               {
                 rank: 8,
                 title: 'MIS Reports for Block & District Review',
                 tag: 'WEEKLY BLOCK SUMMARIES',
                 body: 'Automated MIS outputs verified ahead of block and district review cycles — field data turned into review-ready tables for BMOs and district leadership.',
-                accent: 'bg-accent-blue dark:bg-accent-blue text-black dark:text-black border border-accent-blue dark:border-accent-blue',
+                accent: 'bg-accent-blue dark:bg-accent-blue text-white dark:text-white border border-accent-blue dark:border-accent-blue',
               },
             ].map((item) => (
               <div
