@@ -11,17 +11,54 @@ export default function HealthPage() {
   return (
     <>
       <section className="border-b-4 border-primary dark:border-white bg-surface dark:bg-surface-dark">
-        <Section className="py-12">
-          <div className="mb-6">
-            <span className="font-mono text-xs font-bold uppercase tracking-widest text-on-surface-variant dark:text-on-surface-variant">
-              03 · HEALTH FIELD IMPACT
-            </span>
-            <h1 className="mt-2 font-headline text-3xl sm:text-5xl font-bold uppercase tracking-tight text-on-surface dark:text-on-surface">
-              Health Field Impact
-            </h1>
-            <p className="mt-4 text-sm text-on-surface-variant dark:text-on-surface-variant/70 max-w-2xl">
-              Gandhi Fellowship · Piramal Foundation. Public health data work across Bihar&apos;s high-burden blocks — frontline worker capacity building (ASHA, ANM, CHO, PHC), 185-hour clinical skills refreshers, NQAS certification support, maternal and child health programs, and VHSND / Godbharai / PMSMA data pipelines — tracked like patient data, from Muzaffarpur.
-            </p>
+        <Section className="py-10">
+          <div className="space-y-8">
+            {/* Metadata Bar */}
+            <div className="flex flex-wrap items-center justify-between gap-4 border-2 border-primary dark:border-white p-3 bg-surface-container dark:bg-surface-low shadow-[4px_4px_0px_#1a1a1a] dark:shadow-[4px_4px_0px_#ffffff]">
+              <div className="flex items-center gap-2">
+                <span className="inline-block w-3 h-3 bg-accent-red dark:bg-accent-red" />
+                <span className="font-headline font-bold text-xs uppercase tracking-widest text-primary dark:text-on-surface">
+                  01 // FELLOWSHIP OPERATIONAL RECORD &amp; CLINICAL VITALS
+                </span>
+              </div>
+              <div className="flex items-center gap-4 font-headline text-xs font-bold uppercase tracking-wider text-on-surface-variant dark:text-on-surface-variant">
+                <span>PROGRAM: GANDHI FELLOWSHIP</span>
+                <span className="hidden md:inline">|</span>
+                <span className="hidden md:inline">PIRAMAL FOUNDATION</span>
+                <span className="hidden md:inline">|</span>
+                <span className="bg-primary dark:bg-on-surface text-on-primary dark:text-surface px-2 py-0.5">
+                  DEPLOYED: MUZAFFARPUR
+                </span>
+              </div>
+            </div>
+            {/* Main Headline */}
+            <div className="space-y-4">
+              <h1 className="font-headline text-3xl sm:text-5xl lg:text-6xl font-bold uppercase tracking-tight text-primary dark:text-on-surface leading-none">
+                HEALTH-SYSTEM STRENGTHENING ACROSS BIHAR: EVERY NUMBER TRACKED LIKE PATIENT DATA
+              </h1>
+              <p className="font-body text-base sm:text-lg text-on-surface-variant dark:text-on-surface-variant max-w-4xl leading-relaxed border-l-4 border-primary dark:border-on-surface pl-4">
+                Gandhi Fellowship (Piramal Foundation) · Based in Muzaffarpur, Bihar. Grassroots transformation across 16 high-burden blocks, sub-centres, PHCs, and District Hospitals.
+              </p>
+            </div>
+            {/* Quote Block */}
+            <div className="relative bg-primary dark:bg-surface-container-lowest text-on-primary dark:text-on-surface p-6 sm:p-8 border-2 border-primary dark:border-white shadow-[6px_6px_0px_#ffcc00] dark:shadow-[6px_6px_0px_#ffcc00]">
+              <div className="absolute top-0 right-0 transform translate-x-2 -translate-y-3 bg-accent-yellow dark:bg-primary-yellow text-black dark:text-black px-3 py-1 font-headline text-xs font-bold uppercase tracking-widest border-2 border-primary dark:border-white">
+                PRIMARY LOG 2024-2026
+              </div>
+              <div className="flex items-start gap-4">
+                <span className="material-symbols-outlined text-accent-yellow dark:text-primary-yellow text-4xl shrink-0">
+                  format_quote
+                </span>
+                <div className="space-y-3">
+                  <blockquote className="font-headline text-lg sm:text-xl md:text-2xl font-bold tracking-tight text-on-primary dark:text-on-surface leading-snug">
+                    &ldquo;I&rsquo;ve stood next to an ASHA worker filling an ODK form on a tablet in 38&deg;C heat. Every pipeline I build starts with that moment.&rdquo;
+                  </blockquote>
+                  <div className="font-headline text-xs uppercase tracking-widest text-accent-yellow dark:text-primary-yellow font-bold">
+                    — ADITYA PANDEY · DISTRICT RESOURCE FELLOW, MUZAFFARPUR, BIHAR
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </Section>
       </section>
