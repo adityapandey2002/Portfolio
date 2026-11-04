@@ -28,6 +28,7 @@ const config: Config = {
         'on-surface-variant': '#4a4a4a',
         'on-background': '#1a1a1a',
         'on-primary': '#ffffff',
+        'on-primary-container': '#1a1a1a',
 
         // ── Accents (light) ──
         'accent-yellow': '#ffcc00',
@@ -41,7 +42,6 @@ const config: Config = {
 
         // ── Material Design 3 tokens (light) ──
         'primary-container': '#ffcc00',
-        'on-primary-container': '#1a1a1a',
         'primary-fixed': '#ffcc00',
         'primary-fixed-dim': '#e6b800',
         'on-primary-fixed': '#1a1a1a',
