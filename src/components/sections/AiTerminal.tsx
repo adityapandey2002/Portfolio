@@ -12,7 +12,7 @@
 
 export function AiTerminal() {
   return (
-    <section id="vector-terminal" className="border-b-4 border-primary dark:border-white bg-surface bg-dark-surface-dark py-12 px-4 sm:px-8 lg:px-12">
+    <section id="vector-terminal" className="border-b-4 border-primary dark:border-white bg-surface dark:bg-surface-dark py-12 px-4 sm:px-8 lg:px-12">
       <div className="max-w-7xl mx-auto space-y-10">
         {/* Section Header */}
         <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 border-b-2 border-primary dark:border-white pb-4">
@@ -33,7 +33,7 @@ export function AiTerminal() {
         {/* Terminal Component */}
         <div className="bg-accent-yellow dark:bg-accent-yellow text-black dark:text-black border-4 border-primary dark:border-white shadow-[8px_8px_0px_#1a1a1a] dark:shadow-[8px_8px_0px_#ffffff] font-mono text-xs sm:text-sm">
           {/* Terminal Header Bar */}
-          <div className="bg-surface-container bg-dark-surface-container-low p-3 border-b-2 border-primary dark:border-white flex items-center justify-between font-headline font-bold text-xs uppercase tracking-wider">
+          <div className="bg-surface-container dark:bg-surface-container-low p-3 border-b-2 border-primary dark:border-white flex items-center justify-between font-headline font-bold text-xs uppercase tracking-wider">
             <div className="flex items-center gap-2">
               <span className="w-3 h-3 bg-accent-yellow dark:bg-accent-yellow inline-block border border-primary dark:border-white" />
               <span className="w-3 h-3 bg-accent-yellow dark:bg-accent-yellow inline-block border border-primary dark:border-white" />
@@ -91,5 +91,7 @@ export function AiTerminal() {
     </section>
   );
 }
+
+
 
 

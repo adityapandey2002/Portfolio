@@ -58,7 +58,7 @@ const SYSTEMS = [
 
 export function SelectedSystems() {
   return (
-    <section id="systems" className="border-b-4 border-primary dark:border-white bg-surface-container-low bg-dark-surface-container-low py-12 px-4 sm:px-8 lg:px-12">
+    <section id="systems" className="border-b-4 border-primary dark:border-white bg-surface-container-low dark:bg-surface-container-low py-12 px-4 sm:px-8 lg:px-12">
       <div className="max-w-7xl mx-auto space-y-10">
         <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 border-b-2 border-primary dark:border-white pb-4">
           <div>
@@ -82,7 +82,7 @@ export function SelectedSystems() {
           {SYSTEMS.map((sys) => (
             <div
               key={sys.num}
-              className="bg-surface-container-lowest bg-dark-surface-low border-3 border-primary dark:border-white p-6 shadow-[6px_6px_0px_#1a1a1a] dark:shadow-[6px_6px_0px_#ffffff] flex flex-col justify-between"
+              className="bg-surface-container-lowest dark:bg-surface-low border-3 border-primary dark:border-white p-6 shadow-[6px_6px_0px_#1a1a1a] dark:shadow-[6px_6px_0px_#ffffff] flex flex-col justify-between"
             >
               <div className="space-y-4">
                 <div className="flex items-center justify-between border-b-2 border-primary dark:border-white pb-3">
@@ -102,7 +102,7 @@ export function SelectedSystems() {
                 <p className="font-body text-xs sm:text-sm text-on-surface-variant dark:text-on-surface-variant leading-relaxed">
                   {sys.desc}
                 </p>
-                <div className="bg-surface bg-dark-surface-low p-3 border border-primary dark:border-white space-y-2 text-xs font-mono">
+                <div className="bg-surface dark:bg-surface-low p-3 border border-primary dark:border-white space-y-2 text-xs font-mono">
                   <div className="text-[11px] font-bold uppercase text-primary dark:text-white border-b border-primary/20 dark:border-white/20 pb-1">
                     Architecture Highlights
                   </div>
@@ -126,7 +126,7 @@ export function SelectedSystems() {
           ))}
         </div>
 
-        <div className="p-4 bg-surface bg-dark-surface-container border-2 border-primary dark:border-white flex flex-col sm:flex-row items-center justify-between gap-4 font-mono text-xs">
+        <div className="p-4 bg-surface dark:bg-surface-container border-2 border-primary dark:border-white flex flex-col sm:flex-row items-center justify-between gap-4 font-mono text-xs">
           <div className="flex items-center gap-2">
             <span className="material-symbols-outlined text-base text-primary dark:text-white">folder_special</span>
             <span className="text-on-surface dark:text-on-surface">SYSTEMS PORTFOLIO CATALOG: 5 PRODUCTION REPOSITORIES ACTIVE</span>
@@ -142,4 +142,6 @@ export function SelectedSystems() {
     </section>
   );
 }
+
+
 

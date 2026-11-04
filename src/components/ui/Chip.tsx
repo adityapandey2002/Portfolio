@@ -9,7 +9,7 @@ export interface ChipProps {
 }
 
 const VARIANTS: Record<ChipVariant, string> = {
-  default: 'border-[#71717a] bg-surface bg-dark-surface-l1 text-[#a1a1aa] dark:text-[#71717a]',
+  default: 'border-[#71717a] bg-surface dark:bg-surface-l1 text-[#a1a1aa] dark:text-[#71717a]',
   operational: 'border-[#facc15] text-[#facc15]',
   technical: 'border-[#3b82f6] text-[#3b82f6]',
 };
@@ -31,4 +31,5 @@ export function Chip({
     </span>
   );
 }
+
 

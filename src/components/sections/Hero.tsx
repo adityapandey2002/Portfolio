@@ -30,7 +30,7 @@ const METRICS = [
     desc: 'Digitized M-ASHA workflow, field diagnostics, and portal verification sessions across frontline clusters.',
     icon: 'groups',
     iconColor: 'text-primary dark:text-white',
-    bg: 'bg-surface-container bg-dark-surface-container-lowest',
+    bg: 'bg-surface-container dark:bg-surface-container-lowest',
   },
   {
     number: '02',
@@ -50,7 +50,7 @@ const METRICS = [
     desc: 'Processed, cleaned, and reconciled across physical registers and state portals via Python pipelines.',
     icon: 'database',
     iconColor: 'text-primary dark:text-white',
-    bg: 'bg-surface-container bg-dark-surface-container-lowest',
+    bg: 'bg-surface-container dark:bg-surface-container-lowest',
   },
   {
     number: '04',
@@ -60,7 +60,7 @@ const METRICS = [
     desc: 'Executed inside Sub-Centres, PHCs & CHCs addressing frontline data-entry bottlenecks.',
     icon: 'location_on',
     iconColor: 'text-primary dark:text-white',
-    bg: 'bg-surface-container-lowest bg-dark-surface-container-lowest',
+    bg: 'bg-surface-container-lowest dark:bg-surface-container-lowest',
   },
 ];
 
@@ -136,12 +136,12 @@ export function Hero() {
   return (
     <section id="hero" className="relative w-full flex flex-col">
       {/* 1 · Hero Section */}
-      <section className="w-full border-b-4 border-primary dark:border-white py-8 lg:py-16 bg-surface bg-dark-surface-dark px-4 sm:px-6 lg:px-8">
+      <section className="w-full border-b-4 border-primary dark:border-white py-8 lg:py-16 bg-surface dark:bg-surface-dark px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto flex flex-col gap-10">
           {/* Meta Grid */}
           <div className="flex flex-wrap items-center justify-between gap-3 border-b-2 border-primary dark:border-white pb-3 mb-6">
             <div className="flex items-center gap-2">
-              <span className="font-headline text-xs font-bold uppercase tracking-widest bg-surface-container bg-dark-surface-container-lowest text-on-surface dark:text-on-surface px-2.5 py-1 border-2 border-primary dark:border-white">
+              <span className="font-headline text-xs font-bold uppercase tracking-widest bg-surface-container dark:bg-surface-container-lowest text-on-surface dark:text-on-surface px-2.5 py-1 border-2 border-primary dark:border-white">
                 SPEC: 01 // OVERVIEW
               </span>
               <span className="font-mono text-[10px] text-on-surface-variant dark:text-on-surface-variant font-semibold">
@@ -164,7 +164,7 @@ export function Hero() {
 
               {/* Headline */}
               <h1 className="font-headline text-3xl sm:text-4xl lg:text-6xl font-bold tracking-tight text-on-surface dark:text-on-surface leading-[1.02] uppercase">
-                Building data systems that turn <span className="bg-primary bg-dark-surface-dark text-on-primary dark:text-on-primary px-2 inline-block">field work</span> into real decisions.
+                Building data systems that turn <span className="bg-primary dark:bg-surface-dark text-on-primary dark:text-on-primary px-2 inline-block">field work</span> into real decisions.
               </h1>
 
               {/* Paragraph */}
@@ -188,7 +188,7 @@ export function Hero() {
 
             {/* Live Kernel telemetry box */}
             <div className="lg:col-span-4">
-              <div className="relative rounded-0 border-[3px] border-primary dark:border-white bg-surface-container-lowest bg-dark-surface-container-lowest shadow-[6px_6px_0px_#1a1a1a] dark:shadow-[6px_6px_0px_#ffffff] p-4">
+              <div className="relative rounded-0 border-[3px] border-primary dark:border-white bg-surface-container-lowest dark:bg-surface-container-lowest shadow-[6px_6px_0px_#1a1a1a] dark:shadow-[6px_6px_0px_#ffffff] p-4">
                 <div className="absolute -top-2 right-3 bg-accent-red dark:bg-accent-red text-white px-2 py-0.5 font-headline font-bold text-[10px] uppercase tracking-widest border-2 border-primary dark:border-white">
                   LIVE KERNEL
                 </div>
@@ -199,25 +199,25 @@ export function Hero() {
                   <span className="w-2.5 h-2.5 rounded-full bg-accent-red dark:bg-accent-red animate-pulse inline-block" />
                 </div>
                 <div className="space-y-2.5 font-mono text-[10px]">
-                  <div className="flex justify-between items-center p-1.5 bg-surface bg-dark-surface-container-lowest border border-primary dark:border-white">
+                  <div className="flex justify-between items-center p-1.5 bg-surface dark:bg-surface-container-lowest border border-primary dark:border-white">
                     <span className="text-on-surface-variant dark:text-on-surface-variant uppercase">PNC Telemetry Latency:</span>
                     <span className="font-bold text-primary dark:text-white bg-accent-yellow dark:bg-primary-yellow text-black px-1 py-0.5">
                       54.2 ms
                     </span>
                   </div>
-                  <div className="flex justify-between items-center p-1.5 bg-surface bg-dark-surface-container-lowest border border-primary dark:border-white">
+                  <div className="flex justify-between items-center p-1.5 bg-surface dark:bg-surface-container-lowest border border-primary dark:border-white">
                     <span className="text-on-surface-variant dark:text-on-surface-variant uppercase">Active Sub-Centres:</span>
                     <span className="font-bold text-primary dark:text-white">154 Facilities</span>
                   </div>
-                  <div className="flex justify-between items-center p-1.5 bg-surface bg-dark-surface-container-lowest border border-primary dark:border-white">
+                  <div className="flex justify-between items-center p-1.5 bg-surface dark:bg-surface-container-lowest border border-primary dark:border-white">
                     <span className="text-on-surface-variant dark:text-on-surface-variant uppercase">High-Burden Blocks:</span>
                     <span className="font-bold text-primary dark:text-white">16 Blocks</span>
                   </div>
-                  <div className="flex justify-between items-center p-1.5 bg-surface bg-dark-surface-container-lowest border border-primary dark:border-white">
+                  <div className="flex justify-between items-center p-1.5 bg-surface dark:bg-surface-container-lowest border border-primary dark:border-white">
                     <span className="text-on-surface-variant dark:text-on-surface-variant uppercase">Field Distance Logged:</span>
                     <span className="font-bold text-primary dark:text-white">13,627 KM</span>
                   </div>
-                  <div className="flex justify-between items-center p-1.5 bg-surface bg-dark-surface-container-lowest border border-primary dark:border-white">
+                  <div className="flex justify-between items-center p-1.5 bg-surface dark:bg-surface-container-lowest border border-primary dark:border-white">
                     <span className="text-on-surface-variant dark:text-on-surface-variant uppercase">Validation Rule Engines:</span>
                     <span className="font-bold text-primary dark:text-white">Active (ODK/SQL)</span>
                   </div>
@@ -241,4 +241,6 @@ export function Hero() {
     </section>
   );
 }
+
+
 

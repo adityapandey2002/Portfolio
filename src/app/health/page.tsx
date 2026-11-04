@@ -31,7 +31,7 @@ export default function HealthPage() {
         <Section className="py-12">
           <div className="flex flex-col md:flex-row sm:items-end justify-between gap-4 border-b-2 border-primary dark:border-white pb-6 mb-8">
             <div>
-              <span className="font-mono text-xs font-bold uppercase tracking-widest text-accent-red dark:text-accent-red block mb-1">
+              <span className="font-mono text-xs font-bold uppercase tracking-widest text-primary dark:text-white block mb-1">
                 Audited Telemetry
               </span>
               <h2 className="font-headline text-3xl sm:text-5xl font-bold uppercase tracking-tight text-on-surface dark:text-on-surface leading-none">
@@ -49,10 +49,10 @@ export default function HealthPage() {
               <div className="space-y-4">
                 <div className="flex items-start justify-between gap-2 border-b-2 border-primary dark:border-white pb-3">
                   <div className="flex items-center gap-2">
-                    <span className="font-mono text-xs font-bold uppercase tracking-widest text-accent-yellow dark:text-accent-yellow">
+                    <span className="font-mono text-xs font-bold uppercase tracking-widest text-accent-yellow dark:text-dark-accent-yellow">
                       METRIC // 01
                     </span>
-                    <span className="material-symbols-outlined text-accent-yellow dark:text-accent-yellow">people</span>
+                    <span className="material-symbols-outlined text-accent-yellow dark:text-dark-accent-yellow">people</span>
                   </div>
                 </div>
                 <div className="pt-1 lg:pt-0">
@@ -80,10 +80,10 @@ export default function HealthPage() {
               <div className="space-y-4">
                 <div className="flex items-start justify-between gap-2 border-b-2 border-primary dark:border-white pb-3">
                   <div className="flex items-center gap-2">
-                    <span className="font-mono text-xs font-bold uppercase tracking-widest text-accent-red dark:text-accent-red">
+                    <span className="font-mono text-xs font-bold uppercase tracking-widest text-primary dark:text-white">
                       METRIC // 02
                     </span>
-                    <span className="material-symbols-outlined text-accent-red dark:text-accent-red">medical_services</span>
+                    <span className="material-symbols-outlined text-primary dark:text-white">medical_services</span>
                   </div>
                 </div>
                 <div className="pt-1 lg:pt-0">
@@ -111,10 +111,10 @@ export default function HealthPage() {
               <div className="space-y-4">
                 <div className="flex items-start justify-between gap-2 border-b-2 border-primary dark:border-white pb-3">
                   <div className="flex items-center gap-2">
-                    <span className="font-mono text-xs font-bold uppercase tracking-widest text-accent-blue dark:text-accent-blue">
+                    <span className="font-mono text-xs font-bold uppercase tracking-widest text-primary dark:text-white">
                       METRIC // 03
                     </span>
-                    <span className="material-symbols-outlined text-accent-blue dark:text-accent-blue">location_on</span>
+                    <span className="material-symbols-outlined text-primary dark:text-white">location_on</span>
                   </div>
                 </div>
                 <div className="pt-1 lg:pt-0">
@@ -145,7 +145,7 @@ export default function HealthPage() {
         <Section className="py-12">
           <div className="flex flex-col md:flex-row sm:items-end justify-between gap-4 border-b-2 border-primary dark:border-white pb-6 mb-10">
             <div>
-              <span className="font-mono text-xs font-bold uppercase tracking-widest text-accent-blue dark:text-accent-blue block mb-1">
+              <span className="font-mono text-xs font-bold uppercase tracking-widest text-primary dark:text-white block mb-1">
                   {`/* System Outcomes */`}
               </span>
               <h2 className="font-headline text-3xl sm:text-5xl font-bold uppercase tracking-tight text-on-surface dark:text-on-surface leading-none">
@@ -163,7 +163,7 @@ export default function HealthPage() {
               FIELD NOTE
             </div>
             <div className="flex items-start gap-4">
-              <span className="text-accent-yellow dark:text-accent-yellow text-4xl shrink-0" aria-hidden="true">
+              <span className="text-accent-yellow dark:text-dark-accent-yellow text-4xl shrink-0" aria-hidden="true">
                 &#x201C;
               </span>
               <div className="space-y-2">
@@ -261,4 +261,6 @@ export default function HealthPage() {
     </>
   );
 }
+
+
 

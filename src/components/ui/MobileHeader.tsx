@@ -33,7 +33,7 @@ export function MobileHeader() {
       <header
         className={`fixed top-0 left-0 right-0 z-50 h-16 lg:hidden ${
           isDark
-            ? 'bg-dark-surface dark:border-white border-b border-white/10'
+            ? 'dark:bg-surface dark:border-white border-b border-white/10'
             : 'bg-surface border-b border-primary'
         }`}
         aria-label="Mobile navigation"
@@ -113,7 +113,7 @@ export function MobileHeader() {
       <div
         className={`sticky top-16 z-30 -mx-3 px-3 py-2 ${
           isDark
-            ? 'bg-dark-surface dark:border-white border-b border-white/10 shadow-[0_4px_0_#ffffff]'
+            ? 'dark:bg-surface dark:border-white border-b border-white/10 shadow-[0_4px_0_#ffffff]'
             : 'bg-surface border-b border-primary shadow-[0_4px_0_#1a1a1a]'
         } lg:hidden`}
       >
@@ -144,11 +144,11 @@ export function MobileHeader() {
       {open && (
         <div
           className={`fixed inset-0 z-60 ${
-            isDark ? 'bg-dark-surface' : 'bg-surface'
+            isDark ? 'dark:bg-surface' : 'bg-surface'
           }`}
         >
           <div className="absolute inset-0 bg-black dark:bg-black opacity-50 dark:opacity-50" onClick={() => setOpen(false)} />
-          <div className="absolute right-0 top-0 bottom-0 w-80 bg-surface bg-dark-surface dark:border-white border-l shadow-2xl transform transition-transform duration-300 translate-x-0">
+          <div className="absolute right-0 top-0 bottom-0 w-80 bg-surface dark:bg-surface dark:border-white border-l shadow-2xl transform transition-transform duration-300 translate-x-0">
             <div className="p-4">
               <div className="flex items-center justify-between mb-6">
                 <span className="font-mono text-xs font-bold uppercase tracking-widest text-on-surface dark:text-on-surface">
@@ -203,4 +203,6 @@ function getIcon(sectionId: string): string {
   };
   return icons[sectionId] || 'help';
 }
+
+
 

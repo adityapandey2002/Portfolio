@@ -57,7 +57,7 @@ export function Skills() {
                       <span className="text-[10px] text-on-surface-variant dark:text-ink-dark/60">{s.barLabel}</span>
                       <span className="font-mono text-[10px] font-bold text-primary dark:text-white">{s.barPct}%</span>
                     </div>
-                    <div className="h-1.5 border-2 border-primary bg-surface dark:border-white bg-dark-surface-l1">
+                    <div className="h-1.5 border-2 border-primary bg-surface dark:border-white dark:bg-surface-l1">
                       <motion.div
                         className="h-full bg-primary dark:bg-white"
                         initial={{ width: 0 }}
@@ -75,4 +75,6 @@ export function Skills() {
     </section>
   );
 }
+
+
 

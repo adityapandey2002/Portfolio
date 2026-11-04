@@ -82,7 +82,7 @@ export function Capabilities() {
       <Section
         className={cn(
           'border-b-4 border-primary dark:border-white',
-          'bg-surface bg-dark-surface-dark',
+          'bg-surface dark:bg-surface-dark',
           'pb-8 lg:pb-20',
         )}
       >
@@ -156,6 +156,8 @@ export function Capabilities() {
     </section>
   );
 }
+
+
 
 
 
