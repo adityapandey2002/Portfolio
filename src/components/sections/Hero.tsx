@@ -136,51 +136,51 @@ export function Hero() {
   return (
     <section id="hero" className="relative w-full flex flex-col">
       {/* 1 · Hero Section */}
-      <section className="w-full border-b-4 border-primary dark:border-white py-10 lg:py-16 bg-surface dark:bg-surface-dark">
+      <section className="w-full border-b-4 border-primary dark:border-white py-8 lg:py-16 bg-surface dark:bg-surface-dark px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto flex flex-col gap-10">
           {/* Meta Grid */}
-          <div className="flex flex-wrap items-center justify-between gap-4 border-b-2 border-primary dark:border-white pb-4">
-            <div className="flex items-center gap-3">
-              <span className="font-headline text-xs font-bold uppercase tracking-widest bg-surface-container dark:bg-surface-container-lowest text-on-surface dark:text-on-surface px-3 py-1 border-2 border-primary dark:border-white">
+          <div className="flex flex-wrap items-center justify-between gap-3 border-b-2 border-primary dark:border-white pb-3 mb-6">
+            <div className="flex items-center gap-2">
+              <span className="font-headline text-xs font-bold uppercase tracking-widest bg-surface-container dark:bg-surface-container-lowest text-on-surface dark:text-on-surface px-2.5 py-1 border-2 border-primary dark:border-white">
                 SPEC: 01 // OVERVIEW
               </span>
-              <span className="font-mono text-xs text-on-surface-variant dark:text-on-surface-variant font-semibold">
+              <span className="font-mono text-[10px] text-on-surface-variant dark:text-on-surface-variant font-semibold">
                 COORDINATES: 26.1209° N, 85.3647° E
               </span>
             </div>
-            <div className="inline-flex items-center gap-2 font-headline text-xs font-bold uppercase tracking-widest bg-accent-blue dark:bg-accent-blue text-black dark:text-white px-3 py-1 border-2 border-primary dark:border-white">
+            <div className="inline-flex items-center gap-1.5 font-headline text-xs font-bold uppercase tracking-widest bg-accent-blue dark:bg-accent-blue text-black dark:text-white px-2.5 py-1 border-2 border-primary dark:border-white">
               <Activity size={14} className="shrink-0" aria-hidden="true" />
               FIELD TELEMETRY: ONLINE
             </div>
           </div>
 
           {/* Headline Grid */}
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
-            <div className="lg:col-span-8 space-y-6">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
+            <div className="lg:col-span-8 space-y-5">
               {/* Eyebrow badge */}
-              <div className="inline-block bg-accent-yellow dark:bg-primary-yellow text-black dark:text-white px-4 py-1.5 border-2 border-primary dark:border-white font-headline text-xs md:text-sm font-bold uppercase tracking-widest shadow-[4px_4px_0px_#1a1a1a] dark:shadow-[4px_4px_0px_#ffffff]">
+              <div className="inline-block bg-accent-yellow dark:bg-primary-yellow text-black dark:text-white px-3.5 py-1 border-2 border-primary dark:border-white font-headline text-[10px] md:text-xs font-bold uppercase tracking-widest shadow-[4px_4px_0px_#1a1a1a] dark:shadow-[4px_4px_0px_#ffffff]">
                 Public Health Data Architecture × Full-Stack Systems
               </div>
 
               {/* Headline */}
-              <h1 className="font-headline text-4xl sm:text-6xl lg:text-7xl font-bold tracking-tight text-on-surface dark:text-on-surface leading-[1.02] uppercase">
+              <h1 className="font-headline text-3xl sm:text-4xl lg:text-6xl font-bold tracking-tight text-on-surface dark:text-on-surface leading-[1.02] uppercase">
                 Building data systems that turn <span className="bg-primary dark:bg-surface-dark text-on-primary dark:text-on-primary px-2 inline-block">field work</span> into real decisions.
               </h1>
 
               {/* Paragraph */}
-              <p className="font-body text-base sm:text-lg text-on-surface dark:text-on-surface leading-relaxed max-w-3xl border-l-4 border-accent-red dark:border-accent-red pl-4 py-1">
+              <p className="font-body text-sm sm:text-base text-on-surface dark:text-on-surface leading-relaxed max-w-none text-on-surface dark:text-on-surface border-l-4 border-accent-red dark:border-accent-red pl-3 py-1.5">
                 I am <strong className="font-bold text-primary dark:text-white">Aditya Pandey</strong> — a full-stack builder & public health data engineer bridging on-the-ground frontline health systems (<em className="not-italic font-semibold">ASHA, ANM, CHO, PHC</em>) with production web platforms, automated validation pipelines, and clinical AI surveillance.
               </p>
 
               {/* Action Buttons */}
-              <div className="flex flex-wrap gap-4 pt-2">
-                <HeroButton variant="systems" href="#systems" icon={<ArrowDownRight size={18} aria-hidden="true" />}>
+              <div className="flex flex-wrap gap-3 pt-2">
+                <HeroButton variant="systems" href="#systems" icon={<ArrowDownRight size={16} aria-hidden="true" />}>
                   Explore Selected Systems
                 </HeroButton>
-                <HeroButton variant="vector" href="#vector-terminal" icon={<FileTerminal size={18} aria-hidden="true" />}>
+                <HeroButton variant="vector" href="#vector-terminal" icon={<FileTerminal size={16} aria-hidden="true" />}>
                   Ask AI Vector Brain
                 </HeroButton>
-                <HeroButton variant="dispatch" href="#dispatch" icon={<SendHorizontal size={18} aria-hidden="true" />}>
+                <HeroButton variant="dispatch" href="#dispatch" icon={<SendHorizontal size={16} aria-hidden="true" />}>
                   Direct Dispatch
                 </HeroButton>
               </div>
@@ -188,41 +188,41 @@ export function Hero() {
 
             {/* Live Kernel telemetry box */}
             <div className="lg:col-span-4">
-              <div className="relative rounded-0 border-[3px] border-primary dark:border-white bg-surface-container-lowest dark:bg-surface-container-lowest shadow-[6px_6px_0px_#1a1a1a] dark:shadow-[6px_6px_0px_#ffffff] p-6">
-                <div className="absolute -top-3.5 right-4 bg-accent-red dark:bg-accent-red text-white px-2.5 py-0.5 font-headline font-bold text-xs uppercase tracking-widest border border-primary dark:border-white">
+              <div className="relative rounded-0 border-[3px] border-primary dark:border-white bg-surface-container-lowest dark:bg-surface-container-lowest shadow-[6px_6px_0px_#1a1a1a] dark:shadow-[6px_6px_0px_#ffffff] p-4">
+                <div className="absolute -top-2 right-3 bg-accent-red dark:bg-accent-red text-white px-2 py-0.5 font-headline font-bold text-[10px] uppercase tracking-widest border-2 border-primary dark:border-white">
                   LIVE KERNEL
                 </div>
-                <div className="flex items-center justify-between pb-3 border-b-2 border-primary dark:border-white mb-4">
-                  <span className="font-headline font-bold text-xs uppercase tracking-widest text-on-surface dark:text-on-surface">
+                <div className="flex items-center justify-between pb-2 border-b-2 border-primary dark:border-white mb-3">
+                  <span className="font-headline font-bold text-[10px] uppercase tracking-widest text-on-surface dark:text-on-surface">
                     Bihar Health Ops
                   </span>
                   <span className="w-2.5 h-2.5 rounded-full bg-accent-red dark:bg-accent-red animate-pulse inline-block" />
                 </div>
-                <div className="space-y-4 font-mono text-xs">
-                  <div className="flex justify-between items-center p-2 bg-surface dark:bg-surface-container-lowest border border-primary dark:border-white">
+                <div className="space-y-2.5 font-mono text-[10px]">
+                  <div className="flex justify-between items-center p-1.5 bg-surface dark:bg-surface-container-lowest border border-primary dark:border-white">
                     <span className="text-on-surface-variant dark:text-on-surface-variant uppercase">PNC Telemetry Latency:</span>
-                    <span className="font-bold text-primary dark:text-white bg-accent-yellow dark:bg-primary-yellow text-black px-1.5 py-0.5">
+                    <span className="font-bold text-primary dark:text-white bg-accent-yellow dark:bg-primary-yellow text-black px-1 py-0.5">
                       54.2 ms
                     </span>
                   </div>
-                  <div className="flex justify-between items-center p-2 bg-surface dark:bg-surface-container-lowest border border-primary dark:border-white">
+                  <div className="flex justify-between items-center p-1.5 bg-surface dark:bg-surface-container-lowest border border-primary dark:border-white">
                     <span className="text-on-surface-variant dark:text-on-surface-variant uppercase">Active Sub-Centres:</span>
                     <span className="font-bold text-primary dark:text-white">154 Facilities</span>
                   </div>
-                  <div className="flex justify-between items-center p-2 bg-surface dark:bg-surface-container-lowest border border-primary dark:border-white">
+                  <div className="flex justify-between items-center p-1.5 bg-surface dark:bg-surface-container-lowest border border-primary dark:border-white">
                     <span className="text-on-surface-variant dark:text-on-surface-variant uppercase">High-Burden Blocks:</span>
                     <span className="font-bold text-accent-red dark:text-accent-red">16 Blocks</span>
                   </div>
-                  <div className="flex justify-between items-center p-2 bg-surface dark:bg-surface-container-lowest border border-primary dark:border-white">
+                  <div className="flex justify-between items-center p-1.5 bg-surface dark:bg-surface-container-lowest border border-primary dark:border-white">
                     <span className="text-on-surface-variant dark:text-on-surface-variant uppercase">Field Distance Logged:</span>
                     <span className="font-bold text-accent-blue dark:text-accent-blue">13,627 KM</span>
                   </div>
-                  <div className="flex justify-between items-center p-2 bg-surface dark:bg-surface-container-lowest border border-primary dark:border-white">
+                  <div className="flex justify-between items-center p-1.5 bg-surface dark:bg-surface-container-lowest border border-primary dark:border-white">
                     <span className="text-on-surface-variant dark:text-on-surface-variant uppercase">Validation Rule Engines:</span>
                     <span className="font-bold text-primary dark:text-white">Active (ODK/SQL)</span>
                   </div>
                 </div>
-                <div className="mt-4 pt-3 border-t-2 border-primary dark:border-white flex items-center justify-between text-[11px] font-mono text-on-surface-variant dark:text-on-surface-variant">
+                <div className="mt-3 pt-2 border-t-2 border-primary dark:border-white flex items-center justify-between text-[9px] font-mono text-on-surface-variant dark:text-on-surface-variant">
                   <span className="">UPTIME: 99.8%</span>
                   <span className="">NODE: ARARIA-CHIS-01</span>
                 </div>
@@ -231,7 +231,7 @@ export function Hero() {
           </div>
 
           {/* 3 · 4 Brutalist Key Metric Blocks */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 pt-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 pt-4">
             {METRICS.map((metric) => (
               <MetricBlock key={metric.number} {...metric} />
             ))}

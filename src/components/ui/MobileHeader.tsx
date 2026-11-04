@@ -6,19 +6,20 @@ import { Menu } from 'lucide-react';
 import { useTheme } from '@/components/providers/ThemeProvider';
 
 const MOBILE_SECTIONS = [
-  { id: 'hero', label: 'Home' },
-  { id: 'work', label: 'Work' },
-  { id: 'health', label: 'Health' },
-  { id: 'ask', label: 'Ask AI' },
-  { id: 'contact', label: 'Contact' },
+  { id: 'hero', label: 'Home', icon: 'home' },
+  { id: 'work', label: 'Work', icon: 'work' },
+  { id: 'health', label: 'Health', icon: 'health_and_safety' },
+  { id: 'ask', label: 'Ask AI', icon: 'smart_toy' },
+  { id: 'contact', label: 'Contact', icon: 'alternate_email' },
 ];
 
 /**
- * MobileHeader — fixed bottom bar for mobile viewports (< 1024px).
+ * MobileHeader — bottom tab bar + sticky jump strip + sliding drawer.
  *
- * Mirrors the mobile design exactly:
- * - Bottom nav bar with 5 items (Home, Work, Health, Ask AI, Contact)
- * - Sliding drawer menu triggered by hamburger icon
+ * Matches the mobile design exactly:
+ * - Fixed bottom tab bar with 5 items
+ * - Sticky jump nav strip below header
+ * - Sliding drawer menu from right
  * - Hidden on desktop (lg:hidden); DesktopNav handles desktop viewports.
  */
 export function MobileHeader() {
@@ -28,42 +29,126 @@ export function MobileHeader() {
 
   return (
     <>
-      {/* Bottom mobile nav bar */}
-      <nav className={`fixed bottom-0 left-0 right-0 z-50 h-16 ${
-        isDark
-          ? 'bg-dark-surface dark:border-white border-t border-white/10'
-          : 'bg-surface border-t border-primary'
-        } lg:hidden`}>
-        <div className="flex items-center justify-center gap-1 px-2 py-1">
+      {/* Top header bar - mobile only */}
+      <header
+        className={`fixed top-0 left-0 right-0 z-50 h-16 lg:hidden ${
+          isDark
+            ? 'bg-dark-surface dark:border-white border-b border-white/10'
+            : 'bg-surface border-b border-primary'
+        }`}
+        aria-label="Mobile navigation"
+      >
+        <div className="flex items-center justify-between px-3">
+          {/* Left: AP logo + Home title + location */}
+          <div className="flex items-center gap-2">
+            <Link
+              href="#hero"
+              className="flex h-8 w-8 shrink-0 items-center justify-center rounded-0 border-2 border-primary dark:border-white bg-accent-yellow dark:bg-primary-yellow text-black dark:text-white font-headline font-bold text-[10px] uppercase tracking-tighter"
+              onClick={() => setOpen(false)}
+            >
+              AP
+            </Link>
+            <div className="flex flex-col">
+              <Link
+                href="#hero"
+                className="font-headline text-[10px] font-bold uppercase tracking-tight text-on-surface dark:text-on-surface"
+                onClick={() => setOpen(false)}
+              >
+                Home
+              </Link>
+              <div className="flex items-center gap-1 mt-0.5">
+                <span
+                  className="w-1.5 h-1.5 shrink-0 bg-accent-yellow dark:bg-primary-yellow animate-pulse"
+                  aria-hidden="true"
+                />
+                <span className="font-mono text-[9px] font-bold uppercase tracking-wider text-on-surface-variant dark:text-on-surface-variant">
+                  MUZAFFARPUR · 38°C
+                </span>
+              </div>
+            </div>
+          </div>
+
+          {/* Right: theme toggle + person icon + hamburger */}
+          <div className="flex items-center gap-2">
+            <button
+              onClick={toggleTheme}
+              aria-label={isDark ? 'Switch to light mode' : 'Switch to dark mode'}
+              className={`flex h-8 w-8 shrink-0 items-center justify-center rounded-0 border-2 ${
+                isDark
+                  ? 'border-white text-white bg-transparent'
+                  : 'border-primary text-primary bg-transparent'
+              } hover:bg-accent-yellow dark:hover:bg-primary-yellow hover:text-primary dark:hover:text-on-primary transition-colors`}
+            >
+              {isDark ? (
+                <span className="material-symbols-outlined text-[16px]">dark_mode</span>
+              ) : (
+                <span className="material-symbols-outlined text-[16px]">light_mode</span>
+              )}
+            </button>
+            <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-none border-2 ${
+              isDark
+                ? 'border-white bg-transparent text-white'
+                : 'border-primary bg-accent-yellow text-black dark:border-white dark:bg-primary-yellow dark:text-white'
+            }">
+              <span className="material-symbols-outlined text-[16px]">person</span>
+            </div>
+            <button
+              className={`flex h-8 w-8 shrink-0 items-center justify-center rounded-0 border-2 ${
+                isDark ? 'border-white text-white' : 'border-primary text-primary'
+              }`}
+              onClick={() => setOpen((o) => !o)}
+              aria-label="Menu"
+            >
+              {open ? (
+                <span className="material-symbols-outlined text-[16px]">close</span>
+              ) : (
+                <Menu size={16} />
+              )}
+            </button>
+          </div>
+        </div>
+      </header>
+
+      {/* Sticky jump nav strip */}
+      <div
+        className={`sticky top-16 z-30 -mx-3 px-3 py-2 ${
+          isDark
+            ? 'bg-dark-surface dark:border-white border-b border-white/10 shadow-[0_4px_0_#ffffff]'
+            : 'bg-surface border-b border-primary shadow-[0_4px_0_#1a1a1a]'
+        } lg:hidden`}
+      >
+        <span className={`font-mono text-[9px] font-bold uppercase tracking-widest mr-2 ${
+          isDark ? 'text-primary-yellow' : 'text-accent-yellow'
+        }`}>
+          JUMP //
+        </span>
+        <div className="flex items-center gap-1 overflow-x-auto no-scrollbar">
           {MOBILE_SECTIONS.map((section) => (
             <Link
               key={section.id}
               href={`#${section.id}`}
-              className="flex flex-col items-center justify-center gap-0.5 h-full w-full px-2 py-1 transition-colors duration-100"
+              className={`whitespace-nowrap border-2 px-2.5 py-1 font-mono text-[9px] font-bold uppercase tracking-widest transition-all ${
+                isDark
+                  ? 'border-transparent text-on-surface-variant hover:border-white hover:text-on-surface'
+                  : 'border-transparent text-on-surface-variant hover:border-primary hover:text-on-surface'
+              }`}
               onClick={() => setOpen(false)}
             >
-              <span className={`material-symbols-outlined text-[16px] ${isDark ? 'text-white' : 'text-on-surface-variant'}`}>
-                {getIcon(section.id)}
-              </span>
-              <span className={`font-mono text-[10px] font-bold uppercase tracking-widest ${isDark ? 'text-white' : 'text-on-surface-variant'}`}>
-                {section.label.toUpperCase()}
-              </span>
+              {section.label.toUpperCase()}
             </Link>
           ))}
         </div>
-      </nav>
+      </div>
 
       {/* Sliding drawer menu */}
       {open && (
         <div
           className={`fixed inset-0 z-60 ${
-            isDark
-              ? 'bg-dark-surface dark:bg-dark-surface'
-              : 'bg-surface bg-surface'
+            isDark ? 'bg-dark-surface' : 'bg-surface'
           }`}
         >
           <div className="absolute inset-0 bg-black dark:bg-black opacity-50 dark:opacity-50" onClick={() => setOpen(false)} />
-          <div className="absolute right-0 top-0 bottom-0 w-80 bg-surface dark:bg-surface dark:border-white border-l border-white shadow-2xl transform transition-transform duration-300 translate-x-0">
+          <div className="absolute right-0 top-0 bottom-0 w-80 bg-surface dark:bg-surface dark:border-white border-l shadow-2xl transform transition-transform duration-300 translate-x-0">
             <div className="p-4">
               <div className="flex items-center justify-between mb-6">
                 <span className="font-mono text-xs font-bold uppercase tracking-widest text-on-surface dark:text-on-surface">
