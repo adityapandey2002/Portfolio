@@ -61,7 +61,7 @@ export function Contact() {
         {/* Section Header */}
         <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 border-b-2 border-primary dark:border-white pb-4">
           <div>
-            <span className="font-headline text-xs font-bold uppercase tracking-widest text-primary dark:text-white block">
+            <span className="font-headline text-xs font-bold uppercase tracking-widest text-accent-yellow dark:text-accent-yellow block">
               08 // TRANSMISSION & ENGAGEMENT
             </span>
             <h2 className="font-headline text-3xl sm:text-5xl font-bold uppercase tracking-tight text-on-surface dark:text-on-surface mt-1">
@@ -244,7 +244,7 @@ export function Contact() {
 
             {/* Quick Quote / Manifesto Card */}
             <div className="bg-surface-container dark:bg-surface-container border-2 border-primary dark:border-white p-5 shadow-[4px_4px_0px_#1a1a1a] dark:shadow-[4px_4px_0px_#ffffff]">
-              <span className="font-mono text-xs font-bold text-primary dark:text-white uppercase block mb-1">
+              <span className="font-mono text-xs font-bold text-accent-yellow dark:text-accent-yellow uppercase block mb-1">
                 FIELD MANIFESTO
               </span>
               <p className="font-headline text-sm font-bold text-on-surface dark:text-on-surface leading-snug">

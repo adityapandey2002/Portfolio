@@ -15,23 +15,23 @@ const config: Config = {
         background: '#f5f0e8',
         'surface-container-lowest': {
           light: '#ffffff',
-          dark: '#0e0e10',
+          dark: '#2a2a2a',
         },
         'surface-container-low': {
           light: '#f2ede5',
-          dark: '#1b1b1d',
+          dark: '#3a3a3a',
         },
         'surface-container': {
           light: '#eee9e0',
-          dark: '#201f21',
+          dark: '#3a3a3a',
         },
         'surface-container-high': {
           light: '#e8e3da',
-          dark: '#2a2a2c',
+          dark: '#4a4a4a',
         },
         'surface-container-highest': {
           light: '#e2ddd4',
-          dark: '#353437',
+          dark: '#5a5a5a',
         },
         'surface-dim': '#d6d1c9',
         'surface-bright': '#faf7f2',
@@ -105,6 +105,10 @@ const config: Config = {
         indigo: 'var(--indigo)',
         rose: 'var(--rose)',
         cyan: 'var(--cyan)',
+
+        // ── Dark mode color names (used with dark:bg-* classes) ──
+        'dark-surface-dark': '#1a1a1a',
+        'dark-surface-l1': '#2a2a2a',
       },
       borderRadius: {
         DEFAULT: '0px',
