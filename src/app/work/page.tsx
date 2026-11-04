@@ -76,6 +76,32 @@ export default function WorkPage() {
         </Section>
       </section>
 
+      {/* Sticky filter bar */}
+      <section className="w-full bg-surface-container dark:bg-surface-container border-b-2 border-primary dark:border-white px-4 sm:px-8 lg:px-12 py-4 sticky top-16 z-40">
+        <div className="max-w-7xl mx-auto flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+          <div className="flex items-center gap-2">
+            <span className="material-symbols-outlined text-primary dark:text-on-surface text-[20px]">filter_alt</span>
+            <span className="font-headline text-xs font-bold uppercase tracking-wider text-primary dark:text-on-surface">
+              PROJECT INDEX FILTER:
+            </span>
+          </div>
+          <div className="flex flex-wrap gap-2">
+            {['ALL SYSTEMS (07)', 'FLAGSHIPS #1-4', 'E-COMMERCE (01)', 'CIVIC & CLINICAL (02)', 'MACRO DATA & AI (01)'].map((label, i) => (
+              <button
+                key={label}
+                className={`font-headline text-xs font-bold uppercase tracking-wider px-3.5 py-1.5 border-2 border-primary dark:border-white shadow-[2px_2px_0px_#1a1a1a] dark:shadow-[2px_2px_0px_#ffffff] transition-transform active:translate-x-0.5 active:translate-y-0.5 ${
+                  i === 0
+                    ? 'bg-primary dark:bg-on-surface text-on-primary dark:text-surface'
+                    : 'bg-surface dark:bg-surface-container text-primary dark:text-on-surface hover:bg-primary-container dark:hover:bg-primary-yellow hover:text-on-primary-container dark:hover:text-on-primary'
+                }`}
+              >
+                {label}
+              </button>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* Projects grid */}
       <section className="border-b-4 border-primary dark:border-white bg-surface dark:bg-surface-dark py-12 px-4 sm:px-8 lg:px-12">
         <div className="max-w-7xl mx-auto">
@@ -132,6 +158,26 @@ export default function WorkPage() {
               </div>
             ))}
           </div>
+        </div>
+      </section>
+
+      {/* Dark CTA */}
+      <section className="w-full bg-primary dark:bg-surface-container-lowest text-on-primary dark:text-on-surface px-4 sm:px-8 lg:px-12 py-12 md:py-16 border-b-2 border-primary dark:border-white">
+        <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
+          <div>
+            <h2 className="font-headline font-bold text-2xl sm:text-3xl lg:text-4xl uppercase tracking-tight leading-tight">
+              Engage Fellowship
+            </h2>
+            <p className="mt-3 text-sm text-on-primary/80 dark:text-on-surface-variant max-w-xl">
+              Building data systems that turn field work into real decisions. Open to collaborations on public health data, civic tech, and AI systems.
+            </p>
+          </div>
+          <Link
+            href="/#contact"
+            className="inline-flex items-center justify-center px-6 py-3 bg-accent-yellow dark:bg-primary-yellow text-black dark:text-black font-headline font-bold text-xs uppercase tracking-wider border-2 border-primary dark:border-white shadow-[3px_3px_0px_#ffffff] dark:shadow-[3px_3px_0px_#1a1a1a] transition-all hover:translate-x-0.5 hover:translate-y-0.5"
+          >
+            Get in touch →
+          </Link>
         </div>
       </section>
 
