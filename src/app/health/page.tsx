@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import { Section } from '@/components/ui/Section';
 import { Footer } from '@/components/sections/Footer';
 
@@ -292,6 +293,83 @@ export default function HealthPage() {
             ))}
           </div>
         </Section>
+      </section>
+
+      {/* Telemetry Feed */}
+      <section className="w-full px-4 sm:px-8 lg:px-12 py-10 lg:py-12 bg-primary dark:bg-surface-container-lowest text-on-primary dark:text-on-surface border-b-2 border-primary dark:border-white">
+        <div className="max-w-7xl mx-auto space-y-6">
+          <div className="flex flex-wrap items-center justify-between gap-4 border-b-2 border-on-primary/30 dark:border-outline pb-3">
+            <div className="flex items-center gap-3">
+              <span className="w-3 h-3 rounded-full bg-accent-yellow dark:bg-primary-yellow animate-pulse" />
+              <h2 className="font-headline text-lg sm:text-xl font-bold uppercase tracking-wider text-accent-yellow dark:text-primary-yellow">
+                LIVE OPERATIONAL TELEMETRY FEED // FIELD AGENT ADITYA PANDEY
+              </h2>
+            </div>
+            <div className="font-headline text-xs uppercase tracking-widest text-on-primary/70 dark:text-on-surface-variant">
+              PULSE FREQUENCY: CONTINUOUS HEARTBEAT
+            </div>
+          </div>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+            {[
+              { id: 'FEED_01', title: 'M-ASHA Rollout', desc: 'Daily active health worker data synchronizations across 16 blocks.', status: 'OPERATIONAL' },
+              { id: 'FEED_02', title: 'ODK Central Sync', desc: 'PostgreSQL backend collecting structured field assessments nightly.', status: 'OPERATIONAL' },
+              { id: 'FEED_03', title: 'MIS Reporting', desc: 'Automated script outputs verified ahead of Monday review cycles.', status: 'OPERATIONAL' },
+              { id: 'FEED_04', title: 'Medicine Forecasting', desc: 'Time-series consumption model to predict peripheral stockouts.', status: 'IN PROGRESS' },
+            ].map((feed) => (
+              <div
+                key={feed.id}
+                className={`border-2 p-4 space-y-2 ${
+                  feed.status === 'IN PROGRESS'
+                    ? 'border-accent-yellow dark:border-primary-yellow bg-surface-container-high/10 dark:bg-surface-low'
+                    : 'border-on-primary/40 dark:border-outline bg-primary dark:bg-surface-low'
+                }`}
+              >
+                <div className="flex items-center justify-between text-xs font-headline font-bold">
+                  <span className="text-on-primary/70 dark:text-on-surface-variant">{feed.id}</span>
+                  <span
+                    className={
+                      feed.status === 'IN PROGRESS'
+                        ? 'text-accent-yellow dark:text-primary-yellow font-bold'
+                        : 'text-accent-yellow dark:text-primary-yellow font-bold'
+                    }
+                  >
+                    {feed.status}
+                  </span>
+                </div>
+                <div className="font-headline text-sm font-bold uppercase text-on-primary dark:text-on-surface">
+                  {feed.title}
+                </div>
+                <p className="font-body text-[11px] text-on-primary/70 dark:text-on-surface-variant">
+                  {feed.desc}
+                </p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Routing banner to work */}
+      <section className="w-full px-4 sm:px-8 lg:px-12 py-10 lg:py-12 bg-accent-yellow dark:bg-primary-yellow border-b-2 border-primary dark:border-white">
+        <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-8 border-2 border-primary dark:border-white p-6 sm:p-10 bg-surface dark:bg-surface-container-lowest shadow-[6px_6px_0px_#1a1a1a] dark:shadow-[6px_6px_0px_#ffffff]">
+          <div className="space-y-2 max-w-2xl">
+            <span className="font-headline text-xs font-bold uppercase tracking-widest text-accent-red dark:text-accent-red block">
+              FULL-STACK BRIDGE // CODE MEETS CLINICAL REALITY
+            </span>
+            <h2 className="font-headline text-2xl sm:text-4xl font-bold uppercase tracking-tight text-primary dark:text-on-surface leading-tight">
+              INTERESTED IN THE UNDERLYING CODE &amp; ARCHITECTURE?
+            </h2>
+            <p className="font-body text-sm text-on-surface-variant dark:text-on-surface-variant">
+              Inspect the deterministic Python pipelines, offline-first architectures, and production code bases engineered to empower public health systems.
+            </p>
+          </div>
+          <Link
+            href="/work"
+            className="shrink-0 w-full md:w-auto inline-flex items-center justify-center gap-3 px-8 py-4 bg-primary dark:bg-on-surface text-on-primary dark:text-surface font-headline text-sm font-bold uppercase tracking-widest border-2 border-primary dark:border-white shadow-[4px_4px_0px_#1a1a1a] dark:shadow-[4px_4px_0px_#ffffff] transition-all hover:translate-x-0.5 hover:translate-y-0.5"
+          >
+            <span>EXPLORE PRODUCTION WORK &amp; SYSTEMS</span>
+            <span className="material-symbols-outlined text-lg">arrow_forward</span>
+          </Link>
+        </div>
       </section>
 
       <Footer />
