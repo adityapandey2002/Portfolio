@@ -11,7 +11,7 @@ export function Providers({ children }: { children: ReactNode }) {
     <ToasterProvider>
       <PreloaderProvider>
         <CommandPaletteProvider>
-          <main className="relative z-10 pt-14">
+          <main className="relative z-10">
             <PageShell>{children}</PageShell>
           </main>
         </CommandPaletteProvider>
