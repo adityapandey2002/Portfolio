@@ -733,6 +733,43 @@ export default function WorkPage() {
               </div>
             </div>
           </div>
+          {/* Browser Preview Box */}
+          <div className="border-2 border-primary dark:border-white bg-surface-bright dark:bg-surface-low shadow-[6px_6px_0px_#1a1a1a] dark:shadow-[6px_6px_0px_#ffffff] overflow-hidden">
+            {/* Browser Chrome Topbar */}
+            <div className="bg-primary dark:bg-on-surface text-on-primary dark:text-surface px-4 py-2.5 border-b-2 border-primary dark:border-white flex items-center justify-between font-headline text-xs">
+              <div className="flex items-center gap-2">
+                <span className="w-3 h-3 rounded-full bg-accent-red dark:bg-accent-red inline-block" />
+                <span className="w-3 h-3 rounded-full bg-accent-yellow dark:bg-primary-yellow inline-block" />
+                <span className="w-3 h-3 rounded-full bg-accent-blue dark:bg-accent-blue inline-block" />
+                <span className="font-bold ml-2 tracking-wide text-accent-yellow dark:text-primary-yellow">
+                  LIVE BROWSER PREVIEW
+                </span>
+              </div>
+              <span className="text-[11px] font-mono text-on-surface-variant dark:text-on-surface-variant bg-accent-yellow/20 dark:bg-primary-yellow/20 px-2 py-0.5 border border-accent-yellow/30 dark:border-primary-yellow/30">
+                matru-suraksha.app
+              </span>
+            </div>
+            {/* Browser Content - Live iframe (URL to be provided) */}
+            <div className="relative bg-surface dark:bg-surface-container-lowest border-b border-primary dark:border-white max-h-[520px] overflow-hidden">
+              <iframe
+                src="about:blank"
+                title="Matru Suraksha live website"
+                className="w-full h-[520px] border-0"
+                loading="lazy"
+                sandbox="allow-scripts allow-same-origin allow-popups"
+              />
+            </div>
+            {/* Browser Footer Strip */}
+            <div className="p-3 bg-surface-container dark:bg-surface-low flex items-center justify-between text-xs font-headline">
+              <span className="font-bold uppercase text-primary dark:text-on-surface flex items-center gap-1.5">
+                <span className="material-symbols-outlined text-accent-red dark:text-accent-red text-sm">lock</span>
+                SSL SHA-256 Validated
+              </span>
+              <span className="text-on-surface-variant dark:text-on-surface-variant text-[11px]">
+                Production PWA // Offline-First
+              </span>
+            </div>
+          </div>
         </div>
       </section>
 
