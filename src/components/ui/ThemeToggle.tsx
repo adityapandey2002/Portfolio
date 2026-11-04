@@ -1,13 +1,15 @@
 'use client';
 
-import { Moon, Sun } from 'lucide-react';
 import { useTheme } from '@/components/providers/ThemeProvider';
 
 /**
- * Button that toggles between light and dark mode.
+ * V2 ThemeToggle — matches the design exactly.
  *
- * Shows a moon icon in light mode (switch to dark) and a sun icon in dark
- * mode (switch to light). Built on the V2 ThemeProvider context.
+ * - Material Symbols icon (light_mode / dark_mode)
+ * - "THEME: LIGHT" / "THEME: DARK" label in JetBrains Mono
+ * - Thick 2px border, hard offset shadow (3px 3px 0 #000000)
+ * - Active state slams down 4px/4px + shadow collapses
+ * - Works in both light and dark mode via Tailwind `dark:` variants
  */
 export function ThemeToggle() {
   const { theme, toggleTheme } = useTheme();
@@ -18,14 +20,29 @@ export function ThemeToggle() {
       onClick={toggleTheme}
       aria-label={isDark ? 'Switch to light mode' : 'Switch to dark mode'}
       title={isDark ? 'Light mode' : 'Dark mode'}
-      className="inline-flex h-9 w-9 items-center justify-center border-2 border-primary bg-transparent text-primary hover:bg-accent-yellow hover:text-primary transition-colors active:translate-y-0.5"
+      className={`
+        inline-flex items-center gap-1.5
+        px-3 py-2
+        font-headline font-bold text-xs uppercase tracking-wider
+        border-2 border-primary
+        ${isDark ? 'dark:bg-surface-dark dark:text-on-surface dark:border-white' : 'bg-surface text-on-surface border-primary'}
+        shadow-[3px_3px_0px_#1a1a1a]
+        ${isDark ? 'dark:shadow-[3px_3px_0px_#ffffff]' : ''}
+        hover:bg-accent-yellow hover:text-primary
+        ${isDark ? 'dark:hover:bg-primary-yellow dark:hover:text-on-primary' : ''}
+        transition-all duration-100
+        active:translate-x-0.5 active:translate-y-0.5
+        active:shadow-[2px_2px_0px_#1a1a1a]
+        ${isDark ? 'dark:active:shadow-[2px_2px_0px_#ffffff]' : ''}
+        cursor-pointer
+      `}
     >
-      {isDark ? (
-        <Sun size={18} strokeWidth={2} aria-hidden="true" />
-      ) : (
-        <Moon size={18} strokeWidth={2} aria-hidden="true" />
-      )}
-      <span className="sr-only">{isDark ? 'Light' : 'Dark'}</span>
+      <span className="material-symbols-outlined text-[16px]">
+        {isDark ? 'dark_mode' : 'light_mode'}
+      </span>
+      <span className="font-mono text-[11px]">
+        THEME: {isDark ? 'DARK' : 'LIGHT'}
+      </span>
     </button>
   );
 }

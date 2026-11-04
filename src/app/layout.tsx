@@ -2,7 +2,8 @@ import type { Metadata, Viewport } from 'next';
 import { Inter, JetBrains_Mono, Lora, Outfit, Space_Grotesk } from 'next/font/google';
 import { Providers } from '@/components/providers/Providers';
 import { ThemeProvider } from '@/components/providers/ThemeProvider';
-import { ThemeToggle } from '@/components/ui/ThemeToggle';
+import { MobileHeader } from '@/components/ui/MobileHeader';
+import { DesktopNav } from '@/components/ui/DesktopNav';
 import { AmbientBackground } from '@/components/three/AmbientBackground';
 import './globals.css';
 
@@ -18,8 +19,6 @@ const spaceGrotesk = Space_Grotesk({
   display: 'swap',
 });
 
-// JetBrains Mono (labels). Kept alongside the legacy --font-jetbrains
-// variable so existing V1 styles that reference it keep working.
 const jetbrainsMono = JetBrains_Mono({
   subsets: ['latin'],
   variable: '--font-jetbrains-mono',
@@ -90,9 +89,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" rel="stylesheet" />
         <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet" />
       </head>
-      <body className={`${inter.variable} ${spaceGrotesk.variable} ${jetbrainsMono.variable} ${outfit.variable} ${jetbrains.variable} ${lora.variable} bg-surface dark:bg-surface-dark font-sans text-primary dark:text-ink-dark antialiased pt-16 lg:pt-20`}>
+      <body className={`${inter.variable} ${spaceGrotesk.variable} ${jetbrainsMono.variable} ${outfit.variable} ${jetbrains.variable} ${lora.variable} bg-surface dark:bg-surface-dark font-sans text-primary dark:text-on-surface antialiased pt-[4rem] lg:pt-0`}>
         <ThemeProvider>
-          {/* V2 theme toggle lives in the header area of the shell. */}
+          <MobileHeader />
+          <DesktopNav />
           <AmbientBackground />
           <Providers>{children}</Providers>
         </ThemeProvider>
