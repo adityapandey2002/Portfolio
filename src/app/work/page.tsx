@@ -197,9 +197,15 @@ export default function WorkPage() {
                     biharkaswaad.in
                   </span>
                 </div>
-                {/* Browser Content */}
-                <div className="relative bg-surface dark:bg-surface-container-lowest border-b border-primary dark:border-white max-h-[520px] overflow-y-auto">
-                  <img alt="BiharKaSwaad live website production storefront screenshot" className="w-full h-auto block object-cover" loading="lazy" src="https://www.gstatic.com/labs-code/stitch/stitch-placeholder-300x300.svg" />
+                {/* Browser Content - Live iframe */}
+                <div className="relative bg-surface dark:bg-surface-container-lowest border-b border-primary dark:border-white max-h-[520px] overflow-hidden">
+                  <iframe
+                    src="https://biharkaswaad.in"
+                    title="BiharKaSwaad live website"
+                    className="w-full h-[520px] border-0"
+                    loading="lazy"
+                    sandbox="allow-scripts allow-same-origin allow-popups"
+                  />
                 </div>
                 {/* Browser Footer Strip */}
                 <div className="p-3 bg-surface-container dark:bg-surface-low flex items-center justify-between text-xs font-headline">
@@ -664,6 +670,65 @@ export default function WorkPage() {
                 </div>
                 <div className="text-[11px] text-accent-red dark:text-accent-red font-bold">
                   ✓ Correlated: NFHS-5 Indicator #74 (P&lt;0.001) in 32ms. TopoJSON boundaries injected to viewport.
+                </div>
+              </div>
+            </div>
+          </div>
+          {/* PWA Simulator Box */}
+          <div className="border-2 border-primary dark:border-white bg-primary dark:bg-on-surface text-on-primary dark:text-surface p-4 shadow-[6px_6px_0px_#1a1a1a] dark:shadow-[6px_6px_0px_#ffffff]">
+            <div className="flex items-center justify-between border-b border-on-primary/40 dark:border-surface/40 pb-3 mb-4 font-headline text-xs">
+              <div className="flex items-center gap-2">
+                <span className="w-3 h-3 bg-accent-red dark:bg-accent-red rounded-full inline-block" />
+                <span className="w-3 h-3 bg-accent-yellow dark:bg-primary-yellow rounded-full inline-block" />
+                <span className="w-3 h-3 bg-accent-blue dark:bg-accent-blue rounded-full inline-block" />
+                <span className="font-bold tracking-widest text-accent-yellow dark:text-primary-yellow ml-2">
+                  SIMULATOR // PWA CLIENT
+                </span>
+              </div>
+              <span className="font-mono text-[10px] text-on-primary/70 dark:text-surface/70">
+                SW: ACTIVE_OFFLINE
+              </span>
+            </div>
+            <div className="space-y-4">
+              {/* Patient Record Banner */}
+              <div className="bg-surface dark:bg-surface-container-lowest text-primary dark:text-on-surface p-3 border-2 border-primary dark:border-white">
+                <div className="flex items-center justify-between text-xs font-headline font-bold">
+                  <span>PATIENT: SUNITA DEVI (24Y)</span>
+                  <span className="bg-accent-red dark:bg-accent-red text-white px-2 py-0.5 text-[10px] uppercase">
+                    HIGH RISK: GRADE-A
+                  </span>
+                </div>
+                <div className="font-mono text-[11px] text-on-surface-variant dark:text-on-surface-variant mt-1">
+                  RCH ID: 109283748291 // GP: RAMPUR // SUB-CENTRE: WARD-03
+                </div>
+              </div>
+              {/* Triage Diagnostics */}
+              <div className="space-y-2 text-xs font-mono bg-surface-container-high/20 dark:bg-surface-low p-3 border border-on-primary/40 dark:border-surface/40">
+                {[
+                  { label: 'BP SYSTOLIC / DIASTOLIC:', value: '160 / 112 mmHg [CRITICAL]', color: 'text-accent-red dark:text-accent-red' },
+                  { label: 'HAEMOGLOBIN (Hb):', value: '6.4 g/dL [SEVERE ANEMIA]', color: 'text-accent-red dark:text-accent-red' },
+                  { label: 'PROTEINURIA:', value: '3+ DIPSTICK', color: 'text-accent-yellow dark:text-primary-yellow' },
+                  { label: 'GESTATIONAL AGE:', value: '34 WEEKS 2 DAYS', color: 'text-on-primary dark:text-surface' },
+                ].map((d) => (
+                  <div key={d.label} className="flex justify-between items-center text-on-primary dark:text-surface">
+                    <span>{d.label}</span>
+                    <span className={`font-bold ${d.color}`}>{d.value}</span>
+                  </div>
+                ))}
+              </div>
+              {/* Dexie Queue Status */}
+              <div className="p-3 bg-surface dark:bg-surface-container-lowest text-primary dark:text-on-surface border-2 border-primary dark:border-white space-y-2">
+                <div className="flex items-center justify-between text-xs font-headline font-bold">
+                  <span className="flex items-center gap-1.5">
+                    <span className="material-symbols-outlined text-[16px] text-primary dark:text-on-surface">sync_problem</span>
+                    DEXIE SYNC QUEUE:
+                  </span>
+                  <span className="bg-accent-yellow dark:bg-primary-yellow text-black dark:text-black px-2 py-0.5 text-[10px] uppercase">
+                    3 PENDING
+                  </span>
+                </div>
+                <div className="font-mono text-[11px] text-on-surface-variant dark:text-on-surface-variant">
+                  Offline records queued for sync when connectivity restored.
                 </div>
               </div>
             </div>
