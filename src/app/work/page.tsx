@@ -61,17 +61,96 @@ export default function WorkPage() {
     <>
       {/* Page header */}
       <section className="border-b-4 border-primary dark:border-white bg-surface dark:bg-surface-dark">
-        <Section className="py-12">
-          <div className="mb-6">
-            <span className="font-mono text-xs font-bold uppercase tracking-widest text-on-surface-variant dark:text-on-surface-variant">
-              09 · SELECTED WORK
-            </span>
-            <h1 className="mt-2 font-headline text-3xl sm:text-5xl font-bold uppercase tracking-tight text-on-surface dark:text-on-surface">
-              Built, deployed, shipped
-            </h1>
-            <p className="mt-4 text-sm text-on-surface-variant dark:text-on-surface-variant/70 max-w-[560px]">
-              A few things I built end-to-end — from field forms to live production apps.
-            </p>
+        <Section className="py-10">
+          <div className="space-y-8">
+            <div className="flex flex-wrap items-center gap-3">
+              <span className="inline-block bg-primary dark:bg-on-surface text-on-primary dark:text-surface font-headline font-bold text-xs uppercase px-2.5 py-1 tracking-widest border border-primary dark:border-white shadow-[2px_2px_0px_#1a1a1a] dark:shadow-[2px_2px_0px_#ffffff]">
+                {'/* 01 // PRODUCTION CODEBASES & SYSTEMS ARCHITECTURE */'}
+              </span>
+              <span className="font-headline text-xs font-bold tracking-wider text-on-surface-variant dark:text-on-surface-variant uppercase flex items-center gap-1.5">
+                <span className="w-2 h-2 rounded-full bg-accent-red dark:bg-accent-red animate-ping" />
+                ORDERED TECHNICAL LEDGER // LIVE PRODUCTION RUNTIMES
+              </span>
+            </div>
+            <div className="space-y-4">
+              <h1 className="font-headline font-bold text-3xl sm:text-5xl lg:text-6xl text-primary dark:text-on-surface tracking-tight uppercase leading-[0.95] max-w-5xl">
+                ENGINEERED FOR{' '}
+                <span className="bg-accent-yellow dark:bg-primary-yellow px-2 py-0.5 border-2 border-primary dark:border-white inline-block">
+                  HIGH-INTEGRITY COMMERCE
+                </span>{' '}
+                &amp; DETERMINISTIC FRONTLINE SCALE
+              </h1>
+              <p className="font-body text-base md:text-xl text-on-surface-variant dark:text-on-surface-variant max-w-4xl font-normal leading-relaxed">
+                Production transactional e-commerce engines, civic district hospital queues, zero-connectivity clinical maternal triage PWAs, and sub-district macro data spatial platforms built for extreme reliability.
+              </p>
+            </div>
+            {/* 4-Up Bento Stat Strip */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 pt-4">
+              <div className="bg-surface-bright dark:bg-surface-low p-5 border-2 border-primary dark:border-white shadow-[4px_4px_0px_#1a1a1a] dark:shadow-[4px_4px_0px_#ffffff] flex flex-col justify-between">
+                <div className="font-headline text-xs font-bold uppercase tracking-widest text-on-surface-variant dark:text-on-surface-variant pb-2 border-b border-primary dark:border-white">
+                  FLAGSHIP LEDGER // ORDERED
+                </div>
+                <div className="py-4">
+                  <div className="font-headline font-bold text-4xl lg:text-5xl text-primary dark:text-on-surface">
+                    04+3
+                  </div>
+                  <div className="font-headline text-xs uppercase font-bold text-accent-red dark:text-accent-red mt-1">
+                    4 FLAGSHIPS + 3 SPECIALIZED
+                  </div>
+                </div>
+                <div className="font-body text-xs text-on-surface-variant dark:text-on-surface-variant">
+                  Ranked strictly by operational impact.
+                </div>
+              </div>
+              <div className="bg-accent-yellow dark:bg-primary-yellow p-5 border-2 border-primary dark:border-white shadow-[4px_4px_0px_#1a1a1a] dark:shadow-[4px_4px_0px_#ffffff] flex flex-col justify-between text-on-primary-container dark:text-black">
+                <div className="font-headline text-xs font-bold uppercase tracking-widest text-primary dark:text-black pb-2 border-b border-primary dark:border-white">
+                  SECURITY // HMAC SHA-256
+                </div>
+                <div className="py-4">
+                  <div className="font-headline font-bold text-4xl lg:text-5xl text-primary dark:text-black">
+                    100%
+                  </div>
+                  <div className="font-headline text-xs uppercase font-bold text-primary dark:text-black mt-1">
+                    TAMPER-PROOF PAYMENTS
+                  </div>
+                </div>
+                <div className="font-body text-xs text-primary dark:text-black font-medium">
+                  Server-side amount re-validation pipeline.
+                </div>
+              </div>
+              <div className="bg-surface-bright dark:bg-surface-low p-5 border-2 border-primary dark:border-white shadow-[4px_4px_0px_#1a1a1a] dark:shadow-[4px_4px_0px_#ffffff] flex flex-col justify-between">
+                <div className="font-headline text-xs font-bold uppercase tracking-widest text-on-surface-variant dark:text-on-surface-variant pb-2 border-b border-primary dark:border-white">
+                  EDGE RESPONSIVENESS
+                </div>
+                <div className="py-4">
+                  <div className="font-headline font-bold text-4xl lg:text-5xl text-primary dark:text-on-surface">
+                    &lt;50ms
+                  </div>
+                  <div className="font-headline text-xs uppercase font-bold text-accent-blue dark:text-accent-blue mt-1">
+                    QUERY LATENCY (DUCKDB)
+                  </div>
+                </div>
+                <div className="font-body text-xs text-on-surface-variant dark:text-on-surface-variant">
+                  118k+ indicators indexed across districts.
+                </div>
+              </div>
+              <div className="bg-surface-bright dark:bg-surface-low p-5 border-2 border-primary dark:border-white shadow-[4px_4px_0px_#1a1a1a] dark:shadow-[4px_4px_0px_#ffffff] flex flex-col justify-between">
+                <div className="font-headline text-xs font-bold uppercase tracking-widest text-on-surface-variant dark:text-on-surface-variant pb-2 border-b border-primary dark:border-white">
+                  OFFLINE PROTOCOL
+                </div>
+                <div className="py-4">
+                  <div className="font-headline font-bold text-4xl lg:text-5xl text-primary dark:text-on-surface">
+                    0%
+                  </div>
+                  <div className="font-headline text-xs uppercase font-bold text-accent-red dark:text-accent-red mt-1">
+                    DATA LOSS ON 2G/ZERO-CONN
+                  </div>
+                </div>
+                <div className="font-body text-xs text-on-surface-variant dark:text-on-surface-variant">
+                  Dexie.js IndexedDB append-only sync.
+                </div>
+              </div>
+            </div>
           </div>
         </Section>
       </section>
@@ -317,6 +396,67 @@ export default function WorkPage() {
                 </p>
               </div>
             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Consolidated Systems Matrix */}
+      <section className="w-full border-b-2 border-primary dark:border-white bg-surface-container-high/30 dark:bg-surface-low px-4 sm:px-8 lg:px-12 py-10 lg:py-12">
+        <div className="max-w-7xl mx-auto space-y-6">
+          <div className="flex flex-col sm:flex-row justify-between items-start sm:items-end gap-2 border-b-2 border-primary dark:border-white pb-4">
+            <div>
+              <span className="font-headline text-xs font-bold uppercase tracking-widest text-on-surface-variant dark:text-on-surface-variant">
+                TECHNICAL INVENTORY
+              </span>
+              <h2 className="font-headline font-bold text-2xl sm:text-3xl text-primary dark:text-on-surface uppercase">
+                CONSOLIDATED SYSTEMS MATRIX
+              </h2>
+            </div>
+            <span className="font-headline text-xs font-bold uppercase text-primary dark:text-on-surface bg-accent-yellow dark:bg-primary-yellow px-2 py-1 border border-primary dark:border-white">
+              ORDERED HIERARCHY // AUDIT: APRIL 2026
+            </span>
+          </div>
+          <div className="overflow-x-auto border-2 border-primary dark:border-white bg-surface dark:bg-surface-container-lowest shadow-[4px_4px_0px_#1a1a1a] dark:shadow-[4px_4px_0px_#ffffff]">
+            <table className="w-full text-left border-collapse">
+              <thead>
+                <tr className="bg-primary dark:bg-on-surface text-on-primary dark:text-surface font-headline text-xs font-bold uppercase tracking-wider">
+                  <th className="p-3 border-r border-on-primary/20 dark:border-surface/20">RANK // SYSTEM</th>
+                  <th className="p-3 border-r border-on-primary/20 dark:border-surface/20">CORE TECH STACK</th>
+                  <th className="p-3 border-r border-on-primary/20 dark:border-surface/20">SYNC &amp; PROTOCOL</th>
+                  <th className="p-3 border-r border-on-primary/20 dark:border-surface/20">QUALITY BAR</th>
+                  <th className="p-3">DEPLOYMENT STATE</th>
+                </tr>
+              </thead>
+              <tbody className="font-body text-xs divide-y-2 divide-primary dark:divide-on-surface">
+                {[
+                  { rank: '#1', system: 'BiharKaSwaad E-Commerce', stack: 'React 18, Node.js, Express, MySQL, Hostinger', sync: 'Razorpay HMAC SHA-256 Webhooks + Re-validation', quality: 'Zero-Tamper Payment Validation', qualityColor: 'text-accent-red dark:text-accent-red', deploy: 'Live Production Storefront', deployColor: 'text-accent-blue dark:text-accent-blue' },
+                  { rank: '#2', system: 'Sadar Hospital Araria Portal', stack: 'React, TypeScript, Redis, Supabase, Tailwind', sync: 'WebSocket pub/sub dispatch queues', quality: '<100ms Telemetry Tick Speed', qualityColor: 'text-accent-blue dark:text-accent-blue', deploy: 'Civic Gov Production Node', deployColor: 'text-primary dark:text-on-surface' },
+                  { rank: '#3', system: 'Matru Suraksha (मातृ सुरक्षा)', stack: 'React 18, Vite, Fastify, Dexie.js, PostgreSQL', sync: 'IndexedDB offline replica + Exponential backoff', quality: '80% Line Coverage // 0 A11y Violations', qualityColor: 'text-accent-red dark:text-accent-red', deploy: 'Active Field Pilot (Bihar)', deployColor: 'text-primary dark:text-on-surface' },
+                  { rank: '#4', system: 'India Development Data Engine', stack: 'DuckDB, Python, pgvector, Groq LLM, Leaflet', sync: 'Parquet in-memory OLAP + Vector Embedding', quality: '<48ms Sub-district Query Median', qualityColor: 'text-primary dark:text-on-surface', deploy: 'Live Macro Analytics', deployColor: 'text-primary dark:text-on-surface' },
+                  { rank: '#5', system: 'Prodigy InfoTech Suites', stack: 'MongoDB, Express, React, Node.js, Socket.io', sync: 'WebSocket live rooms + JWT rotation', quality: 'High-Concurrency Stress Pass', qualityColor: 'text-on-surface-variant dark:text-on-surface-variant', deploy: 'Enterprise Codebase Archive', deployColor: 'text-on-surface-variant dark:text-on-surface-variant' },
+                  { rank: '#6', system: 'Auroville MinVayu Hardware', stack: 'C++, AVR Microcontrollers, CAD, Rapid Prototyping', sync: 'Analog Sensor I/O & RPM Polling', quality: 'Physical Wind Turbine Telemetry', qualityColor: 'text-primary dark:text-on-surface', deploy: 'Research Lab Deployment', deployColor: 'text-on-surface-variant dark:text-on-surface-variant' },
+                  { rank: '#7', system: 'Space-X Launch Prediction', stack: 'Python, Scikit-Learn, Plotly Dash, Folium, SQL', sync: 'REST ETL Telemetry Pipeline', quality: '83.3% Cross-Validated Accuracy', qualityColor: 'text-accent-blue dark:text-accent-blue', deploy: 'IBM Capstone Verified', deployColor: 'text-on-surface-variant dark:text-on-surface-variant' },
+                ].map((row) => (
+                  <tr key={row.rank} className="hover:bg-surface-container dark:hover:bg-surface-low transition-colors">
+                    <td className="p-3 font-headline font-bold uppercase border-r-2 border-primary dark:border-white text-primary dark:text-on-surface">
+                      {row.rank} {row.system}
+                    </td>
+                    <td className="p-3 border-r-2 border-primary dark:border-white font-mono text-[11px] text-on-surface-variant dark:text-on-surface-variant">
+                      {row.stack}
+                    </td>
+                    <td className="p-3 border-r-2 border-primary dark:border-white text-on-surface-variant dark:text-on-surface-variant">
+                      {row.sync}
+                    </td>
+                    <td className={`p-3 border-r-2 border-primary dark:border-white font-headline font-bold ${row.qualityColor}`}>
+                      {row.quality}
+                    </td>
+                    <td className={`p-3 font-headline font-bold ${row.deployColor}`}>
+                      {row.deploy}
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
           </div>
         </div>
       </section>
