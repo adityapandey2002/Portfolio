@@ -3,6 +3,7 @@ import { Inter, JetBrains_Mono, Lora, Outfit, Space_Grotesk } from 'next/font/go
 import { Providers } from '@/components/providers/Providers';
 import { ThemeProvider } from '@/components/providers/ThemeProvider';
 import { MobileHeader } from '@/components/ui/MobileHeader';
+import { MobileTabBar } from '@/components/ui/MobileTabBar';
 import { DesktopNav } from '@/components/ui/DesktopNav';
 import { AmbientBackground } from '@/components/three/AmbientBackground';
 import './globals.css';
@@ -98,6 +99,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <body className={`${inter.variable} ${spaceGrotesk.variable} ${jetbrainsMono.variable} ${outfit.variable} ${jetbrains.variable} ${lora.variable} bg-surface dark:bg-surface-dark font-sans text-primary dark:text-on-surface antialiased pt-[4rem] lg:pt-0`}>
         <ThemeProvider>
           <MobileHeader />
+          <MobileTabBar />
           <DesktopNav />
           <AmbientBackground />
           <Providers>{children}</Providers>

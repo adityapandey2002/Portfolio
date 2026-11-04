@@ -1562,6 +1562,13 @@ html[data-page='health'] .text-\[44px\] {
   --v2-ink-4-rgb: 138 138 138;
 }
 
+/* The fixed bottom tab bar is visible up to the lg breakpoint. */
+@media (max-width: 1023px) {
+  body {
+    padding-bottom: calc(64px + var(--safe-bottom));
+  }
+}
+
 html.dark {
   color-scheme: dark;
   --v2-primary-rgb: 229 225 228;

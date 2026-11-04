@@ -111,7 +111,7 @@ export function MobileHeader() {
 
       {/* Sticky jump nav strip */}
       <div
-        className={`sticky top-16 z-30 -mx-3 px-3 py-2 ${
+        className={`sticky top-16 z-30 px-3 py-2 ${
           isDark
             ? 'dark:bg-surface dark:border-white border-b border-white/10 shadow-[0_4px_0_#ffffff]'
             : 'bg-surface border-b border-primary shadow-[0_4px_0_#1a1a1a]'
