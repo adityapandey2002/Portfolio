@@ -161,6 +161,166 @@ export default function WorkPage() {
         </div>
       </section>
 
+      {/* Specialized Systems */}
+      <section className="w-full border-b-2 border-primary dark:border-white bg-surface-container-low dark:bg-surface-low px-4 sm:px-8 lg:px-12 py-10 lg:py-12">
+        <div className="max-w-7xl mx-auto space-y-8">
+          <div className="flex flex-wrap items-center justify-between gap-4 border-b-2 border-primary dark:border-white pb-4">
+            <div>
+              <span className="font-headline text-xs font-bold uppercase tracking-widest text-accent-red dark:text-accent-red block">
+                SECONDARY PRODUCTION ARCHIVES
+              </span>
+              <h2 className="font-headline font-bold text-2xl sm:text-3xl text-primary dark:text-on-surface uppercase">
+                SPECIALIZED SYSTEMS &amp; PHYSICAL COMPUTING
+              </h2>
+            </div>
+            <div className="font-headline text-xs font-bold text-on-surface-variant dark:text-on-surface-variant uppercase">
+              DISTRIBUTED REALTIME &amp; HARDWARE EMBEDDED
+            </div>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            {/* Card 1: Prodigy InfoTech */}
+            <div className="bg-surface dark:bg-surface-container-lowest border-2 border-primary dark:border-white p-6 shadow-[4px_4px_0px_#1a1a1a] dark:shadow-[4px_4px_0px_#ffffff] flex flex-col justify-between space-y-6">
+              <div className="space-y-4">
+                <div className="flex items-center justify-between border-b border-primary dark:border-white pb-2">
+                  <span className="bg-surface-container dark:bg-surface-low text-primary dark:text-on-surface font-headline text-[10px] font-bold uppercase px-2 py-0.5 border border-primary dark:border-white">
+                    REAL-TIME WEBSOCKETS
+                  </span>
+                  <span className="font-headline text-xs font-bold text-on-surface-variant dark:text-on-surface-variant">
+                    AUTH LIFECYCLE
+                  </span>
+                </div>
+                <h3 className="font-headline font-bold text-xl text-primary dark:text-on-surface uppercase leading-tight">
+                  Prodigy InfoTech Concurrency Suites
+                </h3>
+                <p className="font-body text-xs text-on-surface-variant dark:text-on-surface-variant leading-relaxed">
+                  Full-stack collaboration and messaging suites. Stateless JWT token rotation with Redis blacklist, WebSocket pub/sub live room state synchronization, and scalable CRUD APIs.
+                </p>
+              </div>
+              <div className="space-y-3 pt-4 border-t border-primary dark:border-white">
+                <div className="flex flex-wrap gap-1.5 font-headline text-[10px] font-bold uppercase">
+                  {['MERN Stack', 'Socket.io', 'JWT Auth', 'Docker'].map((t) => (
+                    <span key={t} className="px-2 py-0.5 bg-surface-container dark:bg-surface-low border border-primary dark:border-white text-primary dark:text-on-surface">
+                      {t}
+                    </span>
+                  ))}
+                </div>
+                <a
+                  href="https://github.com/adityapandey2002"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-1.5 font-headline text-xs font-bold uppercase text-primary dark:text-on-surface hover:underline"
+                >
+                  Review Codebase Commit Logs
+                  <span className="material-symbols-outlined text-[14px]">arrow_outward</span>
+                </a>
+              </div>
+            </div>
+            {/* Card 2: Auroville FabLab */}
+            <div className="bg-surface dark:bg-surface-container-lowest border-2 border-primary dark:border-white p-6 shadow-[4px_4px_0px_#1a1a1a] dark:shadow-[4px_4px_0px_#ffffff] flex flex-col justify-between space-y-6">
+              <div className="space-y-4">
+                <div className="flex items-center justify-between border-b border-primary dark:border-white pb-2">
+                  <span className="bg-accent-red dark:bg-accent-red text-white font-headline text-[10px] font-bold uppercase px-2 py-0.5 border border-primary dark:border-white">
+                    EMBEDDED HARDWARE
+                  </span>
+                  <span className="font-headline text-xs font-bold text-on-surface-variant dark:text-on-surface-variant">
+                    MINVAYU PROJECT
+                  </span>
+                </div>
+                <h3 className="font-headline font-bold text-xl text-primary dark:text-on-surface uppercase leading-tight">
+                  Auroville FabLab Hardware Telemetry
+                </h3>
+                <p className="font-body text-xs text-on-surface-variant dark:text-on-surface-variant leading-relaxed">
+                  Open-source small-scale wind turbine telemetry and rapid additive manufacturing prototyping. Engineered micro-controller interfaces for RPM/output power monitoring.
+                </p>
+              </div>
+              <div className="space-y-3 pt-4 border-t border-primary dark:border-white">
+                <div className="flex flex-wrap gap-1.5 font-headline text-[10px] font-bold uppercase">
+                  {['Microcontrollers', 'C++ / AVR', 'CAD Modeling', 'Sensor I/O'].map((t) => (
+                    <span key={t} className="px-2 py-0.5 bg-surface-container dark:bg-surface-low border border-primary dark:border-white text-primary dark:text-on-surface">
+                      {t}
+                    </span>
+                  ))}
+                </div>
+                <span className="inline-flex items-center gap-1.5 font-headline text-xs font-bold uppercase text-on-surface-variant dark:text-on-surface-variant">
+                  Auroville Physical Systems Lab
+                </span>
+              </div>
+            </div>
+            {/* Card 3: SpaceX */}
+            <div className="bg-surface dark:bg-surface-container-lowest border-2 border-primary dark:border-white p-6 shadow-[4px_4px_0px_#1a1a1a] dark:shadow-[4px_4px_0px_#ffffff] flex flex-col justify-between space-y-6">
+              <div className="space-y-4">
+                <div className="flex items-center justify-between border-b border-primary dark:border-white pb-2">
+                  <span className="bg-primary dark:bg-on-surface text-on-primary dark:text-surface font-headline text-[10px] font-bold uppercase px-2 py-0.5 border border-primary dark:border-white">
+                    DATA SCIENCE CAPSTONE
+                  </span>
+                  <span className="font-headline text-xs font-bold text-on-surface-variant dark:text-on-surface-variant">
+                    IBM CERTIFIED
+                  </span>
+                </div>
+                <h3 className="font-headline font-bold text-xl text-primary dark:text-on-surface uppercase leading-tight">
+                  Space-X Falcon 9 First-Stage Recovery Model
+                </h3>
+                <p className="font-body text-xs text-on-surface-variant dark:text-on-surface-variant leading-relaxed">
+                  Predictive machine learning pipeline estimating booster landing success. Web scraping of SpaceX telemetry, EDA with SQL, interactive Folium spatial maps, classification benchmarking.
+                </p>
+              </div>
+              <div className="space-y-3 pt-4 border-t border-primary dark:border-white">
+                <div className="flex flex-wrap gap-1.5 font-headline text-[10px] font-bold uppercase">
+                  {['Python', 'Scikit-Learn', 'Plotly Dash', 'Folium'].map((t) => (
+                    <span key={t} className="px-2 py-0.5 bg-surface-container dark:bg-surface-low border border-primary dark:border-white text-primary dark:text-on-surface">
+                      {t}
+                    </span>
+                  ))}
+                </div>
+                <a
+                  href="https://github.com/adityapandey2002"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-1.5 font-headline text-xs font-bold uppercase text-primary dark:text-on-surface hover:underline"
+                >
+                  View Capstone Notebooks
+                  <span className="material-symbols-outlined text-[14px]">arrow_outward</span>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Architectural Pillars */}
+      <section className="w-full border-b-2 border-primary dark:border-white bg-surface dark:bg-surface-dark px-4 sm:px-8 lg:px-12 py-10 lg:py-12">
+        <div className="max-w-7xl mx-auto space-y-8">
+          <div>
+            <span className="font-headline text-xs font-bold uppercase tracking-widest text-primary dark:text-on-surface block">
+              {'/* 02 // ARCHITECTURAL PILLARS */'}
+            </span>
+            <h2 className="font-headline font-bold text-2xl sm:text-3xl text-primary dark:text-on-surface uppercase tracking-tight">
+              FOUR DETERMINISTIC GUARANTEES FOR LOW-RESOURCE COMPUTING
+            </h2>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            {[
+              { id: 'P1', title: 'Offline-First By Default', desc: 'No patient should be blocked by 2G/EDGE dropouts. Client mutations serialize to IndexedDB first.', bg: 'bg-accent-yellow dark:bg-primary-yellow', text: 'text-black dark:text-black' },
+              { id: 'P2', title: 'Cryptographic Audit Logs', desc: 'Financial checkouts and clinical metrics are append-only. SHA-256 validation timestamps.', bg: 'bg-accent-red dark:bg-accent-red', text: 'text-white dark:text-white' },
+              { id: 'P3', title: 'Deterministic Budgets', desc: 'Strict sub-2.5s LCP on throttled 3G. Micro-bundles (<170kB gzip).', bg: 'bg-primary dark:bg-on-surface', text: 'text-on-primary dark:text-surface' },
+              { id: 'P4', title: 'Field-Hardened Ergonomics', desc: 'High-contrast design for extreme glare in direct Bihar sunlight (44°C).', bg: 'bg-surface-container dark:bg-surface-low', text: 'text-primary dark:text-on-surface' },
+            ].map((p) => (
+              <div key={p.id} className="p-5 bg-surface-bright dark:bg-surface-low border-2 border-primary dark:border-white shadow-[4px_4px_0px_#1a1a1a] dark:shadow-[4px_4px_0px_#ffffff] space-y-3">
+                <div className={`w-10 h-10 ${p.bg} ${p.text} font-headline font-bold text-base flex items-center justify-center border-2 border-primary dark:border-white`}>
+                  {p.id}
+                </div>
+                <h3 className="font-headline font-bold text-sm uppercase text-primary dark:text-on-surface">
+                  {p.title}
+                </h3>
+                <p className="font-body text-xs text-on-surface-variant dark:text-on-surface-variant leading-relaxed">
+                  {p.desc}
+                </p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* Dark CTA */}
       <section className="w-full bg-primary dark:bg-surface-container-lowest text-on-primary dark:text-on-surface px-4 sm:px-8 lg:px-12 py-12 md:py-16 border-b-2 border-primary dark:border-white">
         <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
