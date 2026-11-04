@@ -275,7 +275,7 @@ export function AskTerminal() {
             {/* Response container */}
             <div className="p-4 sm:p-5 space-y-3" aria-live="polite">
               {!activeQuestion && !streaming && !error && (
-                <div className="p-6 border-2 border-primary dark:border-white bg-surface dark:bg-surface-l1 dark:bg-surface-l1 text-center font-mono text-xs text-on-surface-variant dark:text-ink-dark/60 space-y-1">
+                <div className="p-6 border-2 border-primary dark:border-white bg-surface-dark dark:bg-surface-l1 text-center font-mono text-xs text-on-surface-variant dark:text-ink-dark/60 space-y-1">
                   <span>Empty — no active question.</span>
                   <span className="text-on-surface-variant dark:text-ink-dark/40/60">
                     Type above or tap a chip, then hit Ask Assistant.
@@ -284,7 +284,7 @@ export function AskTerminal() {
               )}
 
               {streaming && blocks.length === 0 && !error && (
-                <div className="p-6 border-2 border-primary dark:border-white bg-surface dark:bg-surface-l1 dark:bg-surface-l1 text-center font-mono text-xs animate-pulse text-on-surface-variant dark:text-ink-dark/60">
+                <div className="p-6 border-2 border-primary dark:border-white bg-surface-dark dark:bg-surface-l1 text-center font-mono text-xs animate-pulse text-on-surface-variant dark:text-ink-dark/60">
                   Generating grounded answer…
                 </div>
               )}
@@ -293,7 +293,7 @@ export function AskTerminal() {
                 blocks.map((block) => (
                   <div
                     key={block.num}
-                    className="border-2 border-primary dark:border-white bg-surface dark:bg-surface-l1 dark:bg-surface-l1 p-4 space-y-2"
+                    className="border-2 border-primary dark:border-white bg-surface-dark dark:bg-surface-l1 p-4 space-y-2"
                   >
                     {block.heading && (
                       <h3 className="font-display font-bold text-xs uppercase tracking-wider text-on-surface dark:text-ink-dark flex items-center gap-2">
@@ -314,7 +314,7 @@ export function AskTerminal() {
               )}
 
               {error && (
-                <div className="border-2 border-accent-red dark:border-vermilion bg-surface dark:bg-surface-l1 p-4 font-mono text-xs text-accent-red dark:text-vermilion leading-relaxed">
+                <div className="border-2 border-accent-red dark:border-vermilion bg-surface-dark dark:bg-surface-l1 p-4 font-mono text-xs text-accent-red dark:text-vermilion leading-relaxed">
                   {error}
                 </div>
               )}

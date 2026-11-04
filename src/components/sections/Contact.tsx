@@ -189,7 +189,7 @@ export function Contact() {
                   <span className="text-surface-container-high dark:text-surface-high uppercase block text-[11px]">
                     Primary Comms [Email]
                   </span>
-                  <a className="text-primary dark:text-white font-bold hover:underline break-all text-sm" href={`mailto:${profile.emails.personal}`}>
+                  <a className="text-accent-yellow dark:text-accent-yellow font-bold hover:underline break-all text-sm" href={`mailto:${profile.emails.personal}`}>
                     {profile.emails.personal}
                   </a>
                 </div>
