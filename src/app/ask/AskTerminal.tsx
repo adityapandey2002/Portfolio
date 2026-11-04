@@ -189,15 +189,15 @@ export function AskTerminal() {
             </div>
           </div>
 
-          {/* Terminal */}
-          <div className="border-2 border-primary dark:border-white bg-surface dark:bg-surface-dark shadow-[4px_4px_0_#000000] overflow-hidden">
+          {/* Terminal — stays a black console in both themes. */}
+          <div className="terminal-shell border-2 border-primary bg-surface shadow-[4px_4px_0_#000000] overflow-hidden">
             {/* Quick prompt chips */}
-            <div className="px-4 py-4 border-b-2 primary dark:border-white bg-surface dark:bg-surface-dark">
+            <div className="px-4 py-4 border-b-2 border-primary bg-surface">
               <div className="flex items-center justify-between mb-3">
                 <span className="font-mono text-[11px] font-bold uppercase tracking-wider text-on-surface-variant dark:text-ink-dark/60 flex items-center gap-1.5">
                   💡 Suggested Questions
                 </span>
-                <span className="text-[11px] text-on-surface-variant dark:text-ink-dark/40/60 hidden sm:inline">
+                <span className="text-[11px] text-on-surface-variant/60 hidden sm:inline">
                   Sub-second retrieval
                 </span>
               </div>
@@ -216,7 +216,7 @@ export function AskTerminal() {
             </div>
 
             {/* Query form */}
-            <form onSubmit={handleSubmit} className="px-4 py-4 border-b-2 primary dark:border-white bg-surface dark:bg-surface-dark">
+            <form onSubmit={handleSubmit} className="px-4 py-4 border-b-2 border-primary bg-surface dark:bg-surface-dark">
               <div className="flex flex-col sm:flex-row gap-2">
                 <div className="relative flex-1 flex items-center border-2 border-primary dark:border-white shadow-[2px_2px_0_#000000]">
                   <span className="text-on-surface-variant dark:text-ink-dark/60 mx-1.5">🔍</span>
@@ -255,7 +255,7 @@ export function AskTerminal() {
 
             {/* Active question header */}
             {activeQuestion && (
-              <div className="px-4 pb-4 border-b-2 primary dark:border-white bg-surface dark:bg-surface-dark">
+              <div className="px-4 pb-4 border-b-2 border-primary bg-surface dark:bg-surface-dark">
                 <div className="flex items-start justify-between gap-4">
                   <div className="space-y-1">
                     <span className="font-mono text-[11px] font-bold uppercase tracking-wider text-on-surface-variant dark:text-ink-dark/60 block">
@@ -277,7 +277,7 @@ export function AskTerminal() {
               {!activeQuestion && !streaming && !error && (
                 <div className="p-6 border-2 border-primary dark:border-white bg-surface-dark dark:bg-surface-l1 text-center font-mono text-xs text-on-surface-variant dark:text-ink-dark/60 space-y-1">
                   <span>Empty — no active question.</span>
-                  <span className="text-on-surface-variant dark:text-ink-dark/40/60">
+                  <span className="text-on-surface-variant/60">
                     Type above or tap a chip, then hit Ask Assistant.
                   </span>
                 </div>
@@ -321,7 +321,7 @@ export function AskTerminal() {
             </div>
 
             {/* Terminal prompt */}
-            <div className="px-4 py-4 border-t-2 primary dark:border-white bg-surface dark:bg-surface-dark">
+            <div className="px-4 py-4 border-t-2 border-primary bg-surface dark:bg-surface-dark">
               <div className="flex items-center gap-2 font-mono text-[12px]">
                 <span className="text-on-surface dark:text-ink-dark">
                   aditya@portfolio:~$
