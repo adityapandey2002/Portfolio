@@ -174,6 +174,31 @@ export default function HealthPage() {
                 </div>
               </div>
             </div>
+
+            {/* Metric 5: Pipeline Volume */}
+            <div className="bg-primary dark:bg-surface-container-lowest text-on-primary dark:text-on-surface border-2 border-primary dark:border-white p-6 shadow-[4px_4px_0px_#ffcc00] flex flex-col justify-between md:col-span-2 lg:col-span-2 transition-transform hover:-translate-y-1">
+              <div className="space-y-2">
+                <div className="flex items-center justify-between border-b-2 border-on-primary/30 dark:border-on-surface/30 pb-2">
+                  <span className="font-headline text-xs font-bold uppercase tracking-wider text-accent-yellow dark:text-dark-accent-yellow">
+                    METRIC // 05 (PIPELINE VOLUME)
+                  </span>
+                  <span className="material-symbols-outlined text-accent-yellow dark:text-dark-accent-yellow text-xl">dataset</span>
+                </div>
+                <div className="font-headline text-4xl sm:text-5xl font-bold text-on-primary dark:text-on-surface tracking-tight pt-2 flex items-baseline gap-2">
+                  118k+ <span className="text-sm uppercase tracking-widest text-accent-yellow dark:text-dark-accent-yellow">Validated Records</span>
+                </div>
+                <h3 className="font-headline text-base font-bold uppercase tracking-tight text-on-primary dark:text-on-surface">
+                  ODK Collect &amp; Central Telemetry Pipeline
+                </h3>
+                <p className="font-body text-xs text-on-primary/80 dark:text-on-surface-variant leading-relaxed max-w-2xl">
+                  Grassroots survey records scrubbed, sanitized, and programmatically validated via automated Python and Pandas pipelines to eliminate discrepancy windows ahead of Monday district review meetings.
+                </p>
+              </div>
+              <div className="mt-4 pt-3 border-t border-on-primary/30 dark:border-on-surface/30 flex flex-wrap items-center justify-between text-[11px] font-headline uppercase font-bold text-on-primary dark:text-on-surface gap-2">
+                <span>AUTOMATION: PYTHON 3.11 / PANDAS</span>
+                <span className="bg-accent-red dark:bg-accent-red text-white dark:text-white px-2 py-0.5">ZERO-DATA DISCREPANCY MANDATE</span>
+              </div>
+            </div>
           </div>
         </Section>
       </section>
