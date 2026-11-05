@@ -56,7 +56,7 @@ export default function WorkPage() {
                   04+3
                 </div>
                 <div className="mt-1 font-headline text-xs font-bold uppercase text-accent-red">
-                  4 FLAGSHIPS + 3 SPECIALIZED
+                  5 FLAGSHIPS + 3 SPECIALIZED
                 </div>
               </div>
               <div className="font-body text-xs text-on-surface-variant dark:text-on-surface-variant">
@@ -1209,6 +1209,150 @@ export default function WorkPage() {
                   injected to viewport.
                 </div>
               </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ============================================================
+          FLAGSHIP #5 — CONSULTANCYWALA (E-COMMERCE GROWTH AGENCY)
+      ============================================================ */}
+      <section
+        className="project-card w-full border-b-2 border-primary bg-surface-bright px-6 py-12 dark:border-outline dark:bg-surface-low lg:px-12 lg:py-16"
+        data-category="flagship commerce"
+      >
+        <div className="mx-auto max-w-7xl space-y-8">
+          {/* Top Badges */}
+          <div className="flex flex-wrap items-center justify-between gap-4 border-b-2 border-primary pb-4 dark:border-outline-variant">
+            <div className="flex flex-wrap items-center gap-2">
+              <span className="border-2 border-primary bg-primary px-3 py-1 font-headline text-xs font-bold uppercase tracking-wider text-primary-yellow shadow-[2px_2px_0px_#1a1a1a] dark:border-primary-yellow dark:bg-primary-yellow dark:text-black dark:shadow-[2px_2px_0px_#0e0e10]">
+                FLAGSHIP 05 // E-COMMERCE GROWTH AGENCY
+              </span>
+              <span className="border-2 border-primary bg-accent-red px-3 py-1 font-headline text-xs font-bold uppercase tracking-wider text-white shadow-[2px_2px_0px_#1a1a1a] dark:border-accent-red dark:shadow-[2px_2px_0px_#0e0e10]">
+                LIVE PRODUCTION // consultancywala.com
+              </span>
+              <span className="border-2 border-primary bg-surface px-3 py-1 font-headline text-xs font-bold uppercase tracking-wider text-primary dark:border-outline dark:bg-surface-container dark:text-white">
+                FOUNDER-LED · PATNA, BIHAR
+              </span>
+            </div>
+            <div className="flex items-center gap-2 font-headline text-xs font-bold uppercase tracking-widest text-on-surface-variant dark:text-on-surface-variant">
+              <span className="h-2.5 w-2.5 animate-pulse rounded-full bg-emerald-500" />
+              DEPLOYMENT: PROD_AGENCY_v1
+            </div>
+          </div>
+
+          {/* Title & Overview */}
+          <div className="grid grid-cols-1 items-start gap-8 lg:grid-cols-12">
+            <div className="space-y-4 lg:col-span-8">
+              <h2 className="font-headline text-3xl font-bold uppercase leading-tight tracking-tight text-primary dark:text-white sm:text-4xl lg:text-5xl">
+                CONSULTANCYWALA — E-COMMERCE GROWTH AGENCY
+                <span className="mt-1 block text-xl font-normal uppercase tracking-normal text-on-surface-variant dark:text-primary-yellow sm:text-2xl">
+                  End-to-End Marketplace Launch, PPC, Cataloging &amp; Operations
+                </span>
+              </h2>
+              <p className="font-body text-base leading-relaxed text-on-surface-variant dark:text-on-surface-variant">
+                Founder-led e-commerce growth agency helping brands launch, scale and dominate
+                Amazon, Flipkart, Meesho, JioMart and Nykaa — strategy, PPC, cataloging and
+                operations handled end-to-end by senior strategists. 50+ brands scaled, 10+
+                marketplaces managed, 500+ listings optimized, ₹40Cr+ GMV handled. Founded by
+                Aditya Pandey in Patna, Bihar.
+              </p>
+            </div>
+
+            <div className="flex flex-col gap-3 border-2 border-primary bg-surface-container p-4 shadow-[4px_4px_0px_#1a1a1a] dark:border-outline dark:bg-surface-container dark:shadow-[4px_4px_0px_#0e0e10] lg:col-span-4">
+              <div className="flex items-center justify-between border-b border-primary pb-2 font-headline text-xs font-bold uppercase text-primary dark:border-outline dark:text-primary-yellow">
+                <span>AGENCY QUALITY GATES</span>
+                <span className="material-symbols-outlined text-sm text-accent-red">verified</span>
+              </div>
+              <div className="space-y-2 font-headline text-xs">
+                <div className="flex items-center justify-between">
+                  <span className="text-on-surface-variant dark:text-on-surface-variant">BRANDS SCALED:</span>
+                  <span className="font-bold text-primary dark:text-white">50+</span>
+                </div>
+                <div className="flex items-center justify-between">
+                  <span className="text-on-surface-variant dark:text-on-surface-variant">MARKETPLACES:</span>
+                  <span className="font-bold text-primary dark:text-white">10+</span>
+                </div>
+                <div className="flex items-center justify-between">
+                  <span className="text-on-surface-variant dark:text-on-surface-variant">LISTINGS OPTIMIZED:</span>
+                  <span className="font-bold text-primary dark:text-white">500+</span>
+                </div>
+                <div className="flex items-center justify-between">
+                  <span className="text-on-surface-variant dark:text-on-surface-variant">GMV HANDLED:</span>
+                  <span className="font-bold text-accent-red dark:text-accent-red">₹40Cr+</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Live Browser Preview Box */}
+          <a
+            aria-label="Open the live Consultancy Wala website"
+            className="group relative block border-2 border-primary bg-surface shadow-[6px_6px_0px_#1a1a1a] dark:border-outline dark:bg-surface-low dark:shadow-[6px_6px_0px_#0e0e10]"
+            href="https://consultancywala.com"
+            rel="noopener noreferrer"
+            target="_blank"
+          >
+            <div className="flex items-center justify-between border-b-2 border-primary bg-primary px-4 py-2.5 font-headline text-xs text-on-primary dark:border-outline dark:bg-surface-lowest dark:text-on-surface">
+              <div className="flex items-center gap-2">
+                <span className="inline-block h-3 w-3 rounded-full bg-accent-red" />
+                <span className="inline-block h-3 w-3 rounded-full bg-primary-yellow" />
+                <span className="inline-block h-3 w-3 rounded-full bg-accent-blue" />
+                <span className="ml-2 font-bold tracking-wide text-primary-yellow dark:text-accent-blue">
+                  LIVE COMMERCE PORTAL
+                </span>
+              </div>
+              <span className="border border-primary-yellow/30 bg-primary-yellow/20 px-2 py-0.5 font-mono text-[11px] text-surface-variant dark:border-outline dark:bg-surface-container dark:text-on-surface-variant">
+                consultancywala.com
+              </span>
+            </div>
+            <div className="relative max-h-[520px] overflow-y-auto bg-surface">
+              <img
+                alt="Consultancy Wala live website screenshot"
+                className="block h-auto w-full object-cover"
+                decoding="async"
+                height={1100}
+                loading="eager"
+                src="/work/preview-consultancywala.png"
+                width={1100}
+              />
+            </div>
+            <div className="flex items-center justify-between bg-surface-container p-3 font-headline text-xs dark:bg-surface">
+              <span className="flex items-center gap-1.5 font-bold uppercase text-primary dark:text-white">
+                <span className="material-symbols-outlined text-sm text-accent-red">lock</span>
+                SSL SHA-256 Validated
+              </span>
+              <span className="text-[11px] text-on-surface-variant dark:text-on-surface-variant">
+                Open Live Site: consultancywala.com
+              </span>
+            </div>
+          </a>
+
+          {/* Architecture & Capabilities */}
+          <div className="grid grid-cols-1 gap-6 lg:grid-cols-2">
+            <div className="space-y-3">
+              <h3 className="font-headline text-sm font-bold uppercase tracking-wider text-primary dark:text-primary-yellow">
+                GROWTH CAPABILITIES
+              </h3>
+              <ul className="space-y-2 font-body text-sm text-on-surface-variant dark:text-on-surface-variant">
+                <li className="flex items-start gap-2"><span className="mt-1.5 h-1.5 w-1.5 shrink-0 bg-accent-red" />Amazon &amp; Flipkart Onboarding (GST, brand approval, store setup)</li>
+                <li className="flex items-start gap-2"><span className="mt-1.5 h-1.5 w-1.5 shrink-0 bg-accent-red" />Marketplace Expansion (Meesho, JioMart, Nykaa)</li>
+                <li className="flex items-start gap-2"><span className="mt-1.5 h-1.5 w-1.5 shrink-0 bg-accent-red" />Product Listing &amp; Cataloging (A+ content, catalog health)</li>
+                <li className="flex items-start gap-2"><span className="mt-1.5 h-1.5 w-1.5 shrink-0 bg-accent-red" />Amazon PPC &amp; Full-Funnel Ad Campaigns</li>
+                <li className="flex items-start gap-2"><span className="mt-1.5 h-1.5 w-1.5 shrink-0 bg-accent-red" />Pricing &amp; Profitability Strategy</li>
+              </ul>
+            </div>
+            <div className="space-y-3">
+              <h3 className="font-headline text-sm font-bold uppercase tracking-wider text-primary dark:text-primary-yellow">
+                OPERATIONS &amp; ANALYTICS
+              </h3>
+              <ul className="space-y-2 font-body text-sm text-on-surface-variant dark:text-on-surface-variant">
+                <li className="flex items-start gap-2"><span className="mt-1.5 h-1.5 w-1.5 shrink-0 bg-accent-blue" />Account Management A to Z (dedicated growth manager)</li>
+                <li className="flex items-start gap-2"><span className="mt-1.5 h-1.5 w-1.5 shrink-0 bg-accent-blue" />Inventory &amp; Logistics Support (FBA vs FBM, reconciliation)</li>
+                <li className="flex items-start gap-2"><span className="mt-1.5 h-1.5 w-1.5 shrink-0 bg-accent-blue" />Brand Protection &amp; Compliance (anti-counterfeit, trademark)</li>
+                <li className="flex items-start gap-2"><span className="mt-1.5 h-1.5 w-1.5 shrink-0 bg-accent-blue" />Website Development &amp; Management</li>
+                <li className="flex items-start gap-2"><span className="mt-1.5 h-1.5 w-1.5 shrink-0 bg-accent-blue" />Sales &amp; Performance Analytics (dashboards, weekly reviews)</li>
+              </ul>
             </div>
           </div>
         </div>
