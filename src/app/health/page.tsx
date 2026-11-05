@@ -11,18 +11,18 @@ export const metadata = {
 export default function HealthPage() {
   return (
     <>
-      <section className="border-b-4 border-primary dark:border-white bg-surface dark:bg-surface-dark">
+      <section className="border-b-4 border-outline bg-surface">
         <Section className="py-10">
           <div className="space-y-8">
             {/* Metadata Bar */}
-            <div className="flex flex-wrap items-center justify-between gap-4 border-2 border-primary dark:border-white p-3 bg-surface-container dark:bg-surface-low shadow-[4px_4px_0px_#1a1a1a] dark:shadow-[4px_4px_0px_#ffffff]">
+            <div className="flex flex-wrap items-center justify-between gap-4 border-2 border-outline p-3 bg-surface-container dark:bg-surface-low shadow-[4px_4px_0px_#1a1a1a] dark:shadow-[4px_4px_0px_#0e0e10]">
               <div className="flex items-center gap-2">
                 <span className="inline-block w-3 h-3 bg-accent-red dark:bg-accent-red" />
-                <span className="font-headline font-bold text-xs uppercase tracking-widest text-primary dark:text-on-surface">
+                <span className="font-headline font-bold text-xs uppercase tracking-widest text-primary">
                   01 // FELLOWSHIP OPERATIONAL RECORD &amp; CLINICAL VITALS
                 </span>
               </div>
-              <div className="flex items-center gap-4 font-headline text-xs font-bold uppercase tracking-wider text-on-surface-variant dark:text-on-surface-variant">
+              <div className="flex items-center gap-4 font-headline text-xs font-bold uppercase tracking-wider text-on-surface-variant">
                 <span>PROGRAM: GANDHI FELLOWSHIP</span>
                 <span className="hidden md:inline">|</span>
                 <span className="hidden md:inline">PIRAMAL FOUNDATION</span>
@@ -34,16 +34,16 @@ export default function HealthPage() {
             </div>
             {/* Main Headline */}
             <div className="space-y-4">
-              <h1 className="font-headline text-3xl sm:text-5xl lg:text-6xl font-bold uppercase tracking-tight text-primary dark:text-on-surface leading-none">
+              <h1 className="font-headline text-3xl sm:text-5xl lg:text-6xl font-bold uppercase tracking-tight text-primary leading-none">
                 HEALTH-SYSTEM STRENGTHENING ACROSS BIHAR: EVERY NUMBER TRACKED LIKE PATIENT DATA
               </h1>
-              <p className="font-body text-base sm:text-lg text-on-surface-variant dark:text-on-surface-variant max-w-4xl leading-relaxed border-l-4 border-primary dark:border-on-surface pl-4">
+              <p className="font-body text-base sm:text-lg text-on-surface-variant max-w-4xl leading-relaxed border-l-4 border-primary dark:border-on-surface pl-4">
                 Gandhi Fellowship (Piramal Foundation) · Based in Muzaffarpur, Bihar. Grassroots transformation across 16 high-burden blocks, sub-centres, PHCs, and District Hospitals.
               </p>
             </div>
             {/* Quote Block */}
-            <div className="relative bg-primary dark:bg-surface-container-lowest text-on-primary dark:text-on-surface p-6 sm:p-8 border-2 border-primary dark:border-white shadow-[6px_6px_0px_#ffcc00] dark:shadow-[6px_6px_0px_#ffcc00]">
-              <div className="absolute top-0 right-0 transform translate-x-2 -translate-y-3 bg-accent-yellow dark:bg-primary-yellow text-black dark:text-black px-3 py-1 font-headline text-xs font-bold uppercase tracking-widest border-2 border-primary dark:border-white">
+            <div className="relative bg-primary dark:bg-surface-container-lowest text-on-primary dark:text-on-surface p-6 sm:p-8 border-2 border-outline shadow-[6px_6px_0px_#ffcc00] dark:shadow-[6px_6px_0px_#ffcc00]">
+              <div className="absolute top-0 right-0 transform translate-x-2 -translate-y-3 bg-accent-yellow dark:bg-primary-yellow text-black dark:text-black px-3 py-1 font-headline text-xs font-bold uppercase tracking-widest border-2 border-outline">
                 PRIMARY LOG 2024-2026
               </div>
               <div className="flex items-start gap-4">
@@ -65,48 +65,48 @@ export default function HealthPage() {
       </section>
 
       {/* Health Metrics */}
-      <section className="border-b-4 border-primary dark:border-white bg-surface dark:bg-surface-dark py-12 px-4 sm:px-8 lg:px-12">
+      <section className="border-b-4 border-outline bg-surface py-12 px-4 sm:px-8 lg:px-12">
         <Section className="py-12">
-          <div className="flex flex-col md:flex-row sm:items-end justify-between gap-4 border-b-2 border-primary dark:border-white pb-6 mb-8">
+          <div className="flex flex-col md:flex-row sm:items-end justify-between gap-4 border-b-2 border-outline pb-6 mb-8">
             <div>
-              <span className="font-mono text-xs font-bold uppercase tracking-widest text-primary dark:text-white block mb-1">
+              <span className="font-mono text-xs font-bold uppercase tracking-widest text-primary block mb-1">
                 Audited Telemetry
               </span>
-              <h2 className="font-headline text-3xl sm:text-5xl font-bold uppercase tracking-tight text-on-surface dark:text-on-surface leading-none">
+              <h2 className="font-headline text-3xl sm:text-5xl font-bold uppercase tracking-tight text-on-surface leading-none">
                 Primary Field Metrics Ledger
               </h2>
             </div>
-            <div className="font-mono text-xs font-bold uppercase tracking-wider text-on-surface-variant dark:text-on-surface-variant/70">
+            <div className="font-mono text-xs font-bold uppercase tracking-wider text-on-surface-variant">
               Total Active Blocks: 16 &nbsp;//&nbsp; Population Footprint: 4.8M+
             </div>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {/* Metric 1: ASHA */}
-            <div className="bg-surface-container-lowest dark:bg-surface-low border-3 border-primary dark:border-white p-6 shadow-[5px_5px_0px_#1a1a1a] dark:shadow-[5px_5px_0px_#ffffff] flex flex-col justify-between">
+            <div className="bg-surface-container-lowest border-3 border-outline p-6 shadow-[5px_5px_0px_#1a1a1a] dark:shadow-[5px_5px_0px_#0e0e10] flex flex-col justify-between">
               <div className="space-y-4">
-                <div className="flex items-start justify-between gap-2 border-b-2 border-primary dark:border-white pb-3">
+                <div className="flex items-start justify-between gap-2 border-b-2 border-outline pb-3">
                   <div className="flex items-center gap-2">
-                    <span className="font-mono text-xs font-bold uppercase tracking-widest text-accent-yellow dark:text-dark-accent-yellow">
+                    <span className="font-mono text-xs font-bold uppercase tracking-widest text-accent-yellow dark:text-primary-yellow">
                       METRIC // 01
                     </span>
-                    <span className="material-symbols-outlined text-accent-yellow dark:text-dark-accent-yellow">people</span>
+                    <span className="material-symbols-outlined text-accent-yellow dark:text-primary-yellow">people</span>
                   </div>
                 </div>
                 <div className="pt-1 lg:pt-0">
-                  <div className="font-display font-bold text-5xl lg:text-6xl tracking-tight leading-none text-on-surface dark:text-on-surface">
+                  <div className="font-display font-bold text-5xl lg:text-6xl tracking-tight leading-none text-on-surface">
                     700+
                   </div>
-                  <h3 className="mt-2 font-display text-base font-bold uppercase tracking-tight text-on-surface dark:text-on-surface">
+                  <h3 className="mt-2 font-display text-base font-bold uppercase tracking-tight text-on-surface">
                     ASHA Workers Mentored
                   </h3>
-                  <p className="mt-3 text-sm text-on-surface-variant dark:text-on-surface-variant/70 leading-relaxed">
+                  <p className="mt-3 text-sm text-on-surface-variant leading-relaxed">
                     M-ASHA digital application rollout across 100+ micro-sessions at sector meetings, sub-centres and block headquarters — frontline worker capacity building, hands-on.
                   </p>
                 </div>
-                <div className="mt-6 pt-4 border-t-2 border-primary dark:border-white flex items-center justify-between text-[11px] font-mono uppercase font-bold gap-3">
+                <div className="mt-6 pt-4 border-t-2 border-outline flex items-center justify-between text-[11px] font-mono uppercase font-bold gap-3">
                   <span>MICRO-SESSIONS: 100+</span>
-                  <span className="bg-accent-yellow dark:bg-accent-yellow text-black dark:text-black px-2 py-0.5 border border-accent-yellow dark:border-accent-yellow">
+                  <span className="bg-accent-yellow dark:bg-primary-yellow text-black dark:text-black px-2 py-0.5 border border-accent-yellow dark:border-accent-yellow">
                     COMPLIANCE: 94%
                   </span>
                 </div>
@@ -114,28 +114,28 @@ export default function HealthPage() {
             </div>
 
             {/* Metric 2: Clinical */}
-            <div className="bg-surface-container-lowest dark:bg-surface-low border-3 border-primary dark:border-white p-6 shadow-[5px_5px_0px_#1a1a1a] dark:shadow-[5px_5px_0px_#ffffff] flex flex-col justify-between">
+            <div className="bg-surface-container-lowest border-3 border-outline p-6 shadow-[5px_5px_0px_#1a1a1a] dark:shadow-[5px_5px_0px_#0e0e10] flex flex-col justify-between">
               <div className="space-y-4">
-                <div className="flex items-start justify-between gap-2 border-b-2 border-primary dark:border-white pb-3">
+                <div className="flex items-start justify-between gap-2 border-b-2 border-outline pb-3">
                   <div className="flex items-center gap-2">
-                    <span className="font-mono text-xs font-bold uppercase tracking-widest text-primary dark:text-white">
+                    <span className="font-mono text-xs font-bold uppercase tracking-widest text-primary">
                       METRIC // 02
                     </span>
-                    <span className="material-symbols-outlined text-primary dark:text-white">medical_services</span>
+                    <span className="material-symbols-outlined text-primary">medical_services</span>
                   </div>
                 </div>
                 <div className="pt-1 lg:pt-0">
-                  <div className="font-display font-bold text-5xl lg:text-6xl tracking-tight leading-none text-on-surface dark:text-on-surface">
+                  <div className="font-display font-bold text-5xl lg:text-6xl tracking-tight leading-none text-on-surface">
                     185-hr
                   </div>
-                  <h3 className="mt-2 font-display text-base font-bold uppercase tracking-tight text-on-surface dark:text-on-surface">
+                  <h3 className="mt-2 font-display text-base font-bold uppercase tracking-tight text-on-surface">
                     Clinical Skills Refresher
                   </h3>
-                  <p className="mt-3 text-sm text-on-surface-variant dark:text-on-surface-variant/70 leading-relaxed">
+                  <p className="mt-3 text-sm text-on-surface-variant leading-relaxed">
                     185-hour structured curriculum for 12 Staff Nurses and 4 Doctors — High-Risk Pregnancy management and labor room protocols, district hospital.
                   </p>
                 </div>
-                <div className="mt-6 pt-4 border-t-2 border-primary dark:border-white flex items-center justify-between text-[11px] font-mono uppercase font-bold gap-3">
+                <div className="mt-6 pt-4 border-t-2 border-outline flex items-center justify-between text-[11px] font-mono uppercase font-bold gap-3">
                   <span>COHORT: 16 CLINICIANS</span>
                   <span className="bg-accent-red dark:bg-accent-red text-white dark:text-white px-2 py-0.5 border border-accent-red dark:border-accent-red">
                     HRP PROTOCOLS
@@ -145,28 +145,28 @@ export default function HealthPage() {
             </div>
 
             {/* Metric 3: Sub-centres */}
-            <div className="bg-surface-container-lowest dark:bg-surface-low border-3 border-primary dark:border-white p-6 shadow-[5px_5px_0px_#1a1a1a] dark:shadow-[5px_5px_0px_#ffffff] flex flex-col justify-between">
+            <div className="bg-surface-container-lowest border-3 border-outline p-6 shadow-[5px_5px_0px_#1a1a1a] dark:shadow-[5px_5px_0px_#0e0e10] flex flex-col justify-between">
               <div className="space-y-4">
-                <div className="flex items-start justify-between gap-2 border-b-2 border-primary dark:border-white pb-3">
+                <div className="flex items-start justify-between gap-2 border-b-2 border-outline pb-3">
                   <div className="flex items-center gap-2">
-                    <span className="font-mono text-xs font-bold uppercase tracking-widest text-primary dark:text-white">
+                    <span className="font-mono text-xs font-bold uppercase tracking-widest text-primary">
                       METRIC // 03
                     </span>
-                    <span className="material-symbols-outlined text-primary dark:text-white">location_on</span>
+                    <span className="material-symbols-outlined text-primary">location_on</span>
                   </div>
                 </div>
                 <div className="pt-1 lg:pt-0">
-                  <div className="font-display font-bold text-5xl lg:text-6xl tracking-tight leading-none text-on-surface dark:text-on-surface">
+                  <div className="font-display font-bold text-5xl lg:text-6xl tracking-tight leading-none text-on-surface">
                     154
                   </div>
-                  <h3 className="mt-2 font-display text-base font-bold uppercase tracking-tight text-on-surface dark:text-on-surface">
+                  <h3 className="mt-2 font-display text-base font-bold uppercase tracking-tight text-on-surface">
                     Sub-Centres Audited
                   </h3>
-                  <p className="mt-3 text-sm text-on-surface-variant dark:text-on-surface-variant/70 leading-relaxed">
+                  <p className="mt-3 text-sm text-on-surface-variant leading-relaxed">
                     Physical vs digital register reconciliation across Sub-Centres and PHCs under the National Quality Assurance Standards (NQAS) framework.
                   </p>
                 </div>
-                <div className="mt-6 pt-4 border-t-2 border-primary dark:border-white flex items-center justify-between text-[11px] font-mono uppercase font-bold gap-3">
+                <div className="mt-6 pt-4 border-t-2 border-outline flex items-center justify-between text-[11px] font-mono uppercase font-bold gap-3">
                   <span>NQAS FRAMEWORK</span>
                   <span className="bg-accent-blue dark:bg-accent-blue text-white dark:text-white px-2 py-0.5 border border-accent-blue dark:border-accent-blue">
                     REGISTER RECON
@@ -176,16 +176,16 @@ export default function HealthPage() {
             </div>
 
             {/* Metric 5: Pipeline Volume */}
-            <div className="bg-primary dark:bg-surface-container-lowest text-on-primary dark:text-on-surface border-2 border-primary dark:border-white p-6 shadow-[4px_4px_0px_#ffcc00] flex flex-col justify-between md:col-span-2 lg:col-span-2 transition-transform hover:-translate-y-1">
+            <div className="bg-primary dark:bg-surface-container-lowest text-on-primary dark:text-on-surface border-2 border-outline p-6 shadow-[4px_4px_0px_#ffcc00] flex flex-col justify-between md:col-span-2 lg:col-span-2 transition-transform hover:-translate-y-1">
               <div className="space-y-2">
                 <div className="flex items-center justify-between border-b-2 border-on-primary/30 dark:border-on-surface/30 pb-2">
-                  <span className="font-headline text-xs font-bold uppercase tracking-wider text-accent-yellow dark:text-dark-accent-yellow">
+                  <span className="font-headline text-xs font-bold uppercase tracking-wider text-accent-yellow dark:text-primary-yellow">
                     METRIC // 05 (PIPELINE VOLUME)
                   </span>
-                  <span className="material-symbols-outlined text-accent-yellow dark:text-dark-accent-yellow text-xl">dataset</span>
+                  <span className="material-symbols-outlined text-accent-yellow dark:text-primary-yellow text-xl">dataset</span>
                 </div>
                 <div className="font-headline text-4xl sm:text-5xl font-bold text-on-primary dark:text-on-surface tracking-tight pt-2 flex items-baseline gap-2">
-                  118k+ <span className="text-sm uppercase tracking-widest text-accent-yellow dark:text-dark-accent-yellow">Validated Records</span>
+                  118k+ <span className="text-sm uppercase tracking-widest text-accent-yellow dark:text-primary-yellow">Validated Records</span>
                 </div>
                 <h3 className="font-headline text-base font-bold uppercase tracking-tight text-on-primary dark:text-on-surface">
                   ODK Collect &amp; Central Telemetry Pipeline
@@ -204,29 +204,29 @@ export default function HealthPage() {
       </section>
 
       {/* Health System Strengthening */}
-      <section className="border-b-4 border-primary dark:border-white bg-surface dark:bg-surface-dark py-12 px-4 sm:px-8 lg:px-12">
+      <section className="border-b-4 border-outline bg-surface py-12 px-4 sm:px-8 lg:px-12">
         <Section className="py-12">
-          <div className="flex flex-col md:flex-row sm:items-end justify-between gap-4 border-b-2 border-primary dark:border-white pb-6 mb-10">
+          <div className="flex flex-col md:flex-row sm:items-end justify-between gap-4 border-b-2 border-outline pb-6 mb-10">
             <div>
-              <span className="font-mono text-xs font-bold uppercase tracking-widest text-primary dark:text-white block mb-1">
+              <span className="font-mono text-xs font-bold uppercase tracking-widest text-primary block mb-1">
                   {`/* System Outcomes */`}
               </span>
-              <h2 className="font-headline text-3xl sm:text-5xl font-bold uppercase tracking-tight text-on-surface dark:text-on-surface leading-none">
+              <h2 className="font-headline text-3xl sm:text-5xl font-bold uppercase tracking-tight text-on-surface leading-none">
                 Health System Strengthening
               </h2>
             </div>
-            <p className="text-base leading-relaxed text-on-surface-variant dark:text-on-surface-variant/70 max-w-md">
+            <p className="text-base leading-relaxed text-on-surface-variant max-w-md">
               Day-to-day fellowship work — support activities woven across Bihar&apos;s public health system, frontline to block.
             </p>
           </div>
 
           {/* Field note */}
-          <div className="relative mb-12 lg:mb-16 bg-accent-red dark:bg-accent-red text-black dark:text-black border-2 border-primary dark:border-white shadow-[6px_6px_0px_#e63b2e] dark:shadow-[6px_6px_0px_#f97316] p-6 sm:p-8">
-            <div className="absolute top-0 right-0 transform translate-x-2 -translate-y-3 bg-accent-yellow dark:bg-accent-yellow px-3 py-1 font-mono text-xs font-bold uppercase tracking-widest text-black dark:text-black border-2 border-accent-yellow dark:border-accent-yellow">
+          <div className="relative mb-12 lg:mb-16 bg-accent-red dark:bg-accent-red text-black dark:text-black border-2 border-outline shadow-[6px_6px_0px_#e63b2e] dark:shadow-[6px_6px_0px_#f97316] p-6 sm:p-8">
+            <div className="absolute top-0 right-0 transform translate-x-2 -translate-y-3 bg-accent-yellow dark:bg-primary-yellow px-3 py-1 font-mono text-xs font-bold uppercase tracking-widest text-black dark:text-black border-2 border-accent-yellow dark:border-accent-yellow">
               FIELD NOTE
             </div>
             <div className="flex items-start gap-4">
-              <span className="text-accent-yellow dark:text-dark-accent-yellow text-4xl shrink-0" aria-hidden="true">
+              <span className="text-accent-yellow dark:text-primary-yellow text-4xl shrink-0" aria-hidden="true">
                 &#x201C;
               </span>
               <div className="space-y-2">
@@ -247,7 +247,7 @@ export default function HealthPage() {
                 title: 'GAVB Gandhi Fellow — Bihar',
                 tag: 'GANDHI FELLOWSHIP · PIRAMAL FOUNDATION',
                 body: 'District Resource Fellow, Gandhi Fellowship (Piramal Foundation), based in Muzaffarpur — living in the high-burden blocks and working the frontlines of Bihar&apos;s public health system.',
-                accent: 'bg-accent-yellow dark:bg-accent-yellow text-black dark:text-black border border-accent-yellow dark:border-accent-yellow',
+                accent: 'bg-accent-yellow dark:bg-primary-yellow text-black dark:text-black border border-accent-yellow dark:border-accent-yellow',
               },
               {
                 rank: 2,
@@ -261,7 +261,7 @@ export default function HealthPage() {
                 title: 'M-ASHA Digital Application Training',
                 tag: '100+ MICRO-SESSIONS',
                 body: 'Hands-on rollout of the M-ASHA digital application across 100+ micro-sessions at sector meetings, sub-centres and block headquarters — paper to tablet, village by village.',
-                accent: 'bg-accent-yellow dark:bg-accent-yellow text-black dark:text-black border border-accent-yellow dark:border-accent-yellow',
+                accent: 'bg-accent-yellow dark:bg-primary-yellow text-black dark:text-black border border-accent-yellow dark:border-accent-yellow',
               },
               {
                 rank: 4,
@@ -301,18 +301,18 @@ export default function HealthPage() {
             ].map((item) => (
               <div
                 key={item.rank}
-                className="bg-surface-container-lowest dark:bg-surface-low border-3 border-primary dark:border-white p-6 shadow-[5px_5px_0px_#1a1a1a] dark:shadow-[5px_5px_0px_#ffffff] flex flex-col justify-between"
+                className="bg-surface-container-lowest border-3 border-outline p-6 shadow-[5px_5px_0px_#1a1a1a] dark:shadow-[5px_5px_0px_#0e0e10] flex flex-col justify-between"
               >
                 <div className="space-y-3">
-                  <div className="flex items-start justify-between gap-2 border-b-2 border-primary dark:border-white pb-3">
+                  <div className="flex items-start justify-between gap-2 border-b-2 border-outline pb-3">
                     <span className={`font-mono text-[10px] font-bold uppercase tracking-widest ${item.accent}`}>
                       0{item.rank} &nbsp;//&nbsp; {item.tag}
                     </span>
                   </div>
-                  <h3 className={`font-display text-lg font-bold uppercase tracking-tight ${item.accent === 'bg-accent-yellow dark:bg-accent-yellow text-black dark:text-black border border-accent-yellow dark:border-accent-yellow' ? 'text-black dark:text-black' : 'text-primary dark:text-white'}`}>
+                  <h3 className={`font-display text-lg font-bold uppercase tracking-tight ${item.accent === 'bg-accent-yellow dark:bg-primary-yellow text-black dark:text-black border border-accent-yellow dark:border-accent-yellow' ? 'text-black dark:text-black' : 'text-primary'}`}>
                     {item.title}
                   </h3>
-                  <p className="mt-3 text-sm leading-relaxed text-on-surface-variant dark:text-on-surface-variant/70">{item.body}</p>
+                  <p className="mt-3 text-sm leading-relaxed text-on-surface-variant">{item.body}</p>
                 </div>
               </div>
             ))}
@@ -321,45 +321,45 @@ export default function HealthPage() {
       </section>
 
       {/* Outcomes */}
-      <section className="w-full px-4 sm:px-8 lg:px-12 py-10 lg:py-12 bg-surface dark:bg-surface-dark border-b-2 border-primary dark:border-white">
+      <section className="w-full px-4 sm:px-8 lg:px-12 py-10 lg:py-12 bg-surface border-b-2 border-outline">
         <div className="max-w-7xl mx-auto space-y-8">
-          <div className="border-b-2 border-primary dark:border-white pb-4 flex flex-col md:flex-row md:items-end justify-between gap-4">
+          <div className="border-b-2 border-outline pb-4 flex flex-col md:flex-row md:items-end justify-between gap-4">
             <div>
               <span className="font-headline text-xs font-bold uppercase tracking-widest text-accent-red dark:text-accent-red block mb-1">
                 {'/* OUTCOMES */'}
               </span>
-              <h2 className="font-headline text-2xl sm:text-4xl font-bold uppercase tracking-tight text-primary dark:text-on-surface">
+              <h2 className="font-headline text-2xl sm:text-4xl font-bold uppercase tracking-tight text-primary">
                 WHAT WE DRIVE TOWARD
               </h2>
             </div>
-            <p className="font-body text-xs md:text-sm text-on-surface-variant dark:text-on-surface-variant max-w-md">
+            <p className="font-body text-xs md:text-sm text-on-surface-variant max-w-md">
               Two outcome strands anchor every intervention in the field.
             </p>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <div className="bg-surface dark:bg-surface-container-lowest border-2 border-primary dark:border-white p-6 shadow-[6px_6px_0px_#1a1a1a] dark:shadow-[6px_6px_0px_#ffffff] flex flex-col justify-between space-y-4">
+            <div className="bg-surface dark:bg-surface-container-lowest border-2 border-outline p-6 shadow-[6px_6px_0px_#1a1a1a] dark:shadow-[6px_6px_0px_#0e0e10] flex flex-col justify-between space-y-4">
               <div className="space-y-3">
-                <div className="flex items-center justify-between border-b-2 border-primary dark:border-white pb-2">
+                <div className="flex items-center justify-between border-b-2 border-outline pb-2">
                   <span className="font-headline text-xs font-bold uppercase tracking-wider bg-primary dark:bg-on-surface text-on-primary dark:text-surface px-2 py-0.5">
                     OUTCOME 01
                   </span>
-                  <span className="material-symbols-outlined text-primary dark:text-on-surface text-2xl">diversity_3</span>
+                  <span className="material-symbols-outlined text-primary text-2xl">diversity_3</span>
                 </div>
-                <h3 className="font-headline text-xl sm:text-2xl font-bold uppercase tracking-tight text-primary dark:text-on-surface">
+                <h3 className="font-headline text-xl sm:text-2xl font-bold uppercase tracking-tight text-primary">
                   Community Outcomes
                 </h3>
-                <p className="font-body text-sm text-on-surface-variant dark:text-on-surface-variant leading-relaxed">
+                <p className="font-body text-sm text-on-surface-variant leading-relaxed">
                   Improved health behaviors, service utilization, and citizen experience within communities — making health systems work for the people they serve.
                 </p>
               </div>
-              <div className="pt-4 border-t border-primary dark:border-white flex items-center justify-between font-headline text-xs uppercase font-bold text-primary dark:text-on-surface">
+              <div className="pt-4 border-t border-outline flex items-center justify-between font-headline text-xs uppercase font-bold text-primary">
                 <span className="text-accent-red dark:text-accent-red">{'/* OUTCOMES */'}</span>
-                <span className="bg-accent-yellow dark:bg-primary-yellow px-2 py-0.5 border border-primary dark:border-white text-black dark:text-black">
+                <span className="bg-accent-yellow dark:bg-primary-yellow px-2 py-0.5 border border-outline text-black dark:text-black">
                   PEOPLE-FIRST
                 </span>
               </div>
             </div>
-            <div className="bg-primary dark:bg-surface-container-lowest text-on-primary dark:text-on-surface border-2 border-primary dark:border-white p-6 shadow-[6px_6px_0px_#ffcc00] dark:shadow-[6px_6px_0px_#ffcc00] flex flex-col justify-between space-y-4">
+            <div className="bg-primary dark:bg-surface-container-lowest text-on-primary dark:text-on-surface border-2 border-outline p-6 shadow-[6px_6px_0px_#ffcc00] dark:shadow-[6px_6px_0px_#ffcc00] flex flex-col justify-between space-y-4">
               <div className="space-y-3">
                 <div className="flex items-center justify-between border-b-2 border-on-primary/30 dark:border-white pb-2">
                   <span className="font-headline text-xs font-bold uppercase tracking-wider bg-accent-yellow dark:bg-primary-yellow text-black dark:text-black px-2 py-0.5">
@@ -386,23 +386,23 @@ export default function HealthPage() {
       </section>
 
       {/* WHO Building Blocks */}
-      <section className="w-full px-4 sm:px-8 lg:px-12 py-10 lg:py-12 bg-surface-container dark:bg-surface-low border-b-2 border-primary dark:border-white">
+      <section className="w-full px-4 sm:px-8 lg:px-12 py-10 lg:py-12 bg-surface-container dark:bg-surface-low border-b-2 border-outline">
         <div className="max-w-7xl mx-auto space-y-8">
-          <div className="border-b-2 border-primary dark:border-white pb-4 flex flex-col md:flex-row md:items-end justify-between gap-4">
+          <div className="border-b-2 border-outline pb-4 flex flex-col md:flex-row md:items-end justify-between gap-4">
             <div>
               <span className="font-headline text-xs font-bold uppercase tracking-widest text-accent-red dark:text-accent-red block mb-1">
                 {'/* SYSTEM OUTCOMES */'}
               </span>
-              <h2 className="font-headline text-2xl sm:text-4xl font-bold uppercase tracking-tight text-primary dark:text-on-surface">
+              <h2 className="font-headline text-2xl sm:text-4xl font-bold uppercase tracking-tight text-primary">
                 WHO BUILDING BLOCKS, UNDER FOCUS
               </h2>
             </div>
             <div className="flex flex-col items-start md:items-end gap-1">
-              <p className="font-body text-xs md:text-sm text-on-surface-variant dark:text-on-surface-variant max-w-md">
+              <p className="font-body text-xs md:text-sm text-on-surface-variant max-w-md">
                 Day-to-day fellowship work — support activities woven across the 6 WHO building blocks.
               </p>
-              <div className="flex items-center gap-2 font-headline text-[10px] uppercase font-bold text-primary dark:text-on-surface">
-                <span className="bg-accent-yellow dark:bg-primary-yellow px-2 py-0.5 border border-primary dark:border-white text-black dark:text-black">
+              <div className="flex items-center gap-2 font-headline text-[10px] uppercase font-bold text-primary">
+                <span className="bg-accent-yellow dark:bg-primary-yellow px-2 py-0.5 border border-outline text-black dark:text-black">
                   6 PILLARS IN FOCUS
                 </span>
               </div>
@@ -419,14 +419,14 @@ export default function HealthPage() {
             ].map((pillar) => (
               <div
                 key={pillar.id}
-                className="bg-surface dark:bg-surface-container-lowest border-2 border-primary dark:border-white p-6 shadow-[4px_4px_0px_#1a1a1a] dark:shadow-[4px_4px_0px_#ffffff] space-y-3 transition-transform hover:-translate-y-1"
+                className="bg-surface dark:bg-surface-container-lowest border-2 border-outline p-6 shadow-[4px_4px_0px_#1a1a1a] dark:shadow-[4px_4px_0px_#0e0e10] space-y-3 transition-transform hover:-translate-y-1"
               >
-                <div className="flex items-center justify-between border-b-2 border-primary dark:border-white pb-2">
-                  <span className={`font-headline text-xs font-bold uppercase tracking-wider ${pillar.color} text-black dark:text-black px-2 py-0.5 border border-primary dark:border-white`}>
+                <div className="flex items-center justify-between border-b-2 border-outline pb-2">
+                  <span className={`font-headline text-xs font-bold uppercase tracking-wider ${pillar.color} text-black dark:text-black px-2 py-0.5 border border-outline`}>
                     {pillar.id}{' // '}{pillar.title}
                   </span>
                 </div>
-                <p className="font-body text-xs text-on-surface-variant dark:text-on-surface-variant leading-relaxed">
+                <p className="font-body text-xs text-on-surface-variant leading-relaxed">
                   {pillar.desc}
                 </p>
               </div>
@@ -436,14 +436,14 @@ export default function HealthPage() {
       </section>
 
       {/* Field Mind */}
-      <section className="w-full px-4 sm:px-8 lg:px-12 py-10 lg:py-12 bg-surface-container-low dark:bg-surface-low border-b-2 border-primary dark:border-white">
+      <section className="w-full px-4 sm:px-8 lg:px-12 py-10 lg:py-12 bg-surface-container-low dark:bg-surface-low border-b-2 border-outline">
         <div className="max-w-7xl mx-auto space-y-8">
-          <div className="border-b-2 border-primary dark:border-white pb-4 flex flex-col md:flex-row md:items-end justify-between gap-4">
+          <div className="border-b-2 border-outline pb-4 flex flex-col md:flex-row md:items-end justify-between gap-4">
             <div>
               <span className="font-headline text-xs font-bold uppercase tracking-widest text-accent-red dark:text-accent-red block mb-1">
                 INTERNAL DISCIPLINE &amp; EQUANIMITY
               </span>
-              <h2 className="font-headline text-2xl sm:text-4xl font-bold uppercase tracking-tight text-primary dark:text-on-surface">
+              <h2 className="font-headline text-2xl sm:text-4xl font-bold uppercase tracking-tight text-primary">
                 FIELD MIND &amp; SUSTAINED OPERATIONAL DISCIPLINE
               </h2>
             </div>
@@ -452,42 +452,42 @@ export default function HealthPage() {
             </div>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <div className="border-2 border-primary dark:border-white p-6 bg-surface dark:bg-surface-container-lowest shadow-[4px_4px_0px_#1a1a1a] dark:shadow-[4px_4px_0px_#ffffff] flex flex-col justify-between space-y-4">
+            <div className="border-2 border-outline p-6 bg-surface dark:bg-surface-container-lowest shadow-[4px_4px_0px_#1a1a1a] dark:shadow-[4px_4px_0px_#0e0e10] flex flex-col justify-between space-y-4">
               <div className="space-y-3">
-                <div className="flex items-center justify-between border-b-2 border-primary dark:border-white pb-2">
+                <div className="flex items-center justify-between border-b-2 border-outline pb-2">
                   <span className="font-headline text-xs font-bold uppercase tracking-wider text-accent-red dark:text-accent-red">
                     PRACTICE 01 // COGNITIVE TRAINING
                   </span>
-                  <span className="material-symbols-outlined text-primary dark:text-on-surface text-xl">psychology</span>
+                  <span className="material-symbols-outlined text-primary text-xl">psychology</span>
                 </div>
-                <h3 className="font-headline text-xl font-bold uppercase tracking-tight text-primary dark:text-on-surface">
+                <h3 className="font-headline text-xl font-bold uppercase tracking-tight text-primary">
                   Cognitively-Based Compassion Training (CBCT®) &amp; Leadership Workshop
                 </h3>
-                <p className="font-body text-xs text-on-surface-variant dark:text-on-surface-variant leading-relaxed">
+                <p className="font-body text-xs text-on-surface-variant leading-relaxed">
                   Formal compassion methodology and emotional resilience training. Developed systemic empathy to engage with frontline workers facing severe burnout, resource scarcity, and structural fatigue.
                 </p>
               </div>
-              <div className="pt-3 border-t border-primary dark:border-white flex items-center justify-between text-[11px] font-headline uppercase font-bold text-primary dark:text-on-surface">
+              <div className="pt-3 border-t border-outline flex items-center justify-between text-[11px] font-headline uppercase font-bold text-primary">
                 <span>LOCATION: HAJIPUR RESIDENTIAL</span>
                 <span className="bg-accent-yellow dark:bg-primary-yellow px-2 py-0.5 text-black dark:text-black">COMPASSIONATE SYSTEMS</span>
               </div>
             </div>
-            <div className="border-2 border-primary dark:border-white p-6 bg-surface dark:bg-surface-container-lowest shadow-[4px_4px_0px_#1a1a1a] dark:shadow-[4px_4px_0px_#ffffff] flex flex-col justify-between space-y-4">
+            <div className="border-2 border-outline p-6 bg-surface dark:bg-surface-container-lowest shadow-[4px_4px_0px_#1a1a1a] dark:shadow-[4px_4px_0px_#0e0e10] flex flex-col justify-between space-y-4">
               <div className="space-y-3">
-                <div className="flex items-center justify-between border-b-2 border-primary dark:border-white pb-2">
+                <div className="flex items-center justify-between border-b-2 border-outline pb-2">
                   <span className="font-headline text-xs font-bold uppercase tracking-wider text-accent-blue dark:text-accent-blue">
                     PRACTICE 02 // INTELLECTUAL EQUANIMITY
                   </span>
-                  <span className="material-symbols-outlined text-primary dark:text-on-surface text-xl">self_improvement</span>
+                  <span className="material-symbols-outlined text-primary text-xl">self_improvement</span>
                 </div>
-                <h3 className="font-headline text-xl font-bold uppercase tracking-tight text-primary dark:text-on-surface">
+                <h3 className="font-headline text-xl font-bold uppercase tracking-tight text-primary">
                   10-Day Silent Vipassana Meditation Course at Dhamma Vaishali
                 </h3>
-                <p className="font-body text-xs text-on-surface-variant dark:text-on-surface-variant leading-relaxed">
+                <p className="font-body text-xs text-on-surface-variant leading-relaxed">
                   Rigorous ten days of Noble Silence and sensory austerity. Cultivated unbroken focus, non-reactive clarity under extreme pressure, and radical endurance.
                 </p>
               </div>
-              <div className="pt-3 border-t border-primary dark:border-white flex items-center justify-between text-[11px] font-headline uppercase font-bold text-primary dark:text-on-surface">
+              <div className="pt-3 border-t border-outline flex items-center justify-between text-[11px] font-headline uppercase font-bold text-primary">
                 <span>DHAMMA VAISHALI, BIHAR</span>
                 <span className="bg-accent-yellow dark:bg-primary-yellow px-2 py-0.5 text-black dark:text-black">10-DAY SILENT RETREAT</span>
               </div>
@@ -497,7 +497,7 @@ export default function HealthPage() {
       </section>
 
       {/* Telemetry Feed */}
-      <section className="w-full px-4 sm:px-8 lg:px-12 py-10 lg:py-12 bg-primary dark:bg-surface-container-lowest text-on-primary dark:text-on-surface border-b-2 border-primary dark:border-white">
+      <section className="w-full px-4 sm:px-8 lg:px-12 py-10 lg:py-12 bg-primary dark:bg-surface-container-lowest text-on-primary dark:text-on-surface border-b-2 border-outline">
         <div className="max-w-7xl mx-auto space-y-6">
           <div className="flex flex-wrap items-center justify-between gap-4 border-b-2 border-on-primary/30 dark:border-outline pb-3">
             <div className="flex items-center gap-3">
@@ -550,22 +550,22 @@ export default function HealthPage() {
       </section>
 
       {/* Routing banner to work */}
-      <section className="w-full px-4 sm:px-8 lg:px-12 py-10 lg:py-12 bg-accent-yellow dark:bg-primary-yellow border-b-2 border-primary dark:border-white">
-        <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-8 border-2 border-primary dark:border-white p-6 sm:p-10 bg-surface dark:bg-surface-container-lowest shadow-[6px_6px_0px_#1a1a1a] dark:shadow-[6px_6px_0px_#ffffff]">
+      <section className="w-full px-4 sm:px-8 lg:px-12 py-10 lg:py-12 bg-accent-yellow dark:bg-primary-yellow border-b-2 border-outline">
+        <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-8 border-2 border-outline p-6 sm:p-10 bg-surface dark:bg-surface-container-lowest shadow-[6px_6px_0px_#1a1a1a] dark:shadow-[6px_6px_0px_#0e0e10]">
           <div className="space-y-2 max-w-2xl">
             <span className="font-headline text-xs font-bold uppercase tracking-widest text-accent-red dark:text-accent-red block">
               FULL-STACK BRIDGE // CODE MEETS CLINICAL REALITY
             </span>
-            <h2 className="font-headline text-2xl sm:text-4xl font-bold uppercase tracking-tight text-primary dark:text-on-surface leading-tight">
+            <h2 className="font-headline text-2xl sm:text-4xl font-bold uppercase tracking-tight text-primary leading-tight">
               INTERESTED IN THE UNDERLYING CODE &amp; ARCHITECTURE?
             </h2>
-            <p className="font-body text-sm text-on-surface-variant dark:text-on-surface-variant">
+            <p className="font-body text-sm text-on-surface-variant">
               Inspect the deterministic Python pipelines, offline-first architectures, and production code bases engineered to empower public health systems.
             </p>
           </div>
           <Link
             href="/work"
-            className="shrink-0 w-full md:w-auto inline-flex items-center justify-center gap-3 px-8 py-4 bg-primary dark:bg-on-surface text-on-primary dark:text-surface font-headline text-sm font-bold uppercase tracking-widest border-2 border-primary dark:border-white shadow-[4px_4px_0px_#1a1a1a] dark:shadow-[4px_4px_0px_#ffffff] transition-all hover:translate-x-0.5 hover:translate-y-0.5"
+            className="shrink-0 w-full md:w-auto inline-flex items-center justify-center gap-3 px-8 py-4 bg-primary dark:bg-on-surface text-on-primary dark:text-surface font-headline text-sm font-bold uppercase tracking-widest border-2 border-outline shadow-[4px_4px_0px_#1a1a1a] dark:shadow-[4px_4px_0px_#0e0e10] transition-all hover:translate-x-0.5 hover:translate-y-0.5"
           >
             <span>EXPLORE PRODUCTION WORK &amp; SYSTEMS</span>
             <span className="material-symbols-outlined text-lg">arrow_forward</span>
