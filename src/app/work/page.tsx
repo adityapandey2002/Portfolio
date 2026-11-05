@@ -56,7 +56,7 @@ export default function WorkPage() {
                   04+3
                 </div>
                 <div className="mt-1 font-headline text-xs font-bold uppercase text-accent-red">
-                  5 FLAGSHIPS + 3 SPECIALIZED
+                  6 FLAGSHIPS + 3 SPECIALIZED
                 </div>
               </div>
               <div className="font-body text-xs text-on-surface-variant dark:text-on-surface-variant">
@@ -1352,6 +1352,158 @@ export default function WorkPage() {
                 <li className="flex items-start gap-2"><span className="mt-1.5 h-1.5 w-1.5 shrink-0 bg-accent-blue" />Brand Protection &amp; Compliance (anti-counterfeit, trademark)</li>
                 <li className="flex items-start gap-2"><span className="mt-1.5 h-1.5 w-1.5 shrink-0 bg-accent-blue" />Website Development &amp; Management</li>
                 <li className="flex items-start gap-2"><span className="mt-1.5 h-1.5 w-1.5 shrink-0 bg-accent-blue" />Sales &amp; Performance Analytics (dashboards, weekly reviews)</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ============================================================
+          FLAGSHIP #6 — VHSND & PMSMA DATA PIPELINE
+      ============================================================ */}
+      <section
+        className="project-card w-full border-b-2 border-primary bg-surface px-6 py-12 dark:border-outline dark:bg-surface-low lg:px-12 lg:py-16"
+        data-category="flagship data"
+      >
+        <div className="mx-auto max-w-7xl space-y-8">
+          {/* Top Badges */}
+          <div className="flex flex-wrap items-center justify-between gap-4 border-b-2 border-primary pb-4 dark:border-outline-variant">
+            <div className="flex flex-wrap items-center gap-2">
+              <span className="border-2 border-primary bg-primary px-3 py-1 font-headline text-xs font-bold uppercase tracking-wider text-primary-yellow shadow-[2px_2px_0px_#1a1a1a] dark:border-primary-yellow dark:bg-primary-yellow dark:text-black dark:shadow-[2px_2px_0px_#0e0e10]">
+                FLAGSHIP 06 // OFFLINE-FIRST DATA PIPELINE
+              </span>
+              <span className="border-2 border-primary bg-accent-red px-3 py-1 font-headline text-xs font-bold uppercase tracking-wider text-white shadow-[2px_2px_0px_#1a1a1a] dark:border-accent-red dark:shadow-[2px_2px_0px_#0e0e10]">
+                OFFLINE-FIRST · NO SERVER · AES-256-GCM
+              </span>
+              <span className="border-2 border-primary bg-surface px-3 py-1 font-headline text-xs font-bold uppercase tracking-wider text-primary dark:border-outline dark:bg-surface-container dark:text-white">
+                NEXT.JS 16 · REACT 19 · TYPESCRIPT
+              </span>
+            </div>
+            <div className="flex items-center gap-2 font-headline text-xs font-bold uppercase tracking-widest text-on-surface-variant dark:text-on-surface-variant">
+              <span className="h-2.5 w-2.5 animate-pulse rounded-full bg-emerald-500" />
+              DEPLOYMENT: STATIC_EXPORT · 6 ROUTES
+            </div>
+          </div>
+
+          {/* Title & Overview */}
+          <div className="grid grid-cols-1 items-start gap-8 lg:grid-cols-12">
+            <div className="space-y-4 lg:col-span-8">
+              <h2 className="font-headline text-3xl font-bold uppercase leading-tight tracking-tight text-primary dark:text-white sm:text-4xl lg:text-5xl">
+                VHSND &amp; PMSMA DATA-CLEANING PIPELINE
+                <span className="mt-1 block text-xl font-normal uppercase tracking-normal text-on-surface-variant dark:text-primary-yellow sm:text-2xl">
+                  Offline-First Survey Normalisation, Contradiction Adjudication &amp; Reporting
+                </span>
+              </h2>
+              <p className="font-body text-base leading-relaxed text-on-surface-variant dark:text-on-surface-variant">
+                A browser-only, offline-first data-cleaning and reporting pipeline for VHSND (Village
+                Health &amp; Sanitation Day) household survey sessions. A health official drops an
+                ODK/Excel export into the browser; the app normalises it against the 253-column survey
+                schema, flags contradictions across 37 cross-field rules, lets a human adjudicate each
+                flagged row with a written justification, charts 21 indicators and 21 comparisons, and
+                exports a signed-off report (PPTX / DOCX / CSV / JSON). Nothing is uploaded — pure
+                static export, AES-256-GCM encrypted at rest, SHA-256 manifest binding.
+              </p>
+            </div>
+
+            <div className="flex flex-col gap-3 border-2 border-primary bg-surface-container p-4 shadow-[4px_4px_0px_#1a1a1a] dark:border-outline dark:bg-surface-container dark:shadow-[4px_4px_0px_#0e0e10] lg:col-span-4">
+              <div className="flex items-center justify-between border-b border-primary pb-2 font-headline text-xs font-bold uppercase text-primary dark:border-outline dark:text-primary-yellow">
+                <span>PIPELINE QUALITY GATES</span>
+                <span className="material-symbols-outlined text-sm text-accent-red">verified</span>
+              </div>
+              <div className="space-y-2 font-headline text-xs">
+                <div className="flex items-center justify-between">
+                  <span className="text-on-surface-variant dark:text-on-surface-variant">COLUMNS:</span>
+                  <span className="font-bold text-primary dark:text-white">253</span>
+                </div>
+                <div className="flex items-center justify-between">
+                  <span className="text-on-surface-variant dark:text-on-surface-variant">SCHEMA FIELDS:</span>
+                  <span className="font-bold text-primary dark:text-white">129 (14 groups)</span>
+                </div>
+                <div className="flex items-center justify-between">
+                  <span className="text-on-surface-variant dark:text-on-surface-variant">CROSS-FIELD RULES:</span>
+                  <span className="font-bold text-primary dark:text-white">37 (24 codes)</span>
+                </div>
+                <div className="flex items-center justify-between">
+                  <span className="text-on-surface-variant dark:text-on-surface-variant">INDICATORS / COMPARISONS:</span>
+                  <span className="font-bold text-accent-red dark:text-accent-red">21 / 21</span>
+                </div>
+                <div className="flex items-center justify-between">
+                  <span className="text-on-surface-variant dark:text-on-surface-variant">TESTS PASSING:</span>
+                  <span className="font-bold text-primary dark:text-white">212 (19 files)</span>
+                </div>
+                <div className="flex items-center justify-between">
+                  <span className="text-on-surface-variant dark:text-on-surface-variant">BACKEND SERVICES:</span>
+                  <span className="font-bold text-primary dark:text-white">0 (client-only)</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Live Browser Preview Box */}
+          <a
+            aria-label="Open the VHSND pipeline local app"
+            className="group relative block border-2 border-primary bg-surface shadow-[6px_6px_0px_#1a1a1a] dark:border-outline dark:bg-surface-low dark:shadow-[6px_6px_0px_#0e0e10]"
+            href="http://localhost:4173/"
+          >
+            <div className="flex items-center justify-between border-b-2 border-primary bg-primary px-4 py-2.5 font-headline text-xs text-on-primary dark:border-outline dark:bg-surface-lowest dark:text-on-surface">
+              <div className="flex items-center gap-2">
+                <span className="inline-block h-3 w-3 rounded-full bg-accent-red" />
+                <span className="inline-block h-3 w-3 rounded-full bg-primary-yellow" />
+                <span className="inline-block h-3 w-3 rounded-full bg-accent-blue" />
+                <span className="ml-2 font-bold tracking-wide text-primary-yellow dark:text-accent-blue">
+                  OFFLINE-FIRST PIPELINE
+                </span>
+              </div>
+              <span className="border border-primary-yellow/30 bg-primary-yellow/20 px-2 py-0.5 font-mono text-[11px] text-surface-variant dark:border-outline dark:bg-surface-container dark:text-on-surface-variant">
+                static export · no server
+              </span>
+            </div>
+            <div className="relative max-h-[520px] overflow-y-auto bg-surface">
+              <img
+                alt="VHSND pipeline landing page screenshot"
+                className="block h-auto w-full object-cover"
+                decoding="async"
+                height={1100}
+                loading="eager"
+                src="/work/preview-vhsnd-pipeline.png"
+                width={1100}
+              />
+            </div>
+            <div className="flex items-center justify-between bg-surface-container p-3 font-headline text-xs dark:bg-surface">
+              <span className="flex items-center gap-1.5 font-bold uppercase text-primary dark:text-white">
+                <span className="material-symbols-outlined text-sm text-accent-red">lock</span>
+                AES-256-GCM · SHA-256 Manifest
+              </span>
+              <span className="text-[11px] text-on-surface-variant dark:text-on-surface-variant">
+                Runs fully in-browser · no data leaves origin
+              </span>
+            </div>
+          </a>
+
+          {/* Architecture & Capabilities */}
+          <div className="grid grid-cols-1 gap-6 lg:grid-cols-2">
+            <div className="space-y-3">
+              <h3 className="font-headline text-sm font-bold uppercase tracking-wider text-primary dark:text-primary-yellow">
+                PIPELINE STAGES
+              </h3>
+              <ul className="space-y-2 font-body text-sm text-on-surface-variant dark:text-on-surface-variant">
+                <li className="flex items-start gap-2"><span className="mt-1.5 h-1.5 w-1.5 shrink-0 bg-accent-red" />/ingest — drop .xlsx/.xls/.ods/.csv, header→field mapping ladder, orientation &amp; layout detection</li>
+                <li className="flex items-start gap-2"><span className="mt-1.5 h-1.5 w-1.5 shrink-0 bg-accent-red" />/review — 3-pass contradiction engine (field coercion, select-multiple coherence, 37 cross-field rules), row adjudication (keep/drop/override + justification)</li>
+                <li className="flex items-start gap-2"><span className="mt-1.5 h-1.5 w-1.5 shrink-0 bg-accent-red" />/viz — 21 indicators + 21 comparisons (14 chart kinds), partial-comparison gate, PNG capture</li>
+                <li className="flex items-start gap-2"><span className="mt-1.5 h-1.5 w-1.5 shrink-0 bg-accent-red" />/report — PPTX / DOCX / CSV / JSON export, SHA-256 manifest, audit appendix</li>
+                <li className="flex items-start gap-2"><span className="mt-1.5 h-1.5 w-1.5 shrink-0 bg-accent-red" />Mandatory-unresolved-error gate blocks viz/report until every error is adjudicated</li>
+              </ul>
+            </div>
+            <div className="space-y-3">
+              <h3 className="font-headline text-sm font-bold uppercase tracking-wider text-primary dark:text-primary-yellow">
+                ENGINEERING HIGHLIGHTS
+              </h3>
+              <ul className="space-y-2 font-body text-sm text-on-surface-variant dark:text-on-surface-variant">
+                <li className="flex items-start gap-2"><span className="mt-1.5 h-1.5 w-1.5 shrink-0 bg-accent-blue" />253-column registry · 129 schema fields · 37 cross-field rules · 21 indicators · 21 comparisons</li>
+                <li className="flex items-start gap-2"><span className="mt-1.5 h-1.5 w-1.5 shrink-0 bg-accent-blue" />Web Workers for parse/validate with inline fallback; same pure functions in both paths</li>
+                <li className="flex items-start gap-2"><span className="mt-1.5 h-1.5 w-1.5 shrink-0 bg-accent-blue" />AES-256-GCM encryption at rest (IndexedDB) · SHA-256 manifest over canonical context + cleaned rows</li>
+                <li className="flex items-start gap-2"><span className="mt-1.5 h-1.5 w-1.5 shrink-0 bg-accent-blue" />CSP + build gate enforce zero outbound requests; vendored SheetJS tarball for reproducible offline builds</li>
+                <li className="flex items-start gap-2"><span className="mt-1.5 h-1.5 w-1.5 shrink-0 bg-accent-blue" />212 tests passing (Vitest) · React Compiler enabled · no backend, no auth, no env vars</li>
               </ul>
             </div>
           </div>
