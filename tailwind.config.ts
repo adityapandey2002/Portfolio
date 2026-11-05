@@ -64,12 +64,12 @@ const config: Config = {
         rose: '#c41e2a',
         cyan: '#92400e',
 
-        // ── Static accents ──
-        'accent-yellow': '#ffcc00',
-        'accent-red': '#e63b2e',
-        'accent-blue': '#0055ff',
+        // ── Theme-adaptive accents ──
+        'accent-yellow': cssVar('--v2-accent-yellow-rgb'),
+        'accent-red': cssVar('--v2-accent-red-rgb'),
+        'accent-blue': cssVar('--v2-accent-blue-rgb'),
         'dark-accent-yellow': '#ffcc00',
-        'primary-yellow': '#ffcc00',
+        'primary-yellow': cssVar('--v2-accent-yellow-rgb'),
         vermilion: '#e63b2e',
         'electric-blue': '#0055ff',
         'on-accent-yellow': '#000000',
@@ -77,14 +77,14 @@ const config: Config = {
         'on-accent-blue': '#ffffff',
 
         // ── Material-style semantic roles ──
-        'primary-container': '#ffcc00',
-        'on-primary-container': '#1a1a1a',
+        'primary-container': cssVar('--v2-accent-yellow-rgb'),
+        'on-primary-container': cssVar('--v2-on-primary-container-rgb'),
         'primary-fixed': '#ffcc00',
         'primary-fixed-dim': '#e6b800',
         'on-primary-fixed': '#1a1a1a',
         'on-primary-fixed-variant': '#1a1a1a',
 
-        secondary: '#e63b2e',
+        secondary: cssVar('--v2-accent-red-rgb'),
         'secondary-container': '#ffdad6',
         'on-secondary-container': '#1a1a1a',
         'secondary-fixed': '#ffdad6',
@@ -93,7 +93,7 @@ const config: Config = {
         'on-secondary-fixed': '#1a1a1a',
         'on-secondary-fixed-variant': '#1a1a1a',
 
-        tertiary: '#0055ff',
+        tertiary: cssVar('--v2-accent-blue-rgb'),
         'tertiary-container': '#d6e3ff',
         'on-tertiary-container': '#1a1a1a',
         'tertiary-fixed': '#d6e3ff',
