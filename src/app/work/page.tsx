@@ -978,7 +978,7 @@ export default function WorkPage() {
                 </span>
               </div>
               <span className="border border-primary-yellow/30 bg-primary-yellow/20 px-2 py-0.5 font-mono text-[11px] text-surface-variant dark:border-outline dark:bg-surface-container dark:text-on-surface-variant">
-                matru-suraksha.app
+                hrp-pilot-api.onrender.com
               </span>
             </div>
             <div className="grid grid-cols-1 items-center gap-6 bg-surface-bright p-6 dark:bg-surface-low md:grid-cols-12">
@@ -988,10 +988,10 @@ export default function WorkPage() {
                     alt="Matru Suraksha clinical triage PWA preview"
                     className="block h-auto w-full object-cover"
                     decoding="async"
-                    height={279}
+                    height={1100}
                     loading="eager"
-                    src="/work/matru-suraksha.png"
-                    width={512}
+                    src="/work/preview-matru-suraksha.png"
+                    width={1100}
                   />
                 </div>
               </div>
@@ -1003,14 +1003,18 @@ export default function WorkPage() {
                   MATRU SURAKSHA PWA
                 </h3>
                 <p className="font-body text-xs leading-relaxed text-on-surface-variant dark:text-on-surface-variant">
-                  The live field deployment URL will be attached here once the public pilot link is
-                  cleared for release. The preview above is the captured PWA client from the Bihar
-                  health operations build.
+                  The live field deployment is now public at hrp-pilot-api.onrender.com. The preview
+                  above is the captured PWA client from the Bihar health operations build.
                 </p>
-                <span className="inline-flex items-center gap-2 border-2 border-primary bg-surface-container px-3 py-2 font-headline text-[11px] font-bold uppercase tracking-wider text-primary dark:border-outline dark:bg-surface-container dark:text-on-surface-variant">
+                <a
+                  className="inline-flex items-center gap-2 border-2 border-primary bg-accent-red px-3 py-2 font-headline text-[11px] font-bold uppercase tracking-wider text-white shadow-[2px_2px_0px_#1a1a1a] dark:border-accent-red dark:shadow-[2px_2px_0px_#0e0e10]"
+                  href="https://hrp-pilot-api.onrender.com"
+                  rel="noopener noreferrer"
+                  target="_blank"
+                >
                   <span className="material-symbols-outlined text-[16px]">link</span>
-                  LIVE URL PENDING
-                </span>
+                  OPEN LIVE PWA: hrp-pilot-api.onrender.com
+                </a>
               </div>
             </div>
             <div className="flex items-center justify-between bg-surface-container p-3 font-headline text-xs dark:bg-surface">
