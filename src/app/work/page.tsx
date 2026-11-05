@@ -2,6 +2,7 @@ import Link from 'next/link';
 
 import { Footer } from '@/components/sections/Footer';
 import { WorkFilterBar } from '@/components/work/WorkFilterBar';
+import { WorkMobile } from '@/components/work/WorkMobile';
 
 export const metadata = {
   title: 'Work & Systems — Aditya Pandey',
@@ -12,6 +13,8 @@ export const metadata = {
 export default function WorkPage() {
   return (
     <>
+      <WorkMobile />
+      <div className="hidden lg:block">
       {/* ============================================================
           HERO & TELEMETRY
       ============================================================ */}
@@ -1612,7 +1615,9 @@ export default function WorkPage() {
         </div>
       </section>
 
-      <Footer />
+    </div>
+
+    <Footer />
     </>
   );
 }
