@@ -197,16 +197,26 @@ export default function WorkPage() {
                     biharkaswaad.in
                   </span>
                 </div>
-                {/* Browser Content - Live iframe */}
-                <div className="relative bg-surface dark:bg-surface-container-lowest border-b border-primary dark:border-white max-h-[520px] overflow-hidden">
-                  <iframe
-                    src="https://biharkaswaad.in"
-                    title="BiharKaSwaad live website"
-                    className="w-full h-[520px] border-0"
+                {/* Browser Content - Live storefront render */}
+                <a
+                  aria-label="Open the live BiharKaSwaad storefront"
+                  className="group relative block bg-surface dark:bg-surface-container-lowest border-b border-primary dark:border-white overflow-hidden"
+                  href="https://biharkaswaad.in"
+                  rel="noopener noreferrer"
+                  target="_blank"
+                >
+                  <img
+                    alt="BiharKaSwaad live website production storefront screenshot"
+                    className="w-full h-auto block object-cover opacity-90 group-hover:opacity-100 transition-opacity"
+                    height={900}
                     loading="lazy"
-                    sandbox="allow-scripts allow-same-origin allow-popups"
+                    src="/work/biharkaswaad-desktop.png"
+                    width={1440}
                   />
-                </div>
+                  <span className="absolute bottom-3 right-3 bg-accent-yellow dark:bg-primary-yellow text-black font-headline text-[10px] font-bold uppercase tracking-wider px-2.5 py-1 border-2 border-primary dark:border-white shadow-[2px_2px_0px_#1a1a1a] dark:shadow-[2px_2px_0px_#ffffff]">
+                    Live Site
+                  </span>
+                </a>
                 {/* Browser Footer Strip */}
                 <div className="p-3 bg-surface-container dark:bg-surface-low flex items-center justify-between text-xs font-headline">
                   <span className="font-bold uppercase text-primary dark:text-on-surface flex items-center gap-1.5">
@@ -442,14 +452,25 @@ export default function WorkPage() {
                     hospital-araria-f5wl.vercel.app
                   </span>
                 </div>
-                <div className="relative bg-surface dark:bg-surface-container-lowest border-b border-primary dark:border-white max-h-[520px] overflow-y-auto">
+                <a
+                  aria-label="Open the live District Hospital Araria civic portal"
+                  className="group relative block bg-surface dark:bg-surface-container-lowest border-b border-primary dark:border-white overflow-hidden"
+                  href="https://hospital-araria-f5wl.vercel.app/"
+                  rel="noopener noreferrer"
+                  target="_blank"
+                >
                   <img
                     alt="District Hospital Araria Civic Healthcare Portal screenshot"
-                    className="w-full h-auto block object-cover"
+                    className="w-full h-auto block object-cover opacity-90 group-hover:opacity-100 transition-opacity"
+                    height={294}
                     loading="lazy"
-                    src="https://www.gstatic.com/labs-code/stitch/stitch-placeholder-300x300.svg"
+                    src="/work/sadar-hospital.png"
+                    width={520}
                   />
-                </div>
+                  <span className="absolute bottom-3 right-3 bg-accent-yellow dark:bg-primary-yellow text-black font-headline text-[10px] font-bold uppercase tracking-wider px-2.5 py-1 border-2 border-primary dark:border-white shadow-[2px_2px_0px_#1a1a1a] dark:shadow-[2px_2px_0px_#ffffff]">
+                    Live Portal
+                  </span>
+                </a>
                 <div className="p-3 bg-surface-container dark:bg-surface-low flex items-center justify-between text-xs font-headline">
                   <span className="font-bold uppercase text-primary dark:text-on-surface flex items-center gap-1.5">
                     <span className="material-symbols-outlined text-accent-red dark:text-accent-red text-sm">local_hospital</span>
@@ -593,9 +614,25 @@ export default function WorkPage() {
                   </span>
                 </div>
                 {/* Browser Content */}
-                <div className="relative bg-surface dark:bg-surface-container-lowest border-b border-primary dark:border-white max-h-[520px] overflow-y-auto">
-                  <img alt="India Development Data Engine live dashboard screenshot" className="w-full h-auto block object-cover" loading="lazy" src="https://www.gstatic.com/labs-code/stitch/stitch-placeholder-300x300.svg" />
-                </div>
+                <a
+                  aria-label="Open the live India Development Data Engine dashboard"
+                  className="group relative block bg-surface dark:bg-surface-container-lowest border-b border-primary dark:border-white overflow-hidden"
+                  href="https://india-dashboard-delta.vercel.app/"
+                  rel="noopener noreferrer"
+                  target="_blank"
+                >
+                  <img
+                    alt="India Development Data Engine live dashboard screenshot"
+                    className="w-full h-auto block object-cover opacity-90 group-hover:opacity-100 transition-opacity"
+                    height={294}
+                    loading="lazy"
+                    src="/work/india-data-engine.png"
+                    width={520}
+                  />
+                  <span className="absolute bottom-3 right-3 bg-accent-yellow dark:bg-primary-yellow text-black font-headline text-[10px] font-bold uppercase tracking-wider px-2.5 py-1 border-2 border-primary dark:border-white shadow-[2px_2px_0px_#1a1a1a] dark:shadow-[2px_2px_0px_#ffffff]">
+                    Live Dashboard
+                  </span>
+                </a>
                 {/* Browser Footer Strip */}
                 <div className="p-3 bg-surface-container dark:bg-surface-low flex items-center justify-between text-xs font-headline">
                   <span className="font-bold uppercase text-primary dark:text-on-surface flex items-center gap-1.5">
