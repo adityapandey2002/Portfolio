@@ -49,6 +49,28 @@ const PROJECTS = [
     metrics: ['118K+ RECORDS', '32ms CORRELATION', 'NFHS-5'],
     chips: ['DuckDB', 'Next.js', 'TopoJSON'],
   },
+  {
+    id: 'consultancy',
+    tag: 'LIVE COMMERCE PORTAL',
+    title: 'Consultancy Wala',
+    subtitle: 'Consultancy Wala — E-Commerce Growth Agency',
+    desc: 'Founder-led e-commerce growth agency: Amazon/Flipkart/Meesho launch, PPC, cataloging, ops. 50+ brands, ₹40Cr+ GMV.',
+    img: '/work/preview-consultancywala.png',
+    href: 'https://consultancywala.com',
+    metrics: ['50+ BRANDS', '₹40Cr+ GMV', '500+ LISTINGS'],
+    chips: ['Next.js', 'React', 'Tailwind'],
+  },
+  {
+    id: 'vhsnd',
+    tag: 'OFFLINE-FIRST PIPELINE',
+    title: 'VHSND Pipeline',
+    subtitle: 'VHSND & PMSMA Data-Cleaning Pipeline',
+    desc: 'Offline-first browser pipeline: ODK/Excel → normalise → adjudicate contradictions → charts → PPTX/DOCX/CSV/JSON. 253 cols, 37 rules, 21 indicators.',
+    img: '/work/preview-vhsnd-pipeline.png',
+    href: null,
+    metrics: ['253 COLUMNS', '37 RULES', '212 TESTS'],
+    chips: ['Next.js 16', 'React 19', 'TypeScript'],
+  },
 ];
 
 const SPECIALIZED = [
@@ -71,11 +93,11 @@ export function WorkMobile() {
           Engineered for high-integrity commerce &amp; deterministic frontline scale
         </h1>
         <p className="font-body text-sm text-on-surface-variant leading-relaxed">
-          5 live engines across commerce, civic health, maternal triage, data analytics, and hardware.
+          7 live engines across commerce, civic health, maternal triage, data analytics, hardware, growth agency, and offline pipelines.
         </p>
         <div className="flex flex-wrap gap-2">
           <span className="bg-primary-container px-2 py-0.5 font-headline text-[10px] font-bold uppercase tracking-wider text-on-primary-container border border-outline">
-            5 LIVE ENGINES
+            7 LIVE ENGINES
           </span>
         </div>
       </section>
