@@ -87,10 +87,10 @@ export default function HealthPage() {
               <div className="space-y-4">
                 <div className="flex items-start justify-between gap-2 border-b-2 border-outline pb-3">
                   <div className="flex items-center gap-2">
-                    <span className="font-mono text-xs font-bold uppercase tracking-widest text-accent-yellow dark:text-primary-yellow">
+                    <span className="font-mono text-xs font-bold uppercase tracking-widest text-primary">
                       METRIC // 01
                     </span>
-                    <span className="material-symbols-outlined text-accent-yellow dark:text-primary-yellow">people</span>
+                    <span className="material-symbols-outlined text-primary">people</span>
                   </div>
                 </div>
                 <div className="pt-1 lg:pt-0">
@@ -137,7 +137,7 @@ export default function HealthPage() {
                 </div>
                 <div className="mt-6 pt-4 border-t-2 border-outline flex items-center justify-between text-[11px] font-mono uppercase font-bold gap-3">
                   <span>COHORT: 16 CLINICIANS</span>
-                  <span className="bg-accent-red dark:bg-accent-red text-white dark:text-white px-2 py-0.5 border border-accent-red dark:border-accent-red">
+                  <span className="bg-accent-red dark:bg-accent-red text-white dark:text-[#121214] px-2 py-0.5 border border-accent-red dark:border-accent-red">
                     HRP PROTOCOLS
                   </span>
                 </div>
@@ -168,7 +168,7 @@ export default function HealthPage() {
                 </div>
                 <div className="mt-6 pt-4 border-t-2 border-outline flex items-center justify-between text-[11px] font-mono uppercase font-bold gap-3">
                   <span>NQAS FRAMEWORK</span>
-                  <span className="bg-accent-blue dark:bg-accent-blue text-white dark:text-white px-2 py-0.5 border border-accent-blue dark:border-accent-blue">
+                  <span className="bg-accent-blue dark:bg-accent-blue text-white dark:text-[#121214] px-2 py-0.5 border border-accent-blue dark:border-accent-blue">
                     REGISTER RECON
                   </span>
                 </div>
@@ -196,7 +196,7 @@ export default function HealthPage() {
               </div>
               <div className="mt-4 pt-3 border-t border-on-primary/30 dark:border-on-surface/30 flex flex-wrap items-center justify-between text-[11px] font-headline uppercase font-bold text-on-primary dark:text-on-surface gap-2">
                 <span>AUTOMATION: PYTHON 3.11 / PANDAS</span>
-                <span className="bg-accent-red dark:bg-accent-red text-white dark:text-white px-2 py-0.5">ZERO-DATA DISCREPANCY MANDATE</span>
+                <span className="bg-accent-red dark:bg-accent-red text-white dark:text-[#121214] px-2 py-0.5">ZERO-DATA DISCREPANCY MANDATE</span>
               </div>
             </div>
           </div>
@@ -230,7 +230,7 @@ export default function HealthPage() {
                 &#x201C;
               </span>
               <div className="space-y-2">
-                <blockquote className="font-display text-lg sm:text-xl font-bold tracking-tight text-on-accent-red dark:text-on-accent-red leading-snug">
+                <blockquote className="font-display text-lg sm:text-xl font-bold tracking-tight text-black dark:text-black leading-snug">
                   &#x201C;I&rsquo;ve stood next to an ASHA worker filling an ODK form on a tablet in 38&deg;C heat. Every pipeline I build starts with that moment.&#x201D;
                 </blockquote>
                 <div className="font-mono text-xs uppercase tracking-widest text-black dark:text-black font-bold">
@@ -268,7 +268,7 @@ export default function HealthPage() {
                 title: 'NQAS Certification Support',
                 tag: 'NATIONAL QUALITY ASSURANCE',
                 body: 'Physical vs digital register reconciliation across Sub-Centres and PHCs under the NQAS framework, prepping facilities for certification audits.',
-                accent: 'bg-accent-blue dark:bg-accent-blue text-white dark:text-white border border-accent-blue dark:border-accent-blue',
+                accent: 'bg-accent-blue dark:bg-accent-blue text-white dark:text-[#121214] border border-accent-blue dark:border-accent-blue',
               },
               {
                 rank: 5,
@@ -289,14 +289,14 @@ export default function HealthPage() {
                 title: 'VHSND · Godbharai · PMSMA Data Pipeline',
                 tag: 'PYTHON · PANDAS',
                 body: 'Python + Pandas pipelines scrubbing, validating and automating grassroots survey records to eliminate discrepancy windows ahead of Monday district review meetings.',
-                accent: 'bg-accent-blue dark:bg-accent-blue text-white dark:text-white border border-accent-blue dark:border-accent-blue',
+                accent: 'bg-accent-blue dark:bg-accent-blue text-white dark:text-[#121214] border border-accent-blue dark:border-accent-blue',
               },
               {
                 rank: 8,
                 title: 'MIS Reports for Block & District Review',
                 tag: 'WEEKLY BLOCK SUMMARIES',
                 body: 'Automated MIS outputs verified ahead of block and district review cycles — field data turned into review-ready tables for BMOs and district leadership.',
-                accent: 'bg-accent-blue dark:bg-accent-blue text-white dark:text-white border border-accent-blue dark:border-accent-blue',
+                accent: 'bg-accent-blue dark:bg-accent-blue text-white dark:text-[#121214] border border-accent-blue dark:border-accent-blue',
               },
             ].map((item) => (
               <div
@@ -309,7 +309,7 @@ export default function HealthPage() {
                       0{item.rank} &nbsp;//&nbsp; {item.tag}
                     </span>
                   </div>
-                  <h3 className={`font-display text-lg font-bold uppercase tracking-tight ${item.accent === 'bg-accent-yellow dark:bg-primary-yellow text-black dark:text-black border border-accent-yellow dark:border-accent-yellow' ? 'text-black dark:text-black' : 'text-primary'}`}>
+                  <h3 className={`font-display text-lg font-bold uppercase tracking-tight ${item.accent.includes('bg-accent-yellow') ? 'text-black dark:text-on-surface' : 'text-primary dark:text-on-surface'}`}>
                     {item.title}
                   </h3>
                   <p className="mt-3 text-sm leading-relaxed text-on-surface-variant">{item.body}</p>
@@ -422,7 +422,7 @@ export default function HealthPage() {
                 className="bg-surface dark:bg-surface-container-lowest border-2 border-outline p-6 shadow-[4px_4px_0px_#1a1a1a] dark:shadow-[4px_4px_0px_#0e0e10] space-y-3 transition-transform hover:-translate-y-1"
               >
                 <div className="flex items-center justify-between border-b-2 border-outline pb-2">
-                  <span className={`font-headline text-xs font-bold uppercase tracking-wider ${pillar.color} text-black dark:text-black px-2 py-0.5 border border-outline`}>
+                  <span className={`font-headline text-xs font-bold uppercase tracking-wider ${pillar.color} ${pillar.color.includes('bg-accent-blue') ? 'text-white dark:text-[#121214]' : 'text-black dark:text-[#121214]'} px-2 py-0.5 border border-outline`}>
                     {pillar.id}{' // '}{pillar.title}
                   </span>
                 </div>

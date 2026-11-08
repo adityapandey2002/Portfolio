@@ -134,7 +134,7 @@ export default function WorkPage() {
               <span className="border-2 border-primary bg-primary px-3 py-1 font-headline text-xs font-bold uppercase tracking-wider text-primary-yellow shadow-[2px_2px_0px_#1a1a1a] dark:border-primary-yellow dark:bg-primary-yellow dark:text-black dark:shadow-[2px_2px_0px_#0e0e10]">
                 FLAGSHIP 01 // PRODUCTION COMMERCE
               </span>
-              <span className="border-2 border-primary bg-accent-red px-3 py-1 font-headline text-xs font-bold uppercase tracking-wider text-white shadow-[2px_2px_0px_#1a1a1a] dark:border-accent-red dark:shadow-[2px_2px_0px_#0e0e10]">
+              <span className="border-2 border-primary bg-accent-red px-3 py-1 font-headline text-xs font-bold uppercase tracking-wider text-white dark:text-[#121214] shadow-[2px_2px_0px_#1a1a1a] dark:border-accent-red dark:shadow-[2px_2px_0px_#0e0e10]">
                 LIVE PRODUCTION // biharkaswaad.in
               </span>
               <span className="border-2 border-primary bg-surface px-3 py-1 font-headline text-xs font-bold uppercase tracking-wider text-primary dark:border-outline dark:bg-surface-container dark:text-white">
@@ -282,7 +282,7 @@ export default function WorkPage() {
                     </span>
                     Razorpay HMAC SHA-256 Webhook Reconciliation &amp; Anti-Tamper Pipeline
                   </span>
-                  <span className="border border-primary bg-accent-red px-2 py-0.5 font-headline text-[10px] font-bold text-white dark:border-accent-red">
+                  <span className="border border-primary bg-accent-red px-2 py-0.5 font-headline text-[10px] font-bold text-white dark:text-[#121214] dark:border-accent-red">
                     STRICT ZERO-TRUST
                   </span>
                 </div>
@@ -533,7 +533,7 @@ export default function WorkPage() {
                   id: '02',
                   title: 'Live Blood Bank Reserves & Alert System',
                   body: 'Publicly broadcast inventory ledger displaying exact available units of whole blood and packed red cells (PRBC) across all ABO/Rh groups. Automated SMS alerts for emergency donor networks when units drop below safety thresholds.',
-                  accent: 'bg-accent-red text-white',
+                  accent: 'bg-accent-red text-white dark:text-[#121214]',
                 },
                 {
                   id: '03',
@@ -596,7 +596,7 @@ export default function WorkPage() {
           {/* Top Badges */}
           <div className="flex flex-wrap items-center justify-between gap-4 border-b-2 border-primary pb-4 dark:border-outline-variant">
             <div className="flex flex-wrap items-center gap-2">
-              <span className="border-2 border-primary bg-accent-red px-3 py-1 font-headline text-xs font-bold uppercase tracking-wider text-white shadow-[2px_2px_0px_#1a1a1a] dark:border-accent-red dark:shadow-[2px_2px_0px_#0e0e10]">
+              <span className="border-2 border-primary bg-accent-red px-3 py-1 font-headline text-xs font-bold uppercase tracking-wider text-white dark:text-[#121214] shadow-[2px_2px_0px_#1a1a1a] dark:border-accent-red dark:shadow-[2px_2px_0px_#0e0e10]">
                 FLAGSHIP 03 // CLINICAL TRIAGE PWA
               </span>
               <span className="border-2 border-primary bg-primary-yellow px-3 py-1 font-headline text-xs font-bold uppercase tracking-wider text-black dark:border-primary-yellow">
@@ -725,14 +725,14 @@ export default function WorkPage() {
                       title: 'DHS / CMO (Civil Surgeon) Escalation',
                       body: 'Autonomous trigger when 15-day SLA window lapses or Grade-A triage breaches.',
                       className:
-                        'bg-white text-accent-red dark:bg-white dark:text-accent-red',
+                        'bg-white text-accent-red dark:bg-white dark:text-[#c41e2a]',
                     },
                   ].map((tier) => (
                     <div
                       key={tier.tier}
                       className={`flex items-start gap-3 border border-primary p-2.5 dark:border-outline-variant ${
                         tier.tier === 'TIER 6'
-                          ? 'bg-accent-red text-white dark:border-accent-red'
+                          ? 'bg-accent-red text-white dark:text-[#121214] dark:border-accent-red'
                           : 'bg-surface-bright dark:bg-surface'
                       }`}
                     >
@@ -745,7 +745,7 @@ export default function WorkPage() {
                         <div
                           className={`font-headline text-xs font-bold uppercase ${
                             tier.tier === 'TIER 6'
-                              ? 'text-white'
+                              ? 'text-white dark:text-[#121214]'
                               : 'text-primary dark:text-white'
                           }`}
                         >
@@ -754,7 +754,7 @@ export default function WorkPage() {
                         <div
                           className={`font-body text-xs ${
                             tier.tier === 'TIER 6'
-                              ? 'text-white/90'
+                              ? 'text-white/90 dark:text-[#121214]'
                               : 'text-on-surface-variant dark:text-on-surface-variant'
                           }`}
                         >
@@ -859,7 +859,7 @@ export default function WorkPage() {
                   <div className="border-2 border-primary bg-surface p-3 text-primary dark:border-outline dark:bg-surface-low dark:text-white">
                     <div className="flex items-center justify-between font-headline text-xs font-bold">
                       <span>PATIENT: SUNITA DEVI (24Y)</span>
-                      <span className="bg-accent-red px-2 py-0.5 text-[10px] uppercase text-white">
+                      <span className="bg-accent-red px-2 py-0.5 text-[10px] uppercase text-white dark:text-[#121214]">
                         HIGH RISK: GRADE-A
                       </span>
                     </div>
@@ -1007,7 +1007,7 @@ export default function WorkPage() {
                   above is the captured PWA client from the Bihar health operations build.
                 </p>
                 <a
-                  className="inline-flex items-center gap-2 border-2 border-primary bg-accent-red px-3 py-2 font-headline text-[11px] font-bold uppercase tracking-wider text-white shadow-[2px_2px_0px_#1a1a1a] dark:border-accent-red dark:shadow-[2px_2px_0px_#0e0e10]"
+                  className="inline-flex items-center gap-2 border-2 border-primary bg-accent-red px-3 py-2 font-headline text-[11px] font-bold uppercase tracking-wider text-white dark:text-[#121214] shadow-[2px_2px_0px_#1a1a1a] dark:border-accent-red dark:shadow-[2px_2px_0px_#0e0e10]"
                   href="https://hrp-pilot-api.onrender.com"
                   rel="noopener noreferrer"
                   target="_blank"
@@ -1232,7 +1232,7 @@ export default function WorkPage() {
               <span className="border-2 border-primary bg-primary px-3 py-1 font-headline text-xs font-bold uppercase tracking-wider text-primary-yellow shadow-[2px_2px_0px_#1a1a1a] dark:border-primary-yellow dark:bg-primary-yellow dark:text-black dark:shadow-[2px_2px_0px_#0e0e10]">
                 FLAGSHIP 05 // E-COMMERCE GROWTH AGENCY
               </span>
-              <span className="border-2 border-primary bg-accent-red px-3 py-1 font-headline text-xs font-bold uppercase tracking-wider text-white shadow-[2px_2px_0px_#1a1a1a] dark:border-accent-red dark:shadow-[2px_2px_0px_#0e0e10]">
+              <span className="border-2 border-primary bg-accent-red px-3 py-1 font-headline text-xs font-bold uppercase tracking-wider text-white dark:text-[#121214] shadow-[2px_2px_0px_#1a1a1a] dark:border-accent-red dark:shadow-[2px_2px_0px_#0e0e10]">
                 LIVE PRODUCTION // consultancywala.com
               </span>
               <span className="border-2 border-primary bg-surface px-3 py-1 font-headline text-xs font-bold uppercase tracking-wider text-primary dark:border-outline dark:bg-surface-container dark:text-white">
@@ -1376,7 +1376,7 @@ export default function WorkPage() {
               <span className="border-2 border-primary bg-primary px-3 py-1 font-headline text-xs font-bold uppercase tracking-wider text-primary-yellow shadow-[2px_2px_0px_#1a1a1a] dark:border-primary-yellow dark:bg-primary-yellow dark:text-black dark:shadow-[2px_2px_0px_#0e0e10]">
                 FLAGSHIP 06 // OFFLINE-FIRST DATA PIPELINE
               </span>
-              <span className="border-2 border-primary bg-accent-red px-3 py-1 font-headline text-xs font-bold uppercase tracking-wider text-white shadow-[2px_2px_0px_#1a1a1a] dark:border-accent-red dark:shadow-[2px_2px_0px_#0e0e10]">
+              <span className="border-2 border-primary bg-accent-red px-3 py-1 font-headline text-xs font-bold uppercase tracking-wider text-white dark:text-[#121214] shadow-[2px_2px_0px_#1a1a1a] dark:border-accent-red dark:shadow-[2px_2px_0px_#0e0e10]">
                 OFFLINE-FIRST · NO SERVER · AES-256-GCM
               </span>
               <span className="border-2 border-primary bg-surface px-3 py-1 font-headline text-xs font-bold uppercase tracking-wider text-primary dark:border-outline dark:bg-surface-container dark:text-white">
@@ -1587,7 +1587,7 @@ export default function WorkPage() {
             >
               <div className="space-y-4">
                 <div className="flex items-center justify-between border-b border-primary pb-2 dark:border-outline">
-                  <span className="border border-primary bg-accent-red px-2 py-0.5 font-headline text-[10px] font-bold uppercase text-white dark:border-accent-red">
+                  <span className="border border-primary bg-accent-red px-2 py-0.5 font-headline text-[10px] font-bold uppercase text-white dark:text-[#121214] dark:border-accent-red">
                     EMBEDDED HARDWARE
                   </span>
                   <span className="font-headline text-xs font-bold text-on-surface-variant dark:text-on-surface-variant">
@@ -1697,7 +1697,7 @@ export default function WorkPage() {
                 id: 'P2',
                 title: 'Cryptographic Audit Logs',
                 body: 'Financial checkouts and healthcare clinical metrics are append-only. Each mutation receives SHA-256 validation timestamps before reaching central servers.',
-                className: 'bg-accent-red text-white dark:bg-accent-red dark:text-white',
+                className: 'bg-accent-red text-white dark:bg-accent-red dark:text-[#121214]',
               },
               {
                 id: 'P3',

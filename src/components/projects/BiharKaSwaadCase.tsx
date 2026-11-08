@@ -150,7 +150,7 @@ export function BiharKaSwaadCase() {
                 <span className="h-2.5 w-2.5 rounded-full bg-[#f87171]" />
                 <span className="h-2.5 w-2.5 rounded-full bg-[#fbbf24]" />
                 <span className="h-2.5 w-2.5 rounded-full bg-[#34d399]" />
-                <span className="ml-3 font-mono text-[11.5px] uppercase tracking-[0.18em] text-ink-4">
+                <span className="ml-3 font-mono text-[11.5px] uppercase tracking-[0.18em] text-ink-3">
                   biharkaswaad.in
                 </span>
               </div>
@@ -205,7 +205,7 @@ export function BiharKaSwaadCase() {
                 <div className="font-serif text-[clamp(30px,3vw,44px)] leading-none tracking-tight text-ink">
                   {s.value}
                 </div>
-                <div className="mt-2 font-mono text-[11.5px] uppercase tracking-[0.16em] text-ink-4">{s.foot}</div>
+                <div className="mt-2 font-mono text-[11.5px] uppercase tracking-[0.16em] text-ink-3">{s.foot}</div>
               </div>
               <span className="absolute bottom-0 left-0 h-px w-0 bg-gradient-to-r from-primary to-accent transition-all duration-500 group-hover:w-full" />
             </motion.div>
