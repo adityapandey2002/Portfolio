@@ -1,6 +1,7 @@
 import { Hero } from '@/components/sections/Hero';
 import { About } from '@/components/sections/About';
 import { Experience } from '@/components/sections/Experience';
+import { SelectedSystems } from '@/components/sections/SelectedSystems';
 import { Education } from '@/components/sections/Education';
 import { Pipeline } from '@/components/sections/Pipeline';
 import { AiTerminal } from '@/components/sections/AiTerminal';
@@ -13,6 +14,7 @@ export default function HomePage() {
       <Hero />
       <About />
       <Experience />
+      <SelectedSystems />
       <Education />
       <Pipeline />
       <AiTerminal />
