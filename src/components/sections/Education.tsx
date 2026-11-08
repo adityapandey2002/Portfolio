@@ -14,21 +14,21 @@
 const DEGREES = [
   {
     period: '2023 – 2025 // POSTGRADUATE',
-    accent: 'text-primary dark:text-white',
+    accent: 'text-secondary',
     degree: 'Master of Computer Applications (MCA)',
     school: 'Pondicherry University (Central University), Puducherry',
     desc: 'Specialized in Advanced Data Structures, Distributed Database Systems, Cloud Architecture, Network Protocols, and Applied Machine Learning.',
   },
   {
     period: '2022 – 2023 // POSTGRADUATE',
-    accent: 'text-primary dark:text-white',
+    accent: 'text-tertiary',
     degree: 'Master of Arts in Political Science & Government',
     school: 'Prof. Rajendra Singh (Rajju Bhaiya) University, Prayagraj, UP',
     desc: 'Focus on Public Administration, Democratic Institutions, Comparative Public Policy, and State Welfare Apparatuses.',
   },
   {
     period: '2019 – 2022 // UNDERGRADUATE',
-    accent: 'text-primary dark:text-white',
+    accent: 'text-primary dark:text-[#facc15]',
     degree: 'Bachelor of Science (BSc) in Mathematics',
     school: 'Dr. Rammanohar Lohia Avadh University, Ayodhya',
     desc: 'Core coursework in Real Analysis, Linear Algebra, Probability Theory, Discrete Mathematics, and Numerical Methods.',
@@ -38,21 +38,21 @@ const DEGREES = [
 const CERTS = [
   {
     badge: 'IBM CREDENTIAL',
-    badgeBg: 'bg-accent-red dark:bg-accent-red text-black dark:text-black',
+    badgeBg: 'bg-primary text-on-primary dark:bg-[#facc15] dark:text-[#121214]',
     level: 'PROFESSIONAL',
     title: 'IBM Data Science Professional Certificate',
     desc: 'Comprehensive verification in Python, SQL data extraction, statistical analysis, predictive modeling, data visualization, and applied ML.',
   },
   {
     badge: 'NPTEL / IIT',
-    badgeBg: 'bg-accent-blue dark:bg-accent-blue text-black dark:text-black',
+    badgeBg: 'bg-tertiary text-white dark:text-[#121214]',
     level: 'NATIONAL LEVEL',
     title: 'NPTEL IIT Certifications (Python & R for Data Science)',
     desc: 'Rigorous algorithmic computing, statistical hypothesis testing, experimental design, and data wrangling under IIT faculties.',
   },
   {
     badge: 'MSME GOVT',
-    badgeBg: 'bg-accent-yellow dark:bg-accent-yellow border border-primary dark:border-white text-black dark:text-black',
+    badgeBg: 'bg-accent-yellow dark:bg-accent-yellow border border-primary dark:border-[#3f3f46] text-black dark:text-black',
     level: 'GOVT OF INDIA',
     title: 'MSME Python-Based Data Analysis Certification',
     desc: 'Certified hands-on training for automated business intelligence, data pipeline engineering, and dashboard synthesis.',
@@ -68,12 +68,12 @@ const CERTS = [
 
 export function Education() {
   return (
-    <section id="education" className="border-b-4 border-primary dark:border-white bg-surface dark:bg-surface-dark py-10 px-4 sm:px-8 lg:px-12">
-      <div className="max-w-7xl mx-auto space-y-10 py-4 sm:px-8 lg:px-12">
+    <section id="education" className="border-b-4 border-primary dark:border-[#3f3f46] bg-surface dark:bg-[#161619] py-10 px-4 sm:px-8 lg:px-12">
+      <div className="max-w-7xl mx-auto space-y-10">
         {/* Section Header */}
-        <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 border-b-2 border-primary dark:border-white pb-4">
+        <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 border-b-2 border-primary dark:border-[#3f3f46] pb-4">
           <div>
-            <span className="font-headline text-xs font-bold uppercase tracking-widest text-primary dark:text-white block">
+            <span className="font-headline text-xs font-bold uppercase tracking-widest text-primary dark:text-[#facc15] block">
               05 // CREDENTIALS & FOUNDATION
             </span>
             <h2 className="font-headline text-3xl sm:text-5xl font-bold uppercase tracking-tight text-on-surface dark:text-on-surface mt-1">
@@ -87,14 +87,14 @@ export function Education() {
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-start">
           {/* Left: Formal Degrees */}
-          <div className="border-3 border-primary dark:border-white bg-surface-container-lowest dark:bg-surface-low p-6 sm:p-8 shadow-[6px_6px_0px_#1a1a1a] dark:shadow-[6px_6px_0px_#ffffff] space-y-6">
-            <div className="flex items-center justify-between border-b-2 border-primary dark:border-white pb-3">
+          <div className="border-3 border-primary dark:border-[#3f3f46] bg-surface-container-lowest dark:bg-[#0f0f11] p-6 sm:p-8 shadow-[6px_6px_0px_#1a1a1a] dark:shadow-[6px_6px_0px_#000000] space-y-6">
+            <div className="flex items-center justify-between border-b-2 border-primary dark:border-[#3f3f46] pb-3">
               <h3 className="font-headline text-xl font-bold uppercase text-on-surface dark:text-on-surface">Formal University Degrees</h3>
               <span className="material-symbols-outlined text-primary dark:text-white">school</span>
             </div>
             <div className="space-y-6">
               {DEGREES.map((deg) => (
-                <div key={deg.degree} className="border-l-4 border-primary dark:border-white pl-4 py-1 space-y-1">
+                <div key={deg.degree} className="border-l-4 border-primary dark:border-[#3f3f46] pl-4 py-1 space-y-1">
                   <span className={`font-mono text-xs font-bold ${deg.accent} uppercase`}>
                     {deg.period}
                   </span>
@@ -107,14 +107,14 @@ export function Education() {
           </div>
 
           {/* Right: Accreditations & Leadership */}
-          <div className="border-3 border-primary dark:border-white bg-surface-container dark:bg-surface-container p-6 sm:p-8 shadow-[6px_6px_0px_#1a1a1a] dark:shadow-[6px_6px_0px_#ffffff] space-y-6">
-            <div className="flex items-center justify-between border-b-2 border-primary dark:border-white pb-3">
+          <div className="border-3 border-primary dark:border-[#3f3f46] bg-surface-container dark:bg-[#202024] p-6 sm:p-8 shadow-[6px_6px_0px_#1a1a1a] dark:shadow-[6px_6px_0px_#000000] space-y-6">
+            <div className="flex items-center justify-between border-b-2 border-primary dark:border-[#3f3f46] pb-3">
               <h3 className="font-headline text-xl font-bold uppercase text-on-surface dark:text-on-surface">Accreditations & Leadership</h3>
               <span className="material-symbols-outlined text-primary dark:text-white">verified</span>
             </div>
             <div className="space-y-4">
               {CERTS.map((cert) => (
-                <div key={cert.title} className="bg-surface-container-lowest dark:bg-surface-low p-4 border-2 border-primary dark:border-white">
+                <div key={cert.title} className="bg-surface-container-lowest dark:bg-[#0f0f11] p-4 border-2 border-primary dark:border-[#3f3f46]">
                   <div className="flex justify-between items-start">
                     <span className={`px-2 py-0.5 font-headline text-xs font-bold uppercase ${cert.badgeBg}`}>
                       {cert.badge}
@@ -132,6 +132,3 @@ export function Education() {
     </section>
   );
 }
-
-
-
