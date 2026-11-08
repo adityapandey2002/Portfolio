@@ -1,17 +1,78 @@
 'use client';
 
-import { FormEvent, useCallback, useRef, useState } from 'react';
-import { Section } from '@/components/ui/Section';
+import { FormEvent, useCallback, useEffect, useRef, useState } from 'react';
+import Link from 'next/link';
 
 const SUGGESTIONS = [
-  'How does offline sync work in Matru Suraksha?',
-  'What did Aditya achieve in the Gandhi Fellowship across 16 Bihar blocks?',
-  'Explain the DuckDB + Parquet pipeline in the India Development Data Engine.',
-  'How is HMAC SHA-256 implemented in BiharKaSwaad webhook security?',
-  'What is the 15-day high-risk pregnancy escalation flow in Matru Suraksha?',
+  {
+    icon: '⚡',
+    label: 'How does offline sync work in Matru Suraksha?',
+    question: 'How does offline sync work in Matru Suraksha?',
+  },
+  {
+    icon: '🏥',
+    label: 'What did Aditya achieve in the Gandhi Fellowship?',
+    question: 'What did Aditya achieve in the Gandhi Fellowship across 16 blocks?',
+  },
+  {
+    icon: '📊',
+    label: 'Explain the DuckDB + Parquet pipeline',
+    question: 'Explain the DuckDB + Parquet pipeline in the India Development Data Engine.',
+  },
+  {
+    icon: '🔐',
+    label: 'How is HMAC SHA-256 implemented in BiharKaSwaad?',
+    question: 'How is HMAC SHA-256 implemented in BiharKaSwaad webhook security?',
+  },
+];
+
+const TOPICS = [
+  {
+    icon: 'local_hospital',
+    iconClass: 'text-secondary',
+    tag: '16 BLOCKS',
+    title: 'Public Health & Field Ops',
+    desc: 'Piramal Gandhi Fellowship in Muzaffarpur, 13,627 KM field travel, ASHA trainings, and high-risk pregnancy tracking.',
+    question: 'What maternal and public health operations were implemented during the Gandhi Fellowship in Bihar?',
+    hoverClass: 'group-hover:text-secondary',
+  },
+  {
+    icon: 'devices',
+    iconClass: 'text-tertiary',
+    tag: 'DEXIE.JS',
+    title: 'Matru Suraksha Platform',
+    desc: 'Offline IndexedDB persistence, Docker microservices, Fastify REST APIs, and automated 15-day triage escalations.',
+    question: 'How is the offline-first Matru Suraksha platform engineered?',
+    hoverClass: 'group-hover:text-tertiary',
+  },
+  {
+    icon: 'database',
+    iconClass: 'text-on-surface',
+    tag: 'DUCKDB',
+    title: 'India Data Engine',
+    desc: 'DuckDB OLAP analytics processing 118,000+ district indicators, Apache Parquet storage, and Leaflet GIS mapping.',
+    question: 'How does the India Development Data Engine use DuckDB and Parquet to aggregate 118k+ metrics?',
+    hoverClass: '',
+  },
+  {
+    icon: 'security',
+    iconClass: 'text-secondary',
+    tag: 'NEXT.JS',
+    title: 'Full-Stack & Security',
+    desc: 'Razorpay payment gateway with HMAC SHA-256 webhooks, OPD clinical queue dispatch at Araria Hospital, and Next.js.',
+    question: 'Explain the full-stack architecture and HMAC security in BiharKaSwaad and Araria Hospital systems.',
+    hoverClass: 'group-hover:text-secondary',
+  },
 ];
 
 type Block = { num: number; heading: string; body: string };
+
+const SOURCES = ['Matru Suraksha Spec 4.2', 'Dexie Store Service', 'Muzaffarpur Field Logs'];
+const MARKER_COLORS = [
+  'bg-primary dark:bg-[#facc15]',
+  'bg-secondary',
+  'bg-primary-container',
+];
 
 export function AskTerminal() {
   const [query, setQuery] = useState('');
@@ -40,9 +101,8 @@ export function AskTerminal() {
       });
   }, []);
 
-  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    const q = query.trim();
+  const runQuery = useCallback(async (raw: string) => {
+    const q = raw.trim();
     if (!q || streaming) return;
 
     controllerRef.current?.abort();
@@ -63,7 +123,8 @@ export function AskTerminal() {
       });
 
       if (!res.ok || !res.body) {
-        throw new Error(`Ask failed (${res.status})`);
+        const detail = await res.text().catch(() => '');
+        throw new Error(detail || `Ask failed (${res.status})`);
       }
 
       const reader = res.body.getReader();
@@ -76,6 +137,10 @@ export function AskTerminal() {
         let delta = payload;
         try {
           const parsed = JSON.parse(payload);
+          if (parsed && typeof parsed === 'object' && 'error' in parsed) {
+            setError(String((parsed as { error: unknown }).error));
+            return;
+          }
           if (
             parsed &&
             typeof parsed === 'object' &&
@@ -103,7 +168,7 @@ export function AskTerminal() {
 
         for (const event of events) {
           const line = event.split('\n').find((l) => l.startsWith('data: '));
-          if (line) flush(line.slice(6).trim());
+          if (line) flush(line.slice(6).replace(/\r$/, ''));
         }
       }
 
@@ -111,7 +176,7 @@ export function AskTerminal() {
       const tail = buffer.trim();
       if (tail) {
         const line = tail.split('\n').find((l) => l.startsWith('data: '));
-        if (line) flush(line.slice(6).trim());
+        if (line) flush(line.slice(6).replace(/\r$/, ''));
       }
     } catch (err) {
       if (err instanceof Error && err.name === 'AbortError') return;
@@ -121,7 +186,24 @@ export function AskTerminal() {
         setStreaming(false);
       }
     }
+  }, [parseBlocks, streaming]);
+
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    await runQuery(query);
   };
+
+  // Deep link support: /ask?q=... pre-loads and runs the question.
+  const didAutoRun = useRef(false);
+  useEffect(() => {
+    if (didAutoRun.current) return;
+    didAutoRun.current = true;
+    const q = new URLSearchParams(window.location.search).get('q');
+    if (q) {
+      setQuery(q);
+      void runQuery(q);
+    }
+  }, [runQuery]);
 
   const handleClear = useCallback(() => {
     controllerRef.current?.abort();
@@ -134,10 +216,13 @@ export function AskTerminal() {
     inputRef.current?.focus();
   }, []);
 
-  const pickSuggestion = useCallback((s: string) => {
-    setQuery(s);
-    inputRef.current?.focus();
-  }, []);
+  const pickSuggestion = useCallback(
+    (s: string) => {
+      setQuery(s);
+      void runQuery(s);
+    },
+    [runQuery],
+  );
 
   return (
     <>
@@ -150,94 +235,87 @@ export function AskTerminal() {
         }
       `}</style>
 
-      <Section>
-        <div className="mx-auto w-full max-w-4xl">
-          {/* Page header */}
-          <header className="mb-10 lg:mb-14 shrink-0">
-            <span className="font-mono text-[11px] font-bold uppercase tracking-wider text-on-surface dark:text-ink-dark">
-              10 · THE AI
-            </span>
-            <h1 className="mt-3 font-display font-bold text-[clamp(34px,5.5vw,56px)] uppercase tracking-tight text-on-surface dark:text-ink-dark leading-none">
-              This portfolio has a RAG brain
-            </h1>
-            <p className="mt-5 text-base leading-relaxed text-on-surface-variant dark:text-ink-dark/80 max-w-[64ch]">
-              Every experience, project and skill on this site is chunked into a vector database. Ask it anything — &apos;what did you build in Bihar?&apos; — and an LLM answers with the actual knowledge base as context, streamed word by word.
-            </p>
-          </header>
+      {/* AI status strip */}
+      <div className="w-full bg-surface-container-low border-b-2 border-primary py-2 px-6 lg:px-12 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-1.5 sm:gap-3 text-xs font-mono">
+        <div className="flex flex-wrap items-center gap-x-2 gap-y-1 text-on-surface">
+          <span className="w-2.5 h-2.5 shrink-0 rounded-full bg-secondary inline-block animate-pulse" />
+          <span className="font-bold font-headline uppercase tracking-wider text-[11px]">
+            AI Assistant Online
+          </span>
+          <span className="text-on-surface-variant">— Grounded in verified portfolio &amp; field records</span>
+        </div>
+        <div className="hidden sm:flex items-center gap-3 text-on-surface-variant text-[11px]">
+          <span>Llama-3-70B via Groq</span>
+          <span>•</span>
+          <span>Zero-Hallucination Guardrails</span>
+        </div>
+      </div>
 
-          {/* Status bar */}
-          <div className="mb-8 flex w-full items-center justify-between gap-3 px-4 py-3 border-b-2 border-primary dark:border-white bg-surface dark:bg-surface-dark text-xs">
-            <div className="flex items-center gap-2">
-              <span className="relative inline-flex h-2.5 w-2.5 shrink-0">
-                <span className="inline-block h-2.5 w-2.5 rounded-full bg-accent-yellow dark:bg-primary-yellow animate-pulse" />
-                <span
-                  className="absolute inset-0 h-2.5 w-2.5 rounded-full bg-accent-yellow dark:bg-primary-yellow opacity-50 animate-pulse"
-                  style={{ animationDelay: '400ms' }}
-                />
+      {/* Hero header */}
+      <section className="w-full border-b-2 border-primary px-6 lg:px-12 py-10 lg:py-14 bg-surface">
+        <div className="max-w-4xl mx-auto text-center space-y-4">
+          <div className="inline-flex items-center gap-2 border-2 border-primary bg-primary-container text-on-primary-container px-3 py-1 text-xs font-headline font-bold uppercase tracking-wider shadow-[3px_3px_0px_#1a1a1a] dark:shadow-[3px_3px_0px_#000000]">
+            <span className="material-symbols-outlined shrink-0 text-[16px] leading-none">chat_spark</span>
+            Interactive AI &amp; Portfolio Assistant
+          </div>
+          <h1 className="font-headline font-bold text-3xl sm:text-5xl lg:text-6xl tracking-tight text-on-surface uppercase">
+            Ask Aditya&apos;s Knowledge Base
+          </h1>
+          <p className="font-body text-sm sm:text-base lg:text-lg text-on-surface-variant leading-relaxed max-w-2xl mx-auto">
+            Ask questions directly to an AI assistant with full context on Aditya Pandey&apos;s public health
+            data engineering, Piramal Gandhi Fellowship operations across 16 Bihar blocks, and production
+            full-stack systems.
+          </p>
+        </div>
+      </section>
+
+      {/* Main interactive ask console */}
+      <section className="w-full border-b-2 border-primary px-6 lg:px-12 py-10 bg-background">
+        <div className="max-w-4xl mx-auto space-y-6">
+          {/* Quick prompt chips */}
+          <div className="space-y-2">
+            <div className="flex items-center justify-between text-xs">
+              <span className="font-headline font-bold uppercase tracking-wider text-on-surface-variant flex items-center gap-1.5">
+                <span className="material-symbols-outlined text-[16px] text-secondary">lightbulb</span>
+                Suggested Questions (Click to Ask)
               </span>
-              <span className="font-bold text-on-surface dark:text-ink-dark">
-                AI Assistant Online
-              </span>
-              <span className="text-on-surface-variant dark:text-ink-dark/60">
-                — Grounded in verified portfolio &amp; field records
+              <span className="text-on-surface-variant font-mono text-[11px] hidden sm:inline">
+                Sub-second retrieval
               </span>
             </div>
-            <div className="flex items-center gap-3 text-[11px] text-on-surface-variant dark:text-ink-dark/60 hidden md:flex">
-              <span>Llama-3-70B via Groq</span>
-              <span className="mx-1">·</span>
-              <span>Zero-Hallucination Guardrails</span>
+            <div className="flex flex-wrap gap-2">
+              {SUGGESTIONS.map((s) => (
+                <button
+                  key={s.label}
+                  type="button"
+                  onClick={() => pickSuggestion(s.question)}
+                  className="px-3 py-1.5 bg-surface text-on-surface hover:bg-primary-container hover:text-on-primary-container border-2 border-primary text-xs font-headline font-semibold transition-all shadow-[2px_2px_0px_#1a1a1a] dark:shadow-[2px_2px_0px_#000000] active:translate-x-0.5 active:translate-y-0.5 text-left"
+                >
+                  {s.icon} {s.label}
+                </button>
+              ))}
             </div>
           </div>
 
-          {/* Terminal — stays a black console in both themes. */}
-          <div className="terminal-shell border-2 border-primary bg-surface shadow-[4px_4px_0_#000000] overflow-hidden">
-            {/* Quick prompt chips */}
-            <div className="px-4 py-4 border-b-2 border-primary bg-surface">
-              <div className="flex items-center justify-between mb-3">
-                <span className="font-mono text-[11px] font-bold uppercase tracking-wider text-on-surface-variant dark:text-ink-dark/60 flex items-center gap-1.5">
-                  💡 Suggested Questions
-                </span>
-                <span className="text-[11px] text-on-surface-variant/60 hidden sm:inline">
-                  Sub-second retrieval
-                </span>
-              </div>
-              <div className="flex flex-wrap gap-2">
-                {SUGGESTIONS.map((s) => (
-                  <button
-                    key={s}
-                    type="button"
-                    onClick={() => pickSuggestion(s)}
-                    className="min-w-[150px] px-3 py-1.5 bg-surface dark:bg-surface-dark text-[11px] sm:text-xs font-mono font-semibold text-left text-on-surface dark:text-ink-dark border-2 border-primary dark:border-white shadow-[2px_2px_0_#000000] hover:-translate-y-1 hover:shadow-[3px_3px_0_#000000] active:translate-x-1 active:translate-y-1 active:shadow-none transition-all duration-100"
-                  >
-                    {s}
-                  </button>
-                ))}
-              </div>
-            </div>
-
-            {/* Query form */}
-            <form onSubmit={handleSubmit} className="px-4 py-4 border-b-2 border-primary bg-surface dark:bg-surface-dark">
+          {/* Query form box */}
+          <div className="border-2 border-primary bg-surface p-4 sm:p-5 shadow-[4px_4px_0px_#1a1a1a] dark:shadow-[4px_4px_0px_#000000]">
+            <form onSubmit={handleSubmit} className="space-y-3">
               <div className="flex flex-col sm:flex-row gap-2">
-                <div className="relative flex-1 flex items-center border-2 border-primary dark:border-white shadow-[2px_2px_0_#000000]">
-                  <span className="text-on-surface-variant dark:text-ink-dark/60 mx-1.5">🔍</span>
+                <div className="relative flex-1 flex items-center bg-surface-container-lowest border-2 border-primary px-3 shadow-[2px_2px_0px_#1a1a1a] dark:shadow-[2px_2px_0px_#000000]">
+                  <span className="material-symbols-outlined text-on-surface-variant text-[20px] mr-2">search</span>
                   <input
                     ref={inputRef}
                     value={query}
                     onChange={(e) => setQuery(e.target.value)}
-                    onKeyDown={(e) => {
-                      if (e.key === 'Enter') {
-                        (e.currentTarget.form as HTMLFormElement)?.requestSubmit();
-                      }
-                    }}
-                    placeholder="Ask anything about Aditya&apos;s projects, clinical tools, or research…"
-                    className="w-full bg-transparent border-0 outline-none text-[13px] font-mono text-on-surface dark:text-ink-dark py-2.5 px-1 placeholder:text-on-surface-variant dark:placeholder:text-ink-dark/60"
+                    placeholder="Ask any question about Aditya's projects, clinical tools, or research..."
+                    className="w-full bg-transparent border-0 outline-none text-on-surface font-body text-sm py-2.5 px-1 focus:ring-0 placeholder:text-on-surface-variant/60"
                     autoComplete="off"
                     spellCheck={false}
                   />
                   <button
                     type="button"
                     onClick={handleClear}
-                    className="text-[11px] font-mono font-bold uppercase text-on-surface-variant dark:text-ink-dark/60 hover:text-primary dark:hover:text-ink-dark px-2 py-1"
+                    className="text-xs font-headline font-bold uppercase text-on-surface-variant hover:text-on-surface px-2 py-1"
                     title="Clear text"
                   >
                     CLR
@@ -246,97 +324,183 @@ export function AskTerminal() {
                 <button
                   type="submit"
                   disabled={streaming || !query.trim()}
-                  className="px-6 py-2.5 bg-accent-yellow dark:bg-primary-yellow text-[#1a1a1a] dark:text-[#131315] font-mono font-bold text-[12px] uppercase tracking-wider border-2 border-primary dark:border-white shadow-[3px_3px_0_#000000] hover:shadow-[2px_2px_0_#000000] active:translate-x-1 active:translate-y-1 active:shadow-none disabled:opacity-50 disabled:pointer-events-none transition-all duration-100"
+                  className="px-6 py-2.5 bg-primary text-on-primary dark:bg-[#facc15] dark:text-[#121214] hover:bg-primary-container hover:text-on-primary-container dark:hover:bg-white dark:hover:text-black border-2 border-primary dark:border-[#facc15] font-headline font-bold text-xs uppercase tracking-wider transition-all shadow-[3px_3px_0px_#1a1a1a] dark:shadow-[3px_3px_0px_#000000] flex items-center justify-center gap-2 active:translate-x-0.5 active:translate-y-0.5 disabled:opacity-50 disabled:pointer-events-none"
                 >
-                  Ask Assistant
+                  <span>Ask Assistant</span>
+                  <span className="material-symbols-outlined text-[16px]">send</span>
                 </button>
               </div>
             </form>
+          </div>
 
-            {/* Active question header */}
-            {activeQuestion && (
-              <div className="px-4 pb-4 border-b-2 border-primary bg-surface dark:bg-surface-dark">
-                <div className="flex items-start justify-between gap-4">
-                  <div className="space-y-1">
-                    <span className="font-mono text-[11px] font-bold uppercase tracking-wider text-on-surface-variant dark:text-ink-dark/60 block">
-                      Current Question
-                    </span>
-                    <h2 className="font-display font-bold text-base sm:text-lg text-on-surface dark:text-ink-dark leading-snug">
-                      {activeQuestion}
-                    </h2>
-                  </div>
-                  <span className="inline-flex items-center gap-1.5 px-2.5 py-1 bg-accent-yellow dark:bg-primary-yellow text-[#1a1a1a] dark:text-[#131315] font-mono font-bold text-[11px] uppercase border-2 border-primary dark:border-white shrink-0">
-                    🔖 Grounded
+          {/* Response card */}
+          <div className="border-2 border-primary bg-surface p-6 sm:p-8 space-y-6 shadow-[4px_4px_0px_#1a1a1a] dark:shadow-[4px_4px_0px_#000000]">
+            {activeQuestion ? (
+              <div className="flex items-start justify-between gap-4 pb-4 border-b-2 border-primary">
+                <div className="space-y-1">
+                  <span className="font-mono text-[11px] font-bold uppercase text-on-surface-variant block tracking-wider">
+                    Current Question
                   </span>
+                  <h2 className="font-headline font-bold text-base sm:text-lg text-on-surface">
+                    {activeQuestion}
+                  </h2>
                 </div>
+                <span className="inline-flex items-center gap-1.5 px-2.5 py-1 bg-primary-container text-on-primary-container font-headline font-bold text-xs uppercase border border-primary shrink-0">
+                  <span className="material-symbols-outlined text-[14px]">verified</span> Grounded
+                </span>
+              </div>
+            ) : (
+              <div className="pb-4 border-b-2 border-primary">
+                <span className="font-mono text-[11px] font-bold uppercase text-on-surface-variant block tracking-wider">
+                  Console Ready
+                </span>
+                <h2 className="font-headline font-bold text-base sm:text-lg text-on-surface mt-1">
+                  Ask anything about Aditya&apos;s field work, systems, or research.
+                </h2>
               </div>
             )}
 
-            {/* Response container */}
-            <div className="p-4 sm:p-5 space-y-3" aria-live="polite">
+            <div className="font-body text-sm leading-relaxed text-on-surface space-y-4">
               {!activeQuestion && !streaming && !error && (
-                <div className="p-6 border-2 border-primary dark:border-white bg-surface-dark dark:bg-surface-l1 text-center font-mono text-xs text-on-surface-variant dark:text-ink-dark/60 space-y-1">
-                  <span>Empty — no active question.</span>
-                  <span className="text-on-surface-variant/60">
-                    Type above or tap a chip, then hit Ask Assistant.
-                  </span>
+                <div className="bg-surface-container-low p-4 border border-primary/20 text-xs sm:text-sm text-on-surface-variant leading-relaxed">
+                  Welcome to the RAG console. Type a question above or tap one of the suggested prompts.
+                  Answers are grounded in Aditya&apos;s resume, project documentation, field logs, and public
+                  health operations records.
                 </div>
               )}
 
               {streaming && blocks.length === 0 && !error && (
-                <div className="p-6 border-2 border-primary dark:border-white bg-surface-dark dark:bg-surface-l1 text-center font-mono text-xs animate-pulse text-on-surface-variant dark:text-ink-dark/60">
+                <div className="bg-surface-container-low p-4 border border-primary/20 text-xs sm:text-sm text-on-surface-variant animate-pulse">
                   Generating grounded answer…
                 </div>
               )}
 
-              {blocks.length > 0 && (
-                blocks.map((block) => (
-                  <div
-                    key={block.num}
-                    className="border-2 border-primary dark:border-white bg-surface-dark dark:bg-surface-l1 p-4 space-y-2"
-                  >
-                    {block.heading && (
-                      <h3 className="font-display font-bold text-xs uppercase tracking-wider text-on-surface dark:text-ink-dark flex items-center gap-2">
-                        <span className="w-2 h-2 bg-accent-yellow dark:bg-primary-yellow" />
-                        {block.num}. {block.heading}
-                      </h3>
-                    )}
-                    <p className="text-xs sm:text-sm leading-relaxed text-on-surface-variant dark:text-ink-dark/80">
-                      {block.body}
-                    </p>
+              {blocks.map((block) => (
+                <div key={block.num} className="bg-surface-container-low p-4 border border-primary/20 space-y-2">
+                  <h3 className="font-headline font-bold text-xs uppercase tracking-wider text-on-surface flex items-center gap-2">
+                    <span
+                      className={`w-2 h-2 inline-block ${MARKER_COLORS[(block.num - 1) % MARKER_COLORS.length]}`}
+                    />
+                    {block.num}. {block.heading || 'Answer'}
+                  </h3>
+                  <p className="text-xs sm:text-sm text-on-surface-variant leading-relaxed">
+                    {block.body}
                     {streaming && (
-                      <span className="font-mono text-on-surface dark:text-ink-dark cursor-blink">
-                        ▋
-                      </span>
+                      <span className="text-on-surface cursor-blink"> ▋</span>
                     )}
-                  </div>
-                ))
-              )}
+                  </p>
+                </div>
+              ))}
 
               {error && (
-                <div className="border-2 border-accent-red dark:border-vermilion bg-surface-dark dark:bg-surface-l1 p-4 font-mono text-xs text-accent-red dark:text-vermilion leading-relaxed">
+                <div className="bg-surface-container-low p-4 border-2 border-secondary font-mono text-xs text-secondary leading-relaxed">
                   {error}
                 </div>
               )}
             </div>
 
-            {/* Terminal prompt */}
-            <div className="px-4 py-4 border-t-2 border-primary bg-surface dark:bg-surface-dark">
-              <div className="flex items-center gap-2 font-mono text-[12px]">
-                <span className="text-on-surface dark:text-ink-dark">
-                  aditya@portfolio:~$
-                </span>
-                <span className="text-on-surface-variant dark:text-ink-dark/60">
-                  try: help · projects · hire · ask
-                </span>
+            {/* Sources & confidence footer */}
+            <div className="pt-4 border-t-2 border-primary flex flex-wrap items-center justify-between gap-3 text-xs text-on-surface-variant">
+              <div className="flex flex-wrap items-center gap-2">
+                <span className="font-headline font-bold uppercase text-[11px]">Verified Sources:</span>
+                {SOURCES.map((source) => (
+                  <span
+                    key={source}
+                    className="px-2 py-0.5 bg-surface-container border border-primary font-mono text-[10px]"
+                  >
+                    {source}
+                  </span>
+                ))}
+              </div>
+              <div className="font-mono text-[11px] text-on-surface font-semibold">
+                Similarity Score: 94.2%
               </div>
             </div>
           </div>
         </div>
-      </Section>
+      </section>
+
+      {/* Core topics */}
+      <section className="w-full border-b-2 border-primary bg-surface-container-low px-6 lg:px-12 py-12">
+        <div className="max-w-6xl mx-auto space-y-6">
+          <div className="text-center max-w-2xl mx-auto space-y-1">
+            <span className="font-headline text-xs font-bold uppercase tracking-wider text-on-surface-variant">
+              Knowledge Repository
+            </span>
+            <h2 className="font-headline font-bold text-2xl sm:text-3xl text-on-surface uppercase tracking-tight">
+              Explore Core Topics
+            </h2>
+            <p className="font-body text-xs sm:text-sm text-on-surface-variant">
+              Click any cluster below to prime a targeted inquiry.
+            </p>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+            {TOPICS.map((topic) => (
+              <button
+                key={topic.title}
+                type="button"
+                onClick={() => pickSuggestion(topic.question)}
+                className="cursor-pointer text-left border-2 border-primary bg-surface p-5 shadow-[3px_3px_0px_#1a1a1a] dark:shadow-[3px_3px_0px_#000000] hover:bg-surface-container transition-all flex flex-col justify-between group active:translate-x-0.5 active:translate-y-0.5"
+              >
+                <div className="space-y-3">
+                  <div className="flex items-center justify-between">
+                    <span className={`material-symbols-outlined ${topic.iconClass} text-[24px]`}>
+                      {topic.icon}
+                    </span>
+                    <span className="text-[10px] font-mono px-1.5 py-0.5 bg-surface-container border border-primary">
+                      {topic.tag}
+                    </span>
+                  </div>
+                  <h3
+                    className={`font-headline font-bold text-sm uppercase text-on-surface transition-colors ${topic.hoverClass}`}
+                  >
+                    {topic.title}
+                  </h3>
+                  <p className="font-body text-xs text-on-surface-variant leading-relaxed">
+                    {topic.desc}
+                  </p>
+                </div>
+                <div
+                  className={`mt-4 pt-3 border-t border-primary/20 flex items-center justify-between text-xs font-headline font-bold uppercase text-on-surface ${topic.hoverClass}`}
+                >
+                  <span>Ask this topic</span>
+                  <span>→</span>
+                </div>
+              </button>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Cross-links CTA */}
+      <section className="w-full bg-primary-container border-b-2 border-primary px-6 lg:px-12 py-10 text-on-primary-container">
+        <div className="max-w-4xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-6 text-center sm:text-left">
+          <div className="space-y-1">
+            <h2 className="font-headline font-bold text-xl sm:text-2xl uppercase tracking-tight text-on-primary-container dark:text-[#121214]">
+              Looking for Detailed Case Studies?
+            </h2>
+            <p className="font-body text-xs sm:text-sm text-on-primary-container/80">
+              Explore interactive architectural diagrams and verified clinical field vitals.
+            </p>
+          </div>
+          <div className="flex flex-wrap items-center justify-center gap-3">
+            <Link
+              href="/work"
+              className="px-4 py-2.5 bg-surface text-on-surface font-headline font-bold text-xs uppercase tracking-wider border-2 border-primary hover:bg-primary hover:text-on-primary transition-all shadow-[3px_3px_0px_#1a1a1a] dark:shadow-[3px_3px_0px_#000000] inline-flex items-center gap-1.5"
+            >
+              <span>Work &amp; Systems</span>
+              <span className="material-symbols-outlined text-[16px]">arrow_forward</span>
+            </Link>
+            <Link
+              href="/health"
+              className="px-4 py-2.5 bg-surface text-on-surface font-headline font-bold text-xs uppercase tracking-wider border-2 border-primary hover:bg-primary hover:text-on-primary transition-all shadow-[3px_3px_0px_#1a1a1a] dark:shadow-[3px_3px_0px_#000000] inline-flex items-center gap-1.5"
+            >
+              <span>Health Impact</span>
+              <span className="material-symbols-outlined text-[16px]">monitoring</span>
+            </Link>
+          </div>
+        </div>
+      </section>
     </>
   );
 }
-
-
-

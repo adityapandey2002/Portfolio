@@ -1,3 +1,5 @@
+import { Footer } from '@/components/sections/Footer';
+
 import { AskTerminal } from './AskTerminal';
 
 export const metadata = {
@@ -7,5 +9,10 @@ export const metadata = {
 };
 
 export default function AskPage() {
-  return <AskTerminal />;
+  return (
+    <>
+      <AskTerminal />
+      <Footer />
+    </>
+  );
 }
