@@ -16,31 +16,31 @@ import { experience } from '@/lib/data/experience';
 
 export function Experience() {
   return (
-    <section id="experience" className="border-b-4 border-primary dark:border-white bg-surface dark:bg-surface-dark py-10 px-4 sm:px-8 lg:px-12">
+    <section id="experience" className="border-b-4 border-primary dark:border-[#3f3f46] bg-surface dark:bg-[#161619] py-10 px-4 sm:px-8 lg:px-12">
       <div className="max-w-7xl mx-auto space-y-10">
         {/* Section Header */}
-        <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 border-b-2 border-primary dark:border-white pb-4">
+        <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 border-b-2 border-primary dark:border-[#3f3f46] pb-4">
           <div>
-            <span className="font-headline text-xs font-bold uppercase tracking-widest text-primary dark:text-white block">
+            <span className="font-headline text-xs font-bold uppercase tracking-widest text-primary dark:text-[#facc15] block">
               03 // OPERATIONAL RECORD
             </span>
             <h2 className="font-headline text-3xl sm:text-5xl font-bold uppercase tracking-tight text-on-surface dark:text-on-surface mt-1">
               Field & Systems Experience
             </h2>
           </div>
-          <span className="font-headline text-xs font-bold uppercase tracking-wider bg-surface-container dark:bg-surface-lowest px-3 py-1 border border-primary dark:border-white">
+          <span className="font-headline text-xs font-bold uppercase tracking-wider bg-surface-container dark:bg-surface-lowest px-3 py-1 border border-primary dark:border-[#3f3f46]">
             CHRONOLOGICAL LOGS [2024–2025]
           </span>
         </div>
 
         {/* Prominent Brutalist Health Dashboard Banner Card */}
-        <div className="bg-primary dark:bg-accent-red text-on-primary dark:text-on-accent-red border-3 border-primary dark:border-white p-6 sm:p-8 shadow-[8px_8px_0px_#e63b2e] dark:shadow-[8px_8px_0px_#e63b2e] flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
+        <div className="bg-primary dark:bg-[#0f0f11] text-on-primary dark:text-on-surface border-3 border-primary dark:border-[#3f3f46] p-6 sm:p-8 shadow-[8px_8px_0px_#e63b2e] dark:shadow-[8px_8px_0px_#facc15] flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
           <div className="space-y-3 max-w-3xl">
-            <div className="inline-flex items-center gap-2 bg-accent-red dark:bg-accent-red text-white dark:text-white px-3 py-1 font-headline font-bold text-xs uppercase tracking-widest">
+            <div className="inline-flex items-center gap-2 bg-secondary text-black dark:text-[#121214] px-3 py-1 font-headline font-bold text-xs uppercase tracking-widest">
               <span className="material-symbols-outlined text-sm">monitor_heart</span>
               DEDICATED TELEMETRY SUITE
             </div>
-            <h3 className="font-headline text-2xl sm:text-3xl font-bold uppercase tracking-tight text-on-primary dark:text-white">
+            <h3 className="font-headline text-2xl sm:text-3xl font-bold uppercase tracking-tight text-on-primary dark:text-on-surface">
               View Full Fellowship Field Impact & Vitals Dashboard (/health)
             </h3>
             <p className="font-body text-sm text-surface-container-high dark:text-surface-high leading-relaxed">
@@ -49,7 +49,7 @@ export function Experience() {
           </div>
           <Link
             href="/health"
-            className="inline-flex items-center gap-3 px-6 py-4 bg-accent-yellow dark:bg-accent-yellow text-black dark:text-black font-headline font-bold text-sm uppercase tracking-wider border-2 border-primary dark:border-white shadow-[4px_4px_0px_#ffffff] dark:shadow-[4px_4px_0px_#ffffff] hover:bg-surface dark:hover:bg-surface-container-low hover:text-on-surface transition-all shrink-0"
+            className="inline-flex items-center gap-3 px-6 py-4 bg-primary-container text-on-primary-container dark:bg-[#facc15] dark:text-[#121214] font-headline font-bold text-sm uppercase tracking-wider border-2 border-primary dark:border-[#facc15] shadow-[4px_4px_0px_#ffffff] dark:shadow-[4px_4px_0px_#000000] hover:bg-surface dark:hover:bg-white hover:text-on-surface dark:hover:text-black transition-all shrink-0"
           >
             Launch /health &rarr;
             <span className="material-symbols-outlined text-lg">open_in_new</span>
@@ -61,19 +61,19 @@ export function Experience() {
           {experience.map((xp) => (
             <div
               key={xp.role}
-              className="bg-surface-container-lowest dark:bg-surface-low border-3 border-primary dark:border-white p-6 shadow-[5px_5px_0px_#1a1a1a] dark:shadow-[5px_5px_0px_#ffffff] flex flex-col justify-between"
+              className="bg-surface-container-lowest dark:bg-[#202024] border-3 border-primary dark:border-[#3f3f46] p-6 shadow-[5px_5px_0px_#1a1a1a] dark:shadow-[5px_5px_0px_#000000] flex flex-col justify-between"
             >
               <div className="space-y-4">
-                <div className="flex items-start justify-between gap-2 border-b-2 border-primary dark:border-white pb-3">
+                <div className="flex items-start justify-between gap-2 border-b-2 border-primary dark:border-[#3f3f46] pb-3">
                   <div>
-                    <span className={`font-mono text-xs font-bold text-primary dark:text-white uppercase block`}>
+                    <span className={`font-mono text-xs font-bold text-secondary uppercase block`}>
                       {xp.period} {"/"} {xp.org}
                     </span>
                     <h4 className="font-headline text-xl font-bold text-on-surface dark:text-on-surface mt-1">{xp.role}</h4>
                     <p className="font-headline text-sm font-semibold text-on-surface-variant dark:text-on-surface-variant">{xp.org}</p>
                   </div>
                   {xp.current && (
-                    <span className="bg-accent-yellow dark:bg-accent-yellow text-black dark:text-black text-[11px] font-mono font-bold px-2 py-0.5 border border-primary dark:border-white">
+                    <span className="bg-primary text-on-primary dark:bg-[#facc15] dark:text-[#121214] text-[11px] font-mono font-bold px-2 py-0.5 border border-primary dark:border-[#3f3f46]">
                       CURRENT
                     </span>
                   )}
@@ -84,9 +84,9 @@ export function Experience() {
                   ))}
                 </ul>
               </div>
-              <div className="mt-6 pt-4 border-t border-primary dark:border-white flex flex-wrap gap-2">
+              <div className="mt-6 pt-4 border-t border-primary dark:border-[#3f3f46] flex flex-wrap gap-2">
                 {xp.tags.map((t) => (
-                  <span key={t} className="font-mono text-[11px] bg-surface-container dark:bg-surface-low px-2 py-0.5 border border-primary dark:border-white text-on-surface dark:text-on-surface">
+                  <span key={t} className="font-mono text-[11px] bg-surface-container dark:bg-[#202024] px-2 py-0.5 border border-primary dark:border-[#3f3f46] text-on-surface dark:text-on-surface">
                     {t}
                   </span>
                 ))}
@@ -98,6 +98,3 @@ export function Experience() {
     </section>
   );
 }
-
-
-
