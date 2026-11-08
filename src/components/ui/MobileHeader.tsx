@@ -117,8 +117,8 @@ export function MobileHeader() {
             : 'bg-surface border-b border-primary shadow-[0_4px_0_#1a1a1a]'
         } lg:hidden`}
       >
-        <span className={`font-mono text-[9px] font-bold uppercase tracking-widest mr-2 ${
-          isDark ? 'text-primary-yellow' : 'text-accent-yellow'
+        <span className={`font-mono text-[9px] font-bold uppercase tracking-widest mr-2 px-1 py-0.5 ${
+          isDark ? 'bg-primary-yellow text-black' : 'bg-primary text-primary-yellow'
         }`}>
           JUMP //
         </span>

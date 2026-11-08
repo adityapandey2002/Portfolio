@@ -101,6 +101,31 @@
   --hero-glow-2: rgba(99, 102, 241, 0.12);
 }
 
+/* The V2 theme toggle only flips the `dark` class (not `data-theme`), so
+   legacy V1 surfaces that still read --bg/--ink need explicit dark values. */
+html.dark {
+  --bg: #121214;
+  --bg-2: #1b1b1d;
+  --bg-3: #202024;
+  --line: rgba(255, 255, 255, 0.14);
+  --line-2: rgba(255, 255, 255, 0.07);
+  --ink: #f4f4f5;
+  --ink-2: #a1a1aa;
+  --ink-3: #9ca3af;
+  --ink-4: #9ca3af;
+  --primary: #ff6b4a;
+  --primary-glow: rgba(255, 107, 74, 0.4);
+  --accent: #60a5fa;
+  --accent-glow: rgba(96, 165, 250, 0.3);
+  --indigo: #34d399;
+  --rose: #ff6b4a;
+  --cyan: #facc15;
+  --grad-1: linear-gradient(120deg, #facc15 0%, #ff6b4a 50%, #60a5fa 100%);
+  --grad-2: linear-gradient(90deg, #facc15, #ff6b4a);
+  --hero-glow-1: rgba(250, 204, 21, 0.12);
+  --hero-glow-2: rgba(96, 165, 250, 0.1);
+}
+
 /* =========================================================
    BASE
 ========================================================= */
