@@ -1,84 +1,104 @@
-'use client';
+import Link from 'next/link';
 
-import { useRef } from 'react';
-import { motion } from 'framer-motion';
-import { ArrowUp, Github, Linkedin, Mail, Globe, type LucideIcon } from 'lucide-react';
 import { profile } from '@/lib/data/profile';
-import { MagnifyDock, useMagnify } from '@/components/ui/MagnifyDock';
 
-const CONTACT_ITEMS = [
-  { icon: Github, href: profile.github, label: 'GitHub' },
-  { icon: Linkedin, href: profile.linkedin, label: 'LinkedIn' },
-  { icon: Mail, href: `mailto:${profile.emails.personal}`, label: 'Email' },
-  { icon: Globe, href: profile.liveSite, label: 'Site' },
+const SYSTEM_REGISTRIES = [
+  { href: profile.github, label: 'GitHub Registry', external: true },
+  { href: profile.linkedin, label: 'LinkedIn Profile', external: true },
+  { href: 'https://biharkaswaad.in', label: 'BiharKaSwaad Storefront', external: true },
+  { href: 'https://hospital-araria-f5wl.vercel.app/', label: 'Sadar Hospital Portal', external: true },
 ];
 
-/** One horizontal dock item: icon springs toward the cursor on approach. */
-function FooterLink({ href, label, icon: Icon }: { href: string; label: string; icon: LucideIcon }) {
-  const ref = useRef<HTMLAnchorElement>(null);
-  const { iconScale } = useMagnify(ref);
-
-  return (
-    <motion.a
-      ref={ref}
-      href={href}
-      target="_blank"
-      rel="noopener noreferrer"
-      className="icon-link relative z-0 hover:z-10"
-      style={{ scale: iconScale }}
-      whileHover={{ y: -3 }}
-      aria-label={label}
-    >
-      <Icon size={16} />
-    </motion.a>
-  );
-}
-
-function FooterTop() {
-  const ref = useRef<HTMLButtonElement>(null);
-  const { iconScale } = useMagnify(ref);
-
-  return (
-    <motion.button
-      ref={ref}
-      onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-      className="icon-link relative z-0 ml-2 hover:z-10"
-      style={{ scale: iconScale }}
-      whileHover={{ y: -3 }}
-      aria-label="Back to top"
-    >
-      <ArrowUp size={16} />
-    </motion.button>
-  );
-}
-
+/**
+ * Persistent footer from the V2 design:
+ * telemetry strip → AP identity → System Registries → Coordinates & Ops.
+ */
 export function Footer() {
   return (
-    <footer className="relative overflow-hidden border-t border-[var(--line)] py-12">
-      {/* The dock region spans the whole footer band (negative margins reclaim
-          the vertical padding) so the icons start reacting on approach, not
-          only once the pointer is already on the row. */}
-      <MagnifyDock className="-my-12 mx-auto flex max-w-[1500px] flex-wrap items-center justify-between gap-6 px-5 py-12 lg:px-10">
+    <footer className="w-full border-t-2 border-primary bg-surface-low text-on-surface dark:border-outline dark:bg-surface-lowest">
+      {/* Telemetry strip */}
+      <div className="flex w-full flex-wrap items-center justify-between gap-4 border-b-2 border-primary bg-surface-container px-6 py-3 font-headline text-xs tracking-wider dark:border-b dark:border-outline-variant dark:bg-surface dark:text-on-surface-variant lg:px-12">
+        <div className="flex items-center gap-6 font-bold dark:text-white">
+          <span>LOG_ID: BIO-TELEMETRY-NODE-09</span>
+          <span>GRID: NORTH_BIHAR_PUBLIC_HEALTH</span>
+        </div>
+        <div className="flex items-center gap-4 text-xs font-bold uppercase">
+          <span className="text-accent-red">● LIVE UPTIME: 99.84%</span>
+          <span>STACK: FASTAPI / RAG / POSTGRES</span>
+        </div>
+      </div>
+
+      {/* Identity / registries / coordinates */}
+      <div className="mx-auto grid max-w-7xl grid-cols-1 gap-8 px-6 py-12 md:grid-cols-4 lg:px-12">
+        <div className="space-y-4 md:col-span-2">
+          <div className="font-headline text-xl font-bold uppercase tracking-tight text-primary dark:text-primary">
+            AP // ADITYA PANDEY
+            <span className="ml-2 hidden font-mono text-xs text-primary-yellow dark:inline">[2026.04]</span>
+          </div>
+          <p className="max-w-md font-body text-sm text-on-surface-variant dark:text-on-surface-variant">
+            Architecting resilient full-stack systems, distributed clinical data pipelines, and
+            offline-first intelligence architectures across underserved public health frontlines in
+            India.
+          </p>
+          <div className="font-headline text-xs font-bold uppercase tracking-widest text-primary dark:text-accent-yellow">
+            FIELD DESK: MUZAFFARPUR &amp; PATNA // HQ IN ARARIA
+          </div>
+        </div>
+
         <div>
-          <p className="font-mono text-[11px] uppercase tracking-[0.22em] text-ink-3">
-            © {new Date().getFullYear()} {profile.name}
-          </p>
-          <p className="mt-1.5 text-[12.5px] text-ink-4">
-            Built in Bihar · Field Data → Clean Insights → Real Decisions
-          </p>
+          <div className="mb-4 border-b-2 border-primary pb-2 font-headline text-xs font-bold uppercase tracking-wider text-primary dark:border-outline dark:text-white">
+            SYSTEM REGISTRIES
+          </div>
+          <ul className="space-y-2 font-headline text-xs font-bold uppercase dark:text-on-surface-variant">
+            {SYSTEM_REGISTRIES.map((registry) => (
+              <li key={registry.label} className="flex items-center gap-2">
+                <span className="text-accent-red dark:text-primary-yellow">■</span>
+                {registry.external ? (
+                  <a
+                    className="transition-colors hover:text-accent-blue dark:hover:text-white"
+                    href={registry.href}
+                    rel="noopener noreferrer"
+                    target="_blank"
+                  >
+                    {registry.label}
+                  </a>
+                ) : (
+                  <Link
+                    className="transition-colors hover:text-accent-blue dark:hover:text-white"
+                    href={registry.href}
+                  >
+                    {registry.label}
+                  </Link>
+                )}
+              </li>
+            ))}
+          </ul>
         </div>
 
-        <div className="flex items-center gap-2">
-          {CONTACT_ITEMS.map((s) => (
-            <FooterLink key={s.label} href={s.href} label={s.label} icon={s.icon} />
-          ))}
-          <FooterTop />
+        <div>
+          <div className="mb-4 border-b-2 border-primary pb-2 font-headline text-xs font-bold uppercase tracking-wider text-primary dark:border-outline dark:text-white">
+            COORDINATES &amp; OPS
+          </div>
+          <div className="space-y-1 font-headline text-xs uppercase text-on-surface-variant dark:text-on-surface-variant">
+            <div>LAT/LONG: 26.1209° N, 85.3647° E</div>
+            <div>LOC: BIHAR HEALTH SECTOR INITIATIVE</div>
+            <div>SEC: SHA-256 SIGNED LOGS</div>
+            <div>DISPATCH: FELLOWSHIP VERIFIED</div>
+          </div>
         </div>
+      </div>
 
-        <span className="pointer-events-none absolute bottom-0 left-1/2 -translate-x-1/2 whitespace-nowrap font-serif text-[clamp(80px,18vw,260px)] leading-none text-[var(--ink-3)] opacity-[0.04]">
-          {profile.initials}
+      {/* Bottom strip */}
+      <div className="flex flex-col items-center justify-between gap-2 border-t-2 border-primary bg-primary px-6 py-4 font-headline text-xs tracking-wider text-on-primary dark:border-outline dark:bg-surface-lowest dark:text-on-surface-variant sm:flex-row lg:px-12">
+        <span>
+          © 2026 ADITYA PANDEY — DATA SYSTEMS &amp; PUBLIC HEALTH FULL-STACK BUILDER. ALL RIGHTS
+          RESERVED.
         </span>
-      </MagnifyDock>
+        <span className="font-bold uppercase text-accent-yellow dark:text-primary-yellow">
+          <span className="dark:hidden">BAUHAUS NEO-BRUTALIST ARCHITECTURE</span>
+          <span className="hidden dark:inline">OBSIDIAN BAUHAUS BRUTALISM</span>
+        </span>
+      </div>
     </footer>
   );
 }

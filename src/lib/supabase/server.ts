@@ -1,4 +1,5 @@
 import { createClient, type SupabaseClient } from '@supabase/supabase-js';
+import { isHttpUrl, isSet } from '@/lib/env';
 
 const url = process.env.NEXT_PUBLIC_SUPABASE_URL;
 const serviceKey = process.env.SUPABASE_SERVICE_ROLE_KEY;
@@ -6,7 +7,7 @@ const serviceKey = process.env.SUPABASE_SERVICE_ROLE_KEY;
 let adminClient: SupabaseClient | null = null;
 
 export function isSupabaseConfigured() {
-  return Boolean(url && (serviceKey || process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY));
+  return isHttpUrl(url) && (isSet(serviceKey) || isSet(process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY));
 }
 
 /**
@@ -14,7 +15,7 @@ export function isSupabaseConfigured() {
  * Use ONLY inside API routes / server components / scripts.
  */
 export function getSupabaseAdmin(): SupabaseClient {
-  if (!url || !serviceKey) {
+  if (!isHttpUrl(url) || !isSet(serviceKey)) {
     throw new Error('Supabase not configured. Set NEXT_PUBLIC_SUPABASE_URL and SUPABASE_SERVICE_ROLE_KEY.');
   }
   if (!adminClient) {

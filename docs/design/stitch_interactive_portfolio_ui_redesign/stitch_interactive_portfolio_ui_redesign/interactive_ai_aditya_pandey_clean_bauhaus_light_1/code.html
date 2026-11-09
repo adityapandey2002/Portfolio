@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+
+<html lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="web_standard" name="shell-type"/><link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Space+Grotesk:wght@500;600;700&amp;display=swap" rel="stylesheet"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><style>@layer base{html,body{margin:0;padding:0;}body{overscroll-behavior:none;}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config={darkMode:"class",theme:{extend:{colors:{"primary-container":"#ffcc00","on-tertiary-fixed-variant":"#1a1a1a","on-primary-fixed":"#1a1a1a","tertiary-container":"#d6e3ff","on-secondary-container":"#1a1a1a","secondary":"#e63b2e","error":"#cc0000","secondary-fixed-dim":"#ffb3ab","error-container":"#ffdad6","surface-container-high":"#e8e3da","on-tertiary-container":"#1a1a1a","on-secondary":"#1a1a1a","on-error-container":"#93000a","on-surface":"#1a1a1a","surface":"#f5f0e8","on-background":"#1a1a1a","inverse-on-surface":"#f5f0e8","primary":"#1a1a1a","surface-container-highest":"#e2ddd4","on-tertiary":"#ffffff","secondary-container":"#ffdad6","tertiary":"#0055ff","outline":"#1a1a1a","on-tertiary-fixed":"#1a1a1a","on-secondary-fixed-variant":"#1a1a1a","on-secondary-fixed":"#1a1a1a","secondary-fixed":"#ffdad6","on-primary":"#ffffff","surface-container":"#eee9e0","on-primary-fixed-variant":"#1a1a1a","surface-variant":"#e8e3da","on-primary-container":"#1a1a1a","surface-bright":"#faf7f2","outline-variant":"#d0cbc3","primary-fixed-dim":"#e6b800","surface-container-lowest":"#ffffff","tertiary-fixed":"#d6e3ff","primary-fixed":"#ffcc00","surface-dim":"#d6d1c9","tertiary-fixed-dim":"#a8c6ff","surface-container-low":"#f2ede5","background":"#f5f0e8","inverse-surface":"#1a1a1a","surface-tint":"#1a1a1a","on-error":"#ffffff","inverse-primary":"#f5f0e8","on-surface-variant":"#4a4a4a"},borderRadius:{DEFAULT:"0.125rem",lg:"0.25rem",xl:"0.5rem",full:"0.75rem"},spacing:{},fontFamily:{headline:["Space Grotesk"],display:["Space Grotesk"],body:["Inter"],label:["Space Grotesk"]},fontSize:{}}}}</script></head><body class="bg-background font-body text-on-surface"><header class="fixed top-0 left-0 right-0 z-50 bg-surface border-b-2 border-primary"><div class="h-20 w-full px-6 lg:px-12 flex items-center justify-between"><div class="flex items-center gap-6"><a class="flex items-center justify-center w-12 h-12 bg-primary text-on-primary font-headline font-bold text-xl tracking-tighter hover:bg-primary-container hover:text-on-primary-container transition-colors border-2 border-primary" data-path="home" href="#">AP</a><div class="hidden sm:flex flex-col"><span class="font-headline font-bold text-sm tracking-widest uppercase text-on-surface">Aditya Pandey</span><span class="font-headline text-xs tracking-wider text-on-surface-variant uppercase">Systems &amp; Health AI</span></div></div><nav class="hidden xl:flex items-center gap-2" data-active-classes="bg-primary-container text-on-primary-container font-bold border-2 border-primary"><a class="px-4 py-2 text-xs font-headline font-semibold uppercase tracking-wider text-on-surface-variant hover:text-on-surface hover:bg-surface-container transition-colors" data-path="home" href="#">Home</a><a class="px-4 py-2 text-xs font-headline font-semibold uppercase tracking-wider text-on-surface-variant hover:text-on-surface hover:bg-surface-container transition-colors" data-path="work-and-systems" href="#">Work &amp; Systems</a><a class="px-4 py-2 text-xs font-headline font-semibold uppercase tracking-wider text-on-surface-variant hover:text-on-surface hover:bg-surface-container transition-colors" data-path="health-impact" href="#">Health Impact</a><a class="px-4 py-2 text-xs font-headline uppercase tracking-wider bg-primary-container text-on-primary-container font-bold border-2 border-primary" data-path="interactive-ai" href="#">Interactive AI</a><a class="px-4 py-2 text-xs font-headline font-semibold uppercase tracking-wider text-on-surface-variant hover:text-on-surface hover:bg-surface-container transition-colors" data-path="contact" href="#">Contact</a></nav><div class="flex items-center gap-3"><a class="hidden sm:inline-flex items-center justify-center px-4 py-2.5 bg-primary-container text-on-primary-container font-headline font-bold text-xs uppercase tracking-wider border-2 border-primary hover:bg-primary hover:text-on-primary transition-all shadow-[3px_3px_0px_#1a1a1a]" data-path="contact" href="#">Engage Fellow</a><a class="hidden md:inline-flex items-center justify-center px-4 py-2.5 bg-surface text-on-surface font-headline font-bold text-xs uppercase tracking-wider border-2 border-primary hover:bg-secondary hover:text-on-secondary hover:border-secondary transition-all shadow-[3px_3px_0px_#1a1a1a]" data-path="resume" href="#">Resume</a><button class="border-2 border-primary bg-surface-container-lowest font-mono font-bold text-[11px] px-2.5 py-1.5 inline-flex items-center gap-1.5 shadow-[2px_2px_0px_#1a1a1a] hover:bg-primary hover:text-on-primary active:translate-x-0.5 active:translate-y-0.5 transition-all uppercase tracking-wider text-on-surface" id="themeToggleBtn" onclick="(function(){const isDark=document.documentElement.classList.toggle('dark');const btn=document.getElementById('themeToggleBtn');if(btn){btn.innerHTML=isDark?'&lt;span class=\'material-symbols-outlined text-[14px]\'&gt;dark_mode&lt;/span&gt;&lt;span&gt;MODE: DARK&lt;/span&gt;':'&lt;span class=\'material-symbols-outlined text-[14px]\'&gt;light_mode&lt;/span&gt;&lt;span&gt;MODE: LIGHT&lt;/span&gt;';}})()" title="Toggle Light/Dark Theme"><span class="material-symbols-outlined text-[14px]">light_mode</span><span class="">MODE: LIGHT</span></button><div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center border-2 border-primary"><span class="material-symbols-outlined text-on-primary text-[18px]">person</span></div></div></div></header><main class="w-full pt-20 bg-background"><div class="flex flex-col w-full"><!-- Sub-header Status Indicator -->
+<div class="w-full bg-surface-container-low border-b-2 border-primary py-2 px-6 lg:px-12 flex flex-wrap items-center justify-between gap-3 text-xs font-mono">
+<div class="flex items-center gap-2 text-on-surface">
+<span class="w-2.5 h-2.5 rounded-full bg-secondary inline-block animate-pulse"></span>
+<span class="font-bold font-headline uppercase tracking-wider text-[11px]">AI Assistant Online</span>
+<span class="text-on-surface-variant">— Grounded in verified portfolio &amp; field records</span>
+</div>
+<div class="flex items-center gap-3 text-on-surface-variant text-[11px]">
+<span>Llama-3-70B via Groq</span>
+<span>•</span>
+<span>Zero-Hallucination Guardrails</span>
+</div>
+</div>
+<!-- Hero Header -->
+<section class="w-full border-b-2 border-primary px-6 lg:px-12 py-10 lg:py-14 bg-surface">
+<div class="max-w-4xl mx-auto text-center space-y-4">
+<div class="inline-flex items-center gap-2 border-2 border-primary bg-primary-container text-on-primary-container px-3 py-1 text-xs font-headline font-bold uppercase tracking-wider shadow-[3px_3px_0px_#1a1a1a]">
+<span class="material-symbols-outlined text-[16px]">chat_spark</span>
+      Interactive AI &amp; Portfolio Assistant
+    </div>
+<h1 class="font-headline font-bold text-3xl sm:text-5xl lg:text-6xl tracking-tight text-on-surface uppercase">
+      Ask Aditya's Knowledge Base
+    </h1>
+<p class="font-body text-sm sm:text-base lg:text-lg text-on-surface-variant leading-relaxed max-w-2xl mx-auto">
+      Ask questions directly to an AI assistant with full context on Aditya Pandey's public health data engineering, Piramal Gandhi Fellowship operations across 16 Bihar blocks, and production full-stack systems.
+    </p>
+</div>
+</section>
+<!-- Main Interactive Ask & Console Section -->
+<section class="w-full border-b-2 border-primary px-6 lg:px-12 py-10 bg-background">
+<div class="max-w-4xl mx-auto space-y-6">
+<!-- Quick Prompt Chips -->
+<div class="space-y-2">
+<div class="flex items-center justify-between text-xs">
+<span class="font-headline font-bold uppercase tracking-wider text-on-surface-variant flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[16px] text-secondary">lightbulb</span>
+          Suggested Questions (Click to Ask)
+        </span>
+<span class="text-on-surface-variant font-mono text-[11px] hidden sm:inline">Sub-second retrieval</span>
+</div>
+<div class="flex flex-wrap gap-2">
+<button class="px-3 py-1.5 bg-surface text-on-surface hover:bg-primary-container hover:text-on-primary-container border-2 border-primary text-xs font-headline font-semibold transition-all shadow-[2px_2px_0px_#1a1a1a] active:translate-x-0.5 active:translate-y-0.5 text-left" onclick="askPreset('How does offline sync work in Matru Suraksha?')">
+          ⚡ How does offline sync work in Matru Suraksha?
+        </button>
+<button class="px-3 py-1.5 bg-surface text-on-surface hover:bg-primary-container hover:text-on-primary-container border-2 border-primary text-xs font-headline font-semibold transition-all shadow-[2px_2px_0px_#1a1a1a] active:translate-x-0.5 active:translate-y-0.5 text-left" onclick="askPreset('What did Aditya achieve in the Gandhi Fellowship across 16 blocks?')">
+          🏥 What did Aditya achieve in the Gandhi Fellowship?
+        </button>
+<button class="px-3 py-1.5 bg-surface text-on-surface hover:bg-primary-container hover:text-on-primary-container border-2 border-primary text-xs font-headline font-semibold transition-all shadow-[2px_2px_0px_#1a1a1a] active:translate-x-0.5 active:translate-y-0.5 text-left" onclick="askPreset('Explain the DuckDB + Parquet pipeline in the India Development Data Engine.')">
+          📊 Explain the DuckDB + Parquet pipeline
+        </button>
+<button class="px-3 py-1.5 bg-surface text-on-surface hover:bg-primary-container hover:text-on-primary-container border-2 border-primary text-xs font-headline font-semibold transition-all shadow-[2px_2px_0px_#1a1a1a] active:translate-x-0.5 active:translate-y-0.5 text-left" onclick="askPreset('How is HMAC SHA-256 implemented in BiharKaSwaad webhook security?')">
+          🔐 How is HMAC SHA-256 implemented in BiharKaSwaad?
+        </button>
+</div>
+</div>
+<!-- Query Form Box -->
+<div class="border-2 border-primary bg-surface p-4 sm:p-5 shadow-[4px_4px_0px_#1a1a1a]">
+<form class="space-y-3" onsubmit="handleQuerySubmit(event)">
+<div class="flex flex-col sm:flex-row gap-2">
+<div class="relative flex-1 flex items-center bg-surface-container-lowest border-2 border-primary px-3 shadow-[2px_2px_0px_#1a1a1a]">
+<span class="material-symbols-outlined text-on-surface-variant text-[20px] mr-2">search</span>
+<input class="w-full bg-transparent border-0 outline-none text-on-surface font-body text-sm py-2.5 px-1 focus:ring-0 placeholder:text-on-surface-variant/60" id="terminalInput" placeholder="Ask any question about Aditya's projects, clinical tools, or research..." type="text" value="How does Matru Suraksha handle zero connectivity in remote Bihar sub-centres and escalate high-risk cases?"/>
+<button class="text-xs font-headline font-bold uppercase text-on-surface-variant hover:text-on-surface px-2 py-1" onclick="clearTerminalInput()" title="Clear text" type="button">CLR</button>
+</div>
+<button class="px-6 py-2.5 bg-primary text-on-primary hover:bg-primary-container hover:text-on-primary-container border-2 border-primary font-headline font-bold text-xs uppercase tracking-wider transition-all shadow-[3px_3px_0px_#1a1a1a] flex items-center justify-center gap-2 active:translate-x-0.5 active:translate-y-0.5" type="submit">
+<span>Ask Assistant</span>
+<span class="material-symbols-outlined text-[16px]">send</span>
+</button>
+</div>
+</form>
+</div>
+<!-- Clean Response Card -->
+<div class="border-2 border-primary bg-surface p-6 sm:p-8 space-y-6 shadow-[4px_4px_0px_#1a1a1a]">
+<!-- Active Question Header -->
+<div class="flex items-start justify-between gap-4 pb-4 border-b-2 border-primary">
+<div class="space-y-1">
+<span class="font-mono text-[11px] font-bold uppercase text-on-surface-variant block tracking-wider">Current Question</span>
+<h2 class="font-headline font-bold text-base sm:text-lg text-on-surface" id="activeQueryText">
+            How does Matru Suraksha handle zero connectivity in remote Bihar sub-centres and escalate high-risk cases?
+          </h2>
+</div>
+<span class="inline-flex items-center gap-1.5 px-2.5 py-1 bg-primary-container text-on-primary-container font-headline font-bold text-xs uppercase border border-primary shrink-0">
+<span class="material-symbols-outlined text-[14px]">verified</span> Grounded
+        </span>
+</div>
+<!-- Response Body -->
+<div class="font-body text-sm leading-relaxed text-on-surface space-y-4" id="responseStreamContainer">
+<div class="bg-surface-container-low p-4 border border-primary/20 space-y-2">
+<h3 class="font-headline font-bold text-xs uppercase tracking-wider text-on-surface flex items-center gap-2">
+<span class="w-2 h-2 bg-primary inline-block"></span> 1. Offline-First Architecture (Dexie.js &amp; IndexedDB)
+          </h3>
+<p class="text-xs sm:text-sm text-on-surface-variant leading-relaxed">
+            Matru Suraksha was engineered for zero-bandwidth rural health sub-centres across Bihar. The front-end leverages <strong class="text-on-surface font-semibold">Dexie.js over IndexedDB</strong> to maintain an immutable local store. Auxiliary Nurse Midwives (ANMs) register antenatal checkups, track 8 critical maternal danger signs (severe anemia, pre-eclampsia, systolic BP &gt; 140, gestational diabetes), and generate patient records entirely without internet.
+          </p>
+</div>
+<div class="bg-surface-container-low p-4 border border-primary/20 space-y-2">
+<h3 class="font-headline font-bold text-xs uppercase tracking-wider text-on-surface flex items-center gap-2">
+<span class="w-2 h-2 bg-secondary inline-block"></span> 2. Optimistic Sync &amp; Cryptographic Conflict Resolution
+          </h3>
+<p class="text-xs sm:text-sm text-on-surface-variant leading-relaxed">
+            When connectivity (intermittent 2G/3G) is detected, sync queues push updates to Fastify backend services. Records use <strong class="text-on-surface font-semibold">SHA-256 state hashing</strong> for optimistic concurrency control, ensuring zero data loss even when ANMs and Community Health Officers (CHOs) update vitals simultaneously.
+          </p>
+</div>
+<div class="bg-surface-container-low p-4 border border-primary/20 space-y-2">
+<h3 class="font-headline font-bold text-xs uppercase tracking-wider text-on-surface flex items-center gap-2">
+<span class="w-2 h-2 bg-primary-container inline-block border border-primary"></span> 3. Deterministic 15-Day High-Risk Pregnancy (HRP) Escalation
+          </h3>
+<p class="text-xs sm:text-sm text-on-surface-variant leading-relaxed mb-2">
+            Any pregnancy flagged with high-risk parameters starts an automated 15-day clinical clock:
+          </p>
+<ul class="list-disc pl-5 space-y-1 text-xs text-on-surface-variant">
+<li><strong class="text-on-surface font-semibold">Day 1:</strong> SMS alerts sent automatically to designated ANM and CHO.</li>
+<li><strong class="text-on-surface font-semibold">Day 12 (if unverified):</strong> Escalated to the Block Health Manager (BHM) dashboard with priority overdue flag.</li>
+<li><strong class="text-on-surface font-semibold">Day 15 (SLA breach):</strong> Automatically reported in District Health Society (DHS) escalation report for maternal mortality prevention.</li>
+</ul>
+</div>
+</div>
+<!-- Sources & Confidence Footer -->
+<div class="pt-4 border-t-2 border-primary flex flex-wrap items-center justify-between gap-3 text-xs text-on-surface-variant">
+<div class="flex flex-wrap items-center gap-2">
+<span class="font-headline font-bold uppercase text-[11px]">Verified Sources:</span>
+<span class="px-2 py-0.5 bg-surface-container border border-primary font-mono text-[10px]">Matru Suraksha Spec 4.2</span>
+<span class="px-2 py-0.5 bg-surface-container border border-primary font-mono text-[10px]">Dexie Store Service</span>
+<span class="px-2 py-0.5 bg-surface-container border border-primary font-mono text-[10px]">Muzaffarpur Field Logs</span>
+</div>
+<div class="font-mono text-[11px] text-on-surface font-semibold">
+          Similarity Score: 94.2%
+        </div>
+</div>
+</div>
+</div>
+</section>
+<!-- 4 Clean Knowledge Dossier Cards -->
+<section class="w-full border-b-2 border-primary bg-surface-container-low px-6 lg:px-12 py-12">
+<div class="max-w-6xl mx-auto space-y-6">
+<div class="text-center max-w-2xl mx-auto space-y-1">
+<span class="font-headline text-xs font-bold uppercase tracking-wider text-on-surface-variant">Knowledge Repository</span>
+<h2 class="font-headline font-bold text-2xl sm:text-3xl text-on-surface uppercase tracking-tight">Explore Core Topics</h2>
+<p class="font-body text-xs sm:text-sm text-on-surface-variant">Click any cluster below to prime a targeted inquiry.</p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+<!-- Card 1 -->
+<div class="cursor-pointer border-2 border-primary bg-surface p-5 shadow-[3px_3px_0px_#1a1a1a] hover:bg-surface-container transition-all flex flex-col justify-between group active:translate-x-0.5 active:translate-y-0.5" onclick="askPreset('What maternal and public health operations were implemented during the Gandhi Fellowship in Bihar?')">
+<div class="space-y-3">
+<div class="flex items-center justify-between">
+<span class="material-symbols-outlined text-secondary text-[24px]">local_hospital</span>
+<span class="text-[10px] font-mono px-1.5 py-0.5 bg-surface-container border border-primary">16 BLOCKS</span>
+</div>
+<h3 class="font-headline font-bold text-sm uppercase text-on-surface group-hover:text-secondary transition-colors">Public Health &amp; Field Ops</h3>
+<p class="font-body text-xs text-on-surface-variant leading-relaxed">
+            Piramal Gandhi Fellowship in Muzaffarpur, 13,627 KM field travel, ASHA trainings, and high-risk pregnancy tracking.
+          </p>
+</div>
+<div class="mt-4 pt-3 border-t border-primary/20 flex items-center justify-between text-xs font-headline font-bold uppercase text-on-surface group-hover:text-secondary">
+<span>Ask this topic</span>
+<span>→</span>
+</div>
+</div>
+<!-- Card 2 -->
+<div class="cursor-pointer border-2 border-primary bg-surface p-5 shadow-[3px_3px_0px_#1a1a1a] hover:bg-surface-container transition-all flex flex-col justify-between group active:translate-x-0.5 active:translate-y-0.5" onclick="askPreset('How is the offline-first Matru Suraksha platform engineered?')">
+<div class="space-y-3">
+<div class="flex items-center justify-between">
+<span class="material-symbols-outlined text-tertiary text-[24px]">devices</span>
+<span class="text-[10px] font-mono px-1.5 py-0.5 bg-surface-container border border-primary">DEXIE.JS</span>
+</div>
+<h3 class="font-headline font-bold text-sm uppercase text-on-surface group-hover:text-tertiary transition-colors">Matru Suraksha Platform</h3>
+<p class="font-body text-xs text-on-surface-variant leading-relaxed">
+            Offline IndexedDB persistence, Docker microservices, Fastify REST APIs, and automated 15-day triage escalations.
+          </p>
+</div>
+<div class="mt-4 pt-3 border-t border-primary/20 flex items-center justify-between text-xs font-headline font-bold uppercase text-on-surface group-hover:text-tertiary">
+<span>Ask this topic</span>
+<span>→</span>
+</div>
+</div>
+<!-- Card 3 -->
+<div class="cursor-pointer border-2 border-primary bg-surface p-5 shadow-[3px_3px_0px_#1a1a1a] hover:bg-surface-container transition-all flex flex-col justify-between group active:translate-x-0.5 active:translate-y-0.5" onclick="askPreset('How does the India Development Data Engine use DuckDB and Parquet to aggregate 118k+ metrics?')">
+<div class="space-y-3">
+<div class="flex items-center justify-between">
+<span class="material-symbols-outlined text-on-surface text-[24px]">database</span>
+<span class="text-[10px] font-mono px-1.5 py-0.5 bg-surface-container border border-primary">DUCKDB</span>
+</div>
+<h3 class="font-headline font-bold text-sm uppercase text-on-surface transition-colors">India Data Engine</h3>
+<p class="font-body text-xs text-on-surface-variant leading-relaxed">
+            DuckDB OLAP analytics processing 118,000+ district indicators, Apache Parquet storage, and Leaflet GIS mapping.
+          </p>
+</div>
+<div class="mt-4 pt-3 border-t border-primary/20 flex items-center justify-between text-xs font-headline font-bold uppercase text-on-surface">
+<span>Ask this topic</span>
+<span>→</span>
+</div>
+</div>
+<!-- Card 4 -->
+<div class="cursor-pointer border-2 border-primary bg-surface p-5 shadow-[3px_3px_0px_#1a1a1a] hover:bg-surface-container transition-all flex flex-col justify-between group active:translate-x-0.5 active:translate-y-0.5" onclick="askPreset('Explain the full-stack architecture and HMAC security in BiharKaSwaad and Araria Hospital systems.')">
+<div class="space-y-3">
+<div class="flex items-center justify-between">
+<span class="material-symbols-outlined text-secondary text-[24px]">security</span>
+<span class="text-[10px] font-mono px-1.5 py-0.5 bg-surface-container border border-primary">NEXT.JS</span>
+</div>
+<h3 class="font-headline font-bold text-sm uppercase text-on-surface group-hover:text-secondary transition-colors">Full-Stack &amp; Security</h3>
+<p class="font-body text-xs text-on-surface-variant leading-relaxed">
+            Razorpay payment gateway with HMAC SHA-256 webhooks, OPD clinical queue dispatch at Araria Hospital, and Next.js.
+          </p>
+</div>
+<div class="mt-4 pt-3 border-t border-primary/20 flex items-center justify-between text-xs font-headline font-bold uppercase text-on-surface group-hover:text-secondary">
+<span>Ask this topic</span>
+<span>→</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Bottom Cross-Links CTA Banner -->
+<section class="w-full bg-primary-container border-b-2 border-primary px-6 lg:px-12 py-10 text-on-primary-container">
+<div class="max-w-4xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-6 text-center sm:text-left">
+<div class="space-y-1">
+<h2 class="font-headline font-bold text-xl sm:text-2xl uppercase tracking-tight">
+        Looking for Detailed Case Studies?
+      </h2>
+<p class="font-body text-xs sm:text-sm text-on-primary-container/80">
+        Explore interactive architectural diagrams and verified clinical field vitals.
+      </p>
+</div>
+<div class="flex flex-wrap items-center justify-center gap-3">
+<a class="px-4 py-2.5 bg-surface text-on-surface font-headline font-bold text-xs uppercase tracking-wider border-2 border-primary hover:bg-primary hover:text-on-primary transition-all shadow-[3px_3px_0px_#1a1a1a] inline-flex items-center gap-1.5" data-path="work-and-systems" href="#">
+<span>Work &amp; Systems</span>
+<span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+</a>
+<a class="px-4 py-2.5 bg-surface text-on-surface font-headline font-bold text-xs uppercase tracking-wider border-2 border-primary hover:bg-primary hover:text-on-primary transition-all shadow-[3px_3px_0px_#1a1a1a] inline-flex items-center gap-1.5" data-path="health-impact" href="#">
+<span>Health Impact</span>
+<span class="material-symbols-outlined text-[16px]">monitoring</span>
+</a>
+</div>
+</div>
+</section>
+<script>
+  function clearTerminalInput() {
+    const input = document.getElementById('terminalInput');
+    if (input) {
+      input.value = '';
+      input.focus();
+    }
+  }
+
+  function askPreset(promptText) {
+    const input = document.getElementById('terminalInput');
+    if (input) {
+      input.value = promptText;
+      handleQuerySubmit(new Event('submit'));
+    }
+  }
+
+  function handleQuerySubmit(event) {
+    if (event && event.preventDefault) event.preventDefault();
+    const input = document.getElementById('terminalInput');
+    const queryDisplay = document.getElementById('activeQueryText');
+    const streamContainer = document.getElementById('responseStreamContainer');
+
+    if (!input || !queryDisplay || !streamContainer) return;
+    const userVal = input.value.trim();
+    if (!userVal) return;
+
+    queryDisplay.innerText = userVal;
+    streamContainer.innerHTML = '<div class="p-4 bg-surface-container-low border border-primary/20 text-center font-mono text-xs animate-pulse text-on-surface-variant">Generating grounded answer...</div>';
+
+    setTimeout(() => {
+      streamContainer.innerHTML = `
+        <div class="bg-surface-container-low p-4 border border-primary/20 space-y-2">
+          <h3 class="font-headline font-bold text-xs uppercase tracking-wider text-on-surface flex items-center gap-2">
+            <span class="w-2 h-2 bg-primary inline-block"></span> Grounded Response
+          </h3>
+          <p class="text-xs sm:text-sm text-on-surface-variant leading-relaxed">
+            Aditya Pandey\'s systems and field operations demonstrate rigorous offline-first engineering and clinical public health impact across Bihar. Key highlights include building <strong>Matru Suraksha</strong> with local Dexie.js persistence for zero-connectivity health sub-centres, orchestrating high-risk pregnancy 15-day escalation ladders, deploying the <strong>India Development Data Engine</strong> powered by DuckDB OLAP, and leading grassroots healthcare workflows spanning 16 administrative blocks in Muzaffarpur during the Piramal Gandhi Fellowship.
+          </p>
+        </div>
+      `;
+    }, 400);
+  }
+</script></div>
+<script>
+  function setQueryPrompt(text) {
+    const input = document.getElementById('terminalInput');
+    if (input) {
+      input.value = text;
+      input.focus();
+    }
+  }
+
+  function clearTerminalInput() {
+    const input = document.getElementById('terminalInput');
+    if (input) {
+      input.value = '';
+      input.focus();
+    }
+  }
+
+  function togglePayload() {
+    const drawer = document.getElementById('rawPayloadDrawer');
+    const btn = document.getElementById('togglePayloadBtn');
+    if (drawer) {
+      const isHidden = drawer.classList.contains('hidden');
+      if (isHidden) {
+        drawer.classList.remove('hidden');
+        if (btn) btn.innerText = 'Hide Raw JSON Payload';
+      } else {
+        drawer.classList.add('hidden');
+        if (btn) btn.innerText = 'View Raw JSON Payload';
+      }
+    }
+  }
+
+  function handleQuerySubmit(event) {
+    event.preventDefault();
+    const input = document.getElementById('terminalInput');
+    const queryDisplay = document.getElementById('activeQueryText');
+    const streamContainer = document.getElementById('responseStreamContainer');
+
+    if (!input || !queryDisplay || !streamContainer) return;
+    const userVal = input.value.trim();
+    if (!userVal) return;
+
+    queryDisplay.innerText = userVal;
+    
+    // Simulate instantaneous RAG streaming feedback
+    streamContainer.innerHTML = `
+      <div class="animate-pulse text-primary-container">
+        [EVALUATING COSINE SIMILARITY] Scanning 486 pgvector dossier segments...
+      </div>
+    `;
+
+    setTimeout(() => {
+      streamContainer.innerHTML = `
+        <div>
+          <span class="font-bold text-primary-container uppercase text-xs block mb-1">01. GROUNDED KNOWLEDGE SYNTHESIS:</span>
+          Query resolved against internal portfolio node with confidence factor 0.961. Aditya Pandey's engineering and public health operations in Bihar adhere to strict offline-first resilient architectures, real-time data integrity via DuckDB / Fastify, and SLA-bound maternal health triage across 16 administrative blocks.
+        </div>
+        <div>
+          <span class="font-bold text-primary-container uppercase text-xs block mb-1">02. RELEVANT ARTIFACT SOURCES:</span>
+          Retrieved corroborating records from <code>SPEC-matru-suraksha-roles.md</code>, <code>duckdb-olap-runner.ts</code>, and <code>gandhi-fellowship-field-ops-muzaffarpur.log</code>.
+        </div>
+      `;
+    }, 450);
+  }
+</script></main><footer class="w-full bg-surface-container border-t-2 border-primary"><div class="w-full px-6 lg:px-12 py-12"><div class="grid grid-cols-1 md:grid-cols-4 gap-8 pb-12 border-b-2 border-primary"><div class="space-y-3"><div class="w-10 h-10 bg-primary text-on-primary font-headline font-bold flex items-center justify-center text-lg border-2 border-primary">AP</div><p class="font-headline text-xs font-bold uppercase tracking-wider text-on-surface">Form Follows Function</p><p class="text-xs text-on-surface-variant max-w-xs font-body leading-relaxed">Architecting deterministic clinical systems, autonomous agents, and bio-computational interfaces.</p></div><div class="space-y-2"><span class="font-headline text-xs font-bold uppercase tracking-widest text-on-surface block">Telemetry &amp; Coords</span><div class="font-headline text-xs text-on-surface-variant space-y-1 font-mono"><div class="">LAT: 37.7749° N / LON: 122.4194° W</div><div class="">ALT: 16M / TIMEZONE: UTC-8</div><div class="">GRID: BAUHAUS-SYS-09</div><div class="">STATUS: OPERATIONAL [200 OK]</div></div></div><div class="space-y-2"><span class="font-headline text-xs font-bold uppercase tracking-widest text-on-surface block">Dispatches</span><div class="flex flex-col space-y-2 text-xs font-headline uppercase font-semibold"><a class="text-on-surface-variant hover:text-on-surface transition-colors" data-path="work-and-systems" href="#">01 // Systems Index</a><a class="text-on-surface-variant hover:text-on-surface transition-colors" data-path="health-impact" href="#">02 // Clinical Models</a><a class="text-on-surface-variant hover:text-on-surface transition-colors" data-path="interactive-ai" href="#">03 // Autonomous Agents</a><a class="text-on-surface-variant hover:text-on-surface transition-colors" data-path="resume" href="#">04 // Vitae Dossier</a></div></div><div class="space-y-2"><span class="font-headline text-xs font-bold uppercase tracking-widest text-on-surface block">Interface Vectors</span><div class="flex flex-col space-y-2 text-xs font-headline uppercase font-semibold"><a class="text-on-surface-variant hover:text-on-surface transition-colors" data-path="contact" href="#">Secure Comms</a><a class="text-on-surface-variant hover:text-on-surface transition-colors" href="https://github.com" rel="noreferrer" target="_blank">Code Repository</a><a class="text-on-surface-variant hover:text-on-surface transition-colors" href="https://linkedin.com" rel="noreferrer" target="_blank">Executive Network</a><a class="text-on-surface-variant hover:text-on-surface transition-colors" href="https://scholar.google.com" rel="noreferrer" target="_blank">Scholar / Publications</a></div></div></div><div class="pt-8 flex flex-col md:flex-row items-center justify-between gap-4"><div class="font-headline text-xs uppercase font-bold tracking-wider text-on-surface">© 2025 Aditya Pandey. All Functional Systems Reserved.</div><div class="flex items-center gap-6 font-headline text-xs uppercase tracking-wider text-on-surface-variant"><span class="">Brutalist Spec 2.4</span><span class="w-2 h-2 bg-secondary inline-block"></span><span class="">Zero Softness Rule</span></div></div></div></footer>
+</body></html>

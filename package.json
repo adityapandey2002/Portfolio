@@ -9,7 +9,8 @@
     "start": "next start",
     "lint": "eslint .",
     "typecheck": "tsc --noEmit",
-    "db:seed": "node --env-file=.env src/scripts/seed-kb.mjs"
+    "db:seed": "node --env-file=.env src/scripts/seed-kb.mjs",
+    "seed-knowledge-base": "node --env-file=.env src/scripts/seed-knowledge-base.mjs"
   },
   "dependencies": {
     "@ai-sdk/openai": "^1.3.12",

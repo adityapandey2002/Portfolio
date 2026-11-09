@@ -101,6 +101,31 @@
   --hero-glow-2: rgba(99, 102, 241, 0.12);
 }
 
+/* The V2 theme toggle only flips the `dark` class (not `data-theme`), so
+   legacy V1 surfaces that still read --bg/--ink need explicit dark values. */
+html.dark {
+  --bg: #121214;
+  --bg-2: #1b1b1d;
+  --bg-3: #202024;
+  --line: rgba(255, 255, 255, 0.14);
+  --line-2: rgba(255, 255, 255, 0.07);
+  --ink: #f4f4f5;
+  --ink-2: #a1a1aa;
+  --ink-3: #9ca3af;
+  --ink-4: #9ca3af;
+  --primary: #ff6b4a;
+  --primary-glow: rgba(255, 107, 74, 0.4);
+  --accent: #60a5fa;
+  --accent-glow: rgba(96, 165, 250, 0.3);
+  --indigo: #34d399;
+  --rose: #ff6b4a;
+  --cyan: #facc15;
+  --grad-1: linear-gradient(120deg, #facc15 0%, #ff6b4a 50%, #60a5fa 100%);
+  --grad-2: linear-gradient(90deg, #facc15, #ff6b4a);
+  --hero-glow-1: rgba(250, 204, 21, 0.12);
+  --hero-glow-2: rgba(96, 165, 250, 0.1);
+}
+
 /* =========================================================
    BASE
 ========================================================= */
@@ -121,17 +146,6 @@ html {
   scroll-snap-type: none;
 }
 
-/* Desktop renders as if the browser were at 80% zoom: a 1920×1080 screen
-   becomes a 2400×1350 CSS canvas, so full-viewport panels breathe the way
-   they do at 80%. Gated to ≥1024px so phone/tablet breakpoints are
-   untouched; @supports skips browsers without CSS zoom (pre-FF 126). */
-@media (min-width: 1024px) {
-  @supports (zoom: 0.8) {
-    html {
-      zoom: 0.8;
-    }
-  }
-}
 html,
 body {
   overscroll-behavior-y: none;
@@ -141,11 +155,8 @@ body {
   --nav-h: 48px;
   --safe-top: env(safe-area-inset-top, 0px);
   --safe-bottom: env(safe-area-inset-bottom, 0px);
-  /* 1 = no root zoom. Under html { zoom: 0.8 } viewport units (vh/svh/dvh)
-     do NOT scale with the root the way px do — 100svh still resolves to the
-     unscaled 1080 layout px while the layout viewport has already widened to
-     1350 — so every full-bleed height multiplies by this inverse to keep
-     filling the screen exactly like a real 80% browser zoom would. */
+  /* Kept at 1: the V1 80% desktop zoom was removed so the V2 layouts render
+     at their design width. Full-bleed heights still multiply by this value. */
   --zoom-inv: 1;
   /* Type scale. Home renders its copy one step larger than the shared
      section components do everywhere else; 1 elsewhere so every other route
@@ -525,7 +536,7 @@ textarea {
     box-shadow: 3px 3px 0 var(--ink);
   }
   .tag {
-    @apply inline-flex items-center rounded border border-[var(--line)] bg-bg-2 px-2.5 py-1 font-mono text-xs text-ink-2 transition-all duration-200;
+    @apply inline-flex items-center rounded border border-[var(--line)] bg-surface-container-lowest px-2.5 py-1 font-mono text-xs text-ink-2 transition-all duration-200;
     border-radius: 3px;
   }
   .tag:hover {
@@ -1532,4 +1543,122 @@ html[data-page='health'] .text-\[36px\] {
 }
 html[data-page='health'] .text-\[44px\] {
   font-size: calc(44px * var(--fs-bump));
+}
+
+/* =========================================================
+   V2 BAUHAUS NEO-BRUTALIST BASE
+   `darkMode: 'class'` — the `dark` class lives on <html>.
+
+   Tailwind colour utilities point at these RGB triplets, so a
+   single token (`bg-surface`, `text-primary`, `text-ink-2`)
+   resolves correctly in both themes without needing a `dark:`
+   twin on every element.
+========================================================= */
+:root {
+  --v2-primary-rgb: 26 26 26;
+  --v2-surface-rgb: 245 240 232;
+  --v2-surface-lowest-rgb: 255 255 255;
+  --v2-surface-low-rgb: 242 237 229;
+  --v2-surface-container-rgb: 238 233 224;
+  --v2-surface-container-high-rgb: 232 227 218;
+  --v2-surface-container-highest-rgb: 226 221 212;
+  --v2-surface-dim-rgb: 214 209 201;
+  --v2-surface-bright-rgb: 250 247 242;
+  --v2-on-surface-rgb: 26 26 26;
+  --v2-on-surface-variant-rgb: 74 74 74;
+  --v2-on-primary-rgb: 245 240 232;
+  --v2-on-primary-container-rgb: 26 26 26;
+  --v2-outline-rgb: 26 26 26;
+  --v2-outline-variant-rgb: 208 203 195;
+  --v2-ink-3-rgb: 107 107 107;
+  --v2-ink-4-rgb: 138 138 138;
+  --v2-accent-yellow-rgb: 255 204 0;
+  --v2-accent-red-rgb: 230 59 46;
+  --v2-accent-blue-rgb: 0 85 255;
+}
+
+/* The fixed bottom tab bar is visible up to the lg breakpoint. */
+@media (max-width: 1023px) {
+  body {
+    padding-bottom: calc(64px + var(--safe-bottom));
+  }
+}
+
+html.dark {
+  color-scheme: dark;
+  --v2-primary-rgb: 255 255 255;
+  --v2-surface-rgb: 19 19 21;
+  --v2-surface-lowest-rgb: 14 14 16;
+  --v2-surface-low-rgb: 27 27 29;
+  --v2-surface-container-rgb: 32 31 33;
+  --v2-surface-container-high-rgb: 44 44 48;
+  --v2-surface-container-highest-rgb: 57 57 59;
+  --v2-surface-dim-rgb: 14 14 16;
+  --v2-surface-bright-rgb: 27 27 29;
+  --v2-on-surface-rgb: 255 255 255;
+  --v2-on-surface-variant-rgb: 156 163 175;
+  --v2-on-primary-rgb: 19 19 21;
+  --v2-on-primary-container-rgb: 19 19 21;
+  --v2-outline-rgb: 57 57 59;
+  --v2-outline-variant-rgb: 44 44 48;
+  --v2-ink-3-rgb: 156 163 175;
+  --v2-ink-4-rgb: 107 114 128;
+  --v2-accent-yellow-rgb: 250 204 21;
+  --v2-accent-red-rgb: 255 107 74;
+  --v2-accent-blue-rgb: 96 165 250;
+}
+
+/* Home section index: anchor targets clear the fixed header + sticky strip. */
+#experience,
+#systems,
+#education,
+#pipeline,
+#vector-terminal,
+#dispatch {
+  scroll-margin-top: 7rem;
+}
+
+@media (min-width: 1024px) {
+  #experience,
+  #systems,
+  #education,
+  #pipeline,
+  #vector-terminal,
+  #dispatch {
+    scroll-margin-top: 9.5rem;
+  }
+}
+
+/* The AI terminal is a black surface in both themes. Scoping the
+   tokens here keeps every nested `bg-surface` / `text-on-surface`
+   readable without rewriting each child. */
+.terminal-shell {
+  --v2-primary-rgb: 255 255 255;
+  --v2-surface-rgb: 19 19 21;
+  --v2-surface-lowest-rgb: 14 14 16;
+  --v2-surface-low-rgb: 27 27 29;
+  --v2-surface-container-rgb: 32 31 33;
+  --v2-surface-container-high-rgb: 44 44 48;
+  --v2-on-surface-rgb: 255 255 255;
+  --v2-on-surface-variant-rgb: 156 163 175;
+  --v2-on-primary-rgb: 19 19 21;
+  --v2-on-primary-container-rgb: 19 19 21;
+  --v2-outline-rgb: 57 57 59;
+  --v2-outline-variant-rgb: 44 44 48;
+  --v2-accent-yellow-rgb: 250 204 21;
+  --v2-accent-red-rgb: 255 107 74;
+  --v2-accent-blue-rgb: 96 165 250;
+}
+
+/* Zero-radius base utility for brutalist components. */
+.radius-none {
+  border-radius: 0 !important;
+}
+
+/* Thick solid borders: near-black in light, white in dark. */
+.border-brutalist {
+  border: 2px solid #1a1a1a;
+}
+html.dark .border-brutalist {
+  border-color: #ffffff;
 }

@@ -1,92 +1,141 @@
 'use client';
 
-import { useRef } from 'react';
-import { motion, useInView } from 'framer-motion';
-import { MapPin, GraduationCap, Briefcase, Languages, Zap, Building2, Home, LocateFixed } from 'lucide-react';
-import { profile } from '@/lib/data/profile';
-import { SectionHeading } from './SectionHeading';
-
-const FACTS_ICONS = {
-  Education: GraduationCap,
-  'Current role': Briefcase,
-  Organization: Building2,
-  Base: LocateFixed,
-  Hometown: Home,
-  Focus: Zap,
-  Languages: Languages,
-} as const;
+/**
+ * V2 About — Profile Dossier section.
+ *
+ * Matches the design file exactly:
+ * - Section header: "02 // PROFILE DOSSIER" + "Living at the frontline." + FILE_ID
+ * - Left Column: Biography narrative with badge, headline, paragraphs, location cards, tags
+ * - Right Column: Identity Dossier Card with verified badge, fields, field operating badges
+ *
+ * Brutalist contract: 0px radius, thick borders, hard shadows, uppercase tracking
+ */
 
 export function About() {
-  const ref = useRef<HTMLDivElement>(null);
-  const inView = useInView(ref, { once: true, margin: '-80px' });
-
   return (
-    <section id="about" className="relative flex h-full w-full items-center overflow-hidden px-5 lg:px-10">
-      <div className="mx-auto grid w-full max-w-[1500px] items-center gap-8 lg:grid-cols-[1.05fr_0.95fr]">
-        <div ref={ref}>
-          <SectionHeading
-            eyebrow="/* 03 · ABOUT */"
-            className="mb-6"
-            title={
-              <>
-                Full stack AI and <br />
-                <span className="text-gradient">data engineer</span>
-              </>
-            }
-            sub={profile.tagline}
-          />
-
-          {/* Only first 2 paragraphs — keeps it scannable */}
-          <div className="space-y-3 text-[13.5px] leading-[1.75] text-ink-2">
-            {profile.aboutParagraphs.slice(0, 2).map((p, i) => (
-              <motion.div
-                key={i}
-                className="about-fade"
-                initial={{ opacity: 0, y: 18 }}
-                animate={inView ? { opacity: 1, y: 0 } : {}}
-                transition={{ duration: 0.7, delay: 0.1 + i * 0.12, ease: [0.16, 1, 0.3, 1] }}
-                dangerouslySetInnerHTML={{ __html: p }}
-              />
-            ))}
+    <section id="about" className="border-b-4 border-primary dark:border-[#3f3f46] bg-surface-container-low dark:bg-[#121214]">
+      <div className="max-w-7xl mx-auto space-y-10 py-10 px-4 sm:px-8 lg:px-12">
+        {/* Section Header */}
+        <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 border-b-2 border-primary dark:border-[#3f3f46] pb-4">
+          <div>
+            <span className="font-headline text-xs font-bold uppercase tracking-widest text-secondary block">
+              02 // PROFILE DOSSIER
+            </span>
+            <h2 className="font-headline text-3xl sm:text-5xl font-bold uppercase tracking-tight text-on-surface dark:text-on-surface mt-1">
+              Living at the frontline.
+            </h2>
           </div>
-
-          <motion.div
-            className="mt-6 flex flex-wrap gap-2"
-            initial={{ opacity: 0, y: 16 }}
-            animate={inView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.7, delay: 0.5 }}
-          >
-            {profile.tags.map((t) => (
-              <span key={t} className="rounded-full border border-[var(--line)] bg-bg-2/70 px-2.5 py-0.5 font-mono text-[10px] text-ink-2">
-                {t}
-              </span>
-            ))}
-          </motion.div>
+          <span className="font-mono text-xs text-on-surface-variant dark:text-on-surface-variant">
+            FILE_ID: AP_2025_BIO
+          </span>
         </div>
 
-        <motion.aside
-          className="h-fit rounded-2xl border border-[var(--line)] bg-bg-2/60 p-5"
-          initial={{ opacity: 0, x: 24 }}
-          animate={inView ? { opacity: 1, x: 0 } : {}}
-          transition={{ duration: 0.7, delay: 0.25, ease: [0.16, 1, 0.3, 1] }}
-        >
-          <div className="mb-4 flex items-center justify-between">
-            <span className="font-mono text-[10.5px] uppercase tracking-[0.2em] text-ink-3">Identity card</span>
-            <MapPin size={14} className="text-primary" />
-          </div>
-          <div className="divide-y divide-[var(--line)]">
-            {profile.quickFacts.map((f) => {
-              const Icon = FACTS_ICONS[f.k as keyof typeof FACTS_ICONS];
-              return (
-                <div key={f.k} className="flex items-center gap-3 py-2.5">
-                  {Icon ? <Icon size={14} className="shrink-0 text-ink-3" /> : <span className="h-[14px] w-[14px] shrink-0" />}
-                  <span className="w-28 shrink-0 font-mono text-[10px] uppercase tracking-wider text-ink-3">{f.k}</span>
-                  <span className="text-[13px] font-medium text-ink">{f.v}</span>
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">
+          {/* Left Column: Biography Narrative */}
+          <div className="lg:col-span-7 bg-surface-container-lowest dark:bg-[#0f0f11] border-3 border-primary dark:border-[#3f3f46] p-6 sm:p-8 shadow-[6px_6px_0px_#1a1a1a] dark:shadow-[6px_6px_0px_#000000] flex flex-col justify-between">
+            <div className="space-y-5">
+              <div className="inline-block bg-primary text-on-primary dark:bg-[#facc15] dark:text-[#121214] px-3 py-1 font-headline text-xs uppercase font-bold tracking-widest">
+                Field Engineer Biography
+              </div>
+              <p className="font-headline text-xl sm:text-2xl font-bold text-on-surface dark:text-on-surface leading-snug">
+                Full-stack AI & public health data engineer stationed in Bihar, bridging physical registers and algorithmic decisions.
+              </p>
+              <p className="font-body text-sm sm:text-base text-on-surface dark:text-on-surface leading-relaxed">
+                As a <strong className="font-bold text-primary dark:text-white">Gandhi Fellow with the Piramal Foundation</strong>, I spend my days in remote sub-centres and district hospitals across Muzaffarpur and Araria. I coordinate directly with frontline ASHA workers, ANMs, Auxiliary Staff, PHC/CHC Medical Officers, and District Magistrates.
+              </p>
+              <p className="font-body text-sm sm:text-base text-on-surface dark:text-on-surface leading-relaxed">
+                When I am not auditing maternal health registers under ceiling fans in rural PHCs, I am writing Python automation scripts, architecting offline-first IndexedDB Progressive Web Apps, and engineering deterministic SQL validation pipelines to ensure government decision-makers act on truthful, high-fidelity data.
+              </p>
+              <div className="pt-4 border-t-2 border-primary dark:border-[#3f3f46] grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div className="p-3 bg-surface dark:bg-surface-low border border-primary dark:border-[#3f3f46]">
+                  <span className="block font-headline text-xs font-bold uppercase text-on-surface-variant dark:text-on-surface-variant">
+                    Current Deployment Base
+                  </span>
+                  <span className="font-headline text-sm font-bold text-on-surface dark:text-on-surface">
+                    Muzaffarpur & Araria, Bihar
+                  </span>
                 </div>
-              );
-            })}
+                <div className="p-3 bg-surface dark:bg-surface-low border border-primary dark:border-[#3f3f46]">
+                  <span className="block font-headline text-xs font-bold uppercase text-on-surface-variant dark:text-on-surface-variant">
+                    Native Hometown
+                  </span>
+                  <span className="font-headline text-sm font-bold text-on-surface dark:text-on-surface">
+                    Pratapgarh, Uttar Pradesh
+                  </span>
+                </div>
+              </div>
+            </div>
+            <div className="mt-8 flex flex-wrap gap-2 pt-4 border-t-2 border-primary dark:border-[#3f3f46]">
+              {['#PublicHealthData', '#PostgreSQL', '#NextJS', '#OfflineFirst', '#VectorRAG'].map((tag) => (
+                <span key={tag} className="font-mono text-xs uppercase px-2 py-1 bg-surface-container dark:bg-surface-container border border-primary dark:border-[#3f3f46] font-bold text-on-surface dark:text-on-surface">
+                  {tag}
+                </span>
+              ))}
+            </div>
           </div>
-        </motion.aside>
+
+          {/* Right Column: Identity Dossier Card */}
+          <div className="lg:col-span-5 bg-surface-container dark:bg-[#202024] border-3 border-primary dark:border-[#3f3f46] p-6 sm:p-8 shadow-[6px_6px_0px_#1a1a1a] dark:shadow-[6px_6px_0px_#000000] flex flex-col justify-between">
+            <div className="space-y-6">
+              <div className="flex items-center justify-between border-b-2 border-primary dark:border-[#3f3f46] pb-3">
+                <span className="font-headline font-bold text-xs uppercase tracking-widest text-on-surface dark:text-on-surface">
+                  IDENTITY DOSSIER // SPEC
+                </span>
+                <span className="bg-accent-yellow dark:bg-[#facc15] px-2 py-0.5 text-xs font-mono font-bold text-black border border-primary dark:border-[#3f3f46]">
+                  VERIFIED
+                </span>
+              </div>
+              <div className="space-y-3 font-mono text-xs sm:text-sm">
+                <div className="border-b border-primary/40 dark:border-[#3f3f46]/40 pb-2">
+                  <div className="text-on-surface-variant dark:text-on-surface-variant text-xs uppercase font-headline">Fellowship Title</div>
+                  <div className="font-bold text-primary dark:text-white text-base">Gandhi Fellow</div>
+                </div>
+                <div className="border-b border-primary/40 dark:border-[#3f3f46]/40 pb-2">
+                  <div className="text-on-surface-variant dark:text-on-surface-variant text-xs uppercase font-headline">Deploying Organization</div>
+                  <div className="font-bold text-primary dark:text-white">Piramal Foundation</div>
+                </div>
+                <div className="border-b border-primary/40 dark:border-[#3f3f46]/40 pb-2">
+                  <div className="text-on-surface-variant dark:text-on-surface-variant text-xs uppercase font-headline">Academic Foundation</div>
+                  <div className="font-bold text-primary dark:text-white">Master of Computer Applications (MCA)</div>
+                  <div className="text-xs text-on-surface-variant dark:text-on-surface-variant font-sans">Pondicherry University</div>
+                </div>
+                <div className="pb-2">
+                  <div className="text-on-surface-variant dark:text-on-surface-variant text-xs uppercase font-headline mb-1">Core Disciplines</div>
+                  <div className="space-y-1 text-xs">
+                    <div className="flex items-center gap-2">
+                      <span className="w-2 h-2 bg-accent-yellow dark:bg-accent-yellow inline-block" />
+                      <span className="text-on-surface dark:text-on-surface">Frontline Public Health Informatics & MIS</span>
+                    </div>
+                    <div className="flex items-center gap-2">
+                      <span className="w-2 h-2 bg-accent-blue dark:bg-accent-blue inline-block" />
+                      <span className="text-on-surface dark:text-on-surface">Full-Stack Web (React, Next.js, Node, Dexie.js)</span>
+                    </div>
+                    <div className="flex items-center gap-2">
+                      <span className="w-2 h-2 bg-accent-red dark:bg-accent-red inline-block" />
+                      <span className="text-on-surface dark:text-on-surface">Offline-First Progressive Web Applications</span>
+                    </div>
+                    <div className="flex items-center gap-2">
+                      <span className="w-2 h-2 bg-accent-yellow dark:bg-accent-yellow inline-block border border-primary dark:border-[#3f3f46]" />
+                      <span className="text-on-surface dark:text-on-surface">Applied Vector RAG & Health AI Agents</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div className="pt-4 border-t-2 border-primary dark:border-[#3f3f46] space-y-2">
+                <span className="font-headline text-xs font-bold uppercase tracking-widest block text-on-surface dark:text-on-surface">
+                  Field Operating Badges
+                </span>
+                <div className="flex flex-wrap gap-2">
+                  {['PHC Direct Immersion', 'Deterministic QA Pipelines', 'State Portal Diagnostics', 'IndexedDB Local Cache'].map((badge) => (
+                    <span key={badge} className="text-[11px] font-mono font-semibold bg-surface-container-lowest dark:bg-surface-low px-2 py-1 border border-primary dark:border-[#3f3f46] text-on-surface dark:text-on-surface">
+                      {badge}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </section>
   );

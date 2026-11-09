@@ -30,7 +30,7 @@ export const profile = {
   availability: 'Immediately',
   quickFacts: [
     { k: 'Education', v: 'MCA · 2025' },
-    { k: 'Current role', v: 'GAVB — Gandhi Fellow' },
+    { k: 'Current role', v: 'Gandhi Fellow' },
     { k: 'Organization', v: 'Piramal Foundation' },
     { k: 'Base', v: 'Muzaffarpur, Bihar' },
     { k: 'Hometown', v: 'Pratapgarh, Uttar Pradesh' },
@@ -39,7 +39,7 @@ export const profile = {
   ],
   tags: ['📍 Muzaffarpur, Bihar', 'MCA — Pondicherry University', 'IBM Data Science', 'Open to Opportunities'],
   aboutParagraphs: [
-    "I'm a <strong>public health data professional</strong> and <strong>full-stack developer</strong> currently working as a <span class='hi'>GAVB Gandhi Fellow with Piramal Foundation</span> in Bihar. My day starts in the field — coordinating with ASHA workers, ANMs, PHC/CHC staff, and district officials — and ends with <strong>Python scripts, SQL queries, and data pipelines</strong> that turn raw field data into decisions. I'm based in Muzaffarpur, Bihar; home is Pratapgarh, Uttar Pradesh.",
+    "I'm a <strong>public health data professional</strong> and <strong>full-stack developer</strong> currently working as a <span class='hi'>Gandhi Fellow with Piramal Foundation</span> in Bihar. My day starts in the field — coordinating with ASHA workers, ANMs, PHC/CHC staff, and district officials — and ends with <strong>Python scripts, SQL queries, and data pipelines</strong> that turn raw field data into decisions. I'm based in Muzaffarpur, Bihar; home is Pratapgarh, Uttar Pradesh.",
     'I work across the entire data lifecycle: from <strong>ODK Collect & ODK Central</strong> forms in the field, through cleaning and validation in Python, to MIS reports that land on the desks of district officials. Outside of health data, I\'ve built and deployed <strong>production MERN stack apps</strong> with JWT auth and REST APIs — and I use AI tools daily to sharpen both workflows.',
     "My edge is simple: I've <strong>actually been in the field</strong>, so I know what the data means before it ever hits a spreadsheet.",
   ],

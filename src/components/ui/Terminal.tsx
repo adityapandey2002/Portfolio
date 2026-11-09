@@ -76,7 +76,7 @@ export function Terminal() {
     contact: () => print('<span class="t-out">adityapandey.adu@gmail.com  ·  +91 8601862114</span>'),
     hire: () => {
       print('<span class="t-str">✓ Opening contact form…</span>');
-      router.push('/#contact');
+      router.push('/#dispatch');
     },
     theme: () => {
       print('<span class="t-out">→ Look & feel is locked per route — no manual switching.</span>');

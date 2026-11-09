@@ -1,10 +1,18 @@
-import { AskClient } from './AskClient';
+import { Footer } from '@/components/sections/Footer';
+
+import { AskTerminal } from './AskTerminal';
 
 export const metadata = {
-  title: 'Ask — Aditya Pandey',
-  description: 'RAG chat over Aditya Pandey\'s resume, projects and field work, streamed by Groq.',
+  title: 'Ask AI — Aditya Pandey',
+  description:
+    'Ask the portfolio RAG brain — grounded answers about Aditya Pandey\'s experience, projects and skills, streamed word by word from the knowledge base via Groq.',
 };
 
 export default function AskPage() {
-  return <AskClient />;
+  return (
+    <>
+      <AskTerminal />
+      <Footer />
+    </>
+  );
 }

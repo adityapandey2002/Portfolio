@@ -3,26 +3,22 @@
 import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { motion } from 'framer-motion';
-import { Command, Menu, Wifi, BatteryMedium, X } from 'lucide-react';
+import { Menu, X } from 'lucide-react';
 import { profile } from '@/lib/data/profile';
-import { usePreloader } from './Preloader';
-import { VisitorsPulse } from '@/components/realtime/VisitorsPulse';
+import { useTheme } from '@/components/providers/ThemeProvider';
 
 const LINKS = [
-  { href: '/',        label: 'Home'    },
-  { href: '/work',    label: 'Work'    },
-  { href: '/health',  label: 'Health'  },
-  { href: '/ask',     label: 'Ask AI'  },
-  { href: '/#contact',label: 'Contact' },
+  { href: '/', label: 'Home' },
+  { href: '/work', label: 'Work & Systems' },
+  { href: '/health', label: 'Health Impact' },
+  { href: '/ask', label: 'Interactive AI' },
+  { href: '/#dispatch', label: 'Contact' },
 ];
 
-export function Nav({ onOpenPalette }: { onOpenPalette: () => void }) {
-  const { done } = usePreloader();
+export function Nav() {
   const pathname = usePathname();
+  const { theme, toggleTheme } = useTheme();
   const [scrolled, setScrolled] = useState(false);
-  const [isMobile, setIsMobile] = useState(false);
-  const [now, setNow] = useState('');
   const [open, setOpen] = useState(false);
 
   useEffect(() => {
@@ -31,24 +27,7 @@ export function Nav({ onOpenPalette }: { onOpenPalette: () => void }) {
     return () => window.removeEventListener('scroll', onScroll);
   }, []);
 
-  useEffect(() => {
-    const mq = window.matchMedia('(max-width: 768px)');
-    const update = () => setIsMobile(mq.matches);
-    update();
-    mq.addEventListener('change', update);
-    return () => mq.removeEventListener('change', update);
-  }, []);
-
-  useEffect(() => {
-    const fmt = () =>
-      new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', hour12: true }).toLowerCase();
-    setNow(fmt());
-    const id = setInterval(() => setNow(fmt()), 15000);
-    return () => clearInterval(id);
-  }, []);
-
   useEffect(() => setOpen(false), [pathname]);
-  const hasBg = scrolled || isMobile;
 
   const isActive = (href: string) => {
     if (href === '/') return pathname === '/';
@@ -56,111 +35,107 @@ export function Nav({ onOpenPalette }: { onOpenPalette: () => void }) {
     return pathname.startsWith(path) && path !== '/';
   };
 
-  return (
-    <header
-      className="fixed inset-x-0 top-0 z-[100] px-4 pt-[calc(var(--safe-top)+3px)] transition-all duration-700 md:pt-1.5"
-      style={{
-        opacity: done ? 1 : 0,
-        transform: done ? 'none' : 'translateY(-120%)',
-        transition: 'all 0.7s cubic-bezier(0.16,1,0.3,1)',
-      }}
-    >
-      {/* Phone status strip — mobile only, sits in the notch area */}
-      <div className="pointer-events-none mx-auto mb-1 flex w-full max-w-[480px] items-center justify-between font-mono text-[8.5px] uppercase tracking-[0.18em] text-ink-4 md:hidden">
-        <span>{now}</span>
-        <span className="flex items-center gap-2">
-          <Wifi size={9} aria-hidden />
-          <BatteryMedium size={13} aria-hidden />
-        </span>
-      </div>
+  const isDark = theme === 'dark';
 
-      <div
-        className="mx-auto flex max-w-[960px] items-center justify-between rounded-full border px-3 py-1 transition-all duration-300"
-        style={{
-          borderColor: hasBg ? 'var(--line)' : 'transparent',
-          background: hasBg
-            ? 'color-mix(in srgb, var(--bg-2) 96%, transparent)'
-            : 'transparent',
-          backdropFilter: hasBg ? 'blur(12px)' : 'none',
-        }}
-      >
-        {/* Logo */}
-        <Link href="/" className="group flex items-center gap-2" data-grab>
-          <span className="relative inline-flex h-5 w-5 items-center justify-center rounded-md bg-primary font-mono text-[10px] font-bold text-bg">
+  return (
+    <header className="fixed top-0 left-0 right-0 z-50 bg-surface dark:bg-surface-dark border-b-2 border-primary dark:border-white">
+      <div className="h-20 w-full px-6 lg:px-12 flex items-center justify-between">
+        {/* Left: AP logo + name */}
+        <div className="flex items-center gap-6">
+          <Link
+            href="/"
+            className="flex items-center justify-center w-12 h-12 bg-primary text-on-primary font-headline font-bold text-xl tracking-tighter hover:bg-primary-container hover:text-on-primary-container transition-colors border-2 border-primary"
+          >
             {profile.initials}
-            <span
-              className="absolute -inset-[3px] rounded-[7px] border border-dashed border-primary opacity-40"
-              style={{ animation: 'spin 12s linear infinite' }}
-            />
-          </span>
-          <span className="text-[12.5px] font-semibold text-ink">{profile.name}</span>
-        </Link>
+          </Link>
+          <div className="hidden sm:flex flex-col">
+            <span className="font-headline font-bold text-sm tracking-widest uppercase text-on-surface dark:text-ink-dark">
+              Aditya Pandey
+            </span>
+            <span className="font-headline text-xs tracking-wider text-on-surface-variant dark:text-ink-dark/70 uppercase">
+              Systems & Health AI
+            </span>
+          </div>
+        </div>
 
         {/* Desktop nav links */}
-        <nav className="hidden items-center gap-0.5 md:flex">
+        <nav className="hidden xl:flex items-center gap-2">
           {LINKS.map((l) => (
             <Link
               key={l.href}
               href={l.href}
-              className="relative rounded-full px-2.5 py-0.5 text-[12px] font-medium text-ink-3 transition-colors hover:text-ink"
-              style={isActive(l.href) ? { color: 'var(--ink)', background: 'var(--line-2)' } : undefined}
+              className={`px-4 py-2 text-xs font-headline font-semibold uppercase tracking-wider transition-colors ${
+                isActive(l.href)
+                  ? 'bg-primary-container text-on-primary-container font-bold border-2 border-primary'
+                  : 'text-on-surface-variant dark:text-ink-dark/70 hover:text-on-surface dark:hover:text-ink-dark hover:bg-surface dark:hover:bg-surface-l1'
+              }`}
             >
               {l.label}
-              <span
-                className="absolute inset-x-2.5 bottom-0 h-px bg-primary"
-                style={{
-                  transform: isActive(l.href) ? 'scaleX(1)' : 'scaleX(0)',
-                  transformOrigin: 'left',
-                  transition: 'transform 0.3s cubic-bezier(0.7,0,0.3,1)',
-                }}
-              />
             </Link>
           ))}
         </nav>
 
         {/* Right actions */}
-        <div className="flex items-center gap-1">
-          <VisitorsPulse />
-
-          {/* Command palette — icon only, simple */}
-          <button
-            onClick={onOpenPalette}
-            className="hidden h-6 w-6 items-center justify-center rounded-lg border border-[var(--line)] text-ink-4 transition-colors hover:border-primary hover:text-primary sm:inline-flex"
-            aria-label="Command palette (⌘K)"
-            title="Command palette ⌘K"
+        <div className="flex items-center gap-3">
+          <a
+            href="#dispatch"
+            className="hidden sm:inline-flex items-center justify-center px-4 py-2.5 bg-primary-container text-on-primary-container font-headline font-bold text-xs uppercase tracking-wider border-2 border-primary hover:bg-primary hover:text-on-primary transition-all shadow-[3px_3px_0px_#1a1a1a]"
           >
-            <Command size={12} />
+            Engage Fellow
+          </a>
+          <a
+            href="/resume"
+            className="hidden md:inline-flex items-center justify-center px-4 py-2.5 bg-surface text-on-surface font-headline font-bold text-xs uppercase tracking-wider border-2 border-primary hover:bg-secondary hover:text-on-secondary hover:border-secondary transition-all shadow-[3px_3px_0px_#1a1a1a]"
+          >
+            Resume
+          </a>
+          <button
+            onClick={toggleTheme}
+            className="inline-flex items-center gap-1.5 px-3 py-2 bg-surface text-on-surface font-headline font-bold text-xs uppercase tracking-wider border-2 border-primary hover:bg-primary-container hover:text-on-primary-container transition-all shadow-[3px_3px_0px_#1a1a1a] cursor-pointer"
+            title="Toggle Dark / Light Mode"
+          >
+            <span className="material-symbols-outlined text-[16px]">
+              {isDark ? 'dark_mode' : 'light_mode'}
+            </span>
+            <span className="font-mono text-[11px]">
+              THEME: {isDark ? 'DARK' : 'LIGHT'}
+            </span>
           </button>
+          <div className="w-8 h-8 rounded-full bg-primary flex items-center justify-center border-2 border-primary">
+            <span className="material-symbols-outlined text-on-primary text-[18px]">person</span>
+          </div>
 
           {/* Mobile hamburger */}
           <button
-            className="inline-flex h-6 w-6 items-center justify-center rounded-lg border border-[var(--line)] text-ink-3 md:hidden"
+            className="inline-flex h-8 w-8 items-center justify-center border-2 border-primary text-on-surface-variant md:hidden"
             onClick={() => setOpen((o) => !o)}
             aria-label="Menu"
           >
-            {open ? <X size={12} /> : <Menu size={12} />}
+            {open ? <X size={16} /> : <Menu size={16} />}
           </button>
         </div>
       </div>
 
       {/* Mobile dropdown */}
       {open && (
-        <motion.div
-          initial={{ opacity: 0, y: -8 }}
-          animate={{ opacity: 1, y: 0 }}
-          className="mx-auto mt-1.5 max-w-[960px] rounded-2xl border border-[var(--line)] bg-bg-2 p-2 md:hidden"
-        >
+        <div className="mx-6 mb-4 border-2 border-primary bg-surface shadow-[4px_4px_0px_#1a1a1a] md:hidden">
           {LINKS.map((l) => (
             <Link
               key={l.href}
               href={l.href}
-              className="block rounded-xl px-4 py-2.5 text-[13px] text-ink-2 hover:bg-[var(--line-2)] hover:text-ink"
+              className={`block border-b border-primary px-4 py-2.5 text-[13px] font-headline font-semibold uppercase tracking-wider transition-colors ${
+                isActive(l.href)
+                  ? 'bg-primary-container text-on-primary-container'
+                  : 'text-on-surface-variant hover:bg-surface hover:text-on-surface'
+              }`}
             >
               {l.label}
             </Link>
           ))}
-        </motion.div>
+        </div>
       )}
     </header>
   );
 }
+
+

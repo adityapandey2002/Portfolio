@@ -1,0 +1,1029 @@
+<!DOCTYPE html><html class="dark" lang="en"><head><meta charset="utf-8"><meta content="width=device-width, initial-scale=1.0" name="viewport"><meta content="web_standard" name="shell-type"><link href="https://fonts.googleapis.com" rel="preconnect"><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Space+Grotesk:wght@500;600;700&amp;family=JetBrains+Mono:wght@400;500;600;700&amp;display=swap" rel="stylesheet"><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"><style>@layer base{html,body{margin:0;padding:0;}body{overscroll-behavior:none;}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script><script id="tailwind-config">tailwind.config={darkMode:"class",theme:{extend:{colors:{"primary-container":"#facc15","on-primary-container":"#121214","secondary":"#ff6b5b","secondary-container":"#ec6a06","on-secondary":"#121214","tertiary":"#60a5fa","tertiary-container":"#1e293b","on-tertiary-container":"#93c5fd","primary":"#facc15","on-primary":"#121214","surface":"#18181b","on-surface":"#f4f4f5","surface-container":"#202024","surface-container-low":"#161619","surface-container-high":"#27272a","surface-container-highest":"#323238","surface-container-lowest":"#0f0f11","outline":"#3f3f46","outline-variant":"#27272a","background":"#121214","on-background":"#f4f4f5","on-surface-variant":"#a1a1aa"},borderRadius:{DEFAULT:"0.125rem",lg:"0.25rem",xl:"0.5rem",full:"0.75rem"},spacing:{},fontFamily:{headline:["Space Grotesk"],display:["Space Grotesk"],body:["Inter"],label:["Space Grotesk"],mono:["JetBrains Mono","monospace"]},fontSize:{}}}}</script></head><body class="bg-background font-body text-on-surface"><header class="fixed top-0 left-0 right-0 z-50 bg-[#18181b] border-b-2 border-outline"><div class="h-20 w-full px-6 lg:px-12 flex items-center justify-between"><div class="flex items-center gap-6"><a class="flex items-center justify-center w-12 h-12 bg-primary text-on-primary font-headline font-bold text-xl tracking-tighter hover:bg-white hover:text-black transition-colors border-2 border-primary shadow-[3px_3px_0px_#000000]" data-path="home" href="#">AP</a><div class="hidden sm:flex flex-col"><span class="font-headline font-bold text-sm tracking-widest uppercase text-on-surface">Aditya Pandey</span><span class="font-headline text-xs tracking-wider text-on-surface-variant uppercase">Systems &amp; Health AI</span></div></div><nav class="hidden xl:flex items-center gap-2" data-active-classes="bg-primary text-on-primary font-bold border-2 border-primary"><a aria-current="page" class="px-4 py-2 uppercase tracking-wider transition-colors bg-primary text-on-primary font-bold border-2 border-primary shadow-[2px_2px_0px_#000000]" data-path="home" href="#">Home</a><a class="px-4 py-2 text-xs font-headline font-semibold uppercase tracking-wider text-on-surface-variant hover:text-on-surface hover:bg-surface-container border-2 border-transparent hover:border-outline transition-colors" data-path="work-and-systems" href="#">Work &amp; Systems</a><a class="px-4 py-2 text-xs font-headline font-semibold uppercase tracking-wider text-on-surface-variant hover:text-on-surface hover:bg-surface-container border-2 border-transparent hover:border-outline transition-colors" data-path="health-impact" href="#">Health Impact</a><a class="px-4 py-2 text-xs font-headline font-semibold uppercase tracking-wider text-on-surface-variant hover:text-on-surface hover:bg-surface-container border-2 border-transparent hover:border-outline transition-colors" data-path="interactive-ai" href="#">Interactive AI</a><a class="px-4 py-2 text-xs font-headline font-semibold uppercase tracking-wider text-on-surface-variant hover:text-on-surface hover:bg-surface-container border-2 border-transparent hover:border-outline transition-colors" data-path="contact" href="#">Contact</a></nav><div class="flex items-center gap-3"><a class="hidden sm:inline-flex items-center justify-center px-4 py-2.5 bg-primary text-on-primary font-headline font-bold text-xs uppercase tracking-wider border-2 border-primary hover:bg-white hover:text-black hover:border-white transition-all shadow-[3px_3px_0px_#000000]" data-path="contact" href="#">Engage Fellow</a><a class="hidden md:inline-flex items-center justify-center px-4 py-2.5 bg-surface-container text-on-surface font-headline font-bold text-xs uppercase tracking-wider border-2 border-outline hover:bg-secondary hover:text-on-secondary hover:border-secondary transition-all shadow-[3px_3px_0px_#000000]" data-path="resume" href="#">Resume</a><button id="theme-toggle-btn" onclick="(function(){const isDark=document.documentElement.classList.toggle('dark');const modeText=document.getElementById('theme-mode-text');const modeIcon=document.getElementById('theme-mode-icon');if(isDark){if(modeText)modeText.textContent='DARK';if(modeIcon)modeIcon.textContent='dark_mode';}else{if(modeText)modeText.textContent='LIGHT';if(modeIcon)modeIcon.textContent='light_mode';}})()" class="inline-flex items-center gap-1.5 px-2.5 py-1.5 bg-[#202024] hover:bg-primary text-on-surface hover:text-on-primary font-mono font-bold text-xs uppercase border-2 border-outline hover:border-primary shadow-[2px_2px_0px_#000000] transition-colors cursor-pointer active:translate-x-0.5 active:translate-y-0.5" title="Toggle Neo-Brutalist Theme"><span id="theme-mode-icon" class="material-symbols-outlined text-[14px] text-primary">dark_mode</span><span class="tracking-wider">MODE:</span><span id="theme-mode-text" class="text-primary font-bold">DARK</span></button><div class="w-8 h-8 rounded-full bg-surface-container-high border-2 border-outline flex items-center justify-center text-primary"><span class="material-symbols-outlined text-[18px]">person</span></div></div></div></header><main class="w-full pt-20 bg-background"><div class="flex flex-col w-full">
+<!-- Top Marquee Ticker -->
+<div class="w-full bg-[#18181b] text-on-surface py-2.5 px-4 overflow-hidden border-b-2 border-outline flex items-center gap-6">
+<div class="flex items-center gap-2 font-headline font-bold text-xs uppercase tracking-widest bg-primary text-on-primary px-2 py-0.5 border border-primary shrink-0">
+<span class="w-2 h-2 rounded-none bg-red-600 inline-block animate-ping"></span>
+      STATUS // FIELD ACTIVE
+    </div>
+<div class="font-headline text-xs uppercase tracking-widest flex items-center gap-8 whitespace-nowrap overflow-x-auto no-scrollbar font-mono text-on-surface-variant">
+<span class="text-on-surface">// PIRAMAL FOUNDATION GANDHI FELLOW</span>
+<span class="text-primary">// MUZAFFARPUR &amp; ARARIA, BIHAR</span>
+<span class="text-on-surface">// 99.8% PIPELINE SYNC RATE</span>
+<span class="text-secondary">// FRONT-LINE CLINICAL SURVEILLANCE</span>
+<span class="text-tertiary">// DEPLOYING DETERMINISTIC CODE</span>
+<span class="text-primary">// 154 SUB-CENTRES INTEGRATED</span>
+</div>
+</div>
+<!-- Hero Section -->
+<section class="w-full border-b-4 border-outline px-4 sm:px-8 lg:px-12 py-10 lg:py-16 bg-[#161619]">
+<div class="max-w-7xl mx-auto flex flex-col gap-10">
+<!-- Top Meta Grid -->
+<div class="flex flex-wrap items-center justify-between gap-4 border-b-2 border-outline pb-4">
+<div class="flex items-center gap-3">
+<span class="font-headline text-xs font-bold uppercase tracking-wider bg-surface-container px-3 py-1 border-2 border-outline text-on-surface">SPEC: 01 // OVERVIEW</span>
+<span class="font-mono text-xs text-on-surface-variant font-semibold">COORDINATES: 26.1209° N, 85.3647° E</span>
+</div>
+<div class="inline-flex items-center gap-2 font-headline text-xs uppercase font-bold tracking-widest bg-tertiary-container text-on-tertiary-container px-3 py-1 border-2 border-outline">
+<span class="material-symbols-outlined text-[14px]">sensors</span>
+          FIELD TELEMETRY: ONLINE
+        </div>
+</div>
+<!-- Main Headline Grid -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+<div class="lg:col-span-8 space-y-6">
+<div class="inline-block bg-primary text-on-primary px-4 py-1.5 border-2 border-primary font-headline text-xs md:text-sm font-bold uppercase tracking-widest shadow-[4px_4px_0px_#000000]">
+            Public Health Data Architecture × Full-Stack Systems
+          </div>
+<h1 class="font-headline text-4xl sm:text-6xl lg:text-7xl font-bold tracking-tight text-on-surface leading-[1.02] uppercase">
+            Building data systems that turn <span class="bg-primary text-on-primary px-2 inline-block">field work</span> into real decisions.
+          </h1>
+<p class="font-body text-base sm:text-lg text-on-surface leading-relaxed max-w-3xl border-l-4 border-secondary pl-4 py-1">
+            I am <strong class="font-bold text-primary">Aditya Pandey</strong> — a full-stack builder &amp; public health data engineer bridging on-the-ground frontline health systems (<em class="not-italic font-semibold text-white">ASHA, ANM, CHO, PHC</em>) with production web platforms, automated validation pipelines, and clinical AI surveillance.
+          </p>
+<!-- Action Buttons -->
+<div class="flex flex-wrap gap-4 pt-2">
+<a class="inline-flex items-center gap-2 px-6 py-3.5 bg-primary text-on-primary font-headline font-bold text-sm uppercase tracking-wider border-2 border-primary shadow-[5px_5px_0px_#000000] hover:bg-white hover:text-black hover:border-white transition-all active:translate-x-0.5 active:translate-y-0.5 active:shadow-[2px_2px_0px_#000000]" href="#systems">
+<span class="">Explore Selected Systems</span>
+<span class="material-symbols-outlined text-sm">arrow_downward</span>
+</a>
+<a class="inline-flex items-center gap-2 px-6 py-3.5 bg-surface-container text-on-surface font-headline font-bold text-sm uppercase tracking-wider border-2 border-outline shadow-[5px_5px_0px_#000000] hover:bg-secondary hover:text-on-secondary hover:border-secondary transition-all active:translate-x-0.5 active:translate-y-0.5 active:shadow-[2px_2px_0px_#000000]" href="#vector-terminal">
+<span class="material-symbols-outlined text-sm">terminal</span>
+<span class="">Ask AI Vector Brain</span>
+</a>
+<a class="inline-flex items-center gap-2 px-6 py-3.5 bg-surface-container text-on-surface font-headline font-bold text-sm uppercase tracking-wider border-2 border-outline shadow-[5px_5px_0px_#000000] hover:bg-tertiary hover:text-on-secondary hover:border-tertiary transition-all active:translate-x-0.5 active:translate-y-0.5 active:shadow-[2px_2px_0px_#000000]" href="#dispatch">
+<span class="">Direct Dispatch</span>
+<span class="material-symbols-outlined text-sm">send</span>
+</a>
+</div>
+</div>
+<!-- Live Bihar Health Ops Telemetry Box -->
+<div class="lg:col-span-4 bg-surface-container-low border-3 border-outline p-6 shadow-[6px_6px_0px_#000000] relative">
+<div class="absolute -top-3.5 right-4 bg-secondary text-on-secondary px-2.5 py-0.5 font-headline font-bold text-xs uppercase tracking-widest border border-outline">
+            LIVE KERNEL
+          </div>
+<div class="flex items-center justify-between pb-3 border-b-2 border-outline mb-4">
+<span class="font-headline font-bold text-xs uppercase tracking-widest text-on-surface">Bihar Health Ops</span>
+<span class="w-2.5 h-2.5 rounded-full bg-secondary animate-pulse inline-block"></span>
+</div>
+<div class="space-y-4 font-mono text-xs">
+<div class="flex justify-between items-center p-2 bg-surface-container border border-outline">
+<span class="text-on-surface-variant uppercase">PNC Telemetry Latency:</span>
+<span class="font-bold text-on-primary bg-primary px-1.5 py-0.5">54.2 ms</span>
+</div>
+<div class="flex justify-between items-center p-2 bg-surface-container border border-outline">
+<span class="text-on-surface-variant uppercase">Active Sub-Centres:</span>
+<span class="font-bold text-primary">154 Facilities</span>
+</div>
+<div class="flex justify-between items-center p-2 bg-surface-container border border-outline">
+<span class="text-on-surface-variant uppercase">High-Burden Blocks:</span>
+<span class="font-bold text-secondary">16 Blocks</span>
+</div>
+<div class="flex justify-between items-center p-2 bg-surface-container border border-outline">
+<span class="text-on-surface-variant uppercase">Field Distance Logged:</span>
+<span class="font-bold text-tertiary">13,627 KM</span>
+</div>
+<div class="flex justify-between items-center p-2 bg-surface-container border border-outline">
+<span class="text-on-surface-variant uppercase">Validation Rule Engines:</span>
+<span class="font-bold text-primary">Active (ODK/SQL)</span>
+</div>
+</div>
+<div class="mt-4 pt-3 border-t-2 border-outline flex items-center justify-between text-[11px] font-mono text-on-surface-variant">
+<span class="">UPTIME: 99.8%</span>
+<span class="">NODE: ARARIA-CHIS-01</span>
+</div>
+</div>
+</div>
+<!-- 4 Brutalist Key Metric Blocks -->
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 pt-4">
+<div class="bg-surface-container border-2 border-outline p-5 shadow-[4px_4px_0px_#000000] flex flex-col justify-between hover:translate-x-0.5 hover:translate-y-0.5 hover:shadow-[2px_2px_0px_#000000] transition-all">
+<div class="flex items-start justify-between">
+<span class="font-mono text-xs font-bold text-on-surface-variant uppercase">01 // IMPACT</span>
+<span class="material-symbols-outlined text-primary text-xl">groups</span>
+</div>
+<div class="my-4">
+<div class="font-headline text-5xl font-bold tracking-tight text-on-surface">700+</div>
+<div class="font-headline font-bold text-xs uppercase tracking-wider text-secondary mt-1">ASHA Workers Mentored</div>
+</div>
+<p class="font-body text-xs text-on-surface-variant">Digitized M-ASHA workflow, field diagnostics, and portal verification sessions across frontline clusters.</p>
+</div>
+<div class="bg-primary text-on-primary border-2 border-primary p-5 shadow-[4px_4px_0px_#000000] flex flex-col justify-between hover:translate-x-0.5 hover:translate-y-0.5 hover:shadow-[2px_2px_0px_#000000] transition-all">
+<div class="flex items-start justify-between">
+<span class="font-mono text-xs font-bold text-black uppercase">02 // CLINICAL</span>
+<span class="material-symbols-outlined text-black text-xl">medical_services</span>
+</div>
+<div class="my-4">
+<div class="font-headline text-5xl font-bold tracking-tight text-black">185-hr</div>
+<div class="font-headline font-bold text-xs uppercase tracking-wider text-black font-semibold mt-1">Clinical Skills Refresher</div>
+</div>
+<p class="font-body text-xs text-black font-medium">Delivered for 12 facility staff nurses &amp; 4 medical doctors on high-risk protocol management &amp; triage.</p>
+</div>
+<div class="bg-surface-container border-2 border-outline p-5 shadow-[4px_4px_0px_#000000] flex flex-col justify-between hover:translate-x-0.5 hover:translate-y-0.5 hover:shadow-[2px_2px_0px_#000000] transition-all">
+<div class="flex items-start justify-between">
+<span class="font-mono text-xs font-bold text-on-surface-variant uppercase">03 // PIPELINE</span>
+<span class="material-symbols-outlined text-primary text-xl">database</span>
+</div>
+<div class="my-4">
+<div class="font-headline text-5xl font-bold tracking-tight text-on-surface">118k+</div>
+<div class="font-headline font-bold text-xs uppercase tracking-wider text-tertiary mt-1">Validated Data Indicators</div>
+</div>
+<p class="font-body text-xs text-on-surface-variant">Processed, cleaned, and reconciled across physical registers and state portals via Python pipelines.</p>
+</div>
+<div class="bg-surface-container-high border-2 border-outline p-5 shadow-[4px_4px_0px_#000000] flex flex-col justify-between hover:translate-x-0.5 hover:translate-y-0.5 hover:shadow-[2px_2px_0px_#000000] transition-all">
+<div class="flex items-start justify-between">
+<span class="font-mono text-xs font-bold text-on-surface-variant uppercase">04 // FIELD OPS</span>
+<span class="material-symbols-outlined text-primary text-xl">location_on</span>
+</div>
+<div class="my-4">
+<div class="font-headline text-5xl font-bold tracking-tight text-on-surface">100+</div>
+<div class="font-headline font-bold text-xs uppercase tracking-wider text-primary mt-1">Micro-Mentoring Sessions</div>
+</div>
+<p class="font-body text-xs text-on-surface-variant">Executed inside Sub-Centres, PHCs &amp; CHCs addressing frontline data-entry bottlenecks.</p>
+</div>
+</div>
+</div>
+</section>
+<!-- 02 // Profile Dossier & About Section -->
+<section class="w-full border-b-4 border-outline px-4 sm:px-8 lg:px-12 py-16 bg-[#121214]">
+<div class="max-w-7xl mx-auto space-y-10">
+<div class="flex flex-col sm:flex-row sm:items-end justify-between gap-4 border-b-2 border-outline pb-4">
+<div>
+<span class="font-headline text-xs font-bold uppercase tracking-widest text-secondary block">02 // PROFILE DOSSIER</span>
+<h2 class="font-headline text-3xl sm:text-5xl font-bold uppercase tracking-tight text-on-surface mt-1">
+            Living at the frontline.
+          </h2>
+</div>
+<div class="font-mono text-xs text-on-surface-variant">
+          FILE_ID: AP_2025_BIO
+        </div>
+</div>
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">
+<!-- Left Column: Biography Narrative -->
+<div class="lg:col-span-7 bg-surface-container border-3 border-outline p-6 sm:p-8 shadow-[6px_6px_0px_#000000] flex flex-col justify-between">
+<div class="space-y-5">
+<div class="inline-block bg-primary text-on-primary px-3 py-1 font-headline text-xs uppercase font-bold tracking-widest">
+              Field Engineer Biography
+            </div>
+<p class="font-headline text-xl sm:text-2xl font-bold text-on-surface leading-snug">
+              Full-stack AI &amp; public health data engineer stationed in Bihar, bridging physical registers and algorithmic decisions.
+            </p>
+<p class="font-body text-sm sm:text-base text-on-surface-variant leading-relaxed">
+              As a <strong class="text-on-surface">Gandhi Fellow with the Piramal Foundation</strong>, I spend my days in remote sub-centres and district hospitals across Muzaffarpur and Araria. I coordinate directly with frontline ASHA workers, ANMs, Auxiliary Staff, PHC/CHC Medical Officers, and District Magistrates. 
+            </p>
+<p class="font-body text-sm sm:text-base text-on-surface-variant leading-relaxed">
+              When I am not auditing maternal health registers under ceiling fans in rural PHCs, I am writing Python automation scripts, architecting offline-first IndexedDB Progressive Web Apps, and engineering deterministic SQL validation pipelines to ensure government decision-makers act on truthful, high-fidelity data.
+            </p>
+<div class="pt-4 border-t-2 border-outline grid grid-cols-1 sm:grid-cols-2 gap-4">
+<div class="p-3 bg-surface-container-low border border-outline">
+<span class="block font-headline text-xs font-bold uppercase text-on-surface-variant">Current Deployment Base</span>
+<span class="font-headline text-sm font-bold text-on-surface">Muzaffarpur &amp; Araria, Bihar</span>
+</div>
+<div class="p-3 bg-surface-container-low border border-outline">
+<span class="block font-headline text-xs font-bold uppercase text-on-surface-variant">Native Hometown</span>
+<span class="font-headline text-sm font-bold text-on-surface">Pratapgarh, Uttar Pradesh</span>
+</div>
+</div>
+</div>
+<div class="mt-8 flex flex-wrap gap-2 pt-4 border-t-2 border-outline">
+<span class="font-mono text-xs uppercase px-2 py-1 bg-surface-container-high border border-outline font-bold text-primary">#PublicHealthData</span>
+<span class="font-mono text-xs uppercase px-2 py-1 bg-surface-container-high border border-outline font-bold text-on-surface">#PostgreSQL</span>
+<span class="font-mono text-xs uppercase px-2 py-1 bg-surface-container-high border border-outline font-bold text-on-surface">#NextJS</span>
+<span class="font-mono text-xs uppercase px-2 py-1 bg-surface-container-high border border-outline font-bold text-on-surface">#OfflineFirst</span>
+<span class="font-mono text-xs uppercase px-2 py-1 bg-surface-container-high border border-outline font-bold text-secondary">#VectorRAG</span>
+</div>
+</div>
+<!-- Right Column: Identity Dossier Card -->
+<div class="lg:col-span-5 bg-surface-container-high border-3 border-outline p-6 sm:p-8 shadow-[6px_6px_0px_#000000] flex flex-col justify-between">
+<div class="space-y-6">
+<div class="flex items-center justify-between border-b-2 border-outline pb-3">
+<span class="font-headline font-bold text-xs uppercase tracking-widest text-on-surface">IDENTITY DOSSIER // SPEC</span>
+<span class="bg-primary text-on-primary px-2 py-0.5 text-xs font-mono font-bold border border-primary">VERIFIED</span>
+</div>
+<div class="space-y-3 font-mono text-xs sm:text-sm">
+<div class="border-b border-outline pb-2">
+<div class="text-on-surface-variant text-xs uppercase font-headline">Fellowship Title</div>
+<div class="font-bold text-primary text-base">Gandhi Fellow</div>
+</div>
+<div class="border-b border-outline pb-2">
+<div class="text-on-surface-variant text-xs uppercase font-headline">Deploying Organization</div>
+<div class="font-bold text-on-surface">Piramal Foundation</div>
+</div>
+<div class="border-b border-outline pb-2">
+<div class="text-on-surface-variant text-xs uppercase font-headline">Academic Foundation</div>
+<div class="font-bold text-on-surface">Master of Computer Applications (MCA)</div>
+<div class="text-xs text-on-surface-variant font-sans">Pondicherry University</div>
+</div>
+<div class="pb-2">
+<div class="text-on-surface-variant text-xs uppercase font-headline mb-1">Core Disciplines</div>
+<div class="space-y-1 text-xs">
+<div class="flex items-center gap-2">
+<span class="w-2 h-2 bg-secondary inline-block"></span>
+<span class="">Frontline Public Health Informatics &amp; MIS</span>
+</div>
+<div class="flex items-center gap-2">
+<span class="w-2 h-2 bg-tertiary inline-block"></span>
+<span class="">Full-Stack Web (React, Next.js, Node, Dexie.js)</span>
+</div>
+<div class="flex items-center gap-2">
+<span class="w-2 h-2 bg-primary inline-block"></span>
+<span class="">Offline-First Progressive Web Applications</span>
+</div>
+<div class="flex items-center gap-2">
+<span class="w-2 h-2 bg-white inline-block border border-outline"></span>
+<span class="">Applied Vector RAG &amp; Health AI Agents</span>
+</div>
+</div>
+</div>
+</div>
+<div class="pt-4 border-t-2 border-outline space-y-2">
+<span class="font-headline text-xs font-bold uppercase tracking-wider block text-on-surface">Field Operating Badges</span>
+<div class="flex flex-wrap gap-2">
+<span class="text-[11px] font-mono font-semibold bg-surface-container px-2 py-1 border border-outline text-on-surface">PHC Direct Immersion</span>
+<span class="text-[11px] font-mono font-semibold bg-surface-container px-2 py-1 border border-outline text-on-surface">Deterministic QA Pipelines</span>
+<span class="text-[11px] font-mono font-semibold bg-surface-container px-2 py-1 border border-outline text-on-surface">State Portal Diagnostics</span>
+<span class="text-[11px] font-mono font-semibold bg-surface-container px-2 py-1 border border-outline text-on-surface">IndexedDB Local Cache</span>
+</div>
+</div>
+</div>
+<div class="mt-6 pt-4 border-t-2 border-outline flex justify-between items-center text-xs font-mono">
+<span class="text-on-surface-variant">SERIAL: 2025-FELLOW-891</span>
+<span class="font-bold text-secondary">READY FOR DISPATCH</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- 03 // Experience & Field Operational Track Record -->
+<section class="w-full border-b-4 border-outline px-4 sm:px-8 lg:px-12 py-16 bg-[#161619]">
+<div class="max-w-7xl mx-auto space-y-10">
+<div class="flex flex-col sm:flex-row sm:items-end justify-between gap-4 border-b-2 border-outline pb-4">
+<div>
+<span class="font-headline text-xs font-bold uppercase tracking-widest text-primary block">03 // OPERATIONAL RECORD</span>
+<h2 class="font-headline text-3xl sm:text-5xl font-bold uppercase tracking-tight text-on-surface mt-1">
+            Field &amp; Systems Experience
+          </h2>
+</div>
+<span class="font-headline text-xs font-bold uppercase tracking-wider bg-surface-container-high px-3 py-1 border border-outline text-on-surface">
+          CHRONOLOGICAL LOGS [2024–2025]
+        </span>
+</div>
+<!-- Prominent Brutalist Health Dashboard Banner Card -->
+<div class="bg-surface-container-lowest text-on-surface border-3 border-outline p-6 sm:p-8 shadow-[8px_8px_0px_#facc15] flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
+<div class="space-y-3 max-w-3xl">
+<div class="inline-flex items-center gap-2 bg-secondary text-on-secondary px-3 py-1 font-headline font-bold text-xs uppercase tracking-widest">
+<span class="material-symbols-outlined text-sm">monitor_heart</span>
+            DEDICATED TELEMETRY SUITE
+          </div>
+<h3 class="font-headline text-2xl sm:text-3xl font-bold uppercase tracking-tight text-on-surface">
+            → View Full Fellowship Field Impact &amp; Vitals Dashboard (/health)
+          </h3>
+<p class="font-body text-sm text-on-surface-variant leading-relaxed">
+            Explore the dedicated health telemetry dashboard: 700+ ASHA workers, 16 administrative blocks, 13,627 KM logged across Bihar, WHO building block alignments, and live ODK pipeline logs.
+          </p>
+</div>
+<a class="inline-flex items-center gap-3 px-6 py-4 bg-primary text-on-primary font-headline font-bold text-sm uppercase tracking-wider border-2 border-primary shadow-[4px_4px_0px_#000000] hover:bg-white hover:text-black hover:border-white transition-all shrink-0" href="#telemetry-health">
+<span class="">Launch /health →</span>
+<span class="material-symbols-outlined text-lg">open_in_new</span>
+</a>
+</div>
+<!-- Experience Cards Grid -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+<!-- Exp 1: Piramal Foundation -->
+<div class="bg-surface-container border-3 border-outline p-6 shadow-[5px_5px_0px_#000000] flex flex-col justify-between">
+<div class="space-y-4">
+<div class="flex items-start justify-between gap-2 border-b-2 border-outline pb-3">
+<div>
+<span class="font-mono text-xs font-bold text-secondary uppercase block">Jul 2025 – Present // Muzaffarpur, Bihar</span>
+<h4 class="font-headline text-xl font-bold text-on-surface mt-1">Gandhi Fellowship</h4>
+<p class="font-headline text-sm font-semibold text-primary">Piramal Foundation</p>
+</div>
+<span class="bg-primary text-on-primary text-[11px] font-mono font-bold px-2 py-0.5 border border-primary">CURRENT</span>
+</div>
+<ul class="space-y-2 text-xs sm:text-sm font-body text-on-surface-variant list-disc pl-4 leading-relaxed">
+<li class=""><strong class="text-on-surface">ASHA Digitization &amp; Mentoring:</strong> Trained and supported 700+ frontline ASHA workers across primary health sub-centres on M-ASHA digital workflow tools and timely immunization entries.</li>
+<li class=""><strong class="text-on-surface">Clinical Skills Refresher:</strong> Structured and deployed a comprehensive 185-hour clinical module for 12 staff nurses and 4 doctors focusing on High-Risk Pregnancy (HRP) triage.</li>
+<li class=""><strong class="text-on-surface">Data Discrepancy Diagnostics:</strong> Audited maternal health registers versus district digital MIS portals, eradicating systemic entry lags and ghost entries.</li>
+<li class=""><strong class="text-on-surface">NQAS &amp; ODK Pipelines:</strong> Built ODK Collect digital surveillance pipelines accelerating National Quality Assurance Standards compliance for health facilities.</li>
+</ul>
+</div>
+<div class="mt-6 pt-4 border-t border-outline flex flex-wrap gap-2">
+<span class="font-mono text-[11px] bg-surface-container-high px-2 py-0.5 border border-outline text-on-surface">M-ASHA</span>
+<span class="font-mono text-[11px] bg-surface-container-high px-2 py-0.5 border border-outline text-on-surface">ODK Collect</span>
+<span class="font-mono text-[11px] bg-surface-container-high px-2 py-0.5 border border-outline text-on-surface">NQAS Audits</span>
+<span class="font-mono text-[11px] bg-surface-container-high px-2 py-0.5 border border-outline text-primary font-bold">Piramal Gandhi Fellowship</span>
+</div>
+</div>
+<!-- Exp 2: BiharKaSwaad Platform -->
+<div class="bg-surface-container border-3 border-outline p-6 shadow-[5px_5px_0px_#000000] flex flex-col justify-between">
+<div class="space-y-4">
+<div class="flex items-start justify-between gap-2 border-b-2 border-outline pb-3">
+<div>
+<span class="font-mono text-xs font-bold text-tertiary uppercase block">Jul 2025 – Present // Production Platform</span>
+<h4 class="font-headline text-xl font-bold text-on-surface mt-1">BiharKaSwaad Platform</h4>
+<p class="font-headline text-sm font-semibold text-primary">Full-Stack Developer &amp; Web In-Charge</p>
+</div>
+<span class="bg-tertiary-container text-on-tertiary-container text-[11px] font-mono font-bold px-2 py-0.5 border border-outline">ECOMMERCE</span>
+</div>
+<ul class="space-y-2 text-xs sm:text-sm font-body text-on-surface-variant list-disc pl-4 leading-relaxed">
+<li class=""><strong class="text-on-surface">Core Architecture:</strong> Architected complete production web store using Next.js 14, TypeScript, Tailwind CSS, and headless database structures for regional artisan produce.</li>
+<li class=""><strong class="text-on-surface">Payment &amp; Security:</strong> Implemented Razorpay payment gateway integration with deterministic HMAC SHA-256 webhook signature validation and transactional idempotency.</li>
+<li class=""><strong class="text-on-surface">Logistics Matrix:</strong> Integrated automated India Post / courier API dispatch engine calculating rates and tracking across 18,000+ PIN codes nationally.</li>
+<li class=""><strong class="text-on-surface">Performance Optimization:</strong> Maintained sub-1.2s Core Web Vitals on slow 3G cellular networks across tier-3 geographic clusters.</li>
+</ul>
+</div>
+<div class="mt-6 pt-4 border-t border-outline flex flex-wrap gap-2">
+<span class="font-mono text-[11px] bg-surface-container-high px-2 py-0.5 border border-outline text-on-surface">Next.js</span>
+<span class="font-mono text-[11px] bg-surface-container-high px-2 py-0.5 border border-outline text-on-surface">TypeScript</span>
+<span class="font-mono text-[11px] bg-surface-container-high px-2 py-0.5 border border-outline text-on-surface">Razorpay HMAC</span>
+<span class="font-mono text-[11px] bg-surface-container-high px-2 py-0.5 border border-outline text-on-surface">PostgreSQL</span>
+</div>
+</div>
+<!-- Exp 3: Prodigy InfoTech -->
+<div class="bg-surface-container border-3 border-outline p-6 shadow-[5px_5px_0px_#000000] flex flex-col justify-between">
+<div class="space-y-4">
+<div class="flex items-start justify-between gap-2 border-b-2 border-outline pb-3">
+<div>
+<span class="font-mono text-xs font-bold text-on-surface-variant uppercase block">Jun – Jul 2025 // Remote</span>
+<h4 class="font-headline text-xl font-bold text-on-surface mt-1">Full-Stack Web Dev Intern</h4>
+<p class="font-headline text-sm font-semibold text-primary">Prodigy InfoTech</p>
+</div>
+<span class="bg-surface-container-high text-on-surface text-[11px] font-mono font-bold px-2 py-0.5 border border-outline">INTERNSHIP</span>
+</div>
+<ul class="space-y-2 text-xs sm:text-sm font-body text-on-surface-variant list-disc pl-4 leading-relaxed">
+<li class=""><strong class="text-on-surface">Full-Stack Applications:</strong> Engineered responsive CRUD and stateful web applications leveraging React, Node.js, Express, and MongoDB.</li>
+<li class=""><strong class="text-on-surface">Authentication &amp; Session:</strong> Implemented secure JWT session tokens, refresh token rotations, and bcrypt salted hashing schemes.</li>
+<li class=""><strong class="text-on-surface">Real-Time Pipelines:</strong> Built live client telemetry notifications using WebSockets for collaborative task dashboards.</li>
+</ul>
+</div>
+<div class="mt-6 pt-4 border-t border-outline flex flex-wrap gap-2">
+<span class="font-mono text-[11px] bg-surface-container-high px-2 py-0.5 border border-outline text-on-surface">MERN Stack</span>
+<span class="font-mono text-[11px] bg-surface-container-high px-2 py-0.5 border border-outline text-on-surface">JWT Auth</span>
+<span class="font-mono text-[11px] bg-surface-container-high px-2 py-0.5 border border-outline text-on-surface">WebSockets</span>
+</div>
+</div>
+<!-- Exp 4: Auroville FabLab -->
+<div class="bg-surface-container border-3 border-outline p-6 shadow-[5px_5px_0px_#000000] flex flex-col justify-between">
+<div class="space-y-4">
+<div class="flex items-start justify-between gap-2 border-b-2 border-outline pb-3">
+<div>
+<span class="font-mono text-xs font-bold text-on-surface-variant uppercase block">Sep – Nov 2024 // Auroville, TN</span>
+<h4 class="font-headline text-xl font-bold text-on-surface mt-1">Sustainable-Tech Intern</h4>
+<p class="font-headline text-sm font-semibold text-primary">Auroville FabLab</p>
+</div>
+<span class="bg-surface-container-high text-on-surface text-[11px] font-mono font-bold px-2 py-0.5 border border-outline">FAB LAB</span>
+</div>
+<ul class="space-y-2 text-xs sm:text-sm font-body text-on-surface-variant list-disc pl-4 leading-relaxed">
+<li class=""><strong class="text-on-surface">Open-Source Hardware:</strong> Prototyped sensory micro-controllers and embedded data loggers for ecological parameter surveillance.</li>
+<li class=""><strong class="text-on-surface">Digital Fabrication:</strong> Operated CAD modeling, rapid 3D printing, and laser cutting machines for durable field casing design.</li>
+<li class=""><strong class="text-on-surface">Community Workshops:</strong> Co-facilitated hands-on digital fabrication and IoT sensor telemetry sessions for youth and researchers.</li>
+</ul>
+</div>
+<div class="mt-6 pt-4 border-t border-outline flex flex-wrap gap-2">
+<span class="font-mono text-[11px] bg-surface-container-high px-2 py-0.5 border border-outline text-on-surface">Rapid Prototyping</span>
+<span class="font-mono text-[11px] bg-surface-container-high px-2 py-0.5 border border-outline text-on-surface">Embedded IoT</span>
+<span class="font-mono text-[11px] bg-surface-container-high px-2 py-0.5 border border-outline text-on-surface">3D Printing</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- 04 // Selected Production Systems -->
+<section class="w-full border-b-4 border-outline px-4 sm:px-8 lg:px-12 py-16 bg-[#121214]" id="systems">
+<div class="max-w-7xl mx-auto space-y-10">
+<div class="flex flex-col sm:flex-row sm:items-end justify-between gap-4 border-b-2 border-outline pb-4">
+<div>
+<span class="font-headline text-xs font-bold uppercase tracking-widest text-secondary block">04 // FLAGSHIP ENGINEERING DEPLOYMENTS</span>
+<h2 class="font-headline text-3xl sm:text-5xl font-bold uppercase tracking-tight text-on-surface mt-1">
+            Production Systems
+          </h2>
+</div>
+<a class="inline-flex items-center gap-1 font-headline text-xs font-bold uppercase tracking-wider text-primary hover:text-white border-b-2 border-primary pb-1" href="#systems">
+<span class="">View All Systems &amp; Architecture on Work Page (/work)</span>
+<span class="material-symbols-outlined text-sm">arrow_forward</span>
+</a>
+</div>
+<!-- 3 Neo-Brutalist Flagship Cards -->
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-6 items-stretch">
+<!-- System 1: Matru Suraksha -->
+<div class="bg-surface-container border-3 border-outline p-6 shadow-[6px_6px_0px_#000000] flex flex-col justify-between hover:translate-x-0.5 hover:translate-y-0.5 hover:shadow-[3px_3px_0px_#000000] transition-all">
+<div class="space-y-4">
+<div class="flex items-center justify-between border-b-2 border-outline pb-3">
+<span class="bg-secondary text-on-secondary px-2.5 py-0.5 font-headline font-bold text-xs uppercase">FLAGSHIP 01</span>
+<span class="font-mono text-xs font-bold text-on-surface-variant">OFFLINE PWA</span>
+</div>
+<div class="space-y-1">
+<div class="font-headline text-sm font-bold text-secondary uppercase">मातृ सुरक्षा</div>
+<h3 class="font-headline text-2xl font-bold text-on-surface uppercase">Matru Suraksha</h3>
+<p class="font-headline text-xs font-bold text-primary uppercase">Multi-Tier High-Risk Pregnancy Care Platform</p>
+</div>
+<p class="font-body text-xs sm:text-sm text-on-surface-variant leading-relaxed">
+              Clinical surveillance system specifically engineered for rural primary healthcare in Bihar. Designed for zero-connectivity sub-centres, ensuring pregnant mothers with severe anemia, gestational diabetes, or hypertension are algorithmically tracked until safe institutional delivery.
+            </p>
+<div class="bg-surface-container-low p-3 border border-outline space-y-2 text-xs font-mono text-on-surface-variant">
+<div class="text-[11px] font-bold uppercase text-primary border-b border-outline pb-1">Architecture Highlights</div>
+<div class="">• Offline-first IndexedDB (Dexie.js) bidirectional sync</div>
+<div class="">• 6-Tier Role-Based Access Control (ASHA to DM)</div>
+<div class="">• 15-day deterministic clinical escalation triggers</div>
+<div class="">• Zero-data loss on intermittent 2G/3G towers</div>
+</div>
+</div>
+<div class="pt-6 border-t-2 border-outline mt-6">
+<a class="inline-flex items-center justify-between w-full p-2.5 bg-primary text-on-primary font-headline text-xs font-bold uppercase tracking-wider hover:bg-white hover:text-black transition-colors" href="#systems">
+<span class="">Deep-dive architecture on Work page →</span>
+<span class="material-symbols-outlined text-sm">east</span>
+</a>
+</div>
+</div>
+<!-- System 2: District Hospital Araria Portal -->
+<div class="bg-surface-container border-3 border-outline p-6 shadow-[6px_6px_0px_#000000] flex flex-col justify-between hover:translate-x-0.5 hover:translate-y-0.5 hover:shadow-[3px_3px_0px_#000000] transition-all">
+<div class="space-y-4">
+<div class="flex items-center justify-between border-b-2 border-outline pb-3">
+<span class="bg-tertiary text-black px-2.5 py-0.5 font-headline font-bold text-xs uppercase">FLAGSHIP 02</span>
+<span class="font-mono text-xs font-bold text-on-surface-variant">CIVIC HEALTH OPS</span>
+</div>
+<div class="space-y-1">
+<div class="font-headline text-sm font-bold text-tertiary uppercase">सदर अस्पताल अररिया</div>
+<h3 class="font-headline text-2xl font-bold text-on-surface uppercase">District Hospital Araria Portal</h3>
+<p class="font-headline text-xs font-bold text-primary uppercase">Civic Healthcare Operations &amp; OPD Telemetry</p>
+</div>
+<p class="font-body text-xs sm:text-sm text-on-surface-variant leading-relaxed">
+              District-wide civic hospital management portal resolving OPD bottlenecks, bed occupancy tracking, blood bank component inventories, and automated citizen SMS dispatch across 9 departmental wings.
+            </p>
+<div class="bg-surface-container-low p-3 border border-outline space-y-2 text-xs font-mono text-on-surface-variant">
+<div class="text-[11px] font-bold uppercase text-primary border-b border-outline pb-1">Architecture Highlights</div>
+<div class="">• Real-time tokenized OPD queue telemetry</div>
+<div class="">• Blood bank stock ledger with cold-chain threshold alerts</div>
+<div class="">• Bi-lingual (Hindi/English) responsive interface</div>
+<div class="">• Direct SMS dispatch gateway via NIC / SMS APIs</div>
+</div>
+</div>
+<div class="pt-6 border-t-2 border-outline mt-6">
+<a class="inline-flex items-center justify-between w-full p-2.5 bg-primary text-on-primary font-headline text-xs font-bold uppercase tracking-wider hover:bg-white hover:text-black transition-colors" href="#systems">
+<span class="">Full architecture on Work page →</span>
+<span class="material-symbols-outlined text-sm">east</span>
+</a>
+</div>
+</div>
+<!-- System 3: India Development Data Engine -->
+<div class="bg-surface-container border-3 border-outline p-6 shadow-[6px_6px_0px_#000000] flex flex-col justify-between hover:translate-x-0.5 hover:translate-y-0.5 hover:shadow-[3px_3px_0px_#000000] transition-all">
+<div class="space-y-4">
+<div class="flex items-center justify-between border-b-2 border-outline pb-3">
+<span class="bg-primary text-on-primary px-2.5 py-0.5 font-headline font-bold text-xs uppercase border border-primary">FLAGSHIP 03</span>
+<span class="font-mono text-xs font-bold text-on-surface-variant">PUBLIC INTEL</span>
+</div>
+<div class="space-y-1">
+<div class="font-headline text-sm font-bold text-primary uppercase">डेटा इंजन भारत</div>
+<h3 class="font-headline text-2xl font-bold text-on-surface uppercase">India Dev Data Engine</h3>
+<p class="font-headline text-xs font-bold text-primary uppercase">Socio-Economic Choropleth &amp; Vector Querying</p>
+</div>
+<p class="font-body text-xs sm:text-sm text-on-surface-variant leading-relaxed">
+              Public intelligence portal ingesting NFHS-5, Census, and state MIS datasets (118k+ records). Empowers district collectors and health planners to conduct semantic queries and visualize spatial inequalities in real-time.
+            </p>
+<div class="bg-surface-container-low p-3 border border-outline space-y-2 text-xs font-mono text-on-surface-variant">
+<div class="text-[11px] font-bold uppercase text-primary border-b border-outline pb-1">Architecture Highlights</div>
+<div class="">• pgvector embedded spatial embeddings index</div>
+<div class="">• 118,000+ validated indicators parsed &amp; normalized</div>
+<div class="">• D3.js interactive choropleth vector projections</div>
+<div class="">• Sub-100ms multi-variable regression queries</div>
+</div>
+</div>
+<div class="pt-6 border-t-2 border-outline mt-6">
+<a class="inline-flex items-center justify-between w-full p-2.5 bg-primary text-on-primary font-headline text-xs font-bold uppercase tracking-wider hover:bg-white hover:text-black transition-colors" href="#systems">
+<span class="">Explore on Work page →</span>
+<span class="material-symbols-outlined text-sm">east</span>
+</a>
+</div>
+</div>
+</div>
+<!-- Banner Footer -->
+<div class="p-4 bg-surface-container border-2 border-outline flex flex-col sm:flex-row items-center justify-between gap-4 font-mono text-xs text-on-surface">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-base text-primary">folder_special</span>
+<span class="">SYSTEMS PORTFOLIO CATALOG: 5 PRODUCTION REPOSITORIES ACTIVE</span>
+</div>
+<a class="font-bold underline text-primary uppercase tracking-wider hover:text-white" href="#systems">
+          Explore all 5 deployed systems, architecture diagrams, database schemas, and source repositories on the Work page →
+        </a>
+</div>
+</div>
+</section>
+<!-- 05 // Formal Education & Accreditations -->
+<section class="w-full border-b-4 border-outline px-4 sm:px-8 lg:px-12 py-16 bg-[#161619]">
+<div class="max-w-7xl mx-auto space-y-10">
+<div class="flex flex-col sm:flex-row sm:items-end justify-between gap-4 border-b-2 border-outline pb-4">
+<div>
+<span class="font-headline text-xs font-bold uppercase tracking-widest text-primary block">05 // CREDENTIALS &amp; FOUNDATION</span>
+<h2 class="font-headline text-3xl sm:text-5xl font-bold uppercase tracking-tight text-on-surface mt-1">
+            Education &amp; Accreditations
+          </h2>
+</div>
+<span class="font-mono text-xs text-on-surface-variant">RIGOROUS ACADEMIC PEDIGREE</span>
+</div>
+<div class="grid grid-cols-1 lg:grid-cols-2 gap-8 items-start">
+<!-- Left: Formal Degrees -->
+<div class="border-3 border-outline bg-surface-container p-6 sm:p-8 shadow-[6px_6px_0px_#000000] space-y-6">
+<div class="flex items-center justify-between border-b-2 border-outline pb-3">
+<h3 class="font-headline text-xl font-bold uppercase text-on-surface">Formal University Degrees</h3>
+<span class="material-symbols-outlined text-primary">school</span>
+</div>
+<div class="space-y-6">
+<!-- Degree 1 -->
+<div class="border-l-4 border-primary pl-4 py-1 space-y-1">
+<span class="font-mono text-xs font-bold text-secondary uppercase">2023 – 2025 // POSTGRADUATE</span>
+<h4 class="font-headline text-lg font-bold text-on-surface">Master of Computer Applications (MCA)</h4>
+<p class="font-body text-xs sm:text-sm text-primary font-medium">Pondicherry University, Puducherry</p>
+<p class="font-body text-xs text-on-surface-variant pt-1 leading-relaxed">
+                Specialized in Advanced Data Structures, Distributed Database Systems, Cloud Architecture, Network Protocols, and Applied Machine Learning.
+              </p>
+</div>
+<!-- Degree 2 -->
+<div class="border-l-4 border-primary pl-4 py-1 space-y-1">
+<span class="font-mono text-xs font-bold text-tertiary uppercase">2022 – 2023 // POSTGRADUATE</span>
+<h4 class="font-headline text-lg font-bold text-on-surface">Master of Arts in Political Science &amp; Government</h4>
+<p class="font-body text-xs sm:text-sm text-primary font-medium">Prof. Rajendra Singh (Rajju Bhaiya) University, Prayagraj, UP</p>
+<p class="font-body text-xs text-on-surface-variant pt-1 leading-relaxed">
+                Focus on Public Administration, Democratic Institutions, Comparative Public Policy, and State Welfare Apparatuses.
+              </p>
+</div>
+<!-- Degree 3 -->
+<div class="border-l-4 border-primary pl-4 py-1 space-y-1">
+<span class="font-mono text-xs font-bold text-primary uppercase">2019 – 2022 // UNDERGRADUATE</span>
+<h4 class="font-headline text-lg font-bold text-on-surface">Bachelor of Science (BSc) in Mathematics</h4>
+<p class="font-body text-xs sm:text-sm text-primary font-medium">Prof. Rajendra Singh (Rajju Bhaiya) University, Prayagraj, UP</p>
+<p class="font-body text-xs text-on-surface-variant pt-1 leading-relaxed">
+                Core coursework in Real Analysis, Linear Algebra, Probability Theory, Discrete Mathematics, and Numerical Methods.
+              </p>
+</div>
+</div>
+</div>
+<!-- Right: Accreditations & Leadership -->
+<div class="border-3 border-outline bg-surface-container-high p-6 sm:p-8 shadow-[6px_6px_0px_#000000] space-y-6">
+<div class="flex items-center justify-between border-b-2 border-outline pb-3">
+<h3 class="font-headline text-xl font-bold uppercase text-on-surface">Accreditations &amp; Leadership</h3>
+<span class="material-symbols-outlined text-primary">verified</span>
+</div>
+<div class="space-y-4">
+<div class="bg-surface-container-low p-4 border-2 border-outline">
+<div class="flex justify-between items-start">
+<span class="font-headline text-xs font-bold uppercase bg-primary text-on-primary px-2 py-0.5">IBM CREDENTIAL</span>
+<span class="font-mono text-xs text-on-surface-variant">PROFESSIONAL</span>
+</div>
+<h4 class="font-headline text-base font-bold text-on-surface mt-2">IBM Data Science Professional Certificate</h4>
+<p class="font-body text-xs text-on-surface-variant mt-1">
+                Comprehensive verification in Python, SQL data extraction, statistical analysis, predictive modeling, data visualization, and applied ML.
+              </p>
+</div>
+<div class="bg-surface-container-low p-4 border-2 border-outline">
+<div class="flex justify-between items-start">
+<span class="font-headline text-xs font-bold uppercase bg-tertiary text-black px-2 py-0.5">NPTEL / IIT</span>
+<span class="font-mono text-xs text-on-surface-variant">NATIONAL LEVEL</span>
+</div>
+<h4 class="font-headline text-base font-bold text-on-surface mt-2">NPTEL IIT Certifications (Python &amp; R for Data Science)</h4>
+<p class="font-body text-xs text-on-surface-variant mt-1">
+                Rigorous algorithmic computing, statistical hypothesis testing, experimental design, and data wrangling under IIT faculties.
+              </p>
+</div>
+<div class="bg-surface-container-low p-4 border-2 border-outline">
+<div class="flex justify-between items-start">
+<span class="font-headline text-xs font-bold uppercase bg-primary text-on-primary px-2 py-0.5 border border-primary">MSME GOVT</span>
+<span class="font-mono text-xs text-on-surface-variant">GOVT OF INDIA</span>
+</div>
+<h4 class="font-headline text-base font-bold text-on-surface mt-2">MSME Python-Based Data Analysis Certification</h4>
+<p class="font-body text-xs text-on-surface-variant mt-1">
+                Certified hands-on training for automated business intelligence, data pipeline engineering, and dashboard synthesis.
+              </p>
+</div>
+<div class="bg-surface-container-low p-4 border-2 border-outline">
+<div class="flex justify-between items-start">
+<span class="font-headline text-xs font-bold uppercase bg-secondary text-on-secondary px-2 py-0.5">LEADERSHIP</span>
+<span class="font-mono text-xs text-on-surface-variant">COMMUNITY</span>
+</div>
+<h4 class="font-headline text-base font-bold text-on-surface mt-2">Founder &amp; Head — Sangam Cultural Group</h4>
+<p class="font-body text-xs text-on-surface-variant mt-1">
+                Founded and directed inter-collegiate cultural initiatives, managed 40+ student volunteers, and coordinated institutional arts festivals.
+              </p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- 06 // Frontline-to-Insight Data Architecture (4-Stage Pipeline) -->
+<section class="w-full border-b-4 border-outline px-4 sm:px-8 lg:px-12 py-16 bg-[#121214]">
+<div class="max-w-7xl mx-auto space-y-12">
+<div class="flex flex-col sm:flex-row sm:items-end justify-between gap-4 border-b-2 border-outline pb-4">
+<div>
+<span class="font-headline text-xs font-bold uppercase tracking-widest text-secondary block">06 // DATA SYSTEMS METHODOLOGY</span>
+<h2 class="font-headline text-3xl sm:text-5xl font-bold uppercase tracking-tight text-on-surface mt-1">
+            Frontline-to-Insight Pipeline
+          </h2>
+</div>
+<div class="font-mono text-xs font-bold text-on-surface-variant">
+          DETERMINISTIC ARCHITECTURE MODEL
+        </div>
+</div>
+<p class="font-body text-base text-on-surface-variant max-w-3xl leading-relaxed">
+        Public health in India does not fail because of lack of intent; it fails because of <strong class="underline decoration-secondary decoration-2 font-bold text-on-surface">fragile data supply chains</strong>. Here is the exact four-stage pipeline I employ to transform fragmented paper logs in Muzaffarpur and Araria into executive district policy actions.
+      </p>
+<!-- 4 Geometric Pipeline Steps -->
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+<!-- Step 1 -->
+<div class="bg-surface-container border-3 border-outline p-6 shadow-[5px_5px_0px_#000000] flex flex-col justify-between">
+<div>
+<div class="w-10 h-10 bg-primary text-on-primary font-headline font-bold text-lg flex items-center justify-center border-2 border-primary mb-4">
+              01
+            </div>
+<span class="font-mono text-xs font-bold text-secondary uppercase block mb-1">STAGE: INGESTION</span>
+<h3 class="font-headline text-2xl font-bold uppercase text-on-surface mb-3">COLLECT</h3>
+<p class="font-body text-xs sm:text-sm text-on-surface-variant leading-relaxed">
+              ODK Collect forms, M-ASHA field tablets, and Dexie/IndexedDB local caches deployed at Sub-Centres. Offline-first capture designed for 2G or zero network connectivity in remote Bihar panchayats.
+            </p>
+</div>
+<div class="mt-6 pt-3 border-t border-outline font-mono text-[11px] text-primary">
+            TECH: ODK, Dexie.js, IndexedDB
+          </div>
+</div>
+<!-- Step 2 -->
+<div class="bg-surface-container border-3 border-outline p-6 shadow-[5px_5px_0px_#000000] flex flex-col justify-between">
+<div>
+<div class="w-10 h-10 bg-secondary text-on-secondary font-headline font-bold text-lg flex items-center justify-center border-2 border-secondary mb-4">
+              02
+            </div>
+<span class="font-mono text-xs font-bold text-secondary uppercase block mb-1">STAGE: SANITIZATION</span>
+<h3 class="font-headline text-2xl font-bold uppercase text-on-surface mb-3">CLEAN</h3>
+<p class="font-body text-xs sm:text-sm text-on-surface-variant leading-relaxed">
+              Automated Python outlier rejection routines, entity matching, and reconciliation across physical maternal registers and state digital portals. Eliminates ghost beneficiaries and typo anomalies.
+            </p>
+</div>
+<div class="mt-6 pt-3 border-t border-outline font-mono text-[11px] text-secondary">
+            TECH: Python, Pandas, Regex Rules
+          </div>
+</div>
+<!-- Step 3 -->
+<div class="bg-surface-container border-3 border-outline p-6 shadow-[5px_5px_0px_#000000] flex flex-col justify-between">
+<div>
+<div class="w-10 h-10 bg-tertiary text-black font-headline font-bold text-lg flex items-center justify-center border-2 border-tertiary mb-4">
+              03
+            </div>
+<span class="font-mono text-xs font-bold text-secondary uppercase block mb-1">STAGE: COMPUTATION</span>
+<h3 class="font-headline text-2xl font-bold uppercase text-on-surface mb-3">ANALYSE</h3>
+<p class="font-body text-xs sm:text-sm text-on-surface-variant leading-relaxed">
+              SQL windowing aggregations, block-level choropleths, and risk-stratified maternal survival tracking. Identifying localized delivery complications before maternal morbidity escalates.
+            </p>
+</div>
+<div class="mt-6 pt-3 border-t border-outline font-mono text-[11px] text-tertiary">
+            TECH: PostgreSQL, Windowing, D3.js
+          </div>
+</div>
+<!-- Step 4 -->
+<div class="bg-surface-container border-3 border-outline p-6 shadow-[5px_5px_0px_#000000] flex flex-col justify-between">
+<div>
+<div class="w-10 h-10 bg-primary text-on-primary font-headline font-bold text-lg flex items-center justify-center border-2 border-primary mb-4">
+              04
+            </div>
+<span class="font-mono text-xs font-bold text-secondary uppercase block mb-1">STAGE: GOVERNANCE</span>
+<h3 class="font-headline text-2xl font-bold uppercase text-on-surface mb-3">DECIDE</h3>
+<p class="font-body text-xs sm:text-sm text-on-surface-variant leading-relaxed">
+              Synthesis into deterministic Monday Morning MIS briefs for Civil Surgeons, District Magistrates, and Piramal leadership. Converts abstract metrics into immediate targeted ambulance &amp; nurse dispatches.
+            </p>
+</div>
+<div class="mt-6 pt-3 border-t border-outline font-mono text-[11px] text-primary">
+            TECH: Automated Briefs, DM Portals
+          </div>
+</div>
+</div>
+<!-- Competency Percentage Meters (Brutalist Progress Bars) -->
+<div class="border-3 border-outline bg-surface-container-high p-6 sm:p-8 shadow-[6px_6px_0px_#000000] space-y-6">
+<div class="flex items-center justify-between border-b-2 border-outline pb-3">
+<h3 class="font-headline text-xl font-bold uppercase text-on-surface">Engineering &amp; Domain Competency Index</h3>
+<span class="font-mono text-xs font-bold bg-primary text-on-primary px-2 py-1 border border-primary">BENCHMARK 2025</span>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+<!-- Bar 1 -->
+<div class="space-y-2">
+<div class="flex justify-between items-center text-xs font-headline font-bold uppercase text-on-surface">
+<span class="">Public Health Informatics &amp; Clinical Data Science</span>
+<span class="font-mono text-primary">87%</span>
+</div>
+<div class="w-full bg-surface-container-low h-6 border-2 border-outline p-0.5">
+<div class="bg-secondary h-full" style="width: 87%;"></div>
+</div>
+<span class="text-[11px] font-mono text-on-surface-variant">M-ASHA, ODK, District MIS, Maternal Mortality Survelliance</span>
+</div>
+<!-- Bar 2 -->
+<div class="space-y-2">
+<div class="flex justify-between items-center text-xs font-headline font-bold uppercase text-on-surface">
+<span class="">Full-Stack Web Engineering (Next.js / Node / SQL)</span>
+<span class="font-mono text-primary">82%</span>
+</div>
+<div class="w-full bg-surface-container-low h-6 border-2 border-outline p-0.5">
+<div class="bg-tertiary h-full" style="width: 82%;"></div>
+</div>
+<span class="text-[11px] font-mono text-on-surface-variant">Next.js 14, TypeScript, Express, PostgreSQL, Offline PWAs</span>
+</div>
+<!-- Bar 3 -->
+<div class="space-y-2">
+<div class="flex justify-between items-center text-xs font-headline font-bold uppercase text-on-surface">
+<span class="">Applied AI &amp; Vector Retrieval (RAG / LLMs)</span>
+<span class="font-mono text-primary">78%</span>
+</div>
+<div class="w-full bg-surface-container-low h-6 border-2 border-outline p-0.5">
+<div class="bg-primary h-full" style="width: 78%;"></div>
+</div>
+<span class="text-[11px] font-mono text-on-surface-variant">LangChain, pgvector, Clinical Decision Agents, Prompt Eng</span>
+</div>
+<!-- Bar 4 -->
+<div class="space-y-2">
+<div class="flex justify-between items-center text-xs font-headline font-bold uppercase text-on-surface">
+<span class="">Frontline Community &amp; District Systems Leadership</span>
+<span class="font-mono text-primary">89%</span>
+</div>
+<div class="w-full bg-surface-container-low h-6 border-2 border-outline p-0.5">
+<div class="bg-white h-full" style="width: 89%;"></div>
+</div>
+<span class="text-[11px] font-mono text-on-surface-variant">ASHA Cohort Mentoring, Medical Officer Mediation, Bureaucracy Navigation</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- 07 // Interactive Vector RAG Terminal -->
+<section class="w-full border-b-4 border-outline px-4 sm:px-8 lg:px-12 py-16 bg-[#161619]" id="vector-terminal">
+<div class="max-w-7xl mx-auto space-y-10">
+<div class="flex flex-col sm:flex-row sm:items-end justify-between gap-4 border-b-2 border-outline pb-4">
+<div>
+<span class="font-headline text-xs font-bold uppercase tracking-widest text-primary block">07 // CLIENT-SIDE INTELLIGENCE</span>
+<h2 class="font-headline text-3xl sm:text-5xl font-bold uppercase tracking-tight text-on-surface mt-1">
+            Vector RAG Terminal
+          </h2>
+</div>
+<div class="inline-flex items-center gap-2 font-mono text-xs font-bold bg-primary text-on-primary px-3 py-1 border border-primary">
+<span class="w-2 h-2 bg-secondary inline-block animate-ping"></span>
+          SYS_ENV: EMBEDDED_AGENT_v1.9
+        </div>
+</div>
+<!-- Terminal Component -->
+<div class="bg-[#0b0b0d] text-[#33ff33] border-4 border-outline shadow-[8px_8px_0px_#000000] font-mono text-xs sm:text-sm">
+<!-- Terminal Header Bar -->
+<div class="bg-surface-container text-on-surface p-3 border-b-2 border-outline flex items-center justify-between font-headline font-bold text-xs uppercase tracking-wider">
+<div class="flex items-center gap-2">
+<span class="w-3 h-3 bg-secondary inline-block border border-outline"></span>
+<span class="w-3 h-3 bg-primary inline-block border border-outline"></span>
+<span class="w-3 h-3 bg-tertiary inline-block border border-outline"></span>
+<span class="ml-2 font-mono text-on-surface">vector_brain@aditya-pandey:~/bihar-ops</span>
+</div>
+<span class="text-primary font-mono font-bold">LATENCY: 12ms</span>
+</div>
+<!-- Terminal Body -->
+<div class="p-6 space-y-4 min-h-[320px] overflow-y-auto" id="terminal-content">
+<div class="text-[#71717a]">
+            ========================================================================<br>
+            ADITYA PANDEY // AUTONOMOUS KNOWLEDGE RETRIEVAL VECTOR AGENT [INITIALIZED]<br>
+            DATABASE: 118,492 FRONTLINE HEALTH VECTORS &amp; ENGINEERING REPOSITORIES<br>
+            TYPE A QUERY BELOW OR SELECT ONE OF THE RAPID PRE-FLIGHT COMMANDS.<br>
+            ========================================================================
+          </div>
+<div class="space-y-4" id="terminal-logs">
+<div class="text-[#33ff33]">
+<span class="text-white font-bold">$ sys --status</span><br>
+              &gt; STATUS: 200 OK | PIRAMAL GANDHI FELLOWSHIP RUNTIME<br>
+              &gt; JURISDICTION: Muzaffarpur &amp; Araria, Bihar (16 High-Burden Blocks)<br>
+              &gt; DEPLOYED SYSTEMS: Matru Suraksha (PWA), Araria DH Portal, India Data Engine.<br>
+              &gt; QUERY READY: Select a vector query below to test automated synthesis.
+            </div>
+</div>
+<div class="flex items-center gap-2 text-white pt-2 border-t border-dashed border-[#27272a]">
+<span class="text-primary font-bold">&gt;</span>
+<span class="text-[#33ff33]" id="active-terminal-cursor">awaiting input...</span>
+<span class="w-2 h-4 bg-[#33ff33] inline-block animate-pulse"></span>
+</div>
+</div>
+<!-- Quick Query Trigger Controls -->
+<div class="bg-[#121214] p-4 border-t-2 border-outline flex flex-wrap gap-2 items-center">
+<span class="text-white text-xs font-mono font-bold mr-2 uppercase">Inject Query:</span>
+<button class="px-3 py-1.5 bg-[#202024] hover:bg-primary hover:text-black text-white border border-[#3f3f46] transition-colors font-mono text-xs cursor-pointer" onclick="runQuery('matru')">
+            $ query --topic matru-suraksha
+          </button>
+<button class="px-3 py-1.5 bg-[#202024] hover:bg-secondary hover:text-black text-white border border-[#3f3f46] transition-colors font-mono text-xs cursor-pointer" onclick="runQuery('araria')">
+            $ query --metrics --block araria
+          </button>
+<button class="px-3 py-1.5 bg-[#202024] hover:bg-tertiary hover:text-black text-white border border-[#3f3f46] transition-colors font-mono text-xs cursor-pointer" onclick="runQuery('stack')">
+            $ sys --health-stack
+          </button>
+<button class="px-3 py-1.5 bg-[#202024] hover:bg-white hover:text-black text-[#a1a1aa] border border-[#3f3f46] transition-colors font-mono text-xs ml-auto cursor-pointer" onclick="clearTerminal()">
+            $ clear
+          </button>
+</div>
+</div>
+</div>
+</section>
+<!-- 08 // Initiate Direct Dispatch (Contact) -->
+<section class="w-full border-b-4 border-outline px-4 sm:px-8 lg:px-12 py-16 bg-[#121214]" id="dispatch">
+<div class="max-w-7xl mx-auto space-y-12">
+<div class="flex flex-col sm:flex-row sm:items-end justify-between gap-4 border-b-2 border-outline pb-4">
+<div>
+<span class="font-headline text-xs font-bold uppercase tracking-widest text-secondary block">08 // TRANSMISSION &amp; ENGAGEMENT</span>
+<h2 class="font-headline text-3xl sm:text-5xl font-bold uppercase tracking-tight text-on-surface mt-1">
+            Initiate Direct Dispatch
+          </h2>
+</div>
+<div class="font-mono text-xs text-on-surface-variant font-bold">SECURE CHANNEL // UNENCRYPTED PGP READY</div>
+</div>
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+<!-- Contact Form -->
+<div class="lg:col-span-7 bg-surface-container border-3 border-outline p-6 sm:p-8 shadow-[6px_6px_0px_#000000]">
+<div class="border-b-2 border-outline pb-4 mb-6">
+<h3 class="font-headline text-xl font-bold uppercase text-on-surface">Direct Transmission Form</h3>
+<p class="font-body text-xs text-on-surface-variant mt-1">
+              Reach out for public health data consulting, health-tech engineering partnerships, fellowship collaborations, or full-stack speaking sessions.
+            </p>
+</div>
+<form class="space-y-6" onsubmit="handleDispatchSubmit(event)">
+<div class="space-y-1">
+<label class="font-headline text-xs font-bold uppercase text-on-surface block tracking-wider">Your Identity &amp; Title *</label>
+<input class="w-full bg-surface-container-low border border-outline border-b-3 border-b-primary p-3 text-sm font-body text-on-surface focus:outline-none focus:bg-surface-container-high transition-colors" placeholder="e.g. Dr. Ramesh Kumar / Chief Medical Officer" required="" type="text">
+</div>
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+<div class="space-y-1">
+<label class="font-headline text-xs font-bold uppercase text-on-surface block tracking-wider">Official Email Coordinates *</label>
+<input class="w-full bg-surface-container-low border border-outline border-b-3 border-b-primary p-3 text-sm font-body text-on-surface focus:outline-none focus:bg-surface-container-high transition-colors" placeholder="name@organization.gov.in" required="" type="email">
+</div>
+<div class="space-y-1">
+<label class="font-headline text-xs font-bold uppercase text-on-surface block tracking-wider">Phone / WhatsApp Vector</label>
+<input class="w-full bg-surface-container-low border border-outline border-b-3 border-b-primary p-3 text-sm font-body text-on-surface focus:outline-none focus:bg-surface-container-high transition-colors" placeholder="+91 XXXXX XXXXX" type="tel">
+</div>
+</div>
+<div class="space-y-1">
+<label class="font-headline text-xs font-bold uppercase text-on-surface block tracking-wider">Vector Category *</label>
+<select class="w-full bg-surface-container-low border border-outline border-b-3 border-b-primary p-3 text-sm font-body text-on-surface focus:outline-none focus:bg-surface-container-high transition-colors">
+<option class="bg-surface text-on-surface">Public Health MIS / Data System Architecture</option>
+<option class="bg-surface text-on-surface">Engineering Fellowship / Organization Role</option>
+<option class="bg-surface text-on-surface">Full-Stack Web / Offline PWA Deployment</option>
+<option class="bg-surface text-on-surface">District Health Analytics &amp; ASHA Workflow Mentoring</option>
+<option class="bg-surface text-on-surface">Other Strategic Inquiry</option>
+</select>
+</div>
+<div class="space-y-1">
+<label class="font-headline text-xs font-bold uppercase text-on-surface block tracking-wider">Operational Dispatch Payload *</label>
+<textarea class="w-full bg-surface-container-low border border-outline border-b-3 border-b-primary p-3 text-sm font-body text-on-surface focus:outline-none focus:bg-surface-container-high transition-colors resize-none" placeholder="State requirements, technical constraints, field location, or collaboration scope..." required="" rows="4"></textarea>
+</div>
+<div class="pt-2">
+<button class="w-full sm:w-auto inline-flex items-center justify-center gap-3 px-8 py-4 bg-primary text-on-primary font-headline font-bold text-sm uppercase tracking-widest border-2 border-primary shadow-[5px_5px_0px_#000000] hover:bg-white hover:text-black hover:border-white transition-all active:translate-x-0.5 active:translate-y-0.5 active:shadow-[2px_2px_0px_#000000]" id="dispatch-submit-btn" type="submit">
+<span class="">Transmit Message to Aditya Pandey</span>
+<span class="material-symbols-outlined text-base">send</span>
+</button>
+</div>
+<div class="hidden p-3 bg-primary text-on-primary border-2 border-primary font-mono text-xs font-bold" id="dispatch-alert">
+              [TELEMETRY DISPATCHED]: Message queued to Aditya Pandey. Response latency ~ 4 hours.
+            </div>
+</form>
+</div>
+<!-- Operational Coordinates Card -->
+<div class="lg:col-span-5 space-y-6">
+<div class="bg-surface-container-high text-on-surface border-3 border-outline p-6 sm:p-8 shadow-[6px_6px_0px_#000000] space-y-6">
+<div class="flex items-center justify-between border-b-2 border-outline pb-3">
+<span class="font-headline font-bold text-xs uppercase tracking-widest text-primary">FIELD OPERATIONAL COORDINATES</span>
+<span class="w-2.5 h-2.5 bg-primary rounded-none"></span>
+</div>
+<div class="space-y-5 font-mono text-xs sm:text-sm">
+<div>
+<span class="text-on-surface-variant uppercase block text-[11px]">Primary Comms [Email]</span>
+<a class="text-primary font-bold hover:underline break-all text-sm" href="mailto:adityapandey.adu@gmail.com">
+                  adityapandey.adu@gmail.com
+                </a>
+</div>
+<div>
+<span class="text-on-surface-variant uppercase block text-[11px]">Phone / Direct Wire</span>
+<a class="text-on-surface font-bold hover:underline text-sm" href="tel:+918601862114">
+                  +91 8601862114
+                </a>
+</div>
+<div>
+<span class="text-on-surface-variant uppercase block text-[11px]">Stationed Jurisdiction</span>
+<div class="text-on-surface font-bold">Muzaffarpur &amp; Araria, Bihar, India</div>
+<div class="text-xs text-on-surface-variant font-sans">Hometown: Pratapgarh, Uttar Pradesh</div>
+</div>
+<div>
+<span class="text-on-surface-variant uppercase block text-[11px]">Operational Status</span>
+<div class="inline-flex items-center gap-2 bg-secondary text-on-secondary px-2.5 py-0.5 mt-1 font-bold">
+                  ACTIVE ON FIELD // OPEN FOR STRATEGIC ROLES
+                </div>
+</div>
+</div>
+<div class="pt-6 border-t-2 border-outline space-y-3">
+<span class="font-headline text-xs font-bold uppercase tracking-wider block text-on-surface">External Public Keys &amp; Profiles</span>
+<div class="grid grid-cols-2 gap-3">
+<a class="p-2.5 bg-surface-container text-on-surface font-headline font-bold text-xs uppercase border border-outline text-center hover:bg-primary hover:text-on-primary transition-colors" href="https://github.com" rel="noreferrer" target="_blank">
+                  GitHub Profile →
+                </a>
+<a class="p-2.5 bg-surface-container text-on-surface font-headline font-bold text-xs uppercase border border-outline text-center hover:bg-primary hover:text-on-primary transition-colors" href="https://linkedin.com" rel="noreferrer" target="_blank">
+                  LinkedIn →
+                </a>
+</div>
+</div>
+</div>
+<!-- Quick Quote / Manifesto Card -->
+<div class="bg-surface-container border-2 border-outline p-5 shadow-[4px_4px_0px_#000000]">
+<span class="font-mono text-xs font-bold text-secondary uppercase block mb-1">FIELD MANIFESTO</span>
+<p class="font-headline text-sm font-bold text-on-surface leading-snug">
+              “No clinical prediction algorithm matters if the auxiliary nurse midwife cannot save her entry on a 2G network before her battery dies. Build from the dirt upward.”
+            </p>
+<div class="mt-2 text-right font-mono text-xs text-on-surface-variant">— Aditya Pandey</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Client-side Interactive Logic -->
+<script>
+    function runQuery(topic) {
+      const logs = document.getElementById('terminal-logs');
+      const cursor = document.getElementById('active-terminal-cursor');
+      if (!logs) return;
+
+      let cmd = '';
+      let response = '';
+
+      if (topic === 'matru') {
+        cmd = '$ query --topic matru-suraksha';
+        cursor.textContent = 'processing vector query [matru-suraksha]...';
+        response = `
+          <div class="text-white font-bold">${cmd}</div>
+          <div class="text-[#33ff33]">
+            &gt; MATCH: 0.941 COSINE SIMILARITY<br>
+            &gt; SYSTEM: Matru Suraksha (मातृ सुरक्षा)<br>
+            &gt; PROBLEM: Frontline ASHA workers lost high-risk pregnancy cases across paper registers.<br>
+            &gt; SOLUTION: Offline-first PWA with Dexie.js IndexedDB local storage.<br>
+            &gt; ESCALATION: 15-day strict automated alerts to Medical Officers for severe anemia (Hb &lt; 7.0 g/dL).<br>
+            &gt; REPO: github.com/aditya-pandey/matru-suraksha-core
+          </div>
+        `;
+      } else if (topic === 'araria') {
+        cmd = '$ query --metrics --block araria';
+        cursor.textContent = 'fetching block metrics [araria]...';
+        response = `
+          <div class="text-white font-bold">${cmd}</div>
+          <div class="text-[#facc15]">
+            &gt; MATCH: 0.912 COSINE SIMILARITY<br>
+            &gt; BLOCK: Araria Sadar + Raniganj + Forbesganj (District Araria)<br>
+            &gt; ASHAs IN SCOPE: 340 active frontline health volunteers<br>
+            &gt; IMMUNIZATION COVERAGE DELTA: +18.4% post digital register reconciliation<br>
+            &gt; RECORD MISMATCH RESOLUTION: 4,120 ghost entries expunged across 6 months<br>
+            &gt; GOVERNANCE INTEGRATION: DM Review dashboard populated each Monday 09:00 IST
+          </div>
+        `;
+      } else if (topic === 'stack') {
+        cmd = '$ sys --health-stack';
+        cursor.textContent = 'listing production health stack...';
+        response = `
+          <div class="text-white font-bold">${cmd}</div>
+          <div class="text-[#60a5fa]">
+            &gt; RUNTIME: Node 20.x / Next.js 14 App Router / TypeScript<br>
+            &gt; OFFLINE DB: IndexedDB wrapped with Dexie.js + ServiceWorker cache API<br>
+            &gt; BACKEND DB: PostgreSQL + pgvector extension for clinical guideline embeddings<br>
+            &gt; FIELD PIPELINE: ODK Aggregate / ODK Collect XLSForm engines<br>
+            &gt; VALIDATION: Python (Pandas/NumPy) scheduled cron scripts via GitHub Actions
+          </div>
+        `;
+      }
+
+      const entry = document.createElement('div');
+      entry.className = 'space-y-1 border-t border-[#27272a] pt-3';
+      entry.innerHTML = response;
+      logs.appendChild(entry);
+
+      setTimeout(() => {
+        cursor.textContent = 'awaiting input...';
+        const terminalBox = document.getElementById('terminal-content');
+        if (terminalBox) terminalBox.scrollTop = terminalBox.scrollHeight;
+      }, 300);
+    }
+
+    function clearTerminal() {
+      const logs = document.getElementById('terminal-logs');
+      const cursor = document.getElementById('active-terminal-cursor');
+      if (logs) {
+        logs.innerHTML = `
+          <div class="text-[#33ff33]">
+            &gt; TERMINAL LOGS CLEARED.<br>
+            &gt; READY: Select an operation above.
+          </div>
+        `;
+      }
+      if (cursor) cursor.textContent = 'awaiting input...';
+    }
+
+    function handleDispatchSubmit(e) {
+      e.preventDefault();
+      const alert = document.getElementById('dispatch-alert');
+      const btn = document.getElementById('dispatch-submit-btn');
+      if (btn) btn.disabled = true;
+      if (alert) {
+        alert.classList.remove('hidden');
+        alert.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+      }
+    }
+  </script>
+</div></main><footer class="w-full bg-[#18181b] border-t-2 border-outline"><div class="w-full px-6 lg:px-12 py-12"><div class="grid grid-cols-1 md:grid-cols-4 gap-8 pb-12 border-b-2 border-outline"><div class="space-y-3"><div class="w-10 h-10 bg-primary text-on-primary font-headline font-bold flex items-center justify-center text-lg border-2 border-primary shadow-[2px_2px_0px_#000000]">AP</div><p class="font-headline text-xs font-bold uppercase tracking-wider text-on-surface">Form Follows Function</p><p class="text-xs text-on-surface-variant max-w-xs font-body leading-relaxed">Architecting deterministic clinical systems, autonomous agents, and bio-computational interfaces.</p></div><div class="space-y-2"><span class="font-headline text-xs font-bold uppercase tracking-widest text-primary block">Telemetry &amp; Coords</span><div class="font-headline text-xs text-on-surface-variant space-y-1 font-mono"><div class="">LAT: 37.7749° N / LON: 122.4194° W</div><div class="">ALT: 16M / TIMEZONE: UTC-8</div><div class="">GRID: BAUHAUS-SYS-09</div><div class="text-primary font-bold">STATUS: OPERATIONAL [200 OK]</div></div></div><div class="space-y-2"><span class="font-headline text-xs font-bold uppercase tracking-widest text-on-surface block">Dispatches</span><div class="flex flex-col space-y-2 text-xs font-headline uppercase font-semibold"><a class="text-on-surface-variant hover:text-primary transition-colors" data-path="work-and-systems" href="#">01 // Systems Index</a><a class="text-on-surface-variant hover:text-primary transition-colors" data-path="health-impact" href="#">02 // Clinical Models</a><a class="text-on-surface-variant hover:text-primary transition-colors" data-path="interactive-ai" href="#">03 // Autonomous Agents</a><a class="text-on-surface-variant hover:text-primary transition-colors" data-path="resume" href="#">04 // Vitae Dossier</a></div></div><div class="space-y-2"><span class="font-headline text-xs font-bold uppercase tracking-widest text-on-surface block">Interface Vectors</span><div class="flex flex-col space-y-2 text-xs font-headline uppercase font-semibold"><a class="text-on-surface-variant hover:text-primary transition-colors" data-path="contact" href="#">Secure Comms</a><a class="text-on-surface-variant hover:text-primary transition-colors" href="https://github.com" rel="noreferrer" target="_blank">Code Repository</a><a class="text-on-surface-variant hover:text-primary transition-colors" href="https://linkedin.com" rel="noreferrer" target="_blank">Executive Network</a><a class="text-on-surface-variant hover:text-primary transition-colors" href="https://scholar.google.com" rel="noreferrer" target="_blank">Scholar / Publications</a></div></div></div><div class="pt-8 flex flex-col md:flex-row items-center justify-between gap-4"><div class="font-headline text-xs uppercase font-bold tracking-wider text-on-surface-variant">© 2025 Aditya Pandey. All Functional Systems Reserved.</div><div class="flex items-center gap-6 font-headline text-xs uppercase tracking-wider text-on-surface-variant"><span class="">Brutalist Spec 2.4 (Dark Matrix)</span><span class="w-2 h-2 bg-secondary inline-block"></span><span class="">Zero Softness Rule</span></div></div></div></footer>
+
+</body></html>

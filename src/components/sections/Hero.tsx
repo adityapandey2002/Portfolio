@@ -1,228 +1,253 @@
 'use client';
 
-import { useMemo, useEffect, useState, useRef } from 'react';
-import { motion } from 'framer-motion';
-import { ArrowDownRight, Sparkles } from 'lucide-react';
 import Link from 'next/link';
-import dynamic from 'next/dynamic';
-import { profile } from '@/lib/data/profile';
-import { usePreloader } from '@/components/ui/Preloader';
-import { Magnetic } from '@/components/motion/Magnetic';
+import { ArrowDownRight, FileTerminal, SendHorizontal } from 'lucide-react';
 
-const HeroScene = dynamic(() => import('@/components/three/HeroScene'), {
-  ssr: false,
-  loading: () => null,
-});
+/**
+ * V2 Hero — Bauhaus Neo-Brutalist home page hero.
+ *
+ * Palette follows the supplied light/dark samples exactly:
+ *   light — paper surface, ink borders, yellow / red / blue accents
+ *   dark  — #121214 page, #161619 alt surface, #3f3f46 outlines,
+ *           #facc15 primary, #ff6b5b secondary, #60a5fa tertiary
+ *
+ * Brutalist contract: 0px radius, thick solid borders, hard offset
+ * shadows, uppercase tracking, Space Grotesk / Inter / JetBrains Mono.
+ */
 
-const PIPELINE = ['FIELD', 'COLLECT', 'CLEAN', 'INSIGHT', 'DECISION'];
+const METRICS = [
+  {
+    number: '01',
+    label: 'IMPACT',
+    value: '700+',
+    unit: 'ASHA Workers Mentored',
+    desc: 'Digitized M-ASHA workflow, field diagnostics, and portal verification sessions across frontline clusters.',
+    icon: 'groups',
+    iconColor: 'text-primary dark:text-[#facc15]',
+    unitColor: 'text-secondary',
+    valueColor: 'text-on-surface',
+    descColor: 'text-on-surface-variant dark:text-[#a1a1aa]',
+    numberColor: 'text-on-surface-variant dark:text-[#a1a1aa]',
+    bg: 'bg-surface-container dark:bg-[#202024]',
+  },
+  {
+    number: '02',
+    label: 'CLINICAL',
+    value: '185-hr',
+    unit: 'Clinical Skills Refresher',
+    desc: 'Delivered for 12 facility staff nurses & 4 medical doctors on high-risk protocol management & triage.',
+    icon: 'medical_services',
+    iconColor: 'text-on-primary-container dark:text-black',
+    unitColor: 'text-primary dark:text-black',
+    valueColor: 'text-on-primary-container dark:text-black',
+    descColor: 'text-on-primary-container dark:text-black',
+    numberColor: 'text-on-primary-container dark:text-black',
+    bg: 'bg-primary-container dark:bg-[#facc15]',
+  },
+  {
+    number: '03',
+    label: 'PIPELINE',
+    value: '118k+',
+    unit: 'Validated Data Indicators',
+    desc: 'Processed, cleaned, and reconciled across physical registers and state portals via Python pipelines.',
+    icon: 'database',
+    iconColor: 'text-primary dark:text-[#facc15]',
+    unitColor: 'text-tertiary',
+    valueColor: 'text-on-surface',
+    descColor: 'text-on-surface-variant dark:text-[#a1a1aa]',
+    numberColor: 'text-on-surface-variant dark:text-[#a1a1aa]',
+    bg: 'bg-surface-container dark:bg-[#202024]',
+  },
+  {
+    number: '04',
+    label: 'FIELD OPS',
+    value: '100+',
+    unit: 'Micro-Mentoring Sessions',
+    desc: 'Executed inside Sub-Centres, PHCs & CHCs addressing frontline data-entry bottlenecks.',
+    icon: 'location_on',
+    iconColor: 'text-primary dark:text-[#facc15]',
+    unitColor: 'text-primary dark:text-[#facc15]',
+    valueColor: 'text-on-surface',
+    descColor: 'text-on-surface-variant dark:text-[#a1a1aa]',
+    numberColor: 'text-on-surface-variant dark:text-[#a1a1aa]',
+    bg: 'bg-surface-container-lowest dark:bg-[#0f0f11]',
+  },
+];
 
-function SplitWord({
-  text,
-  accent,
-  started,
-  delay,
-}: {
-  text: string;
-  accent?: boolean;
-  started: boolean;
-  delay: number;
-}) {
+const BTN_SHELL =
+  'inline-flex items-center justify-center gap-2 rounded-0 border-2 border-primary dark:border-[#3f3f46] font-headline font-bold text-sm uppercase tracking-wider px-6 py-3.5 shadow-[5px_5px_0px_#1a1a1a] dark:shadow-[5px_5px_0px_#000000] active:translate-x-0.5 active:translate-y-0.5 active:shadow-[2px_2px_0px_#1a1a1a] dark:active:shadow-[2px_2px_0px_#000000] transition-all duration-100';
+
+const BTN_VARIANTS = {
+  systems:
+    'bg-primary-container text-on-primary-container hover:bg-primary hover:text-on-primary dark:bg-[#facc15] dark:text-[#121214] dark:hover:bg-white dark:hover:text-black',
+  vector:
+    'bg-surface-container-lowest text-on-surface hover:bg-accent-red hover:text-white hover:border-accent-red dark:bg-[#18181b] dark:text-[#f4f4f5] dark:hover:bg-[#ff6b5b] dark:hover:text-[#121214]',
+  dispatch:
+    'bg-surface text-on-surface hover:bg-tertiary hover:text-white hover:border-accent-blue dark:bg-[#161619] dark:text-[#f4f4f5] dark:hover:bg-[#60a5fa] dark:hover:text-[#121214]',
+} as const;
+
+interface HeroButtonProps {
+  variant: keyof typeof BTN_VARIANTS;
+  href: string;
+  icon: React.ReactNode;
+  children: React.ReactNode;
+}
+
+function HeroButton({ variant, href, icon, children }: HeroButtonProps) {
   return (
-    <span className="inline-block overflow-hidden pb-[0.08em] align-bottom">
-      {text.split('').map((ch, i) => (
-        <motion.span
-          key={i}
-          className={`inline-block ${accent ? 'text-gradient' : ''}`}
-          initial={{ y: '115%', opacity: 0, rotate: 4 }}
-          animate={started ? { y: '0%', opacity: 1, rotate: 0 } : {}}
-          transition={{ delay: delay + i * 0.018, duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
-        >
-          {ch === ' ' ? '\u00A0' : ch}
-        </motion.span>
-      ))}
-    </span>
+    <Link href={href} className={`${BTN_SHELL} ${BTN_VARIANTS[variant]}`}>
+      {children}
+      <span className="material-symbols-outlined text-sm">{icon}</span>
+    </Link>
   );
 }
 
-/* Animated pipeline — cycles active stage every 1.4s */
-function AnimatedPipeline({ started }: { started: boolean }) {
-  const [active, setActive] = useState(0);
+interface MetricBlockProps {
+  number: string;
+  label: string;
+  value: string;
+  unit: string;
+  desc: string;
+  icon: string;
+  iconColor: string;
+  unitColor: string;
+  valueColor: string;
+  descColor: string;
+  numberColor: string;
+  bg: string;
+}
 
-  useEffect(() => {
-    if (!started) return;
-    const id = setInterval(() => setActive((a) => (a + 1) % PIPELINE.length), 1400);
-    return () => clearInterval(id);
-  }, [started]);
-
+function MetricBlock({
+  number,
+  label,
+  value,
+  unit,
+  desc,
+  icon,
+  iconColor,
+  unitColor,
+  valueColor,
+  descColor,
+  numberColor,
+  bg,
+}: MetricBlockProps) {
   return (
-    <motion.div
-      className="mt-6 hidden items-center gap-0 sm:flex"
-      initial={{ opacity: 0 }}
-      animate={started ? { opacity: 1 } : {}}
-      transition={{ delay: 2, duration: 0.8 }}
+    <div
+      className={`${bg} border-2 border-primary dark:border-[#3f3f46] p-5 flex flex-col justify-between shadow-[4px_4px_0px_#1a1a1a] dark:shadow-[4px_4px_0px_#000000] hover:-translate-x-0.5 hover:-translate-y-0.5 hover:shadow-[2px_2px_0px_#1a1a1a] dark:hover:shadow-[2px_2px_0px_#000000] transition-all`}
     >
-      {PIPELINE.map((s, i) => (
-        <span key={s} className="flex items-center">
-          <motion.span
-            className="rounded border px-2.5 py-1 font-mono text-[10px] tracking-[0.22em] transition-all duration-300"
-            animate={{
-              borderColor: active === i ? 'var(--primary)' : 'var(--line)',
-              background: active === i ? 'rgba(16,185,129,0.12)' : 'rgba(15,20,33,0.7)',
-              color: active === i ? 'var(--primary)' : 'var(--ink-3)',
-              boxShadow: active === i ? '0 0 12px var(--primary-glow)' : 'none',
-            }}
-            transition={{ duration: 0.35 }}
-          >
-            {s}
-          </motion.span>
-          {i < PIPELINE.length - 1 && (
-            <motion.span
-              className="px-1 font-mono text-[11px]"
-              animate={{ color: active >= i ? 'var(--primary)' : 'var(--ink-4)', opacity: active >= i ? 1 : 0.35 }}
-              transition={{ duration: 0.3 }}
-            >
-              →
-            </motion.span>
-          )}
+      <div className="flex items-start justify-between gap-2">
+        <span className={`font-mono text-xs font-bold uppercase ${numberColor}`}>
+          {number} {"/"} {label}
         </span>
-      ))}
-    </motion.div>
+        <span className={`material-symbols-outlined text-xl ${iconColor}`}>{icon}</span>
+      </div>
+      <div className="my-4">
+        <div className={`font-headline text-5xl font-bold tracking-tight ${valueColor}`}>
+          {value}
+        </div>
+        <div className={`font-headline font-bold text-xs uppercase tracking-wider mt-1 ${unitColor}`}>
+          {unit}
+        </div>
+      </div>
+      <p className={`font-body text-xs ${descColor}`}>{desc}</p>
+    </div>
   );
 }
 
 export function Hero() {
-  const { done } = usePreloader();
-  const started = done;
-  const heroRef = useRef<HTMLElement | null>(null);
-  const [active, setActive] = useState(true);
-
-  useEffect(() => {
-    const el = heroRef.current;
-    if (!el || typeof IntersectionObserver === 'undefined') return;
-    const io = new IntersectionObserver(([entry]) => setActive(entry.isIntersecting), { rootMargin: '100px' });
-    io.observe(el);
-    return () => io.disconnect();
-  }, []);
-
-  const line1 = useMemo(() => ({ a: profile.headlineLines[0], b: profile.headlineLines[1] }), []);
-  const line2 = useMemo(() => ({ a: profile.headlineLines[2], b: profile.headlineLines[3] }), []);
-  const line3 = useMemo(() => ({ a: profile.headlineLines[4], b: profile.headlineLines[5] }), []);
-
   return (
-    <section id="hero" ref={heroRef} className="relative flex h-full w-full flex-col overflow-hidden">
-      <div className="mx-auto grid w-full max-w-[1400px] flex-1 items-center gap-4 px-5 py-2 lg:grid-cols-[1.05fr_0.95fr] lg:px-8">
-        <div className="relative z-10">
-          {/* Status badge */}
-          <motion.div
-            initial={{ opacity: 0, y: 12 }}
-            animate={started ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.6, ease: 'easeOut' }}
-            className="mb-3 inline-flex items-center gap-2 rounded-sm border border-[var(--line)] bg-bg-2 px-3 py-1.5"
-          >
-            <span className="flex h-2.5 w-2.5 items-center justify-center border border-primary bg-primary/10">
-              <span className="h-1 w-1 bg-primary" />
-            </span>
-            <span className="font-mono text-[10.5px] tracking-wide text-ink-2">{profile.heroStatus}</span>
-          </motion.div>
+    <section id="hero" className="relative w-full flex flex-col">
+      {/* 1 · Hero Section */}
+      <section className="w-full border-b-4 border-primary dark:border-[#3f3f46] py-5 lg:py-10 bg-surface dark:bg-[#161619] px-4 sm:px-6 lg:px-8">
+        <div className="max-w-7xl mx-auto flex flex-col gap-10">
+          {/* Headline Grid */}
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
+            <div className="lg:col-span-8 space-y-5">
+              {/* Eyebrow badge */}
+              <div className="inline-block bg-primary-container text-on-primary-container dark:bg-[#facc15] dark:text-[#121214] px-3.5 py-1 border-2 border-primary dark:border-[#3f3f46] font-headline text-[10px] md:text-xs font-bold uppercase tracking-widest shadow-[4px_4px_0px_#1a1a1a] dark:shadow-[4px_4px_0px_#000000]">
+                Public Health Data Architecture × Full-Stack Systems
+              </div>
 
-          {/* Headline */}
-          <h1
-            className="font-serif leading-[0.98] tracking-tight"
-            style={{
-              fontFamily: 'var(--font-lora), serif',
-              fontSize: 'calc(clamp(24px, 3vw, 48px) * var(--fs-bump))',
-            }}
-          >
-            <span className="block">
-              <SplitWord text={line1.a} started={started} delay={0.15} />
-              <span className="mx-1.5 inline-block" />
-              <SplitWord text={line1.b} accent started={started} delay={0.35} />
-            </span>
-            <span className="block">
-              <SplitWord text={line2.a} started={started} delay={0.6} />
-              <span className="mx-1.5 inline-block" />
-              <SplitWord text={line2.b} accent started={started} delay={0.8} />
-            </span>
-            <span className="block">
-              <SplitWord text={line3.a} started={started} delay={1.05} />
-              <span className="mx-1.5 inline-block" />
-              <SplitWord text={line3.b} accent started={started} delay={1.25} />
-            </span>
-          </h1>
+              {/* Headline */}
+              <h1 className="font-headline text-4xl sm:text-6xl lg:text-7xl font-bold tracking-tight text-on-surface leading-[1.02] uppercase">
+                Building data systems that turn{' '}
+                <span className="bg-primary text-on-primary dark:bg-[#facc15] dark:text-[#121214] px-2 inline-block">
+                  field work
+                </span>{' '}
+                into real decisions.
+              </h1>
 
-          {/* Sub */}
-          <motion.p
-            className="mt-3 max-w-[500px] text-[13.5px] leading-relaxed text-ink-2"
-            initial={{ opacity: 0, y: 16 }}
-            animate={started ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.7, delay: 1.55, ease: [0.16, 1, 0.3, 1] }}
-          >
-            {profile.heroSub.intro}
-            <span className="font-medium text-ink">{profile.heroSub.name}</span>
-            {profile.heroSub.body}
-            {profile.heroSub.highlights.map((h, i) => (
-              <span key={i}>
-                {i > 0 ? ' · ' : ''}
-                <span className="text-gradient font-medium">{h}</span>
-              </span>
+              {/* Paragraph */}
+              <p className="font-body text-base sm:text-lg text-on-surface leading-relaxed max-w-3xl border-l-4 border-secondary dark:border-secondary pl-4 py-1">
+                I am <strong className="font-bold text-primary dark:text-[#facc15]">Aditya Pandey</strong> — a full-stack builder & public health data engineer bridging on-the-ground frontline health systems (<em className="not-italic font-semibold">ASHA, ANM, CHO, PHC</em>) with production web platforms, automated validation pipelines, and clinical AI surveillance.
+              </p>
+
+              {/* Action Buttons */}
+              <div className="flex flex-wrap gap-4 pt-2">
+                <HeroButton variant="systems" href="#systems" icon={<ArrowDownRight size={16} aria-hidden="true" />}>
+                  Explore Selected Systems
+                </HeroButton>
+                <HeroButton variant="vector" href="#vector-terminal" icon={<FileTerminal size={16} aria-hidden="true" />}>
+                  Ask AI Vector Brain
+                </HeroButton>
+                <HeroButton variant="dispatch" href="#dispatch" icon={<SendHorizontal size={16} aria-hidden="true" />}>
+                  Direct Dispatch
+                </HeroButton>
+              </div>
+            </div>
+
+            {/* Live Kernel telemetry box */}
+            <div className="lg:col-span-4">
+              <div className="relative rounded-0 border-[3px] border-primary dark:border-[#3f3f46] bg-surface-container-lowest dark:bg-[#161619] shadow-[6px_6px_0px_#1a1a1a] dark:shadow-[6px_6px_0px_#000000] p-4">
+                <div className="absolute -top-2 right-3 bg-accent-red text-black dark:text-[#121214] px-2 py-0.5 font-headline font-bold text-[10px] uppercase tracking-widest border-2 border-primary dark:border-[#3f3f46]">
+                  LIVE KERNEL
+                </div>
+                <div className="flex items-center justify-between pb-2 border-b-2 border-primary dark:border-[#3f3f46] mb-3">
+                  <span className="font-headline font-bold text-[10px] uppercase tracking-widest text-on-surface">
+                    Bihar Health Ops
+                  </span>
+                  <span className="w-2.5 h-2.5 rounded-full bg-accent-red animate-pulse inline-block" />
+                </div>
+                <div className="space-y-2.5 font-mono text-[10px]">
+                  <div className="flex justify-between items-center p-1.5 bg-surface dark:bg-[#202024] border border-primary dark:border-[#3f3f46]">
+                    <span className="text-on-surface-variant dark:text-[#a1a1aa] uppercase">PNC Telemetry Latency:</span>
+                    <span className="font-bold text-on-primary bg-primary dark:bg-[#facc15] dark:text-[#121214] px-1 py-0.5">
+                      54.2 ms
+                    </span>
+                  </div>
+                  <div className="flex justify-between items-center p-1.5 bg-surface dark:bg-[#202024] border border-primary dark:border-[#3f3f46]">
+                    <span className="text-on-surface-variant dark:text-[#a1a1aa] uppercase">Active Sub-Centres:</span>
+                    <span className="font-bold text-primary dark:text-[#facc15]">154 Facilities</span>
+                  </div>
+                  <div className="flex justify-between items-center p-1.5 bg-surface dark:bg-[#202024] border border-primary dark:border-[#3f3f46]">
+                    <span className="text-on-surface-variant dark:text-[#a1a1aa] uppercase">High-Burden Blocks:</span>
+                    <span className="font-bold text-secondary">16 Blocks</span>
+                  </div>
+                  <div className="flex justify-between items-center p-1.5 bg-surface dark:bg-[#202024] border border-primary dark:border-[#3f3f46]">
+                    <span className="text-on-surface-variant dark:text-[#a1a1aa] uppercase">Field Distance Logged:</span>
+                    <span className="font-bold text-tertiary">13,627 KM</span>
+                  </div>
+                  <div className="flex justify-between items-center p-1.5 bg-surface dark:bg-[#202024] border border-primary dark:border-[#3f3f46]">
+                    <span className="text-on-surface-variant dark:text-[#a1a1aa] uppercase">Validation Rule Engines:</span>
+                    <span className="font-bold text-primary dark:text-[#facc15]">Active (ODK/SQL)</span>
+                  </div>
+                </div>
+                <div className="mt-3 pt-2 border-t-2 border-primary dark:border-[#3f3f46] flex items-center justify-between text-[9px] font-mono text-on-surface-variant dark:text-[#a1a1aa]">
+                  <span className="">UPTIME: 99.8%</span>
+                  <span className="">NODE: ARARIA-CHIS-01</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* 3 · 4 Brutalist Key Metric Blocks */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 pt-4">
+            {METRICS.map((metric) => (
+              <MetricBlock key={metric.number} {...metric} />
             ))}
-            {profile.heroSub.tail}
-          </motion.p>
-
-          {/* CTA buttons */}
-          <motion.div
-            className="mt-4 flex flex-wrap items-center gap-3"
-            initial={{ opacity: 0, y: 18 }}
-            animate={started ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.7, delay: 1.75, ease: [0.16, 1, 0.3, 1] }}
-          >
-            <Magnetic>
-              <Link href="/work" className="btn-primary group inline-flex items-center gap-2">
-                See my work
-                <ArrowDownRight size={15} className="transition-transform duration-300 group-hover:translate-x-0.5 group-hover:translate-y-0.5" />
-              </Link>
-            </Magnetic>
-            <Magnetic>
-              <Link href="/ask" className="btn-ghost inline-flex items-center gap-2">
-                <Sparkles size={14} className="text-primary" />
-                Ask me anything
-              </Link>
-            </Magnetic>
-          </motion.div>
-
-          {/* Animated pipeline */}
-          <AnimatedPipeline started={started} />
+          </div>
         </div>
-
-        {/* 3D scene */}
-        <div className="relative hidden h-[clamp(240px,calc(34vh_*_var(--zoom-inv)),420px)] min-h-[210px] items-center justify-center lg:flex">
-          <div className="sphere-halo absolute inset-0" />
-          <div className="orbit-ring orbit-ring-1" />
-          <div className="orbit-ring orbit-ring-2" />
-          <HeroScene active={active} />
-          <motion.span
-            className="stamp absolute right-0 top-2"
-            initial={{ opacity: 0, scale: 1.4, rotate: -14 }}
-            animate={started ? { opacity: 1, scale: 1, rotate: -5 } : {}}
-            transition={{ delay: 1.9, duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
-          >
-            FIELD APPROVED
-          </motion.span>
-        </div>
-      </div>
-
-      {/* Scroll hint */}
-      <motion.div
-        className="pointer-events-none absolute bottom-4 left-1/2 -translate-x-1/2"
-        initial={{ opacity: 0 }}
-        animate={started ? { opacity: 1 } : {}}
-        transition={{ delay: 2.3, duration: 1 }}
-      >
-        <div className="flex flex-col items-center gap-1.5">
-          <span className="font-mono text-[9px] uppercase tracking-[0.3em] text-ink-4">Scroll</span>
-          <span className="scroll-line" />
-        </div>
-      </motion.div>
+      </section>
     </section>
   );
 }

@@ -3,12 +3,14 @@
 import { useRef } from 'react';
 import { motion, useInView } from 'framer-motion';
 import { Palette } from 'lucide-react';
-import { SectionHeading } from './SectionHeading';
+import { Section } from '@/components/ui/Section';
+import { Card } from '@/components/ui/Card';
+import { Chip } from '@/components/ui/Chip';
 
 const SPOTLIGHT = {
   icon: Palette,
   title: 'Sangam — cultural group, founded & led',
-  body: 'Founded and managed <strong>Sangam</strong>, the university cultural group — building teams, programming events, running them end-to-end, and supporting peer integration for incoming students.',
+  body: 'Founded and managed Sangam, the university cultural group — building teams, programming events, running them end-to-end, and supporting peer integration for incoming students.',
   tags: ['Leadership', 'Event Ops', 'Teamwork'],
 };
 
@@ -17,47 +19,48 @@ export function BeyondField() {
   const inView = useInView(ref, { once: true, margin: '-80px' });
 
   return (
-    <section id="beyond" className="relative flex h-full w-full flex-col justify-center overflow-hidden px-5 lg:px-10">
-      <div className="mx-auto flex min-h-0 w-full max-w-[1500px] flex-1 flex-col" ref={ref}>
-        <SectionHeading
-          eyebrow="/* 08 · BEYOND THE FIELD */"
-          className="mb-6"
-          title={
-            <>
-              Off the field, <span className="text-gradient">still building</span>
-            </>
-          }
-          sub="The fellowship is the centre of the week — not all of it."
-        />
+    <section id="beyond" className="border-b-4 border-primary dark:border-white">
+      <Section className="py-8">
+        <div className="mb-4">
+          <span className="font-mono text-[10px] font-bold uppercase tracking-widest text-on-surface-variant dark:text-ink-dark">
+            08 · BEYOND THE FIELD
+          </span>
+          <h2 className="mt-2 font-headline text-2xl sm:text-3xl font-bold tracking-tight text-on-surface dark:text-ink-dark sm:text-4xl uppercase">
+            Off the field, still building
+          </h2>
+          <p className="mt-2 text-sm text-on-surface-variant dark:text-ink-dark/70">
+            The fellowship is the centre of the week — not all of it.
+          </p>
+        </div>
         <motion.div
-          className="group relative mx-auto flex w-full max-w-[760px] flex-col gap-5 overflow-hidden rounded-2xl border border-[var(--line)] bg-bg-2/60 p-6 transition-colors duration-300 hover:border-primary/50 sm:flex-row sm:items-center sm:gap-6"
+          ref={ref}
+          className="mx-auto max-w-3xl"
           initial={{ opacity: 0, y: 24 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
         >
-          <span className="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl bg-primary/10 text-primary transition-transform duration-300 group-hover:scale-110">
-            <SPOTLIGHT.icon size={26} />
-          </span>
-          <div>
-            <h3 className="text-[18px] font-semibold leading-snug text-ink">{SPOTLIGHT.title}</h3>
-            <p
-              className="mt-2 text-[13px] leading-[1.75] text-ink-2"
-              dangerouslySetInnerHTML={{ __html: SPOTLIGHT.body }}
-            />
-            <div className="mt-4 flex flex-wrap gap-1.5">
-              {SPOTLIGHT.tags.map((t) => (
-                <span
-                  key={t}
-                  className="rounded-full border border-[var(--line-2)] px-2.5 py-1 font-mono text-[9.5px] uppercase tracking-[0.14em] text-ink-3"
-                >
-                  {t}
-                </span>
-              ))}
+          <Card padding="p-4 sm:p-6">
+            <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:gap-5">
+              <span className="flex h-12 sm:h-14 w-12 sm:w-14 shrink-0 items-center justify-center border-2 border-primary bg-primary-container text-primary dark:border-white dark:bg-primary-yellow dark:text-on-primary">
+                <SPOTLIGHT.icon size={22} />
+              </span>
+              <div>
+                <h3 className="font-headline text-lg font-bold text-on-surface dark:text-ink-dark">{SPOTLIGHT.title}</h3>
+                <p className="mt-2 text-sm leading-relaxed text-on-surface-variant dark:text-ink-dark/80">
+                  {SPOTLIGHT.body}
+                </p>
+                <div className="mt-3 flex flex-wrap gap-1">
+                  {SPOTLIGHT.tags.map((t) => (
+                    <Chip key={t}>{t}</Chip>
+                  ))}
+                </div>
+              </div>
             </div>
-          </div>
-          <span className="absolute bottom-0 left-0 h-px w-0 bg-gradient-to-r from-primary to-accent transition-all duration-500 group-hover:w-full" />
+          </Card>
         </motion.div>
-      </div>
+      </Section>
     </section>
   );
 }
+
+

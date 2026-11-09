@@ -1,74 +1,131 @@
 'use client';
 
-import { useRef } from 'react';
-import { motion, useInView } from 'framer-motion';
-import { GraduationCap, Award } from 'lucide-react';
-import { education, certs } from '@/lib/data/skills';
-import { SectionHeading } from './SectionHeading';
+/**
+ * V2 Education — Credentials & Foundation section.
+ *
+ * Matches the design file exactly:
+ * - Section header: "05 // CREDENTIALS & FOUNDATION" + "Education & Accreditations" + "RIGOROUS ACADEMIC PEDIGREE"
+ * - Left Column: Formal University Degrees (MCA, MA Pol Sci, BSc Math)
+ * - Right Column: Accreditations & Leadership (IBM, NPTEL, MSME, Sangam)
+ *
+ * Brutalist contract: 0px radius, thick borders, hard shadows, uppercase tracking
+ */
+
+const DEGREES = [
+  {
+    period: '2023 – 2025 // POSTGRADUATE',
+    accent: 'text-secondary',
+    degree: 'Master of Computer Applications (MCA)',
+    school: 'Pondicherry University (Central University), Puducherry',
+    desc: 'Specialized in Advanced Data Structures, Distributed Database Systems, Cloud Architecture, Network Protocols, and Applied Machine Learning.',
+  },
+  {
+    period: '2022 – 2023 // POSTGRADUATE',
+    accent: 'text-tertiary',
+    degree: 'Master of Arts in Political Science & Government',
+    school: 'Prof. Rajendra Singh (Rajju Bhaiya) University, Prayagraj, UP',
+    desc: 'Focus on Public Administration, Democratic Institutions, Comparative Public Policy, and State Welfare Apparatuses.',
+  },
+  {
+    period: '2019 – 2022 // UNDERGRADUATE',
+    accent: 'text-primary dark:text-[#facc15]',
+    degree: 'Bachelor of Science (BSc) in Mathematics',
+    school: 'Dr. Rammanohar Lohia Avadh University, Ayodhya',
+    desc: 'Core coursework in Real Analysis, Linear Algebra, Probability Theory, Discrete Mathematics, and Numerical Methods.',
+  },
+];
+
+const CERTS = [
+  {
+    badge: 'IBM CREDENTIAL',
+    badgeBg: 'bg-primary text-on-primary dark:bg-[#facc15] dark:text-[#121214]',
+    level: 'PROFESSIONAL',
+    title: 'IBM Data Science Professional Certificate',
+    desc: 'Comprehensive verification in Python, SQL data extraction, statistical analysis, predictive modeling, data visualization, and applied ML.',
+  },
+  {
+    badge: 'NPTEL / IIT',
+    badgeBg: 'bg-tertiary text-white dark:text-[#121214]',
+    level: 'NATIONAL LEVEL',
+    title: 'NPTEL IIT Certifications (Python & R for Data Science)',
+    desc: 'Rigorous algorithmic computing, statistical hypothesis testing, experimental design, and data wrangling under IIT faculties.',
+  },
+  {
+    badge: 'MSME GOVT',
+    badgeBg: 'bg-accent-yellow dark:bg-accent-yellow border border-primary dark:border-[#3f3f46] text-black dark:text-black',
+    level: 'GOVT OF INDIA',
+    title: 'MSME Python-Based Data Analysis Certification',
+    desc: 'Certified hands-on training for automated business intelligence, data pipeline engineering, and dashboard synthesis.',
+  },
+  {
+    badge: 'LEADERSHIP',
+    badgeBg: 'bg-accent-red dark:bg-accent-red text-black dark:text-black',
+    level: 'COMMUNITY',
+    title: 'Founder & Head — Sangam Cultural Group',
+    desc: 'Founded and directed inter-collegiate cultural initiatives, managed 40+ student volunteers, and coordinated institutional arts festivals.',
+  },
+];
 
 export function Education() {
-  const ref = useRef<HTMLDivElement>(null);
-  const inView = useInView(ref, { once: true, margin: '-80px' });
-
   return (
-    <section id="education" className="relative flex h-full w-full flex-col justify-center overflow-hidden px-5 lg:px-10">
-      <div className="mx-auto grid min-h-0 w-full max-w-[1500px] flex-1 content-start gap-8 lg:grid-cols-2" ref={ref}>
-        {/* Education */}
-        <div>
-          <SectionHeading
-            eyebrow="/* 06 · EDUCATION */"
-            className="mb-5"
-            title={
-              <>
-                School of <span className="text-gradient">hard data</span>
-              </>
-            }
-          />
-          <div className="space-y-3">
-            {education.map((e, i) => (
-              <motion.div
-                key={e.degree}
-                className="flex items-start gap-4 rounded-xl border border-[var(--line)] bg-bg-2/60 p-4"
-                initial={{ opacity: 0, y: 20 }}
-                animate={inView ? { opacity: 1, y: 0 } : {}}
-                transition={{ duration: 0.6, delay: 0.1 + i * 0.08 }}
-              >
-                <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-primary/10 text-primary">
-                  <GraduationCap size={17} />
-                </span>
-                <div>
-                  <h3 className="text-[14.5px] font-semibold text-ink">{e.degree}</h3>
-                  <p className="mt-0.5 text-[12.5px] text-ink-2">{e.school}</p>
-                  <p className="mt-0.5 font-mono text-[11px] text-ink-3">{e.year}</p>
-                </div>
-              </motion.div>
-            ))}
+    <section id="education" className="border-b-4 border-primary dark:border-[#3f3f46] bg-surface dark:bg-[#161619] py-10 px-4 sm:px-8 lg:px-12">
+      <div className="max-w-7xl mx-auto space-y-10">
+        {/* Section Header */}
+        <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 border-b-2 border-primary dark:border-[#3f3f46] pb-4">
+          <div>
+            <span className="font-headline text-xs font-bold uppercase tracking-widest text-primary dark:text-[#facc15] block">
+              05 // CREDENTIALS & FOUNDATION
+            </span>
+            <h2 className="font-headline text-3xl sm:text-5xl font-bold uppercase tracking-tight text-on-surface dark:text-on-surface mt-1">
+              Education & Accreditations
+            </h2>
           </div>
+          <span className="font-mono text-xs text-on-surface-variant dark:text-on-surface-variant">
+            RIGOROUS ACADEMIC PEDIGREE
+          </span>
         </div>
 
-        {/* Certifications */}
-        <div>
-          <SectionHeading
-            eyebrow="/* 07 · CERTIFICATIONS */"
-            className="mb-5"
-            title={<>Proof of <span className="text-gradient">work</span></>}
-          />
-          <div className="grid gap-2 sm:grid-cols-2">
-            {certs.map((c, i) => (
-              <motion.div
-                key={c.name}
-                className="group rounded-xl border border-[var(--line)] bg-bg-2/60 p-4 transition-colors duration-300 hover:border-primary/50"
-                initial={{ opacity: 0, y: 20 }}
-                animate={inView ? { opacity: 1, y: 0 } : {}}
-                transition={{ duration: 0.6, delay: 0.1 + i * 0.08 }}
-              >
-                <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-bg-3 text-primary transition-transform duration-300 group-hover:scale-110">
-                  <Award size={15} />
-                </span>
-                <h3 className="mt-2.5 text-[13px] font-semibold leading-snug text-ink">{c.name}</h3>
-                <p className="mt-0.5 font-mono text-[10px] uppercase tracking-wider text-ink-3">{c.issuer}</p>
-              </motion.div>
-            ))}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-start">
+          {/* Left: Formal Degrees */}
+          <div className="border-3 border-primary dark:border-[#3f3f46] bg-surface-container-lowest dark:bg-[#0f0f11] p-6 sm:p-8 shadow-[6px_6px_0px_#1a1a1a] dark:shadow-[6px_6px_0px_#000000] space-y-6">
+            <div className="flex items-center justify-between border-b-2 border-primary dark:border-[#3f3f46] pb-3">
+              <h3 className="font-headline text-xl font-bold uppercase text-on-surface dark:text-on-surface">Formal University Degrees</h3>
+              <span className="material-symbols-outlined text-primary dark:text-white">school</span>
+            </div>
+            <div className="space-y-6">
+              {DEGREES.map((deg) => (
+                <div key={deg.degree} className="border-l-4 border-primary dark:border-[#3f3f46] pl-4 py-1 space-y-1">
+                  <span className={`font-mono text-xs font-bold ${deg.accent} uppercase`}>
+                    {deg.period}
+                  </span>
+                  <h4 className="font-headline text-lg font-bold text-on-surface dark:text-on-surface">{deg.degree}</h4>
+                  <p className="font-body text-xs sm:text-sm text-on-surface-variant dark:text-on-surface-variant font-medium">{deg.school}</p>
+                  <p className="font-body text-xs text-on-surface dark:text-on-surface pt-1 leading-relaxed">{deg.desc}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Right: Accreditations & Leadership */}
+          <div className="border-3 border-primary dark:border-[#3f3f46] bg-surface-container dark:bg-[#202024] p-6 sm:p-8 shadow-[6px_6px_0px_#1a1a1a] dark:shadow-[6px_6px_0px_#000000] space-y-6">
+            <div className="flex items-center justify-between border-b-2 border-primary dark:border-[#3f3f46] pb-3">
+              <h3 className="font-headline text-xl font-bold uppercase text-on-surface dark:text-on-surface">Accreditations & Leadership</h3>
+              <span className="material-symbols-outlined text-primary dark:text-white">verified</span>
+            </div>
+            <div className="space-y-4">
+              {CERTS.map((cert) => (
+                <div key={cert.title} className="bg-surface-container-lowest dark:bg-[#0f0f11] p-4 border-2 border-primary dark:border-[#3f3f46]">
+                  <div className="flex justify-between items-start">
+                    <span className={`px-2 py-0.5 font-headline text-xs font-bold uppercase ${cert.badgeBg}`}>
+                      {cert.badge}
+                    </span>
+                    <span className="font-mono text-xs text-on-surface-variant dark:text-on-surface-variant">{cert.level}</span>
+                  </div>
+                  <h4 className="font-headline text-base font-bold text-on-surface dark:text-on-surface mt-2">{cert.title}</h4>
+                  <p className="font-body text-xs text-on-surface-variant dark:text-on-surface-variant mt-1">{cert.desc}</p>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       </div>
