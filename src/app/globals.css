@@ -1608,6 +1608,27 @@ html.dark {
   --v2-accent-blue-rgb: 96 165 250;
 }
 
+/* Home section index: anchor targets clear the fixed header + sticky strip. */
+#experience,
+#systems,
+#education,
+#pipeline,
+#vector-terminal,
+#dispatch {
+  scroll-margin-top: 7rem;
+}
+
+@media (min-width: 1024px) {
+  #experience,
+  #systems,
+  #education,
+  #pipeline,
+  #vector-terminal,
+  #dispatch {
+    scroll-margin-top: 9.5rem;
+  }
+}
+
 /* The AI terminal is a black surface in both themes. Scoping the
    tokens here keeps every nested `bg-surface` / `text-on-surface`
    readable without rewriting each child. */
