@@ -9,7 +9,7 @@ const TABS = [
   { href: '/work', label: 'Work', icon: Box },
   { href: '/health', label: 'Health', icon: HeartPulse },
   { href: '/ask', label: 'Ask AI', icon: Sparkles },
-  { href: '/#contact', label: 'Contact', icon: Mail },
+  { href: '/#dispatch', label: 'Contact', icon: Mail },
 ];
 
 /**

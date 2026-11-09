@@ -59,7 +59,7 @@ export function CommandPaletteProvider({ children }: { children: ReactNode }) {
     { section: 'Navigate', name: 'Work', desc: 'Projects showcase', icon: Box, kbd: '2', action: () => router.push('/work') },
     { section: 'Navigate', name: 'Ask AI', desc: 'Chat with Aditya — RAG', icon: Sparkles, kbd: '3', action: () => router.push('/ask') },
     { section: 'Navigate', name: 'Health dashboard', desc: 'Fellowship vitals · live field data', icon: HeartPulse, kbd: '4', action: () => router.push('/health') },
-    { section: 'Navigate', name: 'Contact', desc: 'Get in touch', icon: Mail, kbd: 'C', action: () => router.push('/#contact') },
+    { section: 'Navigate', name: 'Contact', desc: 'Get in touch', icon: Mail, kbd: 'C', action: () => router.push('/#dispatch') },
     { section: 'Actions', name: 'Send an email', desc: 'Open your mail client', icon: Send, action: () => (window.location.href = `mailto:${profile.emails.personal}?subject=Portfolio inquiry`) },
     { section: 'Actions', name: 'View BiharKaSwaad', desc: 'Open the live e-commerce site', icon: ExternalLink, action: () => window.open(profile.liveSite, '_blank') },
     { section: 'Actions', name: 'GitHub', desc: profile.github, icon: Github, action: () => window.open(profile.github, '_blank') },

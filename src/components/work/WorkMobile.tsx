@@ -228,7 +228,7 @@ export function WorkMobile() {
           Open-source repos, reproducible benchmarks, and deep-dive reports.
         </p>
         <Link
-          href="/#contact"
+          href="/#dispatch"
           className="mt-3 inline-block border-2 border-primary-container bg-primary-container px-3 py-2 font-headline text-[10px] font-bold uppercase tracking-wider text-primary"
         >
           Engage Fellow
