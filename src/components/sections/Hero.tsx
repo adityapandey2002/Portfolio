@@ -1,7 +1,7 @@
 'use client';
 
 import Link from 'next/link';
-import { Activity, ArrowDownRight, FileTerminal, SendHorizontal } from 'lucide-react';
+import { ArrowDownRight, FileTerminal, SendHorizontal } from 'lucide-react';
 
 /**
  * V2 Hero — Bauhaus Neo-Brutalist home page hero.
@@ -160,22 +160,6 @@ export function Hero() {
       {/* 1 · Hero Section */}
       <section className="w-full border-b-4 border-primary dark:border-[#3f3f46] py-5 lg:py-10 bg-surface dark:bg-[#161619] px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto flex flex-col gap-10">
-          {/* Meta Grid */}
-          <div className="flex flex-wrap items-center justify-between gap-3 border-b-2 border-primary dark:border-[#3f3f46] pb-3 mb-6">
-            <div className="flex items-center gap-2">
-              <span className="font-headline text-xs font-bold uppercase tracking-widest bg-surface-container dark:bg-[#202024] text-on-surface px-2.5 py-1 border-2 border-primary dark:border-[#3f3f46]">
-                SPEC: 01 // OVERVIEW
-              </span>
-              <span className="font-mono text-[10px] text-on-surface-variant dark:text-[#a1a1aa] font-semibold">
-                COORDINATES: 26.1209° N, 85.3647° E
-              </span>
-            </div>
-            <div className="inline-flex items-center gap-1.5 font-headline text-xs font-bold uppercase tracking-widest bg-[#d6e3ff] text-[#1a1a1a] dark:bg-[#1e293b] dark:text-[#93c5fd] px-2.5 py-1 border-2 border-primary dark:border-[#3f3f46]">
-              <Activity size={14} className="shrink-0" aria-hidden="true" />
-              FIELD TELEMETRY: ONLINE
-            </div>
-          </div>
-
           {/* Headline Grid */}
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
             <div className="lg:col-span-8 space-y-5">
