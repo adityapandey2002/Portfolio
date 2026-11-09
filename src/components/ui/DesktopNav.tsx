@@ -10,13 +10,13 @@ const DESKTOP_LINKS = [
   { href: '/work', label: 'Work & Systems' },
   { href: '/health', label: 'Health & Field Impact' },
   { href: '/ask', label: 'Interactive AI' },
-  { href: '/#contact', label: 'Contact' },
+  { href: '/#dispatch', label: 'Contact' },
 ];
 
 /**
  * DesktopNav — the 96px, two-row persistent header from the V2 design.
  *
- * Row 1 (64px): AP mark, primary navigation, Engage Fellow / Code Repos,
+ * Row 1 (64px): AP mark, primary navigation, Engage Fellow,
  * theme toggle, person glyph.
  * Row 2 (32px): live status strip + epoch/geo telemetry.
  *
@@ -43,9 +43,11 @@ export function DesktopNav() {
               <span className="border border-outline bg-primary px-2 py-1 font-headline text-base font-bold tracking-wider text-primary-container dark:border-primary-yellow dark:bg-primary-yellow dark:text-black dark:shadow-[2px_2px_0px_#facc15]">
                 {profile.initials}
               </span>
-              <span className="font-headline text-sm font-bold uppercase tracking-tighter text-primary dark:text-white md:text-base">
-                Aditya Pandey{' '}
-                <span className="hidden font-normal text-on-surface-variant dark:font-mono dark:text-xs dark:text-primary-yellow sm:inline">
+              <span className="flex flex-col justify-center leading-none">
+                <span className="font-headline text-sm font-bold uppercase tracking-tighter text-primary dark:text-white md:text-base">
+                  Aditya Pandey
+                </span>
+                <span className="mt-1 font-mono text-[9px] font-semibold uppercase tracking-[0.12em] text-on-surface-variant dark:text-primary-yellow">
                   [Systems &amp; Health AI]
                 </span>
               </span>
@@ -73,19 +75,11 @@ export function DesktopNav() {
 
           <div className="flex items-center gap-2">
             <Link
-              href="/#contact"
+              href="/#dispatch"
               className="hidden items-center justify-center whitespace-nowrap border-2 border-outline bg-primary px-3.5 py-2 font-headline text-xs font-bold uppercase tracking-widest text-on-primary shadow-[3px_3px_0px_#1a1a1a] transition-colors hover:bg-primary-container hover:text-on-primary-container dark:border-outline dark:bg-surface-container dark:text-on-surface dark:shadow-[2px_2px_0px_#0e0e10] dark:hover:border-primary-yellow dark:hover:text-primary-yellow md:inline-flex"
             >
               Engage Fellow
             </Link>
-            <a
-              href={profile.github}
-              rel="noopener noreferrer"
-              target="_blank"
-              className="inline-flex items-center justify-center whitespace-nowrap border-2 border-outline bg-primary-container px-[10px] py-2 font-headline text-xs font-bold uppercase tracking-widest text-on-primary-container shadow-[3px_3px_0px_#1a1a1a] transition-colors hover:bg-primary hover:text-on-primary dark:border-primary-yellow dark:bg-primary-yellow dark:text-black dark:shadow-[2px_2px_0px_#0e0e10] dark:hover:bg-[#ffe083]"
-            >
-              Code Repos
-            </a>
             <button
               onClick={toggleTheme}
               aria-label={isDark ? 'Switch to light mode' : 'Switch to dark mode'}
