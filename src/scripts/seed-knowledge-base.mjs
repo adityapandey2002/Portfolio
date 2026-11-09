@@ -24,7 +24,7 @@ const GROQ_BASE_URL = process.env.GROQ_BASE_URL || 'https://api.groq.com/openai/
 
 /**
  * Portfolio knowledge base content. Each entry is one source of truth about
- * Aditya — background, GAVB Gandhi Fellowship, BiharKaSwaad, projects, skills,
+ * Aditya — background, Gandhi Fellowship, BiharKaSwaad, projects, skills,
  * education, certifications, public-health field work, and contact info.
  */
 const KB = [
@@ -36,7 +36,7 @@ const KB = [
   {
     source: 'gandhi-fellowship',
     content:
-      "GAVB — Gandhi Fellowship, Health System Strengthening, Piramal Foundation, Bihar (Jul 2025 – Present). Aditya works as part of the district health support system across SHC, PHC, and district hospital levels, supporting facilities toward NQAS (National Quality Assurance Standards) certification. Frontline worker capacity building: he trained 700+ ASHA workers hands-on on the M-ASHA government digital application across 100+ sustained sessions — not one-time trainings, but patient sessions until the tool genuinely worked for each worker's daily use. Supportive supervision of maternal and child health programs: immunization and PMSMA — observing service delivery on-ground and feeding structured feedback back to block and district levels. He co-designed and delivered a structured 185-hour Clinical Skills Refresher for 12 staff nurses and 4 doctors across a 5-week progressive curriculum, followed by monthly on-site audits to ensure practices were adopted, not just taught once. He built a Python/Pandas workflow to clean and validate VHSND, Godbharai, and PMSMA field data collected via ODK Collect and ODK Central, producing MIS reports used in block and district review meetings. He also led a diagnostic project across multiple CHCs surfacing inventory and coordination gaps between physical registers and digital portals, and participated in Cognitively-Based Compassion Training (CBCT) with the fellowship cohort.",
+      "Gandhi Fellowship, Health System Strengthening, Piramal Foundation, Bihar (Jul 2025 – Present). Aditya works as part of the district health support system across SHC, PHC, and district hospital levels, supporting facilities toward NQAS (National Quality Assurance Standards) certification. Frontline worker capacity building: he trained 700+ ASHA workers hands-on on the M-ASHA government digital application across 100+ sustained sessions — not one-time trainings, but patient sessions until the tool genuinely worked for each worker's daily use. Supportive supervision of maternal and child health programs: immunization and PMSMA — observing service delivery on-ground and feeding structured feedback back to block and district levels. He co-designed and delivered a structured 185-hour Clinical Skills Refresher for 12 staff nurses and 4 doctors across a 5-week progressive curriculum, followed by monthly on-site audits to ensure practices were adopted, not just taught once. He built a Python/Pandas workflow to clean and validate VHSND, Godbharai, and PMSMA field data collected via ODK Collect and ODK Central, producing MIS reports used in block and district review meetings. He also led a diagnostic project across multiple CHCs surfacing inventory and coordination gaps between physical registers and digital portals, and participated in Cognitively-Based Compassion Training (CBCT) with the fellowship cohort.",
   },
   {
     source: 'biharkaswaad-experience',

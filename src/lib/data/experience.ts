@@ -11,8 +11,8 @@ export interface Experience {
 
 export const experience: Experience[] = [
   {
-    role: 'GAVB — Gandhi Fellow · Health System Strengthening',
-    org: 'Gandhi Fellowship (Global Alliance of Viksit Bharat) · Piramal Foundation · Bihar',
+    role: 'Gandhi Fellow · Health System Strengthening',
+    org: 'Gandhi Fellowship · Piramal Foundation · Bihar',
     period: 'Jul 2025 – Present',
     current: true,
     bullets: [

@@ -82,7 +82,7 @@ function fallbackStream(text: string): ReadableStream<Uint8Array> {
 
 const CANNED_ANSWER =
   '1. Ask Aditya — RAG Knowledge Base\n' +
-  'The knowledge base covers Aditya Pandey\'s background, the GAVB Gandhi Fellowship with ' +
+  'The knowledge base covers Aditya Pandey\'s background, the Gandhi Fellowship with ' +
   'Piramal Foundation in Bihar (700+ ASHA workers trained on M-ASHA, 185-hour Clinical Skills ' +
   'Refresher, ODK/OHK Central field data), BiharKaSwaad e-commerce (biharkaswaad.in), projects ' +
   'such as the India Development Data Dashboard and VHSND Field Data Quality, skills, education, ' +
@@ -112,7 +112,7 @@ const MATRU_ANSWER =
 
 const FELLOWSHIP_ANSWER =
   '1. 700+ ASHA Workers Trained\n' +
-  'As a GAVB Gandhi Fellow with Piramal Foundation, Aditya trained 700+ ASHA workers on the ' +
+  'As a Gandhi Fellow with Piramal Foundation, Aditya trained 700+ ASHA workers on the ' +
   'M-ASHA government application across 100+ hands-on sessions in 16 Bihar blocks, sustaining ' +
   'support until the tools were genuinely adopted.\n\n' +
   '2. Systems Mentoring & Clinical Quality\n' +

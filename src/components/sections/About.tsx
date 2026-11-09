@@ -26,7 +26,7 @@ export function About() {
             </h2>
           </div>
           <span className="font-mono text-xs text-on-surface-variant dark:text-on-surface-variant">
-            FILE_ID: AP_GAVB_2025_BIO
+            FILE_ID: AP_2025_BIO
           </span>
         </div>
 
@@ -41,7 +41,7 @@ export function About() {
                 Full-stack AI & public health data engineer stationed in Bihar, bridging physical registers and algorithmic decisions.
               </p>
               <p className="font-body text-sm sm:text-base text-on-surface dark:text-on-surface leading-relaxed">
-                As a <strong className="font-bold text-primary dark:text-white">Gandhi Fellow (GAVB) with the Piramal Foundation</strong>, I spend my days in remote sub-centres and district hospitals across Muzaffarpur and Araria. I coordinate directly with frontline ASHA workers, ANMs, Auxiliary Staff, PHC/CHC Medical Officers, and District Magistrates.
+                As a <strong className="font-bold text-primary dark:text-white">Gandhi Fellow with the Piramal Foundation</strong>, I spend my days in remote sub-centres and district hospitals across Muzaffarpur and Araria. I coordinate directly with frontline ASHA workers, ANMs, Auxiliary Staff, PHC/CHC Medical Officers, and District Magistrates.
               </p>
               <p className="font-body text-sm sm:text-base text-on-surface dark:text-on-surface leading-relaxed">
                 When I am not auditing maternal health registers under ceiling fans in rural PHCs, I am writing Python automation scripts, architecting offline-first IndexedDB Progressive Web Apps, and engineering deterministic SQL validation pipelines to ensure government decision-makers act on truthful, high-fidelity data.
@@ -88,7 +88,7 @@ export function About() {
               <div className="space-y-3 font-mono text-xs sm:text-sm">
                 <div className="border-b border-primary/40 dark:border-[#3f3f46]/40 pb-2">
                   <div className="text-on-surface-variant dark:text-on-surface-variant text-xs uppercase font-headline">Fellowship Title</div>
-                  <div className="font-bold text-primary dark:text-white text-base">GAVB Gandhi Fellow</div>
+                  <div className="font-bold text-primary dark:text-white text-base">Gandhi Fellow</div>
                 </div>
                 <div className="border-b border-primary/40 dark:border-[#3f3f46]/40 pb-2">
                   <div className="text-on-surface-variant dark:text-on-surface-variant text-xs uppercase font-headline">Deploying Organization</div>
@@ -97,7 +97,7 @@ export function About() {
                 <div className="border-b border-primary/40 dark:border-[#3f3f46]/40 pb-2">
                   <div className="text-on-surface-variant dark:text-on-surface-variant text-xs uppercase font-headline">Academic Foundation</div>
                   <div className="font-bold text-primary dark:text-white">Master of Computer Applications (MCA)</div>
-                  <div className="text-xs text-on-surface-variant dark:text-on-surface-variant font-sans">Pondicherry University (Central Univ)</div>
+                  <div className="text-xs text-on-surface-variant dark:text-on-surface-variant font-sans">Pondicherry University</div>
                 </div>
                 <div className="pb-2">
                   <div className="text-on-surface-variant dark:text-on-surface-variant text-xs uppercase font-headline mb-1">Core Disciplines</div>

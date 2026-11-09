@@ -17,7 +17,7 @@ interface HealthWorkItem {
 export const HEALTH_WORK: HealthWorkItem[] = [
   {
     rank: 1,
-    title: 'GAVB Gandhi Fellow — Bihar',
+    title: 'Gandhi Fellow — Bihar',
     tag: 'GANDHI FELLOWSHIP · PIRAMAL FOUNDATION',
     body:
       'District Resource Fellow, Gandhi Fellowship (Piramal Foundation), based in Muzaffarpur — living in the high-burden blocks and working the frontlines of Bihar\u2019s public health system.',

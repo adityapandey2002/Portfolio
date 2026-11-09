@@ -244,7 +244,7 @@ export default function HealthPage() {
             {[
               {
                 rank: 1,
-                title: 'GAVB Gandhi Fellow — Bihar',
+                title: 'Gandhi Fellow — Bihar',
                 tag: 'GANDHI FELLOWSHIP · PIRAMAL FOUNDATION',
                 body: 'District Resource Fellow, Gandhi Fellowship (Piramal Foundation), based in Muzaffarpur — living in the high-burden blocks and working the frontlines of Bihar&apos;s public health system.',
                 accent: 'bg-accent-yellow dark:bg-primary-yellow text-black dark:text-black border border-accent-yellow dark:border-accent-yellow',

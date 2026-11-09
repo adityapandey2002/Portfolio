@@ -80,7 +80,7 @@ export function AiTerminal() {
             <div className="space-y-4" id="terminal-logs">
               <div className="text-[#33ff33]">
                 <span className="text-white font-bold">$ sys --status</span><br />
-                &gt; STATUS: 200 OK | PIRAMAL GAVB FELLOWSHIP RUNTIME<br />
+                &gt; STATUS: 200 OK | PIRAMAL GANDHI FELLOWSHIP RUNTIME<br />
                 &gt; JURISDICTION: Muzaffarpur &amp; Araria, Bihar (16 High-Burden Blocks)<br />
                 &gt; DEPLOYED SYSTEMS: Matru Suraksha (PWA), Araria DH Portal, India Data Engine.<br />
                 &gt; QUERY READY: Select a vector query below to test automated synthesis.

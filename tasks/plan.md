@@ -184,7 +184,7 @@ Component rules:
   - **Estimated scope:** M
 
 - [ ] **Task 13: About / Experience / Education sections**
-  - Experience timeline (GAVB Gandhi Fellow, BiharKaSwaad, Prodigy InfoTech, Auroville)
+  - Experience timeline (Gandhi Fellow, BiharKaSwaad, Prodigy InfoTech, Auroville)
   - Education (MCA, MA Pol Sci, BSc Math)
   - Certifications (IBM Data Science, NPTEL)
   - Identity card (location, focus, languages)
