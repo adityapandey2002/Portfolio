@@ -19,24 +19,41 @@ import { Section } from '@/components/ui/Section';
 interface FormState {
   name: string;
   email: string;
+  phone: string;
+  category: string;
   message: string;
 }
 
-const EMPTY: FormState = { name: '', email: '', message: '' };
+const EMPTY: FormState = {
+  name: '',
+  email: '',
+  phone: '',
+  category: 'Public Health MIS / Data System Architecture',
+  message: '',
+};
 
 export function Contact() {
   const ref = useRef<HTMLDivElement>(null);
   const [form, setForm] = useState<FormState>(EMPTY);
-  const [sending, setSending] = useState(false);
-  const [sent, setSent] = useState(false);
+  const [status, setStatus] = useState<'idle' | 'sending' | 'sent' | 'error'>('idle');
+  const sending = status === 'sending';
+  const sent = status === 'sent';
 
   const set = (k: keyof FormState) => (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) =>
     setForm((f) => ({ ...f, [k]: e.target.value }));
 
+  const mailtoHref = () => {
+    const subject = encodeURIComponent(`Portfolio message from ${form.name || 'a visitor'}`);
+    const body = encodeURIComponent(
+      `${form.message}\n\n— ${form.name} (${form.email}${form.phone ? ` · ${form.phone}` : ''})\nTopic: ${form.category}`,
+    );
+    return `mailto:${profile.emails.personal}?subject=${subject}&body=${body}`;
+  };
+
   const onSubmit = async (e: FormEvent) => {
     e.preventDefault();
     if (!form.name || !form.email || !form.message) return;
-    setSending(true);
+    setStatus('sending');
     try {
       const res = await fetch('/api/contact', {
         method: 'POST',
@@ -44,14 +61,10 @@ export function Contact() {
         body: JSON.stringify(form),
       });
       if (!res.ok) throw new Error('failed');
-      setSent(true);
+      setStatus('sent');
       setForm(EMPTY);
     } catch {
-      const subject = encodeURIComponent(`Portfolio message from ${form.name}`);
-      const body = encodeURIComponent(`${form.message}\n\n— ${form.name} (${form.email})`);
-      window.location.href = `mailto:${profile.emails.personal}?subject=${subject}&body=${body}`;
-    } finally {
-      setSending(false);
+      setStatus('error');
     }
   };
 
@@ -117,6 +130,8 @@ export function Contact() {
                     Phone / WhatsApp Vector
                   </label>
                   <input
+                    value={form.phone}
+                    onChange={set('phone')}
                     className="w-full bg-surface-container-lowest dark:bg-[#161619] border-b-3 border-primary dark:border dark:border-[#3f3f46] dark:border-b-3 dark:border-b-[#facc15] p-3 text-sm font-body text-on-surface dark:text-on-surface focus:outline-none focus:bg-primary-container/20 dark:focus:bg-[#27272a] transition-colors"
                     placeholder="+91 XXXXX XXXXX"
                     type="tel"
@@ -127,7 +142,11 @@ export function Contact() {
                 <label className="font-headline text-xs font-bold uppercase text-on-surface dark:text-on-surface block tracking-wider">
                   Vector Category *
                 </label>
-                <select className="w-full bg-surface-container-lowest dark:bg-[#161619] border-b-3 border-primary dark:border dark:border-[#3f3f46] dark:border-b-3 dark:border-b-[#facc15] p-3 text-sm font-body text-on-surface dark:text-on-surface focus:outline-none focus:bg-primary-container/20 dark:focus:bg-[#27272a] transition-colors">
+                <select
+                  value={form.category}
+                  onChange={set('category')}
+                  className="w-full bg-surface-container-lowest dark:bg-[#161619] border-b-3 border-primary dark:border dark:border-[#3f3f46] dark:border-b-3 dark:border-b-[#facc15] p-3 text-sm font-body text-on-surface dark:text-on-surface focus:outline-none focus:bg-primary-container/20 dark:focus:bg-[#27272a] transition-colors"
+                >
                   <option>Public Health MIS / Data System Architecture</option>
                   <option>Engineering Fellowship / Organization Role</option>
                   <option>Full-Stack Web / Offline PWA Deployment</option>
@@ -159,6 +178,11 @@ export function Contact() {
                       <span className="material-symbols-outlined text-[16px]">check_circle</span>
                       Message Transmitted
                     </>
+                  ) : sending ? (
+                    <>
+                      <span className="material-symbols-outlined text-[16px]">progress_activity</span>
+                      Transmitting…
+                    </>
                   ) : (
                     <>
                       <span className="material-symbols-outlined text-[16px]">send</span>
@@ -168,8 +192,22 @@ export function Contact() {
                 </button>
               </div>
               {sent && (
-                <div className="p-3 bg-primary-container dark:bg-[#facc15] border-2 border-primary dark:border-[#facc15] font-mono text-xs text-on-primary-container dark:text-[#121214] font-bold">
+                <div
+                  role="status"
+                  className="p-3 bg-primary-container dark:bg-[#facc15] border-2 border-primary dark:border-[#facc15] font-mono text-xs text-on-primary-container dark:text-[#121214] font-bold"
+                >
                   [TELEMETRY DISPATCHED]: Message queued to Aditya Pandey. Response latency ~ 4 hours.
+                </div>
+              )}
+              {status === 'error' && (
+                <div
+                  role="alert"
+                  className="p-3 bg-surface-container dark:bg-[#27272a] border-2 border-secondary dark:border-secondary font-mono text-xs text-on-surface dark:text-on-surface font-bold space-y-2"
+                >
+                  <p>[TRANSMISSION FAILED]: The relay is offline right now. Your message was not sent.</p>
+                  <a href={mailtoHref()} className="inline-block underline underline-offset-2 text-secondary dark:text-[#ff6b5b]">
+                    Send it directly by email instead &rarr;
+                  </a>
                 </div>
               )}
             </form>
