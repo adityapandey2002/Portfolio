@@ -44,7 +44,7 @@ const lora = Lora({
   display: 'swap',
 });
 
-const SITE = 'https://aditya-pandey.vercel.app';
+const SITE = 'https://aditya-pandey-beryl.vercel.app';
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE),
