@@ -20,7 +20,7 @@ export default function HomePage() {
       <Education />
       <Pipeline />
       <AiTerminal />
-      <Contact />
+      <Contact web3formsKey={process.env.WEB3FORMS_ACCESS_KEY} />
 
       <Footer />
     </>

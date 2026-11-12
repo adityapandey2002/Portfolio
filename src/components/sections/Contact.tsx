@@ -24,6 +24,12 @@ interface FormState {
   message: string;
 }
 
+interface ContactProps {
+  /** Web3Forms access key. Public by design; used from the browser because
+   *  Web3Forms rejects server-side submissions on its free plan. */
+  web3formsKey?: string;
+}
+
 const EMPTY: FormState = {
   name: '',
   email: '',
@@ -32,7 +38,7 @@ const EMPTY: FormState = {
   message: '',
 };
 
-export function Contact() {
+export function Contact({ web3formsKey }: ContactProps) {
   const ref = useRef<HTMLDivElement>(null);
   const [form, setForm] = useState<FormState>(EMPTY);
   const [status, setStatus] = useState<'idle' | 'sending' | 'sent' | 'error'>('idle');
@@ -54,11 +60,48 @@ export function Contact() {
     e.preventDefault();
     if (!form.name || !form.email || !form.message) return;
     setStatus('sending');
+
+    const payload = {
+      name: form.name,
+      email: form.email,
+      phone: form.phone,
+      category: form.category,
+      message: form.message,
+    };
+
     try {
+      // Web3Forms must be called from the browser: its free plan rejects
+      // server-side submissions. The access key is public by design.
+      if (web3formsKey) {
+        const relay = await fetch('https://api.web3forms.com/submit', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+          body: JSON.stringify({
+            access_key: web3formsKey,
+            subject: `Portfolio enquiry · ${form.category}`,
+            from_name: 'adityapandey.dev',
+            name: form.name,
+            email: form.email,
+            phone: form.phone || 'not provided',
+            category: form.category,
+            message: form.message,
+            botcheck: '',
+          }),
+        });
+        const relayResult = (await relay.json().catch(() => null)) as { success?: boolean } | null;
+        if (relay.ok && relayResult?.success) {
+          setStatus('sent');
+          setForm(EMPTY);
+          return;
+        }
+        console.error('[contact] web3forms rejected:', relay.status, relayResult);
+      }
+
+      // Fallback: the API route stores the message in Supabase when configured.
       const res = await fetch('/api/contact', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(form),
+        body: JSON.stringify(payload),
       });
       if (!res.ok) throw new Error('failed');
       setStatus('sent');
