@@ -173,6 +173,12 @@ html[data-page='health'] {
 }
 @media (min-width: 1024px) {
   @supports (zoom: 0.8) {
+    /* The V2 layout is designed at an 80% desktop scale. `zoom` shrinks the
+       whole app the same way the browser's 80% zoom does, while --zoom-inv
+       (1 / 0.8) keeps every full-viewport band exactly one screen tall. */
+    html {
+      zoom: 0.8;
+    }
     :root {
       --zoom-inv: 1.25;
     }
