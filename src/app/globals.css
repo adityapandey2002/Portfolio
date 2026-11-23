@@ -135,6 +135,11 @@ html.dark {
   box-sizing: border-box;
 }
 html {
+  /* Gentle global scale: 15px base (93.75% of the 16px default) trims every
+     rem-based font size, icon and spacing step a little on both phone and
+     desktop. Arbitrary `text-[Npx]` sizes are handled by the --fs-bump type
+     scale blocks; the desktop `zoom` below still applies on top of this. */
+  font-size: 93.75%;
   /* Programmatic scrolls stay instant; explicit behavior:'smooth' calls still animate.
      No snap at all: panels are plain full-viewport sections and the document
      stays wherever the user leaves it. Proximity used to yank committed
