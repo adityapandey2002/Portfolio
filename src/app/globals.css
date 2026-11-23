@@ -135,20 +135,17 @@ html.dark {
   box-sizing: border-box;
 }
 html {
-  /* Gentle global scale: 15px base (93.75% of the 16px default) trims every
-     rem-based font size, icon and spacing step a little on both phone and
-     desktop. Arbitrary `text-[Npx]` sizes are handled by the --fs-bump type
-     scale blocks; the desktop `zoom` below still applies on top of this. */
-  font-size: 93.75%;
-  /* Programmatic scrolls stay instant; explicit behavior:'smooth' calls still animate.
-     No snap at all: panels are plain full-viewport sections and the document
-     stays wherever the user leaves it. Proximity used to yank committed
-     flicks back to the panel start (the old two-flicks-per-page feel) and
-     pulled /health's free scrolls off position mid-journey. Panel stepping
-     on pointer devices comes from ScrollChaining.tsx instead. */
+  font-size: 100%;
   scroll-behavior: auto;
   color-scheme: light;
   scroll-snap-type: none;
+}
+
+/* Subtle 15px base on 1024px-1440px laptops / 1080p scaled displays so dense brutalist panels fit comfortably without artificial zoom hacks */
+@media (min-width: 1024px) and (max-width: 1440px) {
+  html {
+    font-size: 93.75%;
+  }
 }
 
 html,
@@ -176,19 +173,7 @@ html[data-page='home'] {
 html[data-page='health'] {
   --fs-bump: 1.2;
 }
-@media (min-width: 1024px) {
-  @supports (zoom: 0.8) {
-    /* The V2 layout is designed at an 80% desktop scale. `zoom` shrinks the
-       whole app the same way the browser's 80% zoom does, while --zoom-inv
-       (1 / 0.8) keeps every full-viewport band exactly one screen tall. */
-    html {
-      zoom: 0.8;
-    }
-    :root {
-      --zoom-inv: 1.25;
-    }
-  }
-}
+
 
 /* Kill 300ms tap delay / double-tap auto-zoom on mobile */
 a,
@@ -309,16 +294,9 @@ label {
      layout with the paint, so the panel ends exactly where the tags do, and
      the wrapper lands on the same centre line and the same 1080px the
      neighbouring wrappers paint at. */
-  @supports not (zoom: 0.9) {
-    html:not([data-scroll='health']) .snap-section.snap-section--tall > section > .mx-auto {
-      transform: scale(0.9);
-    }
-  }
-  @supports (zoom: 0.9) {
-    html:not([data-scroll='health']) .snap-section.snap-section--tall > section > .mx-auto {
-      transform: none;
-      zoom: 0.9;
-    }
+  html:not([data-scroll='health']) .snap-section.snap-section--tall > section > .mx-auto {
+    transform: scale(0.9);
+    transform-origin: center top;
   }
 }
 

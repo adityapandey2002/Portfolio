@@ -34,27 +34,27 @@ export default function HealthPage() {
             </div>
             {/* Main Headline */}
             <div className="space-y-4">
-              <h1 className="font-headline text-3xl sm:text-5xl lg:text-6xl font-bold uppercase tracking-tight text-primary leading-none">
+              <h1 className="font-headline text-2xl sm:text-4xl lg:text-3xl xl:text-4xl 2xl:text-5xl font-bold uppercase tracking-tight text-primary leading-[1.05]">
                 HEALTH-SYSTEM STRENGTHENING ACROSS BIHAR: EVERY NUMBER TRACKED LIKE PATIENT DATA
               </h1>
-              <p className="font-body text-base sm:text-lg text-on-surface-variant max-w-4xl leading-relaxed border-l-4 border-primary dark:border-on-surface pl-4">
+              <p className="font-body text-sm sm:text-base lg:text-base xl:text-lg text-on-surface-variant max-w-4xl leading-relaxed border-l-4 border-primary dark:border-on-surface pl-4">
                 Gandhi Fellowship (Piramal Foundation) · Based in Muzaffarpur, Bihar. Grassroots transformation across 16 high-burden blocks, sub-centres, PHCs, and District Hospitals.
               </p>
             </div>
             {/* Quote Block */}
-            <div className="relative bg-primary dark:bg-surface-container-lowest text-on-primary dark:text-on-surface p-6 sm:p-8 border-2 border-outline shadow-[6px_6px_0px_#ffcc00] dark:shadow-[6px_6px_0px_#ffcc00]">
-              <div className="absolute top-0 right-0 transform translate-x-2 -translate-y-3 bg-accent-yellow dark:bg-primary-yellow text-black dark:text-black px-3 py-1 font-headline text-xs font-bold uppercase tracking-widest border-2 border-outline">
+            <div className="relative bg-primary dark:bg-surface-container-lowest text-on-primary dark:text-on-surface p-5 sm:p-7 lg:p-6 xl:p-8 border-2 border-outline shadow-[5px_5px_0px_#ffcc00] dark:shadow-[5px_5px_0px_#ffcc00]">
+              <div className="absolute top-0 right-0 transform translate-x-2 -translate-y-3 bg-accent-yellow dark:bg-primary-yellow text-black dark:text-black px-2.5 py-0.5 xl:px-3 xl:py-1 font-headline text-[10px] xl:text-xs font-bold uppercase tracking-widest border-2 border-outline">
                 PRIMARY LOG 2024-2026
               </div>
-              <div className="flex items-start gap-4">
-                <span className="material-symbols-outlined text-accent-yellow dark:text-primary-yellow text-4xl shrink-0">
+              <div className="flex items-start gap-3 xl:gap-4">
+                <span className="material-symbols-outlined text-accent-yellow dark:text-primary-yellow text-3xl xl:text-4xl shrink-0">
                   format_quote
                 </span>
-                <div className="space-y-3">
-                  <blockquote className="font-headline text-lg sm:text-xl md:text-2xl font-bold tracking-tight text-on-primary dark:text-on-surface leading-snug">
+                <div className="space-y-2 xl:space-y-3">
+                  <blockquote className="font-headline text-base sm:text-lg lg:text-lg xl:text-xl font-bold tracking-tight text-on-primary dark:text-on-surface leading-snug">
                     &ldquo;I&rsquo;ve stood next to an ASHA worker filling an ODK form on a tablet in 38&deg;C heat. Every pipeline I build starts with that moment.&rdquo;
                   </blockquote>
-                  <div className="font-headline text-xs uppercase tracking-widest text-accent-yellow dark:text-primary-yellow font-bold">
+                  <div className="font-headline text-[10px] xl:text-xs uppercase tracking-widest text-accent-yellow dark:text-primary-yellow font-bold">
                     — ADITYA PANDEY · DISTRICT RESOURCE FELLOW, MUZAFFARPUR, BIHAR
                   </div>
                 </div>
@@ -72,7 +72,7 @@ export default function HealthPage() {
               <span className="font-mono text-xs font-bold uppercase tracking-widest text-primary block mb-1">
                 Audited Telemetry
               </span>
-              <h2 className="font-headline text-3xl sm:text-5xl font-bold uppercase tracking-tight text-on-surface leading-none">
+              <h2 className="font-headline text-2xl sm:text-4xl lg:text-3xl xl:text-4xl font-bold uppercase tracking-tight text-on-surface leading-tight">
                 Primary Field Metrics Ledger
               </h2>
             </div>
@@ -83,7 +83,7 @@ export default function HealthPage() {
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {/* Metric 1: ASHA */}
-            <div className="bg-surface-container-lowest border-3 border-outline p-6 shadow-[5px_5px_0px_#1a1a1a] dark:shadow-[5px_5px_0px_#0e0e10] flex flex-col justify-between">
+            <div className="bg-surface-container-lowest border-3 border-outline p-5 xl:p-6 shadow-[5px_5px_0px_#1a1a1a] dark:shadow-[5px_5px_0px_#0e0e10] flex flex-col justify-between">
               <div className="space-y-4">
                 <div className="flex items-start justify-between gap-2 border-b-2 border-outline pb-3">
                   <div className="flex items-center gap-2">
@@ -94,17 +94,17 @@ export default function HealthPage() {
                   </div>
                 </div>
                 <div className="pt-1 lg:pt-0">
-                  <div className="font-display font-bold text-5xl lg:text-6xl tracking-tight leading-none text-on-surface">
+                  <div className="font-display font-bold text-4xl lg:text-4xl xl:text-5xl 2xl:text-6xl tracking-tight leading-none text-on-surface">
                     700+
                   </div>
-                  <h3 className="mt-2 font-display text-base font-bold uppercase tracking-tight text-on-surface">
+                  <h3 className="mt-2 font-display text-sm xl:text-base font-bold uppercase tracking-tight text-on-surface">
                     ASHA Workers Mentored
                   </h3>
-                  <p className="mt-3 text-sm text-on-surface-variant leading-relaxed">
+                  <p className="mt-2.5 text-xs xl:text-sm text-on-surface-variant leading-relaxed">
                     M-ASHA digital application rollout across 100+ micro-sessions at sector meetings, sub-centres and block headquarters — frontline worker capacity building, hands-on.
                   </p>
                 </div>
-                <div className="mt-6 pt-4 border-t-2 border-outline flex items-center justify-between text-[11px] font-mono uppercase font-bold gap-3">
+                <div className="mt-5 xl:mt-6 pt-3 xl:pt-4 border-t-2 border-outline flex items-center justify-between text-[10px] xl:text-[11px] font-mono uppercase font-bold gap-3">
                   <span>MICRO-SESSIONS: 100+</span>
                   <span className="bg-accent-yellow dark:bg-primary-yellow text-black dark:text-black px-2 py-0.5 border border-accent-yellow dark:border-accent-yellow">
                     COMPLIANCE: 94%
@@ -114,7 +114,7 @@ export default function HealthPage() {
             </div>
 
             {/* Metric 2: Clinical */}
-            <div className="bg-surface-container-lowest border-3 border-outline p-6 shadow-[5px_5px_0px_#1a1a1a] dark:shadow-[5px_5px_0px_#0e0e10] flex flex-col justify-between">
+            <div className="bg-surface-container-lowest border-3 border-outline p-5 xl:p-6 shadow-[5px_5px_0px_#1a1a1a] dark:shadow-[5px_5px_0px_#0e0e10] flex flex-col justify-between">
               <div className="space-y-4">
                 <div className="flex items-start justify-between gap-2 border-b-2 border-outline pb-3">
                   <div className="flex items-center gap-2">
@@ -125,17 +125,17 @@ export default function HealthPage() {
                   </div>
                 </div>
                 <div className="pt-1 lg:pt-0">
-                  <div className="font-display font-bold text-5xl lg:text-6xl tracking-tight leading-none text-on-surface">
+                  <div className="font-display font-bold text-4xl lg:text-4xl xl:text-5xl 2xl:text-6xl tracking-tight leading-none text-on-surface">
                     185-hr
                   </div>
-                  <h3 className="mt-2 font-display text-base font-bold uppercase tracking-tight text-on-surface">
+                  <h3 className="mt-2 font-display text-sm xl:text-base font-bold uppercase tracking-tight text-on-surface">
                     Clinical Skills Refresher
                   </h3>
-                  <p className="mt-3 text-sm text-on-surface-variant leading-relaxed">
+                  <p className="mt-2.5 text-xs xl:text-sm text-on-surface-variant leading-relaxed">
                     185-hour structured curriculum for 12 Staff Nurses and 4 Doctors — High-Risk Pregnancy management and labor room protocols, district hospital.
                   </p>
                 </div>
-                <div className="mt-6 pt-4 border-t-2 border-outline flex items-center justify-between text-[11px] font-mono uppercase font-bold gap-3">
+                <div className="mt-5 xl:mt-6 pt-3 xl:pt-4 border-t-2 border-outline flex items-center justify-between text-[10px] xl:text-[11px] font-mono uppercase font-bold gap-3">
                   <span>COHORT: 16 CLINICIANS</span>
                   <span className="bg-accent-red dark:bg-accent-red text-white dark:text-[#121214] px-2 py-0.5 border border-accent-red dark:border-accent-red">
                     HRP PROTOCOLS
@@ -145,7 +145,7 @@ export default function HealthPage() {
             </div>
 
             {/* Metric 3: Sub-centres */}
-            <div className="bg-surface-container-lowest border-3 border-outline p-6 shadow-[5px_5px_0px_#1a1a1a] dark:shadow-[5px_5px_0px_#0e0e10] flex flex-col justify-between">
+            <div className="bg-surface-container-lowest border-3 border-outline p-5 xl:p-6 shadow-[5px_5px_0px_#1a1a1a] dark:shadow-[5px_5px_0px_#0e0e10] flex flex-col justify-between">
               <div className="space-y-4">
                 <div className="flex items-start justify-between gap-2 border-b-2 border-outline pb-3">
                   <div className="flex items-center gap-2">
@@ -156,17 +156,17 @@ export default function HealthPage() {
                   </div>
                 </div>
                 <div className="pt-1 lg:pt-0">
-                  <div className="font-display font-bold text-5xl lg:text-6xl tracking-tight leading-none text-on-surface">
+                  <div className="font-display font-bold text-4xl lg:text-4xl xl:text-5xl 2xl:text-6xl tracking-tight leading-none text-on-surface">
                     154
                   </div>
-                  <h3 className="mt-2 font-display text-base font-bold uppercase tracking-tight text-on-surface">
+                  <h3 className="mt-2 font-display text-sm xl:text-base font-bold uppercase tracking-tight text-on-surface">
                     Sub-Centres Audited
                   </h3>
-                  <p className="mt-3 text-sm text-on-surface-variant leading-relaxed">
+                  <p className="mt-2.5 text-xs xl:text-sm text-on-surface-variant leading-relaxed">
                     Physical vs digital register reconciliation across Sub-Centres and PHCs under the National Quality Assurance Standards (NQAS) framework.
                   </p>
                 </div>
-                <div className="mt-6 pt-4 border-t-2 border-outline flex items-center justify-between text-[11px] font-mono uppercase font-bold gap-3">
+                <div className="mt-5 xl:mt-6 pt-3 xl:pt-4 border-t-2 border-outline flex items-center justify-between text-[10px] xl:text-[11px] font-mono uppercase font-bold gap-3">
                   <span>NQAS FRAMEWORK</span>
                   <span className="bg-accent-blue dark:bg-accent-blue text-white dark:text-[#121214] px-2 py-0.5 border border-accent-blue dark:border-accent-blue">
                     REGISTER RECON
@@ -211,7 +211,7 @@ export default function HealthPage() {
               <span className="font-mono text-xs font-bold uppercase tracking-widest text-primary block mb-1">
                   {`/* System Outcomes */`}
               </span>
-              <h2 className="font-headline text-3xl sm:text-5xl font-bold uppercase tracking-tight text-on-surface leading-none">
+              <h2 className="font-headline text-2xl sm:text-4xl lg:text-3xl xl:text-4xl font-bold uppercase tracking-tight text-on-surface leading-tight">
                 Health System Strengthening
               </h2>
             </div>

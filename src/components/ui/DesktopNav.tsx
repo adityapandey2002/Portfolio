@@ -37,7 +37,7 @@ export function DesktopNav() {
     <header className="fixed inset-x-0 top-0 z-50 hidden w-full border-b-2 border-outline bg-surface dark:border-outline dark:bg-surface lg:block">
       <div className="flex h-24 w-full flex-col justify-between">
         {/* Row 1 — identity, primary nav, actions */}
-        <div className="flex h-16 items-center justify-between border-b-2 border-outline px-6 dark:border-outline-variant lg:px-12">
+        <div className="flex h-16 items-center justify-between border-b-2 border-outline px-4 lg:px-6 xl:px-10 2xl:px-12 dark:border-outline-variant">
           <div className="flex items-center gap-3">
             <Link href="/" className="group flex items-center gap-2 whitespace-nowrap">
               <span className="border border-outline bg-primary px-2 py-1 font-headline text-base font-bold tracking-wider text-primary-container dark:border-primary-yellow dark:bg-primary-yellow dark:text-black dark:shadow-[2px_2px_0px_#facc15]">
@@ -61,7 +61,7 @@ export function DesktopNav() {
                 <Link
                   key={link.href}
                   href={link.href}
-                  className={`flex h-full items-center whitespace-nowrap px-4 font-headline text-xs font-bold uppercase tracking-wide transition-colors ${
+                  className={`flex h-full items-center whitespace-nowrap px-2.5 lg:px-3 xl:px-4 font-headline text-xs font-bold uppercase tracking-wide transition-colors ${
                     active
                       ? 'border-b-2 border-outline bg-primary-container text-on-primary-container dark:border-primary-yellow dark:bg-primary-yellow dark:text-black dark:shadow-[0_2px_0px_#facc15]'
                       : 'text-on-surface-variant hover:bg-surface-variant hover:text-on-surface dark:text-on-surface-variant dark:hover:bg-surface-container-high dark:hover:text-white'
@@ -73,10 +73,10 @@ export function DesktopNav() {
             })}
           </nav>
 
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-1.5 xl:gap-2">
             <Link
               href="/#dispatch"
-              className="hidden items-center justify-center whitespace-nowrap border-2 border-outline bg-primary px-3.5 py-2 font-headline text-xs font-bold uppercase tracking-widest text-on-primary shadow-[3px_3px_0px_#1a1a1a] transition-colors hover:bg-primary-container hover:text-on-primary-container dark:border-outline dark:bg-surface-container dark:text-on-surface dark:shadow-[2px_2px_0px_#0e0e10] dark:hover:border-primary-yellow dark:hover:text-primary-yellow md:inline-flex"
+              className="hidden items-center justify-center whitespace-nowrap border-2 border-outline bg-primary px-3 xl:px-3.5 py-1.5 xl:py-2 font-headline text-xs font-bold uppercase tracking-widest text-on-primary shadow-[3px_3px_0px_#1a1a1a] transition-colors hover:bg-primary-container hover:text-on-primary-container dark:border-outline dark:bg-surface-container dark:text-on-surface dark:shadow-[2px_2px_0px_#0e0e10] dark:hover:border-primary-yellow dark:hover:text-primary-yellow md:inline-flex"
             >
               Engage Fellow
             </Link>
@@ -84,21 +84,21 @@ export function DesktopNav() {
               onClick={toggleTheme}
               aria-label={isDark ? 'Switch to light mode' : 'Switch to dark mode'}
               title={isDark ? 'Light mode' : 'Dark mode'}
-              className="inline-flex cursor-pointer items-center gap-1 whitespace-nowrap border-2 border-outline bg-surface px-2 py-1.5 font-headline text-[11px] font-bold uppercase tracking-wider text-primary shadow-[2px_2px_0px_#1a1a1a] transition-transform hover:bg-surface-variant active:translate-x-0.5 active:translate-y-0.5 dark:border-outline dark:bg-surface-low dark:text-primary-yellow dark:shadow-[2px_2px_0px_#0e0e10] dark:hover:bg-surface-container"
+              className="inline-flex cursor-pointer items-center gap-1 whitespace-nowrap border-2 border-outline bg-surface px-2 py-1.5 font-headline text-[10.5px] xl:text-[11px] font-bold uppercase tracking-wider text-primary shadow-[2px_2px_0px_#1a1a1a] transition-transform hover:bg-surface-variant active:translate-x-0.5 active:translate-y-0.5 dark:border-outline dark:bg-surface-low dark:text-primary-yellow dark:shadow-[2px_2px_0px_#0e0e10] dark:hover:bg-surface-container"
             >
-              <span className="material-symbols-outlined text-[16px]">
+              <span className="material-symbols-outlined text-[15px] xl:text-[16px]">
                 {isDark ? 'dark_mode' : 'light_mode'}
               </span>
               <span>MODE: {isDark ? 'DARK' : 'LIGHT'}</span>
             </button>
-            <div className="ml-1 flex h-8 w-8 shrink-0 items-center justify-center rounded-full border-2 border-outline bg-primary text-primary-container dark:border-outline dark:bg-primary-yellow dark:text-black">
-              <span className="material-symbols-outlined text-[18px]">person</span>
+            <div className="ml-0.5 xl:ml-1 flex h-7 w-7 xl:h-8 xl:w-8 shrink-0 items-center justify-center rounded-full border-2 border-outline bg-primary text-primary-container dark:border-outline dark:bg-primary-yellow dark:text-black">
+              <span className="material-symbols-outlined text-[16px] xl:text-[18px]">person</span>
             </div>
           </div>
         </div>
 
         {/* Row 2 — live field telemetry */}
-        <div className="flex h-8 select-none items-center justify-between overflow-hidden border-t border-primary bg-primary px-6 font-headline text-[11px] font-bold tracking-widest text-primary-container dark:border-outline-variant/50 dark:bg-surface-lowest dark:text-primary-yellow lg:px-12">
+        <div className="flex h-8 select-none items-center justify-between overflow-hidden border-t border-primary bg-primary px-4 lg:px-6 xl:px-10 2xl:px-12 font-headline text-[10px] xl:text-[11px] font-bold tracking-widest text-primary-container dark:border-outline-variant/50 dark:bg-surface-lowest dark:text-primary-yellow">
           <div className="flex items-center gap-2 whitespace-nowrap">
             <span className="inline-block h-2 w-2 animate-pulse rounded-full bg-accent-red" />
             <span>

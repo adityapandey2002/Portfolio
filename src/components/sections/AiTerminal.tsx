@@ -38,14 +38,14 @@ export function AiTerminal() {
       id="vector-terminal"
       className="border-b-4 border-primary dark:border-[#3f3f46] bg-surface dark:bg-[#161619] py-10 lg:py-16 px-4 sm:px-8 lg:px-12"
     >
-      <div className="max-w-7xl mx-auto space-y-10">
+      <div className="max-w-7xl mx-auto space-y-8 lg:space-y-10">
         {/* Section Header */}
         <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 border-b-2 border-primary dark:border-[#3f3f46] pb-4">
           <div>
             <span className="font-headline text-xs font-bold uppercase tracking-widest text-primary dark:text-[#facc15] block">
               07 // CLIENT-SIDE INTELLIGENCE
             </span>
-            <h2 className="font-headline text-3xl sm:text-5xl font-bold uppercase tracking-tight text-on-surface mt-1">
+            <h2 className="font-headline text-2xl sm:text-4xl lg:text-3xl xl:text-4xl font-bold uppercase tracking-tight text-on-surface mt-1">
               Vector RAG Terminal
             </h2>
           </div>
@@ -56,29 +56,29 @@ export function AiTerminal() {
         </div>
 
         {/* Terminal Component — black console in both themes */}
-        <div className="bg-[#1a1a1a] dark:bg-[#0b0b0d] text-[#33ff33] border-4 border-primary dark:border-[#3f3f46] shadow-[8px_8px_0px_#1a1a1a] dark:shadow-[8px_8px_0px_#000000] font-mono text-xs sm:text-sm">
+        <div className="bg-[#1a1a1a] dark:bg-[#0b0b0d] text-[#33ff33] border-4 border-primary dark:border-[#3f3f46] shadow-[6px_6px_0px_#1a1a1a] dark:shadow-[6px_6px_0px_#000000] font-mono text-xs xl:text-[13px]">
           {/* Terminal Header Bar */}
-          <div className="bg-surface-container text-on-surface p-3 border-b-2 border-primary dark:border-[#3f3f46] flex items-center justify-between font-headline font-bold text-xs uppercase tracking-wider">
+          <div className="bg-surface-container text-on-surface p-2.5 xl:p-3 border-b-2 border-primary dark:border-[#3f3f46] flex items-center justify-between font-headline font-bold text-xs uppercase tracking-wider">
             <div className="flex items-center gap-2">
-              <span className="w-3 h-3 bg-secondary inline-block border border-primary dark:border-[#3f3f46]" />
-              <span className="w-3 h-3 bg-primary-container inline-block border border-primary dark:border-[#3f3f46]" />
-              <span className="w-3 h-3 bg-tertiary inline-block border border-primary dark:border-[#3f3f46]" />
-              <span className="ml-2 font-mono">vector_brain@aditya-pandey:~/bihar-ops</span>
+              <span className="w-2.5 h-2.5 xl:w-3 xl:h-3 bg-secondary inline-block border border-primary dark:border-[#3f3f46]" />
+              <span className="w-2.5 h-2.5 xl:w-3 xl:h-3 bg-primary-container inline-block border border-primary dark:border-[#3f3f46]" />
+              <span className="w-2.5 h-2.5 xl:w-3 xl:h-3 bg-tertiary inline-block border border-primary dark:border-[#3f3f46]" />
+              <span className="ml-2 font-mono text-[11px] xl:text-xs">vector_brain@aditya-pandey:~/bihar-ops</span>
             </div>
-            <span className="text-on-surface-variant font-mono">LATENCY: 12ms</span>
+            <span className="text-on-surface-variant font-mono text-[10px] xl:text-xs">LATENCY: 12ms</span>
           </div>
 
           {/* Terminal Body */}
-          <div className="p-6 space-y-4 min-h-[320px] overflow-y-auto" id="terminal-content">
-            <div className="text-[#888888]">
+          <div className="p-4 sm:p-5 xl:p-6 space-y-3.5 xl:space-y-4 min-h-[280px] xl:min-h-[320px] overflow-y-auto" id="terminal-content">
+            <div className="text-[#888888] text-[11px] xl:text-xs leading-relaxed">
               ========================================================================<br />
               ADITYA PANDEY // AUTONOMOUS KNOWLEDGE RETRIEVAL VECTOR AGENT [INITIALIZED]<br />
               DATABASE: 118,492 FRONTLINE HEALTH VECTORS &amp; ENGINEERING REPOSITORIES<br />
               TYPE A QUERY BELOW OR SELECT ONE OF THE RAPID PRE-FLIGHT COMMANDS.<br />
               ========================================================================
             </div>
-            <div className="space-y-4" id="terminal-logs">
-              <div className="text-[#33ff33]">
+            <div className="space-y-3 xl:space-y-4" id="terminal-logs">
+              <div className="text-[#33ff33] text-[11px] xl:text-xs leading-relaxed">
                 <span className="text-white font-bold">$ sys --status</span><br />
                 &gt; STATUS: 200 OK | PIRAMAL GANDHI FELLOWSHIP RUNTIME<br />
                 &gt; JURISDICTION: Muzaffarpur &amp; Araria, Bihar (16 High-Burden Blocks)<br />
@@ -96,20 +96,20 @@ export function AiTerminal() {
           </div>
 
           {/* Quick Query Trigger Controls */}
-          <div className="bg-[#111111] p-4 border-t-2 border-primary dark:border-[#3f3f46] flex flex-wrap gap-2 items-center">
-            <span className="text-white text-xs font-mono font-bold mr-2 uppercase">Inject Query:</span>
+          <div className="bg-[#111111] p-3 xl:p-4 border-t-2 border-primary dark:border-[#3f3f46] flex flex-wrap gap-2 items-center">
+            <span className="text-white text-[11px] xl:text-xs font-mono font-bold mr-2 uppercase">Inject Query:</span>
             {QUERIES.map((item) => (
               <Link
                 key={item.label}
                 href={`/ask?q=${encodeURIComponent(item.question)}`}
-                className={`px-3 py-1.5 bg-[#222222] text-white border border-[#444444] transition-colors font-mono text-xs cursor-pointer ${item.hover}`}
+                className={`px-2.5 xl:px-3 py-1 xl:py-1.5 bg-[#222222] text-white border border-[#444444] transition-colors font-mono text-[11px] xl:text-xs cursor-pointer ${item.hover}`}
               >
                 {item.label}
               </Link>
             ))}
             <Link
               href="/ask"
-              className="px-3 py-1.5 bg-[#222222] hover:bg-[#ffffff] hover:text-[#000000] text-[#9a9a9a] border border-[#444444] transition-colors font-mono text-xs ml-auto cursor-pointer"
+              className="px-2.5 xl:px-3 py-1 xl:py-1.5 bg-[#222222] hover:bg-[#ffffff] hover:text-[#000000] text-[#9a9a9a] border border-[#444444] transition-colors font-mono text-[11px] xl:text-xs ml-auto cursor-pointer"
             >
               $ clear
             </Link>

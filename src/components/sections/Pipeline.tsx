@@ -61,14 +61,14 @@ const COMPETENCIES = [
 export function Pipeline() {
   return (
     <section id="pipeline" className="border-b-4 border-primary dark:border-[#3f3f46] bg-surface-container-high dark:bg-[#121214] py-10 px-4 sm:px-8 lg:px-12">
-      <div className="max-w-7xl mx-auto space-y-12">
+      <div className="max-w-7xl mx-auto space-y-8 lg:space-y-10">
         {/* Section Header */}
         <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 border-b-2 border-primary dark:border-[#3f3f46] pb-4">
           <div>
             <span className="font-headline text-xs font-bold uppercase tracking-widest text-secondary block">
               06 // DATA SYSTEMS METHODOLOGY
             </span>
-            <h2 className="font-headline text-3xl sm:text-5xl font-bold uppercase tracking-tight text-on-surface dark:text-on-surface mt-1">
+            <h2 className="font-headline text-2xl sm:text-4xl lg:text-3xl xl:text-4xl font-bold uppercase tracking-tight text-on-surface dark:text-on-surface mt-1">
               Frontline-to-Insight Pipeline
             </h2>
           </div>
@@ -78,7 +78,7 @@ export function Pipeline() {
         </div>
 
         {/* Intro Paragraph */}
-        <p className="font-body text-base text-on-surface dark:text-on-surface max-w-3xl leading-relaxed mb-8">
+        <p className="font-body text-xs sm:text-sm lg:text-base text-on-surface dark:text-on-surface max-w-3xl leading-relaxed mb-6 xl:mb-8">
           Public health in India does not fail because of lack of intent; it fails because of{' '}
           <strong className="underline decoration-accent-yellow dark:decoration-accent-yellow font-bold">
             fragile data supply chains
@@ -87,25 +87,25 @@ export function Pipeline() {
         </p>
 
         {/* 4 Geometric Pipeline Steps */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 xl:gap-6">
           {STAGES.map((stage) => (
             <div
               key={stage.num}
-              className="bg-surface-container-lowest dark:bg-[#202024] border-3 border-primary dark:border-[#3f3f46] p-6 shadow-[5px_5px_0px_#1a1a1a] dark:shadow-[5px_5px_0px_#000000] flex flex-col justify-between"
+              className="bg-surface-container-lowest dark:bg-[#202024] border-3 border-primary dark:border-[#3f3f46] p-4 sm:p-5 xl:p-6 shadow-[5px_5px_0px_#1a1a1a] dark:shadow-[5px_5px_0px_#000000] flex flex-col justify-between"
             >
               <div>
-                <div className={`w-10 h-10 ${stage.accent} font-headline font-bold text-lg flex items-center justify-center border-2 border-primary dark:border-[#3f3f46] mb-4`}>
+                <div className={`w-8 h-8 xl:w-10 xl:h-10 ${stage.accent} font-headline font-bold text-base xl:text-lg flex items-center justify-center border-2 border-primary dark:border-[#3f3f46] mb-3 xl:mb-4`}>
                   {stage.num}
                 </div>
-                <span className="font-mono text-xs font-bold text-secondary uppercase block mb-1">
+                <span className="font-mono text-[11px] xl:text-xs font-bold text-secondary uppercase block mb-1">
                   {stage.stage}
                 </span>
-                <h3 className="font-headline text-2xl font-bold uppercase text-on-surface dark:text-on-surface mb-3">{stage.title}</h3>
-                <p className="font-body text-xs sm:text-sm text-on-surface-variant dark:text-on-surface-variant leading-relaxed">
+                <h3 className="font-headline text-lg xl:text-2xl font-bold uppercase text-on-surface dark:text-on-surface mb-2 xl:mb-3">{stage.title}</h3>
+                <p className="font-body text-xs xl:text-[13px] text-on-surface-variant dark:text-on-surface-variant leading-relaxed">
                   {stage.body}
                 </p>
               </div>
-              <div className={`mt-6 pt-3 border-t border-primary/30 dark:border-[#3f3f46] font-mono text-[11px] ${stage.techColor}`}>
+              <div className={`mt-4 xl:mt-6 pt-2.5 xl:pt-3 border-t border-primary/30 dark:border-[#3f3f46] font-mono text-[10px] xl:text-[11px] ${stage.techColor}`}>
                 {stage.tech}
               </div>
             </div>
@@ -113,26 +113,26 @@ export function Pipeline() {
         </div>
 
         {/* Competency Percentage Meters */}
-        <div className="border-3 border-primary dark:border-[#3f3f46] bg-surface-container dark:bg-[#27272a] p-6 sm:p-8 shadow-[6px_6px_0px_#1a1a1a] dark:shadow-[6px_6px_0px_#000000] space-y-6">
+        <div className="border-3 border-primary dark:border-[#3f3f46] bg-surface-container dark:bg-[#27272a] p-5 sm:p-6 lg:p-6 xl:p-8 shadow-[5px_5px_0px_#1a1a1a] dark:shadow-[5px_5px_0px_#000000] space-y-5 xl:space-y-6">
           <div className="flex items-center justify-between border-b-2 border-primary dark:border-[#3f3f46] pb-3">
-            <h3 className="font-headline text-xl font-bold uppercase text-on-surface dark:text-on-surface">
+            <h3 className="font-headline text-lg xl:text-xl font-bold uppercase text-on-surface dark:text-on-surface">
               Engineering & Domain Competency Index
             </h3>
-            <span className="font-mono text-xs font-bold bg-primary text-on-primary px-2 py-1 border border-primary dark:bg-[#facc15] dark:text-[#121214] dark:border-[#facc15]">
+            <span className="font-mono text-[11px] xl:text-xs font-bold bg-primary text-on-primary px-2 py-0.5 xl:py-1 border border-primary dark:bg-[#facc15] dark:text-[#121214] dark:border-[#facc15]">
               BENCHMARK 2025
             </span>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 xl:gap-6">
             {COMPETENCIES.map((comp) => (
-              <div key={comp.name} className="space-y-2">
-                <div className="flex justify-between items-center text-xs font-headline font-bold uppercase">
+              <div key={comp.name} className="space-y-1.5 xl:space-y-2">
+                <div className="flex justify-between items-center text-[11px] xl:text-xs font-headline font-bold uppercase">
                   <span className="text-on-surface dark:text-on-surface">{comp.name}</span>
                   <span className="font-mono text-primary dark:text-[#facc15]">{comp.pct}%</span>
                 </div>
-                <div className="w-full bg-surface-container-lowest dark:bg-[#161619] h-6 border-2 border-primary dark:border-[#3f3f46] p-0.5">
+                <div className="w-full bg-surface-container-lowest dark:bg-[#161619] h-5 xl:h-6 border-2 border-primary dark:border-[#3f3f46] p-0.5">
                   <div className={`${comp.color} h-full`} style={{ width: `${comp.pct}%` }} />
                 </div>
-                <span className="text-[11px] font-mono text-on-surface-variant dark:text-on-surface-variant">{comp.desc}</span>
+                <span className="text-[10px] xl:text-[11px] font-mono text-on-surface-variant dark:text-on-surface-variant">{comp.desc}</span>
               </div>
             ))}
           </div>

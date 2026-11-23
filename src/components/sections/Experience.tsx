@@ -17,14 +17,14 @@ import { experience } from '@/lib/data/experience';
 export function Experience() {
   return (
     <section id="experience" className="border-b-4 border-primary dark:border-[#3f3f46] bg-surface dark:bg-[#161619] py-10 px-4 sm:px-8 lg:px-12">
-      <div className="max-w-7xl mx-auto space-y-10">
+      <div className="max-w-7xl mx-auto space-y-8 lg:space-y-10">
         {/* Section Header */}
         <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 border-b-2 border-primary dark:border-[#3f3f46] pb-4">
           <div>
             <span className="font-headline text-xs font-bold uppercase tracking-widest text-primary dark:text-[#facc15] block">
               03 // OPERATIONAL RECORD
             </span>
-            <h2 className="font-headline text-3xl sm:text-5xl font-bold uppercase tracking-tight text-on-surface dark:text-on-surface mt-1">
+            <h2 className="font-headline text-2xl sm:text-4xl lg:text-3xl xl:text-4xl font-bold uppercase tracking-tight text-on-surface dark:text-on-surface mt-1">
               Field & Systems Experience
             </h2>
           </div>
@@ -34,59 +34,59 @@ export function Experience() {
         </div>
 
         {/* Prominent Brutalist Health Dashboard Banner Card */}
-        <div className="bg-primary dark:bg-[#0f0f11] text-on-primary dark:text-on-surface border-3 border-primary dark:border-[#3f3f46] p-6 sm:p-8 shadow-[8px_8px_0px_#e63b2e] dark:shadow-[8px_8px_0px_#facc15] flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
-          <div className="space-y-3 max-w-3xl">
-            <div className="inline-flex items-center gap-2 bg-secondary text-black dark:text-[#121214] px-3 py-1 font-headline font-bold text-xs uppercase tracking-widest">
+        <div className="bg-primary dark:bg-[#0f0f11] text-on-primary dark:text-on-surface border-3 border-primary dark:border-[#3f3f46] p-5 sm:p-7 lg:p-6 xl:p-8 shadow-[6px_6px_0px_#e63b2e] dark:shadow-[6px_6px_0px_#facc15] flex flex-col md:flex-row items-start md:items-center justify-between gap-5 xl:gap-6">
+          <div className="space-y-2.5 xl:space-y-3 max-w-3xl">
+            <div className="inline-flex items-center gap-2 bg-secondary text-black dark:text-[#121214] px-2.5 py-0.5 xl:px-3 xl:py-1 font-headline font-bold text-[10px] xl:text-xs uppercase tracking-widest">
               <span className="material-symbols-outlined text-sm">monitor_heart</span>
               DEDICATED TELEMETRY SUITE
             </div>
-            <h3 className="font-headline text-2xl sm:text-3xl font-bold uppercase tracking-tight text-on-primary dark:text-on-surface">
+            <h3 className="font-headline text-lg sm:text-2xl lg:text-xl xl:text-2xl font-bold uppercase tracking-tight text-on-primary dark:text-on-surface">
               View Full Fellowship Field Impact & Vitals Dashboard (/health)
             </h3>
-            <p className="font-body text-sm text-surface-container-high dark:text-surface-high leading-relaxed">
+            <p className="font-body text-xs lg:text-[13px] xl:text-sm text-surface-container-high dark:text-surface-high leading-relaxed">
               Explore the dedicated health telemetry dashboard: 700+ ASHA workers, 16 administrative blocks, 13,627 KM logged across Bihar, WHO building block alignments, and live ODK pipeline logs.
             </p>
           </div>
           <Link
             href="/health"
-            className="inline-flex items-center gap-3 px-6 py-4 bg-primary-container text-on-primary-container dark:bg-[#facc15] dark:text-[#121214] font-headline font-bold text-sm uppercase tracking-wider border-2 border-primary dark:border-[#facc15] shadow-[4px_4px_0px_#ffffff] dark:shadow-[4px_4px_0px_#000000] hover:bg-surface dark:hover:bg-white hover:text-on-surface dark:hover:text-black transition-all shrink-0"
+            className="inline-flex items-center gap-2 xl:gap-3 px-4 xl:px-6 py-2.5 xl:py-3.5 bg-primary-container text-on-primary-container dark:bg-[#facc15] dark:text-[#121214] font-headline font-bold text-xs xl:text-sm uppercase tracking-wider border-2 border-primary dark:border-[#facc15] shadow-[4px_4px_0px_#ffffff] dark:shadow-[4px_4px_0px_#000000] hover:bg-surface dark:hover:bg-white hover:text-on-surface dark:hover:text-black transition-all shrink-0"
           >
             Launch /health &rarr;
-            <span className="material-symbols-outlined text-lg">open_in_new</span>
+            <span className="material-symbols-outlined text-base xl:text-lg">open_in_new</span>
           </Link>
         </div>
 
         {/* Experience Cards Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-5 xl:gap-6">
           {experience.map((xp) => (
             <div
               key={xp.role}
-              className="bg-surface-container-lowest dark:bg-[#202024] border-3 border-primary dark:border-[#3f3f46] p-6 shadow-[5px_5px_0px_#1a1a1a] dark:shadow-[5px_5px_0px_#000000] flex flex-col justify-between"
+              className="bg-surface-container-lowest dark:bg-[#202024] border-3 border-primary dark:border-[#3f3f46] p-5 xl:p-6 shadow-[5px_5px_0px_#1a1a1a] dark:shadow-[5px_5px_0px_#000000] flex flex-col justify-between"
             >
-              <div className="space-y-4">
+              <div className="space-y-3.5 xl:space-y-4">
                 <div className="flex items-start justify-between gap-2 border-b-2 border-primary dark:border-[#3f3f46] pb-3">
                   <div>
-                    <span className={`font-mono text-xs font-bold text-secondary uppercase block`}>
+                    <span className={`font-mono text-[11px] xl:text-xs font-bold text-secondary uppercase block`}>
                       {xp.period} {"/"} {xp.org}
                     </span>
-                    <h4 className="font-headline text-xl font-bold text-on-surface dark:text-on-surface mt-1">{xp.role}</h4>
-                    <p className="font-headline text-sm font-semibold text-on-surface-variant dark:text-on-surface-variant">{xp.org}</p>
+                    <h4 className="font-headline text-base sm:text-lg xl:text-xl font-bold text-on-surface dark:text-on-surface mt-1">{xp.role}</h4>
+                    <p className="font-headline text-xs xl:text-sm font-semibold text-on-surface-variant dark:text-on-surface-variant">{xp.org}</p>
                   </div>
                   {xp.current && (
-                    <span className="bg-primary text-on-primary dark:bg-[#facc15] dark:text-[#121214] text-[11px] font-mono font-bold px-2 py-0.5 border border-primary dark:border-[#3f3f46]">
+                    <span className="bg-primary text-on-primary dark:bg-[#facc15] dark:text-[#121214] text-[10px] xl:text-[11px] font-mono font-bold px-2 py-0.5 border border-primary dark:border-[#3f3f46]">
                       CURRENT
                     </span>
                   )}
                 </div>
-                <ul className="space-y-2 text-xs sm:text-sm font-body text-on-surface dark:text-on-surface list-disc pl-4 leading-relaxed">
+                <ul className="space-y-1.5 xl:space-y-2 text-xs xl:text-[13px] font-body text-on-surface dark:text-on-surface list-disc pl-4 leading-relaxed">
                   {xp.bullets.map((b) => (
                     <li key={b} dangerouslySetInnerHTML={{ __html: b }} />
                   ))}
                 </ul>
               </div>
-              <div className="mt-6 pt-4 border-t border-primary dark:border-[#3f3f46] flex flex-wrap gap-2">
+              <div className="mt-5 xl:mt-6 pt-3 xl:pt-4 border-t border-primary dark:border-[#3f3f46] flex flex-wrap gap-1.5 xl:gap-2">
                 {xp.tags.map((t) => (
-                  <span key={t} className="font-mono text-[11px] bg-surface-container dark:bg-[#202024] px-2 py-0.5 border border-primary dark:border-[#3f3f46] text-on-surface dark:text-on-surface">
+                  <span key={t} className="font-mono text-[10px] xl:text-[11px] bg-surface-container dark:bg-[#202024] px-2 py-0.5 border border-primary dark:border-[#3f3f46] text-on-surface dark:text-on-surface">
                     {t}
                   </span>
                 ))}

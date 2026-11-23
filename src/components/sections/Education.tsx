@@ -69,14 +69,14 @@ const CERTS = [
 export function Education() {
   return (
     <section id="education" className="border-b-4 border-primary dark:border-[#3f3f46] bg-surface dark:bg-[#161619] py-10 px-4 sm:px-8 lg:px-12">
-      <div className="max-w-7xl mx-auto space-y-10">
+      <div className="max-w-7xl mx-auto space-y-8 lg:space-y-10">
         {/* Section Header */}
         <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 border-b-2 border-primary dark:border-[#3f3f46] pb-4">
           <div>
             <span className="font-headline text-xs font-bold uppercase tracking-widest text-primary dark:text-[#facc15] block">
               05 // CREDENTIALS & FOUNDATION
             </span>
-            <h2 className="font-headline text-3xl sm:text-5xl font-bold uppercase tracking-tight text-on-surface dark:text-on-surface mt-1">
+            <h2 className="font-headline text-2xl sm:text-4xl lg:text-3xl xl:text-4xl font-bold uppercase tracking-tight text-on-surface dark:text-on-surface mt-1">
               Education & Accreditations
             </h2>
           </div>
@@ -85,21 +85,21 @@ export function Education() {
           </span>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-start">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-8 items-start">
           {/* Left: Formal Degrees */}
-          <div className="border-3 border-primary dark:border-[#3f3f46] bg-surface-container-lowest dark:bg-[#0f0f11] p-6 sm:p-8 shadow-[6px_6px_0px_#1a1a1a] dark:shadow-[6px_6px_0px_#000000] space-y-6">
+          <div className="border-3 border-primary dark:border-[#3f3f46] bg-surface-container-lowest dark:bg-[#0f0f11] p-5 sm:p-6 lg:p-6 xl:p-8 shadow-[5px_5px_0px_#1a1a1a] dark:shadow-[5px_5px_0px_#000000] space-y-5 xl:space-y-6">
             <div className="flex items-center justify-between border-b-2 border-primary dark:border-[#3f3f46] pb-3">
-              <h3 className="font-headline text-xl font-bold uppercase text-on-surface dark:text-on-surface">Formal University Degrees</h3>
+              <h3 className="font-headline text-lg xl:text-xl font-bold uppercase text-on-surface dark:text-on-surface">Formal University Degrees</h3>
               <span className="material-symbols-outlined text-primary dark:text-white">school</span>
             </div>
-            <div className="space-y-6">
+            <div className="space-y-5 xl:space-y-6">
               {DEGREES.map((deg) => (
-                <div key={deg.degree} className="border-l-4 border-primary dark:border-[#3f3f46] pl-4 py-1 space-y-1">
-                  <span className={`font-mono text-xs font-bold ${deg.accent} uppercase`}>
+                <div key={deg.degree} className="border-l-4 border-primary dark:border-[#3f3f46] pl-3.5 xl:pl-4 py-1 space-y-1">
+                  <span className={`font-mono text-[11px] xl:text-xs font-bold ${deg.accent} uppercase`}>
                     {deg.period}
                   </span>
-                  <h4 className="font-headline text-lg font-bold text-on-surface dark:text-on-surface">{deg.degree}</h4>
-                  <p className="font-body text-xs sm:text-sm text-on-surface-variant dark:text-on-surface-variant font-medium">{deg.school}</p>
+                  <h4 className="font-headline text-base xl:text-lg font-bold text-on-surface dark:text-on-surface">{deg.degree}</h4>
+                  <p className="font-body text-xs xl:text-sm text-on-surface-variant dark:text-on-surface-variant font-medium">{deg.school}</p>
                   <p className="font-body text-xs text-on-surface dark:text-on-surface pt-1 leading-relaxed">{deg.desc}</p>
                 </div>
               ))}
@@ -107,22 +107,22 @@ export function Education() {
           </div>
 
           {/* Right: Accreditations & Leadership */}
-          <div className="border-3 border-primary dark:border-[#3f3f46] bg-surface-container dark:bg-[#202024] p-6 sm:p-8 shadow-[6px_6px_0px_#1a1a1a] dark:shadow-[6px_6px_0px_#000000] space-y-6">
+          <div className="border-3 border-primary dark:border-[#3f3f46] bg-surface-container dark:bg-[#202024] p-5 sm:p-6 lg:p-6 xl:p-8 shadow-[5px_5px_0px_#1a1a1a] dark:shadow-[5px_5px_0px_#000000] space-y-5 xl:space-y-6">
             <div className="flex items-center justify-between border-b-2 border-primary dark:border-[#3f3f46] pb-3">
-              <h3 className="font-headline text-xl font-bold uppercase text-on-surface dark:text-on-surface">Accreditations & Leadership</h3>
+              <h3 className="font-headline text-lg xl:text-xl font-bold uppercase text-on-surface dark:text-on-surface">Accreditations & Leadership</h3>
               <span className="material-symbols-outlined text-primary dark:text-white">verified</span>
             </div>
-            <div className="space-y-4">
+            <div className="space-y-3.5 xl:space-y-4">
               {CERTS.map((cert) => (
-                <div key={cert.title} className="bg-surface-container-lowest dark:bg-[#0f0f11] p-4 border-2 border-primary dark:border-[#3f3f46]">
+                <div key={cert.title} className="bg-surface-container-lowest dark:bg-[#0f0f11] p-3.5 xl:p-4 border-2 border-primary dark:border-[#3f3f46]">
                   <div className="flex justify-between items-start">
-                    <span className={`px-2 py-0.5 font-headline text-xs font-bold uppercase ${cert.badgeBg}`}>
+                    <span className={`px-2 py-0.5 font-headline text-[10px] xl:text-xs font-bold uppercase ${cert.badgeBg}`}>
                       {cert.badge}
                     </span>
-                    <span className="font-mono text-xs text-on-surface-variant dark:text-on-surface-variant">{cert.level}</span>
+                    <span className="font-mono text-[11px] xl:text-xs text-on-surface-variant dark:text-on-surface-variant">{cert.level}</span>
                   </div>
-                  <h4 className="font-headline text-base font-bold text-on-surface dark:text-on-surface mt-2">{cert.title}</h4>
-                  <p className="font-body text-xs text-on-surface-variant dark:text-on-surface-variant mt-1">{cert.desc}</p>
+                  <h4 className="font-headline text-sm xl:text-base font-bold text-on-surface dark:text-on-surface mt-2">{cert.title}</h4>
+                  <p className="font-body text-xs text-on-surface-variant dark:text-on-surface-variant mt-1 leading-relaxed">{cert.desc}</p>
                 </div>
               ))}
             </div>

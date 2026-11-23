@@ -252,16 +252,16 @@ export function AskTerminal() {
       </div>
 
       {/* Hero header */}
-      <section className="w-full border-b-2 border-primary px-6 lg:px-12 py-10 lg:py-14 bg-surface">
-        <div className="max-w-4xl mx-auto text-center space-y-4">
+      <section className="w-full border-b-2 border-primary px-6 lg:px-12 py-8 lg:py-12 bg-surface">
+        <div className="max-w-4xl mx-auto text-center space-y-3.5 xl:space-y-4">
           <div className="inline-flex items-center gap-2 border-2 border-primary bg-primary-container text-on-primary-container px-3 py-1 text-xs font-headline font-bold uppercase tracking-wider shadow-[3px_3px_0px_#1a1a1a] dark:shadow-[3px_3px_0px_#000000]">
             <span className="material-symbols-outlined shrink-0 text-[16px] leading-none">chat_spark</span>
             Interactive AI &amp; Portfolio Assistant
           </div>
-          <h1 className="font-headline font-bold text-3xl sm:text-5xl lg:text-6xl tracking-tight text-on-surface uppercase">
+          <h1 className="font-headline font-bold text-2xl sm:text-4xl lg:text-3xl xl:text-4xl 2xl:text-5xl tracking-tight text-on-surface uppercase">
             Ask Aditya&apos;s Knowledge Base
           </h1>
-          <p className="font-body text-sm sm:text-base lg:text-lg text-on-surface-variant leading-relaxed max-w-2xl mx-auto">
+          <p className="font-body text-xs sm:text-sm lg:text-base text-on-surface-variant leading-relaxed max-w-2xl mx-auto">
             Ask questions directly to an AI assistant with full context on Aditya Pandey&apos;s public health
             data engineering, Piramal Gandhi Fellowship operations across 16 Bihar blocks, and production
             full-stack systems.

@@ -17,7 +17,7 @@ export function Footer() {
   return (
     <footer className="w-full border-t-2 border-primary bg-surface-low text-on-surface dark:border-outline dark:bg-surface-lowest">
       {/* Telemetry strip */}
-      <div className="flex w-full flex-wrap items-center justify-between gap-4 border-b-2 border-primary bg-surface-container px-6 py-3 font-headline text-xs tracking-wider dark:border-b dark:border-outline-variant dark:bg-surface dark:text-on-surface-variant lg:px-12">
+      <div className="flex w-full flex-wrap items-center justify-between gap-4 border-b-2 border-primary bg-surface-container px-4 sm:px-6 lg:px-8 xl:px-12 py-3 font-headline text-xs tracking-wider dark:border-b dark:border-outline-variant dark:bg-surface dark:text-on-surface-variant">
         <div className="flex items-center gap-6 font-bold dark:text-white">
           <span>LOG_ID: BIO-TELEMETRY-NODE-09</span>
           <span>GRID: NORTH_BIHAR_PUBLIC_HEALTH</span>
@@ -29,7 +29,7 @@ export function Footer() {
       </div>
 
       {/* Identity / registries / coordinates */}
-      <div className="mx-auto grid max-w-7xl grid-cols-1 gap-8 px-6 py-12 md:grid-cols-4 lg:px-12">
+      <div className="mx-auto grid max-w-7xl grid-cols-1 gap-8 px-4 sm:px-6 lg:px-8 xl:px-12 py-10 xl:py-12 md:grid-cols-4">
         <div className="space-y-4 md:col-span-2">
           <div className="font-headline text-xl font-bold uppercase tracking-tight text-primary dark:text-primary">
             AP // ADITYA PANDEY

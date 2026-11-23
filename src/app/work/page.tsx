@@ -31,14 +31,14 @@ export default function WorkPage() {
           </div>
 
           <div className="space-y-4">
-            <h1 className="max-w-5xl font-headline text-3xl font-bold uppercase leading-[0.95] tracking-tight text-primary dark:text-white sm:text-5xl lg:text-6xl">
+            <h1 className="max-w-5xl font-headline text-2xl sm:text-4xl lg:text-4xl xl:text-5xl 2xl:text-6xl font-bold uppercase leading-[1.02] tracking-tight text-primary dark:text-white">
               ENGINEERED FOR{' '}
               <span className="inline-block border-2 border-primary bg-accent-yellow px-2 py-0.5 text-primary shadow-none dark:border-outline dark:bg-primary-yellow dark:text-black dark:shadow-[3px_3px_0px_#0e0e10]">
                 HIGH-INTEGRITY COMMERCE
               </span>{' '}
               &amp; DETERMINISTIC FRONTLINE SCALE
             </h1>
-            <p className="max-w-4xl font-body text-base font-normal leading-relaxed text-on-surface-variant dark:text-on-surface-variant md:text-xl">
+            <p className="max-w-4xl font-body text-sm sm:text-base lg:text-base xl:text-lg font-normal leading-relaxed text-on-surface-variant dark:text-on-surface-variant">
               Production transactional e-commerce engines, civic district hospital queues,
               zero-connectivity clinical maternal triage PWAs, and sub-district macro data spatial
               platforms built for extreme reliability.
@@ -47,70 +47,70 @@ export default function WorkPage() {
 
           {/* 4-Up Bento Stat Strip */}
           <div className="grid grid-cols-1 gap-4 pt-4 sm:grid-cols-2 lg:grid-cols-4">
-            <div className="flex flex-col justify-between border-2 border-primary bg-surface-bright p-5 shadow-[4px_4px_0px_#1a1a1a] dark:border-outline dark:bg-surface-low dark:shadow-[4px_4px_0px_#0e0e10]">
-              <div className="border-b border-primary pb-2 font-headline text-xs font-bold uppercase tracking-widest text-on-surface-variant dark:border-outline dark:text-on-surface-variant">
+            <div className="flex flex-col justify-between border-2 border-primary bg-surface-bright p-4 xl:p-5 shadow-[4px_4px_0px_#1a1a1a] dark:border-outline dark:bg-surface-low dark:shadow-[4px_4px_0px_#0e0e10]">
+              <div className="border-b border-primary pb-2 font-headline text-[11px] xl:text-xs font-bold uppercase tracking-widest text-on-surface-variant dark:border-outline dark:text-on-surface-variant">
                 FLAGSHIP LEDGER // ORDERED
               </div>
-              <div className="py-4">
-                <div className="font-headline text-4xl font-bold text-primary dark:text-white lg:text-5xl">
+              <div className="py-3 xl:py-4">
+                <div className="font-headline text-3xl lg:text-3xl xl:text-4xl 2xl:text-5xl font-bold text-primary dark:text-white">
                   04+3
                 </div>
-                <div className="mt-1 font-headline text-xs font-bold uppercase text-accent-red">
+                <div className="mt-1 font-headline text-[11px] xl:text-xs font-bold uppercase text-accent-red">
                   6 FLAGSHIPS + 3 SPECIALIZED
                 </div>
               </div>
-              <div className="font-body text-xs text-on-surface-variant dark:text-on-surface-variant">
+              <div className="font-body text-[11px] xl:text-xs text-on-surface-variant dark:text-on-surface-variant">
                 Ranked strictly by operational impact.
               </div>
             </div>
 
-            <div className="flex flex-col justify-between border-2 border-primary bg-accent-yellow p-5 text-on-primary-container shadow-[4px_4px_0px_#1a1a1a] dark:border-outline dark:bg-primary-yellow dark:text-black dark:shadow-[4px_4px_0px_#0e0e10]">
-              <div className="border-b border-primary pb-2 font-headline text-xs font-bold uppercase tracking-widest text-primary dark:border-outline dark:text-black">
+            <div className="flex flex-col justify-between border-2 border-primary bg-accent-yellow p-4 xl:p-5 text-on-primary-container shadow-[4px_4px_0px_#1a1a1a] dark:border-outline dark:bg-primary-yellow dark:text-black dark:shadow-[4px_4px_0px_#0e0e10]">
+              <div className="border-b border-primary pb-2 font-headline text-[11px] xl:text-xs font-bold uppercase tracking-widest text-primary dark:border-outline dark:text-black">
                 SECURITY // HMAC SHA-256
               </div>
-              <div className="py-4">
-                <div className="font-headline text-4xl font-bold text-primary dark:text-black lg:text-5xl">
+              <div className="py-3 xl:py-4">
+                <div className="font-headline text-3xl lg:text-3xl xl:text-4xl 2xl:text-5xl font-bold text-primary dark:text-black">
                   100%
                 </div>
-                <div className="mt-1 font-headline text-xs font-bold uppercase text-primary dark:text-black">
+                <div className="mt-1 font-headline text-[11px] xl:text-xs font-bold uppercase text-primary dark:text-black">
                   TAMPER-PROOF PAYMENTS
                 </div>
               </div>
-              <div className="font-body text-xs font-medium text-primary dark:text-black">
+              <div className="font-body text-[11px] xl:text-xs font-medium text-primary dark:text-black">
                 Server-side amount re-validation pipeline.
               </div>
             </div>
 
-            <div className="flex flex-col justify-between border-2 border-primary bg-surface-bright p-5 shadow-[4px_4px_0px_#1a1a1a] dark:border-outline dark:bg-surface-low dark:shadow-[4px_4px_0px_#0e0e10]">
-              <div className="border-b border-primary pb-2 font-headline text-xs font-bold uppercase tracking-widest text-on-surface-variant dark:border-outline dark:text-on-surface-variant">
+            <div className="flex flex-col justify-between border-2 border-primary bg-surface-bright p-4 xl:p-5 shadow-[4px_4px_0px_#1a1a1a] dark:border-outline dark:bg-surface-low dark:shadow-[4px_4px_0px_#0e0e10]">
+              <div className="border-b border-primary pb-2 font-headline text-[11px] xl:text-xs font-bold uppercase tracking-widest text-on-surface-variant dark:border-outline dark:text-on-surface-variant">
                 EDGE RESPONSIVENESS
               </div>
-              <div className="py-4">
-                <div className="font-headline text-4xl font-bold text-primary dark:text-white lg:text-5xl">
+              <div className="py-3 xl:py-4">
+                <div className="font-headline text-3xl lg:text-3xl xl:text-4xl 2xl:text-5xl font-bold text-primary dark:text-white">
                   &lt;50ms
                 </div>
-                <div className="mt-1 font-headline text-xs font-bold uppercase text-accent-blue">
+                <div className="mt-1 font-headline text-[11px] xl:text-xs font-bold uppercase text-accent-blue">
                   QUERY LATENCY (DUCKDB)
                 </div>
               </div>
-              <div className="font-body text-xs text-on-surface-variant dark:text-on-surface-variant">
+              <div className="font-body text-[11px] xl:text-xs text-on-surface-variant dark:text-on-surface-variant">
                 118k+ indicators indexed across districts.
               </div>
             </div>
 
-            <div className="flex flex-col justify-between border-2 border-primary bg-surface-bright p-5 shadow-[4px_4px_0px_#1a1a1a] dark:border-outline dark:bg-surface-low dark:shadow-[4px_4px_0px_#0e0e10]">
-              <div className="border-b border-primary pb-2 font-headline text-xs font-bold uppercase tracking-widest text-on-surface-variant dark:border-outline dark:text-on-surface-variant">
+            <div className="flex flex-col justify-between border-2 border-primary bg-surface-bright p-4 xl:p-5 shadow-[4px_4px_0px_#1a1a1a] dark:border-outline dark:bg-surface-low dark:shadow-[4px_4px_0px_#0e0e10]">
+              <div className="border-b border-primary pb-2 font-headline text-[11px] xl:text-xs font-bold uppercase tracking-widest text-on-surface-variant dark:border-outline dark:text-on-surface-variant">
                 OFFLINE PROTOCOL
               </div>
-              <div className="py-4">
-                <div className="font-headline text-4xl font-bold text-primary dark:text-white lg:text-5xl">
+              <div className="py-3 xl:py-4">
+                <div className="font-headline text-3xl lg:text-3xl xl:text-4xl 2xl:text-5xl font-bold text-primary dark:text-white">
                   0%
                 </div>
-                <div className="mt-1 font-headline text-xs font-bold uppercase text-accent-red">
+                <div className="mt-1 font-headline text-[11px] xl:text-xs font-bold uppercase text-accent-red">
                   DATA LOSS ON 2G/ZERO-CONN
                 </div>
               </div>
-              <div className="font-body text-xs text-on-surface-variant dark:text-on-surface-variant">
+              <div className="font-body text-[11px] xl:text-xs text-on-surface-variant dark:text-on-surface-variant">
                 Dexie.js IndexedDB append-only sync.
               </div>
             </div>
@@ -150,7 +150,7 @@ export default function WorkPage() {
           {/* Title & Overview */}
           <div className="grid grid-cols-1 items-start gap-8 lg:grid-cols-12">
             <div className="space-y-4 lg:col-span-8">
-              <h2 className="font-headline text-3xl font-bold uppercase leading-tight tracking-tight text-primary dark:text-white sm:text-4xl lg:text-5xl">
+              <h2 className="font-headline text-2xl font-bold uppercase leading-tight tracking-tight text-primary dark:text-white sm:text-3xl lg:text-3xl xl:text-4xl 2xl:text-5xl">
                 BIHARKASWAAD E-COMMERCE PLATFORM
                 <span className="mt-1 block text-xl font-normal uppercase tracking-normal text-on-surface-variant dark:text-primary-yellow sm:text-2xl">
                   Full-Stack Artisanal Food Logistics, Deterministic Payments &amp; Order Pipeline
@@ -436,7 +436,7 @@ export default function WorkPage() {
           </div>
 
           <div className="max-w-4xl space-y-4">
-            <h2 className="font-headline text-3xl font-bold uppercase leading-tight tracking-tight text-primary dark:text-white sm:text-4xl lg:text-5xl">
+            <h2 className="font-headline text-2xl font-bold uppercase leading-tight tracking-tight text-primary dark:text-white sm:text-3xl lg:text-3xl xl:text-4xl 2xl:text-5xl">
               DISTRICT HOSPITAL ARARIA CIVIC HEALTHCARE PORTAL
               <span className="mt-1 block text-xl font-normal uppercase tracking-normal text-on-surface-variant dark:text-primary-yellow sm:text-2xl">
                 Real-Time OPD Dispatch, Emergency Blood Reserves &amp; Public Transparency Engine
@@ -614,7 +614,7 @@ export default function WorkPage() {
           {/* Name & synopsis */}
           <div className="grid grid-cols-1 items-start gap-8 lg:grid-cols-12">
             <div className="space-y-4 lg:col-span-8">
-              <h2 className="font-headline text-3xl font-bold uppercase leading-tight tracking-tight text-primary dark:text-white sm:text-4xl lg:text-5xl">
+              <h2 className="font-headline text-2xl font-bold uppercase leading-tight tracking-tight text-primary dark:text-white sm:text-3xl lg:text-3xl xl:text-4xl 2xl:text-5xl">
                 MATRU SURAKSHA (मातृ सुरक्षा)
                 <span className="mt-1 block text-xl font-normal uppercase tracking-normal text-on-surface-variant dark:text-primary-yellow sm:text-2xl">
                   Multi-Tier High-Risk Pregnancy Care &amp; Clinical Triage Engine
@@ -1027,6 +1027,28 @@ export default function WorkPage() {
               </span>
             </div>
           </div>
+
+          {/* CTA */}
+          <div className="flex flex-col gap-3 sm:flex-row">
+            <a
+              className="flex flex-1 items-center justify-center gap-2 border-2 border-primary bg-primary px-4 py-3 font-headline text-xs font-bold uppercase tracking-wider text-on-primary shadow-[3px_3px_0px_#1a1a1a] transition-colors hover:bg-accent-yellow hover:text-black dark:border-primary-yellow dark:bg-primary-yellow dark:text-black dark:shadow-[3px_3px_0px_#0e0e10] dark:hover:bg-primary-yellow/80"
+              href="https://hrp-pilot-api.onrender.com"
+              rel="noopener noreferrer"
+              target="_blank"
+            >
+              <span>Open Live PWA</span>
+              <span className="material-symbols-outlined text-[16px]">arrow_outward</span>
+            </a>
+            <a
+              className="flex items-center justify-center gap-1.5 border-2 border-primary bg-surface px-4 py-3 font-headline text-xs font-bold uppercase tracking-wider text-primary shadow-[3px_3px_0px_#1a1a1a] transition-colors hover:bg-surface-container dark:border-outline dark:bg-surface-container dark:text-white dark:shadow-[3px_3px_0px_#0e0e10]"
+              href="https://github.com/adityapandey2002"
+              rel="noopener noreferrer"
+              target="_blank"
+            >
+              <span className="material-symbols-outlined text-[16px]">code</span>
+              <span>View Git Repository</span>
+            </a>
+          </div>
         </div>
       </section>
 
@@ -1056,7 +1078,7 @@ export default function WorkPage() {
           </div>
 
           <div className="max-w-4xl space-y-4">
-            <h2 className="font-headline text-3xl font-bold uppercase leading-tight tracking-tight text-primary dark:text-white sm:text-4xl lg:text-5xl">
+            <h2 className="font-headline text-2xl font-bold uppercase leading-tight tracking-tight text-primary dark:text-white sm:text-3xl lg:text-3xl xl:text-4xl 2xl:text-5xl">
               INDIA DEVELOPMENT DATA ENGINE &amp; SOCIO-ECONOMIC CHOROPLETH
               <span className="mt-1 block text-xl font-normal uppercase tracking-normal text-on-surface-variant dark:text-primary-yellow sm:text-2xl">
                 High-Throughput Spatial Analytics &amp; Vectorized Indicator Discovery
@@ -1248,7 +1270,7 @@ export default function WorkPage() {
           {/* Title & Overview */}
           <div className="grid grid-cols-1 items-start gap-8 lg:grid-cols-12">
             <div className="space-y-4 lg:col-span-8">
-              <h2 className="font-headline text-3xl font-bold uppercase leading-tight tracking-tight text-primary dark:text-white sm:text-4xl lg:text-5xl">
+              <h2 className="font-headline text-2xl font-bold uppercase leading-tight tracking-tight text-primary dark:text-white sm:text-3xl lg:text-3xl xl:text-4xl 2xl:text-5xl">
                 CONSULTANCYWALA — E-COMMERCE GROWTH AGENCY
                 <span className="mt-1 block text-xl font-normal uppercase tracking-normal text-on-surface-variant dark:text-primary-yellow sm:text-2xl">
                   End-to-End Marketplace Launch, PPC, Cataloging &amp; Operations
@@ -1332,6 +1354,28 @@ export default function WorkPage() {
             </div>
           </a>
 
+          {/* CTA */}
+          <div className="flex flex-col gap-3 sm:flex-row">
+            <a
+              className="flex flex-1 items-center justify-center gap-2 border-2 border-primary bg-primary px-4 py-3 font-headline text-xs font-bold uppercase tracking-wider text-on-primary shadow-[3px_3px_0px_#1a1a1a] transition-colors hover:bg-accent-yellow hover:text-black dark:border-primary-yellow dark:bg-primary-yellow dark:text-black dark:shadow-[3px_3px_0px_#0e0e10] dark:hover:bg-primary-yellow/80"
+              href="https://consultancywala.com"
+              rel="noopener noreferrer"
+              target="_blank"
+            >
+              <span>Open Live Site: consultancywala.com</span>
+              <span className="material-symbols-outlined text-[16px]">arrow_outward</span>
+            </a>
+            <a
+              className="flex items-center justify-center gap-1.5 border-2 border-primary bg-surface px-4 py-3 font-headline text-xs font-bold uppercase tracking-wider text-primary shadow-[3px_3px_0px_#1a1a1a] transition-colors hover:bg-surface-container dark:border-outline dark:bg-surface-container dark:text-white dark:shadow-[3px_3px_0px_#0e0e10]"
+              href="https://github.com/adityapandey2002"
+              rel="noopener noreferrer"
+              target="_blank"
+            >
+              <span className="material-symbols-outlined text-[16px]">code</span>
+              <span>View Git Repository</span>
+            </a>
+          </div>
+
           {/* Architecture & Capabilities */}
           <div className="grid grid-cols-1 gap-6 lg:grid-cols-2">
             <div className="space-y-3">
@@ -1392,7 +1436,7 @@ export default function WorkPage() {
           {/* Title & Overview */}
           <div className="grid grid-cols-1 items-start gap-8 lg:grid-cols-12">
             <div className="space-y-4 lg:col-span-8">
-              <h2 className="font-headline text-3xl font-bold uppercase leading-tight tracking-tight text-primary dark:text-white sm:text-4xl lg:text-5xl">
+              <h2 className="font-headline text-2xl font-bold uppercase leading-tight tracking-tight text-primary dark:text-white sm:text-3xl lg:text-3xl xl:text-4xl 2xl:text-5xl">
                 VHSND &amp; PMSMA DATA-CLEANING PIPELINE
                 <span className="mt-1 block text-xl font-normal uppercase tracking-normal text-on-surface-variant dark:text-primary-yellow sm:text-2xl">
                   Offline-First Survey Normalisation, Contradiction Adjudication &amp; Reporting
@@ -1444,11 +1488,7 @@ export default function WorkPage() {
           </div>
 
           {/* Live Browser Preview Box */}
-          <a
-            aria-label="Open the VHSND pipeline local app"
-            className="group relative block border-2 border-primary bg-surface shadow-[6px_6px_0px_#1a1a1a] dark:border-outline dark:bg-surface-low dark:shadow-[6px_6px_0px_#0e0e10]"
-            href="http://localhost:4173/"
-          >
+          <div className="group relative block border-2 border-primary bg-surface shadow-[6px_6px_0px_#1a1a1a] dark:border-outline dark:bg-surface-low dark:shadow-[6px_6px_0px_#0e0e10]">
             <div className="flex items-center justify-between border-b-2 border-primary bg-primary px-4 py-2.5 font-headline text-xs text-on-primary dark:border-outline dark:bg-surface-lowest dark:text-on-surface">
               <div className="flex items-center gap-2">
                 <span className="inline-block h-3 w-3 rounded-full bg-accent-red" />
@@ -1482,7 +1522,23 @@ export default function WorkPage() {
                 Runs fully in-browser · no data leaves origin
               </span>
             </div>
-          </a>
+          </div>
+
+          {/* CTA */}
+          <div className="flex flex-col gap-3 sm:flex-row">
+            <span className="flex flex-1 cursor-not-allowed items-center justify-center gap-2 border-2 border-dashed border-primary px-4 py-3 font-headline text-xs font-bold uppercase tracking-wider text-on-surface-variant dark:border-outline dark:text-on-surface-variant">
+              Live URL Pending
+            </span>
+            <a
+              className="flex items-center justify-center gap-1.5 border-2 border-primary bg-surface px-4 py-3 font-headline text-xs font-bold uppercase tracking-wider text-primary shadow-[3px_3px_0px_#1a1a1a] transition-colors hover:bg-surface-container dark:border-outline dark:bg-surface-container dark:text-white dark:shadow-[3px_3px_0px_#0e0e10]"
+              href="https://github.com/adityapandey2002"
+              rel="noopener noreferrer"
+              target="_blank"
+            >
+              <span className="material-symbols-outlined text-[16px]">code</span>
+              <span>View Git Repository</span>
+            </a>
+          </div>
 
           {/* Architecture & Capabilities */}
           <div className="grid grid-cols-1 gap-6 lg:grid-cols-2">

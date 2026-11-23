@@ -75,7 +75,7 @@ const METRICS = [
 ];
 
 const BTN_SHELL =
-  'inline-flex items-center justify-center gap-2 rounded-0 border-2 border-primary dark:border-[#3f3f46] font-headline font-bold text-sm uppercase tracking-wider px-6 py-3.5 shadow-[5px_5px_0px_#1a1a1a] dark:shadow-[5px_5px_0px_#000000] active:translate-x-0.5 active:translate-y-0.5 active:shadow-[2px_2px_0px_#1a1a1a] dark:active:shadow-[2px_2px_0px_#000000] transition-all duration-100';
+  'inline-flex items-center justify-center gap-2 rounded-0 border-2 border-primary dark:border-[#3f3f46] font-headline font-bold text-xs lg:text-[11px] xl:text-xs 2xl:text-sm uppercase tracking-wider px-4 lg:px-4 xl:px-5 py-2.5 lg:py-2.5 xl:py-3 shadow-[4px_4px_0px_#1a1a1a] dark:shadow-[4px_4px_0px_#000000] active:translate-x-0.5 active:translate-y-0.5 active:shadow-[2px_2px_0px_#1a1a1a] dark:active:shadow-[2px_2px_0px_#000000] transition-all duration-100';
 
 const BTN_VARIANTS = {
   systems:
@@ -133,23 +133,23 @@ function MetricBlock({
 }: MetricBlockProps) {
   return (
     <div
-      className={`${bg} border-2 border-primary dark:border-[#3f3f46] p-5 flex flex-col justify-between shadow-[4px_4px_0px_#1a1a1a] dark:shadow-[4px_4px_0px_#000000] hover:-translate-x-0.5 hover:-translate-y-0.5 hover:shadow-[2px_2px_0px_#1a1a1a] dark:hover:shadow-[2px_2px_0px_#000000] transition-all`}
+      className={`${bg} border-2 border-primary dark:border-[#3f3f46] p-4 lg:p-3.5 xl:p-5 flex flex-col justify-between shadow-[4px_4px_0px_#1a1a1a] dark:shadow-[4px_4px_0px_#000000] hover:-translate-x-0.5 hover:-translate-y-0.5 hover:shadow-[2px_2px_0px_#1a1a1a] dark:hover:shadow-[2px_2px_0px_#000000] transition-all`}
     >
       <div className="flex items-start justify-between gap-2">
-        <span className={`font-mono text-xs font-bold uppercase ${numberColor}`}>
+        <span className={`font-mono text-[11px] xl:text-xs font-bold uppercase ${numberColor}`}>
           {number} {"/"} {label}
         </span>
-        <span className={`material-symbols-outlined text-xl ${iconColor}`}>{icon}</span>
+        <span className={`material-symbols-outlined text-lg xl:text-xl ${iconColor}`}>{icon}</span>
       </div>
-      <div className="my-4">
-        <div className={`font-headline text-5xl font-bold tracking-tight ${valueColor}`}>
+      <div className="my-3 xl:my-4">
+        <div className={`font-headline text-3xl lg:text-3xl xl:text-4xl 2xl:text-5xl font-bold tracking-tight ${valueColor}`}>
           {value}
         </div>
-        <div className={`font-headline font-bold text-xs uppercase tracking-wider mt-1 ${unitColor}`}>
+        <div className={`font-headline font-bold text-[11px] xl:text-xs uppercase tracking-wider mt-1 ${unitColor}`}>
           {unit}
         </div>
       </div>
-      <p className={`font-body text-xs ${descColor}`}>{desc}</p>
+      <p className={`font-body text-[11px] xl:text-xs leading-normal ${descColor}`}>{desc}</p>
     </div>
   );
 }
@@ -158,18 +158,18 @@ export function Hero() {
   return (
     <section id="hero" className="relative w-full flex flex-col">
       {/* 1 · Hero Section */}
-      <section className="w-full border-b-4 border-primary dark:border-[#3f3f46] py-5 lg:py-10 bg-surface dark:bg-[#161619] px-4 sm:px-6 lg:px-8">
-        <div className="max-w-7xl mx-auto flex flex-col gap-10">
+      <section className="w-full border-b-4 border-primary dark:border-[#3f3f46] py-5 lg:py-8 xl:py-10 bg-surface dark:bg-[#161619] px-4 sm:px-6 lg:px-8">
+        <div className="max-w-7xl mx-auto flex flex-col gap-8 xl:gap-10">
           {/* Headline Grid */}
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
-            <div className="lg:col-span-8 space-y-5">
+            <div className="lg:col-span-8 space-y-4 xl:space-y-5">
               {/* Eyebrow badge */}
               <div className="inline-block bg-primary-container text-on-primary-container dark:bg-[#facc15] dark:text-[#121214] px-3.5 py-1 border-2 border-primary dark:border-[#3f3f46] font-headline text-[10px] md:text-xs font-bold uppercase tracking-widest shadow-[4px_4px_0px_#1a1a1a] dark:shadow-[4px_4px_0px_#000000]">
                 Public Health Data Architecture × Full-Stack Systems
               </div>
 
               {/* Headline */}
-              <h1 className="font-headline text-4xl sm:text-6xl lg:text-7xl font-bold tracking-tight text-on-surface leading-[1.02] uppercase">
+              <h1 className="font-headline text-3xl sm:text-5xl lg:text-4xl xl:text-5xl 2xl:text-6xl font-bold tracking-tight text-on-surface leading-[1.04] uppercase">
                 Building data systems that turn{' '}
                 <span className="bg-primary text-on-primary dark:bg-[#facc15] dark:text-[#121214] px-2 inline-block">
                   field work
@@ -178,12 +178,12 @@ export function Hero() {
               </h1>
 
               {/* Paragraph */}
-              <p className="font-body text-base sm:text-lg text-on-surface leading-relaxed max-w-3xl border-l-4 border-secondary dark:border-secondary pl-4 py-1">
+              <p className="font-body text-sm sm:text-base lg:text-[14px] xl:text-base text-on-surface leading-relaxed max-w-3xl border-l-4 border-secondary dark:border-secondary pl-4 py-1">
                 I am <strong className="font-bold text-primary dark:text-[#facc15]">Aditya Pandey</strong> — a full-stack builder & public health data engineer bridging on-the-ground frontline health systems (<em className="not-italic font-semibold">ASHA, ANM, CHO, PHC</em>) with production web platforms, automated validation pipelines, and clinical AI surveillance.
               </p>
 
               {/* Action Buttons */}
-              <div className="flex flex-wrap gap-4 pt-2">
+              <div className="flex flex-wrap gap-3 xl:gap-4 pt-2">
                 <HeroButton variant="systems" href="#systems" icon={<ArrowDownRight size={16} aria-hidden="true" />}>
                   Explore Selected Systems
                 </HeroButton>
@@ -199,7 +199,7 @@ export function Hero() {
             {/* Live Kernel telemetry box — desktop only; hidden on mobile to
                 keep the hero compact on phones. */}
             <div className="hidden lg:block lg:col-span-4">
-              <div className="relative rounded-0 border-[3px] border-primary dark:border-[#3f3f46] bg-surface-container-lowest dark:bg-[#161619] shadow-[6px_6px_0px_#1a1a1a] dark:shadow-[6px_6px_0px_#000000] p-4">
+              <div className="relative rounded-0 border-[3px] border-primary dark:border-[#3f3f46] bg-surface-container-lowest dark:bg-[#161619] shadow-[5px_5px_0px_#1a1a1a] dark:shadow-[5px_5px_0px_#000000] p-3.5 xl:p-4">
                 <div className="absolute -top-2 right-3 bg-accent-red text-black dark:text-[#121214] px-2 py-0.5 font-headline font-bold text-[10px] uppercase tracking-widest border-2 border-primary dark:border-[#3f3f46]">
                   LIVE KERNEL
                 </div>
@@ -209,7 +209,7 @@ export function Hero() {
                   </span>
                   <span className="w-2.5 h-2.5 rounded-full bg-accent-red animate-pulse inline-block" />
                 </div>
-                <div className="space-y-2.5 font-mono text-[10px]">
+                <div className="space-y-2 xl:space-y-2.5 font-mono text-[9.5px] xl:text-[10px]">
                   <div className="flex justify-between items-center p-1.5 bg-surface dark:bg-[#202024] border border-primary dark:border-[#3f3f46]">
                     <span className="text-on-surface-variant dark:text-[#a1a1aa] uppercase">PNC Telemetry Latency:</span>
                     <span className="font-bold text-on-primary bg-primary dark:bg-[#facc15] dark:text-[#121214] px-1 py-0.5">

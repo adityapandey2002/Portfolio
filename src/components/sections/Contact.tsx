@@ -58,16 +58,27 @@ export function Contact({ web3formsKey }: ContactProps) {
 
   const onSubmit = async (e: FormEvent) => {
     e.preventDefault();
-    if (!form.name || !form.email || !form.message) return;
+    if (!form.name.trim() || !form.email.trim() || !form.message.trim()) return;
+    // Client-side email shape check so we don't burn a round-trip on obvious
+    // typos; the server re-validates regardless.
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email.trim())) {
+      setStatus('error');
+      return;
+    }
     setStatus('sending');
 
     const payload = {
-      name: form.name,
-      email: form.email,
-      phone: form.phone,
+      name: form.name.trim(),
+      email: form.email.trim(),
+      phone: form.phone.trim(),
       category: form.category,
-      message: form.message,
+      message: form.message.trim(),
     };
+
+    // Guard against a request that never resolves: without this the button
+    // stays disabled forever and the user has no way to retry.
+    const controller = new AbortController();
+    const timeoutId = setTimeout(() => controller.abort(), 15000);
 
     try {
       // Web3Forms must be called from the browser: its free plan rejects
@@ -80,13 +91,14 @@ export function Contact({ web3formsKey }: ContactProps) {
             access_key: web3formsKey,
             subject: `Portfolio enquiry · ${form.category}`,
             from_name: 'adityapandey.dev',
-            name: form.name,
-            email: form.email,
-            phone: form.phone || 'not provided',
-            category: form.category,
-            message: form.message,
+            name: form.name.trim(),
+            email: form.email.trim(),
+            phone: form.phone.trim() || 'not provided',
+            category: form.category.trim(),
+            message: form.message.trim(),
             botcheck: '',
           }),
+          signal: controller.signal,
         });
         const relayResult = (await relay.json().catch(() => null)) as { success?: boolean } | null;
         if (relay.ok && relayResult?.success) {
@@ -102,25 +114,34 @@ export function Contact({ web3formsKey }: ContactProps) {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(payload),
+        signal: controller.signal,
       });
-      if (!res.ok) throw new Error('failed');
+      if (!res.ok) {
+        // Surface the server's reason when available for easier diagnosis.
+        const body = (await res.json().catch(() => null)) as { reason?: string } | null;
+        console.error('[contact] fallback rejected:', res.status, body);
+        throw new Error(body?.reason ?? 'failed');
+      }
       setStatus('sent');
       setForm(EMPTY);
-    } catch {
+    } catch (err) {
+      console.error('[contact] submission failed:', err);
       setStatus('error');
+    } finally {
+      clearTimeout(timeoutId);
     }
   };
 
   return (
     <section id="dispatch" className="border-b-4 border-primary dark:border-[#3f3f46] bg-surface-container-lowest dark:bg-[#121214]">
-      <div className="max-w-7xl mx-auto space-y-12 py-10 px-4 sm:px-8 lg:px-12">
+      <div className="max-w-7xl mx-auto space-y-8 lg:space-y-10 py-8 lg:py-10 px-4 sm:px-8 lg:px-12">
         {/* Section Header */}
         <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 border-b-2 border-primary dark:border-[#3f3f46] pb-4">
           <div>
             <span className="font-headline text-xs font-bold uppercase tracking-widest text-secondary block">
               08 // TRANSMISSION & ENGAGEMENT
             </span>
-            <h2 className="font-headline text-3xl sm:text-5xl font-bold uppercase tracking-tight text-on-surface dark:text-on-surface mt-1">
+            <h2 className="font-headline text-2xl sm:text-4xl lg:text-3xl xl:text-4xl font-bold uppercase tracking-tight text-on-surface dark:text-on-surface mt-1">
               Initiate Direct Dispatch
             </h2>
           </div>
@@ -129,66 +150,66 @@ export function Contact({ web3formsKey }: ContactProps) {
           </span>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-start">
           {/* Contact Form */}
-          <div className="lg:col-span-7 bg-surface dark:bg-[#202024] border-3 border-primary dark:border-[#3f3f46] p-6 sm:p-8 shadow-[6px_6px_0px_#1a1a1a] dark:shadow-[6px_6px_0px_#000000]">
-            <div className="border-b-2 border-primary dark:border-[#3f3f46] pb-4 mb-6">
-              <h3 className="font-headline text-xl font-bold uppercase text-on-surface dark:text-on-surface">
+          <div className="lg:col-span-7 bg-surface dark:bg-[#202024] border-3 border-primary dark:border-[#3f3f46] p-5 sm:p-6 lg:p-6 xl:p-8 shadow-[5px_5px_0px_#1a1a1a] dark:shadow-[5px_5px_0px_#000000]">
+            <div className="border-b-2 border-primary dark:border-[#3f3f46] pb-3.5 mb-5 xl:pb-4 xl:mb-6">
+              <h3 className="font-headline text-lg xl:text-xl font-bold uppercase text-on-surface dark:text-on-surface">
                 Direct Transmission Form
               </h3>
               <p className="font-body text-xs text-on-surface-variant dark:text-on-surface-variant mt-1">
                 Reach out for public health data consulting, health-tech engineering partnerships, fellowship collaborations, or full-stack speaking sessions.
               </p>
             </div>
-            <form onSubmit={onSubmit} className="space-y-6">
+            <form onSubmit={onSubmit} className="space-y-4 xl:space-y-5">
               <div className="space-y-1">
-                <label className="font-headline text-xs font-bold uppercase text-on-surface dark:text-on-surface block tracking-wider">
+                <label className="font-headline text-[11px] xl:text-xs font-bold uppercase text-on-surface dark:text-on-surface block tracking-wider">
                   Your Identity &amp; Title *
                 </label>
                 <input
                   value={form.name}
                   onChange={set('name')}
-                  className="w-full bg-surface-container-lowest dark:bg-[#161619] border-b-3 border-primary dark:border dark:border-[#3f3f46] dark:border-b-3 dark:border-b-[#facc15] p-3 text-sm font-body text-on-surface dark:text-on-surface focus:outline-none focus:bg-primary-container/20 dark:focus:bg-[#27272a] transition-colors"
+                  className="w-full bg-surface-container-lowest dark:bg-[#161619] border-b-3 border-primary dark:border dark:border-[#3f3f46] dark:border-b-3 dark:border-b-[#facc15] p-2.5 xl:p-3 text-xs xl:text-sm font-body text-on-surface dark:text-on-surface focus:outline-none focus:bg-primary-container/20 dark:focus:bg-[#27272a] transition-colors"
                   placeholder="e.g. Dr. Ramesh Kumar / Chief Medical Officer"
                   required
                   type="text"
                 />
               </div>
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5 xl:gap-4">
                 <div className="space-y-1">
-                  <label className="font-headline text-xs font-bold uppercase text-on-surface dark:text-on-surface block tracking-wider">
+                  <label className="font-headline text-[11px] xl:text-xs font-bold uppercase text-on-surface dark:text-on-surface block tracking-wider">
                     Official Email Coordinates *
                   </label>
                   <input
                     value={form.email}
                     onChange={set('email')}
                     type="email"
-                    className="w-full bg-surface-container-lowest dark:bg-[#161619] border-b-3 border-primary dark:border dark:border-[#3f3f46] dark:border-b-3 dark:border-b-[#facc15] p-3 text-sm font-body text-on-surface dark:text-on-surface focus:outline-none focus:bg-primary-container/20 dark:focus:bg-[#27272a] transition-colors"
+                    className="w-full bg-surface-container-lowest dark:bg-[#161619] border-b-3 border-primary dark:border dark:border-[#3f3f46] dark:border-b-3 dark:border-b-[#facc15] p-2.5 xl:p-3 text-xs xl:text-sm font-body text-on-surface dark:text-on-surface focus:outline-none focus:bg-primary-container/20 dark:focus:bg-[#27272a] transition-colors"
                     placeholder="name@organization.gov.in"
                     required
                   />
                 </div>
                 <div className="space-y-1">
-                  <label className="font-headline text-xs font-bold uppercase text-on-surface dark:text-on-surface block tracking-wider">
+                  <label className="font-headline text-[11px] xl:text-xs font-bold uppercase text-on-surface dark:text-on-surface block tracking-wider">
                     Phone / WhatsApp Vector
                   </label>
                   <input
                     value={form.phone}
                     onChange={set('phone')}
-                    className="w-full bg-surface-container-lowest dark:bg-[#161619] border-b-3 border-primary dark:border dark:border-[#3f3f46] dark:border-b-3 dark:border-b-[#facc15] p-3 text-sm font-body text-on-surface dark:text-on-surface focus:outline-none focus:bg-primary-container/20 dark:focus:bg-[#27272a] transition-colors"
+                    className="w-full bg-surface-container-lowest dark:bg-[#161619] border-b-3 border-primary dark:border dark:border-[#3f3f46] dark:border-b-3 dark:border-b-[#facc15] p-2.5 xl:p-3 text-xs xl:text-sm font-body text-on-surface dark:text-on-surface focus:outline-none focus:bg-primary-container/20 dark:focus:bg-[#27272a] transition-colors"
                     placeholder="+91 XXXXX XXXXX"
                     type="tel"
                   />
                 </div>
               </div>
               <div className="space-y-1">
-                <label className="font-headline text-xs font-bold uppercase text-on-surface dark:text-on-surface block tracking-wider">
+                <label className="font-headline text-[11px] xl:text-xs font-bold uppercase text-on-surface dark:text-on-surface block tracking-wider">
                   Vector Category *
                 </label>
                 <select
                   value={form.category}
                   onChange={set('category')}
-                  className="w-full bg-surface-container-lowest dark:bg-[#161619] border-b-3 border-primary dark:border dark:border-[#3f3f46] dark:border-b-3 dark:border-b-[#facc15] p-3 text-sm font-body text-on-surface dark:text-on-surface focus:outline-none focus:bg-primary-container/20 dark:focus:bg-[#27272a] transition-colors"
+                  className="w-full bg-surface-container-lowest dark:bg-[#161619] border-b-3 border-primary dark:border dark:border-[#3f3f46] dark:border-b-3 dark:border-b-[#facc15] p-2.5 xl:p-3 text-xs xl:text-sm font-body text-on-surface dark:text-on-surface focus:outline-none focus:bg-primary-container/20 dark:focus:bg-[#27272a] transition-colors"
                 >
                   <option>Public Health MIS / Data System Architecture</option>
                   <option>Engineering Fellowship / Organization Role</option>
@@ -198,13 +219,13 @@ export function Contact({ web3formsKey }: ContactProps) {
                 </select>
               </div>
               <div className="space-y-1">
-                <label className="font-headline text-xs font-bold uppercase text-on-surface dark:text-on-surface block tracking-wider">
+                <label className="font-headline text-[11px] xl:text-xs font-bold uppercase text-on-surface dark:text-on-surface block tracking-wider">
                   Operational Dispatch Payload *
                 </label>
                 <textarea
                   value={form.message}
                   onChange={set('message')}
-                  className="w-full bg-surface-container-lowest dark:bg-[#161619] border-b-3 border-primary dark:border dark:border-[#3f3f46] dark:border-b-3 dark:border-b-[#facc15] p-3 text-sm font-body text-on-surface dark:text-on-surface focus:outline-none focus:bg-primary-container/20 dark:focus:bg-[#27272a] transition-colors resize-none"
+                  className="w-full bg-surface-container-lowest dark:bg-[#161619] border-b-3 border-primary dark:border dark:border-[#3f3f46] dark:border-b-3 dark:border-b-[#facc15] p-2.5 xl:p-3 text-xs xl:text-sm font-body text-on-surface dark:text-on-surface focus:outline-none focus:bg-primary-container/20 dark:focus:bg-[#27272a] transition-colors resize-none"
                   placeholder="State requirements, technical constraints, field location, or collaboration scope..."
                   required
                   rows={4}
@@ -214,7 +235,7 @@ export function Contact({ web3formsKey }: ContactProps) {
                 <button
                   type="submit"
                   disabled={sending}
-                  className="w-full sm:w-auto inline-flex items-center justify-center gap-3 px-8 py-4 bg-primary text-on-primary font-headline font-bold text-sm uppercase tracking-widest border-2 border-primary shadow-[5px_5px_0px_#ffcc00] dark:bg-[#facc15] dark:text-[#121214] dark:border-[#facc15] dark:shadow-[5px_5px_0px_#000000] hover:bg-secondary hover:text-on-secondary dark:hover:bg-white dark:hover:text-black dark:hover:border-white transition-all active:translate-x-0.5 active:translate-y-0.5 active:shadow-[2px_2px_0px_#ffcc00] dark:active:shadow-[2px_2px_0px_#000000] disabled:opacity-60"
+                  className="w-full sm:w-auto inline-flex items-center justify-center gap-2 xl:gap-3 px-6 xl:px-8 py-3 xl:py-3.5 bg-primary text-on-primary font-headline font-bold text-xs xl:text-sm uppercase tracking-widest border-2 border-primary shadow-[4px_4px_0px_#ffcc00] dark:bg-[#facc15] dark:text-[#121214] dark:border-[#facc15] dark:shadow-[4px_4px_0px_#000000] hover:bg-secondary hover:text-on-secondary dark:hover:bg-white dark:hover:text-black dark:hover:border-white transition-all active:translate-x-0.5 active:translate-y-0.5 active:shadow-[2px_2px_0px_#ffcc00] dark:active:shadow-[2px_2px_0px_#000000] disabled:opacity-60"
                 >
                   {sent ? (
                     <>

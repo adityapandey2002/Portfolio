@@ -80,13 +80,13 @@ export function SelectedSystems() {
       id="systems"
       className="border-b-4 border-primary dark:border-[#3f3f46] bg-surface-container-low dark:bg-[#121214] py-10 px-4 sm:px-8 lg:px-12"
     >
-      <div className="max-w-7xl mx-auto space-y-10">
+      <div className="max-w-7xl mx-auto space-y-8 lg:space-y-10">
         <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 border-b-2 border-primary dark:border-[#3f3f46] pb-4">
           <div>
             <span className="font-headline text-xs font-bold uppercase tracking-widest text-secondary block">
               04 // FLAGSHIP ENGINEERING DEPLOYMENTS
             </span>
-            <h2 className="font-headline text-3xl sm:text-5xl font-bold uppercase tracking-tight text-on-surface mt-1">
+            <h2 className="font-headline text-2xl sm:text-4xl lg:text-3xl xl:text-4xl font-bold uppercase tracking-tight text-on-surface mt-1">
               Production Systems
             </h2>
           </div>
@@ -99,33 +99,33 @@ export function SelectedSystems() {
           </Link>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 items-stretch">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-5 xl:gap-6 items-stretch">
           {SYSTEMS.map((sys) => (
             <div
               key={sys.num}
-              className="bg-surface-container-lowest dark:bg-[#202024] border-3 border-primary dark:border-[#3f3f46] p-6 shadow-[6px_6px_0px_#1a1a1a] dark:shadow-[6px_6px_0px_#000000] flex flex-col justify-between hover:translate-x-0.5 hover:translate-y-0.5 hover:shadow-[3px_3px_0px_#1a1a1a] dark:hover:shadow-[3px_3px_0px_#000000] transition-all"
+              className="bg-surface-container-lowest dark:bg-[#202024] border-3 border-primary dark:border-[#3f3f46] p-5 xl:p-6 shadow-[5px_5px_0px_#1a1a1a] dark:shadow-[5px_5px_0px_#000000] flex flex-col justify-between hover:translate-x-0.5 hover:translate-y-0.5 hover:shadow-[3px_3px_0px_#1a1a1a] dark:hover:shadow-[3px_3px_0px_#000000] transition-all"
             >
-              <div className="space-y-4">
-                <div className="flex items-center justify-between border-b-2 border-primary dark:border-[#3f3f46] pb-3">
-                  <span className={`px-2.5 py-0.5 font-headline font-bold text-xs uppercase ${sys.badgeClass}`}>
+              <div className="space-y-3.5 xl:space-y-4">
+                <div className="flex items-center justify-between border-b-2 border-primary dark:border-[#3f3f46] pb-2.5 xl:pb-3">
+                  <span className={`px-2 xl:px-2.5 py-0.5 font-headline font-bold text-[11px] xl:text-xs uppercase ${sys.badgeClass}`}>
                     {sys.badge}
                   </span>
-                  <span className="font-mono text-xs font-bold text-on-surface-variant">{sys.tech}</span>
+                  <span className="font-mono text-[11px] xl:text-xs font-bold text-on-surface-variant">{sys.tech}</span>
                 </div>
                 <div className="space-y-1">
-                  <div className={`font-headline text-sm font-bold uppercase ${sys.nativeClass}`}>
+                  <div className={`font-headline text-xs xl:text-sm font-bold uppercase ${sys.nativeClass}`}>
                     {sys.native}
                   </div>
-                  <h3 className="font-headline text-2xl font-bold text-on-surface uppercase">{sys.title}</h3>
-                  <p className="font-headline text-xs font-bold text-on-surface-variant dark:text-[#facc15] uppercase">
+                  <h3 className="font-headline text-lg sm:text-xl lg:text-lg xl:text-xl 2xl:text-2xl font-bold text-on-surface uppercase">{sys.title}</h3>
+                  <p className="font-headline text-[11px] xl:text-xs font-bold text-on-surface-variant dark:text-[#facc15] uppercase">
                     {sys.subtitle}
                   </p>
                 </div>
-                <p className="font-body text-xs sm:text-sm text-on-surface dark:text-on-surface-variant leading-relaxed">
+                <p className="font-body text-xs xl:text-[13px] text-on-surface dark:text-on-surface-variant leading-relaxed">
                   {sys.desc}
                 </p>
-                <div className="bg-surface dark:bg-[#161619] p-3 border border-primary dark:border-[#3f3f46] space-y-2 text-xs font-mono text-on-surface dark:text-on-surface-variant">
-                  <div className="text-[11px] font-bold uppercase text-primary border-b border-primary/20 dark:border-[#3f3f46] pb-1">
+                <div className="bg-surface dark:bg-[#161619] p-2.5 xl:p-3 border border-primary dark:border-[#3f3f46] space-y-1.5 xl:space-y-2 text-[11px] xl:text-xs font-mono text-on-surface dark:text-on-surface-variant">
+                  <div className="text-[10px] xl:text-[11px] font-bold uppercase text-primary border-b border-primary/20 dark:border-[#3f3f46] pb-1">
                     Architecture Highlights
                   </div>
                   {sys.highlights.map((h, i) => (
@@ -133,10 +133,10 @@ export function SelectedSystems() {
                   ))}
                 </div>
               </div>
-              <div className="pt-6 border-t-2 border-primary dark:border-[#3f3f46] mt-6">
+              <div className="pt-4 xl:pt-6 border-t-2 border-primary dark:border-[#3f3f46] mt-4 xl:mt-6">
                 <Link
                   href="/work"
-                  className={`inline-flex items-center justify-between w-full p-2.5 bg-primary text-on-primary dark:bg-[#facc15] dark:text-[#121214] font-headline text-xs font-bold uppercase tracking-wider transition-colors ${sys.ctaHover}`}
+                  className={`inline-flex items-center justify-between w-full p-2.5 bg-primary text-on-primary dark:bg-[#facc15] dark:text-[#121214] font-headline text-[11px] xl:text-xs font-bold uppercase tracking-wider transition-colors ${sys.ctaHover}`}
                 >
                   <span>{sys.cta}</span>
                   <span className="material-symbols-outlined text-sm">east</span>
