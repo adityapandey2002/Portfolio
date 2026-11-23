@@ -196,8 +196,9 @@ export function Hero() {
               </div>
             </div>
 
-            {/* Live Kernel telemetry box */}
-            <div className="lg:col-span-4">
+            {/* Live Kernel telemetry box — desktop only; hidden on mobile to
+                keep the hero compact on phones. */}
+            <div className="hidden lg:block lg:col-span-4">
               <div className="relative rounded-0 border-[3px] border-primary dark:border-[#3f3f46] bg-surface-container-lowest dark:bg-[#161619] shadow-[6px_6px_0px_#1a1a1a] dark:shadow-[6px_6px_0px_#000000] p-4">
                 <div className="absolute -top-2 right-3 bg-accent-red text-black dark:text-[#121214] px-2 py-0.5 font-headline font-bold text-[10px] uppercase tracking-widest border-2 border-primary dark:border-[#3f3f46]">
                   LIVE KERNEL
@@ -240,8 +241,9 @@ export function Hero() {
             </div>
           </div>
 
-          {/* 3 · 4 Brutalist Key Metric Blocks */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 pt-4">
+          {/* 3 · 4 Brutalist Key Metric Blocks — desktop only; the impact
+              stats are hidden on mobile to reduce hero scroll length. */}
+          <div className="hidden lg:grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 pt-4">
             {METRICS.map((metric) => (
               <MetricBlock key={metric.number} {...metric} />
             ))}
