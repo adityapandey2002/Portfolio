@@ -1,506 +1,827 @@
 'use client';
 
-import { FormEvent, useCallback, useEffect, useRef, useState } from 'react';
+import { FormEvent, useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import Link from 'next/link';
+import {
+  ArrowRight,
+  ArrowUpRight,
+  Check,
+  Code2,
+  Compass,
+  Copy,
+  Layers,
+  MessageSquareText,
+  RotateCcw,
+  Search,
+  Send,
+  Sparkles,
+  Stethoscope,
+} from 'lucide-react';
+import { PORTFOLIO_SYSTEMS } from '@/lib/data/systems';
+import { parseAnswerBlocks, type AnswerBlock } from '@/lib/askParser';
 
-const SUGGESTIONS = [
+type LensId = 'all' | 'tech' | 'health' | 'deep-dive';
+
+interface StreamSource {
+  title: string;
+  href: string;
+  tag: string;
+  external?: boolean;
+}
+
+interface ConversationTurn {
+  id: string;
+  question: string;
+  projectSlug?: string;
+  rawText: string;
+  blocks: AnswerBlock[];
+  sources: StreamSource[];
+  followUps: string[];
+  streaming: boolean;
+  error: string | null;
+}
+
+const LENSES: {
+  id: LensId;
+  label: string;
+  Icon: typeof Sparkles;
+  prompts: { tag: string; label: string; question: string; projectSlug?: string }[];
+}[] = [
   {
-    icon: '⚡',
-    label: 'How does offline sync work in Matru Suraksha?',
-    question: 'How does offline sync work in Matru Suraksha?',
+    id: 'all',
+    label: 'All Topics',
+    Icon: Sparkles,
+    prompts: [
+      {
+        tag: 'Executive Brief',
+        label: 'Compare Aditya’s 7 flagship projects at a glance',
+        question: 'Compare all flagship projects in Aditya Pandey’s portfolio for a recruiter.',
+      },
+      {
+        tag: 'Clinical Voice AI',
+        label: 'How does the Ambient Clinical AI Scribe fill 181 maternity fields?',
+        question: 'How does the Ambient Clinical AI Scribe transcribe Hindi consultations and fill 181 maternity case-sheet fields with minimal LLM cost?',
+        projectSlug: 'ambient-clinical-scribe',
+      },
+      {
+        tag: 'Public Health',
+        label: 'What did Aditya achieve in the Gandhi Fellowship across Bihar?',
+        question: 'What did Aditya achieve in the Gandhi Fellowship across 16 Bihar blocks?',
+      },
+      {
+        tag: 'Macro Data',
+        label: 'How were queries cut by 97% in India in the World Dashboard?',
+        question: 'How did Aditya optimize the India Development Data Dashboard database queries and build its TF-IDF RAG assistant?',
+        projectSlug: 'india-dashboard',
+      },
+    ],
   },
   {
-    icon: '🏥',
-    label: 'What did Aditya achieve in the Gandhi Fellowship?',
-    question: 'What did Aditya achieve in the Gandhi Fellowship across 16 blocks?',
+    id: 'tech',
+    label: 'Tech Roles',
+    Icon: Code2,
+    prompts: [
+      {
+        tag: 'Payments & Security',
+        label: 'Explain BiharKaSwaad HMAC SHA-256 & 29/29 Playwright E2E',
+        question: 'Explain the payment security, MySQL indexing, and order lifecycle architecture of BiharKaSwaad.',
+        projectSlug: 'biharkaswaad',
+      },
+      {
+        tag: 'Monorepo & Dual ORM',
+        label: 'Walk through District Hospital Araria (Next.js + NestJS + 86 tests)',
+        question: 'Walk me through the monorepo architecture, dual-ORM setup, and security controls in District Hospital Araria.',
+        projectSlug: 'araria-hospital',
+      },
+      {
+        tag: 'Zero-Egress Static App',
+        label: 'How does the VHSND pipeline run 212 Vitest tests & AES-256 offline?',
+        question: 'Explain how the offline VHSND & PMSMA pipeline validates 253 survey columns and guarantees zero data upload.',
+        projectSlug: 'vhsnd-pipeline',
+      },
+      {
+        tag: 'Stack & Testing',
+        label: 'Summarize Aditya’s full engineering stack & QA discipline',
+        question: 'What is Aditya Pandey’s full engineering tech stack, databases, and automated testing experience?',
+      },
+    ],
   },
   {
-    icon: '📊',
-    label: 'Explain the DuckDB + Parquet pipeline',
-    question: 'Explain the DuckDB + Parquet pipeline in the India Development Data Engine.',
+    id: 'health',
+    label: 'Public Health',
+    Icon: Stethoscope,
+    prompts: [
+      {
+        tag: 'Offline Maternal PWA',
+        label: 'How does Matru Suraksha enforce 15-day HRP escalation offline?',
+        question: 'How does Matru Suraksha handle offline sync, 6-tier clinical escalation, and tablet security?',
+        projectSlug: 'matru-suraksha',
+      },
+      {
+        tag: 'Frontline Scale',
+        label: '700+ ASHAs, 185-hr clinical refresher & 154 NQAS audits',
+        question: 'What maternal and public health operations did Aditya lead during the Gandhi Fellowship in Bihar?',
+      },
+      {
+        tag: 'Labour Room AI',
+        label: 'How does the Bihar PHC voice scribe protect clinician control?',
+        question: 'How does the Ambient Clinical AI Scribe handle nurse confirmation locks and Hindi/English audio in PHCs?',
+        projectSlug: 'ambient-clinical-scribe',
+      },
+      {
+        tag: 'Field Survey QA',
+        label: 'How does VHSND adjudication prevent reporting errors?',
+        question: 'How does the VHSND & PMSMA pipeline adjudicate 37 cross-field survey contradictions before Monday district reviews?',
+        projectSlug: 'vhsnd-pipeline',
+      },
+    ],
   },
   {
-    icon: '🔐',
-    label: 'How is HMAC SHA-256 implemented in BiharKaSwaad?',
-    question: 'How is HMAC SHA-256 implemented in BiharKaSwaad webhook security?',
+    id: 'deep-dive',
+    label: 'Profile',
+    Icon: Compass,
+    prompts: [
+      {
+        tag: 'Education',
+        label: 'Degrees, Pondicherry University MCA & IBM / NPTEL certs',
+        question: 'What is Aditya Pandey’s education background and verified certifications?',
+      },
+      {
+        tag: 'ML Capstone',
+        label: 'SpaceX Falcon 9 launch recovery ML pipeline (83.3% accuracy)',
+        question: 'Summarize Aditya’s SpaceX Falcon 9 launch recovery machine learning capstone.',
+        projectSlug: 'spacex-recovery-ml',
+      },
+      {
+        tag: 'Hardware Lab',
+        label: 'Auroville FabLab & MinVayu open wind-turbine telemetry',
+        question: 'What hardware and wind turbine telemetry work did Aditya do at Auroville FabLab?',
+        projectSlug: 'auroville-minvayu-hardware',
+      },
+      {
+        tag: 'Direct Contact',
+        label: 'How to contact Aditya Pandey for roles or collaborations',
+        question: 'How can I contact Aditya Pandey by email, phone, GitHub, or LinkedIn?',
+      },
+    ],
   },
 ];
 
-const TOPICS = [
-  {
-    icon: 'local_hospital',
-    iconClass: 'text-secondary',
-    tag: '16 BLOCKS',
-    title: 'Public Health & Field Ops',
-    desc: 'Piramal Gandhi Fellowship in Muzaffarpur, 13,627 KM field travel, ASHA trainings, and high-risk pregnancy tracking.',
-    question: 'What maternal and public health operations were implemented during the Gandhi Fellowship in Bihar?',
-    hoverClass: 'group-hover:text-secondary',
-  },
-  {
-    icon: 'devices',
-    iconClass: 'text-tertiary',
-    tag: 'DEXIE.JS',
-    title: 'Matru Suraksha Platform',
-    desc: 'Offline IndexedDB persistence, Docker microservices, Fastify REST APIs, and automated 15-day triage escalations.',
-    question: 'How is the offline-first Matru Suraksha platform engineered?',
-    hoverClass: 'group-hover:text-tertiary',
-  },
-  {
-    icon: 'database',
-    iconClass: 'text-on-surface',
-    tag: 'DUCKDB',
-    title: 'India Data Engine',
-    desc: 'DuckDB OLAP analytics processing 118,000+ district indicators, Apache Parquet storage, and Leaflet GIS mapping.',
-    question: 'How does the India Development Data Engine use DuckDB and Parquet to aggregate 118k+ metrics?',
-    hoverClass: '',
-  },
-  {
-    icon: 'security',
-    iconClass: 'text-secondary',
-    tag: 'NEXT.JS',
-    title: 'Full-Stack & Security',
-    desc: 'Razorpay payment gateway with HMAC SHA-256 webhooks, OPD clinical queue dispatch at Araria Hospital, and Next.js.',
-    question: 'Explain the full-stack architecture and HMAC security in BiharKaSwaad and Araria Hospital systems.',
-    hoverClass: 'group-hover:text-secondary',
-  },
-];
-
-type Block = { num: number; heading: string; body: string };
-
-const SOURCES = ['Matru Suraksha Spec 4.2', 'Dexie Store Service', 'Muzaffarpur Field Logs'];
 const MARKER_COLORS = [
   'bg-primary dark:bg-[#facc15]',
   'bg-secondary',
-  'bg-primary-container',
+  'bg-tertiary',
 ];
 
 export function AskTerminal() {
+  const [lens, setLens] = useState<LensId>('all');
+  const [selectedProject, setSelectedProject] = useState<string>('');
   const [query, setQuery] = useState('');
-  const [activeQuestion, setActiveQuestion] = useState('');
-  const [blocks, setBlocks] = useState<Block[]>([]);
-  const [streaming, setStreaming] = useState(false);
-  const [error, setError] = useState<string | null>(null);
+  const [turns, setTurns] = useState<ConversationTurn[]>([]);
+  const [copiedId, setCopiedId] = useState<string | null>(null);
 
   const inputRef = useRef<HTMLInputElement>(null);
+  const threadEndRef = useRef<HTMLDivElement>(null);
   const controllerRef = useRef<AbortController | null>(null);
+  const streamingRef = useRef(false);
 
-  const parseBlocks = useCallback((text: string): Block[] => {
-    return text
-      .split(/\n\s*\n/)
-      .map((b) => b.trim())
-      .filter(Boolean)
-      .map((block, i) => {
-        const lines = block.split(/\n+/);
-        const heading =
-          lines.length > 1 ? lines[0].replace(/^\d+\.\s*/, '').trim() : '';
-        const body = (lines.length > 1
-          ? lines.slice(1).join(' ')
-          : lines[0]
-        ).trim();
-        return { num: i + 1, heading, body: body || heading };
-      });
-  }, []);
+  const activeLens = useMemo(
+    () => LENSES.find((l) => l.id === lens) ?? LENSES[0],
+    [lens],
+  );
 
-  const runQuery = useCallback(async (raw: string) => {
-    const q = raw.trim();
-    if (!q || streaming) return;
+  const isStreaming = turns.some((t) => t.streaming);
 
-    controllerRef.current?.abort();
-    const ac = new AbortController();
-    controllerRef.current = ac;
+  const runQuery = useCallback(
+    async (raw: string, overrideProjectSlug?: string) => {
+      const q = raw.trim();
+      if (!q || streamingRef.current) return;
 
-    setActiveQuestion(q);
-    setBlocks([]);
-    setError(null);
-    setStreaming(true);
+      const projectSlug =
+        overrideProjectSlug !== undefined
+          ? overrideProjectSlug || undefined
+          : selectedProject || undefined;
 
-    try {
-      const res = await fetch('/api/ask', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ question: q }),
-        signal: ac.signal,
-      });
+      controllerRef.current?.abort();
+      const ac = new AbortController();
+      controllerRef.current = ac;
+      streamingRef.current = true;
 
-      if (!res.ok || !res.body) {
-        const detail = await res.text().catch(() => '');
-        throw new Error(detail || `Ask failed (${res.status})`);
-      }
+      const turnId = `turn-${Date.now()}-${Math.random().toString(36).slice(2, 6)}`;
 
-      const reader = res.body.getReader();
-      const decoder = new TextDecoder();
-      let buffer = '';
-      let received = '';
+      const historyPayload = turns.slice(-3).flatMap((t) =>
+        t.rawText
+          ? [
+              { role: 'user' as const, content: t.question },
+              { role: 'assistant' as const, content: t.rawText },
+            ]
+          : [],
+      );
 
-      const flush = (payload: string) => {
-        if (!payload || payload === '[DONE]') return;
-        let delta = payload;
-        try {
-          const parsed = JSON.parse(payload);
-          if (parsed && typeof parsed === 'object' && 'error' in parsed) {
-            setError(String((parsed as { error: unknown }).error));
-            return;
-          }
-          if (
-            parsed &&
-            typeof parsed === 'object' &&
-            typeof (parsed as { text?: unknown }).text === 'string'
-          ) {
-            delta = parsed.text;
-          }
-        } catch {
-          // raw text delta
+      setTurns((prev) => [
+        ...prev,
+        {
+          id: turnId,
+          question: q,
+          projectSlug,
+          rawText: '',
+          blocks: [],
+          sources: [],
+          followUps: [],
+          streaming: true,
+          error: null,
+        },
+      ]);
+      setQuery('');
+
+      try {
+        const res = await fetch('/api/ask', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            question: q,
+            projectSlug,
+            history: historyPayload,
+          }),
+          signal: ac.signal,
+        });
+
+        if (!res.ok || !res.body) {
+          const detail = await res.text().catch(() => '');
+          throw new Error(detail || `Assistant request failed (${res.status})`);
         }
-        if (delta) {
-          received += delta;
-          setBlocks(parseBlocks(received));
+
+        const reader = res.body.getReader();
+        const decoder = new TextDecoder();
+        let buffer = '';
+        let received = '';
+
+        const flush = (payload: string) => {
+          if (!payload || payload === '[DONE]') return;
+          let delta = '';
+          try {
+            const parsed = JSON.parse(payload);
+            if (parsed && typeof parsed === 'object') {
+              if ('error' in parsed) {
+                const msg = String((parsed as { error: unknown }).error);
+                setTurns((prev) =>
+                  prev.map((t) => (t.id === turnId ? { ...t, error: msg } : t)),
+                );
+                return;
+              }
+              if ('meta' in parsed && parsed.meta && typeof parsed.meta === 'object') {
+                const meta = parsed.meta as {
+                  sources?: StreamSource[];
+                  followUps?: string[];
+                };
+                setTurns((prev) =>
+                  prev.map((t) =>
+                    t.id === turnId
+                      ? {
+                          ...t,
+                          sources: Array.isArray(meta.sources) ? meta.sources : t.sources,
+                          followUps: Array.isArray(meta.followUps) ? meta.followUps : t.followUps,
+                        }
+                      : t,
+                  ),
+                );
+                return;
+              }
+              if (typeof (parsed as { text?: unknown }).text === 'string') {
+                delta = (parsed as { text: string }).text;
+              }
+            }
+          } catch {
+            delta = payload;
+          }
+
+          if (delta) {
+            received += delta;
+            const parsedBlocks = parseAnswerBlocks(received);
+            setTurns((prev) =>
+              prev.map((t) =>
+                t.id === turnId
+                  ? { ...t, rawText: received, blocks: parsedBlocks }
+                  : t,
+              ),
+            );
+          }
+        };
+
+        while (true) {
+          if (ac.signal.aborted) break;
+          const { value, done } = await reader.read();
+          if (done) break;
+
+          buffer += decoder.decode(value, { stream: true });
+          const events = buffer.split('\n\n');
+          buffer = events.pop() ?? '';
+
+          for (const event of events) {
+            const line = event.split('\n').find((l) => l.startsWith('data: '));
+            if (line) flush(line.slice(6).replace(/\r$/, ''));
+          }
         }
-      };
 
-      while (true) {
-        if (ac.signal.aborted) break;
-        const { value, done } = await reader.read();
-        if (done) break;
-
-        buffer += decoder.decode(value, { stream: true });
-        const events = buffer.split('\n\n');
-        buffer = events.pop()!;
-
-        for (const event of events) {
-          const line = event.split('\n').find((l) => l.startsWith('data: '));
+        const tail = buffer.trim();
+        if (tail) {
+          const line = tail.split('\n').find((l) => l.startsWith('data: '));
           if (line) flush(line.slice(6).replace(/\r$/, ''));
         }
+      } catch (err) {
+        if (err instanceof Error && err.name === 'AbortError') return;
+        const msg = err instanceof Error ? err.message : 'Stream failed — please try again.';
+        setTurns((prev) =>
+          prev.map((t) => (t.id === turnId ? { ...t, error: msg } : t)),
+        );
+      } finally {
+        streamingRef.current = false;
+        if (!ac.signal.aborted) {
+          setTurns((prev) =>
+            prev.map((t) => (t.id === turnId ? { ...t, streaming: false } : t)),
+          );
+        }
       }
+    },
+    [selectedProject, turns],
+  );
 
-      // Flush any trailing event left in the buffer.
-      const tail = buffer.trim();
-      if (tail) {
-        const line = tail.split('\n').find((l) => l.startsWith('data: '));
-        if (line) flush(line.slice(6).replace(/\r$/, ''));
-      }
-    } catch (err) {
-      if (err instanceof Error && err.name === 'AbortError') return;
-      setError(err instanceof Error ? err.message : 'Stream failed — try again.');
-    } finally {
-      if (!ac.signal.aborted) {
-        setStreaming(false);
-      }
-    }
-  }, [parseBlocks, streaming]);
-
-  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    await runQuery(query);
-  };
-
-  // Deep link support: /ask?q=... pre-loads and runs the question.
+  // Support deep link: /ask?q=...&project=...
   const didAutoRun = useRef(false);
   useEffect(() => {
     if (didAutoRun.current) return;
     didAutoRun.current = true;
-    const q = new URLSearchParams(window.location.search).get('q');
+    const params = new URLSearchParams(window.location.search);
+    const q = params.get('q');
+    const proj = params.get('project') ?? '';
+    if (proj) setSelectedProject(proj);
     if (q) {
-      setQuery(q);
-      void runQuery(q);
+      void runQuery(q, proj);
     }
   }, [runQuery]);
 
-  const handleClear = useCallback(() => {
+  useEffect(() => {
+    if (turns.length > 0) {
+      threadEndRef.current?.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    }
+  }, [turns.length]);
+
+  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    void runQuery(query);
+  };
+
+  const handleReset = () => {
     controllerRef.current?.abort();
     controllerRef.current = null;
+    streamingRef.current = false;
+    setTurns([]);
     setQuery('');
-    setActiveQuestion('');
-    setBlocks([]);
-    setError(null);
-    setStreaming(false);
     inputRef.current?.focus();
-  }, []);
+  };
 
-  const pickSuggestion = useCallback(
-    (s: string) => {
-      setQuery(s);
-      void runQuery(s);
-    },
-    [runQuery],
+  const handleCopy = async (turn: ConversationTurn) => {
+    try {
+      await navigator.clipboard.writeText(turn.rawText);
+      setCopiedId(turn.id);
+      setTimeout(() => setCopiedId((curr) => (curr === turn.id ? null : curr)), 1800);
+    } catch {
+      // Clipboard unavailable
+    }
+  };
+
+  const selectedProjectObj = useMemo(
+    () => PORTFOLIO_SYSTEMS.find((s) => s.slug === selectedProject),
+    [selectedProject],
   );
 
   return (
-    <>
-      <style jsx>{`
-        .cursor-blink {
-          animation: cursor-blink 1.1s step-end infinite;
-        }
-        @keyframes cursor-blink {
-          50% { opacity: 0; }
-        }
-      `}</style>
-
-      {/* AI status strip */}
-      <div className="w-full bg-surface-container-low border-b-2 border-primary py-2 px-6 lg:px-12 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-1.5 sm:gap-3 text-xs font-mono">
-        <div className="flex flex-wrap items-center gap-x-2 gap-y-1 text-on-surface">
-          <span className="w-2.5 h-2.5 shrink-0 rounded-full bg-secondary inline-block animate-pulse" />
-          <span className="font-bold font-headline uppercase tracking-wider text-[11px]">
-            AI Assistant Online
-          </span>
-          <span className="text-on-surface-variant">— Grounded in verified portfolio &amp; field records</span>
-        </div>
-        <div className="hidden sm:flex items-center gap-3 text-on-surface-variant text-[11px]">
-          <span>Llama-3-70B via Groq</span>
-          <span>•</span>
-          <span>Zero-Hallucination Guardrails</span>
-        </div>
-      </div>
-
-      {/* Hero header */}
-      <section className="w-full border-b-2 border-primary px-6 lg:px-12 py-10 lg:py-14 bg-surface">
-        <div className="max-w-4xl mx-auto text-center space-y-4">
-          <div className="inline-flex items-center gap-2 border-2 border-primary bg-primary-container text-on-primary-container px-3 py-1 text-xs font-headline font-bold uppercase tracking-wider shadow-[3px_3px_0px_#1a1a1a] dark:shadow-[3px_3px_0px_#000000]">
-            <span className="material-symbols-outlined shrink-0 text-[16px] leading-none">chat_spark</span>
-            Interactive AI &amp; Portfolio Assistant
+    <div className="min-h-screen bg-surface text-on-surface dark:bg-[#121214]">
+      {/* Header */}
+      <section className="border-b-4 border-primary bg-surface px-4 py-10 dark:border-[#3f3f46] dark:bg-[#161619] sm:px-8 lg:px-12">
+        <div className="mx-auto max-w-6xl space-y-4">
+          <div className="flex flex-wrap items-center justify-between gap-3">
+            <div className="inline-flex items-center gap-2 border-2 border-primary bg-primary-container px-3 py-1 font-headline text-[11px] font-bold uppercase tracking-widest text-on-primary-container shadow-[3px_3px_0px_#1a1a1a] dark:border-[#3f3f46] dark:bg-[#facc15] dark:text-[#121214] dark:shadow-[3px_3px_0px_#000000]">
+              <Sparkles size={14} aria-hidden="true" />
+              <span>Interactive Portfolio RAG Studio</span>
+            </div>
+            <div className="font-mono text-xs text-on-surface-variant">
+              Indexed: 10 GitHub Projects · Gandhi Fellowship · Skills &amp; Resume
+            </div>
           </div>
-          <h1 className="font-headline font-bold text-3xl sm:text-5xl lg:text-6xl tracking-tight text-on-surface uppercase">
+
+          <h1 className="font-headline text-3xl font-extrabold uppercase tracking-tight text-on-surface sm:text-5xl leading-[1.03]">
             Ask Aditya&apos;s Knowledge Base
           </h1>
-          <p className="font-body text-sm sm:text-base lg:text-lg text-on-surface-variant leading-relaxed max-w-2xl mx-auto">
-            Ask questions directly to an AI assistant with full context on Aditya Pandey&apos;s public health
-            data engineering, Piramal Gandhi Fellowship operations across 16 Bihar blocks, and production
-            full-stack systems.
+          <p className="max-w-3xl font-body text-sm sm:text-base text-on-surface-variant leading-relaxed">
+            Pick a recruiter lens, focus on any specific repository, or ask multi-turn questions in plain English. Every response cites real project pages and GitHub source repositories.
           </p>
         </div>
       </section>
 
-      {/* Main interactive ask console */}
-      <section className="w-full border-b-2 border-primary px-6 lg:px-12 py-10 bg-background">
-        <div className="max-w-4xl mx-auto space-y-6">
-          {/* Quick prompt chips */}
-          <div className="space-y-2">
-            <div className="flex items-center justify-between text-xs">
-              <span className="font-headline font-bold uppercase tracking-wider text-on-surface-variant flex items-center gap-1.5">
-                <span className="material-symbols-outlined text-[16px] text-secondary">lightbulb</span>
-                Suggested Questions (Click to Ask)
-              </span>
-              <span className="text-on-surface-variant font-mono text-[11px] hidden sm:inline">
-                Sub-second retrieval
-              </span>
-            </div>
-            <div className="flex flex-wrap gap-2">
-              {SUGGESTIONS.map((s) => (
-                <button
-                  key={s.label}
-                  type="button"
-                  onClick={() => pickSuggestion(s.question)}
-                  className="px-3 py-1.5 bg-surface text-on-surface hover:bg-primary-container hover:text-on-primary-container border-2 border-primary text-xs font-headline font-semibold transition-all shadow-[2px_2px_0px_#1a1a1a] dark:shadow-[2px_2px_0px_#000000] active:translate-x-0.5 active:translate-y-0.5 text-left"
+      {/* Interactive Split Workspace */}
+      <section className="mx-auto max-w-6xl px-4 py-8 sm:px-8 lg:px-12 lg:py-10">
+        <div className="grid grid-cols-1 gap-8 lg:grid-cols-12">
+          {/* Left Rail: Lenses + Project Context + Curated Prompts (4 cols) */}
+          <aside className="space-y-6 lg:col-span-4">
+            {/* Project Context Selector */}
+            <div className="border-2 border-primary bg-surface-container-lowest p-4 shadow-[4px_4px_0px_#1a1a1a] dark:border-[#3f3f46] dark:bg-[#1b1b1f] dark:shadow-[4px_4px_0px_#000000] space-y-3">
+              <div className="flex items-center justify-between">
+                <label
+                  htmlFor="ask-project-scope"
+                  className="inline-flex items-center gap-1.5 font-headline text-xs font-bold uppercase tracking-wider text-on-surface"
                 >
-                  {s.icon} {s.label}
-                </button>
-              ))}
-            </div>
-          </div>
-
-          {/* Query form box */}
-          <div className="border-2 border-primary bg-surface p-4 sm:p-5 shadow-[4px_4px_0px_#1a1a1a] dark:shadow-[4px_4px_0px_#000000]">
-            <form onSubmit={handleSubmit} className="space-y-3">
-              <div className="flex flex-col sm:flex-row gap-2">
-                <div className="relative flex-1 flex items-center bg-surface-container-lowest border-2 border-primary px-3 shadow-[2px_2px_0px_#1a1a1a] dark:shadow-[2px_2px_0px_#000000]">
-                  <span className="material-symbols-outlined text-on-surface-variant text-[20px] mr-2">search</span>
-                  <input
-                    ref={inputRef}
-                    value={query}
-                    onChange={(e) => setQuery(e.target.value)}
-                    placeholder="Ask any question about Aditya's projects, clinical tools, or research..."
-                    className="w-full bg-transparent border-0 outline-none text-on-surface font-body text-sm py-2.5 px-1 focus:ring-0 placeholder:text-on-surface-variant/60"
-                    autoComplete="off"
-                    spellCheck={false}
-                  />
+                  <Layers size={14} aria-hidden="true" className="text-secondary" />
+                  <span>Focus on Project</span>
+                </label>
+                {selectedProject && (
                   <button
                     type="button"
-                    onClick={handleClear}
-                    className="text-xs font-headline font-bold uppercase text-on-surface-variant hover:text-on-surface px-2 py-1"
-                    title="Clear text"
+                    onClick={() => setSelectedProject('')}
+                    className="font-mono text-[10px] font-bold uppercase text-secondary hover:underline"
                   >
-                    CLR
+                    Reset
                   </button>
+                )}
+              </div>
+
+              <select
+                id="ask-project-scope"
+                value={selectedProject}
+                onChange={(e) => setSelectedProject(e.target.value)}
+                className="w-full border-2 border-primary bg-surface px-3 py-2 font-body text-xs font-medium text-on-surface focus:border-secondary focus:outline-none dark:border-[#3f3f46] dark:bg-[#121214]"
+              >
+                <option value="">All 10 Projects + Fellowship &amp; Resume</option>
+                {PORTFOLIO_SYSTEMS.map((sys) => (
+                  <option key={sys.slug} value={sys.slug}>
+                    {sys.rank} · {sys.title}
+                  </option>
+                ))}
+              </select>
+
+              {selectedProjectObj && (
+                <div className="flex items-center justify-between gap-2 border-t border-outline/25 pt-2.5 text-[11px] font-mono dark:border-[#3f3f46]">
+                  <Link
+                    href={`/work/${selectedProjectObj.slug}`}
+                    className="font-semibold text-on-surface hover:text-secondary dark:hover:text-[#facc15]"
+                  >
+                    Open Project Details →
+                  </Link>
+                  <button
+                    type="button"
+                    onClick={() => void runQuery(selectedProjectObj.askPrompt, selectedProjectObj.slug)}
+                    className="font-bold text-secondary hover:underline dark:text-[#facc15]"
+                  >
+                    Ask Default
+                  </button>
+                </div>
+              )}
+            </div>
+
+            {/* Recruiter Lens Tabs */}
+            <div className="space-y-3">
+              <div className="font-mono text-[11px] font-bold uppercase tracking-widest text-on-surface-variant">
+                Choose a Recruiter Lens
+              </div>
+              <div className="grid grid-cols-2 gap-2">
+                {LENSES.map(({ id, label, Icon }) => {
+                  const active = lens === id;
+                  return (
+                    <button
+                      key={id}
+                      type="button"
+                      onClick={() => setLens(id)}
+                      aria-pressed={active}
+                      className={`inline-flex items-center gap-1.5 border-2 px-3 py-2 font-headline text-[11px] font-bold uppercase tracking-wider transition-colors ${
+                        active
+                          ? 'border-primary bg-primary text-on-primary shadow-[2px_2px_0px_#1a1a1a] dark:border-[#facc15] dark:bg-[#facc15] dark:text-[#121214] dark:shadow-[2px_2px_0px_#000000]'
+                          : 'border-primary/40 bg-surface-container-lowest text-on-surface hover:border-primary hover:bg-primary-container hover:text-on-primary-container dark:border-[#3f3f46] dark:bg-[#1b1b1f]'
+                      }`}
+                    >
+                      <Icon size={13} aria-hidden="true" />
+                      <span className="truncate">{label}</span>
+                    </button>
+                  );
+                })}
+              </div>
+
+              {/* Starter Prompt Cards for Selected Lens */}
+              <div className="space-y-2.5 pt-1">
+                {activeLens.prompts.map((p) => (
+                  <button
+                    key={p.label}
+                    type="button"
+                    disabled={isStreaming}
+                    onClick={() => {
+                      if (p.projectSlug) setSelectedProject(p.projectSlug);
+                      void runQuery(p.question, p.projectSlug ?? '');
+                    }}
+                    className="group flex w-full flex-col gap-1 border-2 border-primary bg-surface-container-lowest p-3.5 text-left shadow-[3px_3px_0px_#1a1a1a] transition-all hover:-translate-y-0.5 hover:bg-primary-container hover:text-on-primary-container disabled:opacity-50 dark:border-[#3f3f46] dark:bg-[#1b1b1f] dark:shadow-[3px_3px_0px_#000000] dark:hover:border-[#facc15] dark:hover:bg-[#232329] dark:hover:text-white"
+                  >
+                    <span className="font-mono text-[10px] font-bold uppercase tracking-widest text-secondary dark:text-[#facc15]">
+                      {p.tag}
+                    </span>
+                    <span className="font-headline text-xs sm:text-sm font-bold leading-snug">
+                      {p.label}
+                    </span>
+                  </button>
+                ))}
+              </div>
+            </div>
+          </aside>
+
+          {/* Right Main Console: Multi-Turn Conversation + Composer (8 cols) */}
+          <div className="flex flex-col border-[3px] border-primary bg-surface-container-lowest shadow-[6px_6px_0px_#1a1a1a] dark:border-[#3f3f46] dark:bg-[#1b1b1f] dark:shadow-[6px_6px_0px_#000000] lg:col-span-8">
+            {/* Console Top Bar */}
+            <div className="flex flex-wrap items-center justify-between gap-3 border-b-2 border-primary bg-surface-container px-5 py-3.5 dark:border-[#3f3f46] dark:bg-[#232329]">
+              <div className="flex items-center gap-2.5">
+                <span className="flex h-8 w-8 items-center justify-center border-2 border-primary bg-primary-container text-on-primary-container dark:border-[#facc15] dark:bg-[#facc15] dark:text-[#121214]">
+                  <MessageSquareText size={16} aria-hidden="true" />
+                </span>
+                <div>
+                  <div className="font-headline text-sm font-bold uppercase tracking-wide text-on-surface">
+                    {selectedProjectObj ? `Scoped: ${selectedProjectObj.title}` : 'Full Portfolio Assistant'}
+                  </div>
+                  <div className="font-mono text-[11px] text-on-surface-variant">
+                    {turns.length === 0
+                      ? 'Ready for questions across all 10 repos & field work'
+                      : `${turns.length} ${turns.length === 1 ? 'exchange' : 'exchanges'} in this session`}
+                  </div>
+                </div>
+              </div>
+
+              {turns.length > 0 && (
+                <button
+                  type="button"
+                  onClick={handleReset}
+                  className="inline-flex items-center gap-1.5 border-2 border-primary bg-surface px-3 py-1 font-headline text-[11px] font-bold uppercase tracking-wider text-on-surface transition-colors hover:bg-primary hover:text-on-primary dark:border-[#3f3f46] dark:bg-[#141417] dark:hover:border-[#facc15] dark:hover:text-[#facc15]"
+                >
+                  <RotateCcw size={12} aria-hidden="true" />
+                  <span>New Thread</span>
+                </button>
+              )}
+            </div>
+
+            {/* Thread Area */}
+            <div
+              data-testid="ask-conversation-thread"
+              className="min-h-[420px] flex-1 space-y-6 p-5 sm:p-6"
+            >
+              {turns.length === 0 && (
+                <div className="flex h-full flex-col justify-center space-y-5 py-6">
+                  <div className="space-y-2">
+                    <h2 className="font-headline text-2xl font-extrabold uppercase tracking-tight text-on-surface">
+                      Ask Anything About Aditya&apos;s Systems
+                    </h2>
+                    <p className="max-w-xl font-body text-sm leading-relaxed text-on-surface-variant">
+                      Try asking about the <strong className="text-on-surface">Ambient Clinical AI Scribe</strong>,{' '}
+                      <strong className="text-on-surface">District Hospital Araria</strong>,{' '}
+                      <strong className="text-on-surface">Matru Suraksha</strong>,{' '}
+                      <strong className="text-on-surface">India in the World Dashboard</strong>,{' '}
+                      <strong className="text-on-surface">VHSND Offline Pipeline</strong>, or{' '}
+                      <strong className="text-on-surface">Gandhi Fellowship</strong> impact in Bihar.
+                    </p>
+                  </div>
+
+                  {/* Quick Project Jump Chips */}
+                  <div className="space-y-2">
+                    <div className="font-mono text-[10px] font-bold uppercase tracking-widest text-on-surface-variant">
+                      Or Click a Project to Query Immediately
+                    </div>
+                    <div className="flex flex-wrap gap-2">
+                      {PORTFOLIO_SYSTEMS.slice(0, 7).map((sys) => (
+                        <button
+                          key={sys.slug}
+                          type="button"
+                          onClick={() => {
+                            setSelectedProject(sys.slug);
+                            void runQuery(sys.askPrompt, sys.slug);
+                          }}
+                          className="border-2 border-primary/50 bg-surface px-3 py-1.5 font-mono text-[11px] font-semibold text-on-surface transition-colors hover:border-primary hover:bg-primary-container hover:text-on-primary-container dark:border-[#3f3f46] dark:bg-[#141417] dark:hover:border-[#facc15] dark:hover:text-[#facc15]"
+                        >
+                          {sys.rank} · {sys.title.split('—')[0].trim()}
+                        </button>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+              )}
+
+              {turns.map((turn, idx) => (
+                <article
+                  key={turn.id}
+                  className="space-y-4 border-b-2 border-primary/15 pb-6 last:border-b-0 last:pb-0 dark:border-[#3f3f46]"
+                >
+                  {/* User Question Header */}
+                  <div className="flex items-start justify-between gap-3">
+                    <div className="space-y-1">
+                      <span className="font-mono text-[10px] font-bold uppercase tracking-widest text-secondary dark:text-[#facc15]">
+                        Question {String(idx + 1).padStart(2, '0')}
+                        {turn.projectSlug ? ` · Scoped to ${turn.projectSlug}` : ''}
+                      </span>
+                      <h3 className="font-headline text-base sm:text-lg font-bold text-on-surface">
+                        {turn.question}
+                      </h3>
+                    </div>
+
+                    {!turn.streaming && turn.rawText && (
+                      <button
+                        type="button"
+                        onClick={() => void handleCopy(turn)}
+                        className="inline-flex shrink-0 items-center gap-1 border border-outline/40 bg-surface px-2.5 py-1 font-mono text-[10px] font-bold uppercase text-on-surface-variant transition-colors hover:border-primary hover:text-on-surface dark:border-[#3f3f46] dark:bg-[#141417]"
+                        title="Copy answer"
+                      >
+                        {copiedId === turn.id ? (
+                          <>
+                            <Check size={12} aria-hidden="true" />
+                            <span>Copied</span>
+                          </>
+                        ) : (
+                          <>
+                            <Copy size={12} aria-hidden="true" />
+                            <span>Copy</span>
+                          </>
+                        )}
+                      </button>
+                    )}
+                  </div>
+
+                  {/* Loading */}
+                  {turn.streaming && turn.blocks.length === 0 && !turn.error && (
+                    <div
+                      role="status"
+                      className="border border-primary/25 bg-surface p-4 font-body text-sm text-on-surface-variant dark:border-[#3f3f46] dark:bg-[#141417]"
+                    >
+                      Retrieving verified project docs &amp; field records…
+                    </div>
+                  )}
+
+                  {/* Structured Answer Blocks */}
+                  {turn.blocks.length > 0 && (
+                    <div className="space-y-3">
+                      {turn.blocks.map((block) => (
+                        <div
+                          key={block.num}
+                          className="border border-primary/25 bg-surface p-4 space-y-1.5 dark:border-[#3f3f46] dark:bg-[#141417]"
+                        >
+                          <h4 className="flex items-center gap-2 font-headline text-xs sm:text-sm font-bold uppercase tracking-wide text-on-surface">
+                            <span
+                              className={`inline-block h-2 w-2 shrink-0 ${MARKER_COLORS[(block.num - 1) % MARKER_COLORS.length]}`}
+                              aria-hidden="true"
+                            />
+                            <span>
+                              {block.num}. {block.heading || 'Answer'}
+                            </span>
+                          </h4>
+                          <p className="font-body text-xs sm:text-sm leading-relaxed text-on-surface-variant">
+                            {block.body}
+                          </p>
+                        </div>
+                      ))}
+                    </div>
+                  )}
+
+                  {turn.error && (
+                    <div
+                      role="alert"
+                      className="border-2 border-secondary bg-surface p-4 font-mono text-xs text-secondary dark:bg-[#141417]"
+                    >
+                      {turn.error}
+                    </div>
+                  )}
+
+                  {/* Dynamic Verified Sources */}
+                  {!turn.streaming && turn.sources.length > 0 && (
+                    <div className="flex flex-wrap items-center gap-2 pt-1">
+                      <span className="font-mono text-[10px] font-bold uppercase tracking-wider text-on-surface-variant">
+                        Verified Sources:
+                      </span>
+                      {turn.sources.map((src) =>
+                        src.external ? (
+                          <a
+                            key={src.href}
+                            href={src.href}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="inline-flex items-center gap-1 border border-primary/40 bg-surface-container px-2.5 py-1 font-mono text-[11px] font-semibold text-on-surface transition-colors hover:bg-primary hover:text-on-primary dark:border-[#3f3f46] dark:bg-[#141417] dark:hover:border-[#facc15] dark:hover:text-[#facc15]"
+                          >
+                            <span>{src.title}</span>
+                            <ArrowUpRight size={12} aria-hidden="true" />
+                          </a>
+                        ) : (
+                          <Link
+                            key={src.href}
+                            href={src.href}
+                            className="inline-flex items-center gap-1 border border-primary/40 bg-surface-container px-2.5 py-1 font-mono text-[11px] font-semibold text-on-surface transition-colors hover:bg-primary hover:text-on-primary dark:border-[#3f3f46] dark:bg-[#141417] dark:hover:border-[#facc15] dark:hover:text-[#facc15]"
+                          >
+                            <span>{src.title}</span>
+                            <ArrowRight size={12} aria-hidden="true" />
+                          </Link>
+                        ),
+                      )}
+                    </div>
+                  )}
+
+                  {/* Interactive Follow-Up Suggestions (only on latest completed turn) */}
+                  {!turn.streaming &&
+                    idx === turns.length - 1 &&
+                    turn.followUps.length > 0 && (
+                      <div className="space-y-2 pt-2">
+                        <span className="block font-mono text-[10px] font-bold uppercase tracking-widest text-on-surface-variant">
+                          Continue Exploring
+                        </span>
+                        <div className="flex flex-wrap gap-2">
+                          {turn.followUps.map((fq) => (
+                            <button
+                              key={fq}
+                              type="button"
+                              onClick={() => void runQuery(fq, '')}
+                              className="border border-primary/50 bg-surface-container-low px-3 py-1.5 text-left font-body text-xs font-medium text-on-surface transition-colors hover:border-primary hover:bg-primary-container hover:text-on-primary-container dark:border-[#3f3f46] dark:bg-[#232329] dark:hover:border-[#facc15] dark:hover:text-[#facc15]"
+                            >
+                              {fq}
+                            </button>
+                          ))}
+                        </div>
+                      </div>
+                    )}
+                </article>
+              ))}
+              <div ref={threadEndRef} />
+            </div>
+
+            {/* Bottom Composer */}
+            <form
+              onSubmit={handleSubmit}
+              className="border-t-2 border-primary bg-surface-container p-4 dark:border-[#3f3f46] dark:bg-[#232329]"
+            >
+              <label htmlFor="ask-page-input" className="sr-only">
+                Ask a question about Aditya Pandey’s projects, field work, or background
+              </label>
+              <div className="flex flex-col gap-2.5 sm:flex-row">
+                <div className="relative flex flex-1 items-center border-2 border-primary bg-surface-container-lowest px-3 dark:border-[#3f3f46] dark:bg-[#141417]">
+                  <Search
+                    size={16}
+                    aria-hidden="true"
+                    className="mr-2 shrink-0 text-on-surface-variant"
+                  />
+                  <input
+                    ref={inputRef}
+                    id="ask-page-input"
+                    type="text"
+                    value={query}
+                    onChange={(e) => setQuery(e.target.value)}
+                    placeholder={
+                      selectedProjectObj
+                        ? `Ask anything about ${selectedProjectObj.title}...`
+                        : 'Ask about any project, tech stack, Bihar field work, or resume...'
+                    }
+                    autoComplete="off"
+                    className="w-full border-0 bg-transparent py-2.5 font-body text-sm text-on-surface outline-none placeholder:text-on-surface-variant/65"
+                  />
                 </div>
                 <button
                   type="submit"
-                  disabled={streaming || !query.trim()}
-                  className="px-6 py-2.5 bg-primary text-on-primary dark:bg-[#facc15] dark:text-[#121214] hover:bg-primary-container hover:text-on-primary-container dark:hover:bg-white dark:hover:text-black border-2 border-primary dark:border-[#facc15] font-headline font-bold text-xs uppercase tracking-wider transition-all shadow-[3px_3px_0px_#1a1a1a] dark:shadow-[3px_3px_0px_#000000] flex items-center justify-center gap-2 active:translate-x-0.5 active:translate-y-0.5 disabled:opacity-50 disabled:pointer-events-none"
+                  disabled={isStreaming || !query.trim()}
+                  className="inline-flex items-center justify-center gap-2 whitespace-nowrap border-2 border-primary bg-primary px-6 py-2.5 font-headline text-xs font-bold uppercase tracking-wider text-on-primary shadow-[3px_3px_0px_#1a1a1a] transition-colors hover:bg-primary-container hover:text-on-primary-container disabled:opacity-50 dark:border-[#facc15] dark:bg-[#facc15] dark:text-[#121214] dark:shadow-[3px_3px_0px_#000000] dark:hover:bg-white dark:hover:text-black"
                 >
-                  <span>Ask Assistant</span>
-                  <span className="material-symbols-outlined text-[16px]">send</span>
+                  <span>{isStreaming ? 'Answering…' : 'Ask'}</span>
+                  <Send size={14} aria-hidden="true" />
                 </button>
               </div>
             </form>
           </div>
-
-          {/* Response card */}
-          <div className="border-2 border-primary bg-surface p-6 sm:p-8 space-y-6 shadow-[4px_4px_0px_#1a1a1a] dark:shadow-[4px_4px_0px_#000000]">
-            {activeQuestion ? (
-              <div className="flex items-start justify-between gap-4 pb-4 border-b-2 border-primary">
-                <div className="space-y-1">
-                  <span className="font-mono text-[11px] font-bold uppercase text-on-surface-variant block tracking-wider">
-                    Current Question
-                  </span>
-                  <h2 className="font-headline font-bold text-base sm:text-lg text-on-surface">
-                    {activeQuestion}
-                  </h2>
-                </div>
-                <span className="inline-flex items-center gap-1.5 px-2.5 py-1 bg-primary-container text-on-primary-container font-headline font-bold text-xs uppercase border border-primary shrink-0">
-                  <span className="material-symbols-outlined text-[14px]">verified</span> Grounded
-                </span>
-              </div>
-            ) : (
-              <div className="pb-4 border-b-2 border-primary">
-                <span className="font-mono text-[11px] font-bold uppercase text-on-surface-variant block tracking-wider">
-                  Console Ready
-                </span>
-                <h2 className="font-headline font-bold text-base sm:text-lg text-on-surface mt-1">
-                  Ask anything about Aditya&apos;s field work, systems, or research.
-                </h2>
-              </div>
-            )}
-
-            <div className="font-body text-sm leading-relaxed text-on-surface space-y-4">
-              {!activeQuestion && !streaming && !error && (
-                <div className="bg-surface-container-low p-4 border border-primary/20 text-xs sm:text-sm text-on-surface-variant leading-relaxed">
-                  Welcome to the RAG console. Type a question above or tap one of the suggested prompts.
-                  Answers are grounded in Aditya&apos;s resume, project documentation, field logs, and public
-                  health operations records.
-                </div>
-              )}
-
-              {streaming && blocks.length === 0 && !error && (
-                <div className="bg-surface-container-low p-4 border border-primary/20 text-xs sm:text-sm text-on-surface-variant animate-pulse">
-                  Generating grounded answer…
-                </div>
-              )}
-
-              {blocks.map((block) => (
-                <div key={block.num} className="bg-surface-container-low p-4 border border-primary/20 space-y-2">
-                  <h3 className="font-headline font-bold text-xs uppercase tracking-wider text-on-surface flex items-center gap-2">
-                    <span
-                      className={`w-2 h-2 inline-block ${MARKER_COLORS[(block.num - 1) % MARKER_COLORS.length]}`}
-                    />
-                    {block.num}. {block.heading || 'Answer'}
-                  </h3>
-                  <p className="text-xs sm:text-sm text-on-surface-variant leading-relaxed">
-                    {block.body}
-                    {streaming && (
-                      <span className="text-on-surface cursor-blink"> ▋</span>
-                    )}
-                  </p>
-                </div>
-              ))}
-
-              {error && (
-                <div className="bg-surface-container-low p-4 border-2 border-secondary font-mono text-xs text-secondary leading-relaxed">
-                  {error}
-                </div>
-              )}
-            </div>
-
-            {/* Sources & confidence footer */}
-            <div className="pt-4 border-t-2 border-primary flex flex-wrap items-center justify-between gap-3 text-xs text-on-surface-variant">
-              <div className="flex flex-wrap items-center gap-2">
-                <span className="font-headline font-bold uppercase text-[11px]">Verified Sources:</span>
-                {SOURCES.map((source) => (
-                  <span
-                    key={source}
-                    className="px-2 py-0.5 bg-surface-container border border-primary font-mono text-[10px]"
-                  >
-                    {source}
-                  </span>
-                ))}
-              </div>
-              <div className="font-mono text-[11px] text-on-surface font-semibold">
-                Similarity Score: 94.2%
-              </div>
-            </div>
-          </div>
         </div>
       </section>
 
-      {/* Core topics */}
-      <section className="w-full border-b-2 border-primary bg-surface-container-low px-6 lg:px-12 py-12">
-        <div className="max-w-6xl mx-auto space-y-6">
-          <div className="text-center max-w-2xl mx-auto space-y-1">
-            <span className="font-headline text-xs font-bold uppercase tracking-wider text-on-surface-variant">
-              Knowledge Repository
-            </span>
-            <h2 className="font-headline font-bold text-2xl sm:text-3xl text-on-surface uppercase tracking-tight">
-              Explore Core Topics
-            </h2>
-            <p className="font-body text-xs sm:text-sm text-on-surface-variant">
-              Click any cluster below to prime a targeted inquiry.
-            </p>
-          </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-            {TOPICS.map((topic) => (
-              <button
-                key={topic.title}
-                type="button"
-                onClick={() => pickSuggestion(topic.question)}
-                className="cursor-pointer text-left border-2 border-primary bg-surface p-5 shadow-[3px_3px_0px_#1a1a1a] dark:shadow-[3px_3px_0px_#000000] hover:bg-surface-container transition-all flex flex-col justify-between group active:translate-x-0.5 active:translate-y-0.5"
-              >
-                <div className="space-y-3">
-                  <div className="flex items-center justify-between">
-                    <span className={`material-symbols-outlined ${topic.iconClass} text-[24px]`}>
-                      {topic.icon}
-                    </span>
-                    <span className="text-[10px] font-mono px-1.5 py-0.5 bg-surface-container border border-primary">
-                      {topic.tag}
-                    </span>
-                  </div>
-                  <h3
-                    className={`font-headline font-bold text-sm uppercase text-on-surface transition-colors ${topic.hoverClass}`}
-                  >
-                    {topic.title}
-                  </h3>
-                  <p className="font-body text-xs text-on-surface-variant leading-relaxed">
-                    {topic.desc}
-                  </p>
-                </div>
-                <div
-                  className={`mt-4 pt-3 border-t border-primary/20 flex items-center justify-between text-xs font-headline font-bold uppercase text-on-surface ${topic.hoverClass}`}
-                >
-                  <span>Ask this topic</span>
-                  <span>→</span>
-                </div>
-              </button>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Cross-links CTA */}
-      <section className="w-full bg-primary-container border-b-2 border-primary px-6 lg:px-12 py-10 text-on-primary-container">
-        <div className="max-w-4xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-6 text-center sm:text-left">
+      {/* Bottom Cross-Links */}
+      <section className="border-t-4 border-primary bg-primary-container px-4 py-10 text-on-primary-container dark:border-[#3f3f46] dark:bg-[#facc15] dark:text-[#121214] sm:px-8 lg:px-12">
+        <div className="mx-auto flex max-w-6xl flex-col items-center justify-between gap-6 text-center sm:flex-row sm:text-left">
           <div className="space-y-1">
-            <h2 className="font-headline font-bold text-xl sm:text-2xl uppercase tracking-tight text-on-primary-container dark:text-[#121214]">
-              Looking for Detailed Case Studies?
+            <h2 className="font-headline text-xl sm:text-2xl font-extrabold uppercase tracking-tight">
+              Want to Inspect Live Sites &amp; Source Code?
             </h2>
-            <p className="font-body text-xs sm:text-sm text-on-primary-container/80">
-              Explore interactive architectural diagrams and verified clinical field vitals.
+            <p className="font-body text-xs sm:text-sm opacity-85">
+              Browse side-by-side live previews, dedicated architecture pages, and verified Bihar field metrics.
             </p>
           </div>
           <div className="flex flex-wrap items-center justify-center gap-3">
             <Link
               href="/work"
-              className="px-4 py-2.5 bg-surface text-on-surface font-headline font-bold text-xs uppercase tracking-wider border-2 border-primary hover:bg-primary hover:text-on-primary transition-all shadow-[3px_3px_0px_#1a1a1a] dark:shadow-[3px_3px_0px_#000000] inline-flex items-center gap-1.5"
+              className="inline-flex items-center gap-1.5 border-2 border-primary bg-surface px-4 py-2.5 font-headline text-xs font-bold uppercase tracking-wider text-on-surface shadow-[3px_3px_0px_#1a1a1a] transition-colors hover:bg-primary hover:text-on-primary dark:border-[#121214] dark:bg-[#121214] dark:text-white dark:hover:bg-white dark:hover:text-black"
             >
-              <span>Work &amp; Systems</span>
-              <span className="material-symbols-outlined text-[16px]">arrow_forward</span>
+              <span>All 10 Projects</span>
+              <ArrowRight size={14} aria-hidden="true" />
             </Link>
             <Link
               href="/health"
-              className="px-4 py-2.5 bg-surface text-on-surface font-headline font-bold text-xs uppercase tracking-wider border-2 border-primary hover:bg-primary hover:text-on-primary transition-all shadow-[3px_3px_0px_#1a1a1a] dark:shadow-[3px_3px_0px_#000000] inline-flex items-center gap-1.5"
+              className="inline-flex items-center gap-1.5 border-2 border-primary bg-surface px-4 py-2.5 font-headline text-xs font-bold uppercase tracking-wider text-on-surface shadow-[3px_3px_0px_#1a1a1a] transition-colors hover:bg-primary hover:text-on-primary dark:border-[#121214] dark:bg-[#121214] dark:text-white dark:hover:bg-white dark:hover:text-black"
             >
               <span>Health Impact</span>
-              <span className="material-symbols-outlined text-[16px]">monitoring</span>
+              <ArrowRight size={14} aria-hidden="true" />
             </Link>
           </div>
         </div>
       </section>
-    </>
+    </div>
   );
 }

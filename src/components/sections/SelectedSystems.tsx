@@ -1,164 +1,236 @@
 'use client';
 
+import { useEffect, useState } from 'react';
 import Link from 'next/link';
+import {
+  ArrowRight,
+  ArrowUpRight,
+  ExternalLink,
+  Maximize2,
+  X,
+} from 'lucide-react';
+import { getHomeFeaturedSystems } from '@/lib/workCatalog';
+import type { PortfolioSystem } from '@/lib/data/systems';
 
-/**
- * V2 SelectedSystems — "04 // Production Systems" section on Home.
- *
- * Matches the supplied light/dark samples exactly:
- * - Red section eyebrow, "Production Systems" heading + /work deep link
- * - 3 flagship cards: Matru Suraksha, District Hospital Araria, India Dev Data Engine
- * - Native-language kicker, yellow subtitle (dark), architecture highlights box
- * - Solid black CTA bars that swap accent on hover
- *
- * Brutalist contract: 0px radius, thick borders, hard shadows, uppercase tracking
- */
-
-const SYSTEMS = [
-  {
-    num: '01',
-    badge: 'FLAGSHIP 01',
-    badgeClass: 'bg-secondary text-on-secondary dark:text-[#121214]',
-    tech: 'OFFLINE PWA',
-    native: 'मातृ सुरक्षा',
-    nativeClass: 'text-secondary',
-    title: 'Matru Suraksha',
-    subtitle: 'Multi-Tier High-Risk Pregnancy Care Platform',
-    desc: 'Clinical surveillance system specifically engineered for rural primary healthcare in Bihar. Designed for zero-connectivity sub-centres, ensuring pregnant mothers with severe anemia, gestational diabetes, or hypertension are algorithmically tracked until safe institutional delivery.',
-    highlights: [
-      'Offline-first IndexedDB (Dexie.js) bidirectional sync',
-      '6-Tier Role-Based Access Control (ASHA to DM)',
-      '15-day deterministic clinical escalation triggers',
-      'Zero-data loss on intermittent 2G/3G towers',
-    ],
-    cta: 'Deep-dive architecture on Work page',
-    ctaHover: 'hover:bg-secondary hover:text-on-secondary dark:hover:bg-white dark:hover:text-black',
-  },
-  {
-    num: '02',
-    badge: 'FLAGSHIP 02',
-    badgeClass: 'bg-tertiary text-white dark:text-[#121214]',
-    tech: 'CIVIC HEALTH OPS',
-    native: 'सदर अस्पताल अररिया',
-    nativeClass: 'text-tertiary',
-    title: 'District Hospital Araria Portal',
-    subtitle: 'Civic Healthcare Operations & OPD Telemetry',
-    desc: 'District-wide civic hospital management portal resolving OPD bottlenecks, bed occupancy tracking, blood bank component inventories, and automated citizen SMS dispatch across 9 departmental wings.',
-    highlights: [
-      'Real-time tokenized OPD queue telemetry',
-      'Blood bank stock ledger with cold-chain threshold alerts',
-      'Bi-lingual (Hindi/English) responsive interface',
-      'Direct SMS dispatch gateway via NIC / SMS APIs',
-    ],
-    cta: 'Full architecture on Work page',
-    ctaHover: 'hover:bg-tertiary hover:text-white dark:hover:bg-white dark:hover:text-black',
-  },
-  {
-    num: '03',
-    badge: 'FLAGSHIP 03',
-    badgeClass: 'bg-primary-container text-on-primary-container dark:bg-[#facc15] dark:text-[#121214] border border-primary',
-    tech: 'PUBLIC INTEL',
-    native: 'डेटा इंजन भारत',
-    nativeClass: 'text-primary dark:text-[#facc15]',
-    title: 'India Dev Data Engine',
-    subtitle: 'Socio-Economic Choropleth & Vector Querying',
-    desc: 'Public intelligence portal ingesting NFHS-5, Census, and state MIS datasets (118k+ records). Empowers district collectors and health planners to conduct semantic queries and visualize spatial inequalities in real-time.',
-    highlights: [
-      'pgvector embedded spatial embeddings index',
-      '118,000+ validated indicators parsed & normalized',
-      'D3.js interactive choropleth vector projections',
-      'Sub-100ms multi-variable regression queries',
-    ],
-    cta: 'Explore on Work page',
-    ctaHover: 'hover:bg-primary-container hover:text-on-primary-container dark:hover:bg-white dark:hover:text-black',
-  },
-];
+const FEATURED_SYSTEMS = getHomeFeaturedSystems();
 
 export function SelectedSystems() {
+  const [modalSystem, setModalSystem] = useState<PortfolioSystem | null>(null);
+
+  useEffect(() => {
+    if (!modalSystem) return;
+    const onKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') setModalSystem(null);
+    };
+    window.addEventListener('keydown', onKeyDown);
+    return () => window.removeEventListener('keydown', onKeyDown);
+  }, [modalSystem]);
+
   return (
     <section
       id="systems"
-      className="border-b-4 border-primary dark:border-[#3f3f46] bg-surface-container-low dark:bg-[#121214] py-10 px-4 sm:px-8 lg:px-12"
+      className="border-b-4 border-primary bg-surface-container-low px-4 py-12 dark:border-[#3f3f46] dark:bg-[#121214] sm:px-8 lg:px-12 lg:py-14"
     >
-      <div className="max-w-7xl mx-auto space-y-10">
-        <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 border-b-2 border-primary dark:border-[#3f3f46] pb-4">
-          <div>
-            <span className="font-headline text-xs font-bold uppercase tracking-widest text-secondary block">
-              04 // FLAGSHIP ENGINEERING DEPLOYMENTS
+      <div className="mx-auto max-w-7xl space-y-8">
+        {/* Header with prominent top-right CTA to /work */}
+        <div className="flex flex-col justify-between gap-4 border-b-2 border-primary pb-5 dark:border-[#3f3f46] sm:flex-row sm:items-end">
+          <div className="space-y-1">
+            <span className="block font-headline text-xs font-bold uppercase tracking-widest text-secondary">
+              04 · Selected Production Builds
             </span>
-            <h2 className="font-headline text-3xl sm:text-5xl font-bold uppercase tracking-tight text-on-surface mt-1">
+            <h2 className="font-headline text-3xl font-extrabold uppercase tracking-tight text-on-surface sm:text-4xl lg:text-5xl">
               Production Systems
             </h2>
+            <p className="max-w-xl font-body text-sm text-on-surface-variant">
+              Three live flagship systems at a glance — open the full catalog for all 10 projects, GitHub docs, and deep-dive pages.
+            </p>
           </div>
+
           <Link
             href="/work"
-            className="inline-flex items-center gap-1 font-headline text-xs font-bold uppercase tracking-wider text-primary hover:text-secondary dark:text-primary dark:hover:text-white border-b-2 border-primary pb-1"
+            className="inline-flex shrink-0 items-center justify-center gap-2 whitespace-nowrap border-2 border-primary bg-primary-container px-5 py-2.5 font-headline text-xs font-bold uppercase tracking-wider text-on-primary-container shadow-[4px_4px_0px_#1a1a1a] transition-all hover:-translate-y-0.5 hover:bg-primary hover:text-on-primary dark:border-[#facc15] dark:bg-[#facc15] dark:text-[#121214] dark:shadow-[4px_4px_0px_#000000] dark:hover:bg-white dark:hover:text-black"
           >
-            <span>View All Systems &amp; Architecture on Work Page (/work)</span>
-            <span className="material-symbols-outlined text-sm">arrow_forward</span>
+            <span>View All 10 Projects</span>
+            <ArrowRight size={15} aria-hidden="true" />
           </Link>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 items-stretch">
-          {SYSTEMS.map((sys) => (
-            <div
-              key={sys.num}
-              className="bg-surface-container-lowest dark:bg-[#202024] border-3 border-primary dark:border-[#3f3f46] p-6 shadow-[6px_6px_0px_#1a1a1a] dark:shadow-[6px_6px_0px_#000000] flex flex-col justify-between hover:translate-x-0.5 hover:translate-y-0.5 hover:shadow-[3px_3px_0px_#1a1a1a] dark:hover:shadow-[3px_3px_0px_#000000] transition-all"
+        {/* Strictly 3 in a single row on desktop — concise & scannable */}
+        <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
+          {FEATURED_SYSTEMS.map((sys) => (
+            <article
+              key={sys.slug}
+              className="group flex flex-col overflow-hidden border-[3px] border-primary bg-surface-container-lowest shadow-[5px_5px_0px_#1a1a1a] transition-transform duration-200 hover:-translate-y-0.5 dark:border-[#3f3f46] dark:bg-[#1b1b1f] dark:shadow-[5px_5px_0px_#000000]"
             >
-              <div className="space-y-4">
-                <div className="flex items-center justify-between border-b-2 border-primary dark:border-[#3f3f46] pb-3">
-                  <span className={`px-2.5 py-0.5 font-headline font-bold text-xs uppercase ${sys.badgeClass}`}>
-                    {sys.badge}
-                  </span>
-                  <span className="font-mono text-xs font-bold text-on-surface-variant">{sys.tech}</span>
-                </div>
-                <div className="space-y-1">
-                  <div className={`font-headline text-sm font-bold uppercase ${sys.nativeClass}`}>
-                    {sys.native}
+              <div className={`h-1.5 w-full ${sys.accentClass}`} aria-hidden="true" />
+
+              {/* Browser Chrome + Live Site Screenshot */}
+              <div className="border-b-2 border-primary bg-surface-container dark:border-[#3f3f46] dark:bg-[#121214]">
+                <div className="flex items-center justify-between gap-2 border-b-2 border-primary bg-primary px-3 py-1.5 text-on-primary dark:border-[#3f3f46] dark:bg-[#0e0e10] dark:text-on-surface">
+                  <div className="flex min-w-0 items-center gap-1.5">
+                    <span className="h-2 w-2 shrink-0 bg-accent-red" aria-hidden="true" />
+                    <span className="h-2 w-2 shrink-0 bg-primary-container dark:bg-[#facc15]" aria-hidden="true" />
+                    <span className="h-2 w-2 shrink-0 bg-tertiary" aria-hidden="true" />
+                    <span className="ml-1 truncate font-mono text-[10px] font-semibold text-primary-container dark:text-[#facc15]">
+                      {sys.domain}
+                    </span>
                   </div>
-                  <h3 className="font-headline text-2xl font-bold text-on-surface uppercase">{sys.title}</h3>
-                  <p className="font-headline text-xs font-bold text-on-surface-variant dark:text-[#facc15] uppercase">
-                    {sys.subtitle}
-                  </p>
+                  <button
+                    type="button"
+                    onClick={() => setModalSystem(sys)}
+                    aria-label={`Expand preview of ${sys.title}`}
+                    title="Expand preview"
+                    className="inline-flex h-5 w-5 shrink-0 items-center justify-center border border-white/25 bg-white/10 text-white transition-colors hover:bg-white hover:text-black"
+                  >
+                    <Maximize2 size={11} aria-hidden="true" />
+                  </button>
                 </div>
-                <p className="font-body text-xs sm:text-sm text-on-surface dark:text-on-surface-variant leading-relaxed">
-                  {sys.desc}
-                </p>
-                <div className="bg-surface dark:bg-[#161619] p-3 border border-primary dark:border-[#3f3f46] space-y-2 text-xs font-mono text-on-surface dark:text-on-surface-variant">
-                  <div className="text-[11px] font-bold uppercase text-primary border-b border-primary/20 dark:border-[#3f3f46] pb-1">
-                    Architecture Highlights
-                  </div>
-                  {sys.highlights.map((h, i) => (
-                    <div key={i}>• {h}</div>
-                  ))}
-                </div>
-              </div>
-              <div className="pt-6 border-t-2 border-primary dark:border-[#3f3f46] mt-6">
+
                 <Link
-                  href="/work"
-                  className={`inline-flex items-center justify-between w-full p-2.5 bg-primary text-on-primary dark:bg-[#facc15] dark:text-[#121214] font-headline text-xs font-bold uppercase tracking-wider transition-colors ${sys.ctaHover}`}
+                  href={`/work/${sys.slug}`}
+                  aria-label={`Open details for ${sys.title}`}
+                  className="relative block aspect-[16/10] w-full overflow-hidden bg-surface dark:bg-[#0e0e10]"
                 >
-                  <span>{sys.cta}</span>
-                  <span className="material-symbols-outlined text-sm">east</span>
+                  <img
+                    src={sys.previewImage}
+                    alt={`${sys.title} live website screenshot`}
+                    loading="lazy"
+                    decoding="async"
+                    referrerPolicy="no-referrer"
+                    className="h-full w-full object-cover object-top transition-transform duration-500 ease-out group-hover:scale-[1.03]"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/65 via-transparent to-transparent opacity-0 transition-opacity duration-200 group-hover:opacity-100" />
+                  <span className="absolute bottom-2.5 right-2.5 inline-flex items-center gap-1 border border-black bg-[#facc15] px-2 py-0.5 font-headline text-[10px] font-bold uppercase tracking-wider text-black opacity-0 transition-opacity duration-200 group-hover:opacity-100">
+                    Inspect System <ArrowRight size={11} aria-hidden="true" />
+                  </span>
                 </Link>
               </div>
-            </div>
+
+              {/* Concise Card Body */}
+              <div className="flex flex-1 flex-col justify-between p-5">
+                <div className="space-y-3">
+                  <div className="flex items-center gap-2 font-mono text-[11px] text-on-surface-variant">
+                    <span className="font-bold tabular-nums text-primary dark:text-[#facc15]">
+                      {sys.rank}
+                    </span>
+                    <span aria-hidden="true">·</span>
+                    <span className="font-semibold text-secondary">{sys.categoryLabel}</span>
+                  </div>
+
+                  <h3 className="font-headline text-xl font-bold uppercase tracking-tight text-on-surface leading-snug">
+                    {sys.title}
+                  </h3>
+
+                  <p className="font-body text-xs sm:text-sm leading-relaxed text-on-surface-variant line-clamp-2">
+                    {sys.tagline}
+                  </p>
+
+                  {/* Compact 3-Metric Strip */}
+                  <div className="grid grid-cols-3 gap-2 border-y border-outline/25 py-2.5 dark:border-[#3f3f46]">
+                    {sys.metrics.slice(0, 3).map((m) => (
+                      <div key={m.label} className="min-w-0">
+                        <div className="font-headline text-base font-extrabold tabular-nums text-on-surface leading-tight">
+                          {m.value}
+                        </div>
+                        <div className="mt-0.5 font-mono text-[9.5px] uppercase leading-tight text-on-surface-variant">
+                          {m.label}
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+
+                {/* Clean 2-Button Footer */}
+                <div className="mt-4 flex items-center gap-2.5">
+                  {sys.liveUrl && (
+                    <a
+                      href={sys.liveUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex flex-1 items-center justify-center gap-1.5 whitespace-nowrap border-2 border-primary bg-primary px-3 py-2 font-headline text-[11px] font-bold uppercase tracking-wider text-on-primary shadow-[2px_2px_0px_#1a1a1a] transition-colors hover:bg-primary-container hover:text-on-primary-container dark:border-[#facc15] dark:bg-[#facc15] dark:text-[#121214] dark:shadow-[2px_2px_0px_#000000] dark:hover:bg-white dark:hover:text-black"
+                    >
+                      <span>Live Site</span>
+                      <ArrowUpRight size={13} aria-hidden="true" />
+                    </a>
+                  )}
+                  <Link
+                    href={`/work/${sys.slug}`}
+                    className="inline-flex flex-1 items-center justify-center gap-1.5 whitespace-nowrap border-2 border-primary bg-surface px-3 py-2 font-headline text-[11px] font-bold uppercase tracking-wider text-on-surface shadow-[2px_2px_0px_#1a1a1a] transition-colors hover:bg-surface-container dark:border-[#3f3f46] dark:bg-[#141417] dark:shadow-[2px_2px_0px_#000000] dark:hover:border-[#facc15] dark:hover:text-[#facc15]"
+                  >
+                    <span>Details</span>
+                    <ArrowRight size={13} aria-hidden="true" />
+                  </Link>
+                </div>
+              </div>
+            </article>
           ))}
         </div>
-
-        <div className="p-4 bg-surface dark:bg-[#202024] border-2 border-primary dark:border-[#3f3f46] flex flex-col sm:flex-row items-center justify-between gap-4 font-mono text-xs text-on-surface">
-          <div className="flex items-center gap-2">
-            <span className="material-symbols-outlined text-base text-primary">folder_special</span>
-            <span>SYSTEMS PORTFOLIO CATALOG: 5 PRODUCTION REPOSITORIES ACTIVE</span>
-          </div>
-          <Link
-            href="/work"
-            className="font-bold underline text-primary uppercase tracking-wider hover:text-secondary dark:hover:text-white"
-          >
-            Explore all 5 deployed systems, architecture diagrams, database schemas, and source repositories on the Work page →
-          </Link>
-        </div>
       </div>
+
+      {/* Expanded Screenshot Lightbox Modal */}
+      {modalSystem && (
+        <div
+          role="dialog"
+          aria-modal="true"
+          aria-label={`${modalSystem.title} preview`}
+          className="fixed inset-0 z-[100] flex items-center justify-center bg-black/75 p-4 backdrop-blur-sm sm:p-8"
+          onClick={() => setModalSystem(null)}
+        >
+          <div
+            className="flex max-h-[90vh] w-full max-w-5xl flex-col overflow-hidden border-[3px] border-primary bg-surface shadow-[8px_8px_0px_#000000] dark:border-[#facc15] dark:bg-[#161619]"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <div className="flex flex-wrap items-center justify-between gap-3 border-b-2 border-primary bg-primary px-4 py-3 text-on-primary dark:border-[#3f3f46] dark:bg-[#0e0e10] dark:text-white">
+              <div className="flex items-center gap-3">
+                <span className="font-headline text-sm font-bold uppercase tracking-wider">
+                  {modalSystem.title}
+                </span>
+                <span className="hidden font-mono text-xs text-primary-container dark:text-[#facc15] sm:inline">
+                  {modalSystem.domain}
+                </span>
+              </div>
+              <div className="flex items-center gap-2">
+                {modalSystem.liveUrl && (
+                  <a
+                    href={modalSystem.liveUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-1 border border-white/30 bg-white/10 px-2.5 py-1 font-headline text-[11px] font-bold uppercase tracking-wider text-white hover:bg-white hover:text-black"
+                  >
+                    <span>Open Live Site</span>
+                    <ExternalLink size={12} aria-hidden="true" />
+                  </a>
+                )}
+                <Link
+                  href={`/work/${modalSystem.slug}`}
+                  onClick={() => setModalSystem(null)}
+                  className="inline-flex items-center gap-1 border border-[#facc15] bg-[#facc15] px-2.5 py-1 font-headline text-[11px] font-bold uppercase tracking-wider text-black hover:bg-white"
+                >
+                  <span>Full Details</span>
+                  <ArrowRight size={12} aria-hidden="true" />
+                </Link>
+                <button
+                  type="button"
+                  onClick={() => setModalSystem(null)}
+                  aria-label="Close preview"
+                  className="inline-flex h-8 w-8 items-center justify-center border border-white/30 bg-white/10 text-white hover:bg-accent-red hover:text-white"
+                >
+                  <X size={16} aria-hidden="true" />
+                </button>
+              </div>
+            </div>
+
+            <div className="relative max-h-[76vh] w-full overflow-auto bg-surface-container dark:bg-[#0e0e10]">
+              <img
+                src={modalSystem.previewImage}
+                alt={`${modalSystem.title} full live site preview`}
+                referrerPolicy="no-referrer"
+                className="h-auto w-full object-contain"
+              />
+            </div>
+          </div>
+        </div>
+      )}
     </section>
   );
 }

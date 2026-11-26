@@ -130,9 +130,11 @@ export function DistrictVisitMap() {
           strokeWidth="1.6"
           strokeLinejoin="round"
           strokeLinecap="round"
+          pathLength={1}
+          strokeDasharray="1"
           aria-label="Muzaffarpur district boundary"
-          initial={{ opacity: 0, pathLength: 0 }}
-          animate={inView ? { opacity: 1, pathLength: 1 } : {}}
+          initial={{ opacity: 0, strokeDashoffset: 1 }}
+          animate={inView ? { opacity: 1, strokeDashoffset: 0 } : {}}
           transition={{ duration: 1.4, delay: 0.1, ease: EASE }}
         />
 
@@ -236,8 +238,8 @@ export function DistrictVisitMap() {
             strokeLinecap="round"
             opacity={0.75}
             aria-label="Visit route"
-            initial={{ pathLength: 0, opacity: 0 }}
-            animate={inView ? { pathLength: 1, opacity: 0.75 } : {}}
+            initial={{ opacity: 0 }}
+            animate={inView ? { opacity: 0.75 } : {}}
             transition={{ duration: 1.1, delay: 0.9 + i * 0.14, ease: EASE }}
           />
         ))}

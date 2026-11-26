@@ -1,5 +1,10 @@
 import type { Metadata, Viewport } from 'next';
-import { Inter, JetBrains_Mono, Lora, Outfit, Space_Grotesk } from 'next/font/google';
+import {
+  Bricolage_Grotesque,
+  Fraunces,
+  JetBrains_Mono,
+  Plus_Jakarta_Sans,
+} from 'next/font/google';
 import { Providers } from '@/components/providers/Providers';
 import { ThemeProvider } from '@/components/providers/ThemeProvider';
 import { MobileHeader } from '@/components/ui/MobileHeader';
@@ -8,39 +13,31 @@ import { DesktopNav } from '@/components/ui/DesktopNav';
 import { AmbientBackground } from '@/components/three/AmbientBackground';
 import './globals.css';
 
-const inter = Inter({
+const plusJakarta = Plus_Jakarta_Sans({
   subsets: ['latin'],
-  variable: '--font-inter',
+  weight: ['400', '500', '600', '700', '800'],
+  variable: '--font-jakarta',
   display: 'swap',
 });
 
-const spaceGrotesk = Space_Grotesk({
+const bricolage = Bricolage_Grotesque({
   subsets: ['latin'],
-  variable: '--font-space-grotesk',
+  weight: ['500', '600', '700', '800'],
+  variable: '--font-bricolage',
+  display: 'swap',
+});
+
+const fraunces = Fraunces({
+  subsets: ['latin'],
+  weight: ['500', '600', '700'],
+  variable: '--font-fraunces',
   display: 'swap',
 });
 
 const jetbrainsMono = JetBrains_Mono({
   subsets: ['latin'],
+  weight: ['400', '500', '600', '700'],
   variable: '--font-jetbrains-mono',
-  display: 'swap',
-});
-
-const outfit = Outfit({
-  subsets: ['latin'],
-  variable: '--font-outfit',
-  display: 'swap',
-});
-
-const jetbrains = JetBrains_Mono({
-  subsets: ['latin'],
-  variable: '--font-jetbrains',
-  display: 'swap',
-});
-
-const lora = Lora({
-  subsets: ['latin'],
-  variable: '--font-lora',
   display: 'swap',
 });
 
@@ -50,10 +47,10 @@ export const metadata: Metadata = {
   metadataBase: new URL(SITE),
   title: 'Aditya Pandey — Field Data → Clean Insights → Real Decisions',
   description:
-    'Portfolio of Aditya Pandey — Data Analyst, Full-Stack Developer & AI Practitioner. Gandhi Fellow at Piramal Foundation, working at the intersection of public health, applied AI, and the MERN stack.',
+    'Portfolio of Aditya Pandey — Full-Stack Developer, Public Health Data Engineer & Applied AI Practitioner. Gandhi Fellow at Piramal Foundation building production web platforms, clinical AI, and data systems.',
   keywords: [
     'Aditya Pandey', 'Data Analyst', 'Full-Stack Developer', 'Gandhi Fellow', 'Piramal Foundation',
-    'Python', 'MERN', 'ODK', 'Public Health Data', 'Bihar', 'AI',
+    'Python', 'Next.js', 'NestJS', 'FastAPI', 'ODK', 'Public Health Data', 'Bihar', 'Clinical AI',
   ],
   authors: [{ name: 'Aditya Pandey' }],
   creator: 'Aditya Pandey',
@@ -61,13 +58,13 @@ export const metadata: Metadata = {
     type: 'website',
     url: SITE,
     title: 'Aditya Pandey — Field Data → Clean Insights → Real Decisions',
-    description: 'Data analyst, full-stack developer & AI practitioner building data systems in Bihar that turn field work into real decisions.',
+    description: 'Full-stack developer & public health data engineer building production systems in Bihar that turn field work into real decisions.',
     siteName: 'Aditya Pandey',
   },
   twitter: {
     card: 'summary_large_image',
     title: 'Aditya Pandey — Field Data → Clean Insights → Real Decisions',
-    description: 'Data analyst, full-stack developer & AI practitioner.',
+    description: 'Full-stack developer, public health data engineer & applied AI practitioner.',
   },
   icons: {
     icon: '/icon.svg',
@@ -78,8 +75,7 @@ export const viewport: Viewport = {
   themeColor: '#f5f0e8',
   width: 'device-width',
   initialScale: 1,
-  maximumScale: 1,
-  userScalable: false,
+  maximumScale: 5,
   viewportFit: 'cover',
 };
 
@@ -93,10 +89,14 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             __html: `(function(){try{var t=localStorage.getItem('theme');if(t==='dark'){document.documentElement.classList.add('dark');}}catch(e){}})();`,
           }}
         />
-        <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" rel="stylesheet" />
-        <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet" />
+        <link
+          href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
+          rel="stylesheet"
+        />
       </head>
-      <body className={`${inter.variable} ${spaceGrotesk.variable} ${jetbrainsMono.variable} ${outfit.variable} ${jetbrains.variable} ${lora.variable} bg-surface dark:bg-surface-dark font-sans text-primary dark:text-on-surface antialiased pt-16 lg:pt-24`}>
+      <body
+        className={`${plusJakarta.variable} ${bricolage.variable} ${fraunces.variable} ${jetbrainsMono.variable} bg-surface dark:bg-surface-dark font-sans text-primary dark:text-on-surface antialiased pt-16 lg:pt-24`}
+      >
         <ThemeProvider>
           <MobileHeader />
           <MobileTabBar />
@@ -108,5 +108,3 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     </html>
   );
 }
-
-

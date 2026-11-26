@@ -1,66 +1,204 @@
+export type ExperienceTrack = 'all' | 'health' | 'engineering';
+
+export interface ExperienceHighlight {
+  lead: string;
+  detail: string;
+}
+
+export interface ExperienceMetric {
+  value: string;
+  label: string;
+}
+
+export interface ExperienceLink {
+  label: string;
+  href: string;
+  external?: boolean;
+}
+
 export interface Experience {
+  id: string;
+  index: string;
   role: string;
   org: string;
-  orgUrl?: string;
+  location: string;
   period: string;
   current: boolean;
-  bullets: string[];
-  tags: string[];
-  muted?: boolean;
+  featured?: boolean;
+  track: Exclude<ExperienceTrack, 'all'>;
+  trackLabel: string;
+  accentClass: string;
+  summary: string;
+  highlights: ExperienceHighlight[];
+  metrics?: ExperienceMetric[];
+  skills: string[];
+  links: ExperienceLink[];
 }
+
+export const EXPERIENCE_TRACKS: { id: ExperienceTrack; label: string }[] = [
+  { id: 'all', label: 'All Roles' },
+  { id: 'health', label: 'Public Health' },
+  { id: 'engineering', label: 'Engineering' },
+];
 
 export const experience: Experience[] = [
   {
-    role: 'Gandhi Fellow · Health System Strengthening',
-    org: 'Gandhi Fellowship · Piramal Foundation · Bihar',
+    id: 'gandhi-fellowship',
+    index: '01',
+    role: 'Gandhi Fellow — Health System Strengthening',
+    org: 'Piramal Foundation',
+    location: 'Muzaffarpur & Araria, Bihar',
     period: 'Jul 2025 – Present',
     current: true,
-    bullets: [
-      'Frontline worker capacity building: trained <strong>700+ ASHA workers</strong> hands-on on the <strong>M-ASHA</strong> government digital application across <strong>100+ sessions</strong> — not one-time trainings, but sustained, patient sessions until the tool genuinely worked for each worker\u2019s daily use.',
-      'Multi-level system support: worked as part of the <strong>district health support system</strong> across SHC, PHC, and district hospital levels — supporting facilities toward <strong>NQAS (National Quality Assurance Standards)</strong> certification.',
-      'Supportive supervision of MCH programs: conducted <strong>supportive supervision for maternal and child health programs</strong> — immunization and <strong>PMSMA</strong> — observing service delivery on-ground and feeding structured feedback back to block and district levels.',
-      'Sustained mentoring & training design: co-designed and delivered a structured <strong>185-hour Clinical Skills Refresher</strong> for 12 staff nurses and 4 doctors across a 5-week progressive curriculum — followed by <strong>monthly on-site audits</strong> to ensure practices were actually adopted, not just taught once.',
-      'Data-to-decision pipeline: built a <strong>Python/Pandas workflow</strong> to clean and validate VHSND, Godbharai, and PMSMA field data collected via <strong>ODK Collect & ODK Central</strong> — producing MIS reports used in block and district review meetings.',
-      'Field diagnostics: led a <strong>diagnostic project across multiple CHCs</strong>, surfacing inventory and coordination gaps between physical registers and digital portals — findings taken up by facility and district leadership for correction.',
+    featured: true,
+    track: 'health',
+    trackLabel: 'Public Health & Field Systems',
+    accentClass: 'bg-secondary',
+    summary:
+      'Embedded across 16 high-burden blocks in North Bihar, strengthening maternal-child health delivery while building offline data pipelines and clinical tools used by frontline workers and district officers.',
+    highlights: [
+      {
+        lead: 'Frontline Capacity Building',
+        detail:
+          'Trained 700+ ASHA workers hands-on on M-ASHA across 100+ micro-sessions and co-delivered a 185-hour Clinical Skills Refresher for 12 staff nurses and 4 doctors.',
+      },
+      {
+        lead: 'Facility Audits & NQAS Quality',
+        detail:
+          'Reconciled physical registers against digital portals across 154 Sub-Centres and PHCs to surface inventory gaps and support NQAS certification readiness.',
+      },
+      {
+        lead: 'ODK & Automated MIS Pipelines',
+        detail:
+          'Built Python/Pandas and offline VHSND/PMSMA validation workflows (253 columns, 118k+ records) preparing clean tables ahead of Monday district reviews.',
+      },
+      {
+        lead: 'Clinical & Offline Software Shipped',
+        detail:
+          'Engineered Matru Suraksha (offline maternal triage PWA), District Hospital Araria portal, and an Ambient Clinical AI Scribe for Hindi/English maternity visits.',
+      },
     ],
-    tags: ['ODK', 'NQAS', 'Python', 'MIS Reporting', 'Capacity Building'],
+    metrics: [
+      { value: '700+', label: 'ASHAs Trained' },
+      { value: '154', label: 'Facilities Audited' },
+      { value: '185-hr', label: 'Clinical Refresher' },
+      { value: '13,627', label: 'Field KM Logged' },
+    ],
+    skills: ['ODK Collect & Central', 'NQAS Audits', 'Python & Pandas', 'District MIS', 'Clinical AI & Offline PWA'],
+    links: [
+      { label: 'Health Field Ledger', href: '/health' },
+      { label: 'Health Tech Builds', href: '/work' },
+    ],
   },
   {
+    id: 'biharkaswaad',
+    index: '02',
     role: 'Full-Stack Developer & Web In-Charge',
-    org: 'BiharKaSwaad — Bihari Food E-Commerce',
-    orgUrl: 'https://biharkaswaad.in/',
+    org: 'BiharKaSwaad',
+    location: 'Production D2C Commerce · India',
     period: 'Jul 2025 – Present',
     current: true,
-    bullets: [
-      'Built and deployed a <strong>production e-commerce platform (biharkaswaad.in)</strong> — catalog, cart, payments, shipping & support, end-to-end on Hostinger.',
-      'Designed a <strong>secure Razorpay payment pipeline</strong> — HMAC SHA-256 verification, server-side amount re-validation, and webhook reconciliation.',
-      'Engineered the <strong>full order lifecycle</strong> with variant-aware stock, courier tracking, and automated branded emails.',
-      'Sole developer and <strong>ongoing web in-charge</strong>.',
+    track: 'engineering',
+    trackLabel: 'Production E-Commerce',
+    accentClass: 'bg-primary-container dark:bg-[#facc15]',
+    summary:
+      'Sole engineer and ongoing web in-charge for a live regional food storefront shipping authentic Bihari specialties across India.',
+    highlights: [
+      {
+        lead: 'Zero-Tamper Checkout',
+        detail:
+          'Built Razorpay payment pipeline with HMAC SHA-256 verification, server-side amount re-validation, and webhook reconciliation.',
+      },
+      {
+        lead: 'Full Order & Shipping Lifecycle',
+        detail:
+          'Engineered variant-aware inventory, admin CMS, Shiprocket courier dispatch, and automated branded order emails.',
+      },
+      {
+        lead: 'Performance & QA Hardening',
+        detail:
+          'Added 11 composite MySQL indexes and verified checkout & storefront flows with 29/29 passing Playwright E2E tests.',
+      },
     ],
-    tags: ['React', 'Node.js', 'Express', 'MySQL', 'Razorpay'],
+    skills: ['React', 'Node.js', 'Express', 'MySQL', 'Razorpay', 'Playwright'],
+    links: [
+      { label: 'Case Study', href: '/work/biharkaswaad' },
+      { label: 'Live Site', href: 'https://biharkaswaad.in/', external: true },
+    ],
   },
   {
+    id: 'prodigy-infotech',
+    index: '03',
     role: 'Full-Stack Web Developer Intern',
-    org: 'Prodigy InfoTech · Remote',
+    org: 'Prodigy InfoTech',
+    location: 'Remote · Engineering',
     period: 'Jun – Jul 2025',
     current: false,
-    bullets: [
-      'Built and deployed <strong>production-ready MERN applications</strong> — secure authentication, scalable database models, and full CRUD APIs.',
-      'Developed <strong>real-time, asynchronous communication apps</strong> with <strong>WebSockets</strong>.',
-      'Applied <strong>agile development</strong> and managed source code with standard Git workflows via GitHub and the Cursor IDE.',
+    track: 'engineering',
+    trackLabel: 'Full-Stack & APIs',
+    accentClass: 'bg-tertiary',
+    summary:
+      'Delivered full-stack MERN applications and real-time messaging modules under rapid agile sprint deadlines.',
+    highlights: [
+      {
+        lead: 'Auth & REST Architecture',
+        detail:
+          'Implemented JWT & OAuth authentication, role-protected CRUD endpoints, and normalized MongoDB data models.',
+      },
+      {
+        lead: 'Real-Time WebSockets',
+        detail:
+          'Built asynchronous communication modules with live WebSocket state synchronization and reconnection handling.',
+      },
+      {
+        lead: 'Production Git Workflows',
+        detail:
+          'Maintained clean pull-request workflows, API testing suites, and structured sprint deliveries via GitHub.',
+      },
     ],
-    tags: ['MERN', 'JWT', 'WebSockets', 'Agile', 'Git'],
+    skills: ['MongoDB', 'Express', 'React', 'Node.js', 'JWT / OAuth', 'WebSockets'],
+    links: [
+      { label: 'GitHub Profile', href: 'https://github.com/adityapandey2002', external: true },
+    ],
   },
   {
-    role: 'Sustainable-tech Intern',
-    org: 'Auroville FabLab, Tamil Nadu',
+    id: 'auroville-fablab',
+    index: '04',
+    role: 'Sustainable-Tech & Hardware Intern',
+    org: 'Auroville FabLab & MinVayu',
+    location: 'Auroville, Tamil Nadu',
     period: 'Sep – Nov 2024',
     current: false,
-    bullets: [
-      'Open-source <strong>3D printing & digital fabrication</strong> — prototyping eco-friendly structures from sand, rice husk, and slaked lime.',
-      'Designed and tested <strong>large-format 3D printers</strong> (MinVayu project) built on open-source hardware for distributed, low-cost digital manufacturing.',
+    track: 'engineering',
+    trackLabel: 'Open Hardware & Lab',
+    accentClass: 'bg-on-surface dark:bg-on-surface-variant',
+    summary:
+      'Prototyped open-source manufacturing hardware and low-carbon construction composites in a hands-on fabrication lab.',
+    highlights: [
+      {
+        lead: 'Large-Format 3D Printers',
+        detail:
+          'Assembled, calibrated, and tested open-source large-format printers built for affordable distributed manufacturing.',
+      },
+      {
+        lead: 'Eco-Composite Material Tests',
+        detail:
+          'Prototyped structural print blends using locally sourced sand, rice husk, and slaked lime for sustainable housing.',
+      },
+      {
+        lead: 'MinVayu Wind Automation',
+        detail:
+          'Contributed 3D CAD modeling and open-source automation supporting rural small wind-turbine prototyping.',
+      },
     ],
-    tags: ['3D Printing', 'Digital Fabrication', 'Sustainability'],
-    muted: true,
+    skills: ['3D Printing', 'CAD & Fabrication', 'Open Hardware', 'Automation'],
+    links: [
+      { label: 'Hardware Case Study', href: '/work/auroville-minvayu-hardware' },
+    ],
   },
 ];
+
+export function filterExperience(items: Experience[], track: ExperienceTrack): Experience[] {
+  if (track === 'all') return items;
+  return items.filter((item) => item.track === track);
+}

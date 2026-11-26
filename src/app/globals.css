@@ -135,15 +135,22 @@ html.dark {
   box-sizing: border-box;
 }
 html {
-  /* Programmatic scrolls stay instant; explicit behavior:'smooth' calls still animate.
-     No snap at all: panels are plain full-viewport sections and the document
-     stays wherever the user leaves it. Proximity used to yank committed
-     flicks back to the panel start (the old two-flicks-per-page feel) and
-     pulled /health's free scrolls off position mid-journey. Panel stepping
-     on pointer devices comes from ScrollChaining.tsx instead. */
   scroll-behavior: auto;
   color-scheme: light;
   scroll-snap-type: none;
+  font-size: 14.5px;
+}
+
+@media (min-width: 1024px) and (max-width: 1535px) {
+  html {
+    font-size: 13.75px;
+  }
+}
+
+@media (min-width: 1536px) {
+  html {
+    font-size: 15px;
+  }
 }
 
 html,
@@ -155,28 +162,15 @@ body {
   --nav-h: 48px;
   --safe-top: env(safe-area-inset-top, 0px);
   --safe-bottom: env(safe-area-inset-bottom, 0px);
-  /* Kept at 1: the V1 80% desktop zoom was removed so the V2 layouts render
-     at their design width. Full-bleed heights still multiply by this value. */
   --zoom-inv: 1;
-  /* Type scale. Home renders its copy one step larger than the shared
-     section components do everywhere else; 1 elsewhere so every other route
-     keeps the sizes it ships with. Font sizes multiply by this, the Tailwind
-     `text-[Npx]` utilities it does not control are overridden once, in the
-     HOME TYPE SCALE block at the end of this file. */
   --fs-bump: 1;
+  --font-jetbrains: var(--font-jetbrains-mono);
 }
 html[data-page='home'] {
-  --fs-bump: 1.15;
+  --fs-bump: 1;
 }
 html[data-page='health'] {
-  --fs-bump: 1.2;
-}
-@media (min-width: 1024px) {
-  @supports (zoom: 0.8) {
-    :root {
-      --zoom-inv: 1.25;
-    }
-  }
+  --fs-bump: 1;
 }
 
 /* Kill 300ms tap delay / double-tap auto-zoom on mobile */
@@ -1661,4 +1655,12 @@ html.dark {
 }
 html.dark .border-brutalist {
   border-color: #ffffff;
+}
+
+/* When DesktopNav collapses its 32px status strip on scroll, keep sticky
+   sub-navigation bars flush beneath the 64px primary header row. */
+@media (min-width: 1024px) {
+  html[data-status-hidden='true'] .sticky-below-nav {
+    top: 4rem !important;
+  }
 }

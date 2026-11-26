@@ -48,8 +48,10 @@ export function Gauge() {
           stroke="url(#gaugeGrad)"
           strokeWidth="6"
           strokeLinecap="round"
-          initial={{ pathLength: 0 }}
-          whileInView={{ pathLength: frac }}
+          pathLength={1}
+          strokeDasharray="1"
+          initial={{ strokeDashoffset: 1 }}
+          whileInView={{ strokeDashoffset: 1 - frac }}
           viewport={{ once: true, margin: '-80px' }}
           transition={{ duration: 1.8, delay: 0.35, ease: EASE }}
         />

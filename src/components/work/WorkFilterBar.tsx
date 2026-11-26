@@ -33,7 +33,7 @@ export function WorkFilterBar() {
   }
 
   return (
-    <section className="sticky top-16 z-40 w-full border-b-2 border-primary bg-surface-container px-6 py-4 dark:border-outline dark:bg-surface-low lg:top-24 lg:px-12">
+    <section className="sticky-below-nav sticky top-16 z-40 w-full border-b-2 border-primary bg-surface-container px-6 py-4 transition-[top] duration-300 ease-out dark:border-outline dark:bg-surface-low lg:top-24 lg:px-12">
       <div className="mx-auto flex max-w-7xl flex-col items-start justify-between gap-4 sm:flex-row sm:items-center">
         <div className="flex items-center gap-2">
           <span className="material-symbols-outlined text-[20px] text-primary dark:text-primary-yellow">
