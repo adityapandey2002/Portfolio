@@ -1,10 +1,4 @@
 import type { Metadata, Viewport } from 'next';
-import {
-  Bricolage_Grotesque,
-  Fraunces,
-  JetBrains_Mono,
-  Plus_Jakarta_Sans,
-} from 'next/font/google';
 import { Providers } from '@/components/providers/Providers';
 import { ThemeProvider } from '@/components/providers/ThemeProvider';
 import { MobileHeader } from '@/components/ui/MobileHeader';
@@ -12,34 +6,6 @@ import { MobileTabBar } from '@/components/ui/MobileTabBar';
 import { DesktopNav } from '@/components/ui/DesktopNav';
 import { AmbientBackground } from '@/components/three/AmbientBackground';
 import './globals.css';
-
-const plusJakarta = Plus_Jakarta_Sans({
-  subsets: ['latin'],
-  weight: ['400', '500', '600', '700', '800'],
-  variable: '--font-jakarta',
-  display: 'swap',
-});
-
-const bricolage = Bricolage_Grotesque({
-  subsets: ['latin'],
-  weight: ['500', '600', '700', '800'],
-  variable: '--font-bricolage',
-  display: 'swap',
-});
-
-const fraunces = Fraunces({
-  subsets: ['latin'],
-  weight: ['500', '600', '700'],
-  variable: '--font-fraunces',
-  display: 'swap',
-});
-
-const jetbrainsMono = JetBrains_Mono({
-  subsets: ['latin'],
-  weight: ['400', '500', '600', '700'],
-  variable: '--font-jetbrains-mono',
-  display: 'swap',
-});
 
 const SITE = 'https://aditya-pandey-beryl.vercel.app';
 
@@ -89,14 +55,20 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             __html: `(function(){try{var t=localStorage.getItem('theme');if(t==='dark'){document.documentElement.classList.add('dark');}}catch(e){}})();`,
           }}
         />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        {/* eslint-disable-next-line @next/next/no-page-custom-font */}
+        <link
+          href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@500;600;700;800&family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=JetBrains+Mono:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
+          rel="stylesheet"
+        />
+        {/* eslint-disable-next-line @next/next/no-page-custom-font */}
         <link
           href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
           rel="stylesheet"
         />
       </head>
-      <body
-        className={`${plusJakarta.variable} ${bricolage.variable} ${fraunces.variable} ${jetbrainsMono.variable} bg-surface dark:bg-surface-dark font-sans text-primary dark:text-on-surface antialiased pt-16 lg:pt-24`}
-      >
+      <body className="bg-surface dark:bg-surface-dark font-sans text-primary dark:text-on-surface antialiased pt-16 lg:pt-24">
         <ThemeProvider>
           <MobileHeader />
           <MobileTabBar />

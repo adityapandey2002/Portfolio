@@ -8,6 +8,10 @@
 ========================================================= */
 :root,
 [data-theme='light'] {
+  --font-jakarta: 'Plus Jakarta Sans', system-ui, sans-serif;
+  --font-bricolage: 'Bricolage Grotesque', system-ui, sans-serif;
+  --font-fraunces: 'Fraunces', Georgia, serif;
+  --font-jetbrains-mono: 'JetBrains Mono', ui-monospace, monospace;
   color-scheme: light;
   --bg: #f2ecd9; /* aged paper */
   --bg-2: #faf6ea; /* cleaner paper (cards) */
