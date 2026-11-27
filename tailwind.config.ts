@@ -126,6 +126,13 @@ const config: Config = {
         serif: ['var(--font-fraunces)', 'Georgia', 'serif'],
         headline: ['var(--font-bricolage)', 'system-ui', 'sans-serif'],
       },
+      maxWidth: {
+        // Keep wide layout containers in real px so lowering root `html` font-size
+        // for laptop readability never shrinks page width or creates wide side voids.
+        '5xl': '1280px',
+        '6xl': '1560px',
+        '7xl': '1760px',
+      },
     },
   },
   safelist: [

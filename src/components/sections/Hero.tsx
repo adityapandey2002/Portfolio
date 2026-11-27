@@ -184,7 +184,7 @@ export function Hero() {
   return (
     <section id="hero" className="relative w-full flex flex-col">
       <section className="w-full border-b-4 border-primary dark:border-[#3f3f46] py-6 lg:py-10 bg-surface dark:bg-[#161619] px-4 sm:px-6 lg:px-8">
-        <div className="max-w-7xl mx-auto flex flex-col gap-8">
+        <div className="max-w-7xl mx-auto flex flex-col md:gap-8">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
             <div className="lg:col-span-7 xl:col-span-8 space-y-5">
               <div className="inline-block bg-primary-container text-on-primary-container dark:bg-[#facc15] dark:text-[#121214] px-3.5 py-1 border-2 border-primary dark:border-[#3f3f46] font-headline text-[11px] font-bold uppercase tracking-widest shadow-[3px_3px_0px_#1a1a1a] dark:shadow-[3px_3px_0px_#000000]">
@@ -216,8 +216,8 @@ export function Hero() {
               </div>
             </div>
 
-            {/* Recruiter-focused Production & Field Snapshot */}
-            <div className="lg:col-span-5 xl:col-span-4">
+            {/* Recruiter-focused Production & Field Snapshot (hidden on mobile phones) */}
+            <div className="hidden md:block lg:col-span-5 xl:col-span-4">
               <div className="relative rounded-0 border-[3px] border-primary dark:border-[#3f3f46] bg-surface-container-lowest dark:bg-[#1a1a1f] shadow-[6px_6px_0px_#1a1a1a] dark:shadow-[6px_6px_0px_#000000] p-4">
                 <div className="flex items-center justify-between gap-2 pb-2.5 border-b-2 border-primary dark:border-[#3f3f46] mb-3">
                   <div className="min-w-0">
@@ -269,7 +269,7 @@ export function Hero() {
             </div>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 pt-2">
+          <div className="hidden md:grid md:grid-cols-2 lg:grid-cols-4 gap-4 pt-2">
             {METRICS.map((metric) => (
               <MetricBlock key={metric.number} {...metric} />
             ))}

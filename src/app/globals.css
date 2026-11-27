@@ -1750,3 +1750,16 @@ html.dark .border-brutalist {
     top: var(--header-row1-h) !important;
   }
 }
+
+/* Decouple wide layout containers from the scaled root rem so laptop (1366–1536px)
+   and desktop (1920px+) screens fill cleanly left-to-right instead of leaving
+   oversized blank side margins. */
+.max-w-5xl {
+  max-width: 1280px;
+}
+.max-w-6xl {
+  max-width: 1560px;
+}
+.max-w-7xl {
+  max-width: 1760px;
+}
