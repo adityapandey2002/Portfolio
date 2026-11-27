@@ -68,7 +68,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           rel="stylesheet"
         />
       </head>
-      <body className="bg-surface dark:bg-surface-dark font-sans text-primary dark:text-on-surface antialiased pt-16 lg:pt-24">
+      <body className="bg-surface dark:bg-surface-dark font-sans text-primary dark:text-on-surface antialiased pt-[var(--header-h)]">
         <ThemeProvider>
           <MobileHeader />
           <MobileTabBar />

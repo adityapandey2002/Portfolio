@@ -192,7 +192,7 @@ export function WorkShowcaseClient() {
       </section>
 
       {/* Sticky Category Filter + Instant Search Bar */}
-      <div className="sticky-below-nav sticky top-16 z-30 border-b-2 border-primary bg-surface-container/95 px-4 py-3 backdrop-blur-sm dark:border-[#3f3f46] dark:bg-[#161619]/95 sm:px-8 lg:top-24 lg:px-12">
+      <div className="sticky-below-nav sticky top-[var(--header-h)] z-30 border-b-2 border-primary bg-surface-container/95 px-4 py-3 backdrop-blur-sm transition-[top] duration-300 ease-out dark:border-[#3f3f46] dark:bg-[#161619]/95 sm:px-8 lg:px-12">
         <div className="mx-auto flex max-w-7xl flex-col gap-3 lg:flex-row lg:items-center lg:justify-between">
           <div
             role="group"

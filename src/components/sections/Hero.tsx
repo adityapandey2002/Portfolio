@@ -186,7 +186,7 @@ export function Hero() {
       <section className="w-full border-b-4 border-primary dark:border-[#3f3f46] py-6 lg:py-10 bg-surface dark:bg-[#161619] px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto flex flex-col gap-8">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
-            <div className="lg:col-span-8 space-y-5">
+            <div className="lg:col-span-7 xl:col-span-8 space-y-5">
               <div className="inline-block bg-primary-container text-on-primary-container dark:bg-[#facc15] dark:text-[#121214] px-3.5 py-1 border-2 border-primary dark:border-[#3f3f46] font-headline text-[11px] font-bold uppercase tracking-widest shadow-[3px_3px_0px_#1a1a1a] dark:shadow-[3px_3px_0px_#000000]">
                 Public Health Data Architecture × Full-Stack Engineering
               </div>
@@ -217,18 +217,18 @@ export function Hero() {
             </div>
 
             {/* Recruiter-focused Production & Field Snapshot */}
-            <div className="lg:col-span-4">
+            <div className="lg:col-span-5 xl:col-span-4">
               <div className="relative rounded-0 border-[3px] border-primary dark:border-[#3f3f46] bg-surface-container-lowest dark:bg-[#1a1a1f] shadow-[6px_6px_0px_#1a1a1a] dark:shadow-[6px_6px_0px_#000000] p-4">
-                <div className="flex items-center justify-between pb-2.5 border-b-2 border-primary dark:border-[#3f3f46] mb-3">
-                  <div>
+                <div className="flex items-center justify-between gap-2 pb-2.5 border-b-2 border-primary dark:border-[#3f3f46] mb-3">
+                  <div className="min-w-0">
                     <span className="font-headline font-bold text-xs uppercase tracking-wider text-on-surface block">
                       Recruiter Snapshot
                     </span>
-                    <span className="font-mono text-[10px] text-on-surface-variant">
+                    <span className="font-mono text-[10px] text-on-surface-variant block truncate">
                       Verified Engineering &amp; Field Scale
                     </span>
                   </div>
-                  <span className="bg-primary-container dark:bg-[#facc15] text-on-primary-container dark:text-[#121214] px-2 py-0.5 font-mono font-bold text-[10px] uppercase border border-primary dark:border-[#3f3f46]">
+                  <span className="shrink-0 whitespace-nowrap bg-primary-container dark:bg-[#facc15] text-on-primary-container dark:text-[#121214] px-2 py-0.5 font-mono font-bold text-[10px] uppercase border border-primary dark:border-[#3f3f46]">
                     2024–2026
                   </span>
                 </div>

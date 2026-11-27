@@ -29,10 +29,10 @@ export function MobileTabBar() {
   return (
     <nav
       aria-label="Mobile navigation"
-      className="fixed inset-x-0 bottom-0 z-[110] border-t-2 border-primary bg-surface/95 backdrop-blur-xl lg:hidden"
+      className="fixed inset-x-0 bottom-0 z-[110] border-t-2 border-primary bg-surface/95 backdrop-blur-xl md:hidden"
       style={{ paddingBottom: 'var(--safe-bottom)' }}
     >
-      <div className="grid h-16 w-full grid-cols-5 items-stretch">
+      <div className="grid h-14 w-full grid-cols-5 items-stretch">
         {TABS.map((tab) => {
           const active = isActive(tab.href);
           const Icon = tab.icon;

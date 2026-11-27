@@ -41,8 +41,8 @@ export function HomeJumpNav() {
         };
       });
 
-      const isDesktop = window.innerWidth >= 1024;
-      const activationOffset = isDesktop ? 210 : 170;
+      const isDesktop = window.innerWidth >= 768;
+      const activationOffset = isDesktop ? 190 : 150;
 
       const nextActive = computeActiveSection(positions, {
         activationOffset,
@@ -110,7 +110,7 @@ export function HomeJumpNav() {
       aria-label="Jump to a home section"
       data-testid="home-jump-nav"
       data-active-section={activeId}
-      className="sticky-below-nav sticky top-16 z-40 border-y-2 border-outline bg-surface-container-high/95 backdrop-blur-md transition-[top] duration-300 ease-out lg:top-24"
+      className="sticky-below-nav sticky top-[var(--header-h)] z-40 border-y-2 border-outline bg-surface-container-high/95 backdrop-blur-md transition-[top] duration-300 ease-out"
     >
       <div className="mx-auto flex max-w-7xl items-center justify-between gap-3 px-4 py-2 lg:px-8">
         <div

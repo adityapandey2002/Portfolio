@@ -136,7 +136,7 @@ function BootOverlay({ closing, onSkip }: { closing: boolean; onSkip: () => void
       </div>
 
       {/* Boot panel */}
-      <div className="flex flex-1 items-center overflow-hidden px-4 py-6 sm:px-8 sm:py-8">
+      <div className="flex flex-1 items-center overflow-y-auto px-4 py-4 sm:px-8 sm:py-6">
         <div className="mx-auto w-full max-w-5xl">
           <div className="mb-5 flex items-center gap-3 sm:mb-7">
             <span className="bg-primary px-2 py-1 font-mono text-[9px] font-bold uppercase tracking-[0.2em] text-primary-container dark:bg-primary-yellow dark:text-black">

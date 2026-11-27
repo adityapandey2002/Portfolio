@@ -1,81 +1,86 @@
 'use client';
 
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
+import { Moon, Sun, User } from 'lucide-react';
 import { useTheme } from '@/components/providers/ThemeProvider';
 
+function getRouteLabel(pathname: string): string {
+  if (pathname.startsWith('/work')) return 'Work & Systems';
+  if (pathname.startsWith('/health')) return 'Health Impact';
+  if (pathname.startsWith('/ask')) return 'Ask AI';
+  return 'Aditya Pandey';
+}
+
 /**
- * MobileHeader — fixed top bar for small screens.
- *
- * - AP mark, Home title and field location
- * - Light/dark theme toggle
- * - Person glyph
- *
- * Page navigation lives in MobileTabBar; desktop uses DesktopNav.
+ * MobileHeader — compact fixed top bar for narrow (<768px) screens.
  */
 export function MobileHeader() {
+  const pathname = usePathname();
   const { theme, toggleTheme } = useTheme();
   const isDark = theme === 'dark';
+  const routeLabel = getRouteLabel(pathname);
 
   return (
     <header
-      className={`fixed top-0 left-0 right-0 z-50 h-16 lg:hidden ${
+      className={`fixed top-0 left-0 right-0 z-50 h-14 md:hidden ${
         isDark
-          ? 'dark:bg-surface dark:border-white border-b border-white/10'
-          : 'bg-surface border-b border-primary'
+          ? 'border-b-2 border-outline bg-surface'
+          : 'border-b-2 border-primary bg-surface'
       }`}
       aria-label="Mobile header"
     >
-      <div className="flex items-center justify-between px-3">
-        {/* Left: AP logo + Home title + location */}
-        <div className="flex items-center gap-2">
+      <div className="flex h-full items-center justify-between gap-2 px-3">
+        {/* Left: AP logo + active route title + location */}
+        <div className="flex min-w-0 items-center gap-2">
           <Link
-            href="/#hero"
-            className="flex h-8 w-8 shrink-0 items-center justify-center rounded-0 border-2 border-primary dark:border-white bg-accent-yellow dark:bg-primary-yellow text-black dark:text-black font-headline font-bold text-[10px] uppercase tracking-tighter"
+            href="/"
+            className="flex h-8 w-8 shrink-0 items-center justify-center border-2 border-primary bg-accent-yellow font-headline text-[10px] font-bold uppercase tracking-tighter text-black dark:border-primary-yellow dark:bg-primary-yellow dark:text-black"
           >
             AP
           </Link>
-          <div className="flex flex-col">
+          <div className="flex min-w-0 flex-col leading-none">
             <Link
-              href="/#hero"
-              className="font-headline text-[10px] font-bold uppercase tracking-tight text-on-surface dark:text-on-surface"
+              href="/"
+              className="truncate font-headline text-xs font-bold uppercase tracking-tight text-on-surface"
             >
-              Home
+              {routeLabel}
             </Link>
-            <div className="flex items-center gap-1 mt-0.5">
+            <div className="mt-1 flex items-center gap-1">
               <span
-                className="w-1.5 h-1.5 shrink-0 bg-accent-yellow dark:bg-primary-yellow animate-pulse"
+                className="h-1.5 w-1.5 shrink-0 animate-pulse bg-accent-red dark:bg-primary-yellow"
                 aria-hidden="true"
               />
-              <span className="font-mono text-[9px] font-bold uppercase tracking-wider text-on-surface-variant dark:text-on-surface-variant">
-                MUZAFFARPUR · 38°C
+              <span className="truncate font-mono text-[9px] font-bold uppercase tracking-wider text-on-surface-variant">
+                MUZAFFARPUR · BIHAR
               </span>
             </div>
           </div>
         </div>
 
-        {/* Right: theme toggle + person icon */}
-        <div className="flex items-center gap-2">
+        {/* Right: theme toggle + person badge */}
+        <div className="flex shrink-0 items-center gap-2">
           <button
+            type="button"
             onClick={toggleTheme}
             aria-label={isDark ? 'Switch to light mode' : 'Switch to dark mode'}
-            className={`flex h-8 w-8 shrink-0 items-center justify-center rounded-0 border-2 ${
+            className={`flex h-8 w-8 shrink-0 items-center justify-center border-2 transition-colors ${
               isDark
-                ? 'border-white text-white bg-transparent'
-                : 'border-primary text-primary bg-transparent'
-            } hover:bg-accent-yellow dark:hover:bg-primary-yellow hover:text-primary dark:hover:text-on-primary transition-colors`}
+                ? 'border-outline bg-surface-low text-primary-yellow hover:bg-primary-yellow hover:text-black'
+                : 'border-primary bg-surface text-primary hover:bg-accent-yellow hover:text-black'
+            }`}
           >
-            {isDark ? (
-              <span className="material-symbols-outlined text-[16px]">dark_mode</span>
-            ) : (
-              <span className="material-symbols-outlined text-[16px]">light_mode</span>
-            )}
+            {isDark ? <Moon size={15} aria-hidden="true" /> : <Sun size={15} aria-hidden="true" />}
           </button>
-          <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-none border-2 ${
+          <div
+            aria-hidden="true"
+            className={`flex h-8 w-8 shrink-0 items-center justify-center border-2 ${
               isDark
-                ? 'border-white bg-transparent text-white'
-                : 'border-primary bg-accent-yellow text-black dark:border-white dark:bg-primary-yellow dark:text-black'
-            }">
-            <span className="material-symbols-outlined text-[16px]">person</span>
+                ? 'border-outline bg-primary-yellow text-black'
+                : 'border-primary bg-primary text-primary-container'
+            }`}
+          >
+            <User size={15} />
           </div>
         </div>
       </div>
